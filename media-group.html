@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalog | Solomon Kin Records Media Group</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sk-gold: #D4AF37;
+            --sk-black: #050505;
+            --sk-gray: #1A1A1A;
+            --sumsub-blue: #1693E9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--sk-black); color: white; line-height: 1.6; }
+
+        /* --- NAVIGATION --- */
+        .header {
+            height: 120px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--sk-gray);
+            background: rgba(5, 5, 5, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; letter-spacing: 2px; color: var(--sk-gold); text-transform: uppercase; }
+
+        /* --- CINEMATIC HERO --- */
+        .catalog-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), var(--sk-black)), url('https://images.unsplash.com/photo-1514525253361-bee8718a7439?q=80&w=1964&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+        }
+
+        .catalog-hero h1 { font-size: 4rem; font-weight: 900; line-height: 1; margin-bottom: 20px; }
+        .catalog-hero p { font-size: 1.2rem; color: #9CA3AF; max-width: 600px; }
+
+        /* --- CATALOG FILTERS --- */
+        .filter-bar { padding: 30px 10%; background: var(--sk-gray); display: flex; gap: 20px; border-bottom: 1px solid #333; }
+        .filter-tag { padding: 8px 20px; border: 1px solid #444; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: 0.3s; }
+        .filter-tag:hover, .filter-tag.active { border-color: var(--sk-gold); color: var(--sk-gold); }
+
+        /* --- AUDIO GRID --- */
+        .catalog-grid { padding: 60px 10%; display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .track-row { 
+            background: #0F0F0F; 
+            padding: 20px 30px; 
+            border-radius: 8px; 
+            display: grid; 
+            grid-template-columns: 50px 2fr 1fr 1fr 150px; 
+            align-items: center; 
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+        .track-row:hover { background: #151515; border-color: var(--sk-gold); }
+
+        .play-btn { width: 40px; height: 40px; border: 1px solid var(--sk-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--sk-gold); cursor: pointer; }
+        .track-title { font-weight: 700; font-size: 1rem; }
+        .track-artist { font-size: 0.8rem; color: #666; }
+        .vssn-verified { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--sumsub-blue); border: 1px solid var(--sumsub-blue); padding: 2px 8px; border-radius: 4px; }
+
+        .btn-license { background: var(--sk-gold); color: black; padding: 10px 20px; border-radius: 4px; text-decoration: none; font-weight: 800; font-size: 0.8rem; text-align: center; }
+
+        footer { padding: 80px 10%; border-top: 1px solid var(--sk-gray); text-align: center; color: #444; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="brand-logo">Solomon Kin Records</div>
+        <nav style="display: flex; gap: 30px; font-weight: 700; font-size: 0.8rem;">
+            <a href="index.html" style="color:#666; text-decoration:none;">REALAIID HOME</a>
+            <a href="#" style="color:white; text-decoration:none;">CATALOG</a>
+            <a href="lethal-ledger.html" style="color:white; text-decoration:none;">LETHAL LEDGER</a>
+            <a href="#" style="color:var(--sk-gold); text-decoration:none;">LICENSING</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="catalog-hero">
+            <h1>The Sonic <span>Record.</span></h1>
+            <p>A curated library of VSSN-verified compositions and cinematic scores for high-tier media production.</p>
+        </section>
+
+        <nav class="filter-bar">
+            <span class="filter-tag active">ALL TRACKS</span>
+            <span class="filter-tag">CINEMATIC</span>
+            <span class="filter-tag">INVESTIGATIVE</span>
+            <span class="filter-tag">ORCHESTRAL</span>
+            <span class="filter-tag">VOCAL MASTERS</span>
+        </nav>
+
+        <section class="catalog-grid">
+            <div class="track-row">
+                <div class="play-btn">▶</div>
+                <div>
+                    <div class="track-title">Mainframe Resonance</div>
+                    <div class="track-artist">The Keeper Ensemble</div>
+                </div>
+                <div class="track-genre">Ambient Tech</div>
+                <div><span class="vssn-verified">VSSN VERIFIED</span></div>
+                <a href="#" class="btn-license">LICENSE NOW</a>
+            </div>
+
+            <div class="track-row">
+                <div class="play-btn">▶</div>
+                <div>
+                    <div class="track-title">Lethal Ledger Theme</div>
+                    <div class="track-artist">Malachi & Realm Pictures</div>
+                </div>
+                <div class="track-genre">Suspense</div>
+                <div><span class="vssn-verified">VSSN VERIFIED</span></div>
+                <a href="#" class="btn-license">LICENSE NOW</a>
+            </div>
+
+            <div class="track-row">
+                <div class="play-btn">▶</div>
+                <div>
+                    <div class="track-title">Sovereign Pulse</div>
+                    <div class="track-artist">Digital Commonwealth</div>
+                </div>
+                <div class="track-genre">Modern Orchestral</div>
+                <div><span class="vssn-verified">VSSN VERIFIED</span></div>
+                <a href="#" class="btn-license">LICENSE NOW</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>SOLOMON KIN RECORDS MEDIA GROUP | A DIVISION OF REALAIID BUREAU</p>
+        <p style="margin-top: 10px;">PHL NODE // 1900 MARKET STREET</p>
+    </footer>
+
+</body>
+</html>
