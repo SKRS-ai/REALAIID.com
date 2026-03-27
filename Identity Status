@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference | RealAIID Bureau Developer Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dev-bg: #0F172A;
+            --sidebar-bg: #1E293B;
+            --accent-green: #10B981;
+            --accent-blue: #3B82F6;
+            --text-muted: #94A3B8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--dev-bg); color: #E2E8F0; display: flex; height: 100vh; overflow: hidden; }
+
+        /* --- SIDEBAR NAV --- */
+        .sidebar { width: 300px; background: var(--sidebar-bg); padding: 40px 25px; border-right: 1px solid rgba(255,255,255,0.05); overflow-y: auto; }
+        .sidebar h2 { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .nav-group { margin-bottom: 30px; }
+        .nav-item { display: block; padding: 10px 0; color: #CBD5E1; text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
+        .nav-item:hover { color: var(--accent-blue); }
+        .nav-item.active { color: var(--accent-green); font-weight: 700; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content { flex-grow: 1; padding: 60px 10%; overflow-y: auto; }
+        .endpoint-header { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px; margin-bottom: 40px; }
+        .method { background: var(--accent-green); color: white; padding: 4px 8px; border-radius: 4px; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 0.8rem; margin-right: 15px; }
+        .url { font-family: 'JetBrains Mono'; color: var(--accent-blue); }
+
+        /* --- CODE BLOCKS --- */
+        .code-window { background: #020617; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin: 30px 0; overflow: hidden; }
+        .code-header { background: #1E293B; padding: 10px 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--text-muted); display: flex; justify-content: space-between; }
+        .code-body { padding: 30px; font-family: 'JetBrains Mono'; font-size: 0.9rem; line-height: 1.6; color: #F8FAFC; white-space: pre; }
+
+        .param-table { width: 100%; margin-top: 30px; border-collapse: collapse; }
+        .param-table th { text-align: left; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; padding-bottom: 15px; }
+        .param-table td { padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; }
+        .type { color: var(--accent-blue); font-family: 'JetBrains Mono'; font-size: 0.8rem; }
+
+        footer { margin-top: 80px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 0.7rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID" style="width: 150px; margin-bottom: 40px;">
+        <h2>Documentation</h2>
+        <div class="nav-group">
+            <a href="#" class="nav-item">Introduction</a>
+            <a href="#" class="nav-item">Authentication</a>
+            <a href="#" class="nav-item">Rate Limiting</a>
+        </div>
+        <h2>Core Endpoints</h2>
+        <div class="nav-group">
+            <a href="#" class="nav-item active">POST /v1/verify/vssn</a>
+            <a href="#" class="nav-item">GET /v1/status/{hash}</a>
+            <a href="#" class="nav-item">DELETE /v1/purge/buffer</a>
+        </div>
+        <h2>Enterprise</h2>
+        <div class="nav-group">
+            <a href="#" class="nav-item">Aviation Corridor Sync</a>
+            <a href="#" class="nav-item">3Si Vault Handshake</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <div class="endpoint-header">
+            <h1>Execute VSSN Verification</h1>
+            <p style="margin-top: 10px; color: var(--text-muted);">Initiate a liveness check and generate a one-way VSSN hash anchored to the Philadelphia Mainframe.</p>
+        </div>
+
+        <div style="display: flex; align-items: center; margin-bottom: 40px;">
+            <span class="method">POST</span>
+            <span class="url">https://api.realaiid.com/v1/verify/vssn</span>
+        </div>
+
+        <h3>Request Parameters</h3>
+        <table class="param-table">
+            <thead>
+                <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>audio_payload</code></td><td><span class="type">Binary</span></td><td>High-fidelity spatial audio capture buffer (max 1.2s).</td></tr>
+                <tr><td><code>node_id</code></td><td><span class="type">String</span></td><td>Physical node identifier (e.g., <code>PHL-1900-MKT</code>).</td></tr>
+                <tr><td><code>liveness_threshold</code></td><td><span class="type">Float</span></td><td>Minimum confidence score (default: <code>0.98</code>).</td></tr>
+            </tbody>
+        </table>
+
+        <div class="code-window">
+            <div class="code-header">
+                <span>cURL // REQUEST EXAMPLE</span>
+                <span>Copy to Clipboard</span>
+            </div>
+            <div class="code-body">
+curl -X POST "https://api.realaiid.com/v1/verify/vssn" \
+     -H "Authorization: Bearer YOUR_SOVEREIGN_KEY" \
+     -F "audio_payload=@capture.wav" \
+     -F "node_id=PHL-1900-MKT"
+            </div>
+        </div>
+
+        <div class="code-window">
+            <div class="code-header" style="background: #10B98122; color: var(--accent-green);">
+                <span>JSON // SUCCESS RESPONSE</span>
+                <span>200 OK</span>
+            </div>
+            <div class="code-body">
+{
+  "status": "success",
+  "vssn_hash": "VSSN-PHL-9921-X-0041-882",
+  "liveness_confidence": 0.9984,
+  "mainframe_anchor": "1900_MARKET_ST_PHL",
+  "timestamp": "2026-03-27T17:16:03Z",
+  "purge_status": "complete"
+}
+            </div>
+        </div>
+
+        <footer>
+            REALAIID DEVELOPER ECOSYSTEM // API VERSION 4.1.2 // SECURED BY PHILADELPHIA MAINFRAME
+        </footer>
+    </main>
+
+</body>
+</html>
