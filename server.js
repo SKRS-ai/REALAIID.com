@@ -1,39 +1,68 @@
+require('dotenv').config();
 const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const Registrant = require('./models/Registrant'); // The Schema we created
+
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// MOCK DATABASE 
-// (In production, this would be MongoDB or PostgreSQL)
-const registrantDatabase = [
-    {
-        uid: "PHL-USER-9921",
-        name: "Nehemiah",
-        tier: "Sovereign",
-        vssn_hash: "REALAIID-VSSN-SHA512-8a2f6b3c91d...ae44",
-        node: "PHL-01",
-        shield_active: true,
-        resonance_lock: true
-    }
-];
+// --- 1. MAINFRAME CONNECTION (MongoDB) ---
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('[DATABASE] Connected to MongoDB Atlas - Ledger Active'))
+    .catch(err => console.error('[ERROR] Connection Denied:', err));
 
-// MIDDLEWARE
-app.use(express.static('public')); // Serves your HTML/CSS/Images
+// --- 2. MIDDLEWARE & CONFIG ---
 app.use(express.json());
+app.use(express.static('public')); // Serves index, hashing-info, etc.
 
-// API ENDPOINT: Fetch Registrant Data
-app.get('/api/user-profile', (req, res) => {
-    // 1. In a real app, we verify the JWT token from the browser here
-    const user = registrantDatabase[0]; 
+// --- 3. SECURITY LAYER: THE GATEKEEPER ---
+const verifyAccess = async (req, res, next) => {
+    // In a real scenario, this would check a JWT token or Session Cookie
+    const restrictedPaths = ['/dashboard.html', '/voice-terminal.html', '/calibrate-camera.html'];
+    
+    if (restrictedPaths.includes(req.path)) {
+        // Simple Logic: Check database if the user is authorized
+        // We'll use a placeholder email for now; later this comes from the login session
+        const user = await Registrant.findOne({ email: 'nehemiah@example.com' }); 
+        
+        if (!user || !user.hasPaid) {
+            console.log(`[SECURITY] Access Denied to ${req.path}. Redirecting to Checkout.`);
+            return res.redirect('/register-checkout.html');
+        }
+    }
+    next();
+};
 
-    if (user) {
-        console.log(`[MAINFRAME] Authenticated session for Node: ${user.node}`);
+app.use(verifyAccess);
+
+// --- 4. API ENDPOINTS (Data Exchange) ---
+
+// Get User Profile for Dashboard
+app.get('/api/user-profile', async (req, res) => {
+    try {
+        const user = await Registrant.findOne({ email: 'nehemiah@example.com' });
         res.json(user);
-    } else {
-        res.status(401).send("Unauthorized Access Detected.");
+    } catch (err) {
+        res.status(500).json({ error: "Mainframe Timeout." });
     }
 });
 
+// Update VSSN Hash (Called after Voice/Spatial capture is complete)
+app.post('/api/update-vssn', async (req, res) => {
+    const { email, new_hash } = req.body;
+    try {
+        await Registrant.findOneAndUpdate({ email: email }, { vssn_hash: new_hash });
+        res.json({ status: "VSSN Anchored to Ledger." });
+    } catch (err) {
+        res.status(500).json({ error: "Hash Write Failed." });
+    }
+});
+
+// --- 5. START SERVER ---
 app.listen(PORT, () => {
-    console.log(`[REALAIID BUREAU] Mainframe active at http://localhost:${PORT}`);
-    console.log(`[STATUS] Monitoring Ingest Node: PHL-01`);
+    console.log(`-----------------------------------------------`);
+    console.log(`REALAIID BUREAU MAINFRAME ACTIVE ON PORT ${PORT}`);
+    console.log(`NODE LOCATION: PHL-MAIN-01 (1900 Market St)`);
+    console.log(`-----------------------------------------------`);
 });
