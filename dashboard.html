@@ -3,136 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Identity | RealAIID.com Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>Member Dashboard | RealAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --sumsub-green: #18B494;
-            --sumsub-blue: #1693E9;
-            --text-strong: #0B1320;
-            --bg-dashboard: #F0F2F5;
-            --sidebar-dark: #0B1320;
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --surface: #05080F;
+            --card-bg: #0B1320;
+            --text-muted: #94A3B8;
+            --success: #10B981;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-dashboard); display: flex; min-height: 100vh; }
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: white; line-height: 1.6; }
 
-        /* --- SIDE NAVIGATION --- */
-        .sidebar { width: 280px; background: var(--sidebar-dark); color: white; padding: 40px 20px; display: flex; flex-direction: column; }
-        .sidebar-logo img { width: 100%; margin-bottom: 50px; }
-        .nav-group { flex-grow: 1; }
-        .nav-link { display: block; color: #94A3B8; text-decoration: none; padding: 12px 15px; border-radius: 8px; margin-bottom: 5px; font-weight: 500; transition: 0.3s; }
-        .nav-link.active { background: rgba(255,255,255,0.1); color: white; border-left: 4px solid var(--sumsub-green); }
+        /* --- DASHBOARD LAYOUT --- */
+        .dashboard-wrapper { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
 
-        /* --- MAIN CONTENT AREA --- */
-        .main-view { flex-grow: 1; padding: 40px 5%; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        /* SIDE NAV */
+        aside { background: #070C14; border-right: 1px solid #1E293B; padding: 40px 20px; }
+        .nav-brand { font-family: 'JetBrains Mono'; font-weight: 800; color: var(--phl-blue); margin-bottom: 50px; padding: 0 10px; }
+        .sidebar-links a { display: block; color: var(--text-muted); text-decoration: none; padding: 12px 15px; border-radius: 6px; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .sidebar-links a.active, .sidebar-links a:hover { background: rgba(22, 147, 233, 0.1); color: var(--phl-blue); }
+
+        /* MAIN CONTENT */
+        main { padding: 60px; max-width: 1200px; }
+        header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; }
+        .user-welcome h1 { font-size: 2rem; margin-bottom: 5px; }
+        .tier-badge { background: var(--phl-blue); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+
+        /* DATA CARDS */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .data-card { background: var(--card-bg); border: 1px solid #1E293B; padding: 30px; border-radius: 12px; }
+        .data-card h3 { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
         
-        /* --- DASHBOARD CARDS --- */
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px; }
-        .stat-card { background: white; padding: 25px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .stat-card h4 { color: #64748B; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; }
-        .stat-value { font-size: 1.5rem; font-weight: 800; color: var(--text-strong); }
-        .status-dot { height: 10px; width: 10px; background: var(--sumsub-green); border-radius: 50%; display: inline-block; margin-right: 8px; }
+        /* VSSN DISPLAY */
+        .vssn-display { background: #05080F; padding: 15px; border-radius: 4px; border-left: 3px solid var(--phl-blue); font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--phl-blue); overflow-wrap: break-word; }
 
-        /* --- VSSN HASH DISPLAY --- */
-        .hash-console { background: #1E293B; color: var(--sumsub-green); font-family: 'JetBrains Mono', monospace; padding: 30px; border-radius: 12px; margin-bottom: 40px; position: relative; }
-        .hash-label { font-size: 0.7rem; color: #94A3B8; margin-bottom: 10px; }
-        .hash-code { font-size: 1.1rem; word-break: break-all; }
+        /* TOGGLE SWITCHES */
+        .status-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #1E293B; }
+        .status-label { font-size: 0.9rem; font-weight: 600; }
+        .status-indicator { color: var(--success); font-family: 'JetBrains Mono'; font-size: 0.8rem; font-weight: 700; }
 
-        /* --- PROTECTIONS LIST --- */
-        .activity-table { background: white; border-radius: 16px; padding: 30px; }
-        table { width: 100%; border-collapse: collapse; }
-        th { text-align: left; padding: 15px; border-bottom: 1px solid #F1F5F9; color: #64748B; font-size: 0.85rem; }
-        td { padding: 20px 15px; border-bottom: 1px solid #F1F5F9; font-size: 0.9rem; }
-
-        .btn-action { background: var(--sumsub-blue); color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 0.8rem; font-weight: 600; }
+        .btn-action { display: inline-block; padding: 12px 24px; background: var(--phl-blue); color: white; text-decoration: none; border-radius: 4px; font-weight: 700; font-size: 0.85rem; margin-top: 20px; }
     </style>
 </head>
 <body>
 
-    <aside class="sidebar">
-        <div class="sidebar-logo">
-            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID">
-        </div>
-        <nav class="nav-group">
-            <a href="#" class="nav-link active">Identity Overview</a>
-            <a href="#" class="nav-link">Likeness Shield Monitoring</a>
-            <a href="#" class="nav-link">Mainframe Logs</a>
-            <a href="#" class="nav-link">Legal Vault</a>
-        </nav>
-        <div class="user-footer" style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <p style="font-size: 0.8rem; color: #94A3B8;">User: Nehemiah Brown</p>
-            <p style="font-size: 0.7rem; color: var(--sumsub-green);">Tier: Sovereign Institutional</p>
-        </div>
-    </aside>
+    <div class="dashboard-wrapper">
+        <aside>
+            <div class="nav-brand">REALAIID // CORE</div>
+            <nav class="sidebar-links">
+                <a href="#" class="active">Identity Overview</a>
+                <a href="#">Likeness Shield</a>
+                <a href="#">Mainframe Keys</a>
+                <a href="#">VSSN Ledger History</a>
+                <a href="#">Security Settings</a>
+                <a href="index.html" style="margin-top: 50px; color: #EF4444;">Terminate Session</a>
+            </nav>
+        </aside>
 
-    <main class="main-view">
-        <div class="top-bar">
-            <h1 style="font-size: 1.8rem; color: var(--text-strong);">Identity Overview</h1>
-            <div style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: #64748B;">Node: PHL_1900_MARKET | 2026-03-27</div>
-        </div>
+        <main>
+            <header>
+                <div class="user-welcome">
+                    <span class="tier-badge">Sovereign Tier</span>
+                    <h1>Welcome, Nehemiah.</h1>
+                    <p style="color: var(--text-muted);">Mainframe Node: PHL-01 // Last Auth: 2026-03-27</p>
+                </div>
+            </header>
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <h4>Sovereignty Status</h4>
-                <div class="stat-value"><span class="status-dot"></span>VERIFIED</div>
+            <div class="stats-grid">
+                <div class="data-card">
+                    <h3>Your VSSN Hash (Identity Core)</h3>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Your biological signature has been hashed and anchored at 1900 Market.</p>
+                    <div class="vssn-display">
+                        REALAIID-VSSN-SHA512-8a2f6b3c91d...ae44
+                    </div>
+                </div>
+
+                <div class="data-card">
+                    <h3>Protection Protocols</h3>
+                    <div class="status-row">
+                        <span class="status-label">Likeness Shield</span>
+                        <span class="status-indicator">● ACTIVE</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Vocal Resonance Lock</span>
+                        <span class="status-indicator">● ACTIVE</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Deepfake Monitoring</span>
+                        <span class="status-indicator">● SCANNING</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h4>Active Protections</h4>
-                <div class="stat-value">14 Networks</div>
-            </div>
-            <div class="stat-card">
-                <h4>Statutory Standing</h4>
-                <div class="stat-value">NO FAKES v1.2</div>
-            </div>
-        </div>
 
-        <div class="hash-console">
-            <div class="hash-label">ACTIVE VOCAL SIGNATURE SERIAL NUMBER (VSSN)</div>
-            <div class="hash-code">F7E9-2B1A-88C4-0021-996B-VSSN-X92L-MARKET-1900-PHL</div>
-            <div style="margin-top: 15px; font-size: 0.65rem; color: #64748B; text-align: right;">ENCRYPTED BY PHILADELPHIA MAINFRAME BUREAU</div>
-        </div>
+            <div class="data-card" style="grid-column: span 2;">
+                <h3>Digital Sovereignty Actions</h3>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Use the following tools to manage your identity presence across the web.</p>
+                <div style="display: flex; gap: 15px;">
+                    <a href="#" class="btn-action">Download Identity Certificate</a>
+                    <a href="#" class="btn-action" style="background: transparent; border: 1px solid var(--phl-blue);">Initiate Purge Protocol</a>
+                </div>
+            </div>
 
-        <div class="activity-table">
-            <h3 style="margin-bottom: 20px; color: var(--text-strong);">Recent Network Scans</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>PLATFORM</th>
-                        <th>DETECTION TYPE</th>
-                        <th>PROBABILITY</th>
-                        <th>STATUS</th>
-                        <th>ACTION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>YouTube API</td>
-                        <td>Vocal Synthesis</td>
-                        <td>0.02% (Noise)</td>
-                        <td style="color: var(--sumsub-green); font-weight: bold;">SECURE</td>
-                        <td><a href="#" class="btn-action">View Log</a></td>
-                    </tr>
-                    <tr>
-                        <td>TikTok CDN</td>
-                        <td>Likeness Match</td>
-                        <td>0.01% (Noise)</td>
-                        <td style="color: var(--sumsub-green); font-weight: bold;">SECURE</td>
-                        <td><a href="#" class="btn-action">View Log</a></td>
-                    </tr>
-                    <tr>
-                        <td>X (Social)</td>
-                        <td>Synthetic Voice</td>
-                        <td style="color: #FF4D4D; font-weight: bold;">98% MATCH</td>
-                        <td style="color: #FF4D4D; font-weight: bold;">BLOCKED</td>
-                        <td><a href="#" class="btn-action" style="background:#0B1320;">Takedown Details</a></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+        </main>
+    </div>
 
 </body>
 </html>
