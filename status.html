@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Status | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .status-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+        }
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--glass-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            margin-bottom: 40px;
+        }
+        .pulse-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--emerald-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: var(--emerald-green);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--emerald-green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+        }
+        .ledger-table th {
+            text-align: left;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            font-size: 0.8rem;
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+        .ledger-table td {
+            padding: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .hash-code { font-family: 'Courier New', monospace; color: var(--cobalt-blue); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="index.html">Commonwealth</a>
+            <a href="how-it-works.html">Protocol</a>
+            <a href="status.html" style="color: var(--emerald-green);">Network Status</a>
+            <a href="register.html" class="cta-btn">Register</a>
+        </nav>
+    </header>
+
+    <div class="status-container">
+        <h1 class="section-title">Global <span class="highlight">Network Health</span></h1>
+
+        <div class="status-header">
+            <div>
+                <p style="opacity: 0.6; font-size: 0.8rem;">Operational Status</p>
+                <div class="pulse-indicator">
+                    <div class="dot"></div> System Nominal
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <p style="opacity: 0.6; font-size: 0.8rem;">Verified Residents</p>
+                <h2 style="font-family: 'Space Grotesk'; color: var(--platinum);">1,284,902</h2>
+            </div>
+        </div>
+
+        <h3 style="margin-bottom: 20px; font-family: 'Space Grotesk';">Live Anchor Ledger</h3>
+        <table class="ledger-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Digital Residency Suite</th>
+                    <th>Verification Hash (VSSN)</th>
+                    <th>Node Anchor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>15:20:44 EST</td>
+                    <td>Suite #7728</td>
+                    <td class="hash-code">vssn_8f2k...92la</td>
+                    <td>Philadelphia_01</td>
+                </tr>
+                <tr>
+                    <td>15:19:12 EST</td>
+                    <td>Suite #7727</td>
+                    <td class="hash-code">vssn_4p9x...k10q</td>
+                    <td>Philadelphia_03</td>
+                </tr>
+                <tr>
+                    <td>15:15:02 EST</td>
+                    <td>Suite #7726</td>
+                    <td class="hash-code">vssn_33m1...z9pr</td>
+                    <td>Global_Relay_04</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="status.html">Network Health</a></li>
+                    <li><a href="legal.html">Digital Residency Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="enterprise.html">PHL Aviation</a></li>
+                    <li><a href="enterprise.html">Banking API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html">Privacy Policy</a></li>
+                    <li><a href="legal.html">Burn Protocol</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="#">SOC2 Audit</a></li>
+                    <li><a href="legal.html">NO FAKES Act</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
