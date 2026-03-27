@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mainframe | RealAIID.com PHL-1900-MARKET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --mainframe-dark: #020617;
+            --grid-line: rgba(22, 147, 233, 0.1);
+            --neon-glow: #22D3EE;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--mainframe-dark); color: #94A3B8; line-height: 1.6; overflow-x: hidden; }
+
+        /* --- THE GRID BACKGROUND --- */
+        .grid-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px; z-index: -1;
+        }
+
+        /* --- HERO --- */
+        .mainframe-hero { padding: 120px 10% 80px; text-align: center; }
+        .mainframe-hero h1 { font-size: 4.5rem; color: white; font-weight: 800; letter-spacing: -2px; margin-bottom: 20px; }
+        .mainframe-hero p { font-family: 'JetBrains Mono'; color: var(--phl-blue); text-transform: uppercase; letter-spacing: 4px; }
+
+        /* --- ARCHITECTURE SECTION --- */
+        .arch-grid { padding: 60px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .arch-image { 
+            height: 500px; background: #0F172A; border: 1px solid var(--phl-blue); border-radius: 8px; 
+            position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center;
+        }
+        .arch-image::before { content: 'LIVE_FEED_PHL_01'; position: absolute; top: 10px; left: 10px; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--phl-blue); }
+
+        .arch-text h2 { color: white; font-size: 2.5rem; margin-bottom: 25px; }
+        .arch-text p { margin-bottom: 30px; font-size: 1.1rem; }
+
+        /* --- SERVER SPECS --- */
+        .spec-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .spec-table td { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-family: 'JetBrains Mono'; font-size: 0.85rem; }
+        .spec-label { color: var(--phl-blue); width: 150px; font-weight: 700; }
+        .spec-val { color: white; }
+
+        /* --- PULSE COMPONENT --- */
+        .core-pulse { width: 100px; height: 100px; background: radial-gradient(var(--neon-glow), transparent); border-radius: 50%; filter: blur(20px); animation: pulse-glow 2s infinite alternate; }
+        @keyframes pulse-glow { from { opacity: 0.3; transform: scale(0.8); } to { opacity: 0.8; transform: scale(1.2); } }
+
+        .location-banner { background: white; color: var(--mainframe-dark); padding: 20px 10%; text-align: center; font-weight: 800; letter-spacing: 2px; }
+
+        footer { padding: 60px 10%; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.7rem; font-family: 'JetBrains Mono'; }
+    </style>
+</head>
+<body>
+
+    <div class="grid-overlay"></div>
+
+    <div class="location-banner">1900 MARKET STREET // PHILADELPHIA, PA</div>
+
+    <header style="padding: 40px 10%; display: flex; justify-content: space-between; align-items: center;">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID" style="height: 80px;"></div>
+        <a href="index.html" style="color:white; text-decoration:none; font-family: 'JetBrains Mono'; font-size: 0.8rem;">[ EXIT_INTERFACE ]</a>
+    </header>
+
+    <main>
+        <section class="mainframe-hero">
+            <h1>The Anchor.</h1>
+            <p>PHL-NODE-1900 Central Processing</p>
+        </section>
+
+        <section class="arch-grid">
+            <div class="arch-image">
+                <div class="core-pulse"></div>
+                <div style="position: absolute; bottom: 20px; text-align: center; width: 100%;">
+                    <span style="color: var(--phl-blue); font-family: 'JetBrains Mono'; font-size: 0.7rem;">QUANTUM-RESISTANT VAULT ACTIVE</span>
+                </div>
+            </div>
+
+            <div class="arch-text">
+                <h2>Hardware-Level Sovereignty</h2>
+                <p>While the world relies on decentralized "cloud" solutions that are vulnerable to data-center breaches, the Commonwealth is anchored by physical, high-security infrastructure. The Philadelphia Mainframe is a dedicated hardware vault designed for one-way VSSN hashing.</p>
+                
+                <table class="spec-table">
+                    <tr><td class="spec-label">NODE ID</td><td class="spec-val">PHL-1900-MARKET</td></tr>
+                    <tr><td class="spec-label">ENCRYPTION</td><td class="spec-val">AES-256 + Liveness Salt</td></tr>
+                    <tr><td class="spec-label">THROUGHPUT</td><td class="spec-val">12.4PB Verified Data / Year</td></tr>
+                    <tr><td class="spec-label">LATENCY</td><td class="spec-val">142ms Avg (Northeast Corridor)</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <section style="padding: 100px 10%; text-align: center; background: rgba(22, 147, 233, 0.05);">
+            <h3 style="color: white; font-size: 2rem; margin-bottom: 20px;">Why a Physical Mainframe?</h3>
+            <p style="max-width: 800px; margin: 0 auto;">In your history managing high-security assets at <strong>3Si</strong>, you learned that true security requires a physical barrier. The PHL-1900 node is air-gapped from the public internet for hashing sequences, ensuring that even if the web is compromised, your human identity remains un-hackable.</p>
+        </section>
+    </main>
+
+    <footer>
+        REALAIID BUREAU // PHILADELPHIA MAINFRAME DIVISION // © 2026
+    </footer>
+
+</body>
+</html>
