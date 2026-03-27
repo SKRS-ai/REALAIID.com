@@ -3,111 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal & Compliance | RealAIID Bureau Regulatory Standards</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Legal Compliance | RealAIID Bureau Regulatory Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --phl-blue: #1693E9;
-            --legal-gray: #1E293B;
-            --border-light: #E2E8F0;
-            --text-main: #334155;
+            --phl-dark: #05080F;
+            --surface: #F1F5F9;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: var(--text-main); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: #1E293B; line-height: 1.6; }
 
-        .header { background: white; height: 100px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--border-light); }
-        .logo img { height: 80px; }
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
         /* --- COMPLIANCE HERO --- */
-        .legal-hero { 
-            padding: 80px 10%; 
-            background: var(--legal-gray); 
-            color: white; 
-            border-bottom: 5px solid var(--phl-blue);
-        }
-        .legal-hero h1 { font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
-        .statute-tag { font-family: 'JetBrains Mono'; color: var(--phl-blue); font-size: 0.8rem; letter-spacing: 2px; }
+        .compliance-hero { padding: 80px 10%; background: var(--surface); border-bottom: 1px solid var(--border); }
+        .compliance-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-style: italic; color: var(--phl-dark); margin-bottom: 20px; }
+        .compliance-hero p { font-size: 1.1rem; max-width: 800px; color: #475569; }
 
-        /* --- CONTENT SECTION --- */
-        .legal-body { padding: 80px 10%; display: grid; grid-template-columns: 2fr 1fr; gap: 60px; }
+        /* --- STATUTORY SECTIONS --- */
+        .compliance-body { padding: 100px 10%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
         
-        .statute-card { background: white; padding: 40px; border-radius: 12px; border: 1px solid var(--border-light); margin-bottom: 40px; }
-        .statute-card h2 { color: var(--legal-gray); margin-bottom: 20px; font-size: 1.8rem; }
-        .statute-card p { margin-bottom: 20px; }
+        .sticky-nav { position: sticky; top: 180px; height: fit-content; }
+        .sticky-nav h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--phl-blue); margin-bottom: 20px; }
+        .sticky-nav a { display: block; text-decoration: none; color: #64748B; font-weight: 600; font-size: 0.9rem; margin-bottom: 15px; transition: 0.3s; }
+        .sticky-nav a:hover { color: var(--phl-blue); }
 
-        .sidebar-box { background: #F1F5F9; padding: 30px; border-radius: 12px; border-left: 4px solid var(--phl-blue); }
-        .sidebar-box h4 { color: var(--legal-gray); margin-bottom: 15px; font-family: 'JetBrains Mono'; font-size: 0.9rem; }
+        .statutory-content section { margin-bottom: 80px; }
+        .statutory-content h2 { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 25px; border-bottom: 2px solid var(--phl-dark); padding-bottom: 10px; }
         
-        /* --- CERTIFICATION LIST --- */
-        .cert-list { list-style: none; margin-top: 20px; }
-        .cert-list li { margin-bottom: 15px; font-size: 0.85rem; display: flex; align-items: center; gap: 10px; }
-        .dot { width: 6px; height: 6px; background: var(--phl-blue); border-radius: 50%; }
+        .legal-card { background: var(--surface); padding: 30px; border-radius: 4px; border: 1px solid var(--border); margin-top: 25px; }
+        .legal-card h5 { font-family: 'JetBrains Mono'; font-size: 0.8rem; text-transform: uppercase; color: var(--phl-blue); margin-bottom: 10px; }
 
-        .footer-notice { background: white; padding: 40px 10%; text-align: center; font-size: 0.8rem; border-top: 1px solid var(--border-light); }
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
-        <nav style="margin-left:auto; font-family: 'JetBrains Mono'; font-size: 0.75rem;">
-            <a href="index.html" style="text-decoration:none; color:var(--legal-gray); margin-right: 20px;">[ RETURN_TO_BUREAU ]</a>
-            <a href="vssn-hashing.html" style="text-decoration:none; color:var(--phl-blue);">[ TECHNICAL_SPEC ]</a>
-        </nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section class="legal-hero">
-            <span class="statute-tag">COMPLIANCE FRAMEWORK v2026.1</span>
-            <h1>Statutory Sovereignty.</h1>
+        <section class="compliance-hero">
+            <h1>The Framework of Trust.</h1>
+            <p>The RealAIID Bureau operates within a strict jurisdictional and statutory framework. We provide the forensic nexus between synthetic media and established identity law, ensuring that sovereignty remains a verifiable fact.</p>
         </section>
 
-        <section class="legal-body">
-            <div class="main-content">
-                <div class="statute-card">
-                    <h2>NO FAKES Act Enforcement</h2>
-                    <p>The RealAIID Bureau provides the requisite forensic evidence for claims under the <strong>NO FAKES Act (17 U.S.C. § 1101)</strong>. By anchoring your likeness at the Philadelphia Mainframe, we establish a hardware-verified "Human Core" timestamp that serves as the gold standard for statutory defense against unauthorized digital replicas.</p>
-                </div>
+        <div class="compliance-body">
+            <aside class="sticky-nav">
+                <h4>REGULATORY DIRECTIVES</h4>
+                <a href="#statutory">Statutory Standing</a>
+                <a href="#evidentiary">Evidentiary Standards</a>
+                <a href="#jurisdictional">Jurisdictional Anchors</a>
+                <a href="#compliance">Platform Compliance</a>
+            </aside>
 
-                <div class="statute-card">
-                    <h2>Privacy & Biometric Purge</h2>
-                    <p>In accordance with <strong>BIPA (Illinois)</strong> and <strong>GDPR (EU)</strong> standards, the RealAIID VSSN protocol does not store raw biometric audio or visual data. Our "One-Way Hash" process ensures that your identity is converted into a mathematical serial number that cannot be inverted or reconstructed.</p>
-                    <p style="font-size: 0.9rem; color: #64748B;"><em>Note: All raw capture buffers are purged within 120ms of VSSN generation at the PHL-1900-MARKET node.</em></p>
-                </div>
+            <div class="statutory-content">
+                <section id="statutory">
+                    <h2>Statutory Standing</h2>
+                    <p>Under the NO FAKES Act and associated likeness statutes, the burden of proof for "Authorized Consent" rests on the publisher of synthetic media. RealAIID provides the "Negative Proof" necessary to demonstrate a lack of authorization via our VSSN Hash records.</p>
+                    <div class="legal-card">
+                        <h5>Mandate PHL-1900-A</h5>
+                        <p style="font-size: 0.9rem;">"A registered VSSN Hash constitutes prima facie evidence of a 'Human Core' identity, protected against unauthorized synthetic replication under federal and municipal commerce laws."</p>
+                    </div>
+                </section>
 
-                <div class="statute-card">
-                    <h2>Aviation Security (MAC Standard)</h2>
-                    <p>Our implementation protocols for the <strong>PHL Aviation Node</strong> are designed to meet the rigorous identity verification requirements of the Metropolitan Airport Commission. We provide secure, low-latency "High-Flow" corridors that maintain compliance with federal aviation security directives while prioritizing passenger sovereignty.</p>
+                <section id="evidentiary">
+                    <h2>Evidentiary Standards</h2>
+                    <p>Our forensic reports are built to withstand the rigors of civil litigation. We utilize zero-knowledge proofs to verify identity without exposing sensitive biometric data, maintaining a chain of custody anchored in the Philadelphia Mainframe.</p>
+                    <div class="legal-card">
+                        <h5>Standard: HSM-V4</h5>
+                        <p style="font-size: 0.9rem;">Identity hashes are signed via physical Hardware Security Modules (HSM) located at 1900 Market Street, creating a legally binding timestamp for every registration.</p>
+                    </div>
+                </section>
+
+                <section id="jurisdictional">
+                    <h2>Jurisdictional Anchors</h2>
+                    <p>RealAIID is physically domiciled in the Commonwealth of Pennsylvania. By anchoring our infrastructure in Philadelphia, we subject all VSSN operations to domestic security regulations and the high-security engineering standards of the Northeast Corridor.</p>
+                </section>
+
+                <section id="compliance">
+                    <h2>Platform Compliance</h2>
+                    <p>We provide automated compliance webhooks for international media platforms and record labels. These integration points allow platforms to verify the "Human Origin" of uploaded content before it enters the global stream.</p>
                 </div>
             </div>
-
-            <div class="sidebar">
-                <div class="sidebar-box">
-                    <h4>REGULATORY ALIGNMENT</h4>
-                    <ul class="cert-list">
-                        <li><div class="dot"></div> NO FAKES Act Compliant</li>
-                        <li><div class="dot"></div> ELVIS Act (Tennessee) Ready</li>
-                        <li><div class="dot"></div> NIST Cryptographic Standards</li>
-                        <li><div class="dot"></div> SOC2 Type II (PHL Mainframe)</li>
-                        <li><div class="dot"></div> FAA Identity Directive 26-B</li>
-                    </ul>
-                </div>
-                
-                <p style="margin-top: 30px; font-size: 0.75rem; color: #94A3B8;">
-                    <strong>Legal Liaison:</strong><br>
-                    RealAIID Regulatory Division<br>
-                    1900 Market Street<br>
-                    Philadelphia, PA
-                </p>
-            </div>
-        </section>
+        </div>
     </main>
 
-    <div class="footer-notice">
-        The RealAIID Bureau is a private security and identity hashing service. We are not a law firm and do not provide legal advice. Our services are designed to provide technical forensic evidence for use by your legal counsel.
-    </div>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
+    </footer>
 
 </body>
 </html>
