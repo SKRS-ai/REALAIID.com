@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mainframe Access | RealAIID.com Secure Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --text-strong: #0B1320;
+            --bg-vault: #0F172A;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg-vault); 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: #94A3B8; 
+            overflow: hidden;
+        }
+
+        /* --- BACKGROUND NODES --- */
+        .node-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(22, 147, 233, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: 1;
+        }
+
+        /* --- LOGIN CARD --- */
+        .login-card {
+            background: #1E293B;
+            width: 100%;
+            max-width: 450px;
+            padding: 50px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            text-align: center;
+        }
+
+        .login-card img { height: 100px; margin-bottom: 30px; }
+
+        .input-group { text-align: left; margin-bottom: 20px; }
+        label { display: block; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--sumsub-blue); margin-bottom: 8px; text-transform: uppercase; }
+        input { 
+            width: 100%; 
+            padding: 14px; 
+            background: #0F172A; 
+            border: 1px solid #334155; 
+            border-radius: 8px; 
+            color: white; 
+            font-size: 1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+        input:focus { border-color: var(--sumsub-green); }
+
+        .btn-access { 
+            width: 100%; 
+            padding: 16px; 
+            background: var(--sumsub-blue); 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn-access:hover { background: #117aca; transform: translateY(-1px); }
+
+        /* --- BIOMETRIC TOGGLE --- */
+        .biometric-divider { 
+            margin: 30px 0; 
+            display: flex; 
+            align-items: center; 
+            text-align: center; 
+            font-size: 0.7rem; 
+            font-family: 'JetBrains Mono';
+        }
+        .biometric-divider::before, .biometric-divider::after { content: ''; flex: 1; border-bottom: 1px solid #334155; }
+        .biometric-divider:not(:empty)::before { margin-right: 15px; }
+        .biometric-divider:not(:empty)::after { margin-left: 15px; }
+
+        .btn-voice { 
+            background: transparent; 
+            border: 1px solid var(--sumsub-green); 
+            color: var(--sumsub-green); 
+            width: 100%; 
+            padding: 14px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-voice:hover { background: rgba(24, 180, 148, 0.1); }
+
+        .footer-links { margin-top: 30px; font-size: 0.8rem; }
+        .footer-links a { color: #64748B; text-decoration: none; margin: 0 10px; }
+        .footer-links a:hover { color: white; }
+    </style>
+</head>
+<body>
+
+    <div class="node-overlay"></div>
+
+    <div class="login-card">
+        <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID">
+        
+        <form>
+            <div class="input-group">
+                <label>Mainframe Identity (Email)</label>
+                <input type="email" placeholder="n.brown@realaiid.com" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Access Key (Password)</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-access">Initiate Session</button>
+        </form>
+
+        <div class="biometric-divider">OR USE SOVEREIGN BYPASS</div>
+
+        <button class="btn-voice">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+            Vocal Handshake (VSSN)
+        </button>
+
+        <div class="footer-links">
+            <a href="index.html">Back to Home</a> • 
+            <a href="contact.html">Request Access</a>
+        </div>
+    </div>
+
+</body>
+</html>
