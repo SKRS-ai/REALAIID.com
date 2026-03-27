@@ -1,10 +1,9 @@
 :root {
-    --bureau-blue: #003366; /* Deep Trust Blue */
-    --emerald: #2E8B57;     /* Security Green */
-    --slate: #4A4A4A;       /* Professional Text */
-    --light-gray: #F8F9FA;  /* Subtle Section Background */
-    --border: #E1E4E8;      /* Clean Borders */
-    --white: #FFFFFF;
+    --bureau-blue: #0A1F44; /* Deep, authoritative Navy */
+    --emerald-safe: #1E824C; /* Clinical Green for 'Verified' states */
+    --slate-text: #333333;   /* High-readability body text */
+    --white: #FFFFFF;        /* Total transparency */
+    --light-gray-border: #E0E0E0; /* Minimal separation */
 }
 
 * {
@@ -16,21 +15,16 @@
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--white);
-    color: var(--slate);
-    line-height: 1.6;
+    color: var(--slate-text);
+    line-height: 1.7;
+    font-size: 16px;
 }
 
-h1, h2, h3, .bureau-font {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--bureau-blue);
-    font-weight: 700;
-}
-
-/* --- Navigation --- */
+/* --- Navigation & The Oversized Logo --- */
 header {
     background: var(--white);
-    border-bottom: 2px solid var(--bureau-blue);
-    padding: 20px 5%;
+    border-bottom: 3px solid var(--bureau-blue);
+    padding: 30px 5%; /* Increased padding for the larger logo */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,135 +36,199 @@ header {
 .logo-area {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
 }
 
-.logo-area span {
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    color: var(--bureau-blue);
+/* The Logo is now defined at 300px wide, 3x the size of standard logos */
+.logo-area img {
+    width: 300px;
+    height: auto;
+    display: block;
 }
 
 nav a {
     text-decoration: none;
-    color: var(--slate);
+    color: var(--bureau-blue);
     font-weight: 600;
-    font-size: 0.9rem;
-    margin-left: 25px;
+    font-size: 0.95rem;
+    margin-left: 30px;
     transition: color 0.3s;
 }
 
-nav a:hover { color: var(--bureau-blue); }
+nav a:hover {
+    color: var(--emerald-safe);
+}
 
 .cta-btn {
     background: var(--bureau-blue);
     color: var(--white);
-    padding: 10px 20px;
+    padding: 12px 24px;
     border-radius: 4px;
     font-weight: 700;
+    text-decoration: none;
     border: none;
-    transition: opacity 0.3s;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-/* --- Hero Section --- */
+.cta-btn:hover {
+    background: #000;
+}
+
+/* --- Hero Section: Clean & Affirmative --- */
 .hero-bureau {
-    padding: 100px 5%;
-    background-color: var(--white);
+    padding: 120px 5%;
     text-align: left;
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: var(--white);
 }
 
-.statutory-label {
-    display: block;
-    color: var(--emerald);
+.statutory-alert {
+    display: inline-block;
+    color: var(--emerald-safe);
+    border: 1px solid var(--emerald-safe);
+    padding: 5px 15px;
+    border-radius: 20px;
     font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
 }
 
-.hero-bureau h1 {
-    font-size: 3.5rem;
+h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3.8rem;
+    color: var(--bureau-blue);
     margin-bottom: 20px;
     line-height: 1.1;
 }
 
-.highlight { color: var(--emerald); }
+.highlight {
+    color: var(--emerald-safe);
+}
 
-/* --- Pricing/Service Grid --- */
-.pricing-gambit {
-    background: var(--light-gray);
-    padding: 80px 5%;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+.hero-subtext {
+    max-width: 750px;
+    font-size: 1.25rem;
+    margin-top: 20px;
+    color: var(--slate-text);
+}
+
+/* --- Statutory Grid: Proving the Need --- */
+.statutory-defense {
+    padding: 100px 5%;
+    background-color: var(--light-gray-border);
+    border-top: 1px solid var(--light-gray-border);
+}
+
+.legal-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.legal-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--light-gray-border);
+}
+
+.legal-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--bureau-blue);
+    margin-bottom: 15px;
+}
+
+/* --- Pricing/Service Schedule --- */
+.service-schedule {
+    padding: 120px 5%;
+    background-color: var(--white);
+}
+
+.schedule-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.schedule-header h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem;
+    color: var(--bureau-blue);
 }
 
 .price-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
 .price-card {
     background: var(--white);
-    padding: 40px;
-    border: 1px solid var(--border);
+    padding: 50px;
+    border: 1px solid var(--light-gray-border);
     border-radius: 8px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .price-card.featured {
-    border: 2px solid var(--bureau-blue);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 3px solid var(--bureau-blue);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    position: relative;
 }
 
 .price {
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
-    margin: 20px 0;
+    margin: 25px 0;
     color: var(--bureau-blue);
 }
 
-.price span { font-size: 0.9rem; font-weight: 400; color: var(--slate); }
-
-.price-card ul {
-    list-style: none;
-    margin-bottom: 30px;
+.price span {
+    font-size: 1rem;
+    color: var(--slate-text);
+    font-weight: 400;
 }
 
 .price-card li {
-    padding: 10px 0;
-    border-bottom: 1px solid var(--light-gray);
-    font-size: 0.9rem;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-gray-border);
+    font-size: 0.95rem;
 }
 
-/* --- Footer --- */
+/* --- Footer: Full Bureau Closure --- */
 footer {
     background: var(--bureau-blue);
     color: var(--white);
-    padding: 80px 5% 40px;
+    padding: 100px 5% 50px;
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 40px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
-footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
-footer a:hover { color: var(--white); }
+footer a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+footer a:hover {
+    color: var(--white);
+}
 
 .footer-bottom {
     text-align: center;
     padding-top: 60px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 60px;
-    font-size: 0.8rem;
+    margin-top: 80px;
+    font-size: 0.85rem;
     opacity: 0.6;
 }
