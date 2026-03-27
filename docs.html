@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Docs | RealAIID.com Commonwealth Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --terminal-bg: #0F172A;
+            --sidebar-bg: #F8FAFC;
+            --text-main: #334155;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: var(--text-main); display: flex; min-height: 100vh; }
+
+        /* --- SIDEBAR NAV --- */
+        .sidebar { width: 300px; background: var(--sidebar-bg); border-right: 1px solid #E2E8F0; padding: 40px 30px; position: fixed; height: 100vh; overflow-y: auto; }
+        .logo-small img { height: 60px; margin-bottom: 40px; }
+        
+        .nav-group { margin-bottom: 30px; }
+        .nav-group h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: #94A3B8; margin-bottom: 15px; }
+        .nav-link { display: block; text-decoration: none; color: var(--text-main); font-size: 0.9rem; margin-bottom: 10px; font-weight: 500; transition: 0.2s; }
+        .nav-link:hover, .nav-link.active { color: var(--sumsub-blue); }
+
+        /* --- MAIN CONTENT --- */
+        .content { margin-left: 300px; padding: 80px 10%; width: 100%; }
+        h1 { font-size: 2.5rem; color: #0F172A; margin-bottom: 20px; }
+        .endpoint-badge { font-family: 'JetBrains Mono'; background: #E0F2FE; color: var(--sumsub-blue); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 40px; display: inline-block; }
+
+        /* --- CODE BLOCK --- */
+        .code-window { background: var(--terminal-bg); border-radius: 12px; padding: 30px; margin: 30px 0; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .code-window::before { content: ''; position: absolute; top: 15px; left: 15px; width: 10px; height: 10px; background: #FF5F56; border-radius: 50%; box-shadow: 20px 0 0 #FFBD2E, 40px 0 0 #27C93F; }
+        pre { font-family: 'JetBrains Mono', monospace; color: #94A3B8; line-height: 1.5; font-size: 0.9rem; overflow-x: auto; }
+        .code-key { color: var(--sumsub-green); }
+        .code-val { color: #38BDF8; }
+
+        .method-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .method-table th { text-align: left; padding: 15px; border-bottom: 2px solid #F1F5F9; font-size: 0.8rem; text-transform: uppercase; color: #94A3B8; }
+        .method-table td { padding: 15px; border-bottom: 1px solid #F1F5F9; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo-small"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <div class="nav-group">
+            <h4>Getting Started</h4>
+            <a href="#" class="nav-link active">Introduction</a>
+            <a href="#" class="nav-link">Authentication</a>
+            <a href="#" class="nav-link">Mainframe Handshake</a>
+        </div>
+        <div class="nav-group">
+            <h4>Endpoints</h4>
+            <a href="#" class="nav-link">/v1/vssn/hash</a>
+            <a href="#" class="nav-link">/v1/liveness/spatial</a>
+            <a href="#" class="nav-link">/v1/registry/lookup</a>
+        </div>
+    </aside>
+
+    <main class="content">
+        <h1>VSSN Integration Guide</h1>
+        <p>The RealAIID API allows institutional partners to programmatically verify human core presence and anchor vocal signatures to the Philadelphia Mainframe.</p>
+        <span class="endpoint-badge">HOST: https://api.realaiid.com/mainframe</span>
+
+        <section style="margin-top: 60px;">
+            <h2>Initiate Hashing</h2>
+            <p>To create a unique VSSN hash for a subject, send a POST request containing the biometric vocal packet. All processing occurs within the hardware-encrypted node; no raw audio is stored.</p>
+
+            <div class="code-window">
+<pre>
+POST <span class="code-val">/v1/vssn/hash</span> HTTP/1.1
+Authorization: Bearer <span class="code-key">YOUR_SOVEREIGN_KEY</span>
+Content-Type: application/json
+
+{
+  <span class="code-key">"node_id"</span>: <span class="code-val">"PHL_1900_MARKET"</span>,
+  <span class="code-key">"vocal_sample_id"</span>: <span class="code-val">"VX-7721-B"</span>,
+  <span class="code-key">"verification_tier"</span>: <span class="code-val">"SOVEREIGN"</span>,
+  <span class="code-key">"statutory_shield"</span>: <span class="code-val">true</span>
+}
+</pre>
+            </div>
+
+            <h3>Response Schema</h3>
+            <table class="method-table">
+                <thead>
+                    <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>vssn_hash</td><td>String</td><td>The unique cryptographic ID anchored to the user.</td></tr>
+                    <tr><td>status</td><td>Enum</td><td>VERIFIED | PENDING | REJECTED</td></tr>
+                    <tr><td>latency_ms</td><td>Integer</td><td>Mainframe response time (Target: <150ms).</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <footer style="margin-top: 100px; padding-top: 40px; border-top: 1px solid #E2E8F0; font-size: 0.8rem; color: #94A3B8;">
+            © 2026 RealAIID.com | Documentation v2.0 | Philadelphia Mainframe Anchor
+        </footer>
+    </main>
+
+</body>
+</html>
