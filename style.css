@@ -1,17 +1,10 @@
-/* Project: REALAIID.com 
-    Theme: Commonwealth of Digital Identity
-    Colors: Cobalt Blue (#0047AB), Emerald Green (#50C878), Trust Navy (#0A192F)
-*/
-
 :root {
-    --cobalt-blue: #0047AB;
-    --emerald-green: #50C878;
-    --trust-navy: #0A192F;
-    --deep-space: #050C16;
-    --platinum: #E5E4E2;
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --transition-speed: 0.3s;
+    --bureau-blue: #003366; /* Deep Trust Blue */
+    --emerald: #2E8B57;     /* Security Green */
+    --slate: #4A4A4A;       /* Professional Text */
+    --light-gray: #F8F9FA;  /* Subtle Section Background */
+    --border: #E1E4E8;      /* Clean Borders */
+    --white: #FFFFFF;
 }
 
 * {
@@ -21,22 +14,26 @@
 }
 
 body {
-    background-color: var(--trust-navy);
-    color: var(--platinum);
     font-family: 'Inter', sans-serif;
+    background-color: var(--white);
+    color: var(--slate);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
-/* --- GLOBAL HEADER --- */
+h1, h2, h3, .bureau-font {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--bureau-blue);
+    font-weight: 700;
+}
+
+/* --- Navigation --- */
 header {
+    background: var(--white);
+    border-bottom: 2px solid var(--bureau-blue);
+    padding: 20px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 5%;
-    background: rgba(10, 25, 47, 0.85);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -44,58 +41,118 @@ header {
 
 .logo-area {
     display: flex;
-    flex-direction: column;
-}
-
-.logo-area img {
-    height: 55px;
-    width: auto;
-    transition: transform var(--transition-speed);
-}
-
-.logo-area img:hover {
-    transform: scale(1.02);
-}
-
-nav {
-    display: flex;
     align-items: center;
+    gap: 15px;
+}
+
+.logo-area span {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: var(--bureau-blue);
 }
 
 nav a {
-    color: var(--platinum);
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.95rem;
-    font-weight: 400;
-    transition: color var(--transition-speed);
+    color: var(--slate);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-left: 25px;
+    transition: color 0.3s;
 }
 
-nav a:hover {
-    color: var(--emerald-green);
-}
+nav a:hover { color: var(--bureau-blue); }
 
 .cta-btn {
-    background: linear-gradient(135deg, var(--cobalt-blue), var(--emerald-green));
-    color: white !important;
-    padding: 10px 22px;
+    background: var(--bureau-blue);
+    color: var(--white);
+    padding: 10px 20px;
     border-radius: 4px;
     font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    box-shadow: 0 4px 15px rgba(0, 71, 171, 0.3);
+    border: none;
+    transition: opacity 0.3s;
 }
 
-.cta-btn:hover {
-    box-shadow: 0 6px 20px rgba(80, 200, 120, 0.4);
-    transform: translateY(-1px);
+/* --- Hero Section --- */
+.hero-bureau {
+    padding: 100px 5%;
+    background-color: var(--white);
+    text-align: left;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* --- FOOTER ARCHITECTURE --- */
+.statutory-label {
+    display: block;
+    color: var(--emerald);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero-bureau h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.highlight { color: var(--emerald); }
+
+/* --- Pricing/Service Grid --- */
+.pricing-gambit {
+    background: var(--light-gray);
+    padding: 80px 5%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.price-card {
+    background: var(--white);
+    padding: 40px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.price-card.featured {
+    border: 2px solid var(--bureau-blue);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 20px 0;
+    color: var(--bureau-blue);
+}
+
+.price span { font-size: 0.9rem; font-weight: 400; color: var(--slate); }
+
+.price-card ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.price-card li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--light-gray);
+    font-size: 0.9rem;
+}
+
+/* --- Footer --- */
 footer {
-    background-color: var(--deep-space);
-    padding: 80px 5% 30px;
-    border-top: 1px solid var(--glass-border);
-    margin-top: 100px;
+    background: var(--bureau-blue);
+    color: var(--white);
+    padding: 80px 5% 40px;
 }
 
 .footer-grid {
@@ -106,80 +163,14 @@ footer {
     margin: 0 auto;
 }
 
-.footer-col h4 {
-    color: var(--emerald-green);
-    font-family: 'Space Grotesk', sans-serif;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.9rem;
-}
-
-.footer-col ul {
-    list-style: none;
-}
-
-.footer-col ul li {
-    margin-bottom: 12px;
-}
-
-.footer-col ul li a {
-    color: var(--platinum);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity var(--transition-speed), color var(--transition-speed);
-    font-size: 0.85rem;
-}
-
-.footer-col ul li a:hover {
-    opacity: 1;
-    color: var(--emerald-green);
-}
+footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+footer a:hover { color: var(--white); }
 
 .footer-bottom {
     text-align: center;
+    padding-top: 60px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     margin-top: 60px;
-    padding-top: 30px;
-    border-top: 1px solid var(--glass-border);
-    font-size: 0.75rem;
-    opacity: 0.5;
-    line-height: 1.8;
-}
-
-/* --- COMPONENT STYLES --- */
-.section-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.5rem;
-    color: var(--platinum);
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.highlight {
-    color: var(--emerald-green);
-}
-
-/* Scrollbar Styling for that Premium feel */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--deep-space);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--cobalt-blue);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--emerald-green);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    header { flex-direction: column; gap: 20px; }
-    nav { flex-wrap: wrap; justify-content: center; }
-    .hero-text h1 { font-size: 2.5rem; }
+    font-size: 0.8rem;
+    opacity: 0.6;
 }
