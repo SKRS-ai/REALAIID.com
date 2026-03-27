@@ -1,67 +1,266 @@
-<section class="product-section">
-    <span class="section-tag">Identity Tiers & Registration</span>
-    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1400px; margin: 50px auto;">
-        
-        <div class="product-card">
-            <div>
-                <h3>Standard</h3>
-                <span class="price">$149 <small>/ Year</small></span>
-                <p>Basic anchoring for digital citizens seeking core identity verification.</p>
-                <ul style="list-style: none; font-size: 0.85rem; line-height: 2.5; color: #64748B; margin-bottom: 30px;">
-                    <li>✓ 3D Spatial Liveness Pulse</li>
-                    <li>✓ VSSN Vocal Hash Assignment</li>
-                    <li>✓ Digital Residency Suite</li>
-                    <li>✓ Basic Identity Archive</li>
-                </ul>
-            </div>
-            <a href="product-standard.html" class="btn-detail">REGISTER NOW</a>
-        </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealAIID.com | The Sovereign AI Identity Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --penn-navy: #001E44;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+        }
 
-        <div class="product-card" style="border-color: var(--phl-blue); transform: scale(1.05); position: relative; background: #fff; z-index: 10;">
-            <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--phl-blue); color: white; padding: 5px 15px; font-size: 0.7rem; font-weight: 800; border-radius: 20px;">MOST REQUESTED</div>
-            <div>
-                <h3 style="color: var(--phl-blue);">Likeness Shield</h3>
-                <span class="price">$499 <small>/ Year</small></span>
-                <p>Advanced monitoring and legal defense for professional creators.</p>
-                <ul style="list-style: none; font-size: 0.85rem; line-height: 2.5; color: #64748B; margin-bottom: 30px;">
-                    <li>✓ 24/7 AI-Likeness Monitoring</li>
-                    <li>✓ NO FAKES Legal Defense Package</li>
-                    <li>✓ Broadcast-Grade 3D Avatar</li>
-                    <li>✓ Automated Takedown Requests</li>
-                </ul>
-            </div>
-            <a href="product-likeness-shield.html" class="btn-detail" style="background: var(--phl-blue);">SECURE LIKENESS</a>
-        </div>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
 
-        <div class="product-card">
-            <div>
-                <h3>Sovereign</h3>
-                <span class="price">$2,499 <small>/ Year</small></span>
-                <p>Institutional scale and high-security API access for executives.</p>
-                <ul style="list-style: none; font-size: 0.85rem; line-height: 2.5; color: #64748B; margin-bottom: 30px;">
-                    <li>✓ PHL Airport Biometric Link</li>
-                    <li>✓ High-Value Banking Tier API</li>
-                    <li>✓ White-Glove Liaison</li>
-                    <li>✓ Priority Mainframe Hashing</li>
-                </ul>
-            </div>
-            <a href="product-sovereign.html" class="btn-detail">GO SOVEREIGN</a>
-        </div>
+        /* --- HEADER & NAVIGATION (RESTORED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
 
-        <div class="product-card" style="background: var(--phl-dark); color: white;">
-            <div>
-                <h3 style="color: white;">Enterprise</h3>
-                <span class="price" style="color: white;">Contact Us</span>
-                <p style="color: #94A3B8;">Custom node infrastructure for labels, airport commissions, and governments.</p>
-                <ul style="list-style: none; font-size: 0.85rem; line-height: 2.5; color: #94A3B8; margin-bottom: 30px;">
-                    <li>✓ Custom Mainframe Node Deployment</li>
-                    <li>✓ 3Si Vault-Level Integration</li>
-                    <li>✓ Unlimited VSSN Enrollments</li>
-                    <li>✓ Dedicated Security Engineer</li>
-                </ul>
-            </div>
-            <a href="product-enterprise.html" class="btn-detail" style="background: white; color: var(--phl-dark);">CONSULT LIAISON</a>
-        </div>
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
 
-    </div>
-</section>
+        /* 2X ENLARGED LOGO */
+        .logo-box img {
+            height: 120px; /* Doubled size */
+            width: auto;
+            display: block;
+            background: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 4px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 120px 10%;
+            background: var(--phl-dark);
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.8;
+        }
+
+        /* --- PRICING SECTION (4 TIERS) --- */
+        .pricing-section {
+            padding: 100px 5%;
+            background: var(--surface);
+        }
+
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            background: white;
+            padding: 45px 30px;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s;
+            position: relative;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-color: var(--phl-blue);
+        }
+
+        .price-card.featured {
+            border: 2px solid var(--phl-blue);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--phl-dark); }
+        .amount { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+        .amount span { font-size: 1rem; color: #64748B; }
+
+        .feature-list { list-style: none; margin: 30px 0; flex-grow: 1; }
+        .feature-list li { font-size: 0.9rem; margin-bottom: 12px; color: #475569; display: flex; align-items: center; }
+        .feature-list li::before { content: '✓'; color: var(--phl-blue); font-weight: bold; margin-right: 10px; }
+
+        .btn-buy {
+            text-decoration: none;
+            background: var(--phl-dark);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .price-card.featured .btn-buy { background: var(--phl-blue); }
+        .btn-buy:hover { opacity: 0.9; }
+
+        .enterprise-card { background: var(--phl-dark); color: white; border: none; }
+        .enterprise-card h3, .enterprise-card .amount { color: white; }
+        .enterprise-card .feature-list li { color: #94A3B8; }
+        .enterprise-card .btn-buy { background: white; color: var(--phl-dark); }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #05080F;
+            color: #94A3B8;
+            padding: 80px 5% 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Claim Your AI Identity.</h1>
+            <p>The global registration standard for human likeness and vocal sovereignty. Secured by the Philadelphia Mainframe.</p>
+        </section>
+
+        <section class="pricing-section">
+            <div class="section-header">
+                <h2>Choose Your Tier of Sovereignty</h2>
+                <p>Register your RealAIID and secure your digital future.</p>
+            </div>
+
+            <div class="pricing-grid">
+                
+                <div class="price-card">
+                    <h3>Standard</h3>
+                    <div class="amount">$149 <span>/year</span></div>
+                    <p style="font-size: 0.85rem; color: #64748B;">Basic anchoring for digital citizens.</p>
+                    <ul class="feature-list">
+                        <li>3D Spatial Liveness Pulse</li>
+                        <li>VSSN Vocal Hash Assignment</li>
+                        <li>Digital Residency Suite</li>
+                        <li>Basic Identity Archive</li>
+                    </ul>
+                    <a href="product-standard.html" class="btn-buy">REGISTER NOW</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--phl-blue); color: white; padding: 4px 12px; font-size: 0.7rem; font-weight: 800; border-radius: 20px;">MOST POPULAR</div>
+                    <h3 style="color: var(--phl-blue);">Likeness Shield</h3>
+                    <div class="amount">$499 <span>/year</span></div>
+                    <p style="font-size: 0.85rem; color: #64748B;">Advanced monitoring and legal defense.</p>
+                    <ul class="feature-list">
+                        <li>24/7 AI-Likeness Monitoring</li>
+                        <li>NO FAKES Legal Defense Package</li>
+                        <li>Broadcast-Grade 3D Avatar</li>
+                        <li>Automated Takedown Tech</li>
+                    </ul>
+                    <a href="product-likeness-shield.html" class="btn-buy">CLAIM SHIELD</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Sovereign</h3>
+                    <div class="amount">$2,499 <span>/year</span></div>
+                    <p style="font-size: 0.85rem; color: #64748B;">Institutional scale and API access.</p>
+                    <ul class="feature-list">
+                        <li>PHL Airport Biometric Link</li>
+                        <li>High-Value Banking Tier API</li>
+                        <li>White-Glove Liaison Access</li>
+                        <li>Hardware-Locked Keys</li>
+                    </ul>
+                    <a href="product-sovereign.html" class="btn-buy">GO SOVEREIGN</a>
+                </div>
+
+                <div class="price-card enterprise-card">
+                    <h3>Enterprise</h3>
+                    <div class="amount">Liaison</div>
+                    <p style="font-size: 0.85rem; color: #94A3B8;">Custom nodes and government sync.</p>
+                    <ul class="feature-list">
+                        <li>Custom Mainframe Node</li>
+                        <li>3Si Vault Handshake</li>
+                        <li>Government Identity Sync</li>
+                        <li>Dedicated Security Engineer</li>
+                    </ul>
+                    <a href="product-enterprise.html" class="btn-buy">CONTACT BUREAU</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 REALAIID BUREAU // 1900 MARKET ST, PHILADELPHIA // ALL HUMAN RIGHTS RESERVED</p>
+    </footer>
+
+</body>
+</html>
