@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Solutions | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .enterprise-hero {
+            padding: 100px 10%;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0,71,171,0.15) 0%, transparent 70%);
+        }
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 60px 10%;
+        }
+        .solution-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+        .solution-card:hover {
+            border-color: var(--emerald-green);
+            transform: translateY(-5px);
+        }
+        .solution-card h3 {
+            color: var(--emerald-green);
+            margin-bottom: 20px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .api-preview {
+            background: #000;
+            color: #50C878;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            text-align: left;
+            border-left: 3px solid var(--cobalt-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="index.html">Personal</a>
+            <a href="enterprise.html" style="color: var(--emerald-green);">Enterprise</a>
+            <a href="verify.html">Registry</a>
+            <a href="register.html" class="cta-btn">Get Certified</a>
+        </nav>
+    </header>
+
+    <section class="enterprise-hero">
+        <h1 class="section-title">The Standard for <span class="highlight">Critical Infrastructure</span></h1>
+        <p>Integrate the Commonwealth's biometric "Triple-Lock" into your existing security stack. From Airport Terminals to Global Banking, we provide the Human Anchor.</p>
+    </section>
+
+    <section class="solution-grid">
+        <div class="solution-card">
+            <h3>Aviation & Transit</h3>
+            <p>Replace traditional badges and passports with Biometric-in-Motion. Ideal for PHL Enhanced Passenger Processing and World Cup 2026 crowd security.</p>
+            <ul>
+                <li>Seamless Terminal Access</li>
+                <li>Digital Employee Credentialing</li>
+                <li>Sovereign Identity Verification</li>
+            </ul>
+        </div>
+
+        <div class="solution-card">
+            <h3>Financial Institutions</h3>
+            <p>Eliminate synthetic identity fraud and deepfake voice authorization. Secure high-value transactions with the VSSN (Vocal Signature Serial Number).</p>
+            <ul>
+                <li>Anti-Money Laundering (AML)</li>
+                <li>Voice-Key Vault Authorization</li>
+                <li>Liveness-as-a-Service</li>
+            </ul>
+        </div>
+
+        <div class="solution-card">
+            <h3>Gov & Legal</h3>
+            <p>Establish a legal "Source of Truth" under the NO FAKES Act. Provide Digital Residency for residents without exposing physical home addresses.</p>
+            <div class="api-preview">
+                GET /api/v1/verify_human<br>
+                AUTH: Bearer [COMMONWEALTH_KEY]<br>
+                RESULT: { "status": "CERTIFIED_HUMAN" }
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">The White Paper</a></li>
+                    <li><a href="#">Digital Residency Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Aviation Pass</a></li>
+                    <li><a href="#">Banking API</a></li>
+                    <li><a href="#">GovHub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Biometric Consent</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Burn Protocol</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="#">SOC2 Type II</a></li>
+                    <li><a href="#">NO FAKES Act</a></li>
+                    <li><a href="#">BIPA Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
