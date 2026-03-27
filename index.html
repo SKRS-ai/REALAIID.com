@@ -3,134 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Identity Protection & Verification Bureau | RealAIID.com Commonwealth</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <title>RealAIID.com | Redefining Digital Identity Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #333C4D;
+            --text-neutral: #5C6B8A;
+            --bg-light: #F6F7F9;
+            --pure-white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--pure-white); color: var(--text-neutral); line-height: 1.5; }
+
+        /* --- LOGO COLOR UPDATE --- */
+        .header {
+            padding: 20px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0; z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo { font-weight: 700; font-size: 1.5rem; color: var(--sumsub-blue); display: flex; align-items: center; }
+        .logo span { color: var(--sumsub-green); }
+
+        /* --- THE "SUMSUB" HERO --- */
+        .hero {
+            padding: 100px 10%;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            background: #E8F4FD;
+            color: var(--sumsub-blue);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        h1 { color: var(--text-strong); font-size: 3.5rem; line-height: 1.1; margin-bottom: 25px; font-weight: 800; }
+
+        .cta-main {
+            background: var(--sumsub-green);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        /* --- SPECIAL EFFECTS: BIOMETRIC SCAN ANIMATION --- */
+        .scanner-visual {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            background: var(--bg-light);
+            margin: 60px auto;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .scan-line {
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, transparent, var(--sumsub-green), transparent);
+            position: absolute;
+            top: 0;
+            animation: scanMove 4s infinite linear;
+            box-shadow: 0 0 15px var(--sumsub-green);
+        }
+
+        @keyframes scanMove {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 0; }
+        }
+
+        /* --- 3-PRODUCT EXPLAINER SECTION --- */
+        .feature-row {
+            display: flex;
+            align-items: center;
+            padding: 80px 10%;
+            gap: 100px;
+        }
+
+        .feature-row:nth-child(even) { flex-direction: row-reverse; background: var(--bg-light); }
+
+        .feature-text { flex: 1; }
+        .feature-image {
+            flex: 1.2;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .feature-image img { width: 100%; border-radius: 8px; }
+
+        /* --- DETAILED SERVICE SCHEDULE --- */
+        .pricing-section { padding: 100px 10%; background: #fff; text-align: center; }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .price-card {
+            border: 1px solid #eee;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: left;
+            transition: box-shadow 0.3s;
+        }
+
+        .price-card:hover { box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+
+        .price-card.featured { border: 2px solid var(--sumsub-green); position: relative; }
+
+        .price-card h3 { color: var(--text-strong); margin-bottom: 10px; }
+        .cost { font-size: 2.5rem; font-weight: 800; color: var(--text-strong); margin-bottom: 20px; }
+        .cost span { font-size: 1rem; font-weight: 400; color: var(--text-neutral); }
+
+        .price-details { list-style: none; margin-bottom: 30px; }
+        .price-details li {
+            padding: 10px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .price-details li::before {
+            content: "●";
+            color: var(--sumsub-green);
+            margin-right: 10px;
+            font-size: 0.7rem;
+        }
+
+        footer { padding: 60px 10%; background: var(--text-strong); color: white; text-align: center; }
+    </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-area">
-            <img src="realaiid_commonwealth_logo_20262.png" alt="AIIPVB REALAIID.COM OFFICIAL SEAL">
+    <header class="header">
+        <div class="logo">
+            RealAIID<span>.com</span>
         </div>
         <nav>
-            <a href="how-it-works.html">Protocol</a>
-            <a href="verify.html">Verify Human</a>
-            <a href="status.html">Network Status</a>
-            <a href="register.html" class="cta-btn">Begin Registration</a>
+            <a href="#" style="margin-right: 20px; text-decoration: none; color: var(--text-neutral);">Solutions</a>
+            <a href="#" class="cta-main" style="padding: 10px 25px;">Get Started</a>
         </nav>
     </header>
 
-    <section class="hero-bureau">
-        <div class="statutory-alert">🛡️ OFFICIAL ADHERENCE NODE: FEDERAL NO FAKES ACT</div>
-        <h1>Your Likeness is Your <span class="highlight">Sovereign Property.</span></h1>
-        <p class="hero-subtext">
-            In an era of unchecked generative AI, your voice resonance (VSSN) and facial geometry are legal assets. RealAIID.com is the Class A identity bureau providing the biometric anchoring required to defend your human identity against synthetic replication.
-        </p>
-    </section>
+    <main>
+        <section class="hero">
+            <span class="badge">Official NO FAKES Act Adherence</span>
+            <h1>Verify Humans Twice as Fast.</h1>
+            <p>One identity. Global access. RealAIID.com provides the biometric anchoring required to defend your human identity against synthetic replication.</p>
+            <br>
+            <a href="#" class="cta-main">Create Your RealAIID</a>
+            
+            <div class="scanner-visual">
+                <div class="scan-line"></div>
+                <div style="padding-top: 150px; font-weight: 700; color: #ddd;">[LIVE BIOMETRIC PULSE: WAITING FOR USER]</div>
+            </div>
+        </section>
 
-    <section class="statutory-defense">
-        <div style="text-align: center; margin-bottom: 60px;">
-            <h2 style="font-family: 'Space Grotesk'; font-size: 2.5rem; color: var(--bureau-blue);">Statutory Defense Required</h2>
-        </div>
-        <div class="legal-grid">
-            <div class="legal-card">
-                <h3>Vocal Cloning (VSSN)</h3>
-                <p style="font-size: 0.95rem;">Unauthorized AI voice replication is now combatable under the <strong>ELVIS Act</strong>. We generate a unique cryptographic hash of your vocal frequency, anchoring it to your Digital Residency.</p>
+        <section class="feature-row">
+            <div class="feature-text">
+                <h2 style="color:var(--text-strong); margin-bottom:20px;">01. Vocal Hash Generation</h2>
+                <p>We generate a unique cryptographic hash of your vocal frequency (VSSN), anchoring it to your Digital Residency. Combats unauthorized AI voice replication under the ELVIS Act.</p>
             </div>
-            <div class="legal-card">
-                <h3>Deepfake Defense</h3>
-                <p style="font-size: 0.95rem;">The <strong>NO FAKES Act of 2026</strong> allows for statutory damages against unauthorized likeness use. Registration in the Public Human Registry establishes essential legal standing.</p>
+            <div class="feature-image">
+                <img src="https://via.placeholder.com/600x400/F6F7F9/18B494?text=VSSN+WAVEFORM+ENCRYPTION" alt="VSSN Analysis">
             </div>
-            <div class="legal-card">
-                <h3>Sovereign Data</h3>
-                <p style="font-size: 0.95rem;">Your biological data is never sold, leased, or commercialized. RealAIID.com operates under the strict <strong>BIPA</strong> data-equity protocols.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="service-schedule">
-        <div class="schedule-header">
-            <h2>Official Service Schedule</h2>
-            <p>One-Time Anchoring Fees for Sovereign Digital Residency. Secured at the Philadelphia Mainframe.</p>
-        </div>
+        <section class="feature-row">
+            <div class="feature-text">
+                <h2 style="color:var(--text-strong); margin-bottom:20px;">02. Active Likeness Shield</h2>
+                <p>Automated monitoring across social and broadcast platforms. If a deepfake is detected, our "NO FAKES" legal package provides immediate statutory standing for damages.</p>
+            </div>
+            <div class="feature-image">
+                <img src="https://via.placeholder.com/600x400/F6F7F9/1693E9?text=DEEPFAKE+DETECTION+INTERFACE" alt="Monitoring Dashboard">
+            </div>
+        </section>
 
-        <div class="price-grid">
-            <div class="price-card">
-                <h3>Standard Residency</h3>
-                <p class="price">$149.00 <span>One-Time Fee</span></p>
-                <ul>
-                    <li>3D Spatial Liveness Verification</li>
-                    <li>VSSN Vocal Hash Generation</li>
-                    <li>Digital Residency Suite # Assignment</li>
-                    <li>Listing on the Public Human Registry</li>
-                </ul>
-                <a href="register.html" class="cta-btn" style="display:block; text-align:center; background:var(--emerald-safe); margin-top:30px;">Register ID</a>
+        <section class="feature-row">
+            <div class="feature-text">
+                <h2 style="color:var(--text-strong); margin-bottom:20px;">03. Institutional Integration</h2>
+                <p>Direct API links to airport biometric-in-motion systems and high-value banking tiers. Your human verification is verified instantly by the Philadelphia Mainframe.</p>
             </div>
-            <div class="price-card featured">
-                <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--bureau-blue); color: var(--white); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.7rem;">MOST POPULAR</div>
-                <h3>Likeness Shield</h3>
-                <p class="price">$499.00 <span>One-Time Fee</span></p>
-                <ul>
-                    <li>All Standard Features</li>
-                    <li>VSSN & Likeness Cloning Monitoring</li>
-                    <li>Broadcast-Grade 3D AR Avatar</li>
-                    <li>"NO FAKES" Legal Defense Package</li>
-                </ul>
-                <a href="register.html" class="cta-btn" style="display:block; text-align:center; margin-top:30px;">Register ID</a>
+            <div class="feature-image">
+                <img src="https://via.placeholder.com/600x400/F6F7F9/333C4D?text=MAINFRAME+API+GATEWAY" alt="API Integration">
             </div>
-            <div class="price-card">
-                <h3>Sovereign Node</h3>
-                <p class="price">$2,499.00 <span>Institutional</span></p>
-                <ul>
-                    <li>All Professional Features</li>
-                    <li>VIP Airport Biometric-in-Motion Link</li>
-                    <li>High-Value Banking API Access</li>
-                    <li>Sovereign Identity Liaison</li>
-                </ul>
-                <a href="partners.html" class="cta-btn" style="display:block; text-align:center; background: #333; margin-top:30px;">Inquire for Access</a>
+        </section>
+
+        <section class="pricing-section">
+            <h2 style="color:var(--text-strong);">Transparent Pricing. No Subscriptions.</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>Standard Residency</h3>
+                    <div class="cost">$149 <span>One-Time</span></div>
+                    <ul class="price-details">
+                        <li>3D Spatial Liveness Pulse</li>
+                        <li>VSSN Vocal Hash Assignment</li>
+                        <li>Public Human Registry Listing</li>
+                        <li>Digital Residency ID Card</li>
+                    </ul>
+                    <a href="#" class="cta-main" style="background:#eee; color:#333; width:100%; text-align:center;">Register</a>
+                </div>
+
+                <div class="price-card featured">
+                    <span style="background:var(--sumsub-green); color:white; padding:5px 15px; border-radius:50px; font-size:0.7rem; position:absolute; top:-15px; left:40px;">MOST POPULAR</span>
+                    <h3>Likeness Shield</h3>
+                    <div class="cost">$499 <span>One-Time</span></div>
+                    <ul class="price-details">
+                        <li>All Standard Features</li>
+                        <li>24/7 AI-Likeness Monitoring</li>
+                        <li>Legal Defense Package (NO FAKES)</li>
+                        <li>Broadcast-Grade 3D AR Avatar</li>
+                        <li>Priority Support Liaison</li>
+                    </ul>
+                    <a href="#" class="cta-main" style="width:100%; text-align:center;">Register Now</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Sovereign Node</h3>
+                    <div class="cost">$2,499 <span>Custom</span></div>
+                    <ul class="price-details">
+                        <li>Institutional High-Value API</li>
+                        <li>Airport Biometric-in-Motion Link</li>
+                        <li>Direct Mainframe Anchor Access</li>
+                        <li>White-Glove Identity Management</li>
+                    </ul>
+                    <a href="#" class="cta-main" style="background:var(--text-strong); width:100%; text-align:center;">Inquire</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
-        <div class="footer-grid">
-            <div>
-                <h4>Mainframe Anchor</h4>
-                <p style="opacity: 0.7; font-size: 0.9rem; margin-top: 10px;">
-                    1900 Market St<br>
-                    Philadelphia, PA 19103<br>
-                    USA
-                </p>
-            </div>
-            <div>
-                <h4>Protocol</h4>
-                <ul>
-                    <li><a href="how-it-works.html">3D Liveness Pulse</a></li>
-                    <li><a href="how-it-works.html">VSSN Vocal Hash</a></li>
-                    <li><a href="legal.html#burn">The Burn Protocol</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Sovereignty</h4>
-                <ul>
-                    <li><a href="legal.html">NO FAKES Disclosure</a></li>
-                    <li><a href="legal.html">Data Equity Act</a></li>
-                    <li><a href="audit.html">Compliance Audit</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Media</h4>
-                <ul>
-                    <li><a href="press.html">Bureau Statements</a></li>
-                    <li><a href="developer.html">API Documentation</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 AI Identity Protection & Verification Bureau. <br>
-            All Rights Reserved. RealAIID.com Protocol | AIIPVB.
-        </div>
+        <p>© 2026 RealAIID.com AI Identity Protection Bureau | Philadelphia Mainframe Anchor</p>
     </footer>
 
 </body>
