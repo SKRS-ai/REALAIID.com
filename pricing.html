@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing | RealAIID.com Identity Sovereignty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --text-strong: #0B1320;
+            --bg-pricing: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-pricing); color: #475569; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- PRICING HERO --- */
+        .pricing-hero { padding: 100px 10% 60px; text-align: center; }
+        .pricing-hero h1 { font-size: 3.5rem; color: var(--text-strong); margin-bottom: 20px; }
+        .pricing-hero p { max-width: 600px; margin: 0 auto; font-size: 1.2rem; }
+
+        /* --- PRICING GRID --- */
+        .pricing-grid { padding: 40px 10% 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        
+        .price-card { 
+            background: white; 
+            border: 1px solid #E2E8F0; 
+            border-radius: 20px; 
+            padding: 50px 40px; 
+            display: flex; 
+            flex-direction: column; 
+            transition: 0.3s;
+        }
+        
+        .price-card.featured { 
+            border: 2px solid var(--sumsub-blue); 
+            transform: scale(1.05); 
+            box-shadow: 0 20px 40px rgba(22, 147, 233, 0.1); 
+            z-index: 10;
+        }
+
+        .tier-name { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; }
+        .amount { font-size: 3rem; color: var(--text-strong); font-weight: 800; margin-bottom: 10px; }
+        .amount span { font-size: 1rem; color: #94A3B8; font-weight: 400; }
+        
+        .description { font-size: 0.95rem; margin-bottom: 30px; height: 50px; }
+
+        .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
+        .feature-list li { margin-bottom: 15px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+        .feature-list li::before { content: '✓'; color: var(--sumsub-green); font-weight: 900; }
+
+        .btn-pricing { 
+            text-align: center; 
+            padding: 18px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 1rem; 
+            transition: 0.3s;
+        }
+        .btn-standard { background: #F1F5F9; color: var(--text-strong); }
+        .btn-featured { background: var(--sumsub-blue); color: white; }
+        .btn-dark { background: var(--text-strong); color: white; }
+
+        .btn-pricing:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        footer { padding: 60px 10%; text-align: center; background: white; border-top: 1px solid #E2E8F0; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong);">Home</a>
+            <a href="solutions.html" style="text-decoration:none; color:var(--text-strong);">Solutions</a>
+            <a href="docs.html" style="text-decoration:none; color:var(--text-strong);">API</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="pricing-hero">
+            <h1>Invest in <span>Sovereignty.</span></h1>
+            <p>Transparent pricing for individual creators and global institutions anchored by the Philadelphia Mainframe.</p>
+        </section>
+
+        <section class="pricing-grid">
+            <div class="price-card">
+                <span class="tier-name">Individual / VSSN Core</span>
+                <div class="amount">$0<span>/one-time</span></div>
+                <p class="description">Establish your basic Vocal Signature Serial Number for public verification.</p>
+                <ul class="feature-list">
+                    <li>VSSN Hashing</li>
+                    <li>Public Registry Listing</li>
+                    <li>Basic Liveness Token</li>
+                </ul>
+                <a href="#" class="btn-pricing btn-standard">Generate Hash</a>
+            </div>
+
+            <div class="price-card featured">
+                <span class="tier-name">Likeness Shield</span>
+                <div class="amount">$499<span>/annually</span></div>
+                <p class="description">The standard for creators and broadcasters requiring active legal protection.</p>
+                <ul class="feature-list">
+                    <li>NO FAKES Act Defense</li>
+                    <li>Automated Deepfake Monitoring</li>
+                    <li>Forensic Takedown Portal</li>
+                    <li>Verified "Certified Human" Badge</li>
+                    <li>Priority VSSN Re-Hashing</li>
+                </ul>
+                <a href="likeness-shield.html" class="btn-pricing btn-featured">Secure Your Shield</a>
+            </div>
+
+            <div class="price-card">
+                <span class="tier-name">Sovereign / Institutional</span>
+                <div class="amount">$2,499<span>/mo starting</span></div>
+                <p class="description">Enterprise-grade security for aviation, finance, and government nodes.</p>
+                <ul class="feature-list">
+                    <li>PHL Mainframe Anchor Access</li>
+                    <li>Sub-150ms Latency API</li>
+                    <li>Hardware-Level Liveness (LN)</li>
+                    <li>3Si Security Integration</li>
+                    <li>Dedicated Liaison Officer</li>
+                </ul>
+                <a href="contact.html" class="btn-pricing btn-dark">Contact the Bureau</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 RealAIID.com | Philadelphia Mainframe Pricing | 1900 Market Street</p>
+    </footer>
+
+</body>
+</html>
