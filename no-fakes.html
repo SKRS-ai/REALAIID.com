@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likeness Shield | NO FAKES Act Monitoring</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --shield-red: #EF4444;
+            --shield-blue: #3B82F6;
+            --bg-obsidian: #020617;
+            --panel-gray: #0F172A;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-obsidian); color: #94A3B8; line-height: 1.6; }
+
+        .header-shield { 
+            height: 90px; 
+            background: rgba(15, 23, 42, 0.9); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 5%; 
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        /* --- DASHBOARD HERO --- */
+        .dashboard-hero { padding: 60px 5%; display: flex; justify-content: space-between; align-items: flex-end; }
+        .dashboard-hero h1 { color: white; font-size: 2.5rem; }
+        .status-badge { background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 8px 16px; border-radius: 50px; font-family: 'JetBrains Mono'; font-size: 0.75rem; border: 1px solid #10B981; }
+
+        /* --- MONITORING GRID --- */
+        .monitoring-grid { padding: 0 5% 80px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        
+        .main-panel { background: var(--panel-gray); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); }
+        .side-panel { display: flex; flex-direction: column; gap: 30px; }
+
+        .scan-line { height: 2px; background: var(--shield-blue); width: 100%; margin-bottom: 30px; position: relative; overflow: hidden; }
+        .scan-line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, white, transparent); animation: scan 3s infinite; }
+        @keyframes scan { 100% { left: 100%; } }
+
+        .alert-item { background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--shield-red); padding: 20px; margin-bottom: 15px; border-radius: 0 8px 8px 0; display: flex; justify-content: space-between; align-items: center; }
+        .alert-item h4 { color: white; font-size: 0.9rem; }
+        .btn-takedown { background: var(--shield-red); color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+
+        .stat-card { background: var(--panel-gray); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-val { display: block; font-size: 2rem; font-weight: 800; color: white; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- STATUTORY INFO --- */
+        .legal-footer { grid-column: 1 / span 2; background: #1E293B; padding: 40px; border-radius: 16px; display: flex; gap: 40px; align-items: center; }
+        .legal-footer img { height: 60px; opacity: 0.5; }
+
+        footer { padding: 40px; text-align: center; font-size: 0.7rem; color: #334155; font-family: 'JetBrains Mono'; }
+    </style>
+</head>
+<body>
+
+    <header class="header-shield">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID" style="height: 60px;"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+            <a href="index.html" style="color:white; text-decoration:none;">BUREAU HOME</a>
+            <a href="pricing.html" style="color:white; text-decoration:none;">UPGRADE TIER</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard-hero">
+            <div>
+                <p style="font-family: 'JetBrains Mono'; color: var(--shield-blue); margin-bottom: 10px;">ACTIVE SURVEILLANCE NODE: PHL-1900</p>
+                <h1>Likeness Shield Dashboard</h1>
+            </div>
+            <div class="status-badge">PROTECTION ACTIVE</div>
+        </div>
+
+        <div class="monitoring-grid">
+            <div class="main-panel">
+                <div class="scan-line"></div>
+                <h3 style="color: white; margin-bottom: 25px;">Live Detection Log</h3>
+                
+                <div class="alert-item">
+                    <div>
+                        <h4>Unauthorized Vocal Synthesis Detected</h4>
+                        <p style="font-size: 0.8rem;">Platform: TikTok // Match Probability: 98.4%</p>
+                    </div>
+                    <a href="#" class="btn-takedown">ISSUE TAKEDOWN</a>
+                </div>
+
+                <div class="alert-item" style="border-color: #EAB308; background: rgba(234, 179, 8, 0.05);">
+                    <div>
+                        <h4 style="color: white;">Likeness Use: Commercial (Parody Exception?)</h4>
+                        <p style="font-size: 0.8rem;">Platform: YouTube // Match Probability: 82.1%</p>
+                    </div>
+                    <a href="#" class="btn-takedown" style="background: #EAB308;">REVIEW LEGAL</a>
+                </div>
+
+                <div class="alert-item" style="border-color: var(--shield-blue); background: rgba(59, 130, 246, 0.05);">
+                    <div>
+                        <h4 style="color: white;">VSSN Verified Content (Authorized)</h4>
+                        <p style="font-size: 0.8rem;">Platform: Solomon Kin Records // Official Catalog</p>
+                    </div>
+                    <span style="color: var(--shield-blue); font-size: 0.7rem; font-weight: 800;">VERIFIED BY BUREAU</span>
+                </div>
+            </div>
+
+            <div class="side-panel">
+                <div class="stat-card">
+                    <span class="stat-val">1.4M+</span>
+                    <span class="stat-label">Neural Scans / 24h</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">12</span>
+                    <span class="stat-label">Takedowns Issued (MTD)</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val">100%</span>
+                    <span class="stat-label">VSSN Hash Integrity</span>
+                </div>
+            </div>
+
+            <div class="legal-footer">
+                <div style="font-family: 'JetBrains Mono'; color: white; font-size: 1.2rem; font-weight: 800;">NO FAKES ACT<br>COMPLIANCE</div>
+                <p style="font-size: 0.85rem;">The RealAIID Bureau provides the forensic evidence required to enforce your rights under 17 U.S.C. § 1101. Every alert in this log includes a hardware-verified VSSN mismatch report for legal submission.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        COMMONWEALTH LIKENESS SHIELD // AUTOMATED DEFENSE DIVISION // PHL NODE 1900
+    </footer>
+
+</body>
+</html>
