@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likeness Shield | RealAIID.com AI Protection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --accent-gold: #D4AF37;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
+
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
+
+        /* --- PRODUCT HERO --- */
+        .product-hero { padding: 80px 10%; background: linear-gradient(135deg, #0B1320 0%, #162235 100%); color: white; border-bottom: 1px solid #1E293B; }
+        .product-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        
+        .product-visual { position: relative; background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+        .shield-active-badge { position: absolute; top: -10px; right: -10px; background: #10B981; color: white; padding: 8px 16px; border-radius: 4px; font-weight: 800; font-size: 0.7rem; letter-spacing: 1px; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+
+        .product-info h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 20px 0; line-height: 1.1; font-style: italic; }
+        .price-tag { font-size: 2.5rem; font-weight: 800; color: var(--phl-blue); margin-bottom: 20px; display: block; }
+        
+        .btn-register { 
+            display: inline-block; background: var(--phl-blue); color: white; text-decoration: none; 
+            padding: 20px 40px; font-weight: 800; border-radius: 4px; transition: 0.3s; width: 100%; text-align: center;
+        }
+        .btn-register:hover { background: white; color: var(--phl-dark); }
+
+        /* --- DETAILS SECTION --- */
+        .details { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .details h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 40px; border-bottom: 2px solid var(--phl-blue); display: inline-block; padding-bottom: 10px; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .feature-item { background: var(--surface); padding: 30px; border-radius: 8px; }
+        .feature-item h4 { color: var(--phl-blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 800; }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-hero">
+            <div class="product-container">
+                <div class="product-visual">
+                    <span class="shield-active-badge">DEFENSE LEVEL: ACTIVE</span>
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Cybersecurity Shield" style="width: 100%; border-radius: 8px; filter: grayscale(100%) brightness(0.8) sepia(100%) hue-rotate(180deg) saturate(200%);">
+                    <p style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--phl-blue);">ENFORCEMENT NODE: PHL-MAIN-99</p>
+                </div>
+                <div class="product-info">
+                    <span style="color: var(--phl-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Premium Defense Tier</span>
+                    <h1>The Likeness Shield.</h1>
+                    <span class="price-tag">$499 / Year</span>
+                    <p style="margin-bottom: 40px; font-size: 1.1rem; opacity: 0.9;">Designed for high-visibility individuals, creators, and public figures. This tier provides proactive monitoring and the legal framework necessary to enforce your rights under the NO FAKES Act.</p>
+                    
+                    <a href="register-checkout.html?tier=shield" class="btn-register">ACTIVATE SHIELD PROTECTION</a>
+                    <p style="margin-top: 15px; font-size: 0.75rem; opacity: 0.6; text-align: center;">Authorized by RealAIID Bureau Philadelphia</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details">
+            <h2>Institutional-Grade Protection</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>24/7 Likeness Monitoring</h4>
+                    <p>Continuous scanning across social platforms and deepfake repositories to detect unauthorized synthetic uses of your physical appearance.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>NO FAKES Legal Package</h4>
+                    <p>Pre-drafted, blockchain-verified legal documentation designed for immediate submission to courts and tech platforms to cease likeness theft.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>High-Fidelity VSSN Hashing</h4>
+                    <p>Advanced vocal frequency analysis that captures the nuances of your voice for professional-grade licensing and verification.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Automated Takedown Tech</h4>
+                    <p>Direct API triggers to major platforms (YouTube, X, Meta) to flag and remove AI-generated content using your registered Likeness Hash.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Broadcast-Grade Avatar</h4>
+                    <p>Assistance in creating a "Certified AI Replica" for your own commercial use, ensuring you own the master-key to your synthetic self.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Priority Mainframe Hashing</h4>
+                    <p>Accelerated processing on the Philadelphia Mainframe for immediate updates to your biometric registry.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
+    </footer>
+
+</body>
+</html>
