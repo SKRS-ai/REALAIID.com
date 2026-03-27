@@ -3,99 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VSSN Protocol | RealAIID Technical Hashing</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>VSSN Protocol | Vocal & Spatial Sovereign Node Hashing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --sumsub-blue: #1693E9;
-            --sumsub-green: #18B494;
-            --tech-dark: #020617;
-            --code-bg: #0F172A;
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --code-bg: #05080F;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: white; color: #334155; line-height: 1.7; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
 
-        .header { background: white; height: 100px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; }
-        .logo img { height: 100px; }
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        /* --- TECH HERO --- */
-        .tech-hero { padding: 100px 10%; background: var(--tech-dark); color: white; }
-        .tech-hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
-        .tech-hero p { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* --- PROTOCOL GRID --- */
-        .protocol-section { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
-        .protocol-text h2 { color: var(--tech-dark); font-size: 2rem; margin-bottom: 25px; border-left: 4px solid var(--sumsub-green); padding-left: 20px; }
+        /* --- TECHNICAL HERO --- */
+        .tech-hero { padding: 80px 10%; background: var(--phl-dark); color: white; border-bottom: 1px solid var(--phl-blue); }
+        .tech-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         
-        /* --- FLOW CHART VISUAL --- */
-        .flow-visual { background: var(--code-bg); padding: 40px; border-radius: 16px; color: white; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
-        .flow-step { margin-bottom: 20px; padding: 15px; border: 1px dashed #334155; position: relative; }
-        .flow-step::after { content: '↓'; position: absolute; bottom: -20px; left: 50%; color: var(--sumsub-green); }
-        .flow-step:last-child::after { display: none; }
+        .protocol-title { font-family: 'JetBrains Mono'; color: var(--phl-blue); font-weight: 700; font-size: 0.9rem; letter-spacing: 4px; }
+        .tech-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin: 20px 0; font-style: italic; }
+        
+        .code-display { 
+            background: var(--code-bg); 
+            padding: 30px; 
+            border-radius: 8px; 
+            border: 1px solid #1E293B; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.8rem; 
+            color: #10B981; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
 
-        .math-block { background: #F8FAFC; padding: 30px; border-radius: 12px; margin-top: 30px; border-left: 4px solid var(--sumsub-blue); }
-        .math-block code { font-family: 'JetBrains Mono'; font-weight: 700; color: var(--tech-dark); }
+        /* --- EXPLANATION SECTION --- */
+        .spec-section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .spec-card { border-left: 3px solid var(--phl-blue); padding-left: 25px; }
+        .spec-card h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; }
 
-        footer { padding: 40px; text-align: center; border-top: 1px solid #E2E8F0; font-size: 0.75rem; color: #94A3B8; }
+        /* --- THE HASHING PROCESS --- */
+        .process { background: var(--surface); padding: 100px 10%; text-align: center; }
+        .process h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 50px; }
+        .step-container { display: flex; justify-content: space-between; max-width: 1000px; margin: 0 auto; gap: 20px; }
+        .step { flex: 1; position: relative; }
+        .step-num { font-size: 3rem; font-weight: 800; color: #E2E8F0; margin-bottom: 10px; }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="tech-hero">
-            <p>Cryptographic Standard v4.1</p>
-            <h1>Vocal Signature Serial Number</h1>
+            <div class="tech-container">
+                <div class="tech-info">
+                    <span class="protocol-title">PROTOCOL: VSSN_CORE_V4</span>
+                    <h1>The Mathematical DNA of Sovereignty.</h1>
+                    <p style="opacity: 0.8; font-size: 1.1rem; margin-bottom: 30px;">Vocal & Spatial Sovereign Node (VSSN) Hashing converts your unique biological presence into a permanent, non-reversible digital anchor. Once hashed, your identity is immutable, verifiable, and protected.</p>
+                    <a href="api-docs.html" style="color: var(--phl-blue); font-weight: 700; text-decoration: none; font-family: 'JetBrains Mono'; font-size: 0.8rem;">VIEW API DOCUMENTATION →</a>
+                </div>
+                <div class="code-display">
+                    <div>// INITIALIZING VSSN HASH</div>
+                    <div style="color: #64748B;">> Input: Human_Voice_Frequency</div>
+                    <div style="color: #64748B;">> Input: 3D_Liveness_Pulse</div>
+                    <div style="margin: 15px 0;">HASH_RESULT: <span style="color: white;">PHL-8821-X99-REAL-ID</span></div>
+                    <div style="color: #EAB308;">STATUS: ANCHORED AT 1900 MARKET</div>
+                </div>
+            </div>
         </section>
 
-        <section class="protocol-section">
-            <div class="protocol-text">
-                <h2>One-Way Identity Hashing</h2>
-                <p>The VSSN protocol converts biological vocal frequencies into a non-reversible cryptographic string. Unlike traditional biometric storage, the RealAIID Bureau does not store "voiceprints." We store the <strong>mathematical result</strong> of the vocal interaction.</p>
-                
-                <div class="math-block">
-                    <p style="font-size: 0.8rem; margin-bottom: 10px; color: #64748B;">Standard VSSN Derivation:</p>
-                    <code>VSSN = SHA-256(Spatial_Frequency + Node_Salt + Timestamp)</code>
-                </div>
-
-                <h3 style="margin-top: 40px; color: var(--tech-dark);">Security Properties</h3>
-                <ul style="margin-top: 20px; list-style: none;">
-                    <li style="margin-bottom: 15px;"><strong>✓ Collision Resistant:</strong> No two human cores can generate the same VSSN.</li>
-                    <li style="margin-bottom: 15px;"><strong>✓ Non-Invertible:</strong> A VSSN cannot be reverse-engineered back into a vocal sample.</li>
-                    <li style="margin-bottom: 15px;"><strong>✓ Node-Locked:</strong> Hashes are salt-verified by the physical PHL-1900-MARKET mainframe.</li>
-                </ul>
+        <section class="spec-section">
+            <div style="max-width: 800px; margin-bottom: 60px;">
+                <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px;">Why We Hash.</h2>
+                <p>Unlike passwords or PINs, a VSSN Hash cannot be forgotten, stolen, or spoofed. It is a one-way mathematical function that represents "You" without storing your raw biometric data. We don't save your voice; we save the **math** of your voice.</p>
             </div>
+            
+            <div class="spec-grid">
+                <div class="spec-card">
+                    <h3>Vocal Sovereignty</h3>
+                    <p style="font-size: 0.9rem;">Captures unique harmonic resonance and frequency intervals, creating a "Vocal Print" that detects AI cloning instantly.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Spatial Liveness</h3>
+                    <p style="font-size: 0.9rem;">Integrates 3D spatial depth data to ensure the identity is being claimed by a physical human, not a 2D screen or deepfake.</p>
+                </div>
+                <div class="spec-card">
+                    <h3>Immutable Anchor</h3>
+                    <p style="font-size: 0.9rem;">Every hash is timestamped and anchored to the Philadelphia Mainframe, providing an unbreakable chain of custody for your identity.</p>
+                </div>
+            </div>
+        </section>
 
-            <div class="flow-visual">
-                <div style="color: var(--sumsub-green); margin-bottom: 20px;">// INITIATING CAPTURE SEQUENCE</div>
-                <div class="flow-step">
-                    [1] SPATIAL AUDIO CAPTURE<br>
-                    <span style="color: #64748B;">Analyzing room acoustics & liveness...</span>
+        <section class="process">
+            <h2>The Hashing Pipeline</h2>
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <h4 style="margin-bottom: 10px;">Ingest</h4>
+                    <p style="font-size: 0.8rem; color: #64748B;">Raw biometric stream is processed via 256-bit encrypted Liaison tunnel.</p>
                 </div>
-                <div class="flow-step">
-                    [2] FREQUENCY EXTRACTION<br>
-                    <span style="color: #64748B;">Isolating core vocal harmonics...</span>
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <h4 style="margin-bottom: 10px;">Verify</h4>
+                    <p style="font-size: 0.8rem; color: #64748B;">3Si-grade liveness checks ensure the presence of a "Human Core."</p>
                 </div>
-                <div class="flow-step">
-                    [3] HARDWARE ENCRYPTION<br>
-                    <span style="color: #64748B;">Salting with PHL Mainframe Key...</span>
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <h4 style="margin-bottom: 10px;">Anchor</h4>
+                    <p style="font-size: 0.8rem; color: #64748B;">Mathematical hash is generated and written to the Mainframe Ledger.</p>
                 </div>
-                <div class="flow-step" style="border-style: solid; border-color: var(--sumsub-blue);">
-                    [4] VSSN GENERATED<br>
-                    <span style="color: var(--sumsub-blue);">Hash: VSSN-PHL-9921-X-0041-882</span>
-                </div>
-                <div style="color: #E11D48; margin-top: 20px;">// RAW DATA PURGED FROM BUFFER</div>
             </div>
         </section>
     </main>
 
     <footer>
-        COMMONWEALTH BUREAU TECHNICAL SPECIFICATIONS // 1900 MARKET ST // PHILADELPHIA
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
     </footer>
 
 </body>
