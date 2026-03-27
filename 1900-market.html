@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1900 Market St | RealAIID.com Global Anchor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --penn-state-blue: #001E44; /* Nod to your alma mater */
+            --soft-gray: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #475569; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; }
+        .logo img { height: 100px; }
+
+        /* --- THE ANCHOR HERO --- */
+        .anchor-hero { 
+            padding: 120px 10% 80px; 
+            background: linear-gradient(rgba(11, 19, 32, 0.8), rgba(11, 19, 32, 0.8)), url('https://images.unsplash.com/photo-1569330132195-ec39755d528e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+        }
+        .anchor-hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 15px; }
+        .anchor-hero p { font-family: 'JetBrains Mono'; color: var(--phl-blue); letter-spacing: 3px; text-transform: uppercase; }
+
+        /* --- PHILADELPHIA CORE SECTION --- */
+        .core-section { padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .core-text h2 { color: var(--phl-dark); font-size: 2.5rem; margin-bottom: 25px; }
+        .core-text p { margin-bottom: 20px; font-size: 1.1rem; }
+        
+        .amenities-list { list-style: none; margin-top: 30px; }
+        .amenities-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--phl-dark); }
+        .bullet { width: 8px; height: 8px; background: var(--phl-blue); border-radius: 50%; }
+
+        /* --- THE VAULT IMAGE --- */
+        .building-card { 
+            background: var(--soft-gray); 
+            border-radius: 20px; 
+            padding: 40px; 
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .address-box { font-family: 'JetBrains Mono'; background: var(--phl-dark); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+        
+        /* --- VISITOR PROTOCOL --- */
+        .protocol-bar { background: var(--penn-state-blue); padding: 40px 10%; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .btn-visit { background: var(--phl-blue); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; }
+
+        footer { padding: 60px 10%; background: var(--phl-dark); color: #4B5563; text-align: center; font-size: 0.7rem; font-family: 'JetBrains Mono'; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
+            <a href="index.html" style="text-decoration:none; color:var(--phl-dark);">Back to Bureau</a>
+            <a href="mainframe.html" style="text-decoration:none; color:var(--phl-dark);">Mainframe Specs</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="anchor-hero">
+            <p>Geospatial Sovereignty</p>
+            <h1>The PHL Anchor.</h1>
+        </section>
+
+        <section class="core-section">
+            <div class="core-text">
+                <h2>Philadelphia Head of Operations</h2>
+                <p>Strategically positioned at <strong>1900 Market Street</strong>, the RealAIID Bureau Anchor serves as the primary gateway between the traditional financial district and the decentralized future. This is where high-security engineering meets enterprise implementation.</p>
+                <p>Drawing from our leadership's background at <strong>Pennsylvania State University</strong> and the <strong>University of Minnesota</strong>, we have built a facility that prioritizes technical excellence and human accountability.</p>
+                
+                <ul class="amenities-list">
+                    <li><div class="bullet"></div> Liveness Verification Corridors (Tier-III)</li>
+                    <li><div class="bullet"></div> On-Site VSSN Hashing Terminals</li>
+                    <li><div class="bullet"></div> Commonwealth Liaison Executive Suites</li>
+                    <li><div class="bullet"></div> Direct Fiber-Link to Aviation Node (PHL-INT)</li>
+                </ul>
+            </div>
+
+            <div class="building-card">
+                <div class="address-box">
+                    <span style="color: var(--phl-blue);">// PHYSICAL ADDRESS</span><br>
+                    <span style="font-size: 1.5rem; font-weight: 800;">1900 Market St.<br>Suite 800<br>Philadelphia, PA 19103</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #64748B;">The Anchor is a restricted-access facility. All visitors are required to undergo a Vocal Handshake (VSSN) verification at the ground-floor security node before mainframe access is granted.</p>
+            </div>
+        </section>
+
+        <section class="protocol-bar">
+            <div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Institutional Site Visit?</h3>
+                <p style="opacity: 0.8;">Schedule a walk-through of our hardware-hashing infrastructure.</p>
+            </div>
+            <a href="contact.html" class="btn-visit">Schedule Liaison</a>
+        </section>
+    </main>
+
+    <footer>
+        REALAIID BUREAU // 1900 MARKET ST ANCHOR // PHILADELPHIA // © 2026
+    </footer>
+
+</body>
+</html>
