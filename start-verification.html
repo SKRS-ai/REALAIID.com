@@ -3,152 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Terminal | RealAIID Identity Verification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>Start Verification | RealAIID Bureau Enrollment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --sumsub-blue: #1693E9;
-            --terminal-bg: #020617;
-            --accent-cyan: #22D3EE;
-            --status-green: #10B981;
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --success-green: #10B981;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background: var(--terminal-bg); 
-            color: #94A3B8; 
-            display: flex; 
-            flex-direction: column; 
-            min-height: 100vh;
-            overflow-x: hidden;
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--phl-dark); line-height: 1.6; }
+
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
         }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        /* --- TERMINAL HEADER --- */
-        .terminal-header {
-            padding: 20px 5%;
-            background: rgba(15, 23, 42, 0.8);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        /* --- ENROLLMENT INTERFACE --- */
+        .enrollment-hero { padding: 60px 10%; text-align: center; background: var(--white); border-bottom: 1px solid #E2E8F0; }
+        .enrollment-hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 15px; }
+        .status-bar { font-family: 'JetBrains Mono'; color: var(--phl-blue); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; }
 
-        .system-status { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--status-green); display: flex; align-items: center; gap: 8px; }
-        .pulse { width: 8px; height: 8px; background: var(--status-green); border-radius: 50%; animation: blink 1.5s infinite; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-        /* --- MAIN INTERFACE --- */
-        .main-container { flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 40px; }
+        .enrollment-container { max-width: 900px; margin: -50px auto 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
         
-        .verification-box {
-            width: 100%;
-            max-width: 900px;
-            background: rgba(30, 41, 59, 0.5);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 60px;
-            position: relative;
-        }
-
-        .verification-box::before {
-            content: 'PHL_NODE_MAIN_GATE';
-            position: absolute;
-            top: -12px;
-            left: 30px;
-            background: var(--sumsub-blue);
-            color: white;
-            font-family: 'JetBrains Mono';
-            font-size: 0.6rem;
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
-
-        h1 { color: white; font-size: 2.5rem; margin-bottom: 15px; }
-        .tagline { font-family: 'JetBrains Mono'; color: var(--accent-cyan); margin-bottom: 40px; font-size: 0.9rem; }
-
-        /* --- REQUIREMENTS GRID --- */
-        .req-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 50px; }
-        .req-item { 
-            background: rgba(15, 23, 42, 0.5); 
-            padding: 25px; 
-            border-radius: 12px; 
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            text-align: left;
-        }
-        .req-item h4 { color: white; font-size: 0.9rem; margin-bottom: 8px; }
-        .req-item p { font-size: 0.8rem; line-height: 1.4; }
-
-        /* --- ACTION SECTION --- */
-        .action-area { text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 40px; }
+        .step-card { background: var(--white); padding: 40px; border-radius: 8px; border: 1px solid #E2E8F0; box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .step-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 20px; color: var(--phl-dark); }
+        .step-card p { font-size: 0.9rem; color: #64748B; margin-bottom: 25px; }
         
-        .btn-launch { 
-            background: var(--sumsub-blue); 
-            color: white; 
-            padding: 20px 50px; 
-            border-radius: 12px; 
-            text-decoration: none; 
-            font-weight: 800; 
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
+        /* THE "ACTION" BUTTONS */
+        .action-btn { 
+            display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; 
+            padding: 18px; background: var(--phl-dark); color: white; text-decoration: none; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px; transition: 0.3s;
         }
-        .btn-launch:hover { background: #1e88e5; box-shadow: 0 0 30px rgba(22, 147, 233, 0.4); transform: scale(1.02); }
+        .action-btn:hover { background: var(--phl-blue); }
+        .action-btn.secondary { background: transparent; color: var(--phl-dark); border: 1px solid var(--phl-dark); }
 
-        .disclaimer { font-size: 0.7rem; margin-top: 25px; color: #475569; }
+        /* THE "CORE" SCANNER SIMULATION */
+        .scanner-visual { 
+            grid-column: span 2; background: var(--phl-dark); padding: 60px; border-radius: 8px; text-align: center; color: white; 
+            border: 2px solid var(--phl-blue); position: relative; overflow: hidden;
+        }
+        .scanner-line { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--phl-blue); 
+            box-shadow: 0 0 15px var(--phl-blue); animation: scan 3s infinite linear; 
+        }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="terminal-header">
-        <div class="logo-text" style="color: white; font-weight: 800; letter-spacing: 2px;">REALAIID // 2026</div>
-        <div class="system-status">
-            <div class="pulse"></div>
-            MAINFRAME CONNECTION: OPTIMAL (142ms)
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
         </div>
     </header>
 
-    <main class="main-container">
-        <div class="verification-box">
-            <h1>Initialize Identity Anchor</h1>
-            <p class="tagline">PREPARING FOR VSSN BIOMETRIC HASHING PROTOCOL v4.1</p>
+    <main>
+        <section class="enrollment-hero">
+            <span class="status-bar">SYSTEM_READY // INGEST_NODE_PHL</span>
+            <h1>Initialize Enrollment.</h1>
+            <p style="color: #64748B; max-width: 600px; margin: 10px auto;">Prepare for high-fidelity biometric capture. Ensure you are in a quiet, well-lit environment for VSSN Hashing.</p>
+        </section>
 
-            <div class="req-grid">
-                <div class="req-item">
-                    <h4>Acoustic Environment</h4>
-                    <p>Ensure a low-noise floor. Our spatial engine requires clean input for frequency mapping.</p>
-                </div>
-                <div class="req-item">
-                    <h4>Hardware Readiness</h4>
-                    <p>Webcam and Microphone permissions will be requested for Liveness (LN) verification.</p>
-                </div>
-                <div class="req-item">
-                    <h4>Sovereign Auth</h4>
-                    <p>Have your Tier-I or Tier-II access key ready for post-hash anchoring.</p>
-                </div>
-                <div class="req-item">
-                    <h4>Latency Check</h4>
-                    <p>Node: PHL-1900-MARKET. Estimated processing time: 1.2 seconds.</p>
+        <div class="enrollment-container">
+            
+            <div class="scanner-visual">
+                <div class="scanner-line"></div>
+                <h2 style="font-family: 'JetBrains Mono'; margin-bottom: 10px;">AWAITING SIGNAL</h2>
+                <p style="font-family: 'JetBrains Mono'; font-size: 0.8rem; opacity: 0.6;">Connect your secure input device to begin the VSSN stream.</p>
+            </div>
+
+            <div class="step-card">
+                <h3>Vocal Resonance</h3>
+                <p>Register your frequency signature. This process takes 60 seconds and creates the mathematical basis for your audio sovereignty.</p>
+                <a href="#" class="action-btn">Open Voice Terminal</a>
+            </div>
+
+            <div class="step-card">
+                <h3>Spatial Mesh</h3>
+                <p>Captures your 3D likeness to ensure liveness. This data is converted to a hash and the raw imagery is instantly purged.</p>
+                <a href="#" class="action-btn">Calibrate Camera</a>
+            </div>
+
+            <div class="step-card" style="grid-column: span 2;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3>Mainframe Authorization</h3>
+                        <p style="margin-bottom: 0;">Link your enrollment to a specific protection tier to finalize the anchor at 1900 Market.</p>
+                    </div>
+                    <a href="register-checkout.html" class="action-btn" style="width: auto; padding: 18px 50px;">Complete Hashing →</a>
                 </div>
             </div>
 
-            <div class="action-area">
-                <a href="onboarding.html" class="btn-launch">
-                    START BIOMETRIC HANDSHAKE
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                </a>
-                <p class="disclaimer">By proceeding, you authorize the temporary spatial capture of your likeness for one-way VSSN conversion. No raw biometric data is cached on the node.</p>
-            </div>
         </div>
     </main>
 
-    <footer style="padding: 20px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #334155;">
-        COMMONWEALTH SECURITY BUREAU // CRYPTOGRAPHIC AUDIT LOG: ACTIVE
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
     </footer>
 
 </body>
