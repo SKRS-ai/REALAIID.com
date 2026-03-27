@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File a Claim | RealAIID.com Legal Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --text-neutral: #5C6B8A;
+            --bg-light: #F8FAFC;
+            --alert-red: #EF4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-neutral); line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- CLAIMS FORM CONTAINER --- */
+        .claims-container { max-width: 900px; margin: 60px auto; background: white; border-radius: 12px; padding: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .form-header { border-bottom: 1px solid #E2E8F0; margin-bottom: 40px; padding-bottom: 20px; }
+        .form-header h1 { font-size: 2.2rem; color: var(--text-strong); }
+        .form-header p { color: var(--sumsub-blue); font-weight: 600; font-size: 0.9rem; margin-top: 5px; }
+
+        .form-section { margin-bottom: 40px; }
+        .form-section h3 { font-size: 1.1rem; color: var(--text-strong); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .input-group { margin-bottom: 25px; }
+        label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text-strong); font-size: 0.9rem; }
+        input, select, textarea { width: 100%; padding: 15px; border: 1px solid #CBD5E1; border-radius: 6px; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--sumsub-blue); box-shadow: 0 0 0 3px rgba(22, 147, 233, 0.1); }
+
+        .vssn-input { font-family: 'JetBrains Mono', monospace; background: #F1F5F9; color: var(--sumsub-blue); font-weight: bold; }
+
+        /* --- PROTECTION STATUS BAR --- */
+        .status-banner { background: #ECFDF5; border: 1px solid var(--sumsub-green); padding: 15px; border-radius: 8px; color: var(--sumsub-green); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; margin-bottom: 40px; }
+        .status-banner svg { margin-right: 12px; }
+
+        .btn-submit { background: var(--text-strong); color: white; width: 100%; padding: 20px; border-radius: 6px; border: none; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { background: var(--sumsub-blue); }
+
+        .legal-note { font-size: 0.75rem; text-align: center; margin-top: 25px; color: #94A3B8; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px;">
+            <a href="dashboard.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Dashboard</a>
+            <a href="likeness-shield.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Back to Shield</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="claims-container">
+            <div class="status-banner">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                ACTIVE PROTECTION: NO FAKES ACT STATUTORY STANDING ENABLED
+            </div>
+
+            <div class="form-header">
+                <h1>Identity Infringement Claim</h1>
+                <p>SUBMIT TO PHILADELPHIA MAINFRAME LEGAL NODE</p>
+            </div>
+
+            <form>
+                <div class="form-section">
+                    <h3>1. Verified Identity</h3>
+                    <div class="input-group">
+                        <label>VSSN Hash (Vocal Signature Serial Number)</label>
+                        <input type="text" class="vssn-input" value="VSSN-X92L-MARKET-1900-PHL" readonly>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>2. Infringement Details</h3>
+                    <div class="input-group">
+                        <label>Platform of Incident</label>
+                        <select>
+                            <option>YouTube</option>
+                            <option>TikTok</option>
+                            <option>X (Twitter)</option>
+                            <option>Meta (Instagram/Facebook)</option>
+                            <option>Broadcast / Television</option>
+                            <option>Other / Deepweb</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>URL / Location of Deepfake</label>
+                        <input type="url" placeholder="https://www.example.com/video/...">
+                    </div>
+                    <div class="input-group">
+                        <label>Nature of Misuse</label>
+                        <textarea rows="4" placeholder="Describe how your likeness or voice was used without authorization..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>3. Desired Action</h3>
+                    <div class="input-group" style="display:flex; gap:20px;">
+                        <label style="display:flex; align-items:center; font-weight:400; cursor:pointer;">
+                            <input type="checkbox" style="width:auto; margin-right:10px;"> Immediate Takedown (DMCA/ELVIS)
+                        </label>
+                        <label style="display:flex; align-items:center; font-weight:400; cursor:pointer;">
+                            <input type="checkbox" style="width:auto; margin-right:10px;"> Statutory Damage Pursuit
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Dispatch Legal Packet</button>
+                <p class="legal-note">By submitting this claim, you authorize RealAIID.com to act as your technical agent for biological sovereignty verification under the NO FAKES Act of 2026.</p>
+            </form>
+        </div>
+    </main>
+
+    <footer style="padding:40px 10%; text-align:center; font-size:0.8rem;">
+        © 2026 RealAIID.com | AI Identity Protection & Verification Bureau | Philadelphia Mainframe Anchor Node
+    </footer>
+
+</body>
+</html>
