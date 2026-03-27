@@ -18,7 +18,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
 
-        /* --- HEADER & NAVIGATION (RESTORED) --- */
+        /* --- HEADER & NAVIGATION --- */
         header {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
@@ -37,9 +37,8 @@
             margin: 0 auto;
         }
 
-        /* 2X ENLARGED LOGO */
         .logo-box img {
-            height: 120px; /* Doubled size */
+            height: 120px; /* 2X Enlarged */
             width: auto;
             display: block;
             background: transparent;
@@ -92,7 +91,7 @@
             opacity: 0.8;
         }
 
-        /* --- PRICING SECTION (4 TIERS) --- */
+        /* --- PRICING SECTION --- */
         .pricing-section {
             padding: 100px 5%;
             background: var(--surface);
@@ -103,7 +102,7 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 Columns */
+            grid-template-columns: repeat(4, 1fr);
             gap: 25px;
             max-width: 1400px;
             margin: 0 auto;
@@ -159,12 +158,56 @@
         .enterprise-card .feature-list li { color: #94A3B8; }
         .enterprise-card .btn-buy { background: white; color: var(--phl-dark); }
 
-        /* --- FOOTER --- */
+        /* --- FOOTER RESTORATION --- */
         footer {
             background: #05080F;
             color: #94A3B8;
-            padding: 80px 5% 40px;
+            padding: 80px 10% 40px;
+            border-top: 1px solid #1E293B;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            text-align: left;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 800; 
+            font-size: 1.5rem; 
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono';
+        }
+
+        .footer-links h4 { 
+            color: white; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 20px; 
+        }
+
+        .footer-links a { 
+            display: block; 
+            color: #64748B; 
+            text-decoration: none; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); }
+
+        .copyright-bar {
+            border-top: 1px solid #1E293B;
+            padding-top: 40px;
             text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -190,17 +233,16 @@
     <main>
         <section class="hero">
             <h1>Claim Your AI Identity.</h1>
-            <p>The global registration standard for human likeness and vocal Security. Secured by the USA based Philadelphia Mainframe.</p>
+            <p>The global registration standard for human likeness and vocal security. Secured by the USA-based Philadelphia Mainframe.</p>
         </section>
 
         <section class="pricing-section">
             <div class="section-header">
-                <h2>Choose Your Tier of Identity Security </h2>
+                <h2>Choose Your Tier of Identity Security</h2>
                 <p>Register your RealAIID and secure your digital future.</p>
             </div>
 
             <div class="pricing-grid">
-                
                 <div class="price-card">
                     <h3>Standard</h3>
                     <div class="amount">$149 <span>/year</span></div>
@@ -253,13 +295,41 @@
                     </ul>
                     <a href="product-enterprise.html" class="btn-buy">CONTACT BUREAU</a>
                 </div>
-
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 REALAIID BUREAU // 1900 MARKET ST, PHILADELPHIA // ALL HUMAN RIGHTS RESERVED</p>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
     </footer>
 
 </body>
