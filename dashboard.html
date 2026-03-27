@@ -19,6 +19,24 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--surface); color: white; line-height: 1.6; }
 
+        async function loadDashboard() {
+    try {
+        const response = await fetch('/api/user-profile');
+        const data = await response.json();
+
+        // Injecting the database values into the HTML elements
+        document.querySelector('.user-welcome h1').innerText = `Welcome, ${data.name}.`;
+        document.querySelector('.vssn-display').innerText = data.vssn_hash;
+        document.querySelector('.tier-badge').innerText = `${data.tier} Tier`;
+        
+        console.log("Mainframe Data Ingested Successfully.");
+    } catch (error) {
+        console.error("Connection to Mainframe Failed.", error);
+    }
+}
+
+// Initialize on page load
+window.onload = loadDashboard;
         /* --- DASHBOARD LAYOUT --- */
         .dashboard-wrapper { display: grid; grid-template-columns: 280px 1fr; min-height: 100vh; }
 
