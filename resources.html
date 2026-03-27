@@ -3,174 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources | The Blue Paper | RealAIID.com Protocol</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>Resources | RealAIID.com Intelligence & Downloads</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --sumsub-green: #18B494;
             --sumsub-blue: #1693E9;
             --text-strong: #0B1320;
-            --text-neutral: #5C6B8A;
-            --bg-light: #F6F7F9;
-            --pure-white: #FFFFFF;
+            --bg-resource: #F8FAFC;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--text-neutral); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-resource); color: #475569; line-height: 1.6; }
 
-        /* --- HEADER --- */
-        .header {
-            background: var(--pure-white);
-            height: 110px; 
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-            border-bottom: 1px solid #EBEEF2;
-        }
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
 
-        .logo-area img { height: 135px; cursor: pointer; }
-
-        /* --- RESOURCE HERO --- */
-        .resource-hero {
-            padding: 100px 10%;
-            background: var(--pure-white);
-            text-align: center;
-            border-bottom: 1px solid #E2E8F0;
-        }
-
+        /* --- HERO --- */
+        .resource-hero { padding: 80px 10%; background: white; border-bottom: 1px solid #E2E8F0; text-align: center; }
         .resource-hero h1 { font-size: 3rem; color: var(--text-strong); margin-bottom: 20px; }
-        .resource-hero p { max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+        .resource-hero p { max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
 
-        /* --- THE BLUE PAPER FEATURE --- */
+        /* --- FEATURED: THE BLUE PAPER --- */
         .featured-resource {
-            margin: -60px 10% 60px;
+            margin: -50px 10% 60px;
             background: var(--text-strong);
             border-radius: 20px;
-            display: flex;
-            align-items: center;
-            color: white;
             padding: 60px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
             box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
-        .resource-cover {
-            flex: 1;
-            height: 350px;
+        .book-mockup {
             background: linear-gradient(135deg, var(--sumsub-blue), #0747a6);
-            border-radius: 12px;
+            height: 350px;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
-            border: 1px solid rgba(255,255,255,0.1);
+            border-left: 15px solid rgba(0,0,0,0.2);
+            box-shadow: 20px 20px 50px rgba(0,0,0,0.3);
         }
 
-        .resource-info { flex: 1.5; padding-left: 60px; }
-        .resource-info h2 { font-size: 2.2rem; margin-bottom: 20px; }
+        /* --- RESOURCE GRID --- */
+        .resource-grid { padding: 0 10% 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .card { background: white; border: 1px solid #E2E8F0; padding: 30px; border-radius: 12px; transition: 0.3s; text-decoration: none; color: inherit; }
+        .card:hover { border-color: var(--sumsub-green); transform: translateY(-5px); }
+        .card-type { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--sumsub-blue); text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .card h3 { color: var(--text-strong); margin-bottom: 12px; font-size: 1.25rem; }
 
-        /* --- DOWNLOAD CARDS --- */
-        .resource-grid {
-            padding: 0 10% 100px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .dl-card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid #E2E8F0;
-            transition: 0.3s;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .dl-card:hover { border-color: var(--sumsub-green); transform: translateY(-5px); }
-        .dl-card .type { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--sumsub-blue); text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .dl-card h3 { color: var(--text-strong); margin-bottom: 10px; }
-
-        /* --- BUTTONS --- */
-        .btn-green { background: var(--sumsub-green); color: white; padding: 15px 35px; border-radius: 6px; text-decoration: none; font-weight: 700; display: inline-block; }
+        .btn-download { color: var(--sumsub-green); font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; margin-top: 20px; }
         
-        footer { padding: 60px 10%; text-align: center; font-size: 0.8rem; }
+        /* --- NEWSLETTER SECTION --- */
+        .cta-strip { background: var(--sumsub-blue); padding: 60px 10%; color: white; border-radius: 24px; margin: 0 10% 100px; display: flex; justify-content: space-between; align-items: center; }
+        .cta-strip h2 { font-size: 2rem; }
+        .cta-btn { background: white; color: var(--sumsub-blue); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; }
     </style>
 </head>
 <body>
 
     <header class="header">
-        <div class="logo-area">
-            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID.com">
-        </div>
-        <nav style="margin-left: auto; display: flex; gap: 30px; font-weight: 600;">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
             <a href="index.html" style="text-decoration:none; color:var(--text-strong);">Home</a>
-            <a href="vssn-hash.html" style="text-decoration:none; color:var(--text-strong);">VSSN</a>
-            <a href="likeness-shield.html" style="text-decoration:none; color:var(--text-strong);">Likeness Shield</a>
+            <a href="solutions.html" style="text-decoration:none; color:var(--text-strong);">Solutions</a>
+            <a href="company.html" style="text-decoration:none; color:var(--text-strong);">The Bureau</a>
         </nav>
     </header>
 
     <main>
         <section class="resource-hero">
-            <h1>Intelligence & Insights</h1>
-            <p>Everything you need to understand the evolution of human identity in the age of synthetic replication.</p>
+            <h1>Intelligence & <span>Strategy.</span></h1>
+            <p>Access the definitive guides to biological identity sovereignty, VSSN integration, and the legal landscape of 2026.</p>
         </section>
 
         <section class="featured-resource">
-            <div class="resource-cover">
-                <div style="font-family: 'JetBrains Mono'; font-size: 0.8rem; opacity: 0.7;">COMMONWEALTH PROTOCOL</div>
-                <h3 style="font-size: 2rem; text-align: center; margin: 20px 0;">THE BLUE PAPER</h3>
+            <div class="book-mockup">
+                <div style="font-family: 'JetBrains Mono'; font-size: 0.7rem; opacity: 0.6;">COMMONWEALTH PROTOCOL</div>
+                <h2 style="font-size: 2rem; text-align: center; margin: 20px 0;">THE BLUE PAPER</h2>
                 <div style="width: 40px; height: 2px; background: white;"></div>
-                <p style="font-size: 0.7rem; margin-top: 20px;">v.2026.1 - 1900 MARKET ST</p>
+                <p style="font-size: 0.6rem; margin-top: 20px;">v.2026.03 // PHL NODE</p>
             </div>
-            <div class="resource-info">
-                <h2>The Sovereign Identity Standard</h2>
-                <p style="opacity: 0.8; margin-bottom: 30px;">Download the comprehensive 45-page guide on VSSN hashing, the ELVIS Act, and the technical architecture of the Philadelphia Mainframe.</p>
-                <a href="#" class="btn-green">Download PDF (4.2 MB)</a>
+            <div>
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The Sovereign Standard</h2>
+                <p style="font-size: 1.1rem; opacity: 0.8; margin-bottom: 30px;">Our flagship technical white paper deconstructing the VSSN hashing algorithm, its integration with the NO FAKES Act, and the roadmap for the Philadelphia Mainframe.</p>
+                <a href="#" style="background:var(--sumsub-green); color:white; padding:18px 40px; border-radius:8px; text-decoration:none; font-weight:800; display:inline-block;">Download PDF (4.2MB)</a>
             </div>
         </section>
 
         <section class="resource-grid">
-            <a href="#" class="dl-card">
-                <span class="type">Technical Spec</span>
-                <h3>VSSN API Integration Guide</h3>
-                <p>Standardized endpoints for institutional biometric linking.</p>
+            <a href="#" class="card">
+                <span class="card-type">Technical Spec</span>
+                <h3>VSSN API Integration</h3>
+                <p>A comprehensive developer guide for implementing Vocal Signature checks in secure environments.</p>
+                <div class="btn-download">ACCESS DOCS →</div>
             </a>
-            <a href="#" class="dl-card">
-                <span class="type">Legal Framework</span>
-                <h3>NO FAKES Act Compliance</h3>
-                <p>A manual for creators seeking to defend their biological likeness.</p>
+            <a href="#" class="card">
+                <span class="card-type">Legal Manual</span>
+                <h3>NO FAKES Compliance</h3>
+                <p>A breakdown of the 2026 statutory protections for talent, creators, and public figures.</p>
+                <div class="btn-download">DOWNLOAD GUIDE →</div>
             </a>
-            <a href="#" class="dl-card">
-                <span class="type">Case Study</span>
-                <h3>Aviation Node: PHL Metro</h3>
-                <p>Results from our 150ms latency biometric corridor testing.</p>
+            <a href="#" class="card">
+                <span class="card-type">Case Study</span>
+                <h3>PHL Aviation Corridor</h3>
+                <p>Operational data from the 150ms latency biometric testing at Philadelphia Metropolitan.</p>
+                <div class="btn-download">VIEW CASE STUDY →</div>
             </a>
-            <a href="#" class="dl-card">
-                <span class="type">Policy Paper</span>
-                <h3>The Ethics of Hashing</h3>
-                <p>Why VSSN is a privacy-first alternative to biometric storage.</p>
-            </a>
-            <a href="#" class="dl-card">
-                <span class="type">Product Brief</span>
-                <h3>Corporate Likeness Defense</h3>
-                <p>Protecting the voices and faces of your executive board.</p>
-            </a>
-            <a href="#" class="dl-card">
-                <span class="type">Glossary</span>
+            <a href="#" class="card">
+                <span class="card-type">Glossary</span>
                 <h3>The Identity Lexicon</h3>
-                <p>Defining Deepfakes, Liveness, and Hashing for 2026.</p>
+                <p>Defining Hashing, Liveness, and Synthetic Replication for the modern era.</p>
+                <div class="btn-download">VIEW GLOSSARY →</div>
             </a>
+            <a href="#" class="card">
+                <span class="card-type">Policy Paper</span>
+                <h3>Ethics of Hashing</h3>
+                <p>Why VSSN is a privacy-first alternative to traditional biometric storage.</p>
+                <div class="btn-download">READ PAPER →</div>
+            </a>
+            <a href="#" class="card">
+                <span class="card-type">Archive</span>
+                <h3>Solomon Kin Media Kit</h3>
+                <p>Branding assets and licensing standards for VSSN-verified creative works.</p>
+                <div class="btn-download">DOWNLOAD KIT →</div>
+            </a>
+        </section>
+
+        <section class="cta-strip">
+            <div>
+                <h2>The Ledger Update</h2>
+                <p>Join 45,000+ professionals receiving identity intelligence.</p>
+            </div>
+            <a href="#" class="cta-btn">Subscribe to Intelligence</a>
         </section>
     </main>
 
-    <footer>
-        <p>© 2026 RealAIID.com | Philadelphia Mainframe Research Division</p>
+    <footer style="padding:40px 10%; text-align:center; font-size:0.8rem;">
+        © 2026 RealAIID.com | Intelligence Division | 1900 Market St, Philadelphia
     </footer>
 
 </body>
