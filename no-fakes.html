@@ -3,134 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Likeness Shield | NO FAKES Act Monitoring</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>Likeness Shield | NO FAKES Act Enforcement & Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --shield-red: #EF4444;
-            --shield-blue: #3B82F6;
-            --bg-obsidian: #020617;
-            --panel-gray: #0F172A;
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --legal-red: #B91C1C;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-obsidian); color: #94A3B8; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
 
-        .header-shield { 
-            height: 90px; 
-            background: rgba(15, 23, 42, 0.9); 
-            display: flex; 
-            align-items: center; 
-            padding: 0 5%; 
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            position: sticky; top: 0; z-index: 1000;
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
         }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        /* --- DASHBOARD HERO --- */
-        .dashboard-hero { padding: 60px 5%; display: flex; justify-content: space-between; align-items: flex-end; }
-        .dashboard-hero h1 { color: white; font-size: 2.5rem; }
-        .status-badge { background: rgba(16, 185, 129, 0.1); color: #10B981; padding: 8px 16px; border-radius: 50px; font-family: 'JetBrains Mono'; font-size: 0.75rem; border: 1px solid #10B981; }
-
-        /* --- MONITORING GRID --- */
-        .monitoring-grid { padding: 0 5% 80px; display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        /* --- LEGAL HERO --- */
+        .legal-hero { padding: 80px 10%; background: var(--surface); border-bottom: 1px solid #E2E8F0; }
+        .legal-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
         
-        .main-panel { background: var(--panel-gray); border-radius: 16px; padding: 40px; border: 1px solid rgba(255,255,255,0.05); }
-        .side-panel { display: flex; flex-direction: column; gap: 30px; }
+        .legal-badge { display: inline-block; background: var(--legal-red); color: white; padding: 5px 15px; font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: 800; border-radius: 2px; margin-bottom: 20px; }
+        .legal-hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; line-height: 1.1; font-style: italic; margin-bottom: 25px; }
+        .legal-hero p { font-size: 1.15rem; color: #475569; margin-bottom: 30px; }
 
-        .scan-line { height: 2px; background: var(--shield-blue); width: 100%; margin-bottom: 30px; position: relative; overflow: hidden; }
-        .scan-line::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, white, transparent); animation: scan 3s infinite; }
-        @keyframes scan { 100% { left: 100%; } }
+        /* --- THE SHIELD PROTOCOL --- */
+        .protocol-section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .protocol-header { border-bottom: 2px solid var(--phl-dark); padding-bottom: 20px; margin-bottom: 60px; }
+        .protocol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .protocol-item h4 { font-family: 'JetBrains Mono'; color: var(--phl-blue); margin-bottom: 15px; text-transform: uppercase; }
 
-        .alert-item { background: rgba(239, 68, 68, 0.05); border-left: 4px solid var(--shield-red); padding: 20px; margin-bottom: 15px; border-radius: 0 8px 8px 0; display: flex; justify-content: space-between; align-items: center; }
-        .alert-item h4 { color: white; font-size: 0.9rem; }
-        .btn-takedown { background: var(--shield-red); color: white; padding: 8px 16px; border-radius: 4px; text-decoration: none; font-size: 0.75rem; font-weight: 700; }
+        /* --- STATUTORY CALLOUT --- */
+        .statute-box { background: var(--phl-dark); color: white; padding: 60px; border-radius: 8px; margin-top: 80px; position: relative; overflow: hidden; }
+        .statute-box::after { content: 'LEGAL'; position: absolute; top: -20px; right: -20px; font-size: 8rem; font-weight: 900; opacity: 0.05; }
+        .statute-box h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 20px; color: var(--phl-blue); }
 
-        .stat-card { background: var(--panel-gray); padding: 30px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); }
-        .stat-val { display: block; font-size: 2rem; font-weight: 800; color: white; }
-        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- STATUTORY INFO --- */
-        .legal-footer { grid-column: 1 / span 2; background: #1E293B; padding: 40px; border-radius: 16px; display: flex; gap: 40px; align-items: center; }
-        .legal-footer img { height: 60px; opacity: 0.5; }
-
-        footer { padding: 40px; text-align: center; font-size: 0.7rem; color: #334155; font-family: 'JetBrains Mono'; }
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="header-shield">
-        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID" style="height: 60px;"></div>
-        <nav style="margin-left:auto; display:flex; gap:30px; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
-            <a href="index.html" style="color:white; text-decoration:none;">BUREAU HOME</a>
-            <a href="pricing.html" style="color:white; text-decoration:none;">UPGRADE TIER</a>
-        </nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <div class="dashboard-hero">
-            <div>
-                <p style="font-family: 'JetBrains Mono'; color: var(--shield-blue); margin-bottom: 10px;">ACTIVE SURVEILLANCE NODE: PHL-1900</p>
-                <h1>Likeness Shield Dashboard</h1>
-            </div>
-            <div class="status-badge">PROTECTION ACTIVE</div>
-        </div>
-
-        <div class="monitoring-grid">
-            <div class="main-panel">
-                <div class="scan-line"></div>
-                <h3 style="color: white; margin-bottom: 25px;">Live Detection Log</h3>
-                
-                <div class="alert-item">
-                    <div>
-                        <h4>Unauthorized Vocal Synthesis Detected</h4>
-                        <p style="font-size: 0.8rem;">Platform: TikTok // Match Probability: 98.4%</p>
-                    </div>
-                    <a href="#" class="btn-takedown">ISSUE TAKEDOWN</a>
+        <section class="legal-hero">
+            <div class="legal-container">
+                <div class="legal-text">
+                    <span class="legal-badge">ENFORCEMENT PROTOCOL</span>
+                    <h1>Your Likeness is Your Property.</h1>
+                    <p>The NO FAKES Act establishes that your voice and visual likeness are protected human rights. The RealAIID Bureau provides the forensic evidence and the mathematical anchor required to enforce these rights in a synthetic world.</p>
+                    <a href="product-likeness-shield.html" class="nav-cta" style="display: inline-block; padding: 18px 35px; text-decoration: none;">ACTIVATE LIKENESS SHIELD</a>
                 </div>
-
-                <div class="alert-item" style="border-color: #EAB308; background: rgba(234, 179, 8, 0.05);">
-                    <div>
-                        <h4 style="color: white;">Likeness Use: Commercial (Parody Exception?)</h4>
-                        <p style="font-size: 0.8rem;">Platform: YouTube // Match Probability: 82.1%</p>
-                    </div>
-                    <a href="#" class="btn-takedown" style="background: #EAB308;">REVIEW LEGAL</a>
-                </div>
-
-                <div class="alert-item" style="border-color: var(--shield-blue); background: rgba(59, 130, 246, 0.05);">
-                    <div>
-                        <h4 style="color: white;">VSSN Verified Content (Authorized)</h4>
-                        <p style="font-size: 0.8rem;">Platform: Solomon Kin Records // Official Catalog</p>
-                    </div>
-                    <span style="color: var(--shield-blue); font-size: 0.7rem; font-weight: 800;">VERIFIED BY BUREAU</span>
+                <div class="legal-visual">
+                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=600" alt="Legal Gavel and Tech" style="width: 100%; border-radius: 8px; filter: saturate(0) contrast(1.2);">
                 </div>
             </div>
+        </section>
 
-            <div class="side-panel">
-                <div class="stat-card">
-                    <span class="stat-val">1.4M+</span>
-                    <span class="stat-label">Neural Scans / 24h</span>
+        <section class="protocol-section">
+            <div class="protocol-header">
+                <h2>The Enforcement Lifecycle</h2>
+                <p style="margin-top: 10px; color: #64748B;">How we move from deepfake detection to legal resolution.</p>
+            </div>
+            
+            <div class="protocol-grid">
+                <div class="protocol-item">
+                    <h4>01. Detection & Flagging</h4>
+                    <p>Our autonomous nodes monitor global synthetic media feeds. When a digital likeness matches your registered VSSN Hash above a 95% confidence interval, a "Likeness Violation" is logged.</p>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-val">12</span>
-                    <span class="stat-label">Takedowns Issued (MTD)</span>
+                <div class="protocol-item">
+                    <h4>02. Forensic Certification</h4>
+                    <p>The Bureau issues a "Certificate of Non-Human Origin" (CNHO). This document compares the synthetic content against your Mainframe-anchored "Human Core" record.</p>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-val">100%</span>
-                    <span class="stat-label">VSSN Hash Integrity</span>
+                <div class="protocol-item">
+                    <h4>03. Statutory Enforcement</h4>
+                    <p>Under the NO FAKES Act framework, our legal team issues automated cease-and-desist mandates to hosting platforms, backed by the mathematical proof of your VSSN registration.</p>
+                </div>
+                <div class="protocol-item">
+                    <h4>04. Asset Remediation</h4>
+                    <p>We facilitate the removal of infringing content and provide the forensic documentation necessary for civil litigation or statutory damage recovery.</p>
                 </div>
             </div>
 
-            <div class="legal-footer">
-                <div style="font-family: 'JetBrains Mono'; color: white; font-size: 1.2rem; font-weight: 800;">NO FAKES ACT<br>COMPLIANCE</div>
-                <p style="font-size: 0.85rem;">The RealAIID Bureau provides the forensic evidence required to enforce your rights under 17 U.S.C. § 1101. Every alert in this log includes a hardware-verified VSSN mismatch report for legal submission.</p>
+            <div class="statute-box">
+                <h2>The "NO FAKES" Mandate</h2>
+                <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px;">"Every individual has a property right in their own voice and likeness, which is descendible and assignable. No digital replica may be produced or distributed without express, informed consent."</p>
+                <p style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--phl-blue);">// STATUS: INCORPORATED INTO REALAIID COMPLIANCE ENGINE</p>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
-        COMMONWEALTH LIKENESS SHIELD // AUTOMATED DEFENSE DIVISION // PHL NODE 1900
-    </footer>
-
-</body>
-</html>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCH
