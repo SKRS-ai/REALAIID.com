@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Registry | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .search-container {
+            max-width: 900px;
+            margin: 80px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-top: 40px;
+            background: var(--glass-bg);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+        }
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 15px;
+            font-size: 1.2rem;
+            outline: none;
+        }
+        .search-btn {
+            background: var(--cobalt-blue);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        /* Result Card - Hidden by default */
+        #verification-result {
+            display: none;
+            margin-top: 50px;
+            text-align: left;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,71,171,0.1));
+            border: 1px solid var(--emerald-green);
+            border-radius: 15px;
+            padding: 40px;
+            animation: fadeIn 0.5s ease-in;
+        }
+        .status-badge {
+            background: var(--emerald-green);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .info-label { opacity: 0.6; font-size: 0.8rem; text-transform: uppercase; }
+        .info-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="index.html">Process</a>
+            <a href="verify.html" style="color: var(--emerald-green);">Registry</a>
+            <a href="login.html">Login</a>
+            <a href="register.html" class="cta-btn">Register My Likeness</a>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <h1 class="section-title">Global <span class="highlight">Likeness Registry</span></h1>
+        <p>Verify a Resident of the Commonwealth using their Unique ID or Likeness Hash.</p>
+        
+        <div class="search-box">
+            <input type="text" id="id-input" placeholder="Enter ID (e.g., RA-7721-PHL)">
+            <button class="search-btn" onclick="simulateSearch()">Verify Identity</button>
+        </div>
+
+        <div id="verification-result">
+            <div class="status-badge">✓ CERTIFIED HUMAN</div>
+            <h2>Identity Verification Success</h2>
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
+            
+            <div class="info-grid">
+                <div>
+                    <p class="info-label">Full Name</p>
+                    <p class="info-value" id="res-name">Nehemiah Brown</p>
+                </div>
+                <div>
+                    <p class="info-label">Digital Residency</p>
+                    <p class="info-value">REALAIID.com | Suite #7721</p>
+                </div>
+                <div>
+                    <p class="info-label">VSSN Status</p>
+                    <p class="info-value" style="color: var(--emerald-green);">Vocal Signature Matched</p>
+                </div>
+                <div>
+                    <p class="info-label">Last Liveness Pulse</p>
+                    <p class="info-value">March 27, 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">White Paper</a></li>
+                    <li><a href="#">Digital Residency Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">PHL Airport Pass</a></li>
+                    <li><a href="#">Banking API</a></li>
+                    <li><a href="#">Lethal Ledger</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Biometric Consent</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Burn Protocol</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="#">SOC2 Type II</a></li>
+                    <li><a href="#">NO FAKES Act</a></li>
+                    <li><a href="#">BIPA Disclosure</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+    <script>
+        function simulateSearch() {
+            const input = document.getElementById('id-input').value;
+            const result = document.getElementById('verification-result');
+            
+            if(input.trim() !== "") {
+                // Simulate a database lookup delay
+                document.querySelector('.search-btn').innerText = "Searching...";
+                setTimeout(() => {
+                    document.querySelector('.search-btn').innerText = "Verify Identity";
+                    result.style.display = 'block';
+                }, 800);
+            } else {
+                alert("Please enter a valid Real AI ID.");
+            }
+        }
+    </script>
+</body>
+</html>
