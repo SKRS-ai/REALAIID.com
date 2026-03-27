@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investors | RealAIID.com 2030 Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --text-strong: #0B1320;
+            --bg-dark: #0B1320;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #475569; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- INVESTOR HERO --- */
+        .investor-hero { padding: 120px 10% 80px; background: var(--bg-dark); color: white; position: relative; overflow: hidden; }
+        .investor-hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 20px; line-height: 1; }
+        .investor-hero p { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- ROADMAP TIMELINE --- */
+        .roadmap-container { padding: 100px 10%; background: #F8FAFC; }
+        .roadmap-item { display: grid; grid-template-columns: 200px 1fr; gap: 60px; margin-bottom: 80px; position: relative; }
+        .roadmap-item::before { content: ''; position: absolute; left: 100px; top: 40px; bottom: -40px; width: 2px; background: #E2E8F0; }
+        .roadmap-item:last-child::before { display: none; }
+
+        .year-label { font-size: 2.5rem; font-weight: 800; color: var(--text-strong); position: relative; background: #F8FAFC; z-index: 2; }
+        .roadmap-content h3 { font-size: 1.5rem; color: var(--sumsub-blue); margin-bottom: 15px; }
+        
+        /* --- METRICS GRID --- */
+        .metrics-grid { padding: 80px 10%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .metric-card { padding: 30px; border: 1px solid #E2E8F0; border-radius: 12px; }
+        .metric-val { display: block; font-size: 2rem; font-weight: 800; color: var(--text-strong); }
+        .metric-label { font-size: 0.75rem; color: #94A3B8; text-transform: uppercase; letter-spacing: 1px; }
+
+        .btn-portal { display: inline-block; background: var(--sumsub-green); color: white; padding: 20px 40px; border-radius: 8px; text-decoration: none; font-weight: 800; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong);">Home</a>
+            <a href="company.html" style="text-decoration:none; color:var(--text-strong);">Bureau Profile</a>
+            <a href="contact.html" style="text-decoration:none; color:var(--text-strong);">Liaison</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="investor-hero">
+            <p>Institutional Series A // Q2 2026</p>
+            <h1>Scaling Human <span>Sovereignty.</span></h1>
+        </section>
+
+        <section class="metrics-grid">
+            <div class="metric-card"><span class="metric-val">1.2M+</span><span class="metric-label">VSSN Hashes Generated</span></div>
+            <div class="metric-card"><span class="metric-val">14</span><span class="metric-label">Operational Nodes</span></div>
+            <div class="metric-card"><span class="metric-val">$42M</span><span class="metric-label">Annual Recurring Revenue</span></div>
+            <div class="metric-card"><span class="metric-val">150ms</span><span class="metric-label">Avg. Mainframe Latency</span></div>
+        </section>
+
+        <section class="roadmap-container">
+            <h2 style="font-size: 2.5rem; margin-bottom: 60px; color: var(--text-strong);">The 2030 Commonwealth Roadmap</h2>
+
+            <div class="roadmap-item">
+                <div class="year-label">2026</div>
+                <div class="roadmap-content">
+                    <h3>The Philadelphia Anchor</h3>
+                    <p>Full deployment of the 1900 Market St Mainframe. Integration with the Philadelphia Metropolitan Airport Commission and early adoption of the NO FAKES Act shield for Solomon Kin Records.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="year-label">2027</div>
+                <div class="roadmap-content">
+                    <h3>National Grid Expansion</h3>
+                    <p>Activation of secondary nodes in Chicago, New York, and Minneapolis (Carlson School Node). Launch of the "Commonwealth API" for third-party financial institution integration.</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="year-label">2028</div>
+                <div class="roadmap-content">
+                    <h3>Biometric-in-Motion Standard</h3>
+                    <p>RealAIID becomes the mandatory liveness verification standard for all federal aviation corridors and high-security asset tracking systems (3Si compatible).</p>
+                </div>
+            </div>
+
+            <div class="roadmap-item">
+                <div class="year-label">2030</div>
+                <div class="roadmap-content">
+                    <h3>Global Sovereignty Network</h3>
+                    <p>The VSSN becomes a global ISO-standard. RealAIID manages the "Identity Trust Layer" for the decentralized web, ensuring human-to-human interaction is cryptographically guaranteed.</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn-portal">Enter Investor Data Room</a>
+        </section>
+    </main>
+
+    <footer style="padding:60px 10%; text-align:center; background: #0B1320; color: #4B5563;">
+        © 2026 RealAIID.com | Investor Relations Division | PHL NODE
+    </footer>
+
+</body>
+</html>
