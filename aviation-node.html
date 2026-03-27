@@ -3,179 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHL Aviation Node | RealAIID.com Institutional Infrastructure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <title>PHL Aviation Node | RealAIID Bureau Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --sumsub-green: #18B494;
             --sumsub-blue: #1693E9;
-            --text-strong: #0B1320;
-            --text-neutral: #5C6B8A;
-            --bg-dark: #0F172A;
-            --pure-white: #FFFFFF;
+            --aviation-sky: #0EA5E9;
+            --terminal-dark: #0F172A;
+            --status-blue: #38BDF8;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--pure-white); color: var(--text-neutral); line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: #F8FAFC; color: #334155; line-height: 1.6; }
 
-        /* --- SHARED HEADER --- */
-        .header {
-            background: var(--pure-white);
-            height: 110px; 
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 2000;
-            border-bottom: 1px solid #EBEEF2;
-        }
-
-        .logo-area img { height: 135px; margin-right: 40px; cursor: pointer; }
-
-        /* --- INSTITUTIONAL HERO --- */
-        .aviation-hero {
-            padding: 120px 10%;
-            background: var(--bg-dark);
+        .header-aviation { 
+            height: 80px; 
+            background: var(--terminal-dark); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 5%; 
             color: white;
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            overflow: hidden;
+            border-bottom: 4px solid var(--aviation-sky);
         }
 
-        .hero-content { flex: 1; z-index: 2; }
-        .hero-blueprint { 
-            flex: 1; 
-            position: relative; 
-            opacity: 0.6;
-            border: 1px solid rgba(22, 147, 233, 0.3);
-            border-radius: 8px;
-            padding: 20px;
+        /* --- SECTOR HERO --- */
+        .aviation-hero { 
+            padding: 100px 10% 60px; 
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            color: white;
         }
+        .node-id { font-family: 'JetBrains Mono'; color: var(--aviation-sky); font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .aviation-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; }
 
-        h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 25px; color: white; }
-        h1 span { color: var(--sumsub-blue); }
-
-        .node-status {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--sumsub-green);
-            font-size: 0.8rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        /* --- BLUEPRINT DESIGN ELEMENT --- */
-        .blueprint-line {
-            stroke: var(--sumsub-blue);
-            stroke-width: 1;
-            fill: none;
-            stroke-dasharray: 5;
-        }
-
-        /* --- SPECS GRID --- */
-        .specs-section { padding: 100px 10%; background: #F8FAFC; }
-        .specs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        /* --- INFRASTRUCTURE GRID --- */
+        .infra-grid { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .infra-text h2 { color: var(--terminal-dark); font-size: 2rem; margin-bottom: 25px; }
         
-        .spec-item { 
+        .spec-box { 
             background: white; 
+            border: 1px solid #E2E8F0; 
+            border-radius: 16px; 
             padding: 40px; 
-            border-radius: 12px; 
-            border: 1px solid #E2E8F0;
-            transition: 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
+        .spec-item { margin-bottom: 30px; display: flex; gap: 20px; }
+        .spec-icon { background: var(--aviation-sky); color: white; width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-weight: 800; }
 
-        .spec-item h3 { color: var(--text-strong); margin-bottom: 15px; }
-        .spec-item:hover { transform: translateY(-5px); border-color: var(--sumsub-blue); }
-
-        /* --- PHL ANCHOR SECTION --- */
-        .anchor-section {
-            padding: 100px 10%;
-            text-align: center;
-            background: white;
+        /* --- MAP / NODE STATUS --- */
+        .node-map { 
+            background: var(--terminal-dark); 
+            height: 400px; 
+            border-radius: 20px; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: var(--status-blue);
+            font-family: 'JetBrains Mono';
         }
+        .radar-circle { position: absolute; width: 300px; height: 300px; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 50%; animation: pulse 4s infinite; }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
 
-        .btn-blue {
-            background: var(--sumsub-blue);
-            color: white;
-            padding: 20px 50px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 700;
-            display: inline-block;
-        }
+        .cta-bar { background: var(--aviation-sky); padding: 40px 10%; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .btn-request { background: white; color: var(--aviation-sky); padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; }
 
-        footer { background: var(--bg-dark); color: #94A3B8; padding: 60px 10%; text-align: center; font-size: 0.8rem; }
+        footer { padding: 40px; text-align: center; font-size: 0.7rem; color: #94A3B8; font-family: 'JetBrains Mono'; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo-area">
-            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID.com">
-        </div>
-        <nav style="margin-left:auto;">
-            <a href="index.html" style="margin-right:20px; text-decoration:none; color:var(--text-strong); font-weight:600;">Back to Home</a>
-            <a href="#" class="btn-blue" style="padding:10px 25px;">Institutional Login</a>
+    <header class="header-aviation">
+        <div class="logo" style="font-weight: 800; letter-spacing: 2px;">REALAIID // AVIATION DIVISION</div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+            <a href="index.html" style="color:white; text-decoration:none;">BUREAU HOME</a>
+            <a href="solutions.html" style="color:white; text-decoration:none;">SOLUTIONS</a>
         </nav>
     </header>
 
     <main>
         <section class="aviation-hero">
-            <div class="hero-content">
-                <span class="node-status">● NODE ACTIVE: PHL_METRO_STATION_01</span>
-                <h1>Physical Biometrics at <span>Warp Speed.</span></h1>
-                <p>The PHL Aviation Node bridges the gap between digital sovereignty and physical movement. Using "Biometric-in-Motion" technology, we verify human identities at airport gates and high-security vaults without requiring a pause in transit.</p>
-                <br>
-                <a href="#" class="btn-blue">Request Node Integration</a>
-            </div>
+            <span class="node-id">SECTOR-ALPHA // PHL-INT-AIRPORT</span>
+            <h1>High-Flow Verification Corridor.</h1>
+            <p style="max-width: 600px; font-size: 1.1rem; opacity: 0.9;">Deploying the Philadelphia Mainframe standard to aviation security, enabling sub-second identity anchoring for authorized personnel and high-tier travelers.</p>
+        </section>
 
-            <div class="hero-blueprint">
-                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--sumsub-blue);">
-                    [CORRIDOR_SCAN_ARRAY_V4]<br>
-                    > SENSOR A: DEPTH LIVENESS<br>
-                    > SENSOR B: VSSN FREQUENCY CAPTURE<br>
-                    > UPLINK: PHILADELPHIA MAINFRAME 1900 MARKET<br>
-                    <br>
-                    <div style="border: 1px dashed var(--sumsub-blue); height: 150px; width: 100%; position: relative;">
-                        <div style="position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: var(--sumsub-green); box-shadow: 0 0 10px var(--sumsub-green); opacity: 0.5;"></div>
+        <section class="infra-grid">
+            <div class="infra-text">
+                <h2>The PHL Aviation Standard</h2>
+                <p>Leveraging deep-rooted experience in Metropolitan Airport Commission security protocols, RealAIID introduces the **Biometric-in-Motion** standard. Our hardware nodes eliminate the "Stop and Scan" friction by utilizing the VSSN Hashing protocol at terminal entry points.</p>
+                
+                <div style="margin-top: 40px;">
+                    <div class="spec-item">
+                        <div class="spec-icon">01</div>
+                        <div>
+                            <h4 style="color: var(--terminal-dark);">Spatial Liveness Gates</h4>
+                            <p style="font-size: 0.9rem;">Multi-mic arrays detect biological presence in a 180° corridor, preventing deepfake or replay bypasses.</p>
+                        </div>
                     </div>
-                    <p style="margin-top: 10px; text-align: right;">TARGET: VERIFIED HUMAN</p>
+                    <div class="spec-item">
+                        <div class="spec-icon">02</div>
+                        <div>
+                            <h4 style="color: var(--terminal-dark);">3Si Asset Integration</h4>
+                            <p style="font-size: 0.9rem;">Secure anchoring of high-value cargo handled by personnel verified through the VSSN protocol.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spec-box">
+                <div class="node-map">
+                    <div class="radar-circle"></div>
+                    <div class="radar-circle" style="animation-delay: 1s;"></div>
+                    <div style="z-index: 10; text-align: center;">
+                        <span style="font-size: 1.5rem; font-weight: 800;">PHL NODE ACTIVE</span><br>
+                        <span style="font-size: 0.7rem; opacity: 0.6;">UPTIME: 99.998% // LN ACTIVE</span>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; border-top: 1px solid #E2E8F0; padding-top: 20px;">
+                    <h4 style="color: var(--terminal-dark); margin-bottom: 10px;">Technical Benchmarks</h4>
+                    <ul style="font-size: 0.85rem; color: #64748B; list-style: none;">
+                        <li style="margin-bottom: 8px;"><strong>✓ Latency:</strong> 138ms (PHL Mainframe)</li>
+                        <li style="margin-bottom: 8px;"><strong>✓ Capacity:</strong> 4,200 Verifications / Hour</li>
+                        <li style="margin-bottom: 8px;"><strong>✓ Hardware:</strong> AES-256 Vault-Safe Nodes</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section class="specs-section">
-            <div class="specs-grid">
-                <div class="spec-item">
-                    <h3>Biometric-in-Motion</h3>
-                    <p>Proprietary lidar and acoustic sensors capture VSSN and facial liveness while the subject is walking at speeds up to 5mph. Zero-friction security for high-traffic hubs.</p>
-                </div>
-                <div class="spec-item">
-                    <h3>Mainframe Latency</h3>
-                    <p>Verified identities are cross-referenced against the Philadelphia Mainframe Anchor in < 150ms. High-value transactions are approved before the user reaches the terminal.</p>
-                </div>
-                <div class="spec-item">
-                    <h3>Sovereign API Access</h3>
-                    <p>Institutional partners receive direct access to the RealAIID Mainframe API, allowing for custom whitelist/blacklist management for private vaults and hangars.</p>
-                </div>
-                <div class="spec-item">
-                    <h3>Statutory Compliance</h3>
-                    <p>Fully hardened against the ELVIS Act and NO FAKES Act requirements for physical venues and public accommodations.</p>
-                </div>
+        <section class="cta-bar">
+            <div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 5px;">Modernize Your Terminal.</h3>
+                <p>Request an on-site feasibility study for Node integration.</p>
             </div>
-        </section>
-
-        <section class="anchor-section">
-            <h2 style="font-size: 2.5rem; color: var(--text-strong);">Anchor Your Institution.</h2>
-            <p style="margin: 20px 0;">Available for Airport Commissions, Federal Banking Centers, and High-Security Private Estates.</p>
-            <a href="#" class="btn-blue">Connect with a Liaison</a>
+            <a href="contact.html" class="btn-request">Request Liaison</a>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 RealAIID.com | Philadelphia Mainframe Anchor Node | Institutional Division</p>
+        REALAIID AVIATION DIVISION // METROPOLITAN AIRPORT COMMISSION STANDARDS // PHL NODE
     </footer>
 
 </body>
