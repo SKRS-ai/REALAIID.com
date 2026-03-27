@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PR: Public Registry | RealAIID.com Human Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --bg-registry: #F1F5F9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-registry); color: #475569; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- REGISTRY SEARCH HERO --- */
+        .registry-hero { padding: 80px 10%; text-align: center; background: white; border-bottom: 1px solid #E2E8F0; }
+        .product-code { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        h1 { font-size: 3rem; color: var(--text-strong); margin-bottom: 30px; }
+
+        .search-container { max-width: 800px; margin: 0 auto; position: relative; }
+        .search-input { width: 100%; padding: 25px 30px; border-radius: 50px; border: 2px solid #E2E8F0; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); outline: none; transition: 0.3s; }
+        .search-input:focus { border-color: var(--sumsub-blue); }
+        .search-btn { position: absolute; right: 10px; top: 10px; background: var(--sumsub-blue); color: white; border: none; padding: 15px 35px; border-radius: 40px; font-weight: 700; cursor: pointer; }
+
+        /* --- REGISTRY STATUS CARD --- */
+        .results-area { padding: 60px 10%; max-width: 1000px; margin: 0 auto; }
+        .status-card { background: white; border-radius: 20px; padding: 40px; display: flex; align-items: center; gap: 40px; border: 1px solid #E2E8F0; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .status-badge { width: 120px; height: 120px; background: #ECFDF5; border: 4px solid var(--sumsub-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        
+        .status-info h2 { color: var(--text-strong); margin-bottom: 5px; }
+        .status-vssn { font-family: 'JetBrains Mono'; font-size: 0.85rem; color: var(--sumsub-blue); margin-bottom: 15px; }
+
+        .verification-details { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-top: 20px; }
+        .detail-item { font-size: 0.8rem; color: #64748B; background: #F8FAFC; padding: 10px 15px; border-radius: 6px; border: 1px solid #F1F5F9; }
+
+        /* --- DATA DISCLAIMER --- */
+        .disclaimer { margin-top: 60px; font-size: 0.75rem; text-align: center; color: #94A3B8; max-width: 600px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Home</a>
+            <a href="vssn-hash.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">VSSN Hash</a>
+            <a href="liveness-check.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">LN Check</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="registry-hero">
+            <span class="product-code">PR // PUBLIC REGISTRY</span>
+            <h1>Search the <span>Certified Human</span> Index</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Enter VSSN Hash or Full Legal Name...">
+                <button class="search-btn">Verify Status</button>
+            </div>
+        </section>
+
+        <section class="results-area">
+            <div class="status-card">
+                <div class="status-badge">
+                    <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#18B494" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div class="status-info">
+                    <h2>Human Status: <strong>VERIFIED</strong></h2>
+                    <p class="status-vssn">VSSN-X92L-MARKET-1900-PHL</p>
+                    <p>Subject is registered in the <strong>Philadelphia Mainframe</strong> and is currently protected by the <strong>NO FAKES</strong> statutory shield.</p>
+                    
+                    <div class="verification-details">
+                        <div class="detail-item"><strong>Liveness:</strong> PASS (3D Spatial Verified)</div>
+                        <div class="detail-item"><strong>Node:</strong> PHL_AV_CORRIDOR_01</div>
+                        <div class="detail-item"><strong>Standing:</strong> Active Statutory Protection</div>
+                        <div class="detail-item"><strong>Timestamp:</strong> 2026-03-27 // 17:03 EST</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                The Public Registry (PR) does not store biological data. Verification is performed via a one-way cryptographic check against the VSSN protocol. Access to deep-level forensic logs is restricted to Sovereign-tier institutional partners.
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding:40px 10%; text-align:center; font-size:0.8rem;">
+        © 2026 RealAIID.com | AI Identity Protection & Verification Bureau | Philadelphia Mainframe Anchor Node
+    </footer>
+
+</body>
+</html>
