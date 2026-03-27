@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vault | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 30px;
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Profile Card */
+        .resident-sidebar {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            height: fit-content;
+        }
+        .profile-hex {
+            width: 120px;
+            height: 120px;
+            background: var(--cobalt-blue);
+            margin: 0 auto 20px;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--emerald-green);
+        }
+        .resident-name { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; margin-bottom: 5px; }
+        .residency-tag { color: var(--emerald-green); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+
+        /* Main Content Area */
+        .vault-main { display: grid; gap: 30px; }
+        
+        .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .stat-card { background: var(--deep-space); border: 1px solid var(--glass-border); padding: 20px; border-radius: 12px; }
+        .stat-label { font-size: 0.7rem; opacity: 0.6; text-transform: uppercase; }
+        .stat-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; color: var(--emerald-green); }
+
+        .id-showcase {
+            background: linear-gradient(135deg, rgba(0,71,171,0.1), rgba(80,200,120,0.1));
+            border: 1px solid var(--emerald-green);
+            border-radius: 20px;
+            padding: 50px;
+            text-align: center;
+            position: relative;
+        }
+        .burn-zone {
+            margin-top: 50px;
+            padding: 30px;
+            border: 1px dashed #ff4444;
+            border-radius: 12px;
+            background: rgba(255, 68, 68, 0.05);
+        }
+        .btn-burn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="dashboard.html" style="color: var(--emerald-green);">My Vault</a>
+            <a href="verify.html">Public Registry</a>
+            <a href="index.html">Logout</a>
+        </nav>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="resident-sidebar">
+            <div class="profile-hex">
+                <span style="font-size: 2rem;">👤</span>
+            </div>
+            <h2 class="resident-name">Nehemiah Brown</h2>
+            <p class="residency-tag">CERTIFIED RESIDENT</p>
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 25px 0;">
+            <p style="font-size: 0.8rem; text-align: left; opacity: 0.7;">
+                <strong>Suite:</strong> #7721<br>
+                <strong>Anchor:</strong> Philadelphia Mainframe<br>
+                <strong>Member Since:</strong> March 2026
+            </p>
+        </aside>
+
+        <main class="vault-main">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <p class="stat-label">VSSN Status</p>
+                    <p class="stat-value">Active & Secured</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-label">Likeness Health</p>
+                    <p class="stat-value">100% (Original)</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-label">Public Link</p>
+                    <p class="stat-value">Enabled</p>
+                </div>
+            </div>
+
+            <div class="id-showcase">
+                <h3 style="margin-bottom: 30px; font-family: 'Space Grotesk';">Your 3D Commonwealth Credential</h3>
+                <div style="width: 250px; height: 380px; background: rgba(255,255,255,0.1); border: 2px solid var(--emerald-green); border-radius: 15px; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                    <p style="font-size: 0.8rem; opacity: 0.5;">[ Interactive 3D Card View ]</p>
+                </div>
+                <div style="margin-top: 30px;">
+                    <button class="cta-btn">Download Digital Wallet Pass</button>
+                    <button class="cta-btn" style="background: var(--cobalt-blue); margin-left: 10px;">Copy Public Link</button>
+                </div>
+            </div>
+
+            <div class="burn-zone">
+                <h4 style="color: #ff4444;">Emergency Burn Protocol</h4>
+                <p style="font-size: 0.85rem; margin: 10px 0 20px;">Activating this will immediately delete your biometric hashes, revoke your Digital Residency, and scrub your public record from the registry. This action is permanent.</p>
+                <button class="btn-burn">Initiate Burn Sequence</button>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="#">Security Protocols</a></li>
+                    <li><a href="#">Digital Residency Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">Aviation Access</a></li>
+                    <li><a href="#">Banking Vaults</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Burn Protocol Details</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="#">SOC2 Audit</a></li>
+                    <li><a href="#">NO FAKES Adherence</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
