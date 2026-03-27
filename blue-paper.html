@@ -3,101 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Blue Paper | RealAIID Technical Manifesto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <title>The Blue Paper | RealAIID Bureau Manifesto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --penn-blue: #001E44; /* Penn State Navy */
             --phl-blue: #1693E9;
-            --paper-cream: #FDFDFB;
-            --ink-black: #0B1320;
+            --phl-dark: #0B1320;
+            --paper-cream: #FDFDFD;
+            --text-main: #1E293B;
+            --border: #E2E8F0;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--paper-cream); color: var(--ink-black); line-height: 1.8; }
+        body { font-family: 'Inter', sans-serif; background: var(--paper-cream); color: var(--text-main); line-height: 1.8; }
 
-        /* --- THE MANIFESTO HEADER --- */
-        .paper-header { 
-            padding: 100px 15% 60px; 
-            border-bottom: 2px solid var(--penn-blue);
-            text-align: left;
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
         }
-        .paper-header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; font-style: italic; margin-bottom: 10px; }
-        .version-tag { font-family: 'JetBrains Mono'; color: var(--phl-blue); font-weight: 700; letter-spacing: 2px; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        /* --- MAIN MANUSCRIPT --- */
-        .manuscript { padding: 80px 15%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 3fr 1fr; gap: 80px; }
+        /* --- WHITE PAPER LAYOUT --- */
+        .paper-container { max-width: 850px; margin: 0 auto; padding: 100px 40px; }
         
-        .chapter { margin-bottom: 80px; }
-        .chapter h2 { font-size: 1.8rem; margin-bottom: 25px; border-bottom: 1px solid #E2E8F0; padding-bottom: 10px; color: var(--penn-blue); }
-        .chapter p { font-size: 1.1rem; margin-bottom: 25px; text-align: justify; }
+        .paper-header { border-bottom: 4px solid var(--phl-dark); padding-bottom: 40px; margin-bottom: 60px; }
+        .paper-header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 1; color: var(--phl-dark); }
+        .paper-meta { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--phl-blue); margin-top: 20px; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* --- TECHNICAL CALLOUT --- */
-        .tech-sidebar { background: #F1F5F9; padding: 30px; border-radius: 4px; border-top: 4px solid var(--penn-blue); height: fit-content; }
-        .tech-sidebar h4 { font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--phl-blue); margin-bottom: 15px; }
-        .formula { font-family: 'JetBrains Mono'; font-size: 0.85rem; background: white; padding: 15px; border-radius: 4px; border: 1px solid #E2E8F0; margin-bottom: 20px; word-break: break-all; }
+        .abstract { font-size: 1.4rem; font-family: 'Playfair Display', serif; font-style: italic; color: #475569; margin-bottom: 60px; border-left: 4px solid var(--phl-blue); padding-left: 30px; }
 
-        /* --- THE ABSTRACT --- */
-        .abstract-box { font-weight: 600; font-size: 1.2rem; color: #475569; border-left: 4px solid var(--phl-blue); padding-left: 30px; margin: 40px 0; }
+        h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--phl-dark); margin: 60px 0 20px; }
+        p { margin-bottom: 25px; font-size: 1.1rem; text-align: justify; }
 
-        .btn-download-pdf { background: var(--penn-blue); color: white; padding: 20px 40px; text-decoration: none; font-weight: 800; display: inline-block; margin-top: 40px; border-radius: 4px; }
-        
-        footer { padding: 60px 15%; border-top: 1px solid #E2E8F0; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: #94A3B8; }
+        .technical-callout { background: #F1F5F9; padding: 40px; border-radius: 4px; margin: 40px 0; border: 1px solid var(--border); }
+        .technical-callout h4 { font-family: 'JetBrains Mono'; color: var(--phl-blue); margin-bottom: 15px; text-transform: uppercase; }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="paper-header">
-        <div class="version-tag">RELEASE v4.1 // PHILADELPHIA MAIN-NODE</div>
-        <h1>The Blue Paper.</h1>
-        <p style="font-size: 1.3rem; color: #64748B;">Architectural Standards for Sovereign Identity & Vocal Hashing</p>
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="manuscript">
-        <div class="content">
-            <div class="abstract-box">
-                "In an era where the human likeness is a liquid asset, the Bureau establishes the Anchor. We propose a hardware-locked, one-way cryptographic hashing protocol that separates the human core from the digital replica."
-            </div>
-
-            <section class="chapter">
-                <h2>I. The Crisis of Likeness</h2>
-                <p>Since 2024, the exponential growth of generative audio synthesis has rendered traditional vocal identification obsolete. Without a physical anchor, the human voice becomes a vulnerability rather than an identity. The Blue Paper defines the protocol for the **VSSN (Vocal Signature Serial Number)**, a mathematical derivative of spatial harmonics that cannot be synthesized.</p>
-            </section>
-
-            <section class="chapter">
-                <h2>II. Hardware-Layer Sovereignty</h2>
-                <p>Cloud-based biometric storage is a systemic failure point. The RealAIID architecture requires physical presence at a verified node—primarily the **Philadelphia Mainframe (PHL-1900)**. By utilizing AES-256 hardware encryption during the capture phase, we ensure that the raw biometric data never touches the public internet.</p>
-            </section>
-
-            <section class="chapter">
-                <h2>III. Spatial Harmonics & Liveness</h2>
-                <p>Traditional 2D audio analysis is insufficient to stop high-tier deepfakes. Our **Spatial-Vocal Handshake** utilizes a microphone array to map the 3D acoustic signature of a human throat in a specific room environment. This liveness check ensures that the "Human Core" is physically present, not replayed via software.</p>
-            </section>
+    <main class="paper-container">
+        <div class="paper-header">
+            <p class="paper-meta">Protocol Document // Release 1.0.4</p>
+            <h1>The Blue Paper</h1>
+            <p style="font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px;">The Decisive Defense of the Human Likeness</p>
         </div>
 
-        <aside class="sidebar">
-            <div class="tech-sidebar">
-                <h4>VSSN HASH DERIVATION</h4>
-                <div class="formula">
-                    $VSSN = \text{SHA256}(F_{spatial} + S_{node} + T_{stamp})$
-                </div>
-                <p style="font-size: 0.75rem; color: #64748B;">
-                    $F$: Primary Frequency Band<br>
-                    $S$: 1900-Market Node Salt<br>
-                    $T$: Mainframe Unix Epoch
+        <div class="abstract">
+            "As the boundary between biological reality and synthetic replication dissolves, the burden of proof shifts from the machine to the human. We propose a system where identity is not a password, but a physical anchor—a mathematical resonance that cannot be duplicated."
+        </div>
+
+        <section>
+            <h2>I. The Crisis of Synthetic Identity</h2>
+            <p>The rapid proliferation of generative artificial intelligence has rendered traditional identity verification obsolete. In an era where voice, face, and motion can be synthesized with 99% fidelity, the "Digital Self" is no longer secure. Without a verified, hardware-locked anchor, every citizen is at risk of total likeness theft.</p>
+            
+            <p>We are entering the era of the 'Post-Truth Persona,' where deepfakes are used not just for entertainment, but for institutional fraud, financial theft, and the systematic erasure of individual sovereignty.</p>
+        </section>
+
+        <section>
+            <h2>II. The VSSN Solution</h2>
+            <p>The RealAIID Bureau introduces the Vocal & Spatial Sovereign Node (VSSN). Unlike centralized databases that store vulnerable biometric images, VSSN utilizes one-way hashing algorithms to create an immutable mathematical string derived from human biological resonance.</p>
+            
+            <div class="technical-callout">
+                <h4>Core Technical Directive</h4>
+                <p style="font-size: 0.95rem; font-family: 'JetBrains Mono'; text-align: left;">
+                    IF (Synthetic_Input == Registered_VSSN_Hash) AND (Liveness_Pulse == NULL) <br>
+                    THEN FLAG: IDENTITY_VIOLATION // INITIATE NO_FAKES_TAKEDOWN
                 </p>
             </div>
 
-            <a href="#" class="btn-download-pdf">DOWNLOAD FULL PDF</a>
-            <p style="margin-top: 20px; font-size: 0.7rem; color: #94A3B8;">
-                Published by the RealAIID Regulatory Division in collaboration with Solomon Kin Media Group.
-            </p>
-        </aside>
+            <p>By anchoring these hashes to the Philadelphia Mainframe at 1900 Market Street, we establish a physical jurisdiction for digital identity. This creates a "Human Core" that serves as the legal and technical master key for every registrant.</p>
+        </section>
+
+        <section>
+            <h2>III. The Right to Erasure</h2>
+            <p>Sovereignty requires the power to disappear. The Blue Paper mandates the "Purge Protocol"—a fail-safe mechanism that allows any registrant to completely rotate or incinerate their VSSN hash, ensuring that your digital footprint remains entirely under your control.</p>
+        </section>
+
+        <div style="margin-top: 80px; padding-top: 40px; border-top: 1px solid var(--border); text-align: center;">
+            <p style="font-family: 'JetBrains Mono'; font-size: 0.8rem; color: var(--phl-blue);">// END OF PREVIEW // FULL DOCUMENT AVAILABLE TO SOVEREIGN REGISTRANTS</p>
+            <a href="product-sovereign.html" style="color: var(--phl-dark); font-weight: 800; text-decoration: none; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Request Full Paper →</a>
+        </div>
     </main>
 
     <footer>
-        © 2026 REALAIID BUREAU // 1900 MARKET ST // PHILADELPHIA, PA
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
     </footer>
 
 </body>
