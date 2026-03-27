@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSSN Protocol | RealAIID Technical Hashing</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --tech-dark: #020617;
+            --code-bg: #0F172A;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #334155; line-height: 1.7; }
+
+        .header { background: white; height: 100px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; }
+        .logo img { height: 100px; }
+
+        /* --- TECH HERO --- */
+        .tech-hero { padding: 100px 10%; background: var(--tech-dark); color: white; }
+        .tech-hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .tech-hero p { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- PROTOCOL GRID --- */
+        .protocol-section { padding: 80px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+        .protocol-text h2 { color: var(--tech-dark); font-size: 2rem; margin-bottom: 25px; border-left: 4px solid var(--sumsub-green); padding-left: 20px; }
+        
+        /* --- FLOW CHART VISUAL --- */
+        .flow-visual { background: var(--code-bg); padding: 40px; border-radius: 16px; color: white; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
+        .flow-step { margin-bottom: 20px; padding: 15px; border: 1px dashed #334155; position: relative; }
+        .flow-step::after { content: '↓'; position: absolute; bottom: -20px; left: 50%; color: var(--sumsub-green); }
+        .flow-step:last-child::after { display: none; }
+
+        .math-block { background: #F8FAFC; padding: 30px; border-radius: 12px; margin-top: 30px; border-left: 4px solid var(--sumsub-blue); }
+        .math-block code { font-family: 'JetBrains Mono'; font-weight: 700; color: var(--tech-dark); }
+
+        footer { padding: 40px; text-align: center; border-top: 1px solid #E2E8F0; font-size: 0.75rem; color: #94A3B8; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+    </header>
+
+    <main>
+        <section class="tech-hero">
+            <p>Cryptographic Standard v4.1</p>
+            <h1>Vocal Signature Serial Number</h1>
+        </section>
+
+        <section class="protocol-section">
+            <div class="protocol-text">
+                <h2>One-Way Identity Hashing</h2>
+                <p>The VSSN protocol converts biological vocal frequencies into a non-reversible cryptographic string. Unlike traditional biometric storage, the RealAIID Bureau does not store "voiceprints." We store the <strong>mathematical result</strong> of the vocal interaction.</p>
+                
+                <div class="math-block">
+                    <p style="font-size: 0.8rem; margin-bottom: 10px; color: #64748B;">Standard VSSN Derivation:</p>
+                    <code>VSSN = SHA-256(Spatial_Frequency + Node_Salt + Timestamp)</code>
+                </div>
+
+                <h3 style="margin-top: 40px; color: var(--tech-dark);">Security Properties</h3>
+                <ul style="margin-top: 20px; list-style: none;">
+                    <li style="margin-bottom: 15px;"><strong>✓ Collision Resistant:</strong> No two human cores can generate the same VSSN.</li>
+                    <li style="margin-bottom: 15px;"><strong>✓ Non-Invertible:</strong> A VSSN cannot be reverse-engineered back into a vocal sample.</li>
+                    <li style="margin-bottom: 15px;"><strong>✓ Node-Locked:</strong> Hashes are salt-verified by the physical PHL-1900-MARKET mainframe.</li>
+                </ul>
+            </div>
+
+            <div class="flow-visual">
+                <div style="color: var(--sumsub-green); margin-bottom: 20px;">// INITIATING CAPTURE SEQUENCE</div>
+                <div class="flow-step">
+                    [1] SPATIAL AUDIO CAPTURE<br>
+                    <span style="color: #64748B;">Analyzing room acoustics & liveness...</span>
+                </div>
+                <div class="flow-step">
+                    [2] FREQUENCY EXTRACTION<br>
+                    <span style="color: #64748B;">Isolating core vocal harmonics...</span>
+                </div>
+                <div class="flow-step">
+                    [3] HARDWARE ENCRYPTION<br>
+                    <span style="color: #64748B;">Salting with PHL Mainframe Key...</span>
+                </div>
+                <div class="flow-step" style="border-style: solid; border-color: var(--sumsub-blue);">
+                    [4] VSSN GENERATED<br>
+                    <span style="color: var(--sumsub-blue);">Hash: VSSN-PHL-9921-X-0041-882</span>
+                </div>
+                <div style="color: #E11D48; margin-top: 20px;">// RAW DATA PURGED FROM BUFFER</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        COMMONWEALTH BUREAU TECHNICAL SPECIFICATIONS // 1900 MARKET ST // PHILADELPHIA
+    </footer>
+
+</body>
+</html>
