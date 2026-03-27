@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started | RealAIID.com Commonwealth Onboarding</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --text-strong: #0B1320;
+            --bg-soft: #F1F5F9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #475569; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- HERO --- */
+        .get-started-hero { padding: 100px 10% 60px; text-align: center; background: var(--text-strong); color: white; }
+        .get-started-hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .get-started-hero p { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+
+        /* --- PATHFINDER GRID --- */
+        .pathfinder-grid { padding: 80px 10%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: -80px; }
+        
+        .path-card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 50px 40px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .path-card:hover { transform: translateY(-10px); border-color: var(--sumsub-blue); }
+
+        .path-icon { font-size: 2.5rem; margin-bottom: 25px; }
+        .path-card h3 { color: var(--text-strong); font-size: 1.5rem; margin-bottom: 15px; }
+        .path-card p { font-size: 0.95rem; margin-bottom: 30px; flex-grow: 1; }
+
+        .btn-path { 
+            padding: 16px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            text-align: center; 
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .btn-blue { background: var(--sumsub-blue); color: white; }
+        .btn-green { background: var(--sumsub-green); color: white; }
+        .btn-dark { background: var(--text-strong); color: white; }
+
+        /* --- PROCESS STEPS --- */
+        .process-flow { padding: 80px 15%; text-align: center; }
+        .flow-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .flow-step { position: relative; }
+        .step-count { font-family: 'JetBrains Mono'; font-weight: 800; color: #E2E8F0; font-size: 4rem; position: absolute; top: -40px; left: 50%; transform: translateX(-50%); z-index: -1; }
+
+        footer { padding: 40px; text-align: center; border-top: 1px solid #E2E8F0; font-size: 0.8rem; color: #94A3B8; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+    </header>
+
+    <main>
+        <section class="get-started-hero">
+            <p>CHOOSE YOUR ANCHOR POINT</p>
+            <h1>Define Your Presence.</h1>
+        </section>
+
+        <section class="pathfinder-grid">
+            <div class="path-card">
+                <div class="path-icon">🎙️</div>
+                <h3>For Creators</h3>
+                <p>Protect your vocal and physical likeness. Generate your VSSN hash and activate your Likeness Shield for statutory defense.</p>
+                <a href="onboarding.html" class="btn-path btn-blue">Claim My Identity</a>
+            </div>
+
+            <div class="path-card">
+                <div class="path-icon">💻</div>
+                <h3>For Developers</h3>
+                <p>Integrate VSSN verification into your applications. Access our sub-150ms API and hardware-encrypted handshake protocols.</p>
+                <a href="docs.html" class="btn-path btn-green">View API Docs</a>
+            </div>
+
+            <div class="path-card">
+                <div class="path-icon">🏢</div>
+                <h3>For Enterprise</h3>
+                <p>Deploy industrial-scale liveness check corridors and asset tracking verification for high-security environments.</p>
+                <a href="contact.html" class="btn-path btn-dark">Engage the Bureau</a>
+            </div>
+        </section>
+
+        <section class="process-flow">
+            <h2 style="color: var(--text-strong); font-size: 2.5rem;">The Sovereign Flow</h2>
+            <div class="flow-grid">
+                <div class="flow-step">
+                    <span class="step-count">01</span>
+                    <h4 style="color: var(--text-strong); margin-bottom: 10px;">Verification</h4>
+                    <p>Our spatial-audio engine confirms a living human core is present at the node.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="step-count">02</span>
+                    <h4 style="color: var(--text-strong); margin-bottom: 10px;">Hashing</h4>
+                    <p>Biometric data is converted into a one-way VSSN hash—no raw data is stored.</p>
+                </div>
+                <div class="flow-step">
+                    <span class="step-count">03</span>
+                    <h4 style="color: var(--text-strong); margin-bottom: 10px;">Anchoring</h4>
+                    <p>Your hash is cryptographically anchored to the Philadelphia Mainframe for global trust.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        REALAIID.COM BUREAU // 1900 MARKET ST // PHILADELPHIA
+    </footer>
+
+</body>
+</html>
