@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Docs | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .docs-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            max-width: 1400px;
+            margin: 40px auto;
+            gap: 40px;
+            padding: 0 5%;
+        }
+        .docs-sidebar {
+            position: sticky;
+            top: 120px;
+            height: fit-content;
+        }
+        .docs-sidebar h5 { font-size: 0.7rem; opacity: 0.5; text-transform: uppercase; margin-bottom: 15px; }
+        .docs-sidebar ul { list-style: none; padding-left: 10px; border-left: 1px solid var(--glass-border); }
+        .docs-sidebar li { margin-bottom: 12px; font-size: 0.9rem; }
+        
+        .code-block {
+            background: #050C16;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            color: var(--emerald-green);
+            border: 1px solid var(--glass-border);
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        .method { color: var(--cobalt-blue); font-weight: bold; }
+        .endpoint { color: var(--platinum); margin-left: 10px; }
+        
+        .doc-section { margin-bottom: 80px; }
+        .doc-section h2 { font-family: 'Space Grotesk', sans-serif; margin-bottom: 20px; color: var(--emerald-green); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="index.html">Commonwealth</a>
+            <a href="developer.html" style="color: var(--emerald-green);">API Docs</a>
+            <a href="verify.html">Registry</a>
+            <a href="register.html" class="cta-btn">Get API Key</a>
+        </nav>
+    </header>
+
+    <div class="docs-container">
+        <aside class="docs-sidebar">
+            <h5>Introduction</h5>
+            <ul>
+                <li><a href="#auth" style="color:var(--platinum); text-decoration:none;">Authentication</a></li>
+                <li><a href="#base" style="color:var(--platinum); text-decoration:none;">Base URL</a></li>
+            </ul>
+            <h5 style="margin-top:30px;">Identity Verification</h5>
+            <ul>
+                <li><a href="#verify-human" style="color:var(--platinum); text-decoration:none;">Verify Human Status</a></li>
+                <li><a href="#vssn-check" style="color:var(--platinum); text-decoration:none;">VSSN Frequency Check</a></li>
+                <li><a href="#suite-lookup" style="color:var(--platinum); text-decoration:none;">Suite # Reverse Lookup</a></li>
+            </ul>
+        </aside>
+
+        <main>
+            <section class="doc-section" id="auth">
+                <h2>Authentication</h2>
+                <p>All requests to the Commonwealth API must be authenticated with a Bearer Token. Enterprise partners can generate these tokens via the **Partnership Vault**.</p>
+                <div class="code-block">
+                    Authorization: Bearer <span style="color:var(--platinum);">COMMONWEALTH_SECRET_KEY</span>
+                </div>
+            </section>
+
+            <section class="doc-section" id="verify-human">
+                <h2>Verify Human Status</h2>
+                <p>Use this endpoint to confirm if a specific Likeness Hash corresponds to a certified "Human Anchor" in the Commonwealth.</p>
+                <div class="code-block">
+                    <span class="method">POST</span><span class="endpoint">/v1/anchor/verify</span>
+                </div>
+                <h3>Request Body</h3>
+                <div class="code-block">
+{
+  "likeness_hash": "a1b2c3d4e5f6...",
+  "session_token": "pulse_session_7721",
+  "vssn_required": true
+}
+                </div>
+                <h3>Response</h3>
+                <div class="code-block">
+{
+  "status": "CERTIFIED_HUMAN",
+  "residency_suite": "7721-PHL",
+  "verification_timestamp": "2026-03-27T15:22:02Z",
+  "anchor_node": "Philadelphia_01"
+}
+                </div>
+            </section>
+
+            <section class="doc-section">
+                <h2>B2B Webhooks</h2>
+                <p>Configure webhooks to receive real-time notifications when a resident's status changes (e.g., identity theft reports or Burn Protocol activation).</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="developer.html">API Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="enterprise.html">PHL Aviation</a></li>
+                    <li><a href="enterprise.html">Banking API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="legal.html">Privacy Policy</a></li>
+                    <li><a href="legal.html">Burn Protocol</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="legal.html">NO FAKES Act</a></li>
+                    <li><a href="#">SOC2 Audit</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
