@@ -3,111 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>1900 Market St | RealAIID.com Global Anchor</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <title>1900 Market Anchor | The Philadelphia Mainframe - RealAIID</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --phl-blue: #1693E9;
             --phl-dark: #0B1320;
-            --penn-state-blue: #001E44; /* Nod to your alma mater */
-            --soft-gray: #F8FAFC;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --anchor-gray: #475569;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: white; color: #475569; line-height: 1.6; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
 
-        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; }
-        .logo img { height: 100px; }
-
-        /* --- THE ANCHOR HERO --- */
-        .anchor-hero { 
-            padding: 120px 10% 80px; 
-            background: linear-gradient(rgba(11, 19, 32, 0.8), rgba(11, 19, 32, 0.8)), url('https://images.unsplash.com/photo-1569330132195-ec39755d528e?q=80&w=2070&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            text-align: center;
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
         }
-        .anchor-hero h1 { font-size: 4rem; font-weight: 800; margin-bottom: 15px; }
-        .anchor-hero p { font-family: 'JetBrains Mono'; color: var(--phl-blue); letter-spacing: 3px; text-transform: uppercase; }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        /* --- PHILADELPHIA CORE SECTION --- */
-        .core-section { padding: 100px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .core-text h2 { color: var(--phl-dark); font-size: 2.5rem; margin-bottom: 25px; }
-        .core-text p { margin-bottom: 20px; font-size: 1.1rem; }
+        /* --- ANCHOR HERO --- */
+        .anchor-hero { padding: 100px 10%; background: linear-gradient(rgba(11, 19, 32, 0.8), rgba(11, 19, 32, 0.8)), url('https://images.unsplash.com/photo-1570126688035-1e6adbd61053?auto=format&fit=crop&q=80&w=1600'); background-size: cover; background-position: center; color: white; border-bottom: 4px solid var(--phl-blue); }
+        .anchor-container { max-width: 1200px; margin: 0 auto; }
         
-        .amenities-list { list-style: none; margin-top: 30px; }
-        .amenities-list li { margin-bottom: 15px; display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--phl-dark); }
-        .bullet { width: 8px; height: 8px; background: var(--phl-blue); border-radius: 50%; }
-
-        /* --- THE VAULT IMAGE --- */
-        .building-card { 
-            background: var(--soft-gray); 
-            border-radius: 20px; 
-            padding: 40px; 
-            border: 1px solid #E2E8F0;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-        .address-box { font-family: 'JetBrains Mono'; background: var(--phl-dark); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+        .geo-coord { font-family: 'JetBrains Mono'; color: var(--phl-blue); letter-spacing: 3px; font-weight: 700; margin-bottom: 20px; display: block; }
+        .anchor-hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; line-height: 1; margin-bottom: 30px; font-style: italic; }
         
-        /* --- VISITOR PROTOCOL --- */
-        .protocol-bar { background: var(--penn-state-blue); padding: 40px 10%; color: white; display: flex; justify-content: space-between; align-items: center; }
-        .btn-visit { background: var(--phl-blue); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 800; }
+        /* --- INFRASTRUCTURE GRID --- */
+        .infra-section { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .infra-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: flex-start; }
+        .infra-text h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 25px; border-bottom: 1px solid var(--phl-blue); padding-bottom: 10px; display: inline-block; }
+        
+        .data-point { background: var(--surface); padding: 30px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid var(--phl-blue); }
+        .data-point h4 { font-family: 'JetBrains Mono'; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--phl-blue); }
 
-        footer { padding: 60px 10%; background: var(--phl-dark); color: #4B5563; text-align: center; font-size: 0.7rem; font-family: 'JetBrains Mono'; }
+        /* --- VISUAL ANCHOR --- */
+        .mainframe-visual { background: var(--phl-dark); padding: 40px; color: white; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .status-light { display: inline-block; width: 10px; height: 10px; background: #10B981; border-radius: 50%; margin-right: 10px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
     </style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
-        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
-            <a href="index.html" style="text-decoration:none; color:var(--phl-dark);">Back to Bureau</a>
-            <a href="mainframe.html" style="text-decoration:none; color:var(--phl-dark);">Mainframe Specs</a>
-        </nav>
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
     </header>
 
     <main>
         <section class="anchor-hero">
-            <p>Geospatial Sovereignty</p>
-            <h1>The PHL Anchor.</h1>
+            <div class="anchor-container">
+                <span class="geo-coord">39.9526° N, 75.1726° W // PHILADELPHIA, PA</span>
+                <h1>A Physical Anchor in a Synthetic World.</h1>
+                <p style="font-size: 1.25rem; max-width: 700px; opacity: 0.9;">The RealAIID Bureau is headquartered at 1900 Market Street. Our sovereign identity nodes are physically anchored in Philadelphia, ensuring your biological data is protected by domestic security infrastructure, not just digital clouds.</p>
+            </div>
         </section>
 
-        <section class="core-section">
-            <div class="core-text">
-                <h2>Philadelphia Head of Operations</h2>
-                <p>Strategically positioned at <strong>1900 Market Street</strong>, the RealAIID Bureau Anchor serves as the primary gateway between the traditional financial district and the decentralized future. This is where high-security engineering meets enterprise implementation.</p>
-                <p>Drawing from our leadership's background at <strong>Pennsylvania State University</strong> and the <strong>University of Minnesota</strong>, we have built a facility that prioritizes technical excellence and human accountability.</p>
-                
-                <ul class="amenities-list">
-                    <li><div class="bullet"></div> Liveness Verification Corridors (Tier-III)</li>
-                    <li><div class="bullet"></div> On-Site VSSN Hashing Terminals</li>
-                    <li><div class="bullet"></div> Commonwealth Liaison Executive Suites</li>
-                    <li><div class="bullet"></div> Direct Fiber-Link to Aviation Node (PHL-INT)</li>
-                </ul>
-            </div>
-
-            <div class="building-card">
-                <div class="address-box">
-                    <span style="color: var(--phl-blue);">// PHYSICAL ADDRESS</span><br>
-                    <span style="font-size: 1.5rem; font-weight: 800;">1900 Market St.<br>Suite 800<br>Philadelphia, PA 19103</span>
+        <section class="infra-section">
+            <div class="infra-grid">
+                <div class="mainframe-visual">
+                    <h3 style="font-family: 'JetBrains Mono'; margin-bottom: 20px;"><span class="status-light"></span>MAINFRAME_STATUS: ONLINE</h3>
+                    <p style="font-size: 0.85rem; color: #94A3B8; margin-bottom: 30px;">Primary Node: PHL-MAIN-01<br>Uptime: 99.9997%<br>Location: 1900 Market St, Suite 800</p>
+                    <div style="background: #05080F; padding: 20px; border: 1px solid #1E293B; font-family: 'JetBrains Mono'; font-size: 0.75rem;">
+                        <span style="color: var(--phl-blue);"># Security Protocols Active</span><br>
+                        - Biometric Access Control<br>
+                        - Hardware Security Modules (HSM)<br>
+                        - Air-Gapped Archival Vaults
+                    </div>
                 </div>
-                <p style="font-size: 0.9rem; color: #64748B;">The Anchor is a restricted-access facility. All visitors are required to undergo a Vocal Handshake (VSSN) verification at the ground-floor security node before mainframe access is granted.</p>
-            </div>
-        </section>
+                
+                <div class="infra-text">
+                    <h2>Institutional Security.</h2>
+                    <p style="margin-bottom: 40px; color: #475569;">At RealAIID, we believe that identity is too important to exist solely in the ephemeral cloud. By maintaining a physical footprint in Philadelphia's financial and legal district, we provide our registrants with a tangible point of accountability.</p>
+                    
+                    <div class="data-point">
+                        <h4>Strategic Connectivity</h4>
+                        <p>Our proximity to the Philadelphia legal corridors and municipal infrastructure allows for direct coordination with local authorities and transit commissions.</p>
+                    </div>
+                    
+                    <div class="data-point">
+                        <h4>Hardware-Locked Sovereignty</h4>
+                        <p>The 1900 Market Anchor houses our primary Hardware Security Modules (HSM). These physical devices generate the master keys that sign every VSSN Hash, ensuring no digital breach can compromise the root of human identity.</p>
+                    </div>
 
-        <section class="protocol-bar">
-            <div>
-                <h3 style="font-size: 1.5rem; margin-bottom: 5px;">Institutional Site Visit?</h3>
-                <p style="opacity: 0.8;">Schedule a walk-through of our hardware-hashing infrastructure.</p>
+                    <div class="data-point">
+                        <h4>The Blue Vault</h4>
+                        <p>A climate-controlled, high-security environment designed for the physical storage of Sovereign-tier hardware keys and forensic identity records.</p>
+                    </div>
+                </div>
             </div>
-            <a href="contact.html" class="btn-visit">Schedule Liaison</a>
         </section>
     </main>
 
     <footer>
-        REALAIID BUREAU // 1900 MARKET ST ANCHOR // PHILADELPHIA // © 2026
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
     </footer>
 
 </body>
