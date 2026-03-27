@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works | RealAIID.com Commonwealth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        .process-container {
+            max-width: 1100px;
+            margin: 80px auto;
+            padding: 0 5%;
+        }
+        .step-block {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 120px;
+        }
+        .step-block:nth-child(even) { flex-direction: row-reverse; }
+        
+        .step-text { flex: 1; }
+        .step-number { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 4rem; 
+            color: var(--cobalt-blue); 
+            opacity: 0.3; 
+            margin-bottom: -20px;
+        }
+        .step-text h2 { 
+            font-family: 'Space Grotesk', sans-serif; 
+            font-size: 2.2rem; 
+            margin-bottom: 20px; 
+            color: var(--emerald-green);
+        }
+        
+        .step-visual { 
+            flex: 1; 
+            background: var(--glass-bg); 
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .step-visual::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(80,200,120,0.1) 0%, transparent 70%);
+        }
+
+        .protocol-feature {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.05);
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            border-left: 2px solid var(--cobalt-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+        </div>
+        <nav>
+            <a href="index.html">The Commonwealth</a>
+            <a href="how-it-works.html" style="color: var(--emerald-green);">How It Works</a>
+            <a href="verify.html">Registry</a>
+            <a href="register.html" class="cta-btn">Get Certified</a>
+        </nav>
+    </header>
+
+    <div class="process-container">
+        <h1 class="section-title">The <span class="highlight">Triple-Lock</span> Standard</h1>
+        <p style="text-align: center; max-width: 700px; margin: -30px auto 80px; opacity: 0.8;">
+            A three-tier cryptographic anchoring process designed to prove you are human in an AI-saturated world.
+        </p>
+
+        <div class="step-block">
+            <div class="step-text">
+                <div class="step-number">01</div>
+                <h2>3D Liveness Pulse</h2>
+                <p>Using our proprietary spatial mapping, we capture a 180-degree rotation of your facial geometry. This detects skin-texture micro-fluctuations and bone-structure depth that deepfakes cannot replicate.</p>
+                <div class="protocol-feature">
+                    <div class="feature-item">Anti-Spoofing</div>
+                    <div class="feature-item">Texture Analysis</div>
+                    <div class="feature-item">Depth Mapping</div>
+                </div>
+            </div>
+            <div class="step-visual">
+                <p style="font-family: 'Space Grotesk'; font-size: 0.8rem; letter-spacing: 2px;">[ 3D SCAN ANIMATION ]</p>
+            </div>
+        </div>
+
+        <div class="step-block">
+            <div class="step-text">
+                <div class="step-number">02</div>
+                <h2>VSSN Generation</h2>
+                <p>The <strong>Vocal Signature Serial Number</strong> is a cryptographic hash of your unique vocal frequency and cadence. By reading a randomized prompt, you anchor your voice to your record.</p>
+                <div class="protocol-feature">
+                    <div class="feature-item">Frequency Hashing</div>
+                    <div class="feature-item">Cadence Match</div>
+                    <div class="feature-item">Cloning Protection</div>
+                </div>
+            </div>
+            <div class="step-visual">
+                <p style="font-family: 'Space Grotesk'; font-size: 0.8rem; letter-spacing: 2px;">[ WAVEFORM ANALYSIS ]</p>
+            </div>
+        </div>
+
+        <div class="step-block">
+            <div class="step-text">
+                <div class="step-number">03</div>
+                <h2>Commonwealth Residency</h2>
+                <p>Upon success, your identity is anchored to a <strong>Digital Residency Suite</strong> at our Philadelphia mainframe. This provides you with a verified legal location without compromising your home privacy.</p>
+                <div class="protocol-feature">
+                    <div class="feature-item">Suite # Assignment</div>
+                    <div class="feature-item">Address Privacy</div>
+                    <div class="feature-item">Vault Storage</div>
+                </div>
+            </div>
+            <div class="step-visual">
+                <p style="font-family: 'Space Grotesk'; font-size: 0.8rem; letter-spacing: 2px;">[ SUITE #7721 ASSIGNMENT ]</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Commonwealth</h4>
+                <ul>
+                    <li><a href="index.html">About Us</a></li>
+                    <li><a href="how-it-works.html">Protocol Specs</a></li>
+                    <li><a href="#">Digital Residency Act</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="enterprise.html">PHL Aviation</a></li>
+                    <li><a href="enterprise.html">Banking API</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Burn Protocol</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Compliance</h4>
+                <ul>
+                    <li><a href="#">SOC2 Audit</a></li>
+                    <li><a href="#">NO FAKES Act</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
+            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
