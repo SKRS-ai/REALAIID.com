@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lethal Ledger | True Crime & Justice Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700;900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ledger-red: #B91C1C;
+            --ledger-gold: #D4AF37;
+            --bg-noir: #050505;
+            --card-gray: #111111;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-noir); color: #A1A1AA; line-height: 1.6; }
+
+        .header-noir { 
+            height: 100px; 
+            background: rgba(0,0,0,0.9); 
+            display: flex; 
+            align-items: center; 
+            padding: 0 5%; 
+            border-bottom: 1px solid #1A1A1A; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+        }
+        .header-noir .logo-text { font-family: 'Playfair Display', serif; color: white; font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* --- CINEMATIC HERO --- */
+        .ledger-hero { 
+            height: 70vh; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), var(--bg-noir)), url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+        }
+        .ledger-hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; color: white; margin-bottom: 10px; line-height: 1; }
+        .ledger-hero p { font-family: 'JetBrains Mono'; color: var(--ledger-red); font-size: 1rem; letter-spacing: 4px; text-transform: uppercase; }
+
+        /* --- FEATURED CASE --- */
+        .featured-case { 
+            margin: -100px 10% 80px; 
+            background: var(--card-gray); 
+            border: 1px solid #222; 
+            padding: 50px; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 60px;
+            align-items: center;
+            border-radius: 4px;
+        }
+        .case-label { color: var(--ledger-red); font-family: 'JetBrains Mono'; font-size: 0.75rem; font-weight: 800; margin-bottom: 20px; display: block; }
+        .featured-case h2 { font-family: 'Playfair Display', serif; color: white; font-size: 2.5rem; margin-bottom: 20px; }
+        .btn-play { background: white; color: black; padding: 15px 30px; text-decoration: none; font-weight: 900; display: inline-block; margin-top: 30px; text-transform: uppercase; font-size: 0.8rem; }
+
+        /* --- CASE GRID --- */
+        .case-grid { padding: 0 10% 100px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .case-card { background: var(--card-gray); border: 1px solid #1A1A1A; transition: 0.3s; overflow: hidden; position: relative; }
+        .case-card:hover { border-color: var(--ledger-red); transform: translateY(-5px); }
+        .case-img { height: 200px; background: #222; width: 100%; position: relative; }
+        .vssn-verified { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.8); border: 1px solid var(--ledger-gold); color: var(--ledger-gold); font-family: 'JetBrains Mono'; font-size: 0.5rem; padding: 4px 8px; }
+        .case-body { padding: 25px; }
+        .case-body h3 { color: white; margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+        
+        /* --- HOST SECTION --- */
+        .hosts { padding: 80px 10%; border-top: 1px solid #1A1A1A; display: flex; justify-content: space-around; text-align: center; }
+        .host-profile h4 { color: white; margin-top: 20px; font-size: 1.2rem; }
+        .host-profile span { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--ledger-red); }
+
+        footer { padding: 60px 10%; background: black; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #444; }
+    </style>
+</head>
+<body>
+
+    <header class="header-noir">
+        <div class="logo-text">Lethal Ledger</div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-family: 'JetBrains Mono'; font-size: 0.7rem;">
+            <a href="index.html" style="color:white; text-decoration:none;">BUREAU HOME</a>
+            <a href="#" style="color:white; text-decoration:none;">EPISODES</a>
+            <a href="#" style="color:white; text-decoration:none;">EVIDENCE LOCKER</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="ledger-hero">
+            <p>A Solomon Kin Media Group Production</p>
+            <h1>The Ledger Leak.</h1>
+        </section>
+
+        <section class="featured-case">
+            <div class="case-visual" style="height: 350px; background: #222 url('https://images.unsplash.com/photo-1453873531674-215ee3ac4d17?q=80&w=2080&auto=format&fit=crop'); background-size: cover;"></div>
+            <div>
+                <span class="case-label">FEATURED DOCUMENTARY // S04 E12</span>
+                <h2>The PHL Mainframe Breach: Fact vs. Fiction</h2>
+                <p>An investigative deep-dive into the attempted synthetic replication of administrative identities. Malachi breaks down the forensic timeline.</p>
+                <a href="#" class="btn-play">Watch Now</a>
+            </div>
+        </section>
+
+        <section class="case-grid">
+            <div class="case-card">
+                <div class="case-img" style="background: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop'); background-size: cover;"><span class="vssn-verified">VSSN AUDITED</span></div>
+                <div class="case-body">
+                    <span class="case-label">PODCAST</span>
+                    <h3>The Cold Hash Files</h3>
+                    <p>Uncovering 1990s cold cases using 2026 biometric reconstruction technology.</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-img" style="background: url('https://images.unsplash.com/photo-1517245318773-b7b83ca912b3?q=80&w=2070&auto=format&fit=crop'); background-size: cover;"><span class="vssn-verified">VSSN AUDITED</span></div>
+                <div class="case-body">
+                    <span class="case-label">DOCUMENTARY</span>
+                    <h3>Shadow Licensing</h3>
+                    <p>Black Beauty investigates the illegal sale of vocal signatures in the underground talent market.</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <div class="case-img" style="background: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop'); background-size: cover;"><span class="vssn-verified">VSSN AUDITED</span></div>
+                <div class="case-body">
+                    <span class="case-label">MINI-SERIES</span>
+                    <h3>Mainframe Justice</h3>
+                    <p>The story of the first legal victory under the NO FAKES Act in Philadelphia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="hosts">
+            <div class="host-profile">
+                <div style="width:120px; height:120px; border-radius:50%; background:#222; margin:0 auto; border: 2px solid var(--ledger-red);"></div>
+                <h4>Malachi</h4>
+                <span>THE CASE KEEPER</span>
+            </div>
+            <div class="host-profile">
+                <div style="width:120px; height:120px; border-radius:50%; background:#222; margin:0 auto; border: 2px solid var(--ledger-gold);"></div>
+                <h4>Black Beauty</h4>
+                <span>CO-HOST & INVESTIGATOR</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        © 2026 SOLOMON KIN RECORDS MEDIA GROUP // REALM PICTURES // PHL NODE
+    </footer>
+
+</body>
+</html>
