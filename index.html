@@ -22,7 +22,8 @@
         /* --- ADVANCED MEGA-MENU HEADER --- */
         .header {
             background: var(--pure-white);
-            height: 80px;
+            /* Increased height slightly to accommodate the x3 logo size while staying contained */
+            height: 110px; 
             display: flex;
             align-items: center;
             padding: 0 5%;
@@ -32,7 +33,14 @@
             border-bottom: 1px solid #EBEEF2;
         }
 
-        .logo-area img { height: 45px; margin-right: 40px; cursor: pointer; }
+        /* Logo increased x3 (from 45px to 135px) while staying vertically centered */
+        .logo-area img { 
+            height: 135px; 
+            width: auto;
+            margin-right: 40px; 
+            cursor: pointer;
+            display: block;
+        }
 
         .nav-main { display: flex; height: 100%; align-items: center; }
 
@@ -53,7 +61,7 @@
         /* THE DROPDOWN PANEL */
         .mega-menu {
             position: absolute;
-            top: 80px;
+            top: 110px; /* Adjusted to new header height */
             left: 0;
             width: 100vw;
             background: var(--pure-white);
@@ -68,7 +76,7 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
-        .nav-item:hover .mega-menu { visibility: visible; opacity: 1; top: 80px; }
+        .nav-item:hover .mega-menu { visibility: visible; opacity: 1; top: 110px; }
 
         .menu-col h4 { font-size: 0.75rem; text-transform: uppercase; color: var(--text-neutral); margin-bottom: 20px; letter-spacing: 1px; }
         .menu-link { display: flex; align-items: flex-start; margin-bottom: 20px; text-decoration: none; }
@@ -81,7 +89,7 @@
         .btn-green { background: var(--sumsub-green); color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
 
         /* --- HERO & BIOMETRIC SCANNER --- */
-        .hero { padding: 100px 5% 60px; text-align: center; }
+        .hero { padding: 80px 5% 60px; text-align: center; }
         .hero h1 { font-size: 4rem; color: var(--text-strong); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
         .hero h1 span { color: var(--sumsub-green); }
         .hero p { max-width: 700px; margin: 0 auto 40px; font-size: 1.2rem; }
