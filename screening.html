@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening & Forensics | RealAIID.com Institutional Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --bg-audit: #0F172A;
+            --border-glow: rgba(24, 180, 148, 0.3);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg-audit); color: #94A3B8; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #1E293B; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- AUDIT HERO --- */
+        .audit-hero { padding: 100px 10%; display: flex; align-items: center; gap: 80px; }
+        .hero-content { flex: 1.2; }
+        .hero-interface { flex: 1; background: #1E293B; border-radius: 12px; padding: 30px; border: 1px solid var(--border-glow); box-shadow: 0 0 30px rgba(24, 180, 148, 0.1); }
+
+        .product-code { font-family: 'JetBrains Mono'; color: var(--sumsub-green); font-weight: 700; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+        h1 { font-size: 3.5rem; color: white; line-height: 1.1; margin-bottom: 25px; }
+        h1 span { color: var(--sumsub-blue); }
+
+        /* --- FORENSIC DATA VISUAL --- */
+        .data-stream { font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--sumsub-green); height: 200px; overflow: hidden; position: relative; }
+        .data-line { margin-bottom: 5px; opacity: 0.8; }
+        .scanning-bar { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--sumsub-green); box-shadow: 0 0 15px var(--sumsub-green); animation: scanMove 4s infinite linear; }
+
+        @keyframes scanMove { 0% { top: 0; } 100% { top: 100%; } }
+
+        /* --- FEATURE GRID --- */
+        .feature-grid { padding: 80px 10%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .feature-card { padding: 40px; border-radius: 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
+        .feature-card:hover { border-color: var(--sumsub-blue); background: rgba(255,255,255,0.05); }
+        .feature-card h3 { color: white; margin-bottom: 15px; font-size: 1.4rem; }
+
+        .btn-green { background: var(--sumsub-green); color: white; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 30px; }
+
+        /* --- MAINFRAME ANCHOR SECTION --- */
+        .anchor-callout { text-align: center; padding: 100px 10%; border-top: 1px solid #1E293B; }
+        .anchor-callout h2 { color: white; margin-bottom: 20px; font-size: 2rem; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Home</a>
+            <a href="aviation-node.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">PHL Node</a>
+            <a href="public-registry.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Registry</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="audit-hero">
+            <div class="hero-content">
+                <span class="product-code">SC // SCREENING & FORENSICS</span>
+                <h1>Forensic <span>Auditing</span> for the Sovereign Tier.</h1>
+                <p>Designed for the Philadelphia Metropolitan Airport Commission and High-Security Asset Managers. The SC module provides deep-packet forensic analysis of every verification event, ensuring a chain of custody that exceeds federal security standards.</p>
+                <a href="#" class="btn-green">Request Audit Access</a>
+            </div>
+            <div class="hero-interface">
+                <div class="data-stream">
+                    <div class="scanning-bar"></div>
+                    <div class="data-line">> INITIATING FORENSIC HANDSHAKE...</div>
+                    <div class="data-line">> NODE: PHL_1900_MARKET_MAINFRAME</div>
+                    <div class="data-line">> ANALYZING SPATIAL DEPTH VARIANCE...</div>
+                    <div class="data-line">> VSSN HASH MATCH: 99.98% CONFIRMED</div>
+                    <div class="data-line">> LIVENESS FREQUENCY: 44.1kHz HUMAN CORE</div>
+                    <div class="data-line">> NO FAKES STATUTORY STATUS: PROTECTED</div>
+                    <div class="data-line">> EVENT ANCHORED TO BLOCK_ID: 8821900</div>
+                    <div class="data-line">> TRACE STATUS: CLEAN</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <h3>Continuous Screening</h3>
+                <p>Automated re-verification cycles for high-value personnel. Our sensors ensure the "Certified Human" status hasn't been compromised between transit points.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Forensic Log Vault</h3>
+                <p>Every screening event generates a 256-bit encrypted audit log, providing legal defensibility under the ELVIS and NO FAKES Acts.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Hardware-Level Trust</h3>
+                <p>Direct integration with 3Si-standard asset tracking and vault security. If the screening fails, the physical node remains locked.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Real-Time Threat Vectoring</h3>
+                <p>Identifies sophisticated "Man-in-the-Middle" deepfake injections at the network level before they reach your verification interface.</p>
+            </div>
+        </section>
+
+        <section class="anchor-callout">
+            <h2>Philadelphia Mainframe Integration</h2>
+            <p>Our screening protocols are physically anchored at 1900 Market St to ensure sub-150ms latency for institutional infrastructure.</p>
+            <p style="margin-top:20px; color:var(--sumsub-blue); font-family:'JetBrains Mono'; font-size:0.8rem;">SECURE LINK STATUS: ACTIVE</p>
+        </section>
+    </main>
+
+    <footer style="padding:60px 10%; text-align:center; background:#0B1320; color:#4B5563;">
+        © 2026 RealAIID.com | AI Identity Protection & Verification Bureau | Philadelphia Mainframe Node
+    </footer>
+
+</body>
+</html>
