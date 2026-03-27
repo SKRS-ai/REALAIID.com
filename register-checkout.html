@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Final Authorization - RealAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --border: #E2E8F0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--phl-dark); line-height: 1.6; }
+
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
+
+        /* --- CHECKOUT LAYOUT --- */
+        .checkout-container { max-width: 1200px; margin: 60px auto; display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; padding: 0 5%; }
+        
+        .checkout-main { background: var(--white); padding: 50px; border-radius: 8px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .checkout-main h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 30px; }
+
+        .tier-selection { margin-bottom: 40px; }
+        .tier-option { 
+            display: flex; align-items: center; padding: 25px; border: 2px solid var(--border); 
+            border-radius: 8px; margin-bottom: 15px; cursor: pointer; transition: 0.3s;
+        }
+        .tier-option.active { border-color: var(--phl-blue); background: rgba(22, 147, 233, 0.05); }
+        .tier-option h4 { font-family: 'JetBrains Mono'; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; }
+        .tier-price { margin-left: auto; font-family: 'JetBrains Mono'; font-weight: 800; font-size: 1.2rem; }
+
+        .payment-form input { 
+            width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid var(--border); 
+            border-radius: 4px; font-family: 'Inter', sans-serif;
+        }
+
+        /* --- SUMMARY SIDEBAR --- */
+        .summary-sidebar { background: var(--phl-dark); color: white; padding: 40px; border-radius: 8px; height: fit-content; position: sticky; top: 180px; }
+        .summary-sidebar h3 { font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 2px; color: var(--phl-blue); margin-bottom: 30px; text-transform: uppercase; }
+        
+        .summary-line { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.9rem; color: #94A3B8; }
+        .summary-total { border-top: 1px solid #1E293B; margin-top: 25px; padding-top: 25px; display: flex; justify-content: space-between; font-weight: 800; font-size: 1.4rem; }
+
+        .btn-deploy { 
+            width: 100%; background: var(--phl-blue); color: white; border: none; padding: 20px; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; 
+            margin-top: 30px; cursor: pointer; transition: 0.3s;
+        }
+        .btn-deploy:hover { filter: brightness(1.1); box-shadow: 0 0 20px rgba(22, 147, 233, 0.4); }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-main">
+            <h1>Authorization.</h1>
+            <p style="color: #64748B; margin-bottom: 40px;">Finalize your VSSN registration and anchor your identity to the Philadelphia Mainframe infrastructure.</p>
+
+            <section class="tier-selection">
+                <div class="tier-option">
+                    <div>
+                        <h4>Standard VSSN</h4>
+                        <p style="font-size: 0.8rem; color: #64748B;">Core identity hashing and manual verification.</p>
+                    </div>
+                    <div class="tier-price">$29</div>
+                </div>
+                <div class="tier-option active">
+                    <div>
+                        <h4>Likeness Shield</h4>
+                        <p style="font-size: 0.8rem; color: #64748B;">Automated monitoring & NO FAKES Act enforcement.</p>
+                    </div>
+                    <div class="tier-price">$149</div>
+                </div>
+                <div class="tier-option">
+                    <div>
+                        <h4>Sovereign Liaison</h4>
+                        <p style="font-size: 0.8rem; color: #64748B;">API Access, Full Blue Paper, & 1900 Market Anchor.</p>
+                    </div>
+                    <div class="tier-price">$499</div>
+                </div>
+            </section>
+
+            <section class="payment-form">
+                <h3 style="margin-bottom: 20px;">Billing Details</h3>
+                <input type="text" placeholder="Full Legal Name">
+                <input type="email" placeholder="Secure Email Address">
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 10px;">
+                    <input type="text" placeholder="Card Number">
+                    <input type="text" placeholder="MM/YY">
+                    <input type="text" placeholder="CVC">
+                </div>
+            </section>
+        </div>
+
+        <aside class="summary-sidebar">
+            <h3>Deployment Summary</h3>
+            <div class="summary-line">
+                <span>VSSN Generation</span>
+                <span style="color: white;">COMPLETED</span>
+            </div>
+            <div class="summary-line">
+                <span>Spatial Mesh Ingest</span>
+                <span style="color: white;">COMPLETED</span>
+            </div>
+            <div class="summary-line">
+                <span>Anchor Node</span>
+                <span style="color: white;">PHL-MAIN-01</span>
+            </div>
+            
+            <div class="summary-total">
+                <span>TOTAL FEE</span>
+                <span style="color: var(--phl-blue);">$149.00</span>
+            </div>
+
+            <p style="font-size: 0.7rem; color: #64748B; margin-top: 20px; font-family: 'JetBrains Mono';">
+                [!] TRANSACTION SECURED VIA AES-256. ALL SALES ARE FINAL ONCE ANCHORED TO THE MAINFRAME.
+            </p>
+
+            <button class="btn-deploy">Authorize & Anchor →</button>
+        </aside>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST
+        </div>
+    </footer>
+
+</body>
+</html>
