@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Infrastructure | RealAIID.com Government & Label Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface: #0B1320;
+            --white: #FFFFFF;
+            --border-glow: #1E293B;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: var(--white); line-height: 1.6; }
+
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #0B1320; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
+
+        /* --- ENTERPRISE HERO --- */
+        .enterprise-hero { padding: 100px 10%; text-align: center; background: radial-gradient(circle at center, #162235 0%, #05080F 100%); }
+        .enterprise-hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px; font-style: italic; }
+        .enterprise-hero p { font-size: 1.25rem; color: #94A3B8; max-width: 800px; margin: 0 auto 40px; }
+
+        /* --- CONSULTATION FORM SECTION --- */
+        .form-section { padding: 80px 10%; max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+        
+        .contact-info h3 { color: var(--phl-blue); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; }
+        .contact-info p { font-size: 0.9rem; color: #94A3B8; margin-bottom: 30px; }
+
+        .enterprise-form { background: #0B1320; padding: 40px; border: 1px solid #1E293B; border-radius: 4px; }
+        .enterprise-form label { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: #64748B; }
+        .enterprise-form input, .enterprise-form select, .enterprise-form textarea {
+            width: 100%; background: #05080F; border: 1px solid #1E293B; color: white; padding: 15px; margin-bottom: 20px; border-radius: 2px; font-family: 'JetBrains Mono';
+        }
+        .enterprise-form input:focus { border-color: var(--phl-blue); outline: none; }
+        .btn-submit { 
+            width: 100%; background: var(--phl-blue); color: white; border: none; padding: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+        }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="enterprise-hero">
+            <h1>Infrastructure for Sovereignty.</h1>
+            <p>Deploy the RealAIID Mainframe within your own organization. Custom node integration for governments, transit commissions, and international media groups.</p>
+        </section>
+
+        <section class="form-section">
+            <div class="contact-info">
+                <h3>Liaison Consultation</h3>
+                <p>Enterprise solutions require high-fidelity security coordination. Our Security Engineers will design a custom node deployment for your infrastructure.</p>
+                
+                <div style="border-left: 2px solid var(--phl-blue); padding-left: 20px; margin-top: 40px;">
+                    <h4 style="font-size: 0.8rem; color: white; margin-bottom: 10px;">ANCHOR LOCATION</h4>
+                    <p style="margin-bottom: 0;">1900 Market Street<br>Philadelphia, PA 19103</p>
+                </div>
+            </div>
+
+            <div class="enterprise-form">
+                <form action="consultation-success.html" method="POST">
+                    <label>Organization Name</label>
+                    <input type="text" placeholder="e.g. Metropolitan Airport Commission" required>
+
+                    <label>Lead Liaison Name</label>
+                    <input type="text" placeholder="Your Name" required>
+
+                    <label>Infrastructure Type</label>
+                    <select>
+                        <option>Government / Municipal</option>
+                        <option>Transit / Aviation Commission</option>
+                        <option>Media Group / Record Label</option>
+                        <option>Financial Institution</option>
+                        <option>High-Security Asset Management</option>
+                    </select>
+
+                    <label>Request Brief</label>
+                    <textarea rows="5" placeholder="Describe your node integration requirements..."></textarea>
+
+                    <button type="submit" class="btn-submit">INITIATE LIAISON BRIEF</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
+    </footer>
+
+</body>
+</html>
