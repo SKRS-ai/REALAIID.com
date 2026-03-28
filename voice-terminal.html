@@ -1,6 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <script>
+        if (localStorage.getItem('BUREAU_TOKEN') !== 'SOVEREIGN_ADMIN_ALPHA') {
+            document.body.innerHTML = "<div style='background:#000; color:red; height:100vh; display:flex; align-items:center; justify-content:center; font-family:monospace;'><h1>[ ACCESS DENIED: NODE UNAUTHORIZED ]</h1></div>";
+            window.stop(); // This stops the rest of the page from loading
+        }
+    </script>
+
+    <title>RealAIID | VSSN Voice Terminal</title>
+    <link rel="stylesheet" href="style.css"> </head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice Terminal | VSSN Ingest - RealAIID Bureau</title>
