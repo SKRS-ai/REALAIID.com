@@ -2,19 +2,43 @@
 <html>
 <head>
     <title>Bureau | Identity Ingest</title>
+    <script>
+        (function() {
+            if (localStorage.getItem('BUREAU_TOKEN') !== 'SOVEREIGN_ADMIN_ALPHA') {
+                document.documentElement.innerHTML = "<div style='background:#0a0a0a; color:red; height:100vh; display:flex; align-items:center; justify-content:center; font-family:monospace;'><h1>[ ACCESS DENIED: INGEST NODE RESTRICTED ]</h1></div>";
+                window.stop(); 
+            }
+        })();
+    </script>
     <style>
         body { background: #0a0a0a; color: #00d4ff; font-family: 'Courier New', monospace; text-align: center; padding-top: 50px; }
-        .form-container { border: 2px solid #39ff14; display: inline-block; padding: 30px; background: #1a1a1a; box-shadow: 0 0 15px #39ff14; }
-        input { display: block; width: 100%; margin: 10px 0; padding: 10px; background: #000; border: 1px solid #00d4ff; color: #39ff14; }
-        button { background: #39ff14; color: black; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; }
-        #status { margin-top: 20px; font-weight: bold; }
+        .form-container { border: 2px solid #39ff14; display: inline-block; padding: 30px; background: #1a1a1a; box-shadow: 0 0 15px #39ff14; width: 400px; }
+        input, select { display: block; width: 100%; margin: 15px 0; padding: 12px; background: #000; border: 1px solid #00d4ff; color: #39ff14; font-family: 'Courier New'; }
+        button { background: #39ff14; color: black; padding: 15px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; text-transform: uppercase; }
+        button:hover { background: #00d4ff; box-shadow: 0 0 10px #00d4ff; }
+        #status { margin-top: 20px; font-weight: bold; font-size: 0.8rem; }
+        label { display: block; text-align: left; font-size: 0.7rem; color: #888; margin-bottom: -10px; }
     </style>
 </head>
 <body>
     <div class="form-container">
-        <h2>IDENTITY INGEST // NODE PHL-01</h2>
-        <input type="text" id="name" placeholder="FULL NAME">
-        <input type="email" id="email" placeholder="SECURE EMAIL">
+        <h2 style="color: #39ff14;">IDENTITY INGEST // NODE PHL-01</h2>
+        <p style="font-size: 0.7rem; margin-bottom: 20px;">[ LOCATION: 1900 MARKET ST ]</p>
+        
+        <label>FULL LEGAL NAME</label>
+        <input type="text" id="name" placeholder="E.G. NEHEMIAH BROWN">
+        
+        <label>SECURE EMAIL UPLINK</label>
+        <input type="email" id="email" placeholder="SECURE@EMAIL.COM">
+
+        <label>BUREAU SERVICE TIER</label>
+        <select id="tier">
+            <option value="Standard VSSN">$29 - Standard VSSN (Core Hash Only)</option>
+            <option value="Digital Citizen">$149 - Digital Citizen (Annual)</option>
+            <option value="Likeness Shield">$499 - Likeness Shield (Protection)</option>
+            <option value="Sovereign">$2,499 - Sovereign (Liaison Access)</option>
+        </select>
+
         <button onclick="submitIdentity()">ANCHOR TO CLOUD</button>
         <p id="status"></p>
     </div>
@@ -23,21 +47,38 @@
         async function submitIdentity() {
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
+            const tier = document.getElementById('tier').value; // Grabbing the selected tier
             const status = document.getElementById('status');
 
-            status.innerText = "ENCRYPTING & UPLOADING...";
+            if (!name || !email) {
+                status.innerText = "ERROR: ALL FIELDS REQUIRED";
+                status.style.color = "red";
+                return;
+            }
 
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email })
-            });
+            status.innerText = "ENCRYPTING & UPLOADING TO MAINFRAME...";
+            status.style.color = "#00d4ff";
 
-            if (response.ok) {
-                status.innerText = "SUCCESS: IDENTITY ANCHORED";
-                status.style.color = "#39ff14";
-            } else {
-                status.innerText = "ERROR: INGEST DENIED";
+            try {
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    // Sending name, email, AND the new tier to server.js
+                    body: JSON.stringify({ name, email, tier })
+                });
+
+                if (response.ok) {
+                    status.innerText = `SUCCESS: ${tier.toUpperCase()} ANCHORED`;
+                    status.style.color = "#39ff14";
+                    // Clear fields
+                    document.getElementById('name').value = '';
+                    document.getElementById('email').value = '';
+                } else {
+                    status.innerText = "ERROR: INGEST DENIED BY SERVER";
+                    status.style.color = "red";
+                }
+            } catch (err) {
+                status.innerText = "ERROR: CONNECTION TO NODE LOST";
                 status.style.color = "red";
             }
         }
