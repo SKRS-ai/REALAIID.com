@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Anchored | RealAIID Bureau</title>
+    <style>
+        body { background: #05080F; color: #f8fafc; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+        
+        .success-container { text-align: center; max-width: 600px; padding: 40px; border: 1px solid #1693E9; background: rgba(11, 19, 32, 0.8); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
+        
+        .check-icon { font-size: 5rem; color: #39ff14; margin-bottom: 20px; animation: pulse 2s infinite; }
+        
+        h1 { font-family: 'Playfair Display', serif; font-style: italic; color: #39ff14; letter-spacing: 2px; }
+        
+        .vssn-display { background: #000; border: 1px dashed #1693E9; padding: 20px; margin: 30px 0; font-size: 1.5rem; letter-spacing: 5px; color: #00d4ff; text-shadow: 0 0 10px #00d4ff; min-height: 1.5rem; }
+        
+        .meta-data { font-size: 0.7rem; color: #64748b; text-transform: uppercase; text-align: left; border-top: 1px solid #1e293b; padding-top: 15px; }
+        
+        .btn-dashboard { display: inline-block; margin-top: 30px; padding: 15px 30px; border: 1px solid #39ff14; color: #39ff14; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-dashboard:hover { background: #39ff14; color: #000; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-container">
+        <div class="check-icon">✓</div>
+        <h1>IDENTITY ANCHORED.</h1>
+        <p style="font-size: 0.8rem; color: #94a3b8;">NODE: PHL-01 // MAINFRAME INGEST COMPLETE</p>
+
+        <div class="vssn-display" id="vssn-reveal">-------- ----</div>
+        
+        <div class="meta-data">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span>Registry Status:</span> <span style="color: #39ff14;">IMMUTABLE</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                <span>Security Protocol:</span> <span>SHA-512 / AES-256</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <span>Timestamp:</span> <span id="time-stamp"></span>
+            </div>
+        </div>
+
+        <p style="font-size: 0.6rem; color: #475569; margin-top: 20px;">
+            Your Virtual Social Security Number has been issued. This record is now a permanent part of the Philadelphia Bureau Ledger.
+        </p>
+
+        <a href="index.html" class="btn-dashboard">RETURN TO MAINFRAME</a>
+    </div>
+
+    <script>
+        // 1. Set the Timestamp
+        document.getElementById('time-stamp').innerText = new Date().toLocaleString();
+
+        // 2. The Reveal Animation
+        const targetVSSN = "2917-" + Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
+        let currentText = "";
+        let index = 0;
+        const display = document.getElementById('vssn-reveal');
+
+        function reveal() {
+            if (index < targetVSSN.length) {
+                display.innerText += targetVSSN[index];
+                index++;
+                setTimeout(reveal, 100); // Speed of the typing
+            }
+        }
+
+        // Start reveal after a short delay
+        setTimeout(() => {
+            display.innerText = "";
+            reveal();
+        }, 1000);
+    </script>
+</body>
+</html>
