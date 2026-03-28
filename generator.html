@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REALAIID_USA_GENERATOR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: letter landscape; margin: 0; }
+        body { 
+            margin: 0; padding: 0; background: #0a0a0a; 
+            display: flex; flex-direction: column; align-items: center; 
+            min-height: 100vh; -webkit-print-color-adjust: exact; 
+        }
+
+        /* ADMIN PANEL - HIDDEN DURING PRINT */
+        .admin-panel {
+            background: #1a1a1a; color: #C5A059; padding: 20px;
+            width: 100%; display: flex; justify-content: center; gap: 15px;
+            border-bottom: 2px solid #C5A059; z-index: 1000;
+        }
+        input { background: #333; border: 1px solid #C5A059; color: white; padding: 10px; width: 280px; border-radius: 4px; }
+        button { background: #C5A059; color: black; border: none; padding: 10px 25px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+
+        .cert-canvas {
+            width: 1056px; height: 816px;
+            position: relative; margin: 40px 0;
+            background: url('certificate-masterUSA.png.png') no-repeat center center;
+            background-size: 100% 100%;
+            background-color: #fff;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+        }
+
+        .overlay { position: absolute; color: #0A192F; z-index: 10; text-align: center; pointer-events: none; }
+
+        #display-name {
+            top: 508px; left: 0; right: 0;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 52px; font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #display-date {
+            bottom: 78px; right: 235px;
+            font-family: 'Libre Baskerville', serif;
+            font-size: 15px; width: 200px;
+        }
+
+        #crypt-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            font-family: 'JetBrains Mono', monospace; font-size: 6px;
+            color: rgba(0, 0, 0, 0.01); word-break: break-all; z-index: 1;
+        }
+
+        @media print { 
+            .admin-panel { display: none; } 
+            body { background: white; } 
+            .cert-canvas { margin: 0; box-shadow: none; } 
+        }
+    </style>
+</head>
+<body>
+
+<div class="admin-panel">
+    <input type="text" id="nameInput" placeholder="Enter Recipient Name..." oninput="update()">
+    <input type="text" id="dateInput" placeholder="Awarded Date..." oninput="update()">
+    <button onclick="generate()">PRINT TO PDF</button>
+</div>
+
+<div class="cert-canvas" id="capture">
+    <div id="crypt-layer"></div>
+    <div class="overlay" id="display-name">NEHEMIAH BROWN</div>
+    <div class="overlay" id="display-date">28th day of March, 2026</div>
+</div>
+
+<script>
+    function update() {
+        const name = document.getElementById('nameInput').value;
+        const date = document.getElementById('dateInput').value;
+        if(name) document.getElementById('display-name').innerText = name;
+        if(date) document.getElementById('display-date').innerText = date;
+    }
+
+    function generate() {
+        const name = document.getElementById('nameInput').value || "Digital_Citizen";
+        document.title = "REALAIID_CERT_" + name.replace(/\s+/g, '_');
+        window.print();
+    }
+
+    const box = document.getElementById('crypt-layer');
+    let stream = "";
+    for(let i=0; i<15000; i++) {
+        stream += Math.random() > 0.992 ? "iamGODneo" : Math.floor(Math.random()*2);
+    }
+    box.innerText = stream;
+</script>
+
+</body>
+</html>
