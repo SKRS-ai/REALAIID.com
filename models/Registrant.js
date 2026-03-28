@@ -6,7 +6,7 @@ const RegistrantSchema = new mongoose.Schema({
     name: String,
     tier: { type: String, default: 'Standard' },
     hasPaid: { type: Boolean, default: false },
-    vssn_hash: { type: String, default: null }, // Written after Voice/Spatial capture
+    vssn_hash: { type: String, default: null },
     anchor_node: { type: String, default: 'PHL-01' },
     created_at: { type: Date, default: Date.now }
 });
