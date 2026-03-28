@@ -2,32 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>REALAIID_SOVEREIGN_GENERATOR_V1</title>
+    <title>REALAIID_SOVEREIGN_GENERATOR_V3</title>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <style>
-        /* PDF PRINT PRESETS */
         @page { size: letter landscape; margin: 0; }
         
         body { 
-            margin: 0; padding: 0; background: #0a0a0a; 
+            margin: 0; padding: 0; background: #0f0f0f; 
             display: flex; flex-direction: column; align-items: center; 
             min-height: 100vh; -webkit-print-color-adjust: exact; 
+            font-family: sans-serif;
         }
 
-        /* ADMIN PANEL - HIDDEN DURING PRINT */
+        /* CALIBRATION DASHBOARD */
         .admin-panel {
-            background: #1a1a1a; color: #C5A059; padding: 20px;
-            width: 100%; display: flex; justify-content: center; gap: 15px;
-            border-bottom: 2px solid #C5A059; z-index: 1000;
+            background: #1a1a1a; color: #C5A059; padding: 15px;
+            width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;
+            border-bottom: 2px solid #C5A059; z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
-        input { background: #333; border: 1px solid #C5A059; color: white; padding: 10px; width: 250px; border-radius: 4px; }
-        button { background: #C5A059; color: black; border: none; padding: 10px 25px; font-weight: bold; cursor: pointer; border-radius: 4px; }
+        .control-group { display: flex; flex-direction: column; gap: 5px; }
+        label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+        input { background: #2a2a2a; border: 1px solid #444; color: white; padding: 8px; width: 200px; border-radius: 4px; }
+        input:focus { border-color: #C5A059; outline: none; }
+        
+        .nudge-controls { display: flex; align-items: center; gap: 10px; background: #2a2a2a; padding: 5px 15px; border-radius: 4px; border: 1px solid #444; }
+        
+        button.print-btn { background: #C5A059; color: black; border: none; padding: 10px 30px; font-weight: bold; cursor: pointer; border-radius: 4px; align-self: flex-end; transition: transform 0.2s; }
+        button.print-btn:hover { transform: scale(1.05); background: #d4b475; }
 
+        /* THE CERTIFICATE CANVAS */
         .cert-canvas {
             width: 1056px; height: 816px;
             position: relative; margin: 40px 0;
-            /* Pointing to your GitHub-hosted clean template */
-            background: url('https://skrs-ai.github.io/REALAIID.com/certificate-masterUSA.png.png') no-repeat center center;
+            /* Updated to your specific naming convention */
+            background: url('certificate-masterUSA.png.png') no-repeat center center;
             background-size: 100% 100%;
             background-color: #fff;
             box-shadow: 0 0 50px rgba(0,0,0,1);
@@ -35,18 +43,19 @@
 
         .overlay { position: absolute; color: #0A192F; z-index: 10; pointer-events: none; }
 
-        /* RECIPIENT NAME: NEHEMIAH MMM BROWN */
+        /* DYNAMIC NAME POSITIONING */
         #display-name {
-            top: 508px; left: 0; right: 0;
+            top: 518px; /* Initial calibration */
+            left: 0; right: 0;
             font-family: 'Libre Baskerville', serif;
-            font-size: 52px; font-weight: 700;
+            font-size: 48px; font-weight: 700;
             text-align: center; text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* DATA BLOCKS */
         .vssn-block { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
-        #vssn-left { top: 378px; left: 135px; text-align: left; }
-        #vssn-right { top: 378px; right: 135px; text-align: right; }
+        #vssn-left { top: 378px; left: 135px; text-align: left; line-height: 1.4; }
+        #vssn-right { top: 378px; right: 135px; text-align: right; line-height: 1.4; }
 
         #display-date {
             bottom: 78px; right: 235px;
@@ -54,22 +63,22 @@
             font-size: 15px; width: 200px; text-align: center;
         }
 
-        /* HISTORIC SIGNATURE: NEHEMIAH MMM BROWN */
+        /* SOVEREIGN SIGNATURE: NEHEMIAH MMM BROWN */
         #signature-area {
-            bottom: 55px; right: 115px;
-            width: 300px; text-align: center;
+            bottom: 50px; right: 110px;
+            width: 320px; text-align: center;
         }
         .sig-font {
             font-family: 'Nothing You Could Do', cursive;
-            font-size: 34px; color: #111;
-            margin-bottom: -5px;
+            font-size: 32px; color: #111;
+            margin-bottom: -2px;
         }
-        .sig-line { border-top: 1px solid #0A192F; padding-top: 5px; }
+        .sig-line { border-top: 1.5px solid #0A192F; padding-top: 5px; }
 
         #crypt-metadata {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             font-family: 'JetBrains Mono', monospace; font-size: 6px;
-            color: rgba(0, 0, 0, 0.01); word-break: break-all; z-index: 1;
+            color: rgba(0, 0, 0, 0.015); word-break: break-all; z-index: 1;
         }
 
         @media print { 
@@ -82,13 +91,26 @@
 <body>
 
 <div class="admin-panel">
-    <input type="text" id="nameInput" value="Nehemiah MMM Brown" oninput="update()">
-    <input type="text" id="vssnInput" value="2026-VSSN-0001-ALPHA" oninput="update()">
-    <input type="text" id="dateInput" value="28th day of March, 2026" oninput="update()">
-    <button onclick="window.print()">GENERATE HISTORICAL PDF</button>
+    <div class="control-group">
+        <label>Subject Name</label>
+        <input type="text" id="nameInput" value="Nehemiah MMM Brown" oninput="update()">
+    </div>
+    <div class="control-group">
+        <label>VSSN Identifier</label>
+        <input type="text" id="vssnInput" value="2026-VSSN-0001-ALPHA" oninput="update()">
+    </div>
+    <div class="control-group">
+        <label>Vertical Nudge (Name)</label>
+        <div class="nudge-controls">
+            <button onclick="nudge(-1)">UP</button>
+            <span id="nudge-val">518px</span>
+            <button onclick="nudge(1)">DOWN</button>
+        </div>
+    </div>
+    <button class="print-btn" onclick="window.print()">GENERATE ANCHOR PDF</button>
 </div>
 
-<div class="cert-canvas">
+<div class="cert-canvas" id="capture">
     <div id="crypt-metadata"></div>
     
     <div class="overlay" id="display-name">NEHEMIAH MMM BROWN</div>
@@ -110,27 +132,31 @@
         <div class="sig-font">Nehemiah MMM Brown</div>
         <div class="sig-line">
             <small style="font-size: 10px; font-weight: bold; text-transform: uppercase;">Registrar of Sovereignty</small><br>
-            <small style="font-size: 9px; text-transform: uppercase; color: #666;">First Digital Human Anchor</small>
+            <small style="font-size: 9px; text-transform: uppercase; color: #444; letter-spacing: 1.5px;">First Digital Human Anchor</small>
         </div>
     </div>
 </div>
 
 <script>
+    let currentTop = 518;
+
     function update() {
-        const name = document.getElementById('nameInput').value;
-        const vssn = document.getElementById('vssnInput').value;
-        const date = document.getElementById('dateInput').value;
-        
-        document.getElementById('display-name').innerText = name;
-        document.getElementById('val-vssn-l').innerText = vssn;
-        document.getElementById('val-vssn-r').innerText = vssn;
-        document.getElementById('display-date').innerText = date;
+        document.getElementById('display-name').innerText = document.getElementById('nameInput').value;
+        document.getElementById('val-vssn-l').innerText = document.getElementById('vssnInput').value;
+        document.getElementById('val-vssn-r').innerText = document.getElementById('vssnInput').value;
     }
 
+    function nudge(amount) {
+        currentTop += amount;
+        document.getElementById('display-name').style.top = currentTop + "px";
+        document.getElementById('nudge-val').innerText = currentTop + "px";
+    }
+
+    // Generate security weave
     const box = document.getElementById('crypt-metadata');
     let stream = "";
-    for(let i=0; i<15000; i++) {
-        stream += Math.random() > 0.992 ? "iamGODneo" : Math.floor(Math.random()*2);
+    for(let i=0; i<18000; i++) {
+        stream += Math.random() > 0.993 ? "iamGODneo" : Math.floor(Math.random()*2);
     }
     box.innerText = stream;
 </script>
