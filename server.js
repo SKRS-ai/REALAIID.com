@@ -66,3 +66,36 @@ app.listen(PORT, () => {
     console.log(`NODE LOCATION: PHL-MAIN-01 (1900 Market St)`);
     console.log(`-----------------------------------------------`);
 });
+require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const path = require('path');
+const Registrant = require('./models/Registrant');
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// DATABASE CONNECTION
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => console.log('[DATABASE] Connected to MongoDB Atlas - Ledger Active'))
+    .catch(err => console.error('[ERROR] Connection Denied:', err));
+
+app.use(express.json());
+app.use(express.static('public')); // This serves your HTML files
+
+// DASHBOARD API
+app.get('/api/user-profile', async (req, res) => {
+    try {
+        const user = await Registrant.findOne({ email: 'nehemiah@example.com' }); 
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ error: "Mainframe Timeout." });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log(`-----------------------------------------------`);
+    console.log(`REALAIID BUREAU MAINFRAME ACTIVE ON PORT ${PORT}`);
+    console.log(`NODE: PHL-MAIN-01 | ENCRYPTION: SHA-512`);
+    console.log(`-----------------------------------------------`);
+});
