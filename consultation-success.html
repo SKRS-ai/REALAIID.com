@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Authorized | RealAIID</title>
+    <style>
+        body { background: #05080F; color: #f8fafc; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .success-box { border: 2px solid #39ff14; padding: 50px; background: #0B1320; text-align: center; max-width: 500px; box-shadow: 0 0 40px rgba(57, 255, 20, 0.2); }
+        .shimmer { color: #39ff14; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; animation: blink 1.5s infinite; }
+        .uid-box { background: #000; border: 1px dashed #1693E9; padding: 20px; margin: 20px 0; color: #00d4ff; font-size: 1.1rem; }
+        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+        .btn-home { display: inline-block; margin-top: 30px; color: #39ff14; text-decoration: none; border: 1px solid #39ff14; padding: 10px 20px; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+    <div class="success-box">
+        <div class="shimmer">Sovereign Uplink Established</div>
+        <h1 style="font-family: serif; font-style: italic;">Authorization Confirmed.</h1>
+        <p style="color: #94a3b8; font-size: 0.9rem;">The Bureau has received your request for Sovereign Liaison access. Your identity is now prioritized for 1900 Market St. Ingest.</p>
+        
+        <div class="uid-box">
+            NODE_AUTH: PHL-01-SVGN<br>
+            <span id="hex-code">GENERATING KEY...</span>
+        </div>
+
+        <p style="font-size: 0.7rem; color: #475569;">A Sovereign Agent will contact you within 24 hours via secure uplink to finalize your Blue Paper documentation.</p>
+        
+        <a href="index.html" class="btn-home">RETURN TO MAINFRAME</a>
+    </div>
+
+    <script>
+        // Generate a random high-level auth hex for the visual effect
+        setTimeout(() => {
+            document.getElementById('hex-code').innerText = "HEX: " + Math.random().toString(16).toUpperCase().substring(2, 14);
+        }, 800);
+    </script>
+</body>
+</html>
