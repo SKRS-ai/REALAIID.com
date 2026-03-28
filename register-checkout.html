@@ -129,9 +129,10 @@
         }
 
         function finalizeAnchor() {
-            alert("Redirecting to Secure Biometric Payment Gateway...");
-            // This is where you'd link to Stripe, PayPal, or your Ingest API
-        }
+    // 1. You can add a small validation check here if needed
+    // 2. Simply redirect to the success page
+    window.location.href = "consultation-success.html";
+}
 
         // Run on load
         window.onload = updateCheckoutFromURL;
