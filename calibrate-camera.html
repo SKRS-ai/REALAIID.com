@@ -1,6 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <script>
+        (function() {
+            if (localStorage.getItem('BUREAU_TOKEN') !== 'SOVEREIGN_ADMIN_ALPHA') {
+                document.documentElement.innerHTML = `
+                    <div style="background:#05080F; color:#1693E9; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:'JetBrains Mono', monospace; text-align:center; border: 20px solid #0B1320;">
+                        <h1 style="letter-spacing:5px;">[ OPTIC UPLINK DENIED ]</h1>
+                        <p style="color:#64748B; text-transform:uppercase;">Node: PHL-OPTIC-02 // Biometric Calibration Restricted</p>
+                        <div style="margin-top:20px; width:50px; height:2px; background:#1693E9; opacity:0.5;"></div>
+                    </div>`;
+                window.stop(); 
+            }
+        })();
+    </script>
+    
+    <title>RealAIID | Camera Calibration</title>
+    ```
+
+---
+
+### **Why this is critical for CognitoLens**
+The camera calibration page likely accesses the `getUserMedia` API to trigger the webcam. By placing the `window.stop()` command inside that script, you prevent the browser from even *asking* for camera permissions from an unauthorized user. It kills the process before the hardware is even pinged.
+
+
+
+### **Verification Routine**
+1.  **Save** the file and push it to your GitHub repository (or open the local file to test).
+2.  **Test in Incognito:** It should show the **[ OPTIC UPLINK DENIED ]** screen immediately.
+3.  **Your Access:** Since you already ran the `localStorage.setItem` command in your main browser for the voice terminal, this page will **automatically unlock** for you. The "Key" is shared across the entire `skrs-ai.github.io` domain.
+
+---
+
+### **The Sovereign Audit**
+With the **Voice Terminal** and **Camera Calibration** both locked, your "Front-End" is now "Cloaked." 
+
+**Are there any other pages in that directory (like `index.html` or `blue-paper.html`) that you want to keep public for the mission, or should we lock down the entire site?** If you want the whole site private, I can show you how to add a **"Master Handshake"** to your `index.html` so only people with a "Bureau Invite Code" can see the RealAIID landing page.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calibrate Camera | VSSN Spatial Mesh - RealAIID Bureau</title>
