@@ -198,6 +198,28 @@
             © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST
         </div>
     </footer>
+<script>
+    // 1. Get the Tier from the URL (e.g., ?tier=sovereign)
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTier = urlParams.get('tier');
 
+    // 2. Define the Bureau Price Points
+    const pricing = {
+        'vssn': { name: 'STANDARD VSSN', price: '$29.00' },
+        'standard': { name: 'DIGITAL CITIZEN', price: '$149.00' },
+        'shield': { name: 'LIKENESS SHIELD', price: '$499.00' },
+        'sovereign': { name: 'SOVEREIGN LIAISON', price: '$2,499.00' }
+    };
+
+    // 3. Update the UI if the tier exists in our map
+    if (selectedTier && pricing[selectedTier]) {
+        // Update the big "TOTAL FEE" text
+        document.querySelector('.total-fee-value').innerText = pricing[selectedTier].price; 
+        
+        // Update the Deployment Summary label
+        document.querySelector('.tier-label').innerText = pricing[selectedTier].name;
+    }
+</script>
+    
 </body>
 </html>
