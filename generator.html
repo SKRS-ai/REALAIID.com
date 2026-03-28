@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>REALAIID_USA_GENERATOR</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>REALAIID_SOVEREIGN_GENERATOR_V1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <style>
+        /* PDF PRINT PRESETS */
         @page { size: letter landscape; margin: 0; }
+        
         body { 
             margin: 0; padding: 0; background: #0a0a0a; 
             display: flex; flex-direction: column; align-items: center; 
@@ -18,34 +20,53 @@
             width: 100%; display: flex; justify-content: center; gap: 15px;
             border-bottom: 2px solid #C5A059; z-index: 1000;
         }
-        input { background: #333; border: 1px solid #C5A059; color: white; padding: 10px; width: 280px; border-radius: 4px; }
+        input { background: #333; border: 1px solid #C5A059; color: white; padding: 10px; width: 250px; border-radius: 4px; }
         button { background: #C5A059; color: black; border: none; padding: 10px 25px; font-weight: bold; cursor: pointer; border-radius: 4px; }
 
         .cert-canvas {
             width: 1056px; height: 816px;
             position: relative; margin: 40px 0;
-            background: url('certificate-masterUSA.png.png') no-repeat center center;
+            /* Pointing to your GitHub-hosted clean template */
+            background: url('https://skrs-ai.github.io/REALAIID.com/certificate-masterUSA.png.png') no-repeat center center;
             background-size: 100% 100%;
             background-color: #fff;
             box-shadow: 0 0 50px rgba(0,0,0,1);
         }
 
-        .overlay { position: absolute; color: #0A192F; z-index: 10; text-align: center; pointer-events: none; }
+        .overlay { position: absolute; color: #0A192F; z-index: 10; pointer-events: none; }
 
+        /* RECIPIENT NAME: NEHEMIAH MMM BROWN */
         #display-name {
             top: 508px; left: 0; right: 0;
             font-family: 'Libre Baskerville', serif;
             font-size: 52px; font-weight: 700;
-            text-transform: uppercase;
+            text-align: center; text-transform: uppercase;
         }
+
+        /* DATA BLOCKS */
+        .vssn-block { font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+        #vssn-left { top: 378px; left: 135px; text-align: left; }
+        #vssn-right { top: 378px; right: 135px; text-align: right; }
 
         #display-date {
             bottom: 78px; right: 235px;
             font-family: 'Libre Baskerville', serif;
-            font-size: 15px; width: 200px;
+            font-size: 15px; width: 200px; text-align: center;
         }
 
-        #crypt-layer {
+        /* HISTORIC SIGNATURE: NEHEMIAH MMM BROWN */
+        #signature-area {
+            bottom: 55px; right: 115px;
+            width: 300px; text-align: center;
+        }
+        .sig-font {
+            font-family: 'Nothing You Could Do', cursive;
+            font-size: 34px; color: #111;
+            margin-bottom: -5px;
+        }
+        .sig-line { border-top: 1px solid #0A192F; padding-top: 5px; }
+
+        #crypt-metadata {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             font-family: 'JetBrains Mono', monospace; font-size: 6px;
             color: rgba(0, 0, 0, 0.01); word-break: break-all; z-index: 1;
@@ -61,32 +82,52 @@
 <body>
 
 <div class="admin-panel">
-    <input type="text" id="nameInput" placeholder="Enter Recipient Name..." oninput="update()">
-    <input type="text" id="dateInput" placeholder="Awarded Date..." oninput="update()">
-    <button onclick="generate()">PRINT TO PDF</button>
+    <input type="text" id="nameInput" value="Nehemiah MMM Brown" oninput="update()">
+    <input type="text" id="vssnInput" value="2026-VSSN-0001-ALPHA" oninput="update()">
+    <input type="text" id="dateInput" value="28th day of March, 2026" oninput="update()">
+    <button onclick="window.print()">GENERATE HISTORICAL PDF</button>
 </div>
 
-<div class="cert-canvas" id="capture">
-    <div id="crypt-layer"></div>
-    <div class="overlay" id="display-name">NEHEMIAH BROWN</div>
+<div class="cert-canvas">
+    <div id="crypt-metadata"></div>
+    
+    <div class="overlay" id="display-name">NEHEMIAH MMM BROWN</div>
+
+    <div class="overlay vssn-block" id="vssn-left">
+        <strong>VSSN CORE:</strong> <span id="val-vssn-l">2026-VSSN-0001-ALPHA</span><br>
+        <strong>HASH_SIG:</strong> ALPHA_PHL_0001<br>
+        <strong>EXPIRY:</strong> PERMANENT ANCHOR
+    </div>
+
+    <div class="overlay vssn-block" id="vssn-right">
+        <strong>VSSN CORE:</strong> <span id="val-vssn-r">2026-VSSN-0001-ALPHA</span><br>
+        <strong>VSSN ID:</strong> 2026-0001-ALPHA
+    </div>
+
     <div class="overlay" id="display-date">28th day of March, 2026</div>
+
+    <div class="overlay" id="signature-area">
+        <div class="sig-font">Nehemiah MMM Brown</div>
+        <div class="sig-line">
+            <small style="font-size: 10px; font-weight: bold; text-transform: uppercase;">Registrar of Sovereignty</small><br>
+            <small style="font-size: 9px; text-transform: uppercase; color: #666;">First Digital Human Anchor</small>
+        </div>
+    </div>
 </div>
 
 <script>
     function update() {
         const name = document.getElementById('nameInput').value;
+        const vssn = document.getElementById('vssnInput').value;
         const date = document.getElementById('dateInput').value;
-        if(name) document.getElementById('display-name').innerText = name;
-        if(date) document.getElementById('display-date').innerText = date;
+        
+        document.getElementById('display-name').innerText = name;
+        document.getElementById('val-vssn-l').innerText = vssn;
+        document.getElementById('val-vssn-r').innerText = vssn;
+        document.getElementById('display-date').innerText = date;
     }
 
-    function generate() {
-        const name = document.getElementById('nameInput').value || "Digital_Citizen";
-        document.title = "REALAIID_CERT_" + name.replace(/\s+/g, '_');
-        window.print();
-    }
-
-    const box = document.getElementById('crypt-layer');
+    const box = document.getElementById('crypt-metadata');
     let stream = "";
     for(let i=0; i<15000; i++) {
         stream += Math.random() > 0.992 ? "iamGODneo" : Math.floor(Math.random()*2);
