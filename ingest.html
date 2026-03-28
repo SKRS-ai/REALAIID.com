@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bureau | Identity Ingest</title>
+    <style>
+        body { background: #0a0a0a; color: #00d4ff; font-family: 'Courier New', monospace; text-align: center; padding-top: 50px; }
+        .form-container { border: 2px solid #39ff14; display: inline-block; padding: 30px; background: #1a1a1a; box-shadow: 0 0 15px #39ff14; }
+        input { display: block; width: 100%; margin: 10px 0; padding: 10px; background: #000; border: 1px solid #00d4ff; color: #39ff14; }
+        button { background: #39ff14; color: black; padding: 10px 20px; border: none; cursor: pointer; font-weight: bold; width: 100%; }
+        #status { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>IDENTITY INGEST // NODE PHL-01</h2>
+        <input type="text" id="name" placeholder="FULL NAME">
+        <input type="email" id="email" placeholder="SECURE EMAIL">
+        <button onclick="submitIdentity()">ANCHOR TO CLOUD</button>
+        <p id="status"></p>
+    </div>
+
+    <script>
+        async function submitIdentity() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const status = document.getElementById('status');
+
+            status.innerText = "ENCRYPTING & UPLOADING...";
+
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email })
+            });
+
+            if (response.ok) {
+                status.innerText = "SUCCESS: IDENTITY ANCHORED";
+                status.style.color = "#39ff14";
+            } else {
+                status.innerText = "ERROR: INGEST DENIED";
+                status.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
