@@ -3,105 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Identity & Sovereignty Framework | REALAIID Bureau</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <title>AI Identity Sovereignty & Biometric Anchoring | REALAIID Bureau</title>
+    <meta name="description" content="The definitive legal framework for AI Likeness, Digital Replica Rights, and Biometric Anchoring. Secure your human authorship against synthetic replication.">
+    <meta name="keywords" content="AI Rights, Digital Identity Law, Biometric Anchoring, NO FAKES Act, VSSN, Digital Replica, Identity Sovereignty, Nehemiah Brown, Philadelphia Mainframe">
+    <meta property="og:title" content="REALAIID: The Authority on AI Identity Sovereignty">
+    <meta property="og:description" content="Establish Biometric Priority in the age of AI. The VSSN Framework for Human Authorship.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --gold: #C5A059; --black: #0a0a0a; --gray: #1a1a1a; --text: #e0e0e0; }
-        body { background: var(--black); color: var(--text); font-family: 'Libre Baskerville', serif; line-height: 1.6; margin: 0; }
-        
-        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
-        header { border-bottom: 2px solid var(--gold); padding-bottom: 40px; margin-bottom: 60px; text-align: center; }
-        
-        h1 { color: var(--gold); font-size: 2.5rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
-        .subtitle { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 0.9rem; opacity: 0.8; }
-        
-        .legal-block { background: var(--gray); padding: 40px; border-left: 4px solid var(--gold); margin: 40px 0; border-radius: 0 8px 8px 0; }
-        h2 { color: var(--gold); font-size: 1.8rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        h3 { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: 1.2rem; }
+        :root { 
+            --gold: #C5A059; 
+            --gold-glow: rgba(197, 160, 89, 0.3);
+            --black: #050505; 
+            --glass: rgba(255, 255, 255, 0.03);
+            --text-main: #e0e0e0;
+        }
 
-        .statute-box { font-style: italic; background: #000; padding: 20px; border: 1px dashed var(--gold); margin: 20px 0; color: #fff; }
+        body { 
+            background: var(--black); 
+            color: var(--text-main); 
+            font-family: 'Libre Baskerville', serif; 
+            margin: 0; 
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197, 160, 89, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* STUNNING VISUAL OVERLAY */
+        .mainframe-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, var(--black) 90%);
+            pointer-events: none; z-index: -1;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px; }
+
+        header { text-align: center; margin-bottom: 100px; }
         
-        .process-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
-        .step { background: #111; padding: 20px; border: 1px solid #333; }
-        .step span { color: var(--gold); font-weight: bold; font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; }
+        .hero-title { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 3.5rem; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 10px;
+            margin: 0;
+            text-shadow: 0 0 20px var(--gold-glow);
+        }
 
-        .white-paper-footer { text-align: center; margin-top: 80px; font-size: 0.8rem; opacity: 0.6; border-top: 1px solid #333; padding-top: 40px; }
-        .vssn-seal { width: 100px; margin-bottom: 20px; opacity: 0.8; }
+        .bureau-badge {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            padding: 5px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
 
-        @media (max-width: 768px) { .process-grid { grid-template-columns: 1fr; } }
+        /* THE WHITE PAPER SECTIONS */
+        .glass-panel {
+            background: var(--glass);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 60px;
+            margin-bottom: 50px;
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .glass-panel::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 30px; height: 30px;
+            border-top: 2px solid var(--gold); border-left: 2px solid var(--gold);
+        }
+
+        h2 { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--gold); 
+            font-size: 1.5rem; 
+            margin-top: 0;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold-glow);
+            padding-bottom: 15px;
+        }
+
+        .statute-cite {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,0,0,0.5);
+            padding: 25px;
+            border-left: 2px solid var(--gold);
+            margin: 30px 0;
+            font-size: 0.95rem;
+            color: #fff;
+        }
+
+        /* NEW CONTENT: AUTHORSHIP GRID */
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .grid-item { border: 1px solid rgba(255,255,255,0.1); padding: 30px; transition: 0.3s; }
+        .grid-item:hover { border-color: var(--gold); background: var(--gold-glow); }
+        .grid-item h3 { color: var(--gold); margin-top: 0; font-size: 1.1rem; }
+
+        footer { 
+            text-align: center; 
+            padding: 100px 0; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 11px; 
+            letter-spacing: 2px; 
+            opacity: 0.5; 
+        }
+
+        .call-to-action {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .anchor-btn {
+            background: var(--gold);
+            color: #000;
+            padding: 20px 50px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+
+        .anchor-btn:hover { transform: scale(1.05); background: #fff; }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .grid-3 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
+<div class="mainframe-overlay"></div>
+
 <div class="container">
     <header>
-        <h1>The REALAIID Framework</h1>
-        <p class="subtitle">WHITE PAPER V.2026.01 // PHILADELPHIA MAINFRAME JURISDICTION</p>
+        <div class="bureau-badge">REALAIID BUREAU OFFICIAL DOCUMENT</div>
+        <h1 class="hero-title">Lex Algorithmus</h1>
+        <p style="font-family: 'JetBrains Mono'; color: var(--gold); margin-top: 20px;">The Doctrine of Sovereignty in the Age of Generative AI</p>
     </header>
 
-    <section>
-        <h2>I. Executive Summary</h2>
-        <p>In the era of infinite synthetic replication, the <strong>REALAIID Bureau</strong> establishes the first technical and legal framework for <strong>Biometric Priority</strong>. We provide the "Master Record" of human authorship, ensuring that a biological individual maintains absolute control over their digital likeness, voice, and persona across all algorithmic environments.</p>
-    </section>
-
-    <div class="legal-block">
-        <h3>Legal Doctrine: Biometric Estoppel</h3>
-        <p>The core of our framework is <em>Biometric Estoppel</em>. Once a subject anchors their likeness via a <strong>VSSN (Verified Sovereignty Serial Number)</strong>, they establish a permanent "Date of Origin." Any AI-generated content (Digital Replicas) produced without a corresponding cryptographic handshake from the VSSN Anchor is legally classified as <strong>Identity Infringement</strong> under the NO FAKES Act guidelines.</p>
+    <div class="glass-panel">
+        <h2>I. The Crisis of Authorship</h2>
+        <p>As large-scale generative models reach the threshold of recursive self-improvement, the concept of the <strong>"Biological Origin"</strong> is under existential threat. Without a verified anchor, the human likeness becomes public domain for algorithmic exploitation.</p>
+        <div class="statute-cite">
+            "The absence of a cryptographic baseline creates a legal 'null-state,' where synthetic media can be produced with total impunity. REALAIID resolves this by establishing the VSSN Golden Record."
+        </div>
     </div>
 
-    <section>
-        <h2>II. Statutory Alignment</h2>
-        <p>The REALAIID system is designed to interface directly with emerging global AI laws:</p>
-        
-        <div class="statute-box">
-            <strong>Integration with NO FAKES Act (Section 3a):</strong><br>
-            "The Bureau provides the 'Primary Evidence' required to prove a lack of consent. The VSSN Record acts as a non-repudiable attestation of the subject's baseline biological identity."
+    <div class="grid-3">
+        <div class="grid-item">
+            <h3>01. Digital Primacy</h3>
+            <p>He who anchors first holds the title. We provide the 'Date of Origin' evidence required to win Right of Publicity lawsuits.</p>
         </div>
-
-        <div class="statute-box">
-            <strong>Integration with AB 2602 (Digital Replicas):</strong><br>
-            "Contracts citing a VSSN ID ensure that likeness usage is mathematically capped. If an AI generation exceeds the 'Anchored Scope,' the VSSN system automatically flags the content as unauthorized."
+        <div class="grid-item">
+            <h3>02. Rights Management</h3>
+            <p>Every VSSN contains a 'Usage Cipher'—defining exactly where and how your AI likeness is permitted to exist.</p>
         </div>
-    </section>
-
-    <section>
-        <h2>III. The Anchoring Process</h2>
-        <p>Our process moves a human from an "Unprotected Biological State" to a "Sovereign Anchored State" in four phases:</p>
-        
-        <div class="process-grid">
-            <div class="step">
-                <span>01</span>
-                <h3>Biometric Capture</h3>
-                <p>Submission of vocal and visual likeness to the Philadelphia Mainframe for hashing.</p>
-            </div>
-            <div class="step">
-                <span>02</span>
-                <h3>Liveness Proof</h3>
-                <p>Cryptographic verification that the subject is a non-synthetic biological entity.</p>
-            </div>
-            <div class="step">
-                <span>03</span>
-                <h3>VSSN Issuance</h3>
-                <p>Generation of the permanent Verified Sovereignty Serial Number and Master Cipher.</p>
-            </div>
-            <div class="step">
-                <span>04</span>
-                <h3>Public Attestation</h3>
-                <p>The subject is issued the Sovereign Anchor Certificate, declaring their authorship over their digital domain.</p>
-            </div>
+        <div class="grid-item">
+            <h3>03. Judicial Interop</h3>
+            <p>Our certificates are formatted for courtroom admissibility, serving as expert technical testimony for identity verification.</p>
         </div>
-    </section>
-
-    <section>
-        <h2>IV. Framework for Government Adaptation</h2>
-        <p>We propose that the <strong>REALAIID VSSN</strong> be adopted as the standard for <strong>"Human Content Verification."</strong> By integrating the VSSN API into social media and content platforms, the government can instantly differentiate between "Sovereign Human Content" and "Unmanaged Synthetic Media."</p>
-    </section>
-
-    <div class="white-paper-footer">
-        <p>ISSUED BY THE OFFICE OF THE REGISTRAR: NEHEMIAH MMM BROWN</p>
-        <p>ANNO DOMINI 2026 | FIRST DIGITAL HUMAN ANCHOR</p>
-        <p>COGNITRUST NEXUS & REALAIID BUREAU | ALL RIGHTS RESERVED</p>
     </div>
+
+    <div class="glass-panel" style="margin-top: 50px;">
+        <h2>II. The NO FAKES Compliance Framework</h2>
+        <p>The REALAIID Bureau provides the mechanical infrastructure to enforce the <strong>NO FAKES Act</strong>. We move the law from a static text on a page to an active firewall in the cloud.</p>
+        
+        <p>Our <strong>Philadelphia Mainframe</strong> acts as the central registry for:</p>
+        <ul style="color: var(--gold); font-family: 'JetBrains Mono'; list-style-type: square;">
+            <li>Biometric Hash Verification (BHV)</li>
+            <li>Voiceprint Authenticity Tokens (VAT)</li>
+            <li>Historical Likeness Archiving</li>
+        </ul>
+    </div>
+
+    <div class="call-to-action">
+        <a href="index.html" class="anchor-btn">CLAIM YOUR LIKENESS</a>
+        <p style="font-size: 12px; margin-top: 20px; color: #888;">Authorized by the Registrar of Sovereignty: Nehemiah MMM Brown</p>
+    </div>
+
+    <footer>
+        <p>SYSTEM STATUS: ONLINE | DATABASE: ENCRYPTED | JURISDICTION: GLOBAL</p>
+        <p>© 2026 REALAIID BUREAU. ALL RIGHTS RESERVED. UNVERIFIED IDENTITY IS VULNERABILITY.</p>
+    </footer>
 </div>
 
 </body>
