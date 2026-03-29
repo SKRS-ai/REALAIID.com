@@ -3,46 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Authorization Protocols | REALAIID Bureau</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <title>Secure Registry Checkout | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #C5A059; --bg: #050505; --panel: #111; --text: #e0e0e0; }
-        body { background: var(--bg); color: var(--text); font-family: 'Libre Baskerville', serif; margin: 0; padding: 0; }
+        :root { --gold: #C5A059; --bg: #050505; --panel: #0a0a0a; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Libre Baskerville', serif; margin: 0; }
         
-        /* REUSED MASTER HEADER */
-        .master-header { background: #000; border-bottom: 2px solid var(--gold); padding: 20px 0; text-align: center; }
-        .brand-logo { font-family: 'Orbitron', sans-serif; color: var(--gold); text-decoration: none; font-size: 1.5rem; letter-spacing: 5px; }
+        /* CONSISTENT BUREAU HEADER */
+        .master-header { background: #000; border-bottom: 2px solid var(--gold); padding: 25px 0; text-align: center; }
+        .brand-logo { font-family: 'Orbitron', sans-serif; color: var(--gold); text-decoration: none; font-size: 1.6rem; letter-spacing: 6px; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .protocol-header { text-align: center; margin-bottom: 50px; }
-        .protocol-header h1 { font-family: 'Orbitron', sans-serif; color: var(--gold); letter-spacing: 3px; }
-        .protocol-header p { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; }
-
-        .checkout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        .protocol-card {
+        .container { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .checkout-card {
             background: var(--panel);
-            border: 1px solid #222;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            transition: 0.3s;
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            padding: 60px 40px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            position: relative;
         }
-        .protocol-card:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(197, 160, 89, 0.1); }
-        
-        .tier-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
-        h2 { margin: 0 0 10px 0; font-size: 1.4rem; color: #fff; }
-        .price { font-family: 'JetBrains Mono'; font-size: 24px; color: var(--gold); margin-bottom: 25px; }
-        
-        .features { list-style: none; padding: 0; margin-bottom: 30px; font-size: 14px; color: #aaa; flex-grow: 1; }
-        .features li { margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 5px; }
-        .features li b { color: #fff; }
 
-        .stripe-container { margin-top: auto; padding-top: 20px; border-top: 1px solid #333; }
+        .protocol-label { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--gold); 
+            font-size: 11px; 
+            letter-spacing: 4px; 
+            margin-bottom: 15px;
+            display: block;
+            border-bottom: 1px solid rgba(197,160,89,0.2);
+            padding-bottom: 10px;
+        }
 
-        /* FOOTER */
-        footer { border-top: 1px solid #222; padding: 40px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.5; margin-top: 100px; }
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: #fff; margin-top: 20px; text-transform: uppercase; }
+        .price-tag { font-family: 'JetBrains Mono'; font-size: 32px; color: var(--gold); margin-bottom: 30px; font-weight: bold; }
+        
+        .description { color: #ccc; line-height: 1.9; margin-bottom: 40px; font-size: 1.1rem; }
+        
+        /* STRIPE BUY BUTTON ALIGNMENT */
+        .stripe-area { 
+            text-align: center; 
+            padding: 40px; 
+            background: rgba(197, 160, 89, 0.03); 
+            border: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        footer { text-align: center; padding: 60px; font-family: 'JetBrains Mono'; font-size: 10px; opacity: 0.3; letter-spacing: 2px; }
+        
+        /* HIDE ALL BY DEFAULT */
+        .tier-section { display: none; }
+        
+        /* LOADING STATE */
+        #loading-msg { font-family: 'JetBrains Mono'; color: var(--gold); text-align: center; }
     </style>
 </head>
 <body>
@@ -52,25 +64,18 @@
 </header>
 
 <div class="container">
-    <div class="protocol-header">
-        <h1>Authorization Protocols</h1>
-        <p>SELECT YOUR ANCHOR LEVEL // JURISDICTION: PHILADELPHIA MAINFRAME</p>
-    </div>
-
-    <div class="checkout-grid">
+    <div id="checkout-root" class="checkout-card">
         
-        <div class="protocol-card">
-            <div class="tier-label">Protocol 01: Entry-Level</div>
-            <h2>Standard VSSN Core</h2>
-            <div class="price">$29.00 <small style="font-size: 10px;">/ ONE-TIME</small></div>
-            <ul class="features">
-                <li><b>VSSN Core ID</b> Assignment</li>
-                <li><b>Philadelphia Mainframe</b> Ledger Entry</li>
-                <li><b>Sovereign Anchor</b> Certificate (Digital)</li>
-                <li>Identity Theft Protection Foundation</li>
-                <li>Global Representation Rights</li>
-            </ul>
-            <div class="stripe-container">
+        <div id="loading-msg">INITIALIZING PHILADELPHIA MAINFRAME...</div>
+
+        <div id="tier-standard" class="tier-section">
+            <span class="protocol-label">AUTHORIZATION PROTOCOL: DIGITAL CITIZEN</span>
+            <h1>Standard VSSN</h1>
+            <div class="price-tag">$149 / YEAR</div>
+            <div class="description">
+                Core identity hashing and manual verification. Includes 3D Spatial Liveness Pulse, VSSN Vocal Hash Assignment, and the Basic Digital Residency Suite.
+            </div>
+            <div class="stripe-area">
                 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                 <stripe-buy-button
                   buy-button-id="buy_btn_1TFv1EKIEi29Q59QCsLlndWJ"
@@ -79,18 +84,14 @@
             </div>
         </div>
 
-        <div class="protocol-card" style="border-color: #333;">
-            <div class="tier-label">Protocol 02: Artistic</div>
-            <h2>Performer VSSN</h2>
-            <div class="price">$149.00 <small style="font-size: 10px;">/ YEARLY</small></div>
-            <ul class="features">
-                <li><b>ELVIS Act</b> Voice Compliance</li>
-                <li>128-bit <b>SHA-Hash</b> Generation</li>
-                <li>Vocal Asset Performance Protection</li>
-                <li>Advanced Likeness Rights Attribution</li>
-                <li>AI Synthesis Authorship Metadata</li>
-            </ul>
-            <div class="stripe-container">
+        <div id="tier-shield" class="tier-section">
+            <span class="protocol-label">AUTHORIZATION PROTOCOL: LIKENESS SHIELD</span>
+            <h1>Likeness Shield</h1>
+            <div class="price-tag">$499 / YEAR</div>
+            <div class="description">
+                Automated monitoring and NO FAKES Act enforcement. Includes 24/7 AI-Likeness Monitoring, Broadcast-Grade 3D Avatar, and Automated Takedown Technology.
+            </div>
+            <div class="stripe-area">
                 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                 <stripe-buy-button
                   buy-button-id="buy_btn_1TGOpzKIEi29Q59QpfWAgVWE"
@@ -99,18 +100,14 @@
             </div>
         </div>
 
-        <div class="protocol-card" style="border: 2px solid var(--gold);">
-            <div class="tier-label">Protocol 03: Sovereign</div>
-            <h2>Institutional Anchor</h2>
-            <div class="price">$2,499.00 <small style="font-size: 10px;">/ YEARLY</small></div>
-            <ul class="features">
-                <li><b>PHL Aviation Node</b> Integration</li>
-                <li>Hardware-Locked <b>HSM Keys</b></li>
-                <li>Quantum-Resistant Hashing Protocol</li>
-                <li>Direct <b>Security Engineer</b> Liaison</li>
-                <li>Institutional Asset Banking API</li>
-            </ul>
-            <div class="stripe-container">
+        <div id="tier-sovereign" class="tier-section">
+            <span class="protocol-label">AUTHORIZATION PROTOCOL: SOVEREIGN ENTITY</span>
+            <h1>Sovereign Institutional</h1>
+            <div class="price-tag">$2,499 / YEAR</div>
+            <div class="description">
+                Full Estate Defense + Irrevocable Mainframe Domain. Includes PHL Airport Biometric Link, High-Value Banking Tier API, and Hardware-Locked Keys.
+            </div>
+            <div class="stripe-area">
                 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                 <stripe-buy-button
                   buy-button-id="buy_btn_1TGQegKIEi29Q59QbrPNJNxw"
@@ -123,8 +120,30 @@
 </div>
 
 <footer>
-    © 2026 REALAIID BUREAU | COGNITRUST NEXUS | PHL MAINFRAME ENCRYPTED
+    PHILADELPHIA MAINFRAME // REALAIID BUREAU // NO FAKES COMPLIANCE V.2026
 </footer>
+
+<script>
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tier = urlParams.get('tier')?.toLowerCase(); // Case-insensitive matching
+        const loadingMsg = document.getElementById('loading-msg');
+
+        // Hide loading message
+        loadingMsg.style.display = 'none';
+
+        if (tier === 'standard') {
+            document.getElementById('tier-standard').style.display = 'block';
+        } else if (tier === 'shield') {
+            document.getElementById('tier-shield').style.display = 'block';
+        } else if (tier === 'sovereign') {
+            document.getElementById('tier-sovereign').style.display = 'block';
+        } else {
+            // Default to Standard if the tier is missing or incorrect
+            document.getElementById('tier-standard').style.display = 'block';
+        }
+    };
+</script>
 
 </body>
 </html>
