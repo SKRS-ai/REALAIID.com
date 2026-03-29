@@ -4,116 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VSSN CORE Selection | REALAIID Bureau</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root { 
             --gold: #C5A059; 
-            --accent: #00f2ff; /* Tech Blue */
-            --bg: #050505; 
-            --glass: rgba(20, 20, 20, 0.8);
-            --border: rgba(197, 160, 89, 0.3);
+            --bg: #F8F9FA; 
+            --panel: #FFFFFF; 
+            --text-dark: #1A1A1A;
+            --accent-gray: #E0E0E0;
         }
 
         body { 
-            background: var(--bg); color: #e0e0e0; 
-            font-family: 'Libre Baskerville', serif; margin: 0; 
-            background-image: radial-gradient(circle at 2px 2px, rgba(197, 160, 89, 0.1) 1px, transparent 0);
-            background-size: 40px 40px;
+            background: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Libre Baskerville', serif; 
+            margin: 0; 
+            background-image: radial-gradient(var(--accent-gray) 1px, transparent 0);
+            background-size: 30px 30px;
         }
 
-        /* MASTER HEADER REUSE */
-        .master-header {
-            background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--gold);
-            padding: 15px 0; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px);
+        /* TOP MENU BAR */
+        .top-menu {
+            background: var(--panel);
+            border-bottom: 1px solid var(--accent-gray);
+            height: 50px;
+            width: 100%;
         }
-        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
-        .brand-logo { font-family: 'Orbitron', sans-serif; color: var(--gold); text-decoration: none; font-size: 1.2rem; letter-spacing: 4px; }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; text-align: center; }
+        /* MASTER HEADER */
+        .master-header { 
+            background: var(--panel); 
+            border-bottom: 3px solid var(--gold); 
+            padding: 25px 0; 
+            text-align: center; 
+        }
+        .brand-logo { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-size: 1.6rem; 
+            letter-spacing: 6px; 
+            font-weight: 700;
+        }
 
-        .page-title { font-family: 'Orbitron', sans-serif; color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 10px; }
-        .page-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; margin-bottom: 60px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+
+        .page-intro { margin-bottom: 50px; }
+        .page-intro h1 { font-family: 'Orbitron', sans-serif; font-size: 2rem; letter-spacing: 2px; margin-bottom: 10px; }
+        .page-intro p { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
 
         /* PRODUCT GRID */
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 30px; 
+            margin-top: 20px;
+        }
 
         .product-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            padding: 50px 30px;
-            position: relative;
-            transition: all 0.4s ease;
-            overflow: hidden;
+            background: var(--panel);
+            border: 1px solid var(--accent-gray);
+            padding: 50px 35px;
+            text-align: left;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border-radius: 2px;
         }
 
         .product-card:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
             transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+            border-color: var(--gold);
         }
 
-        /* TECH SPIN DECORATION */
-        .card-hex {
-            position: absolute; top: -20px; right: -20px; font-family: 'JetBrains Mono';
-            font-size: 80px; color: rgba(197, 160, 89, 0.03); font-weight: bold; pointer-events: none;
+        .tier-tag { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 10px; 
+            color: var(--gold); 
+            font-weight: 700; 
+            margin-bottom: 10px;
+            display: block;
         }
 
-        .icon-box { font-size: 40px; color: var(--gold); margin-bottom: 20px; }
-        
-        h2 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
-        .price { font-family: 'JetBrains Mono'; color: var(--gold); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
-        
-        .features { list-style: none; padding: 0; margin: 0 0 40px 0; text-align: left; font-size: 14px; line-height: 2; color: #aaa; }
-        .features li::before { content: "› "; color: var(--gold); font-weight: bold; }
+        h2 { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; margin: 5px 0 15px 0; color: var(--text-dark); }
+        .price { font-family: 'JetBrains Mono'; font-size: 28px; font-weight: 700; color: var(--gold); margin-bottom: 25px; }
 
-        /* STRIPE BUTTON OVERRIDE WRAPPER */
-        .buy-wrapper {
+        .feature-list { list-style: none; padding: 0; margin-bottom: 40px; flex-grow: 1; }
+        .feature-list li { 
+            padding: 10px 0; 
+            border-bottom: 1px solid #F5F5F5; 
+            font-size: 0.9rem; 
+            color: #555;
+        }
+        .feature-list li::before { content: "• "; color: var(--gold); font-weight: bold; }
+
+        /* STRIPE AREA */
+        .buy-button-wrapper {
             margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 30px;
+            border-top: 1px dashed var(--accent-gray);
+            text-align: center;
         }
 
-        /* MASTER FOOTER REUSE */
-        .master-footer {
-            background: #000; color: #444; padding: 60px 20px;
-            border-top: 1px solid #222; margin-top: 100px;
-            font-family: 'JetBrains Mono', monospace; font-size: 10px; text-align: left;
+        footer { 
+            text-align: center; 
+            padding: 60px 20px; 
+            font-family: 'JetBrains Mono'; 
+            font-size: 10px; 
+            color: #999; 
+            letter-spacing: 1px;
+            border-top: 1px solid var(--accent-gray);
+            margin-top: 80px;
         }
-        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
 
         @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
+<div class="top-menu"></div>
+
 <header class="master-header">
-    <div class="header-content">
-        <a href="index.html" class="brand-logo">REALAIID</a>
-        <nav class="nav-links">
-            <a href="AIidentity.html">Identity Framework</a>
-            <a href="ailaws.html">Statutory Registry</a>
-            <a href="product-vssn.html" style="color: var(--gold)">Select Core</a>
-        </nav>
-    </div>
+    <a href="index.html" class="brand-logo">REALAIID</a>
 </header>
 
 <div class="container">
-    <div class="page-title">Biometric Tiers</div>
-    <div class="page-subtitle">SELECT YOUR SOVEREIGN ANCHOR LEVEL // PHASE: ALPHA-01</div>
+    <div class="page-intro">
+        <h1>VSSN Core Protocols</h1>
+        <p>Select Your Biometric Sovereignty Level</p>
+    </div>
 
     <div class="product-grid">
         
         <div class="product-card">
-            <div class="card-hex">01</div>
-            <div class="icon-box">◈</div>
+            <span class="tier-tag">LEVEL 01 // INDIVIDUAL</span>
             <h2>Individual Core</h2>
-            <div class="price">$29.00 <small style="font-size: 12px; opacity: 0.5;">/ ONE TIME FEE</small></div>
-            <ul class="features">
+            <div class="price">$149.00 <small style="font-size: 11px; font-weight: 400; opacity: 0.6;">/ YR</small></div>
+            <ul class="feature-list">
                 <li>Secure Biological Voice Anchoring</li>
                 <li>Standard Conversational Likeness Protection</li>
                 <li>VSSN Sovereign Identifier</li>
@@ -121,7 +151,7 @@
                 <li>24/7 Identity Spoof Detection</li>
             </ul>
             
-            <div class="buy-wrapper">
+            <div class="buy-button-wrapper">
                 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                 <stripe-buy-button
                   buy-button-id="buy_btn_1TGNoLKIEi29Q59Q3IxgEmEl"
@@ -130,12 +160,11 @@
             </div>
         </div>
 
-        <div class="product-card" style="border-color: rgba(0, 242, 255, 0.3);">
-            <div class="card-hex" style="color: rgba(0, 242, 255, 0.03);">02</div>
-            <div class="icon-box" style="color: var(--accent);">✦</div>
+        <div class="product-card">
+            <span class="tier-tag">LEVEL 02 // PROFESSIONAL</span>
             <h2>Performer Core</h2>
-            <div class="price" style="color: var(--accent);">$89.00 <small style="font-size: 12px; opacity: 0.5;">/ ONE TIME FEE</small></div>
-            <ul class="features">
+            <div class="price">$149.00 <small style="font-size: 11px; font-weight: 400; opacity: 0.6;">/ YR</small></div>
+            <ul class="feature-list">
                 <li>Professional Artistic Vocal Hashing</li>
                 <li>Performance, Singing & Melodic Protection</li>
                 <li>Extended Likeness Rights Attribution</li>
@@ -143,7 +172,7 @@
                 <li>Creative Asset Smart-Contract Ready</li>
             </ul>
 
-            <div class="buy-wrapper">
+            <div class="buy-button-wrapper">
                 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
                 <stripe-buy-button
                   buy-button-id="buy_btn_1TGNzYKIEi29Q59QGmTy13SC"
@@ -155,26 +184,8 @@
     </div>
 </div>
 
-<footer class="master-footer">
-    <div class="footer-grid">
-        <div>
-            <div style="color: var(--gold); margin-bottom: 10px;">OFFICE OF THE REGISTRAR</div>
-            <p>Administered by NMMMB.<br>
-            Secure node for global biometric anchoring and liveness proofing.</p>
-        </div>
-        <div>
-            <strong>PROTOCOL</strong><br><br>
-            VSSN-CORE-v2<br>
-            ENCRYPTION: AES-256<br>
-            STATUS: <span style="color: #00ff00;">ONLINE</span>
-        </div>
-        <div>
-            <strong>JURISDICTION</strong><br><br>
-            Philadelphia Mainframe<br>
-            Cognitrust Nexus<br>
-            RealAIID Bureau © 2026
-        </div>
-    </div>
+<footer>
+    © 2026 REALAIID BUREAU // PHILADELPHIA MAINFRAME // SECURE ASSET ANCHORING
 </footer>
 
 </body>
