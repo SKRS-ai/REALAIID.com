@@ -2,259 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RealAIID | Authorization & Anchor</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorization Protocols | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    
     <style>
-        :root {
-            --neon-blue: #00d2ff;
-            --deep-space: #050a14;
-            --panel-bg: rgba(10, 25, 47, 0.95);
-            --gold: #C5A059;
-            --sovereign-platinum: #E5E4E2;
-        }
-
-        body {
-            background-color: var(--deep-space);
-            color: white;
-            font-family: 'JetBrains Mono', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-image: radial-gradient(circle at center, #102a43 0%, #050a14 100%);
-        }
-
-        .checkout-container { 
-            width: 950px; 
-            display: grid; 
-            grid-template-columns: 1.2fr 0.8fr; 
-            gap: 20px; 
-        }
-
-        /* LEFT SIDE: TIER DISPLAY */
-        .tier-display { 
-            background: var(--panel-bg); 
-            border: 1px solid rgba(0, 210, 255, 0.2); 
-            padding: 30px; 
-            border-radius: 4px; 
-        }
-
-        .tier-card { 
-            background: rgba(255, 255, 255, 0.03); 
-            border-left: 4px solid #333; 
-            padding: 15px; 
-            margin-bottom: 12px; 
-            opacity: 0.4; 
-            transition: 0.3s ease;
-        }
-
-        /* ACTIVE STATES */
-        .active-standard, .active-citizen { 
-            opacity: 1 !important; 
-            border-color: var(--neon-blue) !important; 
-            background: rgba(0, 210, 255, 0.05) !important; 
-        }
-        .active-shield { 
-            opacity: 1 !important; 
-            border-color: var(--gold) !important; 
-            background: rgba(197, 160, 89, 0.1) !important; 
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.1);
-        }
-        .active-sovereign { 
-            opacity: 1 !important; 
-            border-color: var(--sovereign-platinum) !important; 
-            background: rgba(229, 228, 226, 0.08) !important; 
-            box-shadow: 0 0 30px rgba(229, 228, 226, 0.15);
-        }
-
-        /* RIGHT SIDE: SUMMARY */
-        .deployment-summary { 
-            background: #000; 
-            border: 1px solid var(--gold); 
-            padding: 30px; 
-            display: flex; 
-            flex-direction: column; 
-        }
-
-        .summary-header { 
-            font-family: 'Cinzel', serif; 
-            color: var(--gold); 
-            border-bottom: 1px solid var(--gold); 
-            padding-bottom: 10px; 
-            margin-bottom: 20px; 
-            font-size: 14px; 
-            letter-spacing: 2px; 
-        }
-
-        .status-row { 
-            display: flex; 
-            justify-content: space-between; 
-            margin-bottom: 12px; 
-            font-size: 11px; 
-        }
-
-        .status-completed { color: #00ff88; text-shadow: 0 0 5px #00ff88; }
+        :root { --gold: #C5A059; --bg: #050505; --panel: #111; --text: #e0e0e0; }
+        body { background: var(--bg); color: var(--text); font-family: 'Libre Baskerville', serif; margin: 0; padding: 0; }
         
-        .total-fee-block { 
-            margin: 30px 0; 
-            border-top: 1px dashed #333; 
-            padding-top: 20px; 
-        }
+        /* REUSED MASTER HEADER */
+        .master-header { background: #000; border-bottom: 2px solid var(--gold); padding: 20px 0; text-align: center; }
+        .brand-logo { font-family: 'Orbitron', sans-serif; color: var(--gold); text-decoration: none; font-size: 1.5rem; letter-spacing: 5px; }
 
-        .total-label { font-size: 10px; color: #888; text-transform: uppercase; }
-        .total-amount { font-size: 36px; color: var(--neon-blue); font-weight: bold; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .protocol-header { text-align: center; margin-bottom: 50px; }
+        .protocol-header h1 { font-family: 'Orbitron', sans-serif; color: var(--gold); letter-spacing: 3px; }
+        .protocol-header p { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; }
 
-        .payment-trigger { 
-            margin-top: auto; 
-            border: 1px solid rgba(197, 160, 89, 0.3); 
-            padding: 10px; 
-            background: rgba(255, 255, 255, 0.02); 
-            text-align: center; 
-        }
+        .checkout-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-        .security-note { 
-            font-size: 9px; 
-            color: #555; 
-            margin-top: 15px; 
-            line-height: 1.4; 
-            text-transform: uppercase; 
+        .protocol-card {
+            background: var(--panel);
+            border: 1px solid #222;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
         }
+        .protocol-card:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(197, 160, 89, 0.1); }
+        
+        .tier-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+        h2 { margin: 0 0 10px 0; font-size: 1.4rem; color: #fff; }
+        .price { font-family: 'JetBrains Mono'; font-size: 24px; color: var(--gold); margin-bottom: 25px; }
+        
+        .features { list-style: none; padding: 0; margin-bottom: 30px; font-size: 14px; color: #aaa; flex-grow: 1; }
+        .features li { margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .features li b { color: #fff; }
+
+        .stripe-container { margin-top: auto; padding-top: 20px; border-top: 1px solid #333; }
+
+        /* FOOTER */
+        footer { border-top: 1px solid #222; padding: 40px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.5; margin-top: 100px; }
     </style>
 </head>
 <body>
 
-<div class="checkout-container">
-    <div class="tier-display">
-        <h2 style="font-family: 'Cinzel'; font-size: 16px; margin-bottom: 20px; color: var(--gold);">AUTHORIZATION PROTOCOLS</h2>
-        
-        <div class="tier-card" id="card-standard">
-            <strong>DIGITAL CITIZEN</strong> - $149<br>
-            <small>Core identity hashing and manual verification.</small>
-        </div>
+<header class="master-header">
+    <a href="index.html" class="brand-logo">REALAIID</a>
+</header>
 
-        <div class="tier-card" id="card-citizen">
-            <strong>DIGITAL CITIZEN</strong> - $149<br>
-            <small>Standard anchoring + Basic Residency Suite.</small>
-        </div>
-
-        <div class="tier-card" id="card-shield">
-            <strong>LIKENESS SHIELD</strong> - $499<br>
-            <small>Automated monitoring & NO FAKES Act enforcement.</small>
-        </div>
-
-        <div class="tier-card" id="card-sovereign">
-            <strong>SOVEREIGN ENTITY</strong> - $2,499<br>
-            <small>Full Estate Defense + Irrevocable Mainframe Domain.</small>
-        </div>
+<div class="container">
+    <div class="protocol-header">
+        <h1>Authorization Protocols</h1>
+        <p>SELECT YOUR ANCHOR LEVEL // JURISDICTION: PHILADELPHIA MAINFRAME</p>
     </div>
 
-    <div class="deployment-summary">
-        <div class="summary-header">DEPLOYMENT SUMMARY</div>
+    <div class="checkout-grid">
         
-        <div class="status-row"><span>VSSN Status</span> <span class="status-completed">ONLINE</span></div>
-        <div class="status-row"><span>Node Location</span> <span id="node-id">PHL-MAIN-01</span></div>
-        <div class="status-row"><span>Security Clearance</span> <span id="clearance-level">LEVEL 1</span></div>
-        <div class="status-row"><span>Auth Protocol</span> <span id="protocol-name">STANDARD</span></div>
-
-        <div class="total-fee-block">
-            <div class="total-label">FINAL AUTHORIZATION FEE</div>
-            <div id="display-price" class="total-amount">$149.00</div>
-        </div>
-
-        <div class="payment-trigger" id="stripe-portal">
+        <div class="protocol-card">
+            <div class="tier-label">Protocol 01: Entry-Level</div>
+            <h2>Standard VSSN Core</h2>
+            <div class="price">$29.00 <small style="font-size: 10px;">/ ONE-TIME</small></div>
+            <ul class="features">
+                <li><b>VSSN Core ID</b> Assignment</li>
+                <li><b>Philadelphia Mainframe</b> Ledger Entry</li>
+                <li><b>Sovereign Anchor</b> Certificate (Digital)</li>
+                <li>Identity Theft Protection Foundation</li>
+                <li>Global Representation Rights</li>
+            </ul>
+            <div class="stripe-container">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1TFv1EKIEi29Q59QCsLlndWJ"
+                  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                ></stripe-buy-button>
             </div>
-
-        <div class="security-note">
-            [!] ENCRYPTION: AES-256-GCM | NODE: PHL-MAIN | AUTHORIZED BY REALAIID BUREAU
         </div>
+
+        <div class="protocol-card" style="border-color: #333;">
+            <div class="tier-label">Protocol 02: Artistic</div>
+            <h2>Performer VSSN</h2>
+            <div class="price">$149.00 <small style="font-size: 10px;">/ YEARLY</small></div>
+            <ul class="features">
+                <li><b>ELVIS Act</b> Voice Compliance</li>
+                <li>128-bit <b>SHA-Hash</b> Generation</li>
+                <li>Vocal Asset Performance Protection</li>
+                <li>Advanced Likeness Rights Attribution</li>
+                <li>AI Synthesis Authorship Metadata</li>
+            </ul>
+            <div class="stripe-container">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1TGOpzKIEi29Q59QpfWAgVWE"
+                  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                ></stripe-buy-button>
+            </div>
+        </div>
+
+        <div class="protocol-card" style="border: 2px solid var(--gold);">
+            <div class="tier-label">Protocol 03: Sovereign</div>
+            <h2>Institutional Anchor</h2>
+            <div class="price">$2,499.00 <small style="font-size: 10px;">/ YEARLY</small></div>
+            <ul class="features">
+                <li><b>PHL Aviation Node</b> Integration</li>
+                <li>Hardware-Locked <b>HSM Keys</b></li>
+                <li>Quantum-Resistant Hashing Protocol</li>
+                <li>Direct <b>Security Engineer</b> Liaison</li>
+                <li>Institutional Asset Banking API</li>
+            </ul>
+            <div class="stripe-container">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1TGQegKIEi29Q59QbrPNJNxw"
+                  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                ></stripe-buy-button>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<script async src="https://js.stripe.com/v3/buy-button.js"></script>
-
-<script>
-    (function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const tier = urlParams.get('tier');
-        const portal = document.getElementById('stripe-portal');
-
-        // Master Mapping Configuration
-        const tiers = {
-            'standard': {
-                card: 'card-standard',
-                style: 'active-standard',
-                price: '$29.00',
-                node: 'PHL-MAIN-01',
-                clearance: 'LEVEL 1',
-                protocol: 'CORE VSSN',
-                button: 'buy_btn_1TGQegKIEi29Q59QbrPNJNxw'
-            },
-            'citizen': {
-                card: 'card-citizen',
-                style: 'active-citizen',
-                price: '$149.00',
-                node: 'PHL-MAIN-01',
-                clearance: 'LEVEL 2',
-                protocol: 'RESIDENCY',
-                button: 'buy_btn_1TFv1EKIEi29Q59QCsLlndWJ'
-            },
-            'shield': {
-                card: 'card-shield',
-                style: 'active-shield',
-                price: '$499.00',
-                node: 'PHL-MAIN-99',
-                clearance: 'LEVEL 4',
-                protocol: 'ACTIVE DEFENSE',
-                button: 'buy_btn_1TGOpzKIEi29Q59QpfWAgVWE'
-            },
-            'sovereign': {
-                card: 'card-sovereign',
-                style: 'active-sovereign',
-                price: '$2,499.00',
-                node: 'PHL-USA-001',
-                clearance: 'OMNIPOTENT',
-                protocol: 'IRREVOCABLE',
-                button: 'buy_btn_1TGPAEKIEi29Q59QuXfF6W8k'
-            }
-        };
-
-        try {
-            // Default to Citizen if tier is missing or invalid
-            const active = tiers[tier] || tiers['citizen'];
-
-            // UI Updates
-            const activeCard = document.getElementById(active.card);
-            if (activeCard) activeCard.classList.add(active.style);
-
-            document.getElementById('display-price').innerText = active.price;
-            document.getElementById('node-id').innerText = active.node;
-            document.getElementById('clearance-level').innerText = active.clearance;
-            document.getElementById('protocol-name').innerText = active.protocol;
-
-            // Color adjustments
-            const priceEl = document.getElementById('display-price');
-            if (tier === 'sovereign') {
-                priceEl.style.color = '#E5E4E2'; 
-            } else if (tier === 'shield') {
-                priceEl.style.color = '#C5A059';
-            } else {
-                priceEl.style.color = '#00d2ff';
-            }
-
-            // Stripe Button Injection
-            if (portal) {
-                portal.innerHTML = `
-                    <stripe-buy-button
-                        buy-button-id="${active.button}"
-                        publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
-                    ></stripe-buy-button>`;
-            }
-        } catch (error) {
-            console.error("Mainframe Ingest Error:", error);
-        }
-    })();
-</script>
+<footer>
+    © 2026 REALAIID BUREAU | COGNITRUST NEXUS | PHL MAINFRAME ENCRYPTED
+</footer>
 
 </body>
 </html>
