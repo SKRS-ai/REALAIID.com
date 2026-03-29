@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Authorized | REALAIID Bureau</title>
+    <title>Sovereign Authorized | REALAIID</title>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -13,7 +13,6 @@
             --panel: #FFFFFF; 
             --text-dark: #1A1A1A;
             --accent-gray: #E0E0E0;
-            --success-green: #28a745;
         }
 
         body { 
@@ -28,15 +27,8 @@
             background-size: 30px 30px;
         }
 
-        /* TOP MENU BAR */
-        .top-menu {
-            background: var(--panel);
-            border-bottom: 1px solid var(--accent-gray);
-            height: 50px;
-            width: 100%;
-        }
+        .top-menu { background: var(--panel); border-bottom: 1px solid var(--accent-gray); height: 50px; width: 100%; }
 
-        /* MASTER HEADER */
         .master-header { 
             background: var(--panel); 
             border-bottom: 3px solid var(--gold); 
@@ -67,11 +59,10 @@
             text-align: center; 
             max-width: 550px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.05);
-            border-radius: 2px;
         }
 
         .status-uplink { 
-            color: var(--success-green); 
+            color: #28a745; 
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem; 
             font-weight: bold; 
@@ -81,47 +72,41 @@
             display: block;
         }
 
-        h1 { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 2rem; margin-bottom: 20px; }
+        h1 { font-style: italic; font-size: 2rem; margin-bottom: 20px; }
 
         .uid-box { 
             background: #fdfdfd; 
             border: 1px dashed var(--gold); 
             padding: 25px; 
             margin: 30px 0; 
-            color: var(--text-dark); 
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.95rem; 
             text-align: left;
         }
 
-        .btn-home { 
+        /* THE FIX: A PURE LINK BUTTON, NOT A FORM SUBMIT */
+        .btn-action { 
             display: inline-block; 
             margin-top: 10px; 
             color: #fff; 
             background: var(--gold);
             text-decoration: none; 
-            padding: 15px 35px; 
+            padding: 18px 40px; 
             font-family: 'Orbitron', sans-serif;
-            font-size: 0.75rem; 
-            letter-spacing: 2px;
+            font-size: 0.8rem; 
+            letter-spacing: 3px;
             font-weight: 700;
             transition: 0.3s;
             border: 1px solid var(--gold);
         }
 
-        .btn-home:hover {
+        .btn-action:hover {
             background: #fff;
             color: var(--gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
         }
 
-        footer { 
-            text-align: center; 
-            padding: 40px; 
-            font-family: 'JetBrains Mono'; 
-            font-size: 10px; 
-            color: #999; 
-            letter-spacing: 1px;
-        }
+        footer { text-align: center; padding: 40px; font-family: 'JetBrains Mono'; font-size: 10px; color: #999; }
     </style>
 </head>
 <body>
@@ -134,32 +119,29 @@
 
     <div class="main-content">
         <div class="success-box">
-            <span class="status-uplink">Sovereign Uplink Established</span>
-            <h1>Authorization Confirmed.</h1>
+            <span class="status-uplink">Uplink Confirmed</span>
+            <h1>Authorization Granted.</h1>
             
-            <p style="color: #666; font-size: 1rem; line-height: 1.6;">The Bureau has received your request for Sovereign Liaison access. Your identity is now prioritized for 1900 Market St. Ingest.</p>
+            <p style="color: #666; line-height: 1.6;">Your request for Sovereign Liaison access has been synchronized with the Philadelphia Mainframe.</p>
             
             <div class="uid-box">
                 NODE_AUTH: PHL-01-SVGN<br>
-                <span id="hex-code" style="color: var(--gold);">SECURE_HASH: [INITIALIZING...]</span>
+                <span id="hex-code" style="color: var(--gold);">SECURE_HASH: [GENERATING]</span>
             </div>
 
-            <p style="font-size: 0.8rem; color: #888; margin-bottom: 30px;">A Sovereign Agent will contact you within 24 hours via secure uplink to finalize your Blue Paper documentation.</p>
-            
-            <a href="index.html" class="btn-home">RETURN TO MAINFRAME</a>
+            <a href="index.html" class="btn-action">RETURN TO MAINFRAME</a>
         </div>
     </div>
 
     <footer>
-        PHILADELPHIA MAINFRAME // SECURE ASSET ANCHORING // REALAIID BUREAU © 2026
+        REALAIID BUREAU // PHILADELPHIA MAINFRAME © 2026
     </footer>
 
     <script>
-        // Generate a random high-level auth hex for the visual effect
         setTimeout(() => {
             const hex = Math.random().toString(16).toUpperCase().substring(2, 14);
             document.getElementById('hex-code').innerText = "SECURE_HASH: " + hex;
-        }, 1200);
+        }, 1000);
     </script>
 </body>
 </html>
