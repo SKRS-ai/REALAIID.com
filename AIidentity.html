@@ -177,7 +177,45 @@
     </style>
 </head>
 <body>
+<style>
+    :root { --gold: #C5A059; --bg: #050505; --panel: #111; --text: #e0e0e0; }
+    
+    /* GLOBAL HEADER */
+    .master-header {
+        background: rgba(0,0,0,0.95);
+        border-bottom: 2px solid var(--gold);
+        padding: 20px 0;
+        position: sticky; top: 0; z-index: 1000;
+        backdrop-filter: blur(10px);
+    }
+    .header-content {
+        max-width: 1200px; margin: 0 auto; display: flex; 
+        justify-content: space-between; align-items: center; padding: 0 20px;
+    }
+    .brand-logo { 
+        font-family: 'Orbitron', sans-serif; color: var(--gold); 
+        text-decoration: none; font-size: 1.5rem; letter-spacing: 4px; 
+    }
+    .nav-links a {
+        color: var(--text); text-decoration: none; margin-left: 25px;
+        font-family: 'JetBrains Mono', monospace; font-size: 11px;
+        text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
 
+    /* GLOBAL FOOTER */
+    .master-footer {
+        background: #000; color: #444; padding: 60px 20px;
+        border-top: 1px solid #222; margin-top: 100px;
+        font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    }
+    .footer-grid {
+        max-width: 1200px; margin: 0 auto; display: grid;
+        grid-template-columns: 2fr 1fr 1fr; gap: 40px;
+    }
+    .footer-seal { color: var(--gold); font-size: 14px; margin-bottom: 15px; }
+    .status-indicator { color: #00ff00; }
+</style>
 <div class="mainframe-overlay"></div>
 
 <div class="container">
