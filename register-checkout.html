@@ -2,150 +2,162 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealAIID | Authorization & Anchor</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { background: #f8fafc; color: #0f172a; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; }
-        .nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; background: white; border-bottom: 1px solid #e2e8f0; }
-        .container { display: flex; max-width: 1100px; margin: 50px auto; gap: 40px; padding: 0 20px; }
-        
-        /* Left Side: Form */
-        .auth-section { flex: 1.5; }
-        h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; margin-bottom: 30px; }
-        .tier-card { border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 15px; background: white; transition: 0.3s; }
-        .tier-card.active { border: 2px solid #00d4ff; box-shadow: 0 0 10px rgba(0, 212, 255, 0.1); }
-        .tier-header { display: flex; justify-content: space-between; font-weight: bold; }
-        .tier-desc { font-size: 0.85rem; color: #64748b; margin-top: 5px; }
+        :root {
+            --neon-blue: #00d2ff;
+            --deep-space: #050a14;
+            --panel-bg: rgba(10, 25, 47, 0.95);
+            --gold: #C5A059;
+        }
 
-        /* Right Side: Deployment Summary */
-        .summary-box { flex: 1; background: #05080f; color: white; border-radius: 12px; padding: 30px; height: fit-content; position: sticky; top: 20px; }
-        .summary-header { color: #1693e9; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 1px solid #1e293b; padding-bottom: 10px; }
-        .line-item { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.85rem; font-family: monospace; }
-        .status-tag { color: #39ff14; }
-        
-        .total-section { margin-top: 30px; border-top: 1px solid #1e293b; padding-top: 20px; }
-        .total-label { font-size: 1.5rem; font-weight: bold; }
-        .total-price { font-size: 1.8rem; color: #00d4ff; float: right; }
-        
-        .btn-auth { background: #1693e9; color: white; border: none; width: 100%; padding: 18px; border-radius: 6px; font-weight: bold; margin-top: 30px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
-        .disclaimer { font-size: 0.6rem; color: #475569; margin-top: 15px; line-height: 1.4; text-transform: uppercase; }
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle at center, #102a43 0%, #050a14 100%);
+        }
+
+        .checkout-container {
+            width: 900px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+        }
+
+        /* LEFT SIDE: TIER SELECTION (READ ONLY) */
+        .tier-display {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--neon-blue);
+            padding: 20px;
+            margin-bottom: 15px;
+            opacity: 0.6;
+        }
+
+        .tier-card.active {
+            opacity: 1;
+            background: rgba(0, 210, 255, 0.05);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+        }
+
+        /* RIGHT SIDE: DEPLOYMENT SUMMARY & STRIPE */
+        .deployment-summary {
+            background: #000;
+            border: 1px solid var(--gold);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .summary-header {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 12px;
+        }
+
+        .status-completed { color: #00ff88; }
+
+        .total-fee-block {
+            margin: 40px 0;
+            border-top: 1px dashed #333;
+            padding-top: 20px;
+        }
+
+        .total-label { font-size: 10px; color: #888; text-transform: uppercase; }
+        .total-amount { font-size: 36px; color: var(--neon-blue); font-weight: bold; }
+
+        /* STRIPE COMPONENT WRAPPER */
+        .payment-trigger {
+            margin-top: auto;
+            border: 1px solid var(--neon-blue);
+            padding: 10px;
+            background: rgba(0, 210, 255, 0.05);
+            text-align: center;
+        }
+
+        .security-note {
+            font-size: 9px;
+            color: #555;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
 
-    <div class="nav">
-        <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID" style="height: 120px;">
-        <div style="font-size: 0.8rem; font-weight: bold;">NODE: PHL-MAIN-01</div>
-    </div>
-
-    <div class="container">
-        <div class="auth-section">
-            <h1>Authorization.</h1>
-            <p style="color: #64748b; margin-bottom: 40px;">Finalize your VSSN registration and anchor your identity to the Philadelphia Mainframe infrastructure.</p>
-
-            <div id="card-vssn" class="tier-card">
-                <div class="tier-header"><span>STANDARD VSSN</span> <span>$29</span></div>
-                <div class="tier-desc">Core identity hashing and manual verification.</div>
-            </div>
-
-            <div id="card-standard" class="tier-card">
-                <div class="tier-header"><span>DIGITAL CITIZEN</span> <span>$149</span></div>
-                <div class="tier-desc">Standard anchoring + Basic Residency Suite.</div>
-            </div>
-
-            <div id="card-shield" class="tier-card">
-                <div class="tier-header"><span>LIKENESS SHIELD</span> <span>$499</span></div>
-                <div class="tier-desc">Automated monitoring & NO FAKES Act enforcement.</div>
-            </div>
-
-            <div id="card-sovereign" class="tier-card">
-                <div class="tier-header"><span>SOVEREIGN LIAISON</span> <span>$2,499</span></div>
-                <div class="tier-desc">API Access, Full Blue Paper, & 1900 Market Anchor.</div>
-            </div>
-        </div>
-
-        <div class="summary-box">
-            <div class="summary-header">Deployment Summary</div>
-            
-            <div class="line-item">
-                <span>VSSN Generation</span>
-                <span class="status-tag">COMPLETED</span>
-            </div>
-            <div class="line-item">
-                <span>Spatial Mesh Ingest</span>
-                <span class="status-tag">COMPLETED</span>
-            </div>
-            <div class="line-item">
-                <span>Anchor Node</span>
-                <span style="color: #64748b;">PHL-MAIN-01</span>
-            </div>
-            <div class="line-item">
-                <span>Selected Tier</span>
-                <span id="display-tier-name" style="color: #00d4ff;">--</span>
-            </div>
-
-            <div class="total-section">
-                <span class="total-label">TOTAL FEE</span>
-                <span id="display-total-price" class="total-price">$0.00</span>
-            </div>
-
-            <p class="disclaimer">
-                [!] Transaction secured via AES-256. All sales are final once anchored to the mainframe.
-            </p>
-
-            <button class="btn-auth" onclick="finalizeAnchor()">Authorize & Anchor →</button>
-        </div>
-    </div>
-
-    <script async
-  src="https://js.stripe.com/v3/buy-button.js">
-</script>
-
-<stripe-buy-button
-  buy-button-id="buy_btn_1TFv1EKIEi29Q59QCsLlndWJ"
-  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
->
-</stripe-buy-button>
-    <script>
+<div class="checkout-container">
+    <div class="tier-display">
+        <h2 style="font-family: 'Cinzel'; font-size: 18px; margin-bottom: 30px;">IDENTITY TIERS</h2>
         
-        // 1. DATA CONFIGURATION
-        const bureauPricing = {
-            'vssn':      { name: 'STANDARD VSSN',      price: '$29.00',    cardId: 'card-vssn' },
-            'standard':  { name: 'DIGITAL CITIZEN',    price: '$149.00',   cardId: 'card-standard' },
-            'shield':    { name: 'LIKENESS SHIELD',    price: '$499.00',   cardId: 'card-shield' },
-            'sovereign': { name: 'SOVEREIGN LIAISON',  price: '$2,499.00', cardId: 'card-sovereign' }
-        };
+        <div class="tier-card">
+            <strong>STANDARD VSSN</strong> - $29<br>
+            <small>Core identity hashing and manual verification.</small>
+        </div>
 
-        // 2. THE ENGINE: Read URL and Update UI
-        function updateCheckoutFromURL() {
-            const params = new URLSearchParams(window.location.search);
-            const tierKey = params.get('tier'); // Looks for ?tier=shield
+        <div class="tier-card active">
+            <strong>DIGITAL CITIZEN</strong> - $149<br>
+            <small>Standard anchoring + Basic Residency Suite.</small>
+        </div>
 
-            if (tierKey && bureauPricing[tierKey]) {
-                const selection = bureauPricing[tierKey];
+        <div class="tier-card">
+            <strong>LIKENESS SHIELD</strong> - $499<br>
+            <small>Automated monitoring & NO FAKES Act enforcement.</small>
+        </div>
+    </div>
 
-                // Update text in the Sidebar
-                document.getElementById('display-tier-name').innerText = selection.name;
-                document.getElementById('display-total-price').innerText = selection.price;
+    <div class="deployment-summary">
+        <div class="summary-header">DEPLOYMENT SUMMARY</div>
+        
+        <div class="status-row"><span>VSSN Generation</span> <span class="status-completed">COMPLETED</span></div>
+        <div class="status-row"><span>Spatial Mesh Ingest</span> <span class="status-completed">COMPLETED</span></div>
+        <div class="status-row"><span>Anchor Node</span> <span>PHL-MAIN-01</span></div>
+        <div class="status-row"><span>Selected Tier</span> <span style="color:var(--neon-blue)">DIGITAL CITIZEN</span></div>
 
-                // Highlight the selected card on the left
-                document.getElementById(selection.cardId).classList.add('active');
-            } else {
-                // Default fallback if someone hits the page without a tier
-                document.getElementById('display-tier-name').innerText = bureauPricing['standard'].name;
-                document.getElementById('display-total-price').innerText = bureauPricing['standard'].price;
-                document.getElementById('card-standard').classList.add('active');
-            }
-        }
+        <div class="total-fee-block">
+            <div class="total-label">TOTAL AUTHORIZATION FEE</div>
+            <div class="total-amount">$149.00</div>
+        </div>
 
-        function finalizeAnchor() {
-    // 1. You can add a small validation check here if needed
-    // 2. Simply redirect to the success page
-    window.location.href = "consultation-success.html";
-}
+        <div class="payment-trigger">
+            <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+            <stripe-buy-button
+                buy-button-id="buy_btn_1TFv1EKIEi29Q59QCsLlndWJ"
+                publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+            >
+            </stripe-buy-button>
+        </div>
 
-        // Run on load
-        window.onload = updateCheckoutFromURL;
-    </script>
+        <div class="security-note">
+            [!] TRANSACTION SECURED VIA AES-256. ALL SALES ARE FINAL ONCE ANCHORED TO THE MAINFRAME. <br>
+            STRIPE VERIFIED MERCHANT: REALAIID BUREAU.
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
