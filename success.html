@@ -3,90 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Identity Anchored | RealAIID Bureau</title>
+    <title>ANCHOR_SUCCESS | REALAIID BUREAU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { background: #05080F; color: #f8fafc; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
-        
-        .success-container { text-align: center; max-width: 600px; padding: 40px; border: 1px solid #1693E9; background: rgba(11, 19, 32, 0.8); box-shadow: 0 0 30px rgba(0, 212, 255, 0.2); }
-        
-        .check-icon { font-size: 5rem; color: #39ff14; margin-bottom: 20px; animation: pulse 2s infinite; }
-        
-        h1 { font-family: 'Playfair Display', serif; font-style: italic; color: #39ff14; letter-spacing: 2px; }
-        
-        .vssn-display { background: #000; border: 1px dashed #1693E9; padding: 20px; margin: 30px 0; font-size: 1.5rem; letter-spacing: 5px; color: #00d4ff; text-shadow: 0 0 10px #00d4ff; min-height: 1.5rem; }
-        
-        .meta-data { font-size: 0.7rem; color: #64748b; text-transform: uppercase; text-align: left; border-top: 1px solid #1e293b; padding-top: 15px; }
-        
-        .btn-dashboard { display: inline-block; margin-top: 30px; padding: 15px 30px; border: 1px solid #39ff14; color: #39ff14; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .btn-dashboard:hover { background: #39ff14; color: #000; }
+        body {
+            background-color: #050505;
+            color: #C5A059;
+            font-family: 'Libre Baskerville', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            text-align: center;
+        }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
+        .container {
+            border: 1px solid #C5A059;
+            padding: 60px;
+            background: rgba(10, 25, 47, 0.8);
+            box-shadow: 0 0 50px rgba(197, 160, 89, 0.2);
+            max-width: 600px;
+            position: relative;
+        }
+
+        .status-badge {
+            font-family: 'JetBrains Mono', monospace;
+            background: #C5A059;
+            color: #000;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C5A059, transparent);
+            margin: 30px 0;
+        }
+
+        p {
+            color: #d1d1d1;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+
+        .timer-box {
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px dashed #C5A059;
+            padding: 20px;
+            margin: 30px 0;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .instruction {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+        }
+
+        #bg-effect {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8px;
+            color: rgba(197, 160, 89, 0.05);
+            word-break: break-all;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="success-container">
-        <div class="check-icon">✓</div>
-        <h1>IDENTITY ANCHORED.</h1>
-        <p style="font-size: 0.8rem; color: #94a3b8;">NODE: PHL-01 // MAINFRAME INGEST COMPLETE</p>
+<div id="bg-effect"></div>
 
-        <div class="vssn-display" id="vssn-reveal">-------- ----</div>
-        
-        <div class="meta-data">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Registry Status:</span> <span style="color: #39ff14;">IMMUTABLE</span>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                <span>Security Protocol:</span> <span>SHA-512 / AES-256</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-                <span>Timestamp:</span> <span id="time-stamp"></span>
-            </div>
-        </div>
-
-        <p style="font-size: 0.6rem; color: #475569; margin-top: 20px;">
-            Your Virtual Social Security Number has been issued. This record is now a permanent part of the Philadelphia Bureau Ledger.
-        </p>
-
-        <a href="index.html" class="btn-dashboard">RETURN TO MAINFRAME</a>
+<div class="container">
+    <div class="status-badge">PAYMENT VERIFIED // SESSION ACTIVE</div>
+    <h1>Anchoring Initialized</h1>
+    <div class="divider"></div>
+    
+    <p>The <strong>Philadelphia Mainframe</strong> has received your request for Biometric Anchoring.</p>
+    
+    <div class="timer-box">
+        ESTIMATED PROCESSING TIME:<br>
+        <span style="font-size: 24px; color: #fff;">03:59:59</span><br>
+        <small style="opacity: 0.6;">PENDING REGISTRAR VALIDATION</small>
     </div>
 
-    href="https://buy.stripe.com/your_unique_link" class="purchase-btn">
+    <p style="font-size: 16px;">
+        Registrar <strong>Nehemiah MMM Brown</strong> is currently reviewing your cryptographic submission. 
+        Your official VSSN Record will be delivered to your registered email address shortly.
+    </p>
 
-   ANCHOR LIKENESS ($149)
+    <div class="divider"></div>
+    <p class="instruction">Please do not attempt to re-anchor. Your spot in the queue is secured.</p>
+</div>
 
-</a>" class="purchase-btn">
+<script>
+    // Background "Matrix" effect for authenticity
+    const box = document.getElementById('bg-effect');
+    let stream = "";
+    for(let i=0; i<5000; i++) {
+        stream += Math.random() > 0.99 ? "REALAIID" : Math.floor(Math.random()*2);
+    }
+    box.innerText = stream;
+</script>
 
-   ANCHOR LIKENESS ($149)
-
-</a>
-    <script>
-        // 1. Set the Timestamp
-        document.getElementById('time-stamp').innerText = new Date().toLocaleString();
-
-        // 2. The Reveal Animation
-        const targetVSSN = "2917-" + Math.floor(1000 + Math.random() * 9000) + "-" + Math.floor(1000 + Math.random() * 9000);
-        let currentText = "";
-        let index = 0;
-        const display = document.getElementById('vssn-reveal');
-
-        function reveal() {
-            if (index < targetVSSN.length) {
-                display.innerText += targetVSSN[index];
-                index++;
-                setTimeout(reveal, 100); // Speed of the typing
-            }
-        }
-
-        // Start reveal after a short delay
-        setTimeout(() => {
-            display.innerText = "";
-            reveal();
-        }, 1000);
-    </script>
 </body>
 </html>
