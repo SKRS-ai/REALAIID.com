@@ -1,74 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RealAIID | Authorization & Anchor</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #00d2ff;
+            --deep-space: #050a14;
+            --panel-bg: rgba(10, 25, 47, 0.95);
+            --gold: #C5A059;
+            --sovereign-platinum: #E5E4E2;
+        }
+
+        body {
+            background-color: var(--deep-space);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(circle at center, #102a43 0%, #050a14 100%);
+        }
+
+        .checkout-container { 
+            width: 950px; 
+            display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 20px; 
+        }
+
+        /* LEFT SIDE: TIER DISPLAY */
+        .tier-display { 
+            background: var(--panel-bg); 
+            border: 1px solid rgba(0, 210, 255, 0.2); 
+            padding: 30px; 
+            border-radius: 4px; 
+        }
+
+        .tier-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border-left: 4px solid #333; 
+            padding: 15px; 
+            margin-bottom: 12px; 
+            opacity: 0.4; 
+            transition: 0.3s ease;
+        }
+
+        /* ACTIVE STATES */
+        .active-standard, .active-citizen { 
+            opacity: 1 !important; 
+            border-color: var(--neon-blue) !important; 
+            background: rgba(0, 210, 255, 0.05) !important; 
+        }
+        .active-shield { 
+            opacity: 1 !important; 
+            border-color: var(--gold) !important; 
+            background: rgba(197, 160, 89, 0.1) !important; 
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.1);
+        }
+        .active-sovereign { 
+            opacity: 1 !important; 
+            border-color: var(--sovereign-platinum) !important; 
+            background: rgba(229, 228, 226, 0.08) !important; 
+            box-shadow: 0 0 30px rgba(229, 228, 226, 0.15);
+        }
+
+        /* RIGHT SIDE: SUMMARY */
+        .deployment-summary { 
+            background: #000; 
+            border: 1px solid var(--gold); 
+            padding: 30px; 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+        .summary-header { 
+            font-family: 'Cinzel', serif; 
+            color: var(--gold); 
+            border-bottom: 1px solid var(--gold); 
+            padding-bottom: 10px; 
+            margin-bottom: 20px; 
+            font-size: 14px; 
+            letter-spacing: 2px; 
+        }
+
+        .status-row { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 12px; 
+            font-size: 11px; 
+        }
+
+        .status-completed { color: #00ff88; text-shadow: 0 0 5px #00ff88; }
+        
+        .total-fee-block { 
+            margin: 30px 0; 
+            border-top: 1px dashed #333; 
+            padding-top: 20px; 
+        }
+
+        .total-label { font-size: 10px; color: #888; text-transform: uppercase; }
+        .total-amount { font-size: 36px; color: var(--neon-blue); font-weight: bold; }
+
+        .payment-trigger { 
+            margin-top: auto; 
+            border: 1px solid rgba(197, 160, 89, 0.3); 
+            padding: 10px; 
+            background: rgba(255, 255, 255, 0.02); 
+            text-align: center; 
+        }
+
+        .security-note { 
+            font-size: 9px; 
+            color: #555; 
+            margin-top: 15px; 
+            line-height: 1.4; 
+            text-transform: uppercase; 
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-container">
+    <div class="tier-display">
+        <h2 style="font-family: 'Cinzel'; font-size: 16px; margin-bottom: 20px; color: var(--gold);">AUTHORIZATION PROTOCOLS</h2>
+        
+        <div class="tier-card" id="card-standard">
+            <strong>STANDARD VSSN</strong> - $149<br>
+            <small>Core identity hashing and manual verification.</small>
+        </div>
+
+        <div class="tier-card" id="card-citizen">
+            <strong>DIGITAL CITIZEN</strong> - $149<br>
+            <small>Standard anchoring + Basic Residency Suite.</small>
+        </div>
+
+        <div class="tier-card" id="card-shield">
+            <strong>LIKENESS SHIELD</strong> - $499<br>
+            <small>Automated monitoring & NO FAKES Act enforcement.</small>
+        </div>
+
+        <div class="tier-card" id="card-sovereign">
+            <strong>SOVEREIGN ENTITY</strong> - $2,499<br>
+            <small>Full Estate Defense + Irrevocable Mainframe Domain.</small>
+        </div>
+    </div>
+
+    <div class="deployment-summary">
+        <div class="summary-header">DEPLOYMENT SUMMARY</div>
+        
+        <div class="status-row"><span>VSSN Status</span> <span class="status-completed">ONLINE</span></div>
+        <div class="status-row"><span>Node Location</span> <span id="node-id">PHL-MAIN-01</span></div>
+        <div class="status-row"><span>Security Clearance</span> <span id="clearance-level">LEVEL 1</span></div>
+        <div class="status-row"><span>Auth Protocol</span> <span id="protocol-name">STANDARD</span></div>
+
+        <div class="total-fee-block">
+            <div class="total-label">FINAL AUTHORIZATION FEE</div>
+            <div id="display-price" class="total-amount">$149.00</div>
+        </div>
+
+        <div class="payment-trigger" id="stripe-portal">
+            </div>
+
+        <div class="security-note">
+            [!] ENCRYPTION: AES-256-GCM | NODE: PHL-MAIN | AUTHORIZED BY REALAIID BUREAU
+        </div>
+    </div>
+</div>
+
 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const tier = urlParams.get('tier');
-    const portal = document.getElementById('stripe-portal');
+    (function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tier = urlParams.get('tier');
+        const portal = document.getElementById('stripe-portal');
 
-    // MASTER TIER CONFIGURATION
-    const tiers = {
-        'standard': {
-            card: 'card-standard',
-            style: 'active-standard',
-            price: '$149.00', 
-            node: 'PHL-MAIN-01',
-            clearance: 'LEVEL 1',
-            protocol: 'CORE VSSN',
-            button: 'buy_btn_1TGQegKIEi29Q59QbrPNJNxw' // NEW VERIFIED $149 BUTTON
-        },
-        'citizen': {
-            card: 'card-citizen',
-            style: 'active-citizen',
-            price: '$149.00',
-            node: 'PHL-MAIN-01',
-            clearance: 'LEVEL 2',
-            protocol: 'RESIDENCY',
-            button: 'buy_btn_1TFv1EKIEi29Q59QCsLlndWJ' // ORIGINAL $149 BUTTON
-        },
-        'shield': {
-            card: 'card-shield',
-            style: 'active-shield',
-            price: '$499.00',
-            node: 'PHL-MAIN-99',
-            clearance: 'LEVEL 4',
-            protocol: 'ACTIVE DEFENSE',
-            button: 'buy_btn_1TGOpzKIEi29Q59QpfWAgVWE'
-        },
-        'sovereign': {
-            card: 'card-sovereign',
-            style: 'active-sovereign',
-            price: '$2,499.00',
-            node: 'PHL-USA-001',
-            clearance: 'OMNIPOTENT',
-            protocol: 'IRREVOCABLE',
-            button: 'buy_btn_1TGPAEKIEi29Q59QuXfF6W8k'
+        // Master Mapping Configuration
+        const tiers = {
+            'standard': {
+                card: 'card-standard',
+                style: 'active-standard',
+                price: '$149.00',
+                node: 'PHL-MAIN-01',
+                clearance: 'LEVEL 1',
+                protocol: 'CORE VSSN',
+                button: 'buy_btn_1TGQegKIEi29Q59QbrPNJNxw'
+            },
+            'citizen': {
+                card: 'card-citizen',
+                style: 'active-citizen',
+                price: '$149.00',
+                node: 'PHL-MAIN-01',
+                clearance: 'LEVEL 2',
+                protocol: 'RESIDENCY',
+                button: 'buy_btn_1TFv1EKIEi29Q59QCsLlndWJ'
+            },
+            'shield': {
+                card: 'card-shield',
+                style: 'active-shield',
+                price: '$499.00',
+                node: 'PHL-MAIN-99',
+                clearance: 'LEVEL 4',
+                protocol: 'ACTIVE DEFENSE',
+                button: 'buy_btn_1TGOpzKIEi29Q59QpfWAgVWE'
+            },
+            'sovereign': {
+                card: 'card-sovereign',
+                style: 'active-sovereign',
+                price: '$2,499.00',
+                node: 'PHL-USA-001',
+                clearance: 'OMNIPOTENT',
+                protocol: 'IRREVOCABLE',
+                button: 'buy_btn_1TGPAEKIEi29Q59QuXfF6W8k'
+            }
+        };
+
+        try {
+            // Default to Citizen if tier is missing or invalid
+            const active = tiers[tier] || tiers['citizen'];
+
+            // UI Updates
+            const activeCard = document.getElementById(active.card);
+            if (activeCard) activeCard.classList.add(active.style);
+
+            document.getElementById('display-price').innerText = active.price;
+            document.getElementById('node-id').innerText = active.node;
+            document.getElementById('clearance-level').innerText = active.clearance;
+            document.getElementById('protocol-name').innerText = active.protocol;
+
+            // Color adjustments
+            const priceEl = document.getElementById('display-price');
+            if (tier === 'sovereign') {
+                priceEl.style.color = '#E5E4E2'; 
+            } else if (tier === 'shield') {
+                priceEl.style.color = '#C5A059';
+            } else {
+                priceEl.style.color = '#00d2ff';
+            }
+
+            // Stripe Button Injection
+            if (portal) {
+                portal.innerHTML = `
+                    <stripe-buy-button
+                        buy-button-id="${active.button}"
+                        publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                    ></stripe-buy-button>`;
+            }
+        } catch (error) {
+            console.error("Mainframe Ingest Error:", error);
         }
-    };
-
-    // EXECUTION LOGIC
-    // Defaults to 'citizen' ($149) if no valid tier is specified in the URL
-    const active = tiers[tier] || tiers['citizen']; 
-
-    // Update UI Elements
-    document.getElementById(active.card).classList.add(active.style);
-    document.getElementById('display-price').innerText = active.price;
-    document.getElementById('node-id').innerText = active.node;
-    document.getElementById('clearance-level').innerText = active.clearance;
-    document.getElementById('protocol-name').innerText = active.protocol;
-
-    // Apply specific UI colors for higher tiers
-    if (tier === 'sovereign') {
-        document.getElementById('display-price').style.color = 'var(--sovereign-platinum)';
-    } else if (tier === 'shield') {
-        document.getElementById('display-price').style.color = 'var(--gold)';
-    } else {
-        document.getElementById('display-price').style.color = 'var(--neon-blue)';
-    }
-
-    // Inject the Tier-Specific Stripe Button
-    portal.innerHTML = `
-        <stripe-buy-button
-            buy-button-id="${active.button}"
-            publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
-        ></stripe-buy-button>`;
+    })();
 </script>
+
+</body>
+</html>
