@@ -97,7 +97,17 @@
         </div>
     </div>
 
+    <script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1TFv1EKIEi29Q59QCsLlndWJ"
+  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+>
+</stripe-buy-button>
     <script>
+        
         // 1. DATA CONFIGURATION
         const bureauPricing = {
             'vssn':      { name: 'STANDARD VSSN',      price: '$29.00',    cardId: 'card-vssn' },
