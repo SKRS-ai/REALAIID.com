@@ -3,48 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign Authorized | RealAIID</title>
+    <title>Sovereign Authorized | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { background: #05080F; color: #f8fafc; font-family: 'Courier New', monospace; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .success-box { border: 2px solid #39ff14; padding: 50px; background: #0B1320; text-align: center; max-width: 500px; box-shadow: 0 0 40px rgba(57, 255, 20, 0.2); }
-        .shimmer { color: #39ff14; font-size: 1.2rem; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; animation: blink 1.5s infinite; }
-        .uid-box { background: #000; border: 1px dashed #1693E9; padding: 20px; margin: 20px 0; color: #00d4ff; font-size: 1.1rem; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-        .btn-home { display: inline-block; margin-top: 30px; color: #39ff14; text-decoration: none; border: 1px solid #39ff14; padding: 10px 20px; font-size: 0.8rem; }
+        :root { 
+            --gold: #C5A059; 
+            --bg: #F8F9FA; 
+            --panel: #FFFFFF; 
+            --text-dark: #1A1A1A;
+            --accent-gray: #E0E0E0;
+            --success-green: #28a745;
+        }
+
+        body { 
+            background: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Libre Baskerville', serif; 
+            margin: 0; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: radial-gradient(var(--accent-gray) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
+
+        /* TOP MENU BAR */
+        .top-menu {
+            background: var(--panel);
+            border-bottom: 1px solid var(--accent-gray);
+            height: 50px;
+            width: 100%;
+        }
+
+        /* MASTER HEADER */
+        .master-header { 
+            background: var(--panel); 
+            border-bottom: 3px solid var(--gold); 
+            padding: 25px 0; 
+            text-align: center; 
+        }
+        .brand-logo { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-size: 1.6rem; 
+            letter-spacing: 6px; 
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .success-box { 
+            border: 1px solid var(--accent-gray); 
+            padding: 60px 40px; 
+            background: var(--panel); 
+            text-align: center; 
+            max-width: 550px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+            border-radius: 2px;
+        }
+
+        .status-uplink { 
+            color: var(--success-green); 
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 { font-family: 'Libre Baskerville', serif; font-style: italic; font-size: 2rem; margin-bottom: 20px; }
+
+        .uid-box { 
+            background: #fdfdfd; 
+            border: 1px dashed var(--gold); 
+            padding: 25px; 
+            margin: 30px 0; 
+            color: var(--text-dark); 
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem; 
+            text-align: left;
+        }
+
+        .btn-home { 
+            display: inline-block; 
+            margin-top: 10px; 
+            color: #fff; 
+            background: var(--gold);
+            text-decoration: none; 
+            padding: 15px 35px; 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem; 
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: 0.3s;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-home:hover {
+            background: #fff;
+            color: var(--gold);
+        }
+
+        footer { 
+            text-align: center; 
+            padding: 40px; 
+            font-family: 'JetBrains Mono'; 
+            font-size: 10px; 
+            color: #999; 
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
 
-    href="https://buy.stripe.com/your_unique_link" class="purchase-btn">
+    <div class="top-menu"></div>
 
-   ANCHOR LIKENESS ($149)
+    <header class="master-header">
+        <a href="index.html" class="brand-logo">REALAIID</a>
+    </header>
 
-</a>" class="purchase-btn">
+    <div class="main-content">
+        <div class="success-box">
+            <span class="status-uplink">Sovereign Uplink Established</span>
+            <h1>Authorization Confirmed.</h1>
+            
+            <p style="color: #666; font-size: 1rem; line-height: 1.6;">The Bureau has received your request for Sovereign Liaison access. Your identity is now prioritized for 1900 Market St. Ingest.</p>
+            
+            <div class="uid-box">
+                NODE_AUTH: PHL-01-SVGN<br>
+                <span id="hex-code" style="color: var(--gold);">SECURE_HASH: [INITIALIZING...]</span>
+            </div>
 
-   ANCHOR LIKENESS ($149)
-
-</a>
-    
-    <div class="success-box">
-        <div class="shimmer">Sovereign Uplink Established</div>
-        <h1 style="font-family: serif; font-style: italic;">Authorization Confirmed.</h1>
-        <p style="color: #94a3b8; font-size: 0.9rem;">The Bureau has received your request for Sovereign Liaison access. Your identity is now prioritized for 1900 Market St. Ingest.</p>
-        
-        <div class="uid-box">
-            NODE_AUTH: PHL-01-SVGN<br>
-            <span id="hex-code">GENERATING KEY...</span>
+            <p style="font-size: 0.8rem; color: #888; margin-bottom: 30px;">A Sovereign Agent will contact you within 24 hours via secure uplink to finalize your Blue Paper documentation.</p>
+            
+            <a href="index.html" class="btn-home">RETURN TO MAINFRAME</a>
         </div>
-
-        <p style="font-size: 0.7rem; color: #475569;">A Sovereign Agent will contact you within 24 hours via secure uplink to finalize your Blue Paper documentation.</p>
-        
-        <a href="index.html" class="btn-home">RETURN TO MAINFRAME</a>
     </div>
+
+    <footer>
+        PHILADELPHIA MAINFRAME // SECURE ASSET ANCHORING // REALAIID BUREAU © 2026
+    </footer>
 
     <script>
         // Generate a random high-level auth hex for the visual effect
         setTimeout(() => {
-            document.getElementById('hex-code').innerText = "HEX: " + Math.random().toString(16).toUpperCase().substring(2, 14);
-        }, 800);
+            const hex = Math.random().toString(16).toUpperCase().substring(2, 14);
+            document.getElementById('hex-code').innerText = "SECURE_HASH: " + hex;
+        }, 1200);
     </script>
 </body>
 </html>
