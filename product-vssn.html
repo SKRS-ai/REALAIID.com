@@ -3,79 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VSSN Core | RealAIID Bureau</title>
+    <title>VSSN CORE Selection | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    
     <style>
-        body { background: #05080F; color: #f8fafc; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        .hero-section { padding: 80px 5%; background: linear-gradient(180deg, #0B1320 0%, #05080F 100%); text-align: center; border-bottom: 1px solid #1693E9; }
-        .vssn-badge { background: #1693E9; color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; letter-spacing: 2px; }
-        h1 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; margin: 20px 0; }
-        .price-tag { font-size: 2rem; color: #39ff14; font-weight: bold; margin-bottom: 30px; }
+        :root { 
+            --gold: #C5A059; 
+            --accent: #00f2ff; /* Tech Blue */
+            --bg: #050505; 
+            --glass: rgba(20, 20, 20, 0.8);
+            --border: rgba(197, 160, 89, 0.3);
+        }
+
+        body { 
+            background: var(--bg); color: #e0e0e0; 
+            font-family: 'Libre Baskerville', serif; margin: 0; 
+            background-image: radial-gradient(circle at 2px 2px, rgba(197, 160, 89, 0.1) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        /* MASTER HEADER REUSE */
+        .master-header {
+            background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--gold);
+            padding: 15px 0; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(15px);
+        }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .brand-logo { font-family: 'Orbitron', sans-serif; color: var(--gold); text-decoration: none; font-size: 1.2rem; letter-spacing: 4px; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; text-align: center; }
+
+        .page-title { font-family: 'Orbitron', sans-serif; color: var(--gold); letter-spacing: 8px; text-transform: uppercase; margin-bottom: 10px; }
+        .page-subtitle { font-family: 'JetBrains Mono', monospace; font-size: 12px; opacity: 0.6; margin-bottom: 60px; }
+
+        /* PRODUCT GRID */
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+
+        .product-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 50px 30px;
+            position: relative;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
+            transform: translateY(-5px);
+        }
+
+        /* TECH SPIN DECORATION */
+        .card-hex {
+            position: absolute; top: -20px; right: -20px; font-family: 'JetBrains Mono';
+            font-size: 80px; color: rgba(197, 160, 89, 0.03); font-weight: bold; pointer-events: none;
+        }
+
+        .icon-box { font-size: 40px; color: var(--gold); margin-bottom: 20px; }
         
-        .content-grid { display: grid; grid-template-columns: 1fr 1fr; max-width: 1100px; margin: 60px auto; gap: 60px; padding: 0 20px; }
-        .feature-box { border-left: 2px solid #1693E9; padding-left: 25px; margin-bottom: 40px; }
-        h3 { color: #00d4ff; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem; }
+        h2 { font-family: 'Orbitron', sans-serif; font-size: 1.4rem; color: #fff; margin-bottom: 15px; letter-spacing: 2px; }
+        .price { font-family: 'JetBrains Mono'; color: var(--gold); font-size: 24px; font-weight: bold; margin-bottom: 20px; }
         
-        .cta-box { background: #111d2f; border: 1px solid #1693E9; padding: 40px; border-radius: 12px; text-align: center; margin-bottom: 80px; }
-        .btn-primary { background: #39ff14; color: #05080F; padding: 20px 50px; border: none; border-radius: 5px; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-decoration: none; display: inline-block; transition: 0.3s; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(57, 255, 20, 0.3); }
-        
-        .spec-list { list-style: none; padding: 0; font-family: monospace; font-size: 0.9rem; color: #64748b; }
-        .spec-list li { margin-bottom: 10px; border-bottom: 1px solid #1e293b; padding-bottom: 5px; }
+        .features { list-style: none; padding: 0; margin: 0 0 40px 0; text-align: left; font-size: 14px; line-height: 2; color: #aaa; }
+        .features li::before { content: "› "; color: var(--gold); font-weight: bold; }
+
+        /* STRIPE BUTTON OVERRIDE WRAPPER */
+        .buy-wrapper {
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+
+        /* MASTER FOOTER REUSE */
+        .master-footer {
+            background: #000; color: #444; padding: 60px 20px;
+            border-top: 1px solid #222; margin-top: 100px;
+            font-family: 'JetBrains Mono', monospace; font-size: 10px; text-align: left;
+        }
+        .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+
+        @media (max-width: 768px) { .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <section class="hero-section">
-        <span class="vssn-badge">ENTRY-LEVEL ANCHOR</span>
-        <h1>VSSN Core Identifier.</h1>
-        <p style="max-width: 600px; margin: 0 auto; color: #94a3b8;">
-            The fundamental building block of the RealAIID ecosystem. A one-time cryptographic 
-            assignment that validates your biological existence within the digital mainframe.
-        </p>
-        <div class="price-tag">$29.00 <span style="font-size: 0.9rem; color: #475569;">(ONE-TIME ANCHOR FEE)</span></div>
-        <a href="register-checkout.html?tier=vssn" class="btn-primary">BEGIN SECURE REGISTRATION</a>
-    </section>
+<header class="master-header">
+    <div class="header-content">
+        <a href="index.html" class="brand-logo">REALAIID</a>
+        <nav class="nav-links">
+            <a href="AIidentity.html">Identity Framework</a>
+            <a href="ailaws.html">Statutory Registry</a>
+            <a href="product-vssn.html" style="color: var(--gold)">Select Core</a>
+        </nav>
+    </div>
+</header>
 
-    <div class="content-grid">
-        <div>
-            <div class="feature-box">
-                <h3>Immutable Identity</h3>
-                <p>Unlike traditional SSNs, the VSSN is built on a SHA-512 hash. It cannot be "stolen" in the traditional sense because it is tied to your unique spatial and biometric markers during the 1900 Market ingest process.</p>
-            </div>
-            <div class="feature-box">
-                <h3>Universal Portability</h3>
-                <p>Use your VSSN as a "Proof of Human" key for AI platforms, secure messaging, and future Bureau-protected environments. It is your permanent license to operate as a verified entity.</p>
-            </div>
-            <div class="feature-box">
-                <h3>One-Time Asset</h3>
-                <p>No monthly fees. No recurring billing. Once your $29 anchor is verified, the record is written to the ledger and your digital certificate is issued instantly.</p>
+<div class="container">
+    <div class="page-title">Biometric Tiers</div>
+    <div class="page-subtitle">SELECT YOUR SOVEREIGN ANCHOR LEVEL // PHASE: ALPHA-01</div>
+
+    <div class="product-grid">
+        
+        <div class="product-card">
+            <div class="card-hex">01</div>
+            <div class="icon-box">◈</div>
+            <h2>Individual Core</h2>
+            <div class="price">$149.00 <small style="font-size: 12px; opacity: 0.5;">/ YR</small></div>
+            <ul class="features">
+                <li>Secure Biological Voice Anchoring</li>
+                <li>Standard Conversational Likeness Protection</li>
+                <li>VSSN Sovereign Identifier</li>
+                <li>Official Philadelphia Mainframe Registry</li>
+                <li>24/7 Identity Spoof Detection</li>
+            </ul>
+            
+            <div class="buy-wrapper">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1TGNoLKIEi29Q59Q3IxgEmEl"
+                  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                ></stripe-buy-button>
             </div>
         </div>
 
-        <div>
-            <div style="background: #0B1320; padding: 30px; border-radius: 8px;">
-                <h3 style="margin-top: 0;">Technical Specifications</h3>
-                <ul class="spec-list">
-                    <li>PROTOCOL: Bureau-v1-Alpha</li>
-                    <li>ENCRYPTION: 256-bit AES / SHA-512</li>
-                    <li>NODE ASSIGNMENT: PHL-01 (Market St.)</li>
-                    <li>VALIDITY: Indefinite / Perpetual</li>
-                    <li>STORAGE: Hardened Ledger Infrastructure</li>
-                </ul>
-                <p style="font-size: 0.7rem; color: #475569; margin-top: 20px;">
-                    *Note: This tier does not include Likeness Monitoring or Legal Defense. For protective services, see the Likeness Shield ($499) upgrade.
-                </p>
+        <div class="product-card" style="border-color: rgba(0, 242, 255, 0.3);">
+            <div class="card-hex" style="color: rgba(0, 242, 255, 0.03);">02</div>
+            <div class="icon-box" style="color: var(--accent);">✦</div>
+            <h2>Performer Core</h2>
+            <div class="price" style="color: var(--accent);">$149.00 <small style="font-size: 12px; opacity: 0.5;">/ YR</small></div>
+            <ul class="features">
+                <li>Professional Artistic Vocal Hashing</li>
+                <li>Performance, Singing & Melodic Protection</li>
+                <li>Extended Likeness Rights Attribution</li>
+                <li>Authorship Metadata for AI Synthesis</li>
+                <li>Creative Asset Smart-Contract Ready</li>
+            </ul>
+
+            <div class="buy-wrapper">
+                <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1TGNzYKIEi29Q59QGmTy13SC"
+                  publishable-key="pk_test_51TFuJVKIEi29Q59QQKp63R0KZXwoUJkCedf6lYMEN4jeEKUruokHO9juO3FY5199ovL5YXvV7lcmuwH0SCzBZr6i00Hj9MLhy1"
+                ></stripe-buy-button>
             </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="master-footer">
+    <div class="footer-grid">
+        <div>
+            <div style="color: var(--gold); margin-bottom: 10px;">OFFICE OF THE REGISTRAR</div>
+            <p>Administered by Nehemiah MMM Brown.<br>
+            Secure node for global biometric anchoring and liveness proofing.</p>
+        </div>
+        <div>
+            <strong>PROTOCOL</strong><br><br>
+            VSSN-CORE-v2<br>
+            ENCRYPTION: AES-256<br>
+            STATUS: <span style="color: #00ff00;">ONLINE</span>
+        </div>
+        <div>
+            <strong>JURISDICTION</strong><br><br>
+            Philadelphia Mainframe<br>
+            Cognitrust Nexus<br>
+            RealAIID Bureau © 2026
         </div>
     </div>
-
-    <div class="container" style="max-width: 900px; margin: 0 auto; padding-bottom: 100px;">
-        <div class="cta-box">
-            <h2>Ready to anchor?</h2>
-            <p style="color: #94a3b8; margin-bottom: 30px;">Processing time: < 2 Minutes. Immediate UID Issuance.</p>
-            <a href="register-checkout.html?tier=vssn" class="btn-primary">GET YOUR VSSN NOW</a>
-        </div>
-    </div>
+</footer>
 
 </body>
 </html>
