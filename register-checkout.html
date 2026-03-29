@@ -106,10 +106,6 @@
     </div>
 </div>
     
-<div class="tier-card" id="card-standard">
-    <strong>STANDARD VSSN</strong> - $149<br>
-    <small>Core identity hashing and manual verification.</small>
-</div>
     
 <script async src="https://js.stripe.com/v3/buy-button.js"></script>
 
@@ -117,18 +113,8 @@
     const urlParams = new URLSearchParams(window.location.search);
     const tier = urlParams.get('tier');
     const portal = document.getElementById('stripe-portal');
+
     
-const tiers = {
-        'standard': {
-            card: 'card-standard',
-            style: 'active-standard',
-            price: '$149.00', // Changed from $29 to $149
-            node: 'PHL-MAIN-01',
-            clearance: 'LEVEL 1',
-            protocol: 'CORE VSSN',
-            button: 'buy_btn_1TFv1EKIEi29Q59QCsLlndWJ' // Using your verified $149 Button ID
-        },
-        // ... rest of the tiers
     };
     
     // CONFIGURATION MAP
