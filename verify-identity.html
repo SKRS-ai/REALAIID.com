@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Validator | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #C5A059; --bg: #030303; --text: #e0e0e0; --error: #ff4444; --success: #00ff88; }
+        body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+        
+        .terminal { 
+            width: 90%; max-width: 600px; background: #000; border: 1px solid #333; 
+            box-shadow: 0 0 40px rgba(0,0,0,1), 0 0 20px rgba(197, 160, 89, 0.05); padding: 40px; 
+            position: relative;
+        }
+
+        .terminal::before { content: "INTERNAL ACCESS ONLY // NODE 059"; position: absolute; top: -10px; left: 20px; background: #000; padding: 0 10px; color: var(--gold); font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px; }
+
+        h2 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 30px; letter-spacing: 3px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+
+        input { 
+            width: 100%; background: #080808; border: 1px solid #222; color: #fff; 
+            padding: 15px; font-family: 'JetBrains Mono', monospace; font-size: 14px;
+            box-sizing: border-box; outline: none; margin-bottom: 20px;
+        }
+        input:focus { border-color: var(--gold); }
+
+        button { 
+            width: 100%; background: var(--gold); color: #000; border: none; 
+            padding: 15px; font-family: 'Orbitron', sans-serif; font-weight: bold; 
+            cursor: pointer; transition: 0.3s;
+        }
+        button:hover { background: #fff; }
+
+        #response { margin-top: 30px; font-size: 13px; line-height: 1.6; }
+        .data-box { border: 1px dashed #444; padding: 15px; margin-top: 10px; }
+        .success-text { color: var(--success); font-weight: bold; }
+        .error-text { color: var(--error); }
+    </style>
+</head>
+<body>
+
+<div class="terminal">
+    <h2>VSSN VALIDATOR</h2>
+    <p style="font-size: 11px; opacity: 0.5; margin-bottom: 20px;">SYSTEM STATUS: CONNECTED TO BUREAU_MAINFRAME</p>
+    
+    <input type="text" id="vssn-input" placeholder="SCAN SERIAL OR ENTER VSSN..." autocomplete="off">
+    <button onclick="validate()">RUN CROSS-REFERENCE</button>
+
+    <div id="response">
+        </div>
+</div>
+
+<script>
+async function validate() {
+    const vssn = document.getElementById('vssn-input').value.trim();
+    const responseDiv = document.getElementById('response');
+    
+    if (!vssn) return;
+
+    responseDiv.innerHTML = "> INITIATING DATABASE QUERY...";
+
+    try {
+        const response = await fetch(`/verify?id=${vssn}`);
+        const data = await response.json();
+
+        if (response.ok) {
+            responseDiv.innerHTML = `
+                <p class="success-text">> MATCH FOUND: IDENTITY ANCHORED</p>
+                <div class="data-box">
+                    <div>NAME: ${data.name.toUpperCase()}</div>
+                    <div>STATUS: ${data.status.toUpperCase()}</div>
+                    <div>TYPE: ${data.type || 'VOICE SOCIAL SECURITY'}</div>
+                    <div style="font-size: 10px; margin-top: 10px; opacity: 0.5;">HASH: SHA-128-PROTECTED</div>
+                </div>
+            `;
+        } else {
+            responseDiv.innerHTML = `<p class="error-text">> NO MATCH: SERIAL NOT FOUND IN MAIN OVERLAY.</p>`;
+        }
+    } catch (err) {
+        responseDiv.innerHTML = `<p class="error-text">> ERROR: CONNECTION TO PHILADELPHIA NODE FAILED.</p>`;
+    }
+}
+</script>
+
+</body>
+</html>
