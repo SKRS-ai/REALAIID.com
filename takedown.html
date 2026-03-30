@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takedown Portal | REALAIID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #C5A059; --bg: #030303; --text: #e0e0e0; --error: #ff4444; }
+        body { background: var(--bg); color: var(--text); font-family: 'JetBrains Mono', monospace; margin: 0; padding: 40px; display: flex; justify-content: center; }
+        
+        .form-container { 
+            width: 100%; max-width: 700px; background: #000; border: 1px solid #222; 
+            padding: 50px; position: relative;
+        }
+
+        .form-container::before { content: "ENFORCEMENT DIVISION // SIGNAL 88"; position: absolute; top: -10px; left: 20px; background: #000; padding: 0 10px; color: var(--gold); font-size: 10px; font-family: 'Orbitron'; letter-spacing: 2px; }
+
+        h1 { font-family: 'Orbitron', sans-serif; font-size: 1.5rem; color: #fff; margin-bottom: 10px; letter-spacing: 2px; }
+        .subtitle { font-size: 11px; opacity: 0.5; margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px; }
+
+        label { display: block; font-size: 10px; color: var(--gold); margin-bottom: 8px; font-family: 'Orbitron'; }
+        
+        input, textarea, select { 
+            width: 100%; background: #080808; border: 1px solid #222; color: #fff; 
+            padding: 15px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+            box-sizing: border-box; outline: none; margin-bottom: 25px;
+        }
+        input:focus, textarea:focus { border-color: var(--gold); }
+
+        .webhook-notice { background: rgba(197, 160, 89, 0.05); border: 1px dashed var(--gold); padding: 20px; margin-bottom: 30px; font-size: 12px; line-height: 1.5; }
+
+        button { 
+            width: 100%; background: var(--gold); color: #000; border: none; 
+            padding: 18px; font-family: 'Orbitron', sans-serif; font-weight: bold; 
+            cursor: pointer; transition: 0.3s; letter-spacing: 2px;
+        }
+        button:hover { background: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>TAKEDOWN WEBHOOKS</h1>
+    <div class="subtitle">INITIATE UNAUTHORIZED VOCAL PROPERTY REMOVAL SEQUENCE</div>
+
+    <div class="webhook-notice">
+        <strong>NOTICE:</strong> Submitting this form triggers an automated webhook to the <strong>Philadelphia Mainframe Node</strong>. Our system will generate a cryptographic cease-and-desist hash associated with your VSSN Anchor.
+    </div>
+
+    <form id="takedownForm">
+        <label>YOUR VSSN ANCHOR</label>
+        <input type="text" placeholder="VSSN-XXX-XXX" required>
+
+        <label>INFRACTING URL</label>
+        <input type="url" placeholder="https://youtube.com/watch?v=..." required>
+
+        <label>INFRACTION TYPE</label>
+        <select>
+            <option>UNAUTHORIZED VOCAL CLONING</option>
+            <option>DEEPFAKE IMPERSONATION</option>
+            <option>COMMERCIAL MISUSE</option>
+            <option>IDENTITY THEFT</option>
+        </select>
+
+        <label>EVIDENCE / NOTES</label>
+        <textarea rows="4" placeholder="Describe the unauthorized usage here..."></textarea>
+
+        <button type="submit">EXECUTE WEBHOOK</button>
+    </form>
+</div>
+
+</body>
+</html>
