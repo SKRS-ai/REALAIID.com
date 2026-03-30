@@ -39,7 +39,56 @@
     </style>
 </head>
 <body>
+<script>
+document.getElementById('takedownForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // YOUR UNIQUE DISCORD LINK
+    const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1488001191773339751/FcyqdkrkCPfMcbBu-0Z5w-R36THLqNl2GDAljcahwHsEbGp624QVe0WeQXPjqPYPWghn";
+    
+    // FORM DATA
+    const vssn = e.target.elements[0].value;
+    const url = e.target.elements[1].value;
+    const type = e.target.elements[2].value;
+    const notes = e.target.elements[3].value;
 
+    const payload = {
+        username: "BUREAU ENFORCEMENT BOT",
+        // PROFESSIONAL GOLD SHIELD ICON
+        avatar_url: "https://i.imgur.com/vH9pG6F.png", 
+        content: "🚨 **NEW TAKEDOWN REQUEST INITIATED** 🚨",
+        embeds: [{
+            title: "Vocal Property Infraction Detected",
+            color: 12951641, // Gold Border
+            fields: [
+                { name: "VSSN ANCHOR", value: vssn, inline: true },
+                { name: "INFRACTION TYPE", value: type, inline: true },
+                { name: "TARGET URL", value: url },
+                { name: "EVIDENCE NOTES", value: notes || "No additional notes provided." }
+            ],
+            footer: { text: "Philadelphia Mainframe Node 059 • Signal 88" },
+            timestamp: new Date()
+        }]
+    };
+
+    try {
+        const response = await fetch(DISCORD_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+            alert("SIGNAL 88 EXECUTED: The Bureau has been notified.");
+            e.target.reset();
+        } else {
+            alert("TRANSMISSION ERROR: Mainframe is unreachable.");
+        }
+    } catch (err) {
+        alert("CRITICAL ERROR: Connection to node failed.");
+    }
+});
+</script>
 <div class="form-container">
     <h1>TAKEDOWN WEBHOOKS</h1>
     <div class="subtitle">INITIATE UNAUTHORIZED VOCAL PROPERTY REMOVAL SEQUENCE</div>
