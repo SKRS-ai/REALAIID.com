@@ -39,9 +39,10 @@
             border-radius: 4px;
             cursor: pointer;
             font-weight: 700;
+            transition: background 0.3s ease;
         }
+        .search-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* Result Card - Hidden by default */
         #verification-result {
             display: none;
             margin-top: 50px;
@@ -70,6 +71,8 @@
         .info-label { opacity: 0.6; font-size: 0.8rem; text-transform: uppercase; }
         .info-value { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; }
 
+        .error-msg { color: #ff4d4d; margin-top: 20px; display: none; font-weight: bold; }
+
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
@@ -77,7 +80,7 @@
 
     <header>
         <div class="logo-area">
-            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com - Commonwealth of Digital Identity">
+            <img src="realaiid_commonwealth_logo_20262.png" alt="RealAIID.com">
         </div>
         <nav>
             <a href="index.html">Process</a>
@@ -93,90 +96,82 @@
         
         <div class="search-box">
             <input type="text" id="id-input" placeholder="Enter ID (e.g., RA-7721-PHL)">
-            <button class="search-btn" onclick="simulateSearch()">Verify Identity</button>
+            <button class="search-btn" onclick="executeRegistrySearch()">Verify Identity</button>
         </div>
+        <p id="error-display" class="error-msg">> ERROR: CONNECTION TO PHILADELPHIA NODE FAILED.</p>
 
         <div id="verification-result">
-            <div class="status-badge">✓ CERTIFIED HUMAN</div>
-            <h2>Identity Verification Success</h2>
+            <div class="status-badge" id="res-badge">✓ CERTIFIED HUMAN</div>
+            <h2 id="res-header">Identity Verification Success</h2>
             <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
             
             <div class="info-grid">
                 <div>
                     <p class="info-label">Full Name</p>
-                    <p class="info-value" id="res-name">Nehemiah Brown</p>
+                    <p class="info-value" id="res-name">---</p>
                 </div>
                 <div>
                     <p class="info-label">Digital Residency</p>
-                    <p class="info-value">REALAIID.com | Suite #7721</p>
+                    <p class="info-value" id="res-location">REALAIID.com | Suite #---</p>
                 </div>
                 <div>
                     <p class="info-label">VSSN Status</p>
-                    <p class="info-value" style="color: var(--emerald-green);">Vocal Signature Matched</p>
+                    <p class="info-value" id="res-vssn" style="color: var(--emerald-green);">---</p>
                 </div>
                 <div>
                     <p class="info-label">Last Liveness Pulse</p>
-                    <p class="info-value">March 27, 2026</p>
+                    <p class="info-value" id="res-date">---</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>Commonwealth</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">White Paper</a></li>
-                    <li><a href="#">Digital Residency Act</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Solutions</h4>
-                <ul>
-                    <li><a href="#">PHL Airport Pass</a></li>
-                    <li><a href="#">Banking API</a></li>
-                    <li><a href="#">Lethal Ledger</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Biometric Consent</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Burn Protocol</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Compliance</h4>
-                <ul>
-                    <li><a href="#">SOC2 Type II</a></li>
-                    <li><a href="#">NO FAKES Act</a></li>
-                    <li><a href="#">BIPA Disclosure</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 RealAIID.com | AIIPVB Protocol. <br>
-            Official Residency Anchor: 1900 Market St, Philadelphia, PA.</p>
-        </div>
-    </footer>
-
     <script>
-        function simulateSearch() {
-            const input = document.getElementById('id-input').value;
-            const result = document.getElementById('verification-result');
+        async function executeRegistrySearch() {
+            const input = document.getElementById('id-input').value.trim();
+            const resultDiv = document.getElementById('verification-result');
+            const errorDiv = document.getElementById('error-display');
+            const searchBtn = document.querySelector('.search-btn');
             
-            if(input.trim() !== "") {
-                // Simulate a database lookup delay
-                document.querySelector('.search-btn').innerText = "Searching...";
-                setTimeout(() => {
-                    document.querySelector('.search-btn').innerText = "Verify Identity";
-                    result.style.display = 'block';
-                }, 800);
-            } else {
+            if (!input) {
                 alert("Please enter a valid Real AI ID.");
+                return;
+            }
+
+            // UI Reset
+            searchBtn.innerText = "CROSS-REFERENCING...";
+            searchBtn.disabled = true;
+            resultDiv.style.display = 'none';
+            errorDiv.style.display = 'none';
+
+            try {
+                // Connecting to your Cloudflare Worker/Function
+                const response = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ vssn: input })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Inject Real Data from BUREAU_MAINFRAME
+                    document.getElementById('res-name').innerText = data.name || "UNIDENTIFIED";
+                    document.getElementById('res-location').innerText = data.residency || "Unknown Suite";
+                    document.getElementById('res-vssn').innerText = data.vssn_status || "Verified";
+                    document.getElementById('res-date').innerText = data.last_pulse || "Recent";
+                    
+                    resultDiv.style.display = 'block';
+                } else {
+                    errorDiv.innerText = "> ERROR: ID NOT FOUND IN COMMONWEALTH LEDGER.";
+                    errorDiv.style.display = 'block';
+                }
+            } catch (err) {
+                console.error("Node Connection Error:", err);
+                errorDiv.style.display = 'block';
+            } finally {
+                searchBtn.innerText = "Verify Identity";
+                searchBtn.disabled = false;
             }
         }
     </script>
