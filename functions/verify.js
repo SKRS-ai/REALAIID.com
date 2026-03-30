@@ -5,26 +5,25 @@ export async function onRequest(context) {
 
     // 1. Bridge to your Secrets (Stored in Cloudflare Dashboard)
     const DISCORD_URL = env.DISCORD_WEBHOOK_URL;
-    const MONGO_URI = env.MONGODB_URI; // Ready for future database expansion
 
     if (!vssnId) {
         return new Response(JSON.stringify({ error: "No ID provided" }), { status: 400 });
     }
 
     try {
-        // 2. Existing KV Registry Lookup
-        // Ensure 'VSSN_REGISTRY' is bound in your Cloudflare Settings
-        const record = await env.VSSN_REGISTRY.get(vssnId);
+        // 2. Corrected KV Lookup - Must match your Dashboard Variable Name
+        // We are using BUREAU_MAINFRAME as the primary node
+        const record = await env.BUREAU_MAINFRAME.get(vssnId);
 
-        // 3. THE NOTIFICATION BRIDGE: Alert Discord of the verification attempt
+        // 3. The Notification Bridge
         if (DISCORD_URL) {
             await fetch(DISCORD_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    content: `📡 **Verification Requested**\n**ID:** \`${vssnId}\`\n**Result:** ${record ? "✅ Active" : "❌ Inactive"}`
+                    content: `📡 **Identity Verification Attempt**\n**VSSN:** \`${vssnId}\`\n**Status:** ${record ? "✅ Verified" : "❌ Not Found"}`
                 })
-            }).catch(err => console.error("Discord Notification Failed", err));
+            }).catch(err => console.error("Discord Bridge Offline", err));
         }
 
         if (record) {
@@ -43,6 +42,6 @@ export async function onRequest(context) {
             });
         }
     } catch (err) {
-        return new Response(JSON.stringify({ error: "Mainframe Connection Error" }), { status: 500 });
+        return new Response(JSON.stringify({ error: "Node Connection Failure" }), { status: 500 });
     }
 }
