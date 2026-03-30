@@ -1,0 +1,6 @@
+name = "realaiid"
+pages_build_output_dir = "./"
+
+[[kv_namespaces]]
+binding = "BUREAU_MAINFRAME"
+id = "fb16f4ccbb3b4dabbe375b5651cf77a3"
