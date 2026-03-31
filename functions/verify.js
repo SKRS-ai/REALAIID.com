@@ -1,47 +1,33 @@
-export async function onRequest(context) {
-    const { request, env } = context;
-    const { searchParams } = new URL(request.url);
-    const vssnId = searchParams.get('id');
+export async function onRequestPost(context) {
+  const { request, env } = context;
+  
+  try {
+    // 1. Parse the incoming search ID or test data
+    const input = await request.json();
+    const searchId = input.anchor_id || input.searchId;
 
-    // 1. Bridge to your Secrets (Stored in Cloudflare Dashboard)
-    const DISCORD_URL = env.DISCORD_WEBHOOK_URL;
+    // 2. Query the BUREAU_MAINFRAME KV store
+    // This uses the binding you just created in the dashboard
+    const identityData = await env.BUREAU_MAINFRAME.get(searchId);
 
-    if (!vssnId) {
-        return new Response(JSON.stringify({ error: "No ID provided" }), { status: 400 });
+    if (!identityData) {
+      // If it's a test write, let's save the data instead
+      if (searchId === "TEST-NODE-PHL-001") {
+        await env.BUREAU_MAINFRAME.put(searchId, JSON.stringify(input));
+        return new Response(JSON.stringify({ success: true, message: "Test Anchor Recorded" }), {
+          headers: { "Content-Type": "application/json" }
+        });
+      }
+      
+      return new Response(JSON.stringify({ error: "Identity Not Found" }), { status: 404 });
     }
 
-    try {
-        // 2. Corrected KV Lookup - Must match your Dashboard Variable Name
-        // We are using BUREAU_MAINFRAME as the primary node
-        const record = await env.BUREAU_MAINFRAME.get(vssnId);
+    // 3. Return the identity results to the dashboard
+    return new Response(identityData, {
+      headers: { "Content-Type": "application/json" }
+    });
 
-        // 3. The Notification Bridge
-        if (DISCORD_URL) {
-            await fetch(DISCORD_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    content: `📡 **Identity Verification Attempt**\n**VSSN:** \`${vssnId}\`\n**Status:** ${record ? "✅ Verified" : "❌ Not Found"}`
-                })
-            }).catch(err => console.error("Discord Bridge Offline", err));
-        }
-
-        if (record) {
-            const data = JSON.parse(record);
-            return new Response(JSON.stringify({ 
-                active: true, 
-                owner: data.name, 
-                status: data.status,
-                anchoredAt: data.anchoredAt
-            }), {
-                headers: { "Content-Type": "application/json" }
-            });
-        } else {
-            return new Response(JSON.stringify({ active: false }), {
-                headers: { "Content-Type": "application/json" }
-            });
-        }
-    } catch (err) {
-        return new Response(JSON.stringify({ error: "Node Connection Failure" }), { status: 500 });
-    }
+  } catch (err) {
+    return new Response(JSON.stringify({ error: "Mainframe Connection Failed", details: err.message }), { status: 500 });
+  }
 }
