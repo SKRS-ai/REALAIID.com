@@ -17,7 +17,30 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
+async function executeRegistrySearch() {
+    const searchId = document.getElementById('search-input').value;
+    const resultCard = document.getElementById('result-card');
 
+    try {
+        const response = await fetch('/verify', { // Note: Pages Functions map /functions/verify to /verify
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ searchId: searchId })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // Populate your "Global Likeness Registry" fields here
+            document.getElementById('residency-status').innerText = data.residency || "Verified";
+            resultCard.classList.remove('hidden');
+        } else {
+            alert("Clearance Denied: " + data.error);
+        }
+    } catch (error) {
+        console.error("Critical Node Failure:", error);
+    }
+}
         /* --- HEADER & NAVIGATION --- */
         header {
             background: rgba(255, 255, 255, 0.98);
