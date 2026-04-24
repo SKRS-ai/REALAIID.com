@@ -1,0 +1,27 @@
+{
+  "name": "realaiid.com",
+  "version": "1.0.0",
+  "description": "This repository contains the core architecture, frontend assets, and biometric orchestration logic for REALAIID.com, the flagship platform of the AI Identity Protection &amp; Verification Bureau (AIIPVB).  In an era of ubiquitous synthetic media and deepfake technology, this project implements a proprietary \"Triple-Lock\" Verification System Repository Name: REALAIID.com The Commonwealth of Digital Identity | 2026 Biometric Sovereignty Protocol Overview This repository contains the core architecture, frontend assets, and biometric orchestration logic for REALAIID.com, the flagship platform of the AI Identity Protection & Verification Bureau (AIIPVB).",
+  "keywords": [],
+  "homepage": "https://github.com/SKRS-ai/REALAIID.com#readme",
+  "bugs": {
+    "url": "https://github.com/SKRS-ai/REALAIID.com/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SKRS-ai/REALAIID.com.git"
+  },
+  "license": "ISC",
+  "author": "Nehemiah Brown",
+  "type": "commonjs",
+  "main": "middleware.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.5.0"
+  }
+}
