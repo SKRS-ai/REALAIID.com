@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RealAIID.com | The REAL AI Identity Bureau</title>
+    
+    <script src="https://static.vouched.id/widget/vouched-2.0.0.js"></script>
+    <script src="https://cdn.iproov.com/web/latest/iproov.js"></script>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
@@ -16,51 +20,8 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
-async function executeRegistrySearch() {
-    const searchId = document.getElementById('search-input').value;
-    const resultCard = document.getElementById('result-card');
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; overflow-x: hidden; }
 
-    try {
-        const response = await fetch('/verify', { // Note: Pages Functions map /functions/verify to /verify
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ searchId: searchId })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Populate your "Global Likeness Registry" fields here
-            document.getElementById('residency-status').innerText = data.residency || "Verified";
-            resultCard.classList.remove('hidden');
-        } else {
-            alert("Clearance Denied: " + data.error);
-        }
-    } catch (error) {
-        console.error("Critical Node Failure:", error);
-    }
-}
-    <a href="registry.html" class="btn">Access Dashboard</a>
-
-    <aside class="legislative-sidebar">
-    <h3><span class="pulse-dot"></span> NODE COMPLIANCE</h3>
-    <div class="tracker-row">
-        <span class="law-name">FEDERAL: TAKE IT DOWN</span>
-        <span class="status-badge green">COMPLIANT</span>
-    </div>
-    <div class="tracker-row">
-        <span class="law-name">TENNESSEE: ELVIS ACT</span>
-        <span class="status-badge green">ANCHORED</span>
-    </div>
-    <div class="tracker-row">
-        <span class="law-name">CALIFORNIA: AB-853</span>
-        <span class="status-badge blue">ACTIVE</span>
-    </div>
-    <hr>
-    <p class="sidebar-footer">All VSSN hashes are Quantum-Resistant and optimized for 2026 Legal Defense Packages.</p>
-</aside>
-    
         /* --- HEADER & NAVIGATION --- */
         header {
             background: rgba(255, 255, 255, 0.98);
@@ -71,215 +32,49 @@ async function executeRegistrySearch() {
             z-index: 1000;
             padding: 10px 5%;
         }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 80px; width: auto; display: block; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
 
-        .nav-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1600px;
-            margin: 0 auto;
-        }
+        /* --- HERO & SIDEBAR LAYOUT --- */
+        .main-hero-container { display: flex; background: var(--phl-dark); color: white; padding: 100px 10%; align-items: center; gap: 50px; }
+        .hero-text { flex: 2; text-align: left; }
+        .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-style: italic; margin-bottom: 20px; line-height: 1.1; }
 
-        .logo-box img {
-            height: 120px; /* 2X Enlarged */
-            width: auto;
-            display: block;
-            background: transparent;
+        /* LEGISLATIVE SIDEBAR */
+        .legislative-sidebar { 
+            flex: 1; background: rgba(255,255,255,0.05); padding: 30px; border-radius: 8px; border: 1px solid rgba(22, 147, 233, 0.3);
+            font-family: 'JetBrains Mono', monospace; 
         }
-
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--phl-dark);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--phl-blue); }
-        .nav-cta {
-            background: var(--phl-blue);
-            color: white !important;
-            padding: 12px 24px;
-            border-radius: 4px;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 120px 10%;
-            background: var(--phl-dark);
-            color: white;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.8;
-        }
+        .legislative-sidebar h3 { font-size: 0.9rem; margin-bottom: 20px; letter-spacing: 2px; color: var(--phl-blue); }
+        .tracker-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.75rem; }
+        .status-badge { padding: 2px 8px; border-radius: 4px; font-weight: bold; }
+        .status-badge.green { background: #10B981; color: white; }
+        .status-badge.blue { background: #3B82F6; color: white; }
+        .pulse-dot { height: 8px; width: 8px; background-color: #10B981; border-radius: 50%; display: inline-block; margin-right: 5px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
         /* --- PRICING SECTION --- */
-        .pricing-section {
-            padding: 100px 5%;
-            background: var(--surface);
-        }
-
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .price-card {
-            background: white;
-            padding: 45px 30px;
-            border-radius: 8px;
-            border: 1px solid #E2E8F0;
-            display: flex;
-            flex-direction: column;
-            transition: 0.4s;
-            position: relative;
-        }
-
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-            border-color: var(--phl-blue);
-        }
-
-        .price-card.featured {
-            border: 2px solid var(--phl-blue);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        .price-card h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--phl-dark); }
+        .pricing-section { padding: 100px 5%; background: var(--surface); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1400px; margin: 0 auto; }
+        .price-card { background: white; padding: 45px 30px; border-radius: 8px; border: 1px solid #E2E8F0; transition: 0.4s; position: relative; }
+        .price-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); border-color: var(--phl-blue); }
+        .price-card.featured { border: 2px solid var(--phl-blue); transform: scale(1.05); z-index: 2; }
         .amount { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-        .amount span { font-size: 1rem; color: #64748B; }
-
-        .feature-list { list-style: none; margin: 30px 0; flex-grow: 1; }
-        .feature-list li { font-size: 0.9rem; margin-bottom: 12px; color: #475569; display: flex; align-items: center; }
-        .feature-list li::before { content: '✓'; color: var(--phl-blue); font-weight: bold; margin-right: 10px; }
-
-        .btn-buy {
-            text-decoration: none;
-            background: var(--phl-dark);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-weight: 700;
-            border-radius: 4px;
-            transition: 0.3s;
-        }
-
+        .feature-list { list-style: none; margin: 30px 0; }
+        .feature-list li { font-size: 0.85rem; margin-bottom: 12px; display: flex; align-items: center; }
+        .btn-buy { display: block; text-decoration: none; background: var(--phl-dark); color: white; padding: 15px; text-align: center; font-weight: 700; border-radius: 4px; }
         .price-card.featured .btn-buy { background: var(--phl-blue); }
-        .btn-buy:hover { opacity: 0.9; }
 
-        .enterprise-card { background: var(--phl-dark); color: white; border: none; }
-        .enterprise-card h3, .enterprise-card .amount { color: white; }
-        .enterprise-card .feature-list li { color: #94A3B8; }
-        .enterprise-card .btn-buy { background: white; color: var(--phl-dark); }
-
-        <div style="text-align: center; margin: 40px auto; padding: 20px;">
-    <a href="https://buy.stripe.com/test_aFafZifmXdmt1WL9NGb3q00" 
-       style="background: linear-gradient(135deg, #C5A059 0%, #B38B45 100%);
-              color: #000;
-              padding: 20px 45px;
-              font-family: 'Libre Baskerville', serif;
-              font-weight: bold;
-              text-decoration: none;
-              font-size: 22px;
-              border-radius: 2px;
-              display: inline-block;
-              border: 1px solid #8e6d2e;
-              box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-              text-transform: uppercase;
-              letter-spacing: 2px;
-              transition: 0.3s all;">
-       INITIALIZE ANCHORING ($149/YR)
-    </a>
-    <p style="color: #C5A059; font-family: 'JetBrains Mono', monospace; font-size: 10px; margin-top: 15px; letter-spacing: 1px;">
-        SECURE STRIPE GATEWAY | PHILADELPHIA MAINFRAME V.1
-    </p>
-</div>
-        /* --- FOOTER RESTORATION --- */
-        footer {
-            background: #05080F;
-            color: #94A3B8;
-            padding: 80px 10% 40px;
-            border-top: 1px solid #1E293B;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 60px;
-            text-align: left;
-            margin-bottom: 60px;
-        }
-
-        .footer-logo { 
-            color: white; 
-            font-weight: 800; 
-            font-size: 1.5rem; 
-            margin-bottom: 20px;
-            font-family: 'JetBrains Mono';
-        }
-
-        .footer-links h4 { 
-            color: white; 
-            font-size: 0.8rem; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-            margin-bottom: 20px; 
-        }
-
-        .footer-links a { 
-            display: block; 
-            color: #64748B; 
-            text-decoration: none; 
-            margin-bottom: 12px; 
-            font-size: 0.85rem; 
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--phl-blue); }
-
-        .copyright-bar {
-            border-top: 1px solid #1E293B;
-            padding-top: 40px;
-            text-align: center;
-            font-family: 'JetBrains Mono';
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-        }
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
     </style>
 </head>
 <body>
 
     <header>
-     
         <div class="nav-container">
             <div class="logo-box">
                 <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
@@ -297,27 +92,35 @@ async function executeRegistrySearch() {
     </header>
     
     <main>
-        <section class="hero">
-            <h1>Claim Your AI Identity.</h1>
-            <p>The global registration standard for human likeness and vocal security. Secured by the USA-based Philadelphia Mainframe.</p>
+        <section class="main-hero-container">
+            <div class="hero-text">
+                <h1>Claim Your AI Identity.</h1>
+                <p>The global registration standard for human likeness security. Anchored by the Philadelphia Mainframe PHL-01.</p>
+                <div style="margin-top: 30px;">
+                    <input type="text" id="search-input" placeholder="Enter Registration ID..." style="padding: 15px; width: 300px; border-radius: 4px; border: none;">
+                    <button onclick="executeRegistrySearch()" style="padding: 15px 30px; background: var(--phl-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">VERIFY</button>
+                </div>
+            </div>
+
+            <aside class="legislative-sidebar">
+                <h3><span class="pulse-dot"></span> NODE COMPLIANCE</h3>
+                <div class="tracker-row"><span>FEDERAL: TAKE IT DOWN</span><span class="status-badge green">COMPLIANT</span></div>
+                <div class="tracker-row"><span>TENNESSEE: ELVIS ACT</span><span class="status-badge green">ANCHORED</span></div>
+                <div class="tracker-row"><span>CALIFORNIA: AB-853</span><span class="status-badge blue">ACTIVE</span></div>
+                <hr style="opacity: 0.1; margin: 20px 0;">
+                <p style="font-size: 0.65rem; color: #94A3B8;">All VSSN hashes are Quantum-Resistant for 2026 Legal Defense.</p>
+            </aside>
         </section>
 
         <section class="pricing-section">
-            <div class="section-header">
-                <h2>Choose Your Tier of Identity Security</h2>
-                <p>Register your RealAIID and secure your digital future.</p>
-            </div>
-
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3>Standard</h3>
-                    <div class="amount">$149 <span>/year</span></div>
-                    <p style="font-size: 0.85rem; color: #64748B;">Basic anchoring for digital citizens.</p>
+                    <div class="amount">$149 <span>/yr</span></div>
                     <ul class="feature-list">
                         <li>3D Spatial Liveness Pulse</li>
-                        <li>VSSN Vocal Hash Assignment</li>
+                        <li>VSSN Vocal Hash</li>
                         <li>Digital Residency Suite</li>
-                        <li>Basic Identity Archive</li>
                     </ul>
                     <a href="product-standard.html" class="btn-buy">REGISTER NOW</a>
                 </div>
@@ -325,12 +128,10 @@ async function executeRegistrySearch() {
                 <div class="price-card featured">
                     <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--phl-blue); color: white; padding: 4px 12px; font-size: 0.7rem; font-weight: 800; border-radius: 20px;">MOST POPULAR</div>
                     <h3 style="color: var(--phl-blue);">Likeness Shield</h3>
-                    <div class="amount">$499 <span>/year</span></div>
-                    <p style="font-size: 0.85rem; color: #64748B;">Advanced monitoring and legal defense.</p>
+                    <div class="amount">$499 <span>/yr</span></div>
                     <ul class="feature-list">
                         <li>24/7 AI-Likeness Monitoring</li>
-                        <li>NO FAKES Legal Defense Package</li>
-                        <li>Broadcast-Grade 3D Avatar</li>
+                        <li>NO FAKES Legal Defense</li>
                         <li>Automated Takedown Tech</li>
                     </ul>
                     <a href="product-likeness-shield.html" class="btn-buy">CLAIM SHIELD</a>
@@ -338,91 +139,69 @@ async function executeRegistrySearch() {
 
                 <div class="price-card">
                     <h3>Sovereign</h3>
-                    <div class="amount">$2,499 <span>/year</span></div>
-                    <p style="font-size: 0.85rem; color: #64748B;">Institutional scale and API access.</p>
+                    <div class="amount">$2,499 <span>/yr</span></div>
                     <ul class="feature-list">
                         <li>PHL Airport Biometric Link</li>
-                        <li>High-Value Banking Tier API</li>
-                        <li>White-Glove Liaison Access</li>
+                        <li>Banking Tier API</li>
                         <li>Hardware-Locked Keys</li>
                     </ul>
                     <a href="product-sovereign.html" class="btn-buy">GO SOVEREIGN</a>
                 </div>
 
-                <div class="price-card enterprise-card">
+                <div class="price-card" style="background: #000; color: white;">
                     <h3>Enterprise</h3>
                     <div class="amount">Liaison</div>
-                    <p style="font-size: 0.85rem; color: #94A3B8;">Custom nodes and government sync.</p>
                     <ul class="feature-list">
                         <li>Custom Mainframe Node</li>
                         <li>3Si Vault Handshake</li>
-                        <li>Government Identity Sync</li>
-                        <li>Dedicated Security Engineer</li>
+                        <li>Gov Identity Sync</li>
                     </ul>
-                    <a href="product-enterprise.html" class="btn-buy">CONTACT BUREAU</a>
+                    <a href="mailto:liaison@realaiid.com" class="btn-buy" style="background: white; color: black;">CONTACT BUREAU</a>
                 </div>
             </div>
-             
-            <div style="max-width: 1100px; margin: 0 auto 40px auto; padding: 0 20px;">
-    <div style="background: #f8fafc; border: 2px solid #00d4ff; border-radius: 12px; padding: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; box-shadow: 0 10px 30px rgba(0,212,255,0.1);">
-        
-        <div style="flex: 2; min-width: 300px;">
-            <span style="background: #1693e9; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px;">STARTER ANCHOR</span>
-            <h2 style="margin: 10px 0 5px 0; font-family: 'Playfair Display', serif; font-style: italic;">VSSN Core Package</h2>
-            <p style="margin: 0; color: #64748b; font-size: 0.9rem;">The fundamental cryptographic anchor. Secure your record on the Philadelphia Mainframe.</p>
-        </div>
 
-        <div style="flex: 1; text-align: center; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; padding: 0 20px; margin: 10px 0;">
-            <div style="font-size: 2.5rem; font-weight: bold; color: #0f172a;">$29<span style="font-size: 1rem; color: #64748b;">/yr</span></div>
-            <div style="font-size: 0.7rem; color: #1693e9; font-weight: bold;">NODE: PHL-01 ACCESS</div>
-        </div>
-
-        <div style="flex: 1; text-align: right; min-width: 200px;">
-            <a href="product-vssn.html" style="text-decoration: none;">
-                <button style="background: #0f172a; color: white; border: none; padding: 15px 30px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; width: 100%;">
-                    BEGIN CORE ANCHOR
-                </button>
-            </a>
-            <p style="font-size: 0.6rem; color: #94a3b8; margin-top: 8px; text-align: center;">SECURE 256-BIT UPLINK</p>
-        </div>
-
-    </div>
-</div>
+            <div style="text-align: center; margin: 80px auto; padding: 40px; background: #05080F; border-radius: 8px;">
+                <a href="https://buy.stripe.com/test_anchoring" 
+                   style="background: linear-gradient(135deg, #C5A059 0%, #B38B45 100%); color: #000; padding: 20px 45px; font-family: 'Playfair Display', serif; font-weight: bold; text-decoration: none; font-size: 20px; border-radius: 2px; border: 1px solid #8e6d2e; display: inline-block;">
+                   INITIALIZE ANCHORING ($149/YR)
+                </a>
+                <p style="color: #C5A059; font-family: 'JetBrains Mono'; font-size: 10px; margin-top: 15px;">SECURE STRIPE GATEWAY | PHILADELPHIA MAINFRAME V.1</p>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="footer-grid">
-            <div>
-                <div class="footer-logo">REALAIID // BUREAU</div>
-                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
-            </div>
-            <div class="footer-links">
-                <h4>Infrastructure</h4>
-                <a href="1900-market.html">1900 Market Anchor</a>
-                <a href="vssn-hashing.html">VSSN Protocol</a>
-                <a href="api-docs.html">Developer API</a>
-                <a href="mainframe.html">The Mainframe</a>
-            </div>
-            <div class="footer-links">
-                <h4>Legal & Privacy</h4>
-                <a href="legal-compliance.html">Compliance Hub</a>
-                <a href="no-fakes.html">NO FAKES Act</a>
-                <a href="blue-paper.html">The Blue Paper</a>
-                <a href="privacy.html">Purge Protocol</a>
-            </div>
-            <div class="footer-links">
-                <h4>Registration</h4>
-                <a href="product-standard.html">Standard ID</a>
-                <a href="product-likeness-shield.html">Likeness Shield</a>
-                <a href="product-sovereign.html">Sovereign Tier</a>
-                <a href="start-verification.html">Start Hashing</a>
-            </div>
+            <div><div class="footer-logo">REALAIID // BUREAU</div><p>Securing the Human Core.</p></div>
+            <div class="footer-links"><h4>Infrastructure</h4><a href="1900-market.html">1900 Market Anchor</a><a href="api-docs.html">API Docs</a></div>
+            <div class="footer-links"><h4>Legal</h4><a href="no-fakes.html">NO FAKES Act</a><a href="blue-paper.html">The Blue Paper</a></div>
+            <div class="footer-links"><h4>Registration</h4><a href="product-standard.html">Standard ID</a><a href="start-verification.html">Start Hashing</a></div>
         </div>
-        <div class="copyright-bar">
-            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
-        </div>
+        <div class="copyright-bar">© 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST</div>
     </footer>
 
+    <script>
+        async function executeRegistrySearch() {
+            const searchId = document.getElementById('search-input').value;
+            if(!searchId) return alert("Enter ID");
+
+            try {
+                const response = await fetch('/api/verify', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ searchId: searchId })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert("Identity Verified: " + (data.status || "Authenticated"));
+                } else {
+                    alert("Clearance Denied: " + data.error);
+                }
+            } catch (error) {
+                console.error("Critical Node Failure:", error);
+            }
+        }
+    </script>
 </body>
 </html>
