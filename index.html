@@ -27,10 +27,7 @@
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid #E2E8F0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 10px 5%;
+            position: sticky; top: 0; z-index: 1000; padding: 10px 5%;
         }
         .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
         .logo-box img { height: 80px; width: auto; display: block; }
@@ -42,6 +39,12 @@
         .main-hero-container { display: flex; background: var(--phl-dark); color: white; padding: 100px 10%; align-items: center; gap: 50px; }
         .hero-text { flex: 2; text-align: left; }
         .hero-text h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-style: italic; margin-bottom: 20px; line-height: 1.1; }
+        
+        .btn-dashboard { 
+            display: inline-block; background: var(--phl-blue); color: white; text-decoration: none; 
+            padding: 15px 30px; border-radius: 4px; font-weight: 800; text-transform: uppercase; 
+            letter-spacing: 1px; margin-bottom: 30px; font-size: 0.9rem;
+        }
 
         /* LEGISLATIVE SIDEBAR */
         .legislative-sidebar { 
@@ -94,10 +97,11 @@
     <main>
         <section class="main-hero-container">
             <div class="hero-text">
+                <a href="/dashboard.html" class="btn-dashboard">Access Dashboard</a>
                 <h1>Claim Your AI Identity.</h1>
                 <p>The global registration standard for human likeness security. Anchored by the Philadelphia Mainframe PHL-01.</p>
                 <div style="margin-top: 30px;">
-                    <input type="text" id="search-input" placeholder="Enter Registration ID..." style="padding: 15px; width: 300px; border-radius: 4px; border: none;">
+                    <input type="text" id="search-input" placeholder="Enter Registration ID..." style="padding: 15px; width: 300px; border-radius: 4px; border: none; color: black;">
                     <button onclick="executeRegistrySearch()" style="padding: 15px 30px; background: var(--phl-blue); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">VERIFY</button>
                 </div>
             </div>
@@ -158,14 +162,6 @@
                     </ul>
                     <a href="mailto:liaison@realaiid.com" class="btn-buy" style="background: white; color: black;">CONTACT BUREAU</a>
                 </div>
-            </div>
-
-            <div style="text-align: center; margin: 80px auto; padding: 40px; background: #05080F; border-radius: 8px;">
-                <a href="https://buy.stripe.com/test_anchoring" 
-                   style="background: linear-gradient(135deg, #C5A059 0%, #B38B45 100%); color: #000; padding: 20px 45px; font-family: 'Playfair Display', serif; font-weight: bold; text-decoration: none; font-size: 20px; border-radius: 2px; border: 1px solid #8e6d2e; display: inline-block;">
-                   INITIALIZE ANCHORING ($149/YR)
-                </a>
-                <p style="color: #C5A059; font-family: 'JetBrains Mono'; font-size: 10px; margin-top: 15px;">SECURE STRIPE GATEWAY | PHILADELPHIA MAINFRAME V.1</p>
             </div>
         </section>
     </main>
