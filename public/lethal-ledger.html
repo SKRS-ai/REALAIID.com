@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lethal Ledger // Forensic Truth Ingest // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { 
+            --ledger-red: #B91C1C;
+            --ledger-gold: #D4AF37;
+            --ledger-indigo: #4338ca;
+            --dark: #050505; 
+            --card-gray: #111111;
+        }
+        body { background: var(--dark); color: #A1A1AA; font-family: 'Inter', sans-serif; overflow-x: hidden; line-height: 1.6; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
+        
+        /* Forensic Heartbeat Enhancement */
+        @keyframes forensicHeartbeat {
+            0% { box-shadow: 0 0 10px rgba(185, 28, 28, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(185, 28, 28, 0.5); }
+            100% { box-shadow: 0 0 10px rgba(185, 28, 28, 0.2); }
+        }
+
+        .glass-ingest-active {
+            animation: forensicHeartbeat 2.5s ease-in-out infinite;
+            border: 1px solid var(--ledger-red) !important;
+        }
+
+        /* Redaction Overlay Effect */
+        .redacted-text {
+            background: #B91C1C;
+            color: #B91C1C;
+            transition: color 0.5s ease;
+            cursor: help;
+            padding: 0 4px;
+        }
+        .redacted-text:hover {
+            color: white;
+        }
+
+        /* Cinematic UI Elements */
+        header { background: rgba(0,0,0,0.9); padding: 25px 5%; border-bottom: 1px solid #1A1A1A; position: sticky; top: 0; z-index: 1000; }
+        .logo-text { font-size: 1.5rem; color: white; text-transform: uppercase; letter-spacing: 2px; }
+
+        .ledger-hero { 
+            height: 60vh; 
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--dark)), url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?q=80&w=1974&auto=format&fit=crop');
+            background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+        }
+        
+        #forensic-canvas { height: 400px; width: 100%; cursor: crosshair; }
+        .input-field { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 1rem; border-radius: 2px; color: white; width: 100%; outline: none; transition: 0.3s; }
+        .input-field:focus { border-color: var(--ledger-red); background: rgba(255,255,255,0.08); }
+
+        .case-card { background: var(--card-gray); border: 1px solid #1A1A1A; transition: 0.3s; position: relative; }
+        .case-card:hover { border-color: var(--ledger-red); transform: translateY(-5px); }
+        .vssn-verified { position: absolute; top: 15px; right: 15px; background: rgba(0,0,0,0.85); border: 1px solid var(--ledger-gold); color: var(--ledger-gold); font-family: 'JetBrains Mono'; font-size: 0.6rem; padding: 5px 10px; z-index: 10; }
+
+        .btn-seal { background: var(--ledger-red); color: white; padding: 15px 30px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; transition: 0.3s; }
+        .btn-seal:hover { background: white; color: black; }
+    </style>
+</head>
+<body>
+
+    <header class="flex justify-between items-center">
+        <div class="logo-text serif font-bold">Lethal Ledger</div>
+        <nav class="hidden md:flex gap-8 mono text-[10px] uppercase tracking-widest">
+            <a href="index.html" class="hover:text-white transition">Bureau Home</a>
+            <a href="fraud-score.html" class="hover:text-white transition">Trust Index</a>
+            <a href="#" class="text-red-600">Evidence Locker</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="ledger-hero">
+            <p class="mono text-[10px] tracking-[0.5em] mb-4 text-red-600">A Solomon Kin Media Group Production</p>
+            <h1 class="serif text-8xl font-black text-white italic">The Ledger Leak.</h1>
+        </section>
+
+        <!-- COVERT TRUTH INGEST TERMINAL WITH HEARTBEAT -->
+        <section class="max-w-7xl mx-auto px-6 -mt-24 mb-32 relative z-20">
+            <div class="flex flex-col lg:flex-row gap-8">
+                
+                <div class="flex-1 glass p-12 rounded-sm border-l-4 border-red-700 glass-ingest-active">
+                    <span class="mono text-[10px] text-red-500 uppercase tracking-widest block mb-4">Forensic Ingest Mode // Active</span>
+                    <h2 class="serif text-4xl text-white italic mb-6">Seal Investigative Truth.</h2>
+                    <p class="text-sm mb-10 opacity-60">Transitioning investigative research into <span class="redacted-text">REALAiID CLASSIFIED</span> records. Anchor your case findings to the Justice Rail.</p>
+                    
+                    <div class="space-y-4">
+                        <input type="text" id="caseTitle" class="input-field mono text-xs" placeholder="RESEARCH_CASE_ID">
+                        <input type="text" id="forensicHash" class="input-field mono text-xs" placeholder="FORENSIC_SIG_HASH">
+                        <button onclick="sealTruth()" class="btn-seal w-full">Seal Forensic Record</button>
+                    </div>
+
+                    <div id="status-msg" class="hidden mt-6 glass p-4 rounded mono text-[10px] text-emerald-400 border border-emerald-900/30">
+                        STATUS: TRUTH_RECORD_SEATED // NODE: PHL-01 // SIG: VALIDATED
+                    </div>
+                </div>
+
+                <div class="flex-1 glass p-4 rounded-sm border border-white/5 relative overflow-hidden">
+                    <div id="forensic-canvas"></div>
+                    <div class="absolute bottom-8 left-8 mono text-[10px] text-red-600 animate-pulse">B-35 // PERSISTENCE RAIL LIVE</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FEATURED ARCHIVE -->
+        <section class="max-w-7xl mx-auto px-6 mb-32">
+            <div class="glass p-12 flex flex-col md:flex-row gap-12 items-center">
+                <div class="w-full md:w-1/2 h-[400px] bg-cover bg-center border border-white/10" style="background-image: url('https://images.unsplash.com/photo-1453873531674-215ee3ac4d17?q=80&w=2080&auto=format&fit=crop');"></div>
+                <div class="w-full md:w-1/2">
+                    <span class="text-red-600 mono text-xs font-bold uppercase tracking-widest block mb-4">Featured Documentary // S04 E12</span>
+                    <h2 class="serif text-5xl text-white font-black italic mb-6 leading-tight">The PHL Mainframe Breach: Fact vs. Fiction</h2>
+                    <p class="opacity-70 text-lg font-light mb-8">An investigative deep-dive into the <span class="redacted-text">SYNTHETIC_OVERRIDE</span> attempted replication of administrative identities.</p>
+                    <a href="#" class="btn-seal inline-block">Execute Playback</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CASE GRID -->
+        <section class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-40">
+            <!-- Cards remain with original styling and VSSN AUDITED tag -->
+            <div class="case-card">
+                <span class="vssn-verified">VSSN AUDITED</span>
+                <div class="h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="p-8">
+                    <span class="mono text-[10px] text-red-600 uppercase tracking-widest font-bold">Podcast Series</span>
+                    <h3 class="serif text-2xl text-white italic mt-2 mb-4">The Cold Hash Files</h3>
+                    <p class="text-sm opacity-50 font-light">Uncovering cold cases using <span class="redacted-text">CLASSIFIED</span> technology.</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <span class="vssn-verified">VSSN AUDITED</span>
+                <div class="h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1517245318773-b7b83ca912b3?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="p-8">
+                    <span class="mono text-[10px] text-red-600 uppercase tracking-widest font-bold">Documentary</span>
+                    <h3 class="serif text-2xl text-white italic mt-2 mb-4">Shadow Licensing</h3>
+                    <p class="text-sm opacity-50 font-light">Investigating the illegal sale of vocal signatures in <span class="redacted-text">UNDERGROUND_NODES</span>.</p>
+                </div>
+            </div>
+            <div class="case-card">
+                <span class="vssn-verified">VSSN AUDITED</span>
+                <div class="h-56 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop');"></div>
+                <div class="p-8">
+                    <span class="mono text-[10px] text-red-600 uppercase tracking-widest font-bold">Mini-Series</span>
+                    <h3 class="serif text-2xl text-white italic mt-2 mb-4">Mainframe Justice</h3>
+                    <p class="text-sm opacity-50 font-light">The story of the first legal victory under the NO FAKES Act in <span class="redacted-text">PHILADELPHIA</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOSTS -->
+        <section class="max-w-7xl mx-auto px-6 flex justify-around text-center py-32 border-t border-white/5">
+            <div class="host-profile">
+                <div class="w-32 h-32 rounded-full border-2 border-red-600 mx-auto mb-6 bg-[#222]"></div>
+                <h4 class="text-white text-xl serif italic font-bold">Malachi</h4>
+                <span class="mono text-[10px] text-red-600 tracking-widest">THE CASE KEEPER</span>
+            </div>
+            <div class="host-profile">
+                <div class="w-32 h-32 rounded-full border-2 border-gold-600 mx-auto mb-6 bg-[#222]" style="border-color: var(--ledger-gold);"></div>
+                <h4 class="text-white text-xl serif italic font-bold">Black Beauty</h4>
+                <span class="mono text-[10px] text-red-600 tracking-widest" style="color: var(--ledger-gold);">CO-HOST & INVESTIGATOR</span>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-20 px-[5%] text-center border-t border-white/5">
+        <div class="mono text-[10px] opacity-40">
+            © 2026 SOLOMON KIN RECORDS MEDIA GROUP // REALM PICTURES // PHL NODE 01
+        </div>
+    </footer>
+
+    <script>
+        async function sealTruth() {
+            const title = document.getElementById('caseTitle').value;
+            const hash = document.getElementById('forensicHash').value;
+            if(!title || !hash) return alert("FIELDS_REQUIRED");
+
+            const res = await fetch('/api/v1/forensics/truth-ingest', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ sovereignID: "MUSTAFA-KING-BUREAU", caseTitle: title, forensicHash: hash })
+            });
+            const data = await res.json();
+            if(data.status === "TRUTH_RECORD_SEATED") {
+                document.getElementById('status-msg').classList.remove('hidden');
+                pulseEffect();
+            }
+        }
+
+        let scene, camera, renderer, wireframe;
+        const init = () => {
+            const container = document.getElementById('forensic-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const geo = new THREE.IcosahedronGeometry(2, 1);
+            const mat = new THREE.MeshPhongMaterial({ color: 0xB91C1C, wireframe: true, transparent: true, opacity: 0.5 });
+            wireframe = new THREE.Mesh(geo, mat);
+            scene.add(wireframe);
+
+            scene.add(new THREE.PointLight(0xB91C1C, 2, 50).position.set(5, 5, 5));
+            camera.position.z = 6;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                wireframe.rotation.y += 0.003;
+                wireframe.rotation.x += 0.002;
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+
+        function pulseEffect() {
+            wireframe.scale.set(1.4, 1.4, 1.4);
+            wireframe.material.color.setHex(0x10b981);
+            setTimeout(() => {
+                wireframe.scale.set(1, 1, 1);
+                wireframe.material.color.setHex(0xB91C1C);
+            }, 600);
+        }
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$AII Vault // Nodes 31 & 34 // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --vault-gold: #b8860b;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: #fff; overflow-x: hidden; padding: var(--border-frame); }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+        
+        /* Master Sync Header */
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: 95px !important; width: auto !important; display: block; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* Cinematic Background */
+        #vault-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; opacity: 0.5; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-product { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .product-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7.5rem); font-style: italic; line-height: 0.9; text-shadow: 0 0 60px rgba(184, 134, 11, 0.4); }
+
+        .status-badge { background: #fef9c3; color: #854d0e; font-size: 10px; font-weight: 900; padding: 8px 16px; border-radius: 2px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 30px; border: 1px solid #222; font-size: 0.8rem; color: var(--vault-gold); border-left: 4px solid var(--vault-gold); }
+
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--vault-gold); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; max-width: 1700px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+    <div id="vault-canvas"></div>
+
+    <header>
+        <div class="flex justify-between items-center">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex gap-10 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="fraud-score.html">Trust Index</a>
+                <a href="aii-economy.html">$AII Economy</a>
+                <a href="signin.html" class="nav-cta">Access Vault</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="hero-product">
+            <div class="z-10">
+                <span class="status-badge mb-8 inline-block">Economic Node // Staging</span>
+                <span class="mono text-yellow-600 text-xs uppercase tracking-[0.5em] mb-4 block">Node 31 // 34 Synchronized</span>
+                <h1 class="product-title">$AII <br><span class="text-yellow-600">Vault.</span></h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto mt-10 font-light leading-relaxed">
+                    Transitioning wealth from static fiat to **Biological Liquidity**. Your capital is now anchored to the petascale compute output of your biological existence.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-yellow-700 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Wealth Root</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass p-12 lg:p-20 rounded-sm shadow-2xl relative z-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-serif italic text-5xl mb-8">Wealth Locked in <br><span class="text-yellow-600">The Marrow.</span></h2>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed">
+                        Legacy banking is a liability of identity. The $AII Vault (Node 31) functions as a **Biological Safe Haven**. By integrating Bridge 34 (Oracle Flux), your vault biometrically negotiates compute arbitrage in real-time. Your presence becomes the collateral, and the SODR Ring becomes the ledger.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > VAULT_ID: B-31-ALPHA-PHL<br>
+                        > LEDGER: SODR_RING_v9.2<br>
+                        > DIVIDEND_RATE: <span class="animate-pulse text-emerald-500">1.22 $AII / HR</span><br>
+                        > STATUS: ORACLE_FLUX_STABLE
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-2 border-yellow-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-yellow-600 tracking-widest">Presence Staking</h4>
+                        <p class="text-xs text-slate-400">Earn $AII compute tokens simply by being verified as a living biological entity within the Bureau's jurisdiction.</p>
+                    </div>
+                    <div class="border-l-2 border-yellow-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-yellow-600 tracking-widest">Oracle Arbitrage</h4>
+                        <p class="text-xs text-slate-400">Utilizes Bridge 34 to automatically trade compute capacity for highest yield across the global $AII economy.</p>
+                    </div>
+                    <div class="border-l-2 border-yellow-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-yellow-600 tracking-widest">Marrow-Root Encryption</h4>
+                        <p class="text-xs text-slate-400">Vault access is physically impossible without the skeletal resonance of the account holder. Zero-trust wealth.</p>
+                    </div>
+                    <div class="border-l-2 border-yellow-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-yellow-600 tracking-widest">The $499 Standard</h4>
+                        <p class="text-xs text-slate-400">Entry-level wealth ingest for Sovereign Class A founders. Includes permanent B-31 node lease.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 border-t border-white/5 mt-40">
+            <h2 class="text-center font-serif italic text-3xl mb-20 uppercase tracking-widest text-slate-500">Wealth Infrastructure</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="bridge-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="font-black text-white text-xl mono mb-6 uppercase">REALAiID // BUREAU</div>
+                <p class="text-sm leading-relaxed">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Truth.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Fiscal Nodes</h4>
+                <ul class="space-y-4 text-xs font-bold uppercase tracking-tighter">
+                    <li><a href="bridge-10-fiscal-root.html">Node 10: Fiscal Root</a></li>
+                    <li><a href="aii-economy.html">The $AII Standard</a></li>
+                    <li><a href="bridge-31-aii-economy.html" class="text-yellow-600">Node 31 Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col text-right col-span-2">
+                <div class="mono text-[10px] space-y-2">
+                    <div class="text-yellow-600">SYSTEM STATUS: STAGING</div>
+                    <div>© 2026 SOLOMON KIN LLC // PHL-NODE-01</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Three.js Visualization: The Geometric Vault Door */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('vault-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // Torus Knot representing the "Handshake Knot" as a wealth lock
+        const geo = new THREE.TorusKnotGeometry(2.5, 0.4, 100, 16);
+        const mat = new THREE.MeshPhongMaterial({ 
+            color: 0xb8860b, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.4,
+            shininess: 100
+        });
+        const knot = new THREE.Mesh(geo, mat);
+        group.add(knot);
+        
+        // Central data core
+        const coreGeo = new THREE.OctahedronGeometry(1, 0);
+        const coreMat = new THREE.MeshPhongMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.2 });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+        scene.add(new THREE.PointLight(0xb8860b, 4, 100).position.set(5, 5, 5));
+        camera.position.z = 8;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            knot.rotation.y += 0.003;
+            knot.rotation.x += 0.001;
+            core.rotation.z -= 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        /* Ecosystem Bridge Injection */
+        const ecosystem = [
+            { id: "31", name: "$AII Economy", link: "bridge-31-aii-economy.html" },
+            { id: "34", name: "Oracle Flux", link: "bridge-34-oracle-flux.html" },
+            { id: "10", name: "Fiscal Root", link: "bridge-10-fiscal-root.html" },
+            { id: "16", name: "Satoshi Root", link: "bridge-16-satoshi-root.html" }
+        ];
+        const grid = document.getElementById('bridge-grid');
+        ecosystem.forEach(b => {
+            const btn = document.createElement('a');
+            btn.href = b.link;
+            btn.className = "p-8 glass border border-white/5 hover:border-yellow-600 transition-all text-center flex flex-col items-center gap-4";
+            btn.innerHTML = `<span class="mono text-[8px] opacity-40 uppercase">Node B-${b.id}</span><span class="text-[10px] font-black uppercase tracking-widest">${b.name}</span>`;
+            grid.appendChild(btn);
+        });
+    </script>
+</body>
+</html>

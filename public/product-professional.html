@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Liaison | REALAiID Institutional Authority</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --medical-teal: #18B494;
+            --surface: #F8FAFC;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--phl-dark); line-height: 1.7; padding: var(--border-frame); }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        .professional-gradient {
+            background: linear-gradient(135deg, #0B1320 0%, #16263a 100%);
+        }
+
+        .status-scanner {
+            height: 4px;
+            background: var(--phl-blue);
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan-vertical 4s infinite ease-in-out;
+            box-shadow: 0 0 15px var(--phl-blue);
+            z-index: 5;
+        }
+
+        @keyframes scan-vertical {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(400px); }
+        }
+
+        .board-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            padding: 40px;
+            transition: var(--transition);
+            border-top: 4px solid var(--phl-blue);
+        }
+
+        .board-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.06);
+            border-color: var(--bureau-gold);
+        }
+
+        .btn-ingest {
+            display: block;
+            background: var(--phl-dark);
+            color: white;
+            text-align: center;
+            padding: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .btn-ingest:hover {
+            background: var(--phl-blue);
+            letter-spacing: 5px;
+            box-shadow: 0 10px 30px rgba(22, 147, 233, 0.3);
+        }
+
+        .bridge-badge {
+            font-family: 'JetBrains Mono';
+            font-size: 0.6rem;
+            background: rgba(22, 147, 233, 0.1);
+            color: var(--phl-blue);
+            padding: 4px 10px;
+            border-radius: 2px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="flex justify-between items-center px-12 py-8 bg-white border-b border-gray-100 sticky top-[15px] z-[1000]">
+        <div class="flex items-center gap-4">
+            <img src="realaiid_commonwealth_logo_20262999.png" class="h-16" alt="Bureau Logo" onerror="this.src='https://placehold.co/200x80/ffffff/0b1320?text=REALAiID'">
+            <div class="h-8 w-[1px] bg-gray-200"></div>
+            <span class="font-mono text-[10px] font-black uppercase tracking-widest text-gray-400">AUTHORITY // LIASION</span>
+        </div>
+        <nav class="flex gap-10 items-center">
+            <a href="index.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition-colors">Mainframe Gate</a>
+            <a href="blue-paper.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition-colors">Forensic Specs</a>
+            <a href="signin.html" class="bg-blue-600 text-white px-8 py-3 font-black text-[11px] uppercase tracking-widest rounded-sm">Member Sign-In</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-24 px-6">
+        
+        <!-- HERO SECTION -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+            <div>
+                <span class="text-blue-500 font-mono text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Bridge 13, 17 // Institutional Ingest</span>
+                <h1 class="font-serif italic text-7xl leading-none mb-10 text-slate-900">Expertise is <br><span class="text-blue-500">Biological.</span></h1>
+                <p class="text-xl text-slate-600 font-light leading-relaxed mb-12">
+                    Degrees are static records. Standing is a live frequency. The Professional Liaison bridge anchors your Medical or Bar license directly to your bone density resonance, providing the world's first **Expert Witness Seal**.
+                </p>
+                
+                <div class="flex gap-8">
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black text-slate-900">$199</span>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Annual Ingest Fee</span>
+                    </div>
+                    <div class="w-[1px] bg-gray-200"></div>
+                    <div class="flex flex-col">
+                        <span class="text-3xl font-black text-blue-500">LoA 4</span>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Assurance Standard</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="professional-gradient rounded-2xl p-12 shadow-2xl relative overflow-hidden border border-white/5">
+                <div class="status-scanner"></div>
+                <h4 class="text-blue-400 font-mono text-xs uppercase tracking-widest mb-8">> BOARD_SYNC_TELEMETRY</h4>
+                
+                <div class="space-y-6 text-sm font-mono">
+                    <div class="flex justify-between border-b border-white/10 pb-2 text-slate-400">
+                        <span>[BOARD_STATUS]</span>
+                        <span class="text-emerald-400 font-bold">GOOD STANDING</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2 text-slate-400">
+                        <span>[LICENSE_TYPE]</span>
+                        <span class="text-white">MD / JD / PE</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2 text-slate-400">
+                        <span>[RECIPROCITY]</span>
+                        <span class="text-white">WORLDWIDE_ICAO</span>
+                    </div>
+                    <div class="flex justify-between border-b border-white/10 pb-2 text-slate-400">
+                        <span>[HEALTH_SYNC]</span>
+                        <span class="text-blue-400 font-bold">HL7_FHIR_ACTIVE</span>
+                    </div>
+                </div>
+
+                <div class="mt-12 text-[10px] text-slate-500 uppercase tracking-widest leading-relaxed">
+                    Once anchored, your professional authority cannot be spoofed. Digital prescriptions and legal filings are biometrically signed via the Handshake Knot™.
+                </div>
+            </div>
+        </div>
+
+        <!-- CORE UTILITY SECTIONS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+            
+            <div class="board-card">
+                <div class="bridge-badge">BRIDGE 17 // JURIDICAL</div>
+                <h3 class="font-serif text-2xl italic mb-6">Expert Witness Status</h3>
+                <p class="text-sm text-slate-500 mb-8">
+                    Automatically apply a biometrically-verified "Expert Seal" to legal affidavits. Proves the signatory was biological, present, and in good standing with the Bar at the moment of the handshake.
+                </p>
+                <ul class="text-[11px] font-bold uppercase tracking-widest text-slate-400 space-y-3">
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> UETA Act Compliant</li>
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Global Notary Integration</li>
+                </ul>
+            </div>
+
+            <div class="board-card">
+                <div class="bridge-badge">BRIDGE 13 // CLINICAL</div>
+                <h3 class="font-serif text-2xl italic mb-6">Gated Record Portability</h3>
+                <p class="text-sm text-slate-500 mb-8">
+                    Secure clinical FHIR records behind your unique biological frequency. Prescriptions and surgeries are gated by a live pulse-check, eliminating the $100B identity medical fraud gap.
+                </p>
+                <ul class="text-[11px] font-bold uppercase tracking-widest text-slate-400 space-y-3">
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> HIPAA / GDPR Hardened</li>
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> HL7 FHIR Interoperable</li>
+                </ul>
+            </div>
+
+            <div class="board-card">
+                <div class="bridge-badge">BRIDGE 28 // CORPORATE</div>
+                <h3 class="font-serif text-2xl italic mb-6">Institutional Standing</h3>
+                <p class="text-sm text-slate-500 mb-8">
+                    Sync your REALAiID to corporate registries. Enables "Stateless Professional" travel, allowing you to bypass physical board credential checks at international border nodes.
+                </p>
+                <ul class="text-[11px] font-bold uppercase tracking-widest text-slate-400 space-y-3">
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> ICAO DTC Ready</li>
+                    <li class="flex items-center gap-2"><div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> Citadel Tier Optimized</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- CALL TO ACTION -->
+        <div class="bg-slate-900 rounded-2xl p-16 text-center text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(var(--phl-blue) 1px, transparent 1px); background-size: 30px 30px;"></div>
+            <h2 class="font-serif text-5xl italic mb-8 relative z-10">Establish Your <span class="text-blue-400">Professional Root.</span></h2>
+            <p class="text-slate-400 max-w-2xl mx-auto mb-12 relative z-10 text-lg">
+                Secure your career's integrity against the age of AI synthesis. Join the Global Registry of Verified Professionals.
+            </p>
+            <div class="flex justify-center gap-6 relative z-10">
+                <a href="https://checkout.stripe.com/pay/professional_liaison" class="btn-ingest px-12">Initialize Institutional Ingest</a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- INDUSTRIAL FOOTER -->
+    <footer class="bg-[#020617] border-t-4 border-blue-600 pt-32 pb-16 px-12 text-gray-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div>
+                <div class="text-white font-mono text-2xl font-black mb-8">REALAiID // BUREAU</div>
+                <p class="leading-relaxed text-sm">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. 
+                    Enforcing the highest levels of biological authority for expert practitioners.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Infrastructure</h4>
+                <div class="flex flex-col gap-4 text-xs">
+                    <a href="blue-paper.html" class="hover:text-white transition-colors">Technical Blue Paper</a>
+                    <a href="api-docs.html" class="hover:text-white transition-colors">API Documentation</a>
+                    <a href="mainframe.html" class="hover:text-white transition-colors">Board Sync Status</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Juridical roots</h4>
+                <div class="flex flex-col gap-4 text-xs">
+                    <a href="#" class="hover:text-white transition-colors">NO FAKES Compliance</a>
+                    <a href="#" class="hover:text-white transition-colors">Expert Witness Standing</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Protocol</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-32 border-t border-white/5 pt-12 text-center font-mono text-[9px] uppercase tracking-[0.5em] text-gray-600">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // 256-BIT SKELETAL HASH ACTIVE
+        </div>
+    </footer>
+
+</body>
+</html>

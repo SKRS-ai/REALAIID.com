@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 05 // Ambient Auth | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --penn-navy: #001E44;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- HEADER & NAVIGATION (MASTER SYNC) --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D AMBIENT CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-style: italic;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(22, 147, 233, 0.4);
+        }
+
+        .forensic-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            padding: 150px 10%;
+            background: linear-gradient(to bottom, transparent, #0B1320);
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            backdrop-filter: blur(40px);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .tech-card:hover {
+            border-color: var(--phl-blue);
+            transform: translateY(-10px);
+        }
+
+        .spec-label {
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            color: var(--phl-blue);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .benefit-list li {
+            margin-bottom: 25px;
+            padding-left: 25px;
+            border-left: 2px solid var(--phl-blue);
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        /* --- FOOTER (MASTER SYNC) --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="ambient-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-blue-400 uppercase tracking-[0.6em] mb-6 block">Industrial Node // Bridge 05</span>
+                <h1 class="bridge-title">Ambient <br><span class="text-blue-500">Auth.</span></h1>
+                <p class="text-2xl font-light text-slate-300 max-w-3xl mx-auto leading-relaxed">
+                    Identity as a state of being. Eliminating the friction of manual verification through persistent biological recognition.
+                </p>
+                <div class="mt-12 flex justify-center gap-6">
+                    <a href="identity-station.html" class="bg-blue-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Provision Ambient Standing</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="forensic-grid">
+            <div class="space-y-12">
+                <div>
+                    <h2 class="font-serif italic text-6xl mb-8">The "Invisible" <br><span class="text-blue-500">Handshake.</span></h2>
+                    <p class="text-xl text-slate-400 font-light mb-10 leading-relaxed">
+                        Bridge 05 is the ultimate technical response to the inconvenience of legacy security. In the REALAiID ecosystem, identity is no longer an action you perform—it is a frequency you project. By loading this bridge into your **Sovereign Wallet**, your presence becomes the key.
+                    </p>
+                    <ul class="benefit-list">
+                        <li><strong>Dead-Phone Continuity:</strong> Authorization persists even if your hardware is inactive, using the passive resonance of your bone structure.</li>
+                        <li><strong>Atmospheric Recognition:</strong> Smart-environments (Doors, Terminals, Hospitality) anticipate your intent at a distance of 10 meters.</li>
+                        <li><strong>Sub-300ms Resolution:</strong> Zero-latency handshakes ensure that verification never interrupts the human experience.</li>
+                    </ul>
+                </div>
+
+                <div class="tech-card">
+                    <span class="spec-label">Technical Parameters</span>
+                    <div class="grid grid-cols-2 gap-10 font-mono text-sm">
+                        <div>
+                            <p class="text-blue-500 mb-2">// FREQUENCY RANGE</p>
+                            <p class="text-white text-xl">440Hz - 880Hz</p>
+                        </div>
+                        <div>
+                            <p class="text-blue-500 mb-2">// SPATIAL RESOLUTION</p>
+                            <p class="text-white text-xl">5.0mm (Dermal)</p>
+                        </div>
+                        <div>
+                            <p class="text-blue-500 mb-2">// POLLING VELOCITY</p>
+                            <p class="text-white text-xl">100 / SEC</p>
+                        </div>
+                        <div>
+                            <p class="text-blue-500 mb-2">// JURISDICTION</p>
+                            <p class="text-white text-xl">7G MESH_ACTIVE</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="tech-card">
+                    <span class="spec-label">Wallet Loaded Utility</span>
+                    <h3 class="text-3xl font-serif italic mb-6 text-white">What can you do?</h3>
+                    <p class="text-slate-500 mb-8 font-light">When Bridge 05 is active on your hardware anchor, the following industrial gates are bypassed automatically:</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-500">🏠</div>
+                            <span class="text-xs font-bold uppercase tracking-widest">Sovereign Door Unlocking</span>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-500">🏨</div>
+                            <span class="text-xs font-bold uppercase tracking-widest">Auto-Check-In Hospitality</span>
+                        </div>
+                        <div class="flex items-center gap-4 p-4 bg-white/5 border border-white/10 rounded">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-500">💳</div>
+                            <span class="text-xs font-bold uppercase tracking-widest">Frictionless Bio-Pay™</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tech-card border-amber-500/20 bg-amber-500/5">
+                    <span class="spec-label" style="color: var(--bureau-gold)">Forensic Psychology</span>
+                    <p class="text-lg italic text-slate-300 leading-relaxed">
+                        "The primary psychological benefit of Bridge 05 is **Environmental Belonging**. When the world around you moves because you exist, the fear of exclusion or bureaucratic friction evaporates."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- VISIONARY SECTION -->
+        <section class="py-40 text-center bg-black/50">
+            <h3 class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] mb-8">Atmospheric Sovereignty</h3>
+            <h2 class="font-serif text-7xl italic mb-12">The Product of <br>The <span class="text-blue-500">Future.</span></h2>
+            <p class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-light">
+                Why interact with the system when you are the system? Bridge 05 recodes the relationship between the inhabitant and the environment. You are no longer checking in; you are simply arriving.
+            </p>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Secure your "Genuine Presence" under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="#">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('ambient-canvas').appendChild(renderer.domElement);
+
+        // --- Create Particle Field (Biological Aura) ---
+        const particleCount = 1500;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+
+        for (let i = 0; i < particleCount * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 12;
+            colors[i] = Math.random();
+        }
+
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        
+        const material = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0x1693E9,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0x1693E9, 2, 50);
+        light.position.set(5, 5, 5);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 6;
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            points.rotation.y += 0.001;
+            points.rotation.x += 0.0005;
+
+            // Soft movement based on mouse
+            points.position.x += (mouseX * 0.5 - points.position.x) * 0.05;
+            points.position.y += (mouseY * -0.5 - points.position.y) * 0.05;
+
+            // Pulse opacity
+            material.opacity = 0.4 + Math.sin(Date.now() * 0.001) * 0.2;
+
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

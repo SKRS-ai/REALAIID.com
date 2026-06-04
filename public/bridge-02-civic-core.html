@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 02 // Civic Core | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        header {
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(184, 134, 11, 0.3);
+        }
+
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--bureau-gold);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--phl-blue);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--bureau-gold);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        footer {
+            background: #020617;
+            padding: 100px 10% 40px;
+            border-top: 4px solid var(--bureau-gold);
+            margin-top: 150px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #94A3B8;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: white; }
+
+    </style>
+</head>
+<body>
+
+    <div id="three-canvas" class="canvas-container"></div>
+
+    <header class="flex justify-between items-center">
+        <div class="logo-box">
+            <img src="realaiid_commonwealth_logo_20262999.png" class="h-16" alt="Bureau Logo" onerror="this.src='https://placehold.co/200x80/0b1320/ffffff?text=REALAiID'">
+        </div>
+        <nav class="nav-links flex gap-10">
+            <a href="index.html">Mainframe Gate</a>
+            <a href="blue-paper.html">Forensic Blue Paper</a>
+            <a href="signin.html">Access Node</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.5em] mb-4 block">Civic Infrastructure Node // Bridge 02</span>
+                <h1 class="bridge-title">Civic <span class="text-amber-600">Core.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The jurisdictional anchor linking your biological node to municipal authority, community rights, and local government registries.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-amber-600 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Provision Civic Handshake</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8">Zero-Knowledge <br><span class="text-amber-600">Civic Standing.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8">
+                        Bridge 02 technicalizes the "Social Contract." In legacy cities, accessing social services or municipal benefits requires a "Static Reveal" (showing a physical card or utility bill). REALAiID establishes a **Zero-Knowledge Standing**—proving you live within a district or hold a community right without revealing your physical address.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        By anchoring to local registries through a biometrically-gated hash, Bridge 02 allows for automated municipal interactions. Whether claiming local benefits or verifying residency for social programs, your biology is the only proof required.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > LOCAL_NODE: PHL-CIV-02<br>
+                        > REGISTRY: MUNICIPAL_SOVEREIGN_v1.0<br>
+                        > METHOD: GEOGRAPHIC_RESIDENCY_PROOF<br>
+                        > STANDING: <span class="text-emerald-500">COMMUNITY_VERIFIED</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Municipal Sync</h4>
+                        <p class="text-sm text-slate-400">Direct integration with city and state social service databases. Replaces plastic benefit cards with a hardware-locked biological key.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>One-Human One-Vote</h4>
+                        <p class="text-sm text-slate-400">Neutralizes bot-driven civic interference. Proves biological presence and unique human status for municipal voting and community polls.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Privacy Masking</h4>
+                        <p class="text-sm text-slate-400">Utilizes the I-XRAY Shield to ensure that when you interact with local government, only the "Standing" is release, never the raw residency data.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Community Escrow</h4>
+                        <p class="text-sm text-slate-400">Secure holding of local certificates (occupancy, permits, community status) biometrically signed by the PHL-01 Mainframe.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 text-center">
+            <h3 class="font-mono text-xs text-amber-500 uppercase tracking-[0.4em] mb-8">The Social Ledger</h3>
+            <h2 class="font-serif text-6xl italic mb-12">Universal <span class="text-amber-600">Municipal Presence.</span></h2>
+            <p class="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed font-light">
+                Why carry a folder of documents to prove who you are to your own city? Bridge 02 returns the "Power of Presence" to the inhabitant. From local transit access to municipal service enrollment, your unique biological frequency is the ultimate civic permit.
+            </p>
+        </section>
+
+    </main>
+
+    <footer class="text-gray-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div>
+                <div class="text-white font-mono text-2xl font-black mb-8">REALAiID // BUREAU</div>
+                <p class="text-sm leading-relaxed">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. The Global Reserve of Biological Reality.</p>
+            </div>
+            <div class="flex flex-col gap-4 text-xs font-bold uppercase tracking-widest">
+                <span class="text-white mb-4">Registry Navigation</span>
+                <a href="bridge-01-auth-root.html" class="hover:text-amber-500 transition-colors">Previous Node: Auth Root</a>
+                <a href="bridge-03-hr-liaison.html" class="hover:text-amber-500 transition-colors">Next Node: HR Liaison</a>
+                <a href="index.html" class="hover:text-amber-500 transition-colors">Mainframe Gate</a>
+            </div>
+            <div class="text-right">
+                <span class="bg-amber-600/10 border border-amber-500/20 text-amber-500 px-6 py-3 text-[10px] font-black uppercase tracking-widest">
+                    Node 02 Status: Synchronized
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('three-canvas').appendChild(renderer.domElement);
+
+        // --- Create Sovereign Icosahedron (Civic Mesh) ---
+        const geometry = new THREE.IcosahedronGeometry(2, 0);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.35
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0xb8860b, 1.2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 0.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+        camera.position.z = 5;
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            mesh.rotation.x += 0.003;
+            mesh.rotation.y += 0.003;
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            mesh.rotation.y += mouseX * 0.03;
+            mesh.rotation.x += mouseY * 0.03;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

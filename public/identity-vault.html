@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | IDENTITY VAULT</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; background: rgba(0, 242, 255, 0.02); }
+        .forensic-status { margin: 30px 0; font-family: monospace; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--neon); color: var(--bg); }
+    </style>
+    <script>
+        // Sovereign Auth-Guard: Prevents unauthorized entry to Bureau Portals
+        (function checkSovereignAccess() {
+            const session = localStorage.getItem('phl01_session_token');
+            if (!session) {
+                console.warn("[!] UNAUTHORIZED ACCESS ATTEMPT // REDIRECTING");
+                window.location.replace('/login.html'); 
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1 id="portal-title">IDENTITY VAULT // BRIDGE-39</h1>
+            <div class="forensic-status">
+                <p>Bio-Sign™ Anchor: <span id="bio-status">VERIFIED</span></p>
+                <p>Likeness Shield: <span id="shield-status">ACTIVE</span></p>
+                <p>NFC Legal Document: <span id="nfc-status">SYNCED</span></p>
+            </div>
+            <button onclick="executeBridgeQuery()">REFRESH ASSET HASH</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        async function executeBridgeQuery() {
+            try {
+                const response = await fetch('/api/v1/bridge-39-identity-vault/verify');
+                if (!response.ok) throw new Error('Vault Unreachable');
+                const data = await response.json();
+                
+                document.getElementById('bio-status').innerText = data.bioStatus || 'VERIFIED';
+                document.getElementById('shield-status').innerText = data.shieldStatus || 'ACTIVE';
+                document.getElementById('nfc-status').innerText = data.nfcStatus || 'SYNCED';
+            } catch (err) {
+                console.error("Vault Access Denied:", err);
+                alert("Identity Bridge Communication Error");
+            }
+        }
+    </script>
+</body>
+</html>

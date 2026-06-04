@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fraud Score Terminal // Behavioral Trust // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { --phl-blue: #1693E9; --oracle-purple: #8B5CF6; --dark: #020617; --integrity-emerald: #10b981; }
+        body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
+        .scanline { position: absolute; inset: 0; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02)); z-index: 10; background-size: 100% 2px, 3px 100%; pointer-events: none; }
+        #integrity-canvas { height: 500px; width: 100%; }
+        header { background: #fff; color: #000; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        .risk-glow { text-shadow: 0 0 20px var(--integrity-emerald); }
+    </style>
+</head>
+<body>
+
+    <div class="scanline"></div>
+
+    <header class="flex justify-between items-center">
+        <div class="logo-area"><img src="RealAiIDlogo.png" alt="Bureau Logo" class="h-12"></div>
+        <nav class="flex gap-10 text-[10px] font-black uppercase tracking-widest">
+            <a href="index.html">The Bureau</a>
+            <a href="bridge-34-oracle-flux.html">Oracle Flux</a>
+            <a href="signin.html" class="text-blue-500">Live Ingest</a>
+        </nav>
+    </header>
+
+    <main class="relative pt-20 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col lg:flex-row gap-16 items-center">
+            
+            <div class="flex-1 space-y-10">
+                <div>
+                    <span class="mono text-emerald-500 text-[10px] tracking-[0.5em] uppercase">Security Clearance // Tier 1</span>
+                    <h1 class="text-7xl font-black italic tracking-tighter mt-4" style="font-family: 'Playfair Display', serif;">Trust <span class="text-emerald-500">Index.</span></h1>
+                </div>
+
+                <p class="text-xl text-slate-400 leading-relaxed">
+                    Powered by the **Oracle Flux Bridge**. Your Fraud Score is a real-time forensic calculation of behavioral integrity, digital footprint purity, and biological intent.
+                </p>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass p-6 rounded border-l-2 border-emerald-500">
+                        <div class="mono text-[10px] opacity-40 uppercase mb-2">Current Risk</div>
+                        <div class="text-4xl font-bold risk-glow text-emerald-500">0.03</div>
+                    </div>
+                    <div class="glass p-6 rounded border-l-2 border-blue-500">
+                        <div class="mono text-[10px] opacity-40 uppercase mb-2">Standing</div>
+                        <div class="text-xl font-bold uppercase">Gold Standard</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 w-full glass rounded-3xl p-10 relative overflow-hidden shadow-2xl border border-white/10">
+                <div id="integrity-canvas"></div>
+                <div class="absolute bottom-10 left-10 right-10 flex justify-between items-center mono text-[10px]">
+                    <span class="text-emerald-500 animate-pulse">● SIFT_SOCURE_RAIL ACTIVE</span>
+                    <span class="opacity-40 uppercase">Last Sweep: Real-Time</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="py-32 grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-white/5 mt-20">
+            <div class="space-y-4">
+                <h4 class="mono text-xs uppercase text-blue-400">Synthetic Defense</h4>
+                <p class="text-sm text-slate-400">Automatically identifies and neutralizes account takeover attempts by mapping your unique behavioral resonance.</p>
+            </div>
+            <div class="space-y-4">
+                <h4 class="mono text-xs uppercase text-purple-400">Peer Accountability</h4>
+                <p class="text-sm text-slate-400">High-trust scores allow for exclusive entry into Sovereign Lobby nodes and high-velocity asset exchanges.</p>
+            </div>
+            <div class="space-y-4">
+                <h4 class="mono text-xs uppercase text-emerald-400">Marrow-Root Binding</h4>
+                <p class="text-sm text-slate-400">Your reputational integrity is biometrically bound, ensuring your score can never be misappropriated by deepfakes.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-16 px-[5%] border-t border-white/5 flex justify-between items-center">
+        <div class="mono text-[10px] opacity-40">© 2026 SOLOMON KIN LLC // PHILADELPHIA, PA</div>
+        <div class="mono text-[10px] text-emerald-500 uppercase tracking-widest">Integrity Pulse: Optimal</div>
+    </footer>
+
+    <script>
+        let scene, camera, renderer, particles;
+        const init = () => {
+            const container = document.getElementById('integrity-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            // Trust Particle Field
+            const geometry = new THREE.BufferGeometry();
+            const count = 500;
+            const pos = new Float32Array(count * 3);
+            for(let i=0; i<count*3; i++) { pos[i] = (Math.random()-0.5) * 10; }
+            geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+            
+            const mat = new THREE.PointsMaterial({ color: 0x10b981, size: 0.05, transparent: true, opacity: 0.8 });
+            particles = new THREE.Points(geometry, mat);
+            scene.add(particles);
+
+            camera.position.z = 8;
+            const animate = () => {
+                requestAnimationFrame(animate);
+                particles.rotation.y += 0.001;
+                particles.rotation.x += 0.0005;
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+        init();
+    </script>
+</body>
+</html>

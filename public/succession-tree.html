@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Succession DNA Tree | REALAiID Life-Cycle Authority</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --infant-teal: #18B494;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D HELIX CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-succession {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--infant-teal);
+            text-shadow: 0 0 80px rgba(24, 180, 148, 0.4);
+        }
+
+        /* --- FORENSIC DATA PANELS --- */
+        .tree-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .logic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .logic-card {
+            border-top: 2px solid var(--infant-teal);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .logic-card:hover {
+            border-top-color: var(--bureau-gold);
+            transform: translateY(-5px);
+        }
+
+        .logic-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--infant-teal);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .terminal-readout {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--infant-teal);
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-left: 4px solid var(--infant-teal);
+            line-height: 2;
+            margin-top: 40px;
+        }
+
+        .btn-authorize {
+            background: var(--infant-teal);
+            color: #000;
+            padding: 22px 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-authorize:hover {
+            background: #fff;
+            box-shadow: 0 0 40px rgba(24, 180, 148, 0.4);
+        }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px;
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="helix-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-succession">
+            <div class="z-10 px-6">
+                <span class="font-mono text-xs text-teal-500 uppercase tracking-[0.6em] mb-4 block">Bridge 12 // The Succession Root</span>
+                <h1 class="hero-title">Genetic <br>Inheritance.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed">
+                    Protecting the human lifecycle from birth to legacy. REALAiID establishes the **Digital DNA Tree**, ensuring assets transfer automatically upon verified biological status.
+                </p>
+                <div class="mt-12">
+                    <a href="newbornLikenessAnchor.html" class="btn-authorize">Provision Succession Root</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORENSIC TREE PANEL -->
+        <section class="tree-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="mb-20">
+                <h2 class="font-serif italic text-6xl mb-6 text-white">Automated <br><span class="text-teal-500">Asset Succession.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl">
+                    Bridge 12 technicalizes **Estate Continuity**. Legacy probate takes months—liabilities that leave wealth vulnerable. REALAiID establishes the **Succession Knot™**. By anchoring your $AII, BTC, and Property Deeds to your verified biological descendants, the Bureau executes the transfer instantly upon a verified "Dead-Stop" signal.
+                </p>
+            </div>
+
+            <div class="logic-grid">
+                <!-- LOGIC 1: NEWBORN BASELINE -->
+                <div class="logic-card">
+                    <h3>I. Newborn Baseline</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Establishing the root node at point-of-origin. By hashing infant footprint and genetic markers, we create the first biometrically-sealed predecessor node.
+                    </p>
+                </div>
+
+                <!-- LOGIC 2: DEAD-STOP TRIGGER -->
+                <div class="logic-card">
+                    <h3>II. Dead-Stop Trigger</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Continuous biological monitoring via Bridge 33. If the PHL-01 Mainframe detects a terminal handshake failure, the succession sequence initializes in 300ms.
+                    </p>
+                </div>
+
+                <!-- LOGIC 3: SMART-CONTRACT ESTATE -->
+                <div class="logic-card">
+                    <h3>III. Estate Liquidation</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">
+                        Frictionless probate. Your **Sovereign Escrow (B20)** and **Property Deeds (B14)** release to the descendant's marrow without legal intervention.
+                    </p>
+                </div>
+            </div>
+
+            <div class="terminal-readout">
+                [SYSTEM] POLLING SUCCESSION TREE: NODE_NM_BROWN_99<br>
+                [STATUS] GUARD_ROOT: ACTIVE // SUCCESSOR_NODE: PENDING_INGEST<br>
+                [BRIDGE_12] VITAL_SYNC: VERIFIED // DEAD_STOP_PROTOCOL: ARMED<br>
+                [RESULT] ASSET_CHAIN_CUSTODY: 100% SECURE
+            </div>
+        </section>
+
+        <!-- UTILITY SHOWCASE -->
+        <section class="py-40 text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="font-serif text-6xl italic text-white mb-12">The Century <br><span class="text-teal-500">Anchor.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left mt-20">
+                    <div class="p-10 border border-white/5 bg-white/2 rounded group hover:border-teal-500 transition-all">
+                        <h4 class="text-teal-500 font-bold mb-4 uppercase tracking-tighter">Likeness Legacy</h4>
+                        <p class="text-sm text-slate-400">Protect the identity of the deceased. Use the 1.0v-Root to prevent the posthumous synthetic exploitation of an inhabitant's voice or face under the NO FAKES Act.</p>
+                    </div>
+                    <div class="p-10 border border-white/5 bg-white/2 rounded group hover:border-teal-500 transition-all">
+                        <h4 class="text-teal-500 font-bold mb-4 uppercase tracking-tighter">Automatic Guardianship</h4>
+                        <p class="text-sm text-slate-400">Ensure care for pets (B11) and dependents. Bridge 12 automatically re-assigns custodial rights and $AII care-taking stipends to designated liaisons.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="public-registry.html">Public Registry</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="bridge-14-property-deeds.html">Property Deeds</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital & Access</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="investor-data-room.html">Investor Data Room</a>
+                <a href="signin.html">Member Dashboard</a>
+                <a href="succession-tree.html" style="color:var(--infant-teal)">Succession Tree</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // SUCCESSION NODE PHL-VITAL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('helix-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // --- Create DNA Helix (Life-Cycle Mesh) ---
+        const helixCount = 20;
+        const sphereRadius = 0.15;
+        const helixRadius = 2.5;
+        
+        for (let i = 0; i < helixCount; i++) {
+            const y = (i / helixCount) * 8 - 4;
+            const angle = i * 0.8;
+            
+            // Sphere 1
+            const dot1 = new THREE.Mesh(
+                new THREE.SphereGeometry(sphereRadius, 8, 8),
+                new THREE.MeshPhongMaterial({ color: 0x18B494, emissive: 0x18B494, emissiveIntensity: 0.5 })
+            );
+            dot1.position.set(Math.cos(angle) * helixRadius, y, Math.sin(angle) * helixRadius);
+            group.add(dot1);
+            
+            // Sphere 2
+            const dot2 = new THREE.Mesh(
+                new THREE.SphereGeometry(sphereRadius, 8, 8),
+                new THREE.MeshPhongMaterial({ color: 0xb8860b, emissive: 0xb8860b, emissiveIntensity: 0.5 })
+            );
+            dot2.position.set(Math.cos(angle + Math.PI) * helixRadius, y, Math.sin(angle + Math.PI) * helixRadius);
+            group.add(dot2);
+
+            // Connecting Bar
+            const line = new THREE.Mesh(
+                new THREE.BoxGeometry(helixRadius * 2, 0.05, 0.05),
+                new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.1 })
+            );
+            line.position.set(0, y, 0);
+            line.rotation.y = angle;
+            group.add(line);
+        }
+
+        scene.add(group);
+
+        const light = new THREE.PointLight(0x18B494, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.005;
+            
+            /* Resonance pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.05;
+            group.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.z = mouseX * 0.1;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Satoshi Multi-Rail | $AII Instant Liquidity Bridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --satoshi-orange: #F7931A;
+            --bureau-gold: #b8860b;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --emergency-red: #ff4444;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D LIQUIDITY CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--satoshi-orange);
+            text-shadow: 0 0 80px rgba(247, 147, 26, 0.3);
+        }
+
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-card {
+            border-top: 2px solid var(--satoshi-orange);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .tech-card:hover {
+            border-top-color: var(--phl-blue);
+            transform: translateY(-5px);
+        }
+
+        .tech-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--satoshi-orange);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #1e293b;
+            font-size: 0.8rem;
+            color: var(--satoshi-orange);
+            margin-top: 40px;
+            line-height: 2;
+        }
+
+        .logic-step {
+            display: flex; gap: 25px; margin-bottom: 40px; padding-left: 20px; border-left: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .step-num { font-family: 'JetBrains Mono'; font-size: 2rem; font-weight: 900; color: rgba(247, 147, 26, 0.2); line-height: 1; }
+
+        .fraud-lock-alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--emergency-red);
+            padding: 25px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+
+        /* --- FOOTER SYNC --- */
+        footer { background: #020617; color: #94A3B8; padding: 100px 10% 40px; border-top: 4px solid var(--satoshi-orange); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1600px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 2.2rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="liquidity-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-orange-500 uppercase tracking-[0.6em] mb-4 block">Bridge 16 & 31 & 20 // The Anti-Fraud Root</span>
+                <h1 class="bridge-title">Satoshi <br>Liquidation.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed mt-8">
+                    $AII acts as the high-velocity clearing layer for the "Slow World." Spend Bitcoin at any retail terminal globally in 300ms—bridged by the physics of petascale compute and the security of **Biometric Multi-Sig Escrow**.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-orange-500 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Establish Liquidity Root</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORENSIC ANALYSIS: THE LATENCY PROBLEM -->
+        <section class="forensic-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div>
+                    <h2 class="font-serif italic text-6xl mb-8">The Asynchronous <br><span class="text-blue-500">Settlement Shield.</span></h2>
+                    <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+                        Legacy Bitcoin transactions suffer from a "Temporal Void" that merchants cannot tolerate. REALAiID establishes **Biological Upfronting** with a mandatory **Clawback Protocol** to neutralize fraud.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="logic-step">
+                            <span class="step-num">01</span>
+                            <div>
+                                <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">The Multi-Sig Escrow</h4>
+                                <p class="text-slate-500 text-sm">When you tap to pay, your Bitcoin is instantly moved into a **Bridge 20 Sovereign Escrow**. This 2-of-3 vault is biometrically signed by your marrow and the Bureau Mainframe.</p>
+                            </div>
+                        </div>
+                        <div class="logic-step">
+                            <span class="step-num">02</span>
+                            <div>
+                                <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">$AII Collateralization</h4>
+                                <p class="text-slate-500 text-sm">The Treasury "Leases" $AII liquidity to pay the merchant instantly in USD. Your escrowed Bitcoin acts as the hard collateral during the 60-minute confirmation window.</p>
+                            </div>
+                        </div>
+                        <div class="logic-step">
+                            <span class="step-num">03</span>
+                            <div>
+                                <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">The Protocol Clawback</h4>
+                                <p class="text-slate-500 text-sm">If the user attempts a "Double Spend" or if the Bitcoin network confirmations fail, the PHL-01 Mainframe executes the clawback, transferring the escrowed funds to the Bureau to reimburse the $AII lease.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-12">
+                    <div class="tech-card">
+                        <h3>Forensic Fraud Neutralization</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            To protect the merchant (Austin immersion) and the bridge, the system monitors the 1.0v-Root Ledger for any attempt to move the same funds twice.
+                        </p>
+                        
+                        <div class="cipher-box">
+                            [MONITOR] NODE: ARC-EXEC-8821<br>
+                            [ACTION] TRANSACTION_INITIATED: 300ms<br>
+                            [ESCROW] BTC_LOCKED: 0.0008<br>
+                            [STATUS] $AII_UPFRONTED: $50.00<br>
+                            [RECOURSE] AUTO_CLAWBACK: <span class="text-emerald-500">ENABLED_B20</span>
+                        </div>
+
+                        <div class="fraud-lock-alert">
+                            <h5 class="text-red-500 font-bold uppercase tracking-widest text-xs mb-2 flex items-center gap-2">
+                                <i class="ph-bold ph-shield-warning"></i> Fraud Immunity standard
+                            </h5>
+                            <p class="text-[11px] text-slate-400">
+                                If the reimbursement handshake fails, the Bureau utilizes your biometrically-signed **Consent Record** (recorded at T-0) as a juridical signature to finalize the transfer. You cannot "Cancel" a biological intent once the merchant has received the $AII value.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="tech-card border-blue-500/30">
+                        <h3>Industrial API Registry</h3>
+                        <div class="font-mono text-[10px] space-y-3">
+                            <div class="flex justify-between border-b border-white/5 pb-2"><span>Chainlink / Data Feeds</span> <span class="text-blue-400 uppercase">BTC/USD Spot</span></div>
+                            <div class="flex justify-between border-b border-white/5 pb-2"><span>Strike / Lightning</span> <span class="text-blue-400 uppercase">LSP Channel</span></div>
+                            <div class="flex justify-between border-b border-white/5 pb-2"><span>TRP / Travel Rule</span> <span class="text-blue-400 uppercase">VASP Compliance</span></div>
+                            <div class="flex justify-between border-b border-white/5 pb-2"><span>B35 / Justice</span> <span class="text-blue-400 uppercase">Arbitrage ruling</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI ISLAND HABITATION OS -->
+        <section class="py-40 text-center">
+            <div class="max-w-5xl mx-auto px-6">
+                <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mb-6 block">Habitation Operating System</span>
+                <h2 class="font-serif text-7xl italic mb-12">Civilization <br><span class="text-orange-500">Recoded.</span></h2>
+                <p class="text-xl text-slate-500 font-light leading-relaxed mb-20">
+                    AI Island is not a location; it is a **Sovereign Node**. While legacy cities struggle with bureaucratic friction and decaying infrastructure, AI Island maintains a 0.0% collision rate and 300ms smart-contract justice.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    <div class="p-10 border border-white/5 bg-white/2 rounded-lg group hover:border-orange-500 transition-all">
+                        <h4 class="text-orange-500 font-bold mb-4 uppercase tracking-tighter">[D6] IRIS-CLASS</h4>
+                        <p class="text-xs text-slate-400 leading-loose">Atmospheric micro-drones monitoring air quality at the molecular level in the 7G Mesh. Invisible environmental guardianship.</p>
+                    </div>
+                    <div class="p-10 border border-white/5 bg-white/2 rounded-lg group hover:border-blue-500 transition-all">
+                        <h4 class="text-blue-500 font-bold mb-4 uppercase tracking-tighter">[D8] CHRONOS-CLASS</h4>
+                        <p class="text-xs text-slate-400 leading-loose">Logistics drones projecting 50ft holographic avatars of the AI to greet arriving ships. The visual face of sovereignty.</p>
+                    </div>
+                    <div class="p-10 border border-white/5 bg-white/2 rounded-lg group hover:border-amber-500 transition-all">
+                        <h4 class="text-amber-500 font-bold mb-4 uppercase tracking-tighter">DYNAMIC PRISM DOME</h4>
+                        <p class="text-xs text-slate-400 leading-loose">A Prism using liquid-crystal suspension to simulate "Personal Skies" and harvest solar energy across its entire surface area.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the $AII Compute Standard under the Maritime Charter of Solomon Kin LLC.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="maritime-charter-api.html">Maritime Charter</a>
+                <a href="public-registry.html">Public Registry</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // SATOSHI BRIDGE VERIFIED
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('liquidity-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        /* The Satoshi Rail (Interlocking Orange Rings) */
+        for(let i=0; i<2; i++) {
+            const ringGeo = new THREE.TorusGeometry(3.5, 0.03, 16, 100);
+            const ringMat = new THREE.MeshPhongMaterial({
+                color: 0xF7931A,
+                transparent: true,
+                opacity: 0.5,
+                wireframe: true
+            });
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.rotation.x = Math.PI / 2;
+            ring.rotation.y = (i * Math.PI) / 2;
+            group.add(ring);
+        }
+
+        /* The $AII Core (Pulsing blue Octahedron) */
+        const coreGeo = new THREE.OctahedronGeometry(1.5, 0);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.4,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        /* THE ESCROW CAGE (Added for Anti-Fraud visualization) */
+        const cageGeo = new THREE.IcosahedronGeometry(4.5, 1);
+        const cageMat = new THREE.MeshBasicMaterial({
+            color: 0x1693E9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.1
+        });
+        const cage = new THREE.Mesh(cageGeo, cageMat);
+        group.add(cage);
+
+        scene.add(group);
+
+        /* Lights */
+        const light = new THREE.PointLight(0xF7931A, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        /* Animation Loop */
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.003;
+            core.rotation.x -= 0.01;
+            cage.rotation.y -= 0.001;
+            
+            /* Liquidity pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abyssal Knot Mesh Panel | REALAiID Enterprise Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght=1,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        
+        /* NAVIGATION MATRIX */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #1693E9; }
+
+        /* TELEMETRY CONSOLE CSS */
+        .console-panel { background: rgba(2, 6, 23, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(50px); padding: 40px; box-shadow: 0 50px 100px rgba(0,0,0,0.8); }
+        .metric-card { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.06); padding: 25px; border-radius: 2px; position: relative; }
+        .metric-glow { position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #1693E9; }
+        
+        /* RADAR HUD GRAPHIC */
+        #radar-container { width: 100%; height: 350px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.03); position: relative; }
+        
+        /* DATA TERMINAL ROWS */
+        .terminal-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; padding: 15px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+        .terminal-row:hover { background: rgba(22, 147, 233, 0.03); }
+
+        .gold-glow:focus { outline: none; border-color: rgba(22, 147, 233, 0.6); box-shadow: 0 0 10px rgba(22, 147, 233, 0.15); }
+
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-grid { display: grid; grid-template-columns: 2.5fr repeat(5, 1fr); gap: 30px; }
+        .footer-col h4 { color: #ffffff; font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1.75rem; letter-spacing: 2px; }
+        .footer-col a { display: block; font-size: 0.8rem; line-height: 2.4; color: #64748B; text-decoration: none; transition: color 0.2s; }
+        .footer-col a:hover { color: #1693E9; }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="WhatisREALAiiD.html">What is REALAiID?</a>
+            <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
+            <a href="forensic-terminal.html">Forensic Terminal</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <section class="text-center mb-12">
+            <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mb-4 block">B2B Infrastructure Interconnect</span>
+            <h1 class="text-7xl font-serif italic font-black text-white leading-none">Abyssal Knot Mesh</h1>
+            <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-6">
+                Turn oceanic fluid thermodynamics into liquid capital. Overlay the Abyssal-Knot hypervisor layer onto your submerged data center arrays to monetize natural subsea cooling loops natively in <b>$AII Compute Currency</b>.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="lg:col-span-1 console-panel rounded-sm flex flex-col justify-between">
+                <div>
+                    <h2 class="font-serif text-lg italic text-white border-b border-white/5 pb-2 mb-4 flex items-center gap-2">
+                        <i class="ph ph-key text-blue-500"></i> 1. OTA Mobile Credential Seed
+                    </h2>
+                    <p class="text-xs text-slate-400 mb-6 leading-relaxed">
+                        Manually issue an encrypted, high-assurance digital access card to a target device container secure element via the HID Origo API pipeline.
+                    </p>
+
+                    <form id="provisionForm" class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">Sovereign Identity Reference</label>
+                            <input type="text" id="sovereignID" required placeholder="e.g., BIO-PHL-1981-MIA" 
+                                class="w-full bg-slate-950 border border-slate-800 rounded-sm px-3 py-2 text-sm text-zinc-100 gold-glow font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-1">Mobile Secure Element Hardware ID</label>
+                            <input type="text" id="mobileSecureElementId" required placeholder="e.g., SE-ADDR-88F2-99C1" 
+                                class="w-full bg-slate-950 border border-slate-800 rounded-sm px-3 py-2 text-sm text-zinc-100 gold-glow font-mono">
+                        </div>
+                        <button type="submit" 
+                            class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-xs font-bold uppercase tracking-widest py-3 rounded-sm transition-all duration-200 mt-2">
+                            Deploy OTA Proximity Key
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2 console-panel p-0 overflow-hidden relative rounded-sm">
+                <div style="position: absolute; top: 25px; left: 25px; z-index: 50;">
+                    <span class="font-mono text-[10px] text-blue-400 uppercase tracking-widest block mb-1">Simulation Frame Array</span>
+                    <h4 class="font-serif text-xl italic text-white">Subsea Thermal Ingestion Model</h4>
+                </div>
+                
+                <div style="position: absolute; top: 25px; right: 25px; z-index: 50;" class="flex items-center gap-2 text-xs font-mono">
+                    <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-400 text-[10px]">HID ORIGO LINK: STANDBY</span>
+                </div>
+
+                <div id="radar-container"></div>
+            </div>
+        </div>
+
+        <section class="console-panel shadow-2xl mb-12 rounded-sm">
+            <h2 class="text-3xl font-serif italic text-white mb-2">System Terminal & Activity Monitor</h2>
+            <p class="text-slate-400 font-light max-w-3xl mb-6 text-sm">
+                Real-time validation tracking logs recording third-party deep-sea capsule arrays transmitting data packets to Mainframe Hub PHL-01.
+            </p>
+            
+            <div id="terminalLog" class="w-full bg-slate-950 rounded-sm p-5 text-xs font-mono text-emerald-400 border border-slate-900 overflow-y-auto h-64 space-y-2">
+                <p class="text-slate-500">[SYSTEM INIT] Core access front-end subsystem loaded...</p>
+                <p class="text-slate-500">[SYSTEM INIT] Standby for subsea hardware network handshakes...</p>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <button onclick="clearTerminal()" 
+                    class="border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-slate-300 text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-sm transition-colors duration-150">
+                    Purge Terminal Cache
+                </button>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 py-12 border-t border-white/5">
+            <div>
+                <h3 class="text-4xl font-serif italic text-white mb-6">Hypervisor Ingestion Sequence</h3>
+                <p class="text-slate-400 font-light leading-relaxed text-justify mb-4">
+                    To bridge an existing oceanic hardware installation onto the network, system engineers deploy our audited telemetry daemon container. The software runs securely alongside your localized virtual machine managers, translating turbine power indicators and cold-sink heat-dump variables directly into verifiable data parameters.
+                </p>
+                <p class="text-slate-400 font-light leading-relaxed text-justify">
+                    Once the initial cryptographic handshake handshake clears the perimeter, the Bureau's core billing logic automatically routes liquidity distributions down to your corporate ledger account every 100 milliseconds.
+                </p>
+            </div>
+            
+            <div class="bg-black/40 border border-slate-800 p-8 rounded-sm font-mono text-xs text-blue-400 space-y-2">
+                <span class="text-slate-500 text-[10px] tracking-widest uppercase block mb-4">// Core AKM Initialization Shell</span>
+                <p><span class="text-white">const</span> abyssalMesh = require(<span class="text-amber-500">'./abyssal-knot-mesh'</span>);</p>
+                <br>
+                <p>abyssalMesh.initializeNode({</p>
+                <p class="pl-4">nodeID: <span class="text-amber-500">"0xNODE_ABYSS_ENT_01"</span>,</p>
+                <p class="pl-4">hydrokineticFluxJoules: <span class="text-white">4592.12</span>,</p>
+                <p class="pl-4">ambientOceanTemperatureCelsius: <span class="text-white">2.4</span></p>
+                <p>}).then((settlementFrame) => {</p>
+                <p class="pl-4">console.log(<span class="text-emerald-400">`[AKM] Telemetry block validated. Hash: ${settlementFrame.txHash}`</span>);</p>
+                <p>});</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid px-4">
+            <div class="col-span-1 pr-8">
+                <div style="color: white; font-weight: 800; font-size: 1.3rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+                <p class="text-xs text-slate-600 mt-4 leading-relaxed font-light">
+                    Sovereign Core Architecture Node: PHL-01.<br>Philadelphia Mainframe Hub. Anchored at 1900 Market St.
+                </p>
+                <p class="text-[10px] text-slate-700 font-mono mt-8">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Access Gateways</h4>
+                <a href="signin.html">Mainframe Login</a>
+                <a href="registration-gate.html">Biometric Enrollment</a>
+                <a href="bureau-terminal.html">Terminal Node PHL-01</a>
+                <a href="identity-vault.html">Citadel Vault Access</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html" class="text-blue-500">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const logElement = document.getElementById('terminalLog');
+
+        function appendLog(message, isError = false) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logLine = document.createElement('p');
+            logLine.className = isError ? 'text-rose-500' : 'text-emerald-400';
+            logLine.innerHTML = `<span class="text-slate-600">[${timestamp}]</span> ${message}`;
+            logElement.appendChild(logLine);
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+
+        function clearTerminal() {
+            logElement.innerHTML = '<p class="text-slate-500">[SYSTEM RESET] Terminal logs purged.</p>';
+        }
+
+        // HANDLE OVER-THE-AIR CREDENTIAL PROVISIONING SUBMISSION
+        document.getElementById('provisionForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const sovereignID = document.getElementById('sovereignID').value;
+            const mobileSecureElementId = document.getElementById('mobileSecureElementId').value;
+
+            appendLog(`Dispatching provisioning envelope to server rail for ID: ${sovereignID}`);
+
+            try {
+                const response = await fetch('/api/v1/access/provision-mobile-key', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ sovereignID, mobileSecureElementId })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || data.error || 'GATEWAY_TRANSACTION_REJECTED');
+                }
+
+                appendLog(`OTA SUCCESS // Assigned Key Container: ${data.clearancePayload.assignedKeyClass}`);
+                appendLog(`OTA SUCCESS // Anchored Anchor Token: ${data.clearancePayload.virtualTokenAnchor}`);
+                appendLog(`OTA SUCCESS // Clearance Grade Seated: ${data.clearancePayload.systemClearanceLevel}`);
+
+            } catch (err) {
+                appendLog(`ERR: ${err.message}`, true);
+            }
+        });
+
+        // THREE.JS OCEAN DATA MESH VISUALIZER
+        const scene = new THREE.Scene();
+        const container = document.getElementById('radar-container');
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(width, height);
+        container.appendChild(renderer.domElement);
+
+        const gridGroup = new THREE.Group();
+        scene.add(gridGroup);
+
+        const geometry = new THREE.PlaneGeometry(16, 16, 32, 32);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.25
+        });
+        
+        const oceanFloor = new THREE.Mesh(geometry, material);
+        oceanFloor.rotation.x = -Math.PI / 2.3;
+        oceanFloor.position.y = -1.5;
+        gridGroup.add(oceanFloor);
+
+        const light = new THREE.DirectionalLight(0xffffff, 1.5);
+        light.position.set(0, 5, 5);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0x1693E9, 0.2));
+
+        camera.position.z = 8;
+        camera.position.y = 1;
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            const pos = geometry.attributes.position;
+            for (let i = 0; i < pos.count; i++) {
+                const u = pos.getX(i);
+                const v = pos.getY(i);
+                const z = Math.sin(u * 0.5 + time) * 0.25 + Math.cos(v * 0.5 + time) * 0.25;
+                pos.setZ(i, z);
+            }
+            pos.needsUpdate = true;
+            gridGroup.rotation.y = time * 0.04;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
+
+        animate();
+    </script>
+</body>
+</html>

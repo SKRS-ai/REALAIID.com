@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE B-38 // Precinct Root Anchor // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { 
+            --phl-blue: #1693E9; 
+            --bureau-gold: #b8860b; 
+            --dark: #020617; 
+            --transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); transition: var(--transition); }
+        .glass:hover { border-color: var(--bureau-gold); background: rgba(184, 134, 11, 0.05); }
+        .spatial-gradient { background: radial-gradient(circle at bottom left, rgba(184, 134, 11, 0.1), transparent 50%); }
+        
+        header { background: #fff; color: #000; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; }
+        .nav-link { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-link:hover { color: var(--phl-blue); }
+
+        #spatial-canvas { height: 500px; width: 100%; cursor: crosshair; }
+        
+        .stat-value { font-family: 'JetBrains Mono'; color: var(--bureau-gold); font-size: 1.25rem; font-weight: 700; }
+        .tag { font-size: 8px; font-weight: 900; padding: 3px 8px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; border: 1px solid currentColor; }
+
+        footer { background: #000; padding: 6rem 5% 3rem; border-top: 1px solid #1e293b; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <header class="flex justify-between items-center">
+        <div class="logo-area">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" class="h-14" onerror="this.src='https://placehold.co/200x60/ffffff/000000?text=REALAiID+BUREAU'">
+        </div>
+        <nav class="hidden md:flex gap-10">
+            <a href="index.html" class="nav-link">The Bureau</a>
+            <a href="mainframe.html" class="nav-link">Mainframe</a>
+            <a href="api-docs.html" class="nav-link">API Docs</a>
+            <a href="signin.html" class="nav-link" style="color: var(--phl-blue);">Initialize Handshake</a>
+        </nav>
+    </header>
+
+    <main class="relative spatial-gradient">
+        <section class="max-w-7xl mx-auto px-6 pt-24 pb-12">
+            <div class="flex flex-col lg:flex-row gap-20 items-center">
+                <div class="flex-1 space-y-10">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <span class="tag text-gold-500" style="color: var(--bureau-gold)">Jurisdictional Anchor</span>
+                            <span class="mono text-[10px] opacity-40 uppercase tracking-widest">Node B-38</span>
+                        </div>
+                        <h1 class="text-7xl font-black italic tracking-tighter leading-none" style="font-family: 'Playfair Display', serif;">
+                            Precinct <span style="color: var(--bureau-gold)">Root.</span>
+                        </h1>
+                    </div>
+
+                    <p class="text-xl text-slate-400 leading-relaxed max-w-xl">
+                        The Bureau’s <span class="text-white">Spatial Jurisdictional Rail</span> utilizing USgeocoder logic. This bridge maps your biological presence to the exact legislative coordinates of your power— Congressional, State, and local precinct.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="glass p-6 flex items-center gap-6">
+                            <div class="h-12 w-12 rounded-full border border-yellow-900/50 flex items-center justify-center bg-yellow-950/20">
+                                <i class="ph-bold ph-map-pin text-yellow-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="mono text-xs uppercase text-white tracking-widest">Active Node PHL-01</h4>
+                                <p class="text-xs opacity-50">1900 Market St // Precinct 05-02 // District PA-03</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full relative">
+                    <div id="spatial-canvas" class="glass rounded-2xl overflow-hidden shadow-2xl"></div>
+                    <div class="absolute top-6 right-6 flex flex-col gap-2">
+                        <div class="glass px-4 py-2 rounded text-[10px] mono uppercase tracking-widest">Lat: 39.9526</div>
+                        <div class="glass px-4 py-2 rounded text-[10px] mono uppercase tracking-widest">Lon: -75.1652</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 py-24 border-t border-white/5">
+            <h2 class="mono text-[10px] uppercase tracking-[1em] text-center mb-20 opacity-30">Sovereign Wallet Capabilities</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-10 space-y-6">
+                    <i class="ph-fill ph-check-square-offset text-4xl text-blue-500"></i>
+                    <h3 class="text-2xl font-bold italic">Civic-Ballot Bridge</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Execute secure, digital votes in local elections or town halls. Your ballot is cryptographically tied to your Precinct Root, ensuring 100% residency accuracy with zero fraud risk.</p>
+                </div>
+
+                <div class="glass p-10 space-y-6">
+                    <i class="ph-fill ph-users-three text-4xl text-yellow-500"></i>
+                    <h3 class="text-2xl font-bold italic">Verified Constituent</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Bypass the noise of public comms. Use your B-38 anchor to prove constituent status directly to your Senator or Representative, gaining priority access to legislative dashboards.</p>
+                </div>
+
+                <div class="glass p-10 space-y-6">
+                    <i class="ph-fill ph-shield-star text-4xl text-emerald-500"></i>
+                    <h3 class="text-2xl font-bold italic">Gerrymander Immunity</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">Your identity remains stable even as political boundaries shift. The Bureau automatically re-syncs your political standing the moment districts are redrawn, preserving your sovereignty.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 mb-20">
+            <div>
+                <div class="text-white font-black text-xl mono mb-6">REALAiID // BUREAU</div>
+                <p class="text-xs leading-relaxed">The global reserve of biological truth. Establishing the first Deepfake-Proof jurisdiction under the Maritime Charter of Solomon Kin LLC.</p>
+            </div>
+            <div class="space-y-4">
+                <h4 class="mono text-[10px] uppercase tracking-widest text-white">Institutional Sync</h4>
+                <ul class="text-[10px] uppercase tracking-widest space-y-2">
+                    <li><a href="bridge-37-federal-sync.html" class="hover:text-blue-400 transition">Federal B-37</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition text-yellow-600">Precinct B-38 (Active)</a></li>
+                    <li><a href="api-docs.html" class="hover:text-blue-400 transition">Developer Rails</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4 text-right">
+                <h4 class="mono text-[10px] uppercase tracking-widest text-white">Node Status</h4>
+                <div class="flex flex-col items-end gap-2 text-[10px] mono uppercase tracking-widest">
+                    <span class="text-emerald-500">Spatial Root: Optimal</span>
+                    <span class="text-blue-400">Handshake: Committed</span>
+                    <span class="opacity-30">© 2026 Solomon Kin LLC</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let scene, camera, renderer, globe;
+        const init = () => {
+            const container = document.getElementById('spatial-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            // Create a spatial wireframe globe/grid
+            const geometry = new THREE.SphereGeometry(2, 32, 32);
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xb8860b,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.3
+            });
+            globe = new THREE.Mesh(geometry, material);
+            scene.add(globe);
+
+            // Add a "Jurisdiction Pulse" point
+            const pointGeo = new THREE.SphereGeometry(0.05, 16, 16);
+            const pointMat = new THREE.MeshBasicMaterial({ color: 0x1693E9 });
+            const pulsePoint = new THREE.Mesh(pointGeo, pointMat);
+            pulsePoint.position.set(1.5, 1, 1);
+            globe.add(pulsePoint);
+
+            // Light
+            const light = new THREE.DirectionalLight(0xffffff, 1);
+            light.position.set(5, 5, 5);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0x404040));
+
+            camera.position.z = 6;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                globe.rotation.y += 0.003;
+                globe.rotation.x += 0.001;
+                
+                // Pulsing the locator
+                const s = 1 + Math.sin(Date.now() * 0.005) * 0.5;
+                pulsePoint.scale.set(s, s, s);
+                
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('spatial-canvas');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+
+        init();
+    </script>
+</body>
+</html>

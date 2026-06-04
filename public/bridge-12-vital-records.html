@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 12 // Vital Records | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-emerald: #10B981;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER SYNC HEADER --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.85rem; /* Increased as per directive */
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-emerald); }
+
+        .nav-cta {
+            background: var(--phl-emerald);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D LIFE CYCLE CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(16, 185, 129, 0.3);
+        }
+
+        /* */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--phl-emerald);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--bureau-gold);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--phl-emerald);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--phl-emerald);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- BRIDGE BUTTONS --- */
+        .bridge-button {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .bridge-button:hover {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: var(--phl-emerald);
+            transform: scale(1.02);
+        }
+        .bridge-icon { font-size: 1.4rem; color: var(--bureau-gold); }
+        .bridge-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- MASTER SYNC FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-emerald); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-emerald); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="life-cycle-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-emerald-500 uppercase tracking-[0.5em] mb-4 block">Industrial Node // Bridge 12</span>
+                <h1 class="bridge-title">Vital <span class="text-emerald-500">Records.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The biological origin anchor bridging birth registries, succession roots, and life-cycle telemetry to the 1.0v-Root Ledger.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-emerald-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Authorize Record Ingest</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- -->
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Succession of <br><span class="text-emerald-500">Biological Truth.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 12 technicalizes the point of entry into civilization. Legacy vital records (paper birth certificates) are static vulnerabilities that facilitate lifelong identity theft. REALAiID establishes the **Digital Newborn Baseline**. By anchoring a SHA-256 biometric hash of infant footprint and ocular geometry to the guardian's root, we secure the successor node before it enters the digital mesh.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Sovereign succession is now automated. Upon a verified biological dead-stop signal, the 1.0v-Root Ledger triggers **Bridge 14 (Property)** and **Bridge 10 (Fiscal)** transfers to the successor DNA tree instantly, bypassing years of probate friction.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > UPLINK: STATE_VITAL_ROOT_SYNC<br>
+                        > PROTOCOL: SUCCESSION_1.0v_ROOT<br>
+                        > METHOD: NEWBORN_BASELINE_HASH<br>
+                        > STATUS: <span class="text-emerald-500">LIFE_CYCLE_SECURED</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Succession DNA Tree</h4>
+                        <p class="text-sm text-slate-400">Links permanent genetic markers to the inheritance rail. Ensures assets are only released to the verified biological descendant.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Newborn Baseline</h4>
+                        <p class="text-sm text-slate-400">Establishes the forensic origin node at birth. Prevents future AI synthesis or social engineering of the child's likeness.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Paperless Vital Auth</h4>
+                        <p class="text-sm text-slate-400">Eliminates the need for physical certificates at border nodes or schools. Your biology is the certified vital record.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Dead-Stop Trigger</h4>
+                        <p class="text-sm text-slate-400">Forensic monitoring of vital status. Automated smart-contract execution for estate release upon terminal biological handshake failure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-emerald-500 uppercase tracking-[0.4em] mb-8">Wallet Loaded Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Your Lineage <br><span class="text-emerald-500">Immutable.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-emerald-500 transition-all">
+                    <div class="text-emerald-500 text-3xl mb-6"><i class="ph-fill ph-baby"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Guardian Registry</h4>
+                    <p class="text-slate-400 font-light">Manage and protect your child's biological sovereignty directly from your command center until they reach the age of majority (Bridge 25).</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-emerald-500 transition-all">
+                    <div class="text-emerald-500 text-3xl mb-6"><i class="ph-fill ph-file-text"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Paperless Vital Claims</h4>
+                    <p class="text-slate-400 font-light">Authorize insurance, school enrollments, and government benefits using your biological node as the certified proof of birth.</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-emerald-500 transition-all">
+                    <div class="text-emerald-500 text-3xl mb-6"><i class="ph-fill ph-tree-structure"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Inheritance Release</h4>
+                    <p class="text-slate-400 font-light">Provision the "Succession Knot." Ensure your liquid assets and property deeds automatically release to authorized family nodes.</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-emerald-500 transition-all">
+                    <div class="text-emerald-500 text-3xl mb-6"><i class="ph-fill ph-shield-check"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Likeness Legacy</h4>
+                    <p class="text-sm text-slate-400">Protect the deceased. Use the 1.0v-Root to prevent the posthumous synthetic exploitation of an inhabitant's likeness.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- -->
+        <section class="py-20 border-t border-white/5">
+            <h2 class="text-center font-serif italic text-white text-3xl mb-12">Global Reserve Perimeter</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-[1600px] mx-auto" id="bridge-grid">
+                <!-- JavaScript will populate 35 Bridge Buttons -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying biological life-cycle standards under the NO FAKES Act.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        /* */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('life-cycle-canvas').appendChild(renderer.domElement);
+
+        /* --- Create Succession Helix architecture --- */
+        const group = new THREE.Group();
+        
+        /* The Outer Shell (Guardian Root) */
+        const shellGeo = new THREE.IcosahedronGeometry(3, 1);
+        const shellMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x10B981,
+            emissiveIntensity: 0.2,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2
+        });
+        const shell = new THREE.Mesh(shellGeo, shellMat);
+        group.add(shell);
+
+        /* The Inner Core (Newborn Node) */
+        const coreGeo = new THREE.TorusKnotGeometry(1.2, 0.4, 100, 16);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0x10B981,
+            emissive: 0x10B981,
+            emissiveIntensity: 0.5,
+            wireframe: true
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        /* --- Lights --- */
+        const light = new THREE.PointLight(0x10B981, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const whiteLight = new THREE.PointLight(0xffffff, 1, 100);
+        whiteLight.position.set(-10, -10, 10);
+        scene.add(whiteLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 8;
+
+        /* --- Animation Loop --- */
+        function animate() {
+            requestAnimationFrame(animate);
+            shell.rotation.y += 0.002;
+            core.rotation.y -= 0.01;
+            core.rotation.x += 0.005;
+            
+            /* Succession pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        // --- BRIDGE INJECTION ENGINE ---
+        const bridgeList = [
+            {id: "01", name: "Auth Root", link: "bridge-01-auth-root.html", icon: "ph-shield-check"},
+            {id: "02", name: "Civic Core", link: "bridge-02-civic-core.html", icon: "ph-users-four"},
+            {id: "03", name: "HR Liaison", link: "bridge-03-hr-liaison.html", icon: "ph-identification-card"},
+            {id: "04", name: "Civic Ballot", link: "bridge-04-civic-ballot.html", icon: "ph-check-square-offset"},
+            {id: "05", name: "Ambient Auth", link: "bridge-05-ambient-auth.html", icon: "ph-waveform"},
+            {id: "06", name: "Keystone Plate", link: "bridge-06-keystone-plate.html", icon: "ph-cpu"},
+            {id: "07", name: "Entra Defense", link: "bridge-07-entra-defense.html", icon: "ph-microsoft-logo"},
+            {id: "08", name: "UAC Physical", link: "bridge-08-uac-physical.html", icon: "ph-key"},
+            {id: "09", name: "DMV Authority", link: "bridge-09-dmv-authority.html", icon: "ph-car"},
+            {id: "10", name: "Fiscal Root", link: "bridge-10-fiscal-root.html", icon: "ph-bank"},
+            {id: "11", name: "Pet Likeness", link: "bridge-11-pet-likeness.html", icon: "ph-paw-print"},
+            {id: "12", name: "Vital Records", link: "bridge-12-vital-records.html", icon: "ph-baby"},
+            {id: "13", name: "Medical Root", link: "bridge-13-medical-root.html", icon: "ph-heartbeat"},
+            {id: "14", name: "Property Deeds", link: "bridge-14-property-deeds.html", icon: "ph-house-line"},
+            {id: "15", name: "Safe-Owner", link: "bridge-15-safe-owner.html", icon: "ph-vault"},
+            {id: "16", name: "Satoshi Root", link: "bridge-16-satoshi-root.html", icon: "ph-currency-btc"},
+            {id: "17", name: "Professional", link: "bridge-17-professional.html", icon: "ph-briefcase"},
+            {id: "18", name: "SSA Tokenizer", link: "bridge-18-ssa-tokenizer.html", icon: "ph-shield-plus"},
+            {id: "19", name: "Bio-Sign", link: "bridge-19-bio-sign.html", icon: "ph-fingerprint"},
+            {id: "20", name: "Sovereign Escrow", link: "bridge-20-sovereign-escrow.html", icon: "ph-island"},
+            {id: "21", name: "Citadel Escrow", link: "bridge-21-citadel-escrow.html", icon: "ph-fortress"},
+            {id: "22", name: "DTC Travel", link: "bridge-22-dtc-travel.html", icon: "ph-airplane-tilt"},
+            {id: "23", name: "Amex Anchor", link: "bridge-23-amex-anchor.html", icon: "ph-credit-card"},
+            {id: "24", name: "Credit Authority", link: "bridge-24-credit-authority.html", icon: "ph-chart-line-up"},
+            {id: "25", name: "Insurance", link: "bridge-25-insurance.html", icon: "ph-umbrella"},
+            {id: "26", name: "Mastercard Rail", link: "bridge-26-mastercard-rail.html", icon: "ph-globe"},
+            {id: "27", name: "Academic Root", link: "bridge-27-academic-root.html", icon: "ph-student"},
+            {id: "28", name: "Global Notary", link: "bridge-28-global-notary.html", icon: "ph-seal-check"},
+            {id: "29", name: "Logistics Sync", link: "bridge-29-logistics-sync.html", icon: "ph-truck"},
+            {id: "30", name: "Automotive Anchor", link: "bridge-30-automotive-anchor.html", icon: "ph-keyhole"},
+            {id: "31", name: "$AII Economy", link: "bridge-31-aii-economy.html", icon: "ph-circuit"},
+            {id: "32", name: "God Sense", link: "bridge-32-god-sense.html", icon: "ph-brain"},
+            {id: "33", name: "Benthic Pulse", link: "bridge-33-benthic-pulse.html", icon: "ph-wave-sine"},
+            {id: "34", name: "Oracle Flux", link: "bridge-34-oracle-flux.html", icon: "ph-eye"},
+            {id: "35", name: "Sovereign Justice", link: "bridge-35-sovereign-justice.html", icon: "ph-scales"}
+        ];
+
+        const grid = document.getElementById('bridge-grid');
+        bridgeList.forEach(b => {
+            const btn = document.createElement('a');
+            btn.href = b.link;
+            btn.className = "bridge-button";
+            btn.innerHTML = `<i class="ph-fill ${b.icon} bridge-icon"></i><div class="flex flex-col"><span class="text-[8px] text-gray-500 font-mono">NODE ${b.id}</span><span class="bridge-label">${b.name}</span></div><span class="bridge-status animate-pulse text-[8px] text-emerald-500 font-black ml-auto">VERIFIED</span>`;
+            grid.appendChild(btn);
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

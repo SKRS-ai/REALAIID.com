@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>REALAiID BUREAU | PORTAL</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; }
+        .aii-metric { color: var(--neon); font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1 id="portal-title">BRIDGE PORTAL</h1>
+            <p>Secure interface connected to PHL-01 Mainframe.</p>
+            <div class="aii-metric" id="status-display">INITIALIZING...</div>
+            <button onclick="executeBridgeQuery()">EXECUTE SECURE QUERY</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        // Standard Bridge Connection Logic
+        async function executeBridgeQuery() {
+            // Replace 'bridge-id' with the specific bridge (e.g., 'bridge-39')
+            const response = await fetch('/api/v1/bridge-id/verify');
+            const data = await response.json();
+            document.getElementById('status-display').innerText = "STATUS: " + data.status;
+        }
+    </script>
+</body>
+</html>

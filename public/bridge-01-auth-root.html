@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 01 // Auth Root | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        
+        #auth-root-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 1 !important; }
+
+        /* HEADER & NAVIGATION */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nav-cta { background: #1693E9; padding: 12px 24px; border-radius: 2px; }
+
+        /* HERO & CONTENT */
+        .hero-bridge { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 10; }
+        .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 12vw, 9rem); font-style: italic; line-height: 0.85; margin-bottom: 25px; color: #fff; text-shadow: 0 0 70px rgba(22, 147, 233, 0.6); }
+        
+        .forensic-panel { background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(60px); padding: 80px; margin-top: -150px; position: relative; z-index: 20; box-shadow: 0 60px 120px rgba(0,0,0,0.8); }
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 40px; border: 1px solid #1e293b; font-size: 0.85rem; color: #1693E9; line-height: 2; }
+        
+        .utility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 60px; }
+        .utility-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 40px; transition: 0.4s; }
+        .utility-card:hover { border-color: #1693E9; background: rgba(22, 147, 233, 0.05); transform: translateY(-10px); }
+
+        .perimeter-grid-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 60px; }
+        .perimeter-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.4s; text-decoration: none; color: #fff; }
+        .perimeter-btn:hover { background: rgba(22, 147, 233, 0.15); border-color: #1693E9; transform: perspective(1000px) translateZ(15px); }
+        
+        .node-num { font-family: 'JetBrains Mono'; font-size: 0.55rem; color: #475569; display: block; margin-bottom: 2px; }
+        .node-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        footer { background: #020617; color: #94A3B8; padding: 80px 60px; border-top: 4px solid #1693E9; position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; }
+=======
+    <link rel="stylesheet" href="style.css">
+    
+=======
+>>>>>>> fa72c62af (COMMIT_EDITMSG)
+=======
+    
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        #auth-root-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 1 !important; }
+=======
+    <!-- Master Synchronization with Sovereign Framework v2.5 -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Force Dark Bureau Overrides to solve masking failure */
+        body { 
+            background-color: transparent !important; 
+            color: #ffffff; 
+        }
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+
+        html {
+            background-color: #05080F; /* Root background behind the canvas */
+        }
+
+<<<<<<< HEAD
+        .hero-bridge { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 10; }
+        .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 12vw, 9rem); font-style: italic; line-height: 0.85; margin-bottom: 25px; color: #fff; text-shadow: 0 0 70px rgba(22, 147, 233, 0.6); }
+<<<<<<< HEAD
+<<<<<<< HEAD
+        .forensic-panel { background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(60px); padding: 80px; margin-top: -150px; position: relative; z-index: 20; box-shadow: 0 60px 120px rgba(0,0,0,0.8); }
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 40px; border: 1px solid #1e293b; font-size: 0.85rem; color: #1693E9; line-height: 2; }
+        .utility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 60px; }
+        .utility-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 40px; transition: 0.4s; }
+        .utility-card:hover { border-color: #1693E9; background: rgba(22, 147, 233, 0.05); transform: translateY(-10px); }
+        .perimeter-grid-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 60px; }
+        .perimeter-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.4s; text-decoration: none; color: #fff; }
+        .perimeter-btn:hover { background: rgba(22, 147, 233, 0.15); border-color: #1693E9; transform: perspective(1000px) translateZ(15px); }
+        .node-num { font-family: 'JetBrains Mono'; font-size: 0.55rem; color: #475569; display: block; margin-bottom: 2px; }
+        .node-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+=======
+        .forensic-panel { background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(60px); padding: 80px; position: relative; z-index: 20; }
+        
+        .utility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .utility-card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); padding: 40px; transition: 0.4s; }
+        .utility-card:hover { border-color: #1693E9; transform: translateY(-10px); }
+>>>>>>> fa72c62af (COMMIT_EDITMSG)
+=======
+=======
+        #auth-root-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; /* Placed above background but below content */
+            opacity: 1 !important; /* Total clarity for acoustic design */
+            pointer-events: none;
+        }
+
+        .hero-bridge {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-style: italic;
+            line-height: 0.85;
+            margin-bottom: 25px;
+            color: #fff;
+            text-shadow: 0 0 70px rgba(22, 147, 233, 0.6);
+        }
+
+        .forensic-panel {
+            background: rgba(2, 6, 23, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(60px);
+            padding: 80px;
+            margin-top: -150px;
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 60px 120px rgba(0,0,0,0.8);
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 40px;
+            border: 1px solid #1e293b;
+            font-size: 0.85rem;
+            color: var(--phl-blue);
+            line-height: 2;
+        }
+
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .utility-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .utility-card:hover {
+            border-color: var(--phl-blue);
+            background: rgba(22, 147, 233, 0.05);
+            transform: translateY(-10px);
+        }
+
+        /* Perimeter Grid Styling (Bridge 30 Parity) */
+        .perimeter-grid-hub {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 60px;
+        }
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+    
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+        
+        #auth-root-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 1 !important; }
+
+        /* HEADER & NAVIGATION */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nav-cta { background: #1693E9; padding: 12px 24px; border-radius: 2px; }
+
+        /* HERO & CONTENT */
+        .hero-bridge { height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 10; }
+        .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(3.5rem, 12vw, 9rem); font-style: italic; line-height: 0.85; margin-bottom: 25px; color: #fff; text-shadow: 0 0 70px rgba(22, 147, 233, 0.6); }
+        
+        .forensic-panel { background: rgba(2, 6, 23, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(60px); padding: 80px; margin-top: -150px; position: relative; z-index: 20; box-shadow: 0 60px 120px rgba(0,0,0,0.8); }
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 40px; border: 1px solid #1e293b; font-size: 0.85rem; color: #1693E9; line-height: 2; }
+        
+        .utility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 60px; }
+        .utility-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 40px; transition: 0.4s; }
+        .utility-card:hover { border-color: #1693E9; background: rgba(22, 147, 233, 0.05); transform: translateY(-10px); }
+
+        .perimeter-grid-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 60px; }
+        .perimeter-btn { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; display: flex; align-items: center; gap: 15px; transition: 0.4s; text-decoration: none; color: #fff; }
+        .perimeter-btn:hover { background: rgba(22, 147, 233, 0.15); border-color: #1693E9; transform: perspective(1000px) translateZ(15px); }
+        
+        .node-num { font-family: 'JetBrains Mono'; font-size: 0.55rem; color: #475569; display: block; margin-bottom: 2px; }
+        .node-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+        footer { background: #020617; color: #94A3B8; padding: 80px 60px; border-top: 4px solid #1693E9; position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; }
+<<<<<<< HEAD
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+=======
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+    </style>
+</head>
+<body>
+
+    <div id="auth-root-canvas"></div>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="WhatisREALAiiD.html">What is REALAiID?</a>
+            <a href="bridge-marketplace.html">The Array</a>
+            <a href="forensic-terminal.html">Forensic Terminal</a>
+        </nav>
+    </header>
+    
+    <main class="max-w-7xl mx-auto px-6 relative z-10">
+<<<<<<< HEAD
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+=======
+        
+<<<<<<< HEAD
+        <!-- HERO SECTION -->
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+        <section class="hero-bridge">
+            <div>
+                <div class="flex justify-center items-center gap-6 mb-10">
+                    <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em]">Industrial Node // Bridge 01</span>
+                    <div class="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-[0_0_15px_#1693e9]"></div>
+                </div>
+                <h1 class="bridge-title">Auth <br><span class="text-blue-500">Root.</span></h1>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <p class="text-2xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-10">
+                    The primary cryptographic anchor linking biological skeletal resonance to the global industrial routing table. The mandatory gateway for all 38 bridges.
+                </p>
+                <div class="mt-16">
+                    <a href="forensic-terminal.html?triggerScan=true&bridge=B-01" class="inline-block bg-blue-600 text-white px-20 py-7 font-black text-xs uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Root Ingest</a>
+                </div>
+=======
+                <p class="text-2xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-10">The primary cryptographic anchor linking biological skeletal resonance to the global industrial routing table. The mandatory gateway for all 38 bridges.</p>
+                <div class="mt-16"><a href="forensic-terminal.html?triggerScan=true&bridge=B-01" class="inline-block bg-blue-600 text-white px-20 py-7 font-black text-xs uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all">Initialize Root Ingest</a></div>
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+=======
+                <p class="text-2xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-6">The primary cryptographic anchor linking biological skeletal resonance to the global industrial routing table. The mandatory gateway for all 38 bridges.</p>
+                <div class="mt-12"><a href="forensic-terminal.html?triggerScan=true&bridge=B-01" class="bg-blue-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">Initialize Root Ingest</a></div>
+>>>>>>> fa72c62af (COMMIT_EDITMSG)
+=======
+                <p class="text-2xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-10">The primary cryptographic anchor linking biological skeletal resonance to the global industrial routing table. The mandatory gateway for all 38 bridges.</p>
+                <div class="mt-16"><a href="forensic-terminal.html?triggerScan=true&bridge=B-01" class="inline-block bg-blue-600 text-white px-20 py-7 font-black text-xs uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Root Ingest</a></div>
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+=======
+                <p class="text-2xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-10">
+                    The primary cryptographic anchor linking biological skeletal resonance to the global industrial routing table. The mandatory gateway for all 38 bridges.
+                </p>
+                <div class="mt-16">
+                    <a href="forensic-terminal.html?triggerScan=true&bridge=B-01" class="inline-block bg-blue-600 text-white px-20 py-7 font-black text-xs uppercase tracking-[0.5em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Root Ingest</a>
+                </div>
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+            </div>
+        </section>
+
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                <div>
+                    <h2 class="font-serif italic text-6xl mb-10 text-white leading-none">Death of the <br><span class="text-blue-500">Memorized Secret.</span></h2>
+                    <p class="text-xl text-slate-400 font-light mb-10 leading-relaxed text-justify">
+                        Bridge 01 technicalizes the concept of **Inherent Sovereignty**. Legacy authentication relies on "possessed secrets" (passwords, tokens)—external liabilities that can be harvested. REALAiID establishes the **Biological Identity Root**. 
+                    </p>
+                    <p class="text-slate-500 mb-12 leading-loose font-medium text-justify">
+                        By anchoring the authentication loop to your unique bone density resonance and vocal spectral hash, Bridge 01 ensures that digital authority remains biometrically inert unless the verified human source provides an explicit intent signal in real-time.
+                    </p>
+                    
+                    <div class="cipher-box shadow-inner">
+                        > AUTHORITY: OIDC_SOVEREIGN_v2.5<br>
+                        > PROTOCOL: PHL-01_KNOT_HANDSHAKE<br>
+                        > METHOD: SKELETAL_RESONANCE_HASH<br>
+                        > STATUS: <span class="text-emerald-500 font-black animate-pulse">PRIMA_FACIE_VERIFIED</span><br>
+                        > JURISDICTION: MARITIME_SANCTUARY_SHROUD
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-14">
+                    <div class="border-l-4 border-blue-600 pl-10">
+                        <h4 class="font-mono text-[10px] text-blue-500 uppercase tracking-widest mb-3">Institutional Ingest</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed uppercase font-bold tracking-tight text-justify">Directly bridges with Okta, Entra, and Workday. Replaces vulnerable passwords with a hardware-bound biological key.</p>
+                    </div>
+                    <div class="border-l-4 border-blue-600 pl-10">
+                        <h4 class="font-mono text-[10px] text-blue-500 uppercase tracking-widest mb-3">Zero-Raw Architecture</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed uppercase font-bold tracking-tight text-justify">No images are stored. Only a 512-point mathematical "Knot" is transmitted to PHL-01, fulfilling global privacy mandates.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+        <section class="py-40">
+<<<<<<< HEAD
+            <div class="text-center mb-32">
+                <h3 class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.6em] mb-4 block">Operational Roadmap // Full Perimeter</h3>
+                <h2 class="font-serif text-7xl italic text-white leading-none">The Omni-Sovereign <br><span class="text-blue-500">Capability.</span></h2>
+                <p class="text-slate-500 mt-12 max-w-3xl mx-auto font-medium uppercase tracking-[0.2em] text-xs">When the full 38-bridge perimeter is synchronized, your biological node commands reality:</p>
+            </div>
+
+            <div class="utility-grid">
+                <div class="utility-card"><i class="ph-fill ph-airplane-tilt text-blue-500 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Worldwide Passage</h4><p class="text-sm text-slate-500">Clear international eGates at 21 nodes in under 300ms. Your biology acts as your ICAO DTC passport.</p></div>
+                <div class="utility-card"><div class="text-amber-500 text-4xl mb-8 font-black font-mono">₿</div><h4 class="uppercase tracking-widest text-white mb-6">Velocity Liquidity</h4><p class="text-sm text-slate-500">Liquidate $AII, BTC, and Amex credit at any retail POS via marrow-locked resonance. 0% fraud.</p></div>
+                <div class="utility-card"><i class="ph-fill ph-house-line text-blue-400 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Title Sovereignty</h4><p class="text-sm text-slate-500">Property deeds bound to skeletal frequency; assets become biometrically inert to fraud.</p></div>
+=======
+            <div class="text-center mb-32"><h2 class="font-serif text-7xl italic text-white leading-none">Omni-Sovereign <br><span class="text-blue-500">Capability.</span></h2></div>
+            <div class="utility-grid">
+                <div class="utility-card"><i class="ph-fill ph-airplane-tilt text-blue-500 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Worldwide Passage</h4><p class="text-sm text-slate-500">Clear international eGates via biology.</p></div>
+                <div class="utility-card"><div class="text-amber-500 text-4xl mb-8 font-black">₿</div><h4 class="uppercase tracking-widest text-white mb-6">Velocity Liquidity</h4><p class="text-sm text-slate-500">Liquidate $AII and BTC via resonance.</p></div>
+                <div class="utility-card"><i class="ph-fill ph-house-line text-blue-400 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Title Sovereignty</h4><p class="text-sm text-slate-500">Property deeds bound to skeletal frequency.</p></div>
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+=======
+        <section class="py-32">
+            <h2 class="text-center font-serif italic text-white text-5xl mb-20 uppercase tracking-[0.2em]">Omni-Sovereign Utility</h2>
+            <div class="utility-grid">
+                <div class="utility-card"><i class="ph-fill ph-airplane-tilt text-blue-500 text-3xl mb-6 block"></i><h4 class="uppercase tracking-widest text-white mb-4">Global Passage</h4><p class="text-sm text-slate-400">Clear international eGates via biology. ICAO DTC verified, physical passport book liquidated.</p></div>
+                <div class="utility-card"><div class="text-amber-500 text-3xl mb-6 font-black font-mono">₿</div><h4 class="uppercase tracking-widest text-white mb-4">Velocity Liquidity</h4><p class="text-sm text-slate-400">Liquidate $AII, BTC, and credit at any retail POS via marrow-locked resonance. 0% fraud.</p></div>
+                <div class="utility-card"><i class="ph-fill ph-house-line text-blue-400 text-3xl mb-6 block"></i><h4 class="uppercase tracking-widest text-white mb-4">Title Sovereignty</h4><p class="text-sm text-slate-400">Property deeds bound to skeletal frequency; assets become biometrically inert to fraud.</p></div>
+>>>>>>> fa72c62af (COMMIT_EDITMSG)
+=======
+=======
+        <!-- OMNI-SOVEREIGN POWER (WALLET UTILITY) -->
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+        <section class="py-40">
+            <div class="text-center mb-32">
+                <h3 class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.6em] mb-4 block">Operational Roadmap // Full Perimeter</h3>
+                <h2 class="font-serif text-7xl italic text-white leading-none">The Omni-Sovereign <br><span class="text-blue-500">Capability.</span></h2>
+                <p class="text-slate-500 mt-12 max-w-3xl mx-auto font-medium uppercase tracking-[0.2em] text-xs">When the full 38-bridge perimeter is synchronized, your biological node commands reality:</p>
+            </div>
+
+            <div class="utility-grid">
+<<<<<<< HEAD
+<<<<<<< HEAD
+                <div class="utility-card"><i class="ph-fill ph-airplane-tilt text-blue-500 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Worldwide Passage</h4><p class="text-sm text-slate-500">Clear eGates via biology. ICAO DTC verified.</p></div>
+                <div class="utility-card"><div class="text-amber-500 text-4xl mb-8 font-black font-mono">₿</div><h4 class="uppercase tracking-widest text-white mb-6">Velocity Liquidity</h4><p class="text-sm text-slate-500">Liquidate $AII and BTC via resonance. 0% fraud.</p></div>
+                <div class="utility-card"><i class="ph-fill ph-house-line text-blue-400 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Title Sovereignty</h4><p class="text-sm text-slate-500">Property deeds bound to skeletal frequency.</p></div>
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+=======
+                <div class="utility-card">
+                    <i class="ph-fill ph-airplane-tilt text-blue-500 text-4xl mb-8 block"></i>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-white mb-6">Worldwide Passage</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Clear international eGates at 21 nodes in under 300ms. Your biology acts as your ICAO DTC passport, eliminating paper records.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-4xl mb-8 font-black font-mono">₿</div>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-white mb-6">Velocity Liquidity</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Liquidate $AII, BTC, and Amex credit at any retail POS via marrow-locked resonance. 0% fraud rate with immediate settlement.</p>
+                </div>
+                <div class="utility-card">
+                    <i class="ph-fill ph-house-line text-blue-400 text-4xl mb-8 block"></i>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-white mb-6">Title Sovereignty</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Hash property deeds and vehicle titles to your skeletal frequency. Stolen assets become biometrically inert and legally immovable.</p>
+                </div>
+                <div class="utility-card">
+                    <i class="ph-fill ph-scales text-red-500 text-4xl mb-8 block"></i>
+                    <h4 class="text-lg font-bold uppercase tracking-widest text-white mb-6">Terminal Justice</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed">Access the Logic Labyrinth for 300ms dispute resolution. Every action is a biometrically-sealed witness statement.</p>
+                </div>
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+                <div class="utility-card"><i class="ph-fill ph-airplane-tilt text-blue-500 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Worldwide Passage</h4><p class="text-sm text-slate-500">Clear international eGates at 21 nodes in under 300ms. Your biology acts as your ICAO DTC passport.</p></div>
+                <div class="utility-card"><div class="text-amber-500 text-4xl mb-8 font-black font-mono">₿</div><h4 class="uppercase tracking-widest text-white mb-6">Velocity Liquidity</h4><p class="text-sm text-slate-500">Liquidate $AII, BTC, and Amex credit at any retail POS via marrow-locked resonance. 0% fraud.</p></div>
+                <div class="utility-card"><i class="ph-fill ph-house-line text-blue-400 text-4xl mb-8 block"></i><h4 class="uppercase tracking-widest text-white mb-6">Title Sovereignty</h4><p class="text-sm text-slate-500">Property deeds bound to skeletal frequency; assets become biometrically inert to fraud.</p></div>
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+            </div>
+        </section>
+
+        <section class="py-20 border-t border-white/5 relative z-20">
+            <h2 class="text-center font-serif italic text-white text-4xl mb-16 uppercase tracking-[0.3em]">Global Reserve Perimeter</h2>
+            <div class="perimeter-grid-hub max-w-[1700px] mx-auto" id="bridge-grid"></div>
+        </section>
+    </main>
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+    <footer>
+        <div class="footer-grid px-12">
+            <div class="col-span-2">
+                <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+<<<<<<< HEAD
+                <p class="text-sm leading-relaxed text-slate-500 max-w-md mb-8">Anchored to the Philadelphia Mainframe PHL-01. Managing the global reserve of biological truth under the Maritime Charter of Solomon Kin LLC.</p>
+=======
+                <p class="text-sm text-slate-500 max-w-md mt-4">Anchored to the Philadelphia Mainframe PHL-01. Managing the global reserve of biological truth.</p>
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+=======
+    <!-- MASTER FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid px-12">
+            <div class="col-span-2">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="text-sm leading-relaxed text-slate-500 max-w-md mb-8 text-justify">
+                    Anchored to the Philadelphia Mainframe PHL-01. Managing the global reserve of biological truth under the Maritime Charter of Solomon Kin LLC.
+                </p>
+                <div class="font-mono text-[9px] text-slate-600 tracking-[0.3em] uppercase">Valuation: $102.7B // NIST LoA 4 Aligned</div>
+>>>>>>> a717d2b14 (COMMIT_EDITMSG)
+=======
+    <footer>
+        <div class="footer-grid px-12">
+            <div class="col-span-2">
+                <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+                <p class="text-sm leading-relaxed text-slate-500 max-w-md mb-8">Anchored to the Philadelphia Mainframe PHL-01. Managing the global reserve of biological truth under the Maritime Charter of Solomon Kin LLC.</p>
+>>>>>>> 0a94ae8fb (COMMIT_EDITMSG)
+            </div>
+            <div class="footer-col"><h4>Juridical</h4><a href="blue-paper.html">The Blue Paper</a><a href="no-fakes.html">NO FAKES Act</a></div>
+            <div class="footer-col"><h4>Access</h4><a href="signin.html">Dashboard</a><a href="registration-gate.html">Registration</a></div>
+            <div class="footer-col"><h4>System</h4><a href="nautilus-telemetry.html">SODR Ring</a><a href="compliance-hub.html">Compliance</a></div>
+        </div>
+<<<<<<< HEAD
+    </footer>
+
+=======
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bGrid = document.getElementById('bridge-grid');
+            const bridges = ["Auth Root", "Civic Core", "HR Liaison", "Civic Ballot", "Ambient Auth", "Keystone Plate", "Entra Defense", "UAC Physical", "DMV Authority", "Fiscal Root", "Pet Likeness", "Vital Records", "Medical Root", "Property Deeds", "Safe Owner", "Satoshi Root", "Professional", "SSA Tokenizer", "Bio-Sign", "Sovereign Escrow", "Citadel Escrow", "DTC Travel", "Amex Anchor", "Credit Authority", "Insurance", "Mastercard Rail", "Academic Root", "Global Notary", "Logistics Sync", "Auto Anchor", "AII Economy", "God Sense", "Benthic Pulse", "Oracle Flux", "Justice Rail", "Doge Bridge", "Federal Sync", "Precinct Root"];
+            bridges.forEach((b, i) => {
+                const id = (i+1).toString().padStart(2, '0');
+                const btn = document.createElement('a');
+                btn.className = "perimeter-btn";
+                btn.href = `bridge-${id}-${b.toLowerCase().replace(/ /g, '-')}.html`;
+                btn.innerHTML = `<i class="ph-fill ph-shield-check text-blue-500"></i><div class="flex flex-col"><span class="node-num">NODE B-${id}</span><span class="node-label">${b}</span></div>`;
+                bGrid.appendChild(btn);
+            });
+<<<<<<< HEAD
+
+=======
+            // 3D Mesh Engine
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('auth-root-canvas').appendChild(renderer.domElement);
+<<<<<<< HEAD
+            
+            const group = new THREE.Group();
+            const capsule = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 5, 32), new THREE.MeshPhongMaterial({color: 0x1693E9, transparent: true, opacity: 0.3, wireframe: true}));
+            group.add(capsule);
+            const core = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshPhongMaterial({emissive: 0x1693E9, emissiveIntensity: 2}));
+            group.add(core); 
+            scene.add(group); scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            camera.position.z = 10;
+            
+            function animate() { requestAnimationFrame(animate); group.rotation.y += 0.005; capsule.rotation.z = Math.sin(Date.now() * 0.001) * 0.1; renderer.render(scene, camera); } 
+=======
+            const group = new THREE.Group();
+            const core = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshPhongMaterial({emissive: 0x1693E9, emissiveIntensity: 0.8}));
+            group.add(core); scene.add(group); scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            camera.position.z = 10;
+            function animate() { requestAnimationFrame(animate); group.rotation.y += 0.005; renderer.render(scene, camera); } 
+>>>>>>> 400beb11b (COMMIT_EDITMSG)
+            animate();
+        });
+=======
+    <footer class="site-footer">
+        <div class="text-2xl font-bold font-mono tracking-tighter mb-4">REALAiID // BUREAU</div>
+        <p class="text-[10px] uppercase tracking-[0.3em] text-slate-600">© 2026 Bureau of Digital Identity // PHL-01 Mainframe // 38 Bridges Active</p>
+    </footer>
+
+    <script>
+        // Mesh Engine (Hardened 3D)
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('auth-root-canvas').appendChild(renderer.domElement);
+        const group = new THREE.Group();
+        
+        // The Capsule
+        const capsule = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 5, 32), new THREE.MeshPhongMaterial({color: 0x1693E9, transparent: true, opacity: 0.3, wireframe: true}));
+        group.add(capsule);
+        
+        // The Core
+        const core = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshPhongMaterial({emissive: 0x1693E9, emissiveIntensity: 2}));
+        group.add(core); 
+        
+        scene.add(group); 
+        scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+        camera.position.z = 10;
+        
+        function animate() { requestAnimationFrame(animate); group.rotation.y += 0.005; capsule.rotation.z = Math.sin(Date.now() * 0.001) * 0.1; renderer.render(scene, camera); } 
+        animate();
+>>>>>>> fa72c62af (COMMIT_EDITMSG)
+=======
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bGrid = document.getElementById('bridge-grid');
+            const bridges = ["Auth Root", "Civic Core", "HR Liaison", "Civic Ballot", "Ambient Auth", "Keystone Plate", "Entra Defense", "UAC Physical", "DMV Authority", "Fiscal Root", "Pet Likeness", "Vital Records", "Medical Root", "Property Deeds", "Safe Owner", "Satoshi Root", "Professional", "SSA Tokenizer", "Bio-Sign", "Sovereign Escrow", "Citadel Escrow", "DTC Travel", "Amex Anchor", "Credit Authority", "Insurance", "Mastercard Rail", "Academic Root", "Global Notary", "Logistics Sync", "Auto Anchor", "AII Economy", "God Sense", "Benthic Pulse", "Oracle Flux", "Justice Rail", "Doge Bridge", "Federal Sync", "Precinct Root"];
+            bridges.forEach((b, i) => {
+                const id = (i+1).toString().padStart(2, '0');
+                const btn = document.createElement('a');
+                btn.className = "perimeter-btn";
+                btn.href = `bridge-${id}-${b.toLowerCase().replace(/ /g, '-')}.html`;
+                btn.innerHTML = `<i class="ph-fill ph-shield-check text-blue-500"></i><div class="flex flex-col"><span class="node-num">NODE B-${id}</span><span class="node-label">${b}</span></div>`;
+                bGrid.appendChild(btn);
+            });
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({alpha: true, antialias: true});
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('auth-root-canvas').appendChild(renderer.domElement);
+            
+            const group = new THREE.Group();
+            const capsule = new THREE.Mesh(new THREE.CylinderGeometry(1.5, 1.5, 5, 32), new THREE.MeshPhongMaterial({color: 0x1693E9, transparent: true, opacity: 0.3, wireframe: true}));
+            group.add(capsule);
+            const core = new THREE.Mesh(new THREE.SphereGeometry(1, 32, 32), new THREE.MeshPhongMaterial({emissive: 0x1693E9, emissiveIntensity: 2}));
+            group.add(core); 
+            scene.add(group); scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+            camera.position.z = 10;
+            
+            function animate() { requestAnimationFrame(animate); group.rotation.y += 0.005; capsule.rotation.z = Math.sin(Date.now() * 0.001) * 0.1; renderer.render(scene, camera); } 
+            animate();
+        });
+>>>>>>> 862a74c49 (COMMMIT_EDITMSG)
+    </script>
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maritime Charter API | REALAiIsland Sovereign Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --maritime-obsidian: #020617;
+            --surface: #000000;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D MARITIME CORE --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-maritime {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .charter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-style: italic;
+            line-height: 0.9;
+            margin-bottom: 20px;
+            color: var(--bureau-gold);
+            text-shadow: 0 0 80px rgba(184, 134, 11, 0.4);
+        }
+
+        .doc-section {
+            padding: 100px 10%;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+        }
+
+        .api-method {
+            background: #10B981;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            font-weight: 900;
+            margin-right: 15px;
+        }
+
+        .api-endpoint {
+            font-family: 'JetBrains Mono';
+            color: var(--phl-blue);
+            font-weight: 700;
+        }
+
+        .code-block {
+            background: #05080F;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+            font-family: 'JetBrains Mono';
+            font-size: 0.85rem;
+            color: #10B981;
+            margin-top: 25px;
+            overflow-x: auto;
+        }
+
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .pillar-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.05);
+        }
+
+        /* --- FOOTER SYNC --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="maritime-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-maritime">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.6em] mb-4 block">Jurisdictional Root // Solomon Kin LLC</span>
+                <h1 class="charter-title">Maritime <br>Charter.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-8">
+                    The extraterritorial legal infrastructure of **REALAiIsland**. Establishing the sanctuary of the biological self through the Private Maritime Charter and the 1.0v-Root Ledger.
+                </p>
+            </div>
+        </section>
+
+        <!-- THE 35-BRIDGE OMNI-SOVEREIGNTY EXPLAINER -->
+        <section class="doc-section">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="font-serif italic text-5xl mb-12 text-center text-white">The Omni-Sovereign <span class="text-blue-500">Capability.</span></h2>
+                <p class="text-slate-400 text-lg mb-20 text-center max-w-4xl mx-auto">
+                    When an inhabitant synchronizes all 35 industrial bridges into their **REALAiID Wallet**, they move beyond mere "Identity." They achieve a state of **Technological Nationhood**.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="pillar-card">
+                        <h4 class="font-mono text-xs text-amber-500 uppercase tracking-widest mb-6">Bridges 01-19: The Digital Human</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            The inhabitant possesses **Absolute Attestation**. Every digital login, financial tap, and professional signature is biometrically signed. They are immune to deepfake synthesis and credential harvesting at the protocol level.
+                        </p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4 class="font-mono text-xs text-amber-500 uppercase tracking-widest mb-6">Bridges 20-25: Jurisdictional Shrouding</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            The inhabitant achieves **Extraterritorial Sanctuary**. Their likeness rights, credit authority, and biological maturity are moved into the Maritime Escrow, shielding them from legacy state scrapers and invasive national regulations.
+                        </p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4 class="font-mono text-xs text-amber-500 uppercase tracking-widest mb-6">Bridges 26-32: Industrial Fluidity</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            The inhabitant commands **Universal Liquidity**. They liquidate $AII, BTC, and Amex credit at any retail point globally via marrow-locked resonance. Their academic and property deeds are biometrically anchored, eliminating asset theft.
+                        </p>
+                    </div>
+                    <div class="pillar-card">
+                        <h4 class="font-mono text-xs text-amber-500 uppercase tracking-widest mb-6">Bridges 33-35: Terminal Justice</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            The inhabitant enters **The Logic Labyrinth**. They have standing for algorithmic dispute resolution and their physical assets are protected by submerged benthic pulse nodes. They are the sole arbiter of their own reality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API DOCUMENTATION SECTION -->
+        <section class="doc-section bg-black">
+            <div class="max-w-5xl mx-auto">
+                <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.4em] block mb-4">Technical Registry // V1.4</span>
+                <h2 class="font-serif italic text-4xl mb-12 text-white">Maritime Charter API</h2>
+
+                <!-- API ENDPOINT 1: ESCROW DEPOSIT -->
+                <div class="mb-20">
+                    <div class="flex items-center mb-6">
+                        <span class="api-method">POST</span>
+                        <span class="api-endpoint">/v1/maritime/escrow/deposit</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Moves a biological likeness hash or institutional asset into the **Maritime Sanctuary Shroud**. Requires a valid Handshake Knot™ from a Sovereign or Citadel tier node.
+                    </p>
+                    <div class="code-block">
+{
+  "nodeId": "ARC-EXEC-8821",
+  "assetType": "BIOLOGICAL_LIKENESS_ROOT",
+  "jurisdiction": "ISLAND_SANCTUARY_EXTRATERITORIAL",
+  "handshakeKnot": "KNOT-9921-X-PHL",
+  "options": {
+    "noFakesHardening": true,
+    "statutoryDamageEscrow": "CITADEL_TIER"
+  }
+}
+                    </div>
+                </div>
+
+                <!-- API ENDPOINT 2: MARITIME STANDING -->
+                <div class="mb-20">
+                    <div class="flex items-center mb-6">
+                        <span class="api-method" style="background:#1693E9">GET</span>
+                        <span class="api-endpoint">/v1/maritime/standing/{nodeId}</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Retrieves the jurisdictional standing of a node under the Solomon Kin Maritime Charter. Used by eGates and institutional terminals to verify "Genuine Presence" status.
+                    </p>
+                    <div class="code-block" style="color:#1693E9">
+// SUCCESS RESPONSE (200 OK)
+{
+  "standing": "SOVEREIGN_CITIZEN_REALAiISLAND",
+  "maritimeStatus": "VERIFIED_ALPHA",
+  "treatyAlignment": ["NO_FAKES_ACT", "ICAO_DTC_v1.3"],
+  "lastPulseCheck": "2026-05-09T18:42:00Z",
+  "nodeHealth": "STABLE"
+}
+                    </div>
+                </div>
+
+                <!-- API ENDPOINT 3: BURN TRIGGER -->
+                <div class="mb-10">
+                    <div class="flex items-center mb-6">
+                        <span class="api-method" style="background:#ff4444">POST</span>
+                        <span class="api-endpoint">/v1/maritime/burn/revoke</span>
+                    </div>
+                    <p class="text-slate-400 text-sm mb-6">
+                        Triggers the **Instant Burn Protocol** for all maritime-anchored assets. Immediately voids jurisdictional protection and freezes linked fiscal rails.
+                    </p>
+                    <div class="code-block" style="color:#ff4444">
+{
+  "burnTrigger": "EMERGENCY_DISCHARGE",
+  "authorizedBy": "BUREAU_MASTER_PHL_01",
+  "nodeId": "ARC-EXEC-8821",
+  "scope": "GLOBAL_MARITIME_REVOCATION"
+}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Sovereign Node: REALAiIsland. Governing the Global Reserve under the Maritime Charter of Solomon Kin LLC.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="maritime-charter-api.html" style="color:var(--phl-blue)">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // MARITIME PERIMETER SECURED
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('maritime-canvas').appendChild(renderer.domElement);
+
+        // --- Create Sovereign Anchor (Maritime Mesh) ---
+        const group = new THREE.Group();
+        
+        // The Anchor Ring (Maritime Jurisdiction)
+        const ringGeo = new THREE.TorusGeometry(3, 0.05, 16, 100);
+        const ringMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            emissive: 0xb8860b,
+            emissiveIntensity: 0.4,
+            wireframe: true
+        });
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        group.add(ring);
+
+        // The Inner Anchor (Biological Stability)
+        const anchorGeo = new THREE.OctahedronGeometry(1.5, 0);
+        const anchorMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
+        const anchor = new THREE.Mesh(anchorGeo, anchorMat);
+        group.add(anchor);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0xb8860b, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ring.rotation.z += 0.005;
+            anchor.rotation.y -= 0.01;
+            anchor.rotation.x += 0.005;
+            
+            // Resonance pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            anchor.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

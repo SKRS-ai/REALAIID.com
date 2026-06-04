@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 29 // Logistics Sync | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --notary-gold: #FFD700;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* --- STREAMING_CHUNK:Configuring abyssal industrial style... --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--phl-dark); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER SYNC HEADER --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D LOGISTICS MESH CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* --- HERO BRIDGE --- */
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(22, 147, 233, 0.3);
+        }
+
+        /* --- FORENSIC PANELS --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--phl-blue);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--bureau-gold);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--phl-blue);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- BRIDGE BUTTONS --- */
+        .bridge-button {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .bridge-button:hover {
+            background: rgba(22, 147, 233, 0.15);
+            border-color: var(--phl-blue);
+            transform: scale(1.02);
+        }
+        .bridge-icon { font-size: 1.4rem; color: var(--phl-blue); }
+        .bridge-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- MASTER SYNC FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <!-- --- STREAMING_CHUNK:Initializing 3D Logistics visualization... --- -->
+    <div id="logistics-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- --- STREAMING_CHUNK:Rendering Hero section... --- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.5em] mb-4 block">Industrial Node // Bridge 29</span>
+                <h1 class="bridge-title">Logistics <span class="text-blue-500">Sync.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The industrial anchor bridging global physical delivery to biological intent for 0% theft and guaranteed chain of custody.
+                </p>
+                <div class="mt-12">
+                    <a href="product-sovereign.html" class="bg-blue-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Supply Anchor</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Designing Forensic Content... --- -->
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">The Death of the <br><span class="text-blue-500">Porch Pirate.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 29 technicalizes **Physical Accountability**. Traditional delivery relies on proximity drops and easily forged signatures—liabilities that cost the global economy \$12B annually. REALAiID establishes the **Biological Chain of Custody**. By anchoring a package's metadata to your skeletal resonance, we ensure assets are only "released" when you are present to receive them.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Delivery verification is now executed via **Handshake Knot™**. Whether it is a high-value parcel or sensitive industrial hardware, the courier's scanner authorizes the drop only after confirming your specific biological frequency in real-time.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > AUTHORITY: LOGISTICS_SOVEREIGN_v1.0<br>
+                        > PROTOCOL: CHAIN_OF_CUSTODY_BIO_WRAP<br>
+                        > METHOD: B-PoD (BIOLOGICAL PROOF OF DELIVERY)<br>
+                        > STATUS: <span class="text-emerald-500">CUSTODY_IMMUTABLE</span>
+                    </div>
+                </div>
+                
+                <!-- --- STREAMING_CHUNK:Populating technical spec items... --- -->
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Marrow-Locked Delivery</h4>
+                        <p class="text-sm text-slate-400">Total parcel immunity. High-value goods remain locked in courier pods or smart-lock boxes until your biological presence triggers release.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Sub-300ms Verification</h4>
+                        <p class="text-sm text-slate-400">Neutralizes delivery friction. The courier scanner pings your SA-02 hardware anchor instantly, authorizing the drop-off in milliseconds.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Audit-Ready Handshake</h4>
+                        <p class="text-sm text-slate-400">Forensic legal standing. Every delivery is stamped with biological proof of presence, satisfying insurance mandates and neutralizing "did not receive" claims.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Smart-Gate Integration</h4>
+                        <p class="text-sm text-slate-400">Autonomous entry. Linked to Bridge 08. Grant couriers temporary, biometrically-authorized access to your geofenced perimeter for secure drop-offs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Wallet Utility Rendering... --- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] mb-8">Executive Hardware Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Your Existence <br><span class="text-blue-500">Is the Receipt.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-blue-500 transition-all">
+                    <div class="text-blue-500 text-3xl mb-6"><i class="ph-fill ph-truck"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Handshake Signature</h4>
+                    <p class="text-slate-400 font-light">Forget the stylus. The courier's terminal reads your biological frequency from your node. Your marrow resonance signs the Proof of Delivery.</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-blue-500 transition-all">
+                    <div class="text-blue-500 text-3xl mb-6"><i class="ph-fill ph-package"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">High-Value Escrow</h4>
+                    <p class="text-slate-400 font-light">For luxury or industrial assets. Funds held in Bridge 20 are only released to the vendor once the biological handshake confirms physical receipt.</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-blue-500 transition-all">
+                    <div class="text-blue-500 text-3xl mb-6"><i class="ph-fill ph-house-line"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Perimeter Drop-Off</h4>
+                    <p class="text-slate-400 font-light">Authorize a "Secure Ingest" area on your property. The courier's node recognizes your authorization, unlocking your smart-gate for a specific temporal window.</p>
+                </div>
+                <div class="utility-card p-10 bg-white/5 border border-white/10 rounded group hover:border-blue-500 transition-all">
+                    <div class="text-blue-500 text-3xl mb-6"><i class="ph-fill ph-shield-check"></i></div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Fraud Immunity</h4>
+                    <p class="text-sm text-slate-400">Neutralizes "Lost in Transit" disputes. The Bureau provides the biological forensic data required for 100% certainty in supply chain audits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Global Registry Navigation... --- -->
+        <section class="py-20 border-t border-white/5">
+            <h2 class="text-center font-serif italic text-white text-3xl mb-12">Global Reserve Perimeter</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-[1600px] mx-auto" id="bridge-grid">
+                <!-- JavaScript handles bridge button injection -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying global supply chain standards under the MARITIME CHARTER.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        /* --- STREAMING_CHUNK:Initializing 3D Supply Chain Mesh... --- */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('logistics-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        /* The Supply Box (Wireframe industrial container) */
+        const boxGeo = new THREE.BoxGeometry(4, 4, 4, 4, 4, 4);
+        const boxMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            transparent: true,
+            opacity: 0.3,
+            wireframe: true
+        });
+        const box = new THREE.Mesh(boxGeo, boxMat);
+        group.add(box);
+
+        /* The Internal Intent Core (Glowing Sphere) */
+        const coreGeo = new THREE.IcosahedronGeometry(1.5, 1);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        /* Global Logistics Web (Lines) */
+        for(let i=0; i<15; i++) {
+            const lineGeo = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3((Math.random()-0.5)*10, (Math.random()-0.5)*10, (Math.random()-0.5)*10),
+                new THREE.Vector3(0,0,0)
+            ]);
+            const lineMat = new THREE.LineBasicMaterial({ color: 0x1693E9, transparent: true, opacity: 0.2 });
+            const line = new THREE.Line(lineGeo, lineMat);
+            group.add(line);
+        }
+
+        scene.add(group);
+
+        /* --- Lights --- */
+        const light = new THREE.PointLight(0x1693E9, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        /* --- Animation Loop --- */
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            box.rotation.x += 0.005;
+            core.rotation.z -= 0.01;
+            
+            /* Custody pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.05;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        /* --- BRIDGE INJECTION ENGINE --- */
+        const bridgeList = [
+            {id: "01", name: "Auth Root", link: "bridge-01-auth-root.html", icon: "ph-shield-check"},
+            {id: "02", name: "Civic Core", link: "bridge-02-civic-core.html", icon: "ph-users-four"},
+            {id: "03", name: "HR Liaison", link: "bridge-03-hr-liaison.html", icon: "ph-identification-card"},
+            {id: "04", name: "Civic Ballot", link: "bridge-04-civic-ballot.html", icon: "ph-check-square-offset"},
+            {id: "05", name: "Ambient Auth", link: "bridge-05-ambient-auth.html", icon: "ph-waveform"},
+            {id: "06", name: "Keystone Plate", link: "bridge-06-keystone-plate.html", icon: "ph-cpu"},
+            {id: "07", name: "Entra Defense", link: "bridge-07-entra-defense.html", icon: "ph-microsoft-logo"},
+            {id: "08", name: "UAC Physical", link: "bridge-08-uac-physical.html", icon: "ph-key"},
+            {id: "09", name: "DMV Authority", link: "bridge-09-dmv-authority.html", icon: "ph-car"},
+            {id: "10", name: "Fiscal Root", link: "bridge-10-fiscal-root.html", icon: "ph-bank"},
+            {id: "11", name: "Pet Likeness", link: "bridge-11-pet-likeness.html", icon: "ph-paw-print"},
+            {id: "12", name: "Vital Records", link: "bridge-12-vital-records.html", icon: "ph-baby"},
+            {id: "13", name: "Medical Root", link: "bridge-13-medical-root.html", icon: "ph-heartbeat"},
+            {id: "14", name: "Property Deeds", link: "bridge-14-property-deeds.html", icon: "ph-house-line"},
+            {id: "15", name: "Safe-Owner", link: "bridge-15-safe-owner.html", icon: "ph-vault"},
+            {id: "16", name: "Satoshi Root", link: "bridge-16-satoshi-root.html", icon: "ph-currency-btc"},
+            {id: "17", name: "Professional", link: "bridge-17-professional.html", icon: "ph-briefcase"},
+            {id: "18", name: "SSA Tokenizer", link: "bridge-18-ssa-tokenizer.html", icon: "ph-shield-plus"},
+            {id: "19", name: "Bio-Sign", link: "bridge-19-bio-sign.html", icon: "ph-fingerprint"},
+            {id: "20", name: "Sovereign Escrow", link: "bridge-20-sovereign-escrow.html", icon: "ph-island"},
+            {id: "21", name: "Citadel Escrow", link: "bridge-21-citadel-escrow.html", icon: "ph-fortress"},
+            {id: "22", name: "DTC Travel", link: "bridge-22-dtc-travel.html", icon: "ph-airplane-tilt"},
+            {id: "23", name: "Amex Anchor", link: "bridge-23-amex-anchor.html", icon: "ph-credit-card"},
+            {id: "24", name: "Credit Authority", link: "bridge-24-credit-authority.html", icon: "ph-chart-line-up"},
+            {id: "25", name: "Insurance", link: "bridge-25-insurance.html", icon: "ph-umbrella"},
+            {id: "26", name: "Mastercard Rail", link: "bridge-26-mastercard-rail.html", icon: "ph-globe"},
+            {id: "27", name: "Academic Root", link: "bridge-27-academic-root.html", icon: "ph-student"},
+            {id: "28", name: "Global Notary", link: "bridge-28-global-notary.html", icon: "ph-seal-check"},
+            {id: "29", name: "Logistics Sync", link: "bridge-29-logistics-sync.html", icon: "ph-truck"},
+            {id: "30", name: "Automotive Anchor", link: "bridge-30-automotive-anchor.html", icon: "ph-keyhole"},
+            {id: "31", name: "$AII Economy", link: "bridge-31-aii-economy.html", icon: "ph-circuit"},
+            {id: "32", name: "God Sense", link: "bridge-32-god-sense.html", icon: "ph-brain"},
+            {id: "33", name: "Benthic Pulse", link: "bridge-33-benthic-pulse.html", icon: "ph-wave-sine"},
+            {id: "34", name: "Oracle Flux", link: "bridge-34-oracle-flux.html", icon: "ph-eye"},
+            {id: "35", name: "Sovereign Justice", link: "bridge-35-sovereign-justice.html", icon: "ph-scales"}
+        ];
+
+        const grid = document.getElementById('bridge-grid');
+        bridgeList.forEach(b => {
+            const btn = document.createElement('a');
+            btn.href = b.link;
+            btn.className = "bridge-button";
+            btn.innerHTML = `
+                <i class="ph-fill ${b.icon} bridge-icon"></i>
+                <div class="flex flex-col">
+                    <span class="text-[8px] text-gray-500 font-mono">NODE ${b.id}</span>
+                    <span class="bridge-label">${b.name}</span>
+                </div>
+                <span class="bridge-status animate-pulse text-[8px] text-blue-500 font-black ml-auto">VERIFIED</span>
+            `;
+            grid.appendChild(btn);
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

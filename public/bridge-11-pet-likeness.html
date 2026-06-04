@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 11 // Pet Likeness | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- STREAMING_CHUNK:Styling the industrial border frame... --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER SYNC HEADER --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D BIOLOGICAL BOND CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(184, 134, 11, 0.3);
+        }
+
+        /* --- FORENSIC PRESENTATION PANELS --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--bureau-gold);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--phl-blue);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--bureau-gold);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .utility-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .utility-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.05);
+        }
+
+        /* --- MASTER SYNC FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="biological-bond-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- --- STREAMING_CHUNK:Rendering the Hero Pet Likeness section... --- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.5em] mb-4 block">Asset Node // Bridge 11</span>
+                <h1 class="bridge-title">Pet <span class="text-amber-500">Likeness.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The forensic anchor bridging biological animal intent to ownership registries, veterinary rails, and life-cycle escrow.
+                </p>
+                <div class="mt-12">
+                    <a href="aiK9likeness" class="bg-amber-600 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Authorize K9 Ingest</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Defining the forensic pet panel... --- -->
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Provenance of the <br><span class="text-amber-500">Living Asset.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 11 technicalizes the biological family unit. Legacy pet identification (microchips) is a passive, localized technology that AI cannot track in the 7G Mesh. REALAiID establishes **Biological Pet Hashing**. By linking a high-fidelity 3D nose-print and DNA sequence to the owner's root node, we eliminate pet theft and insurance fraud at the source.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Insurance claims are now released via **Biological Handshake**. Whether it is a routine vaccination or emergency surgery, the veterinary rail only clears if the PHL-01 Mainframe confirms a matching biological frequency from the authorized pet node.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > LOCAL_NODE: PET_VISSN_SYNC<br>
+                        > PROTOCOL: K9_NODE_BIO_IDENT_v1.0<br>
+                        > METHOD: NOSE_PRINT_MORPHOLOGY_HASH<br>
+                        > STATUS: <span class="text-emerald-500">FAMILY_ASSET_SECURED</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Morphological Hashing</h4>
+                        <p class="text-sm text-slate-400">Captures 500+ unique biological markers from a 3D scan of the pet's nose-print. Immutable and non-invasive.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>DNA Escrow Handshake</h4>
+                        <p class="text-sm text-slate-400">Links permanent genetic markers to the REALAiID ledger. Proves ownership with 99.99% forensic certainty in juridical disputes.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Veterinary Bio-Pay™</h4>
+                        <p class="text-sm text-slate-400">Direct-to-clinic insurance adjudication. The pet's presence at the clinic triggers automated insurance settlement via Bridge 10.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Lost-and-Found Ping</h4>
+                        <p class="text-sm text-slate-400">Encrypted beaconing. If a pet is separated from its owner, authorized nodes globally can verify the biological identity without exposing the owner's PII.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Rendering the Wallet Utility section... --- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-amber-500 uppercase tracking-[0.4em] mb-8">Wallet Loaded Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Family Assets <br><span class="text-amber-500">Securely Anchored.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🐾</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Board-Verified Travel</h4>
+                    <p class="text-slate-400 font-light">Bypass physical health-certificate checks at border nodes. Your pet's biological frequency transmits vaccination status to authorized sensors during passage.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🩺</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Portable EMR Access</h4>
+                    <p class="text-slate-400 font-light">Carry your pet's entire medical history (Covetrus / IDEXX sync) within your biological node. No paperwork, just hardware-locked medical truth.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🏢</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Residential ESA Auth</h4>
+                    <p class="text-slate-400 font-light">Prove your pet's status to property management perimeters automatically. The environment recognizes the pet as an authorized resident asset.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🔒</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Inheritance Lock</h4>
+                    <p class="text-sm text-slate-400">Ensure continuity of care. Bridge 11 assets automatically transfer to the Successor DNA Tree (Bridge 12) upon owner dead-stop signal.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- --- STREAMING_CHUNK:Rendering the Master Sync Footer... --- -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying biological asset standards for non-human family nodes.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        /* --- STREAMING_CHUNK:Initializing 3D Biological Bond visualization... --- */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('biological-bond-canvas').appendChild(renderer.domElement);
+
+        /* --- Create Biological Asset architecture --- */
+        const group = new THREE.Group();
+        
+        /* The Guardian Shield (Owner Link) */
+        const shieldGeo = new THREE.BoxGeometry(3, 3, 3);
+        const shieldMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            emissive: 0xb8860b,
+            emissiveIntensity: 0.2,
+            wireframe: true
+        });
+        const shield = new THREE.Mesh(shieldGeo, shieldMat);
+        group.add(shield);
+
+        /* The Pet Core (Biological Source) */
+        const coreGeo = new THREE.SphereGeometry(1.2, 32, 32);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.7
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        /* --- Lights --- */
+        const light = new THREE.PointLight(0xb8860b, 2.5, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+        camera.position.z = 8;
+
+        /* --- Animation Loop --- */
+        function animate() {
+            requestAnimationFrame(animate);
+            shield.rotation.y += 0.003;
+            shield.rotation.z += 0.001;
+            core.rotation.y -= 0.01;
+            
+            /* Resonance pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

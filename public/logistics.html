@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | LOGISTICS PORTAL</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; background: rgba(0, 242, 255, 0.02); }
+        .forensic-status { margin: 30px 0; font-family: monospace; text-align: left; display: inline-block; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--neon); color: var(--bg); }
+    </style>
+    <script>
+        // Sovereign Auth-Guard: Prevents unauthorized entry
+        (function checkSovereignAccess() {
+            const session = localStorage.getItem('phl01_session_token');
+            if (!session) {
+                console.warn("[!] UNAUTHORIZED ACCESS ATTEMPT // REDIRECTING");
+                window.location.replace('/login.html'); 
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1 id="portal-title">LOGISTICS ROOT // BRIDGE-29</h1>
+            <div class="forensic-status">
+                <p>FAA Class Rating: <span id="faa-status">COMMERCIAL</span></p>
+                <p>CDL-A Certification: <span id="cdl-status">VALIDATED</span></p>
+                <p>HazMat Endorsement: <span id="hazmat-status">ACTIVE</span></p>
+                <p>Fleet Provenance Hash: <span id="fleet-status">SECURE</span></p>
+            </div>
+            <button onclick="executeBridgeQuery()">REFRESH ASSET PROVENANCE</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        async function executeBridgeQuery() {
+            try {
+                // Interfacing with Bridge-29 (Logistics Sync)
+                const response = await fetch('/api/v1/bridge-29-logistics-sync/check-endorsement', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ endorsementData: { type: 'FULL_AUDIT' } })
+                });
+                
+                if (!response.ok) throw new Error('Bridge Unreachable');
+                
+                const data = await response.json();
+                document.getElementById('faa-status').innerText = data.faaClearance || 'SYNC_REQUIRED';
+                document.getElementById('cdl-status').innerText = data.cdlStanding || 'SYNC_REQUIRED';
+                document.getElementById('hazmat-status').innerText = data.hazmatStatus || 'ACTIVE';
+                document.getElementById('fleet-status').innerText = data.fleetHash || 'SECURE';
+            } catch (err) {
+                console.error("Logistics Bridge Unreachable:", err);
+                alert("Critical System Error: Bridge-29 Offline");
+            }
+        }
+    </script>
+</body>
+</html>

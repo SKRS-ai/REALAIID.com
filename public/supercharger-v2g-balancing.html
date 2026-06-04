@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supercharger V2G Balancing Terminal | REALAiID Grid Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght@400;500;700&family=Libre+Baskerville:ital,wght=0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        
+        /* NAVIGATION & MASTER HEADER SYNC */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #1693E9; }
+        .nav-cta { background: #1693E9; color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* THREE.JS DYNAMIC VECTOR CANVAS */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; opacity: 0.2; pointer-events: none; }
+
+        /* PORTAL CONSOLE COMPONENT RULES */
+        .grid-frame { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(50px); padding: 80px; max-width: 1150px; margin: 40px auto; box-shadow: 0 50px 100px rgba(0,0,0,0.8); position: relative; z-index: 10; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-style: italic; }
+        .p-callout { border-left: 3px solid #1693E9; padding-left: 20px; margin: 30px 0; color: #94A3B8; font-style: italic; }
+        
+        /* INTERACTIVE HUD MATRIX CONFIG */
+        .hud-panel-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin: 40px 0; }
+        .hud-row { display: grid; grid-template-columns: 1fr; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease; color: #94A3B8; }
+        .hud-row:hover { background: rgba(22, 147, 233, 0.04); color: #ffffff; }
+        .hud-row.active { background: rgba(22, 147, 233, 0.08); color: #ffffff; border-left: 3px solid #1693E9; font-weight: 700; }
+        .hud-screen { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 280px; }
+
+        /* FOOTER BRAND MATRIX LINKS */
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid #1693E9; position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1600px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: #1693E9; padding-left: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="grid-flux-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <div class="nav-container w-full max-w-[1600px] mx-auto flex justify-between items-center">
+            <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+            <nav class="nav-links flex items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <div class="grid-frame rounded-sm">
+            
+            <section class="border-b border-white/10 pb-8 mb-12">
+                <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mb-4 block">Bi-Directional Power Settlement Node</span>
+                <h1 class="text-6xl font-black text-white leading-none">Supercharger V2G Balancing</h1>
+                <p class="text-xl font-light text-slate-400 mt-6 leading-relaxed">
+                    Monetize vehicular storage capacities during critical load peaks. By executing smart vehicle-to-grid (V2G) arbitrage, connected vehicle secure elements mint liquid <b>$AII Compute Currency</b> automatically while balancing municipal electricity grids.
+                </p>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-2">Automotive Grid Arbitrage Monitor</h2>
+                <p class="text-slate-400 font-light max-w-2xl leading-relaxed text-sm">
+                    Select an active power flow telemetry node below to inspect real-time grid stabilization factors, transaction parameters, and hardware verification criteria.
+                </p>
+
+                <div class="hud-panel-layout">
+                    <div class="border border-white/5 bg-black/40 rounded-sm overflow-hidden h-fit" id="hud-menu">
+                        <div class="hud-row active" data-hud="stabilization">
+                            <span>I. INFRASTRUCTURE LEVEL</span>
+                        </div>
+                        <div class="hud-row" data-hud="handshake">
+                            <span>II. THE WALLET HANDSHAKE</span>
+                        </div>
+                        <div class="hud-row" data-hud="yield">
+                            <span>III. ASSET YIELD MATRICES</span>
+                        </div>
+                    </div>
+
+                    <div class="hud-screen rounded-sm" id="hud-screen-view">
+                        <span class="font-mono text-xs text-blue-500 mb-2 uppercase tracking-widest" id="hud-node-id">Perimeter Node G-01</span>
+                        <h3 class="text-3xl font-bold mb-4 text-white" id="hud-node-title">Dynamic Grid Stabilization</h3>
+                        <p class="text-slate-400 font-light text-sm leading-relaxed text-justify mb-6" id="proof-node-desc">
+                            When regional energy consumption spikes, the Supercharger station issues an automated telemetry request to your parked electric vehicle pack. If your active threshold permits balancing functions, a micro-release of reserve battery energy streams back to the grid to stabilize local infrastructure against brownouts.
+                        </p>
+                        <div class="bg-black/50 p-4 border border-slate-800 rounded-sm font-mono text-[11px] text-blue-400 space-y-1" id="hud-node-shell">
+                            <div>&gt; GRID_FEEDBACK_LOAD: ACTIVE_BALANCING_ENABLED</div>
+                            <div>&gt; HARDWARE_SECURITY_MAPPING: CAN-BUS_SANDBOX_ISOLATED</div>
+                            <div>&gt; ARBITRAGE_CONVERSION: THERMODYNAMIC_tPoW_CALCULATED</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-white/5 pt-12">
+                <h2 class="text-4xl font-serif italic text-white mb-6">The Sovereign Mobility Firewall</h2>
+                <p class="text-slate-300 font-light leading-relaxed text-justify mb-6">
+                    By loading the complete automotive asset bridge parameters onto your primary REALAiID biological profile, your transport asset transitions from a vulnerable tracked device into an isolated sovereign cell. The system uses secure elements located inside the hardware charging port to calculate thermodynamic energy displacements down to the millisecond.
+                </p>
+                <div class="bg-blue-950/20 p-6 border-l-4 border-blue-500 rounded-sm text-slate-400 text-sm text-justify">
+                    <b class="text-white font-semibold">Technical Protection Protocol:</b> Vehicle-to-grid discharge commands are executed asynchronously through a secure cryptographic sidecar framework. It is structurally separated from safety-critical propulsion firmware stacks, verifying all mass-to-joule transaction parameters back to Mainframe PHL-01 before clearing token mints.
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html" class="text-blue-500">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        // --- HUD CONFIGURATION MATRIX ---
+        const hudMatrix = {
+            "stabilization": {
+                node: "Perimeter Node G-01",
+                title: "Dynamic Grid Stabilization",
+                desc: "When regional energy consumption spikes, the Supercharger station issues an automated telemetry request to your parked electric vehicle pack. If your active threshold permits balancing functions, a micro-release of reserve battery energy streams back to the grid to stabilize local infrastructure against brownouts.",
+                shell: "<div>&gt; GRID_FEEDBACK_LOAD: ACTIVE_BALANCING_ENABLED</div><div>&gt; HARDWARE_SECURITY_MAPPING: CAN-BUS_SANDBOX_ISOLATED</div><div>&gt; ARBITRAGE_CONVERSION: THERMODYNAMIC_tPoW_CALCULATED</div>"
+            },
+            "handshake": {
+                node: "Perimeter Node G-02",
+                title: "Hardware Wallet Tokenization",
+                desc: "Your primary biophysical profile (Marrow Resonance parameters) acts as the high-assurance permission layer authorizing vehicular connectivity. Energy discharges are locked at the protocol layer, meaning zero capacity can be siphoned unless your live biological node handshakes the terminal charger post.",
+                shell: "<div>&gt; MEMBER_AUTHENTICATION: BIOMETRIC_IAL3_VERIFIED</div><div>&gt; SECURE_ELEMENT_SYNC: ENCRYPTED_SEED_ESTABLISHED</div><div>&gt; TRANSACTION_SECURITY: HARDWARE_LOCK_ENFORCED</div>"
+            },
+            "yield": {
+                node: "Perimeter Node G-03",
+                title: "Asset Yield Monetization",
+                desc: "Every kilowatt-hour fed back into public utility systems during peak balancing periods is instantly evaluated by the economy module. The software calculates structural conversion rates and clears a corresponding mint of tradeable, high-liquid $AII directly into your personal balance account.",
+                shell: "<div>&gt; MINTING_CONVERSION_RATE: 1.424_AII_PER_KWH</div><div>&gt; SETTLEMENT_SPEED: 100_MILLISECOND_ATOMIC_CLEARING</div><div>&gt; METRIC_LOGIC_ENGINE: STABLE_YIELD_CALCULATED</div>"
+            }
+        };
+
+        // --- ATTACH EVENT LISTENERS TO INTERACTIVE PILLS ---
+        document.querySelectorAll('.hud-row').forEach(row => {
+            row.addEventListener('click', function() {
+                const hudKey = this.getAttribute('data-hud');
+                const data = hudMatrix[hudKey];
+                
+                if (data) {
+                    // Update Text Field Outputs
+                    document.getElementById('hud-node-id').innerText = data.node;
+                    document.getElementById('hud-node-title').innerText = data.title;
+                    document.getElementById('hud-screen-view').querySelector('p').innerText = data.desc;
+                    document.getElementById('hud-node-shell').innerHTML = data.shell;
+                    
+                    // Toggle UI Selected Highlight Class Variables
+                    document.querySelectorAll('.hud-row').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // --- THREE.JS VOLUMETRIC POWER FLOW GRID VISUALIZER ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('grid-flux-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        // Build grid of lines representing energy distribution pathways
+        const linesCount = 8;
+        const lineSegments = 24;
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x1693E9, transparent: true, opacity: 0.25 });
+
+        for (let i = 0; i < linesCount; i++) {
+            const lineGeo = new THREE.BufferGeometry();
+            const points = [];
+            const startX = (i - linesCount / 2) * 2;
+            
+            for (let j = 0; j < lineSegments; j++) {
+                points.push(new THREE.Vector3(startX, (j - lineSegments / 2) * 0.5, (Math.random() - 0.5) * 1.5));
+            }
+            
+            lineGeo.setFromPoints(points);
+            const gridLine = new THREE.Line(lineGeo, lineMaterial);
+            group.add(gridLine);
+        }
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+        camera.position.z = 6;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            group.rotation.y = targetX * 1.4;
+            group.rotation.x = targetY * 1.0;
+
+            // Slow linear wave distortion mapping across energy mesh lines
+            group.children.forEach((line, index) => {
+                line.rotation.y = Math.sin(time * 0.2 + index) * 0.05;
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    </script>
+</body>
+</html>

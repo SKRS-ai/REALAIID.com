@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register My Likeness | RealAIID.com Commonwealth</title>
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co https://via.placeholder.com;">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --federal-indigo: #4f46e5;
+            --surface-slate: #0F172A;
+            --transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: var(--phl-dark); overflow-x: hidden; padding: var(--border-frame); }
+        
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* REGISTRATION APPARATUS GRID */
+        .onboarding-frame { background: var(--phl-dark); color: #fff; padding: clamp(40px, 8vw, 100px) 5%; min-height: 80vh; display: flex; align-items: center; justify-content: center; margin: -15px -15px 0; position: relative; z-index: 10; }
+        .central-terminal { max-width: 900px; width: 100%; background: rgba(15, 23, 42, 0.65); border: 1px solid rgba(255,255,255,0.08); padding: clamp(25px, 5vw, 60px); backdrop-filter: blur(20px); border-radius: 4px; }
+        
+        /* PROGRESS STEPPER Matrix */
+        .stepper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 20px; }
+        .step-node { font-family: 'JetBrains Mono'; font-size: 10px; uppercase; tracking: 1px; color: rgba(255,255,255,0.3); transition: var(--transition); text-align: center; }
+        .step-node.active { color: var(--phl-blue); font-weight: 700; }
+        .step-node.completed { color: #10B981; }
+
+        /* SUB CONTAINERS */
+        .terminal-view { display: none; }
+        .terminal-view.active-view { display: block; animation: viewFade 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        @keyframes viewFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .legal-scroller { height: 320px; overflow-y: auto; background: #020617; border: 1px solid rgba(255,255,255,0.08); padding: 30px; font-size: 0.95rem; line-height: 1.8; color: #94A3B8; font-weight: 300; margin-bottom: 25px; border-radius: 2px; }
+        .legal-scroller h3 { font-family: 'Playfair Display', serif; font-style: italic; color: #fff; font-size: 1.4rem; margin-bottom: 1.5rem; }
+        .legal-scroller p { margin-bottom: 1.5rem; }
+        .legal-scroller strong { color: #fff; font-weight: 600; }
+
+        /* LIVE CAMERA VIEWPORT */
+        .biometric-viewport { width: 100%; max-width: 520px; aspect-ratio: 4/3; background: #020617; margin: 30px auto; border: 2px solid var(--phl-blue); position: relative; overflow: hidden; border-radius: 2px; display: flex; align-items: center; justify-content: center; }
+        .scan-bar { position: absolute; width: 100%; height: 2px; background: var(--phl-blue); top: 0; animation: scanning loop 3s infinite linear; box-shadow: 0 0 20px var(--phl-blue); }
+        @keyframes scanning { from { top: 0; } to { top: 100%; } }
+        
+        /* HARDWARE DRAG & DROP ANCHOR ZONE */
+        .hardware-dropzone { border: 2px dashed rgba(255,255,255,0.15); padding: 60px 40px; text-align: center; background: #020617; cursor: pointer; transition: var(--transition); border-radius: 2px; }
+        .hardware-dropzone:hover { border-color: var(--phl-blue); background: rgba(22, 147, 233, 0.02); }
+
+        .form-input-checkbox { appearance: none; width: 18px; height: 18px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; background: transparent; display: inline-block; position: relative; cursor: pointer; vertical-align: middle; transition: 0.2s; }
+        .form-input-checkbox:checked { background: var(--phl-blue); border-color: var(--phl-blue); }
+        .form-input-checkbox:checked::after { content: "✓"; position: absolute; color: white; font-size: 12px; font-weight: 900; top: -1px; left: 3px; }
+
+        .action-button { background: var(--phl-blue); color: white; width: 100%; padding: 20px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; font-family: 'JetBrains Mono'; transition: var(--transition); border: none; border-radius: 2px; cursor: pointer; }
+        .action-button:disabled { background: #1E293B; color: #64748B; cursor: not-allowed; }
+        .action-button:not(:disabled):hover { background: #fff; color: var(--phl-dark); transform: translateY(-2px); }
+
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="onboarding-frame">
+            <div class="central-terminal">
+                
+                <div class="stepper" id="master-stepper">
+                    <div class="step-node active" id="step-1">1. Biometric Consent</div>
+                    <div class="step-node" id="step-2">2. Liveness Pulse</div>
+                    <div class="step-node" id="step-3">3. Document Anchor</div>
+                    <div class="step-node" id="step-4">4. Issuance</div>
+                </div>
+
+                <div class="terminal-view active-view" id="view-1">
+                    <h2 class="text-3xl font-bold font-serif italic text-white mb-6">Identity Sovereignty Agreement</h2>
+                    <div class="legal-scroller">
+                        <h3>Biometric Disclosure & Informed Consent</h3>
+                        <p>To initialize and engineer your immutable <strong>Real AI ID Portfolio</strong>, the Bureau must capture, catalog, and process your fundamental biological identifiers. This infrastructure mechanism guarantees that your digital identity is cryptographically and uniquely anchored to your physical entity across all mesh processing layers.</p>
+                        <p><strong>1. Structural Parameters of Collection:</strong> The processing frame captures high-resolution 3D facial topology mapping and your native, non-reconstructible <strong>VSSN (Vocal Signature Serial Number)</strong> frequency frequency signature.</p>
+                        <p><strong>2. Retention & Privacy Hardening Protocols:</strong> Raw visual frames and unhashed audio recording vectors are transient items; they are deleted within 3 seconds of baseline mapping consensus. Your permanent mathematical identity hashes are sealed directly within your private database matrix, managed entirely through your encrypted dashboard on **realaiid.com**.</p>
+                        <p><strong>3. Absolute Ownership & Zero Third-Party Monetization:</strong> Under the Solomon Kin Bureau Charter, you maintain total **"Burn Rights"** over your data. <strong>The Bureau does not lease, sell, trade, or distribute your identity materials to any third-party corporate entities or network scraping operations.</strong> Your identity remains your standalone property.</p>
+                        <p>By checking the biological authorization box below, you command the system to initialize the secure handshake ingest loop.</p>
+                    </div>
+                    <label class="block text-sm text-slate-300 mb-8 cursor-pointer select-none">
+                        <input type="checkbox" id="consent-check" class="form-input-checkbox mr-3"> 
+                        I expressly confirm, authorize, and consent to the forensic hashing, collection, and storage of my biometric parameters.
+                    </label>
+                    <button class="action-button" id="btn-goto-2" disabled>Proceed to Liveness Pulse</button>
+                </div>
+
+                <div class="terminal-view" id="view-2">
+                    <h2 class="text-3xl font-bold font-serif italic text-white text-center mb-2">The Liveness Pulse</h2>
+                    <p class="text-center text-xs tracking-widest text-slate-400 font-mono mb-6 uppercase">ANALYSIS PROTOCOL: VSSN-CORE-v4.1</p>
+                    <div class="biometric-viewport">
+                        <div class="scan-bar"></div>
+                        <div class="text-center font-mono text-xs tracking-widest text-slate-500 uppercase z-10">[ Hardware Capture Interface Engaged ]</div>
+                    </div>
+                    <div class="text-center font-serif text-2xl italic text-blue-400 min-h-[40px] mb-2" id="prompt-instruction">Align your face in the center matrix.</div>
+                    <p class="text-center text-sm text-slate-400 font-light" id="prompt-sub">Ensure you are sitting in a well-lit operational space.</p>
+                </div>
+
+                <div class="terminal-view" id="view-3">
+                    <h2 class="text-3xl font-bold font-serif italic text-white mb-6">Document Infrastructure Anchoring</h2>
+                    <p class="text-slate-300 mb-8 text-sm font-light">To bridge your biometric signature with legal identity standings, please upload your high-resolution government-issued asset (Passport or Driver's License). The system will cross-examine the document heuristics against the live topological data points captured during Stage 2.</p>
+                    <div class="hardware-dropzone mb-8" id="dropzone-trigger">
+                        <i class="ph-bold ph-cloud-arrow-up text-5xl text-blue-400 mb-4 block"></i>
+                        <span class="font-mono text-xs uppercase tracking-widest text-white block mb-2">Ingest Government Credentials</span>
+                        <span class="text-xs text-slate-500 block">Drop file here or click to browse local mainframe directories</span>
+                        <input type="file" id="hidden-file-input" class="hidden">
+                    </div>
+                    <button class="action-button" id="btn-goto-4" disabled>Verify Legal Standing</button>
+                </div>
+
+                <div class="terminal-view" id="view-4">
+                    <div class="text-center py-8">
+                        <i class="ph-fill ph-seal-check text-7xl text-emerald-500 mb-6 block animate-bounce"></i>
+                        <h2 class="text-4xl font-bold font-serif italic text-white mb-4">Identity Portfolio Seated</h2>
+                        <p class="text-slate-400 font-mono text-xs uppercase tracking-widest mb-8">HANDSHAKE ECONOMY COMPLETE // REGISTRY SYNC ACTIVE</p>
+                        <div class="bg-slate-950 p-6 rounded border border-slate-800 text-left font-mono text-xs text-slate-300 max-w-md mx-auto space-y-2 mb-8">
+                            <div>JURISDICTION: CLASS-A FOUNDER CORE</div>
+                            <div>MAINFRAME TOKEN: <span class="text-blue-400" id="token-hash-mock">GENERATING...</span></div>
+                            <div>STATUS: MARROW-LOCKED ACCESS ACTIVE</div>
+                        </div>
+                        <a href="signin.html" class="hero-btn">Enter Mainframe Dashboard</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+            <div class="sm:col-span-2 lg:col-span-1">
+                <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; margin-top: 1rem;">Establishing Biological Truth under Node PHL-01.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html">Sovereign API Docs</a></li>
+                    <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                    <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <ul>
+                    <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                    <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                    <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Office</h4>
+                <ul>
+                    <li><a href="signin.html">Init Handshake</a></li>
+                    <li><a href="support.html">Support Core</a></li>
+                    <li><a href="consultation.html">Liaison Request</a></li>
+                    <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01 // AIIPVB Protocol</div>
+            <div>GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const consentCheck = document.getElementById('consent-check');
+            const btnGoto2 = document.getElementById('btn-goto-2');
+            const btnGoto4 = document.getElementById('btn-goto-4');
+            const dropzone = document.getElementById('dropzone-trigger');
+            const hiddenFileInput = document.getElementById('hidden-file-input');
+
+            const views = [
+                document.getElementById('view-1'),
+                document.getElementById('view-2'),
+                document.getElementById('view-3'),
+                document.getElementById('view-4')
+            ];
+            
+            const steps = [
+                document.getElementById('step-1'),
+                document.getElementById('step-2'),
+                document.getElementById('step-3'),
+                document.getElementById('step-4')
+            ];
+
+            const transitionToStage = (stageIndex) => {
+                views.forEach((v, idx) => {
+                    if (idx === stageIndex) {
+                        v.classList.add('active-view');
+                        steps[idx].classList.add('active');
+                    } else {
+                        v.classList.remove('active-view');
+                        if(idx > stageIndex) steps[idx].classList.remove('active');
+                    }
+                    if(idx < stageIndex) {
+                        steps[idx].classList.remove('active');
+                        steps[idx].classList.add('completed');
+                    }
+                });
+            };
+
+            // Stage 1 Action
+            consentCheck.addEventListener('change', () => {
+                btnGoto2.disabled = !consentCheck.checked;
+            });
+
+            btnGoto2.addEventListener('click', () => {
+                transitionToStage(1);
+                runLivenessHeuristics();
+            });
+
+            // Stage 2 Runtime Loop
+            function runLivenessHeuristics() {
+                const prompt = document.getElementById('prompt-instruction');
+                const subPrompt = document.getElementById('prompt-sub');
+
+                setTimeout(() => { prompt.innerText = "Slowly turn your head to the LEFT."; }, 2500);
+                setTimeout(() => { prompt.innerText = "Slowly turn your head to the RIGHT."; }, 5500);
+                setTimeout(() => { prompt.innerText = "Look UP and center your face template."; }, 8500);
+                setTimeout(() => { 
+                    prompt.innerText = "Read aloud: 'The Commonwealth secures my likeness.'"; 
+                    prompt.style.color = "var(--phl-blue)";
+                    subPrompt.innerText = "VSSN Vocal Hash Calibration active...";
+                }, 11500);
+                setTimeout(() => { 
+                    prompt.innerText = "Consensus Reached. Biological Profile Extracted."; 
+                    prompt.style.color = "#10B981";
+                    subPrompt.innerText = "Proceeding to secondary validation anchor...";
+                }, 15000);
+                setTimeout(() => {
+                    transitionToStage(2);
+                }, 17500);
+            }
+
+            // Stage 3 Handling
+            dropzone.addEventListener('click', () => hiddenFileInput.click());
+            hiddenFileInput.addEventListener('change', () => {
+                if (hiddenFileInput.files.length > 0) {
+                    dropzone.style.borderColor = "#10B981";
+                    dropzone.style.background = "rgba(16, 185, 129, 0.02)";
+                    dropzone.innerHTML = `<i class="ph-bold ph-file-pdf text-5xl text-emerald-400 mb-4 block"></i><span class="font-mono text-xs uppercase tracking-widest text-emerald-400 block">${hiddenFileInput.files[0].name}</span>`;
+                    btnGoto4.disabled = false;
+                }
+            });
+
+            btnGoto4.addEventListener('click', () => {
+                transitionToStage(3);
+                // Compute random structural hash representation
+                document.getElementById('token-hash-mock').innerText = "VSSN_" + Math.random().toString(16).substring(2, 14).toUpperCase() + "_PHL01";
+            });
+        });
+    </script>
+</body>
+</html>

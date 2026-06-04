@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | ACADEMIC ROOT</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; background: rgba(0, 242, 255, 0.02); }
+        .forensic-status { margin: 30px 0; font-family: monospace; text-align: left; display: inline-block; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--neon); color: var(--bg); }
+    </style>
+    <script>
+        // Sovereign Auth-Guard: Prevents unauthorized entry to Bureau Portals
+        (function checkSovereignAccess() {
+            const session = localStorage.getItem('phl01_session_token');
+            if (!session) {
+                console.warn("[!] UNAUTHORIZED ACCESS ATTEMPT // REDIRECTING");
+                window.location.replace('/login.html'); 
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1 id="portal-title">ACADEMIC ROOT // BRIDGE-27</h1>
+            <div class="forensic-status">
+                <p>Degree Verification Hash: <span id="degree-status">ANCHORED</span></p>
+                <p>Clearinghouse Sync: <span id="sync-status">ACTIVE</span></p>
+                <p>Regulatory Standing: <span id="reg-status">COMPLIANT</span></p>
+            </div>
+            <button onclick="executeBridgeQuery()">REQUEST CERTIFICATE ANCHOR</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        async function executeBridgeQuery() {
+            try {
+                // Interfacing with Bridge-27 (Academic Root)
+                const response = await fetch('/api/v1/bridge-27-academic-root/verify');
+                if (!response.ok) throw new Error('Academic Bridge Unreachable');
+                
+                const data = await response.json();
+                document.getElementById('degree-status').innerText = data.hashStatus || 'VERIFIED';
+                document.getElementById('sync-status').innerText = data.syncStatus || 'ACTIVE';
+                document.getElementById('reg-status').innerText = data.status || 'COMPLIANT';
+            } catch (err) {
+                console.error("Academic Bridge Error:", err);
+                document.getElementById('degree-status').innerText = "CONNECTION ERROR";
+                alert("Critical System Error: Bridge-27 Academic Data Unavailable");
+            }
+        }
+    </script>
+</body>
+</html>

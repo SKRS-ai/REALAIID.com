@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Array // Bridge Marketplace // Bureau of Digital Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;500&family=DM+Sans:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bureau-blue: #002b49;
+            --bureau-gold: #d4af37;
+            --white: #ffffff;
+            --slate: #475569;
+            --cream: #f9f9f7;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--white);
+            color: var(--bureau-blue);
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- SOPHISTICATED HEADER --- */
+        .nav-header {
+            background: var(--white);
+            border-bottom: 1px solid #eef2f7;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .nav-logo {
+            font-family: 'Merriweather', serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--bureau-blue);
+            text-decoration: none;
+        }
+        .nav-links a {
+            margin-left: 35px;
+            text-decoration: none;
+            color: var(--slate);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--bureau-gold); }
+
+        /* --- MARKETPLACE INTERFACE --- */
+        .marketplace-hero {
+            padding: 100px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-bottom: 1px solid #f0f0ed;
+        }
+
+        .mono-tag {
+            font-family: 'Azeret Mono', monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--bureau-gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .title-executive {
+            font-family: 'Merriweather', serif;
+            font-size: 52px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        /* --- 3D BRIDGE BLADE ENGINE --- */
+        .bridge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+            padding: 80px 60px;
+            perspective: 2000px;
+        }
+
+        .bridge-blade {
+            background: var(--white);
+            padding: 35px;
+            border: 1px solid #eef2f7;
+            border-top: 4px solid var(--bureau-blue);
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 420px;
+        }
+
+        .bridge-blade:hover {
+            border-top-color: var(--bureau-gold);
+            box-shadow: 0 25px 50px rgba(0, 43, 73, 0.07);
+            z-index: 10;
+        }
+
+        .blade-id {
+            font-family: 'Azeret Mono', monospace;
+            font-size: 10px;
+            color: var(--slate);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .blade-title {
+            font-family: 'Merriweather', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .blade-liquidation {
+            font-family: 'Azeret Mono', monospace;
+            font-size: 9px;
+            background: var(--bureau-blue);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .blade-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--slate);
+            margin-bottom: 30px;
+        }
+
+        /* --- PRICING MATRIX --- */
+        .pricing-vane {
+            border-top: 1px solid #f0f0ed;
+            padding-top: 20px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .label-fiat { font-size: 11px; color: var(--slate); font-weight: 600; text-transform: uppercase; }
+        .val-fiat { font-family: 'Azeret Mono', monospace; font-size: 14px; font-weight: 700; }
+
+        .aii-incentive {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            margin-top: 10px;
+        }
+
+        .label-aii { color: var(--bureau-gold); font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .val-aii { color: var(--bureau-gold); font-family: 'Azeret Mono', monospace; font-size: 16px; font-weight: 700; }
+
+        .btn-ingest {
+            width: 100%;
+            margin-top: 20px;
+            background: var(--bureau-blue);
+            color: white;
+            padding: 12px;
+            font-family: 'Azeret Mono', monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .btn-ingest:hover {
+            background: var(--bureau-gold);
+            color: var(--bureau-blue);
+        }
+
+        /* --- INSTITUTIONAL FOOTER --- */
+        .site-footer {
+            background: #f8fafc;
+            padding: 100px 80px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+        .footer-legal {
+            font-size: 11px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <div class="nav-links">
+            <a href="index.html">Digital Identity Root</a>
+            <a href="WhatisREALAiiD.html">What is REALAiID?</a>
+            <a href="bridge-marketplace.html" style="color: var(--bureau-gold)">The Array</a>
+            <a href="forensic-terminal.html">Forensic Terminal</a>
+        </div>
+    </nav>
+
+    <header class="marketplace-hero">
+        <span class="mono-tag">Mainframe Capability Expansion // The Array</span>
+        <h1 class="title-executive">Claim Your Likeness.<br>Upgrade to a Digital Human.</h1>
+        <p class="text-xl text-slate-500 mt-6 max-w-4xl leading-relaxed">
+            The REALAiID Array is a structural grid of 38 forensic bridges designed to liquidate every physical artifact in your possession. 
+            By attaching these bridges to your root identity node, you eliminate paper trails, decommission plastic credentials, and establish 
+            total human autonomy through biological projection.
+        </p>
+        <div class="mt-10 flex gap-8 items-center">
+            <div class="bg-amber-50 p-4 rounded-lg border border-amber-200">
+                <span class="text-[10px] uppercase font-bold text-amber-600 block mb-1">Compute Currency Bonus</span>
+                <p class="text-xs text-amber-900 leading-tight">Pay with <b>$AII Credits</b> to receive an immediate 33% utility discount on all bridge maintenance fees.</p>
+            </div>
+            <div class="text-xs text-slate-400 max-w-xs leading-tight font-sans italic">
+                * Bridges are loaded onto your biological root via a high-assurance Handshake Knot™ confirmation.
+            </div>
+        </div>
+    </header>
+
+    <main class="bridge-grid" id="main-grid">
+    </main>
+
+    <footer class="site-footer">
+        <div class="font-serif font-bold text-3xl mb-4">REALAiID BUREAU</div>
+        <p class="text-slate-500 text-sm">Forensic Identity Orchestration // Node PHL-01 // Philadelphia, PA</p>
+        <div class="footer-legal">© 2026 Bureau of Digital Identity // Zero-Knowledge Matrix // ICAO PKD ENFORCED</div>
+    </footer>
+
+    <script>
+        const bridges = [
+            { id: "B-01", title: "Auth Root", liq: "Login Credentials", desc: "Replaces all passwords and cloud identity logins. Your biological node becomes the primary root for all digital services.", usd: 15, aii: 10 },
+            { id: "B-02", title: "Civic Core", liq: "Identity Proofs", desc: "Replaces secondary ID checks. Proves your personhood status to the network without revealing profile metadata.", usd: 15, aii: 10 },
+            { id: "B-03", title: "HR Liaison", liq: "Work Badges", desc: "Eliminates physical corporate IDs. Syncs with active company rosters to authorize facility access in real-time.", usd: 15, aii: 10 },
+            { id: "B-04", title: "Civic Ballot", liq: "Voter ID Tag", desc: "Exercise democratic power with absolute anonymity. Precinct eligibility is confirmed cryptographically at the gate.", usd: 15, aii: 10 },
+            { id: "B-05", title: "Ambient Auth", liq: "Access Keys", desc: "Replaces hotel cards and fobs. Your presence dynamically authorizes the environmental mesh as you move through space.", usd: 15, aii: 10 },
+            { id: "B-06", title: "Keystone Plate", liq: "Compliance Paperwork", desc: "Replaces audit logs and compliance filings. Automatically generates high-assurance records for regulatory standing.", usd: 15, aii: 10 },
+            { id: "B-07", title: "Entra Defense", liq: "Active Directory", desc: "Replaces corporate VPN tokens. Directly handshakes with Entra/Okta identity meshes via biological verification.", usd: 15, aii: 10 },
+            { id: "B-08", title: "Physical UAC", liq: "Physical Keys", desc: "Replaces metal keys and NFC tags. Interfaces with HID Origo turnstiles and locks to grant secure facility entry.", usd: 15, aii: 10 },
+            { id: "B-09", title: "DMV Authority", liq: "Driver's License", desc: "Your license ceases to be a plastic target for theft. Board domestic flights and clear road checkpoints via biometric handshake.", usd: 15, aii: 10 },
+            { id: "B-10", title: "Fiscal Root", liq: "Tax Docs", desc: "Automatically calculates and anchors fiscal compliance data to municipal pools without manual paper filings.", usd: 15, aii: 10 },
+            { id: "B-11", title: "Pet Likeness", liq: "Pet Tags", desc: "Replaces physical ownership tags. Anchors your companion's microchip and medical history to your sovereign node.", usd: 15, aii: 10 },
+            { id: "B-12", title: "Vital Records", liq: "Certificates", desc: "Replaces paper birth and marriage certificates. Anchors your core existence milestones directly to the state mesh.", usd: 30, aii: 20 },
+            { id: "B-13", title: "Medical Root", liq: "Insurance Cards", desc: "Emergency rooms handshake with your node to ingest life-critical health history, ensuring accuracy without paper trails.", usd: 15, aii: 10 },
+            { id: "B-14", title: "Property Deeds", liq: "Home Deeds", desc: "Land parcels are anchored to your fingerprint, neutralizing real estate theft via fraudulent signatures or forged records.", usd: 30, aii: 20 },
+            { id: "B-15", title: "Safe Owner", liq: "Asset Registers", desc: "Replaces inventory lists for high-value assets. Vault contents and legal holdings are bound to your biological intent.", usd: 15, aii: 10 },
+            { id: "B-16", title: "Satoshi Root", liq: "Notary Stamps", desc: "Uses the Bitcoin network to immutably anchor the state of your identity data at specific verified intervals.", usd: 45, aii: 30 },
+            { id: "B-17", title: "Professional", liq: "Diplomas", desc: "Replaces board certifications and diplomas. Instantly prove your licensure to hospitals or firms through a secure handshake.", usd: 15, aii: 10 },
+            { id: "B-18", title: "SSA Tokenizer", liq: "SSN Card", desc: "Projects a Zero-Knowledge proof that confirms your SSN registry match without revealing digits to third parties.", usd: 15, aii: 10 },
+            { id: "B-19", title: "Bio-Sign", liq: "Written Signatures", desc: "Generates a forensically unalterable witness seal for every digital contract you authorize, replacing ink signatures.", usd: 15, aii: 10 },
+            { id: "B-20", title: "Sovereign Escrow", liq: "Escrow Accounts", desc: "Replaces third-party financial holds. Smart contracts govern funds release based on your biological intent confirmation.", usd: 15, aii: 10 },
+            { id: "B-21", title: "Citadel Escrow", liq: "Safety Deposit Boxes", desc: "Replaces physical asset protection. Multi-signature locks require your unique identity knot to release high-value liquidity.", usd: 15, aii: 10 },
+            { id: "B-22", title: "DTC Travel", liq: "Passport Book", desc: "Replace the paper book with a projecting node. Clear customs through ICAO PKD verified encryption, proving global liveness.", usd: 60, aii: 40 },
+            { id: "B-23", title: "Amex Anchor", liq: "Amex Card", desc: "Liquidates the plastic card. Directly authorizes high-limit institutional transactions through the REALAiID fiscal rail.", usd: 25, aii: 15 },
+            { id: "B-24", title: "Credit Authority", liq: "Credit Reports", desc: "Replaces static credit score prints. Projects real-time solvency proof to lenders without revealing your complete financial history.", usd: 15, aii: 10 },
+            { id: "B-25", title: "Insurance", liq: "Policy Docs", desc: "Replaces liability and life insurance binders. Your active coverage is proven through a live bridge to the carrier's ledger.", usd: 15, aii: 10 },
+            { id: "B-26", title: "Mastercard Rail", liq: "Debit Cards", desc: "Interfaces with global point-of-sale systems using your biometric presence as the master authorization key.", usd: 15, aii: 10 },
+            { id: "B-27", title: "Academic Root", liq: "Transcript Files", desc: "Replaces sealed envelopes. Directly verify your GPA and degree status with employers via an unalterable university rail.", usd: 15, aii: 10 },
+            { id: "B-28", title: "Global Notary", liq: "Notary Stamps", desc: "Replaces physical notary appointments. Generates a legally binding, cryptographically witnessed seal for all affidavits.", usd: 15, aii: 10 },
+            { id: "B-29", title: "Logistics Sync", liq: "Address Labels", desc: "Replaces shipping addresses. Packages are routed to your 'Current Presence' node, ensuring delivery wherever you exist.", usd: 15, aii: 10 },
+            { id: "B-30", title: "Auto Anchor", liq: "Car Title", desc: "Vehicle ownership is bound to your root identity node, stopping illegal car title theft and fraudulent resales.", usd: 30, aii: 20 },
+            { id: "B-31", title: "AII Economy", liq: "Fiat Dependency", desc: "The primary engine for compute currency. Use pre-funded AII credits to settle system fees and service costs.", usd: 0, aii: 0 },
+            { id: "B-32", title: "God Sense", liq: "AI Hallucination", desc: "Replaces generic AI prompts. Connects your cognitive data to high-performance local AI capsules for accurate personal assistance.", usd: 15, aii: 10 },
+            { id: "B-33", title: "Benthic Pulse", liq: "Data Silos", desc: "Replaces cloud storage limits. Syncs your deep data history into decentralized subsurface nodes for lifetime retrieval.", usd: 15, aii: 10 },
+            { id: "B-34", title: "Oracle Flux", liq: "News Feeds", desc: "Replaces algorithmic biases. Feeds verified real-world data directly into your decision-making dashboard.", usd: 15, aii: 10 },
+            { id: "B-35", title: "Justice Rail", liq: "Legal Paperwork", desc: "Replaces attorney files. Tracks your legal standing and court-sealed documents in a forensic data vault.", usd: 15, aii: 10 },
+            { id: "B-36", title: "Doge Bridge", liq: "Small Change", desc: "Replaces pocket change. Execute ultra-fast micro-payments for everyday items using the Doge-compatible payment rail.", usd: 15, aii: 10 },
+            { id: "B-37", title: "Federal Sync", liq: "Federal Forms", desc: "Replaces passport renewals and census forms. Keeps your national standing synchronized automatically with federal pools.", usd: 15, aii: 10 },
+            { id: "B-38", title: "Precinct Root", liq: "Residency Cards", desc: "Replaces utility bills as proof of address. Anchors your residency to your physical coordinate history within your home district.", usd: 15, aii: 10 }
+        ];
+
+        const grid = document.getElementById('main-grid');
+
+        bridges.forEach(b => {
+            const blade = document.createElement('div');
+            blade.className = 'bridge-blade';
+            blade.innerHTML = `
+                <div>
+                    <span class="blade-id">${b.id} // Mainframe Blade</span>
+                    <h3 class="blade-title">${b.title}</h3>
+                    <div class="blade-liquidation">Liquidates: ${b.liq}</div>
+                    <p class="blade-description">${b.desc}</p>
+                </div>
+                <div class="pricing-vane">
+                    <div class="price-row">
+                        <span class="label-fiat">Standard Individual:</span>
+                        <span class="val-fiat">$${b.usd.toFixed(2)}<span class="text-[9px] ml-1">/mo</span></span>
+                    </div>
+                    <div class="aii-incentive">
+                        <div class="price-row">
+                            <span class="label-aii">Sovereign Credit:</span>
+                            <span class="val-aii">${b.aii} $AII<span class="text-[9px] ml-1">/mo</span></span>
+                        </div>
+                    </div>
+                    <a href="forensic-terminal.html?triggerScan=true&bridge=${b.id}" class="btn-ingest">Initialize Handshake</a>
+                </div>
+            `;
+            
+            // Apply 3D Hover Script to every individual blade
+            blade.addEventListener('mousemove', (e) => {
+                const rect = blade.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const midX = rect.width / 2;
+                const midY = rect.height / 2;
+                const rotX = (midY - y) / 12;
+                const rotY = (x - midX) / 12;
+                blade.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            blade.addEventListener('mouseleave', () => {
+                blade.style.transform = `rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+
+            grid.appendChild(blade);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LN: Liveness Check | RealAIID.com 3D Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --bg-light: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #5C6B8A; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #EBEEF2; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- PRODUCT HERO --- */
+        .ln-hero { padding: 100px 10%; display: flex; align-items: center; gap: 60px; background: radial-gradient(circle at bottom left, #F0F9FF 0%, #FFFFFF 100%); }
+        .hero-content { flex: 1; }
+        .hero-visual { flex: 1; border: 1px solid #E2E8F0; border-radius: 20px; padding: 40px; background: white; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+
+        .product-code { font-family: 'JetBrains Mono'; color: var(--sumsub-blue); font-weight: 700; font-size: 0.8rem; margin-bottom: 15px; display: block; }
+        h1 { font-size: 3.5rem; color: var(--text-strong); line-height: 1.1; margin-bottom: 25px; }
+
+        /* --- 3D SCANNER SIMULATION --- */
+        .scanner-box { height: 300px; background: #0F172A; border-radius: 12px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .scan-grid { position: absolute; width: 200%; height: 200%; background-image: linear-gradient(rgba(22, 147, 233, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(22, 147, 233, 0.1) 1px, transparent 1px); background-size: 30px 30px; transform: rotateX(60deg); top: -50%; }
+        .human-wireframe { width: 120px; height: 120px; border: 2px solid var(--sumsub-green); border-radius: 50%; box-shadow: 0 0 20px var(--sumsub-green); animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.8; } }
+
+        /* --- FEATURES --- */
+        .feature-grid { padding: 80px 10%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+        .feature-card { padding: 30px; border-radius: 12px; background: var(--bg-light); border: 1px solid #E2E8F0; }
+        .feature-card h3 { color: var(--text-strong); margin-bottom: 10px; }
+
+        .btn-blue { background: var(--sumsub-blue); color: white; padding: 18px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; display: inline-block; margin-top: 30px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">Home</a>
+            <a href="vssn-hash.html" style="text-decoration:none; color:var(--text-strong); font-weight:600;">VSSN Hash</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="ln-hero">
+            <div class="hero-content">
+                <span class="product-code">LN // LIVENESS CHECK</span>
+                <h1>3D Spatial <span>Verification.</span></h1>
+                <p>The LN module uses sub-millimeter depth sensing to verify physical presence. By mapping 3D spatial biological markers, we eliminate the risk of 2D injection attacks, screen-replays, and sophisticated silicon masking.</p>
+                <a href="#" class="btn-blue">Integrate LN SDK</a>
+            </div>
+            <div class="hero-visual">
+                <div class="scanner-box">
+                    <div class="scan-grid"></div>
+                    <div class="human-wireframe"></div>
+                    <div style="position:absolute; bottom:20px; left:20px; font-family:'JetBrains Mono'; color:var(--sumsub-green); font-size:0.7rem;">
+                        SPATIAL_DEPTH: VERIFIED<br>
+                        PULSE_DETECTION: ACTIVE
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="feature-grid">
+            <div class="feature-card">
+                <h3>Depth Liveness</h3>
+                <p>Analyzes the micro-movements of human skin and bone structure to ensure the subject is a living, breathing entity, not a digital render.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Anti-Spoofing AI</h3>
+                <p>Trained on over 10 million failed spoofing attempts, our neural engine detects high-resolution masks and deepfake projections in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Biometric-in-Motion</h3>
+                <p>Optimized for the <b>PHL Aviation Node</b>, allowing for high-speed liveness verification while the subject is walking through a security corridor.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Privacy-First Edge Computing</h3>
+                <p>Processing happens locally on the hardware node. No raw biometric imagery is ever transmitted—only the "Liveness Success" token.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding:60px 10%; text-align:center; background:var(--text-strong); color:white;">
+        © 2026 RealAIID.com | Philadelphia Mainframe | Statutory Standing Under the NO FAKES Act
+    </footer>
+
+</body>
+</html>

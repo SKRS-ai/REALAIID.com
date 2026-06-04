@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 06 // Keystone Plate | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --penn-navy: #001E44;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- HEADER (MASTER SYNC) --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(184, 134, 11, 0.3);
+        }
+
+        /* --- FORENSIC PRESENTATION PANELS --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--bureau-gold);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--phl-blue);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--bureau-gold);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .utility-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .utility-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.05);
+        }
+
+        /* --- FOOTER (MASTER SYNC) --- */
+        footer { background: #020617; color: #94A3B8; padding: 100px 10% 40px; border-top: 4px solid var(--phl-blue); margin-top: 150px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1600px; margin: 0 auto; text-align: left;}
+        .footer-logo { color: white; font-weight: 900; font-size: 2.2rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="three-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- --- HERO SECTION --- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.5em] mb-4 block">Industrial Node // Bridge 06</span>
+                <h1 class="bridge-title">Keystone <span class="text-amber-600">Plate.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The physical asset anchor linking biological presence to automotive nodes, infrastructure perimeters, and municipal licensing.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-amber-500 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Initialize Asset Anchor</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Biological <br><span class="text-amber-600">Infrastructure.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 06 technicalizes the ownership of high-value physical assets. Traditional license plates and registrations are static, spoofable records. REALAiID establishes **Biological Asset Anchoring**—ensuring that an automotive node or infrastructure gate responds only to the verified biological frequency of the authorized sovereign.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        By integrating directly with municipal DMV perimeters and private infrastructure gates, Bridge 06 allows for seamless, frictionless passage. If you are present, the perimeter recognizes you. If you are absent, the asset is biometrically inert.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > LOCAL_NODE: PHL-KEY-06<br>
+                        > REGISTRY: ASSET_SOVEREIGN_v1.0<br>
+                        > METHOD: SKELETAL_LICENSE_MESH<br>
+                        > STATUS: <span class="text-emerald-500">INFRASTRUCTURE_SYNCED</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Automotive Sovereignty</h4>
+                        <p class="text-sm text-slate-400">Digital, biometrically-anchored license titles. Vehicle nodes sync with your bone resonance, neutralizing theft and unauthorized operation instantly.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Infrastructure Gating</h4>
+                        <p class="text-sm text-slate-400">Authorized entry into critical municipal zones, government buildings, and priority lanes via biological intent verification.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Civic Licensing</h4>
+                        <p class="text-sm text-slate-400">Live anchoring of permits and registries. Bridge 06 ensures your municipal standing is always valid and immutable.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Asset Escrow</h4>
+                        <p class="text-sm text-slate-400">Secures corporate hardware and high-value equipment to the employee's marrow. The asset is forensicly tied to the liaison.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- WALLET UTILITY SECTION --- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-amber-500 uppercase tracking-[0.4em] mb-8">Wallet Loaded Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Your Existence is <br>the <span class="text-amber-600">Access Key.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🚗</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Node Vehicle Ignition</h4>
+                    <p class="text-slate-400 font-light">With Bridge 06 active in your REALAiID wallet, your vehicle's ECU recognizes your biological frequency within 5 meters. No physical key fob is required; ignition is gated by skeletal intent.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🏙️</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Municipal Boundary Pass</h4>
+                    <p class="text-slate-400 font-light">Bypass physical checkpoints and gated communities. The environment pings your node via the 7G Mesh, authorizing passage based on your verified municipal standing.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🛂</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">License Integrity</h4>
+                    <p class="text-slate-400 font-light">Your professional and driver's licenses are no longer visible liabilities. They exist as biometrically-wrapped hashes that only reveal status to authorized law enforcement sensors.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🛡️</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Asset Recovery</h4>
+                    <p class="text-slate-400 font-light">Stolen assets are neutralized. If an automotive node or high-value hardware is separated from its biological owner without a verified handshake, it enters a hardware-lock state.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Secure your "Genuine Presence" under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="#">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('three-canvas').appendChild(renderer.domElement);
+
+        // --- Create Industrial Keystone geometry ---
+        const geometry = new THREE.BoxGeometry(2, 3, 0.5);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.35
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0xb8860b, 1.5, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 0.6, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+        camera.position.z = 6;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            mesh.rotation.x += 0.003;
+            mesh.rotation.y += 0.003;
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            mesh.rotation.y += mouseX * 0.03;
+            mesh.rotation.x += mouseY * 0.03;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

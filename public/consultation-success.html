@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Authorized | REALAIID</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Orbitron:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --gold: #C5A059; 
+            --bg: #F8F9FA; 
+            --panel: #FFFFFF; 
+            --text-dark: #1A1A1A;
+            --accent-gray: #E0E0E0;
+        }
+
+        body { 
+            background: var(--bg); 
+            color: var(--text-dark); 
+            font-family: 'Libre Baskerville', serif; 
+            margin: 0; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-image: radial-gradient(var(--accent-gray) 1px, transparent 0);
+            background-size: 30px 30px;
+        }
+
+        .top-menu { background: var(--panel); border-bottom: 1px solid var(--accent-gray); height: 50px; width: 100%; }
+
+        .master-header { 
+            background: var(--panel); 
+            border-bottom: 3px solid var(--gold); 
+            padding: 25px 0; 
+            text-align: center; 
+        }
+        .brand-logo { 
+            font-family: 'Orbitron', sans-serif; 
+            color: var(--text-dark); 
+            text-decoration: none; 
+            font-size: 1.6rem; 
+            letter-spacing: 6px; 
+            font-weight: 700;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .success-box { 
+            border: 1px solid var(--accent-gray); 
+            padding: 60px 40px; 
+            background: var(--panel); 
+            text-align: center; 
+            max-width: 550px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.05);
+        }
+
+        .status-uplink { 
+            color: #28a745; 
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        h1 { font-style: italic; font-size: 2rem; margin-bottom: 20px; }
+
+        .uid-box { 
+            background: #fdfdfd; 
+            border: 1px dashed var(--gold); 
+            padding: 25px; 
+            margin: 30px 0; 
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem; 
+            text-align: left;
+        }
+
+        /* THE FIX: A PURE LINK BUTTON, NOT A FORM SUBMIT */
+        .btn-action { 
+            display: inline-block; 
+            margin-top: 10px; 
+            color: #fff; 
+            background: var(--gold);
+            text-decoration: none; 
+            padding: 18px 40px; 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem; 
+            letter-spacing: 3px;
+            font-weight: 700;
+            transition: 0.3s;
+            border: 1px solid var(--gold);
+        }
+
+        .btn-action:hover {
+            background: #fff;
+            color: var(--gold);
+            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.3);
+        }
+
+        footer { text-align: center; padding: 40px; font-family: 'JetBrains Mono'; font-size: 10px; color: #999; }
+    </style>
+</head>
+<body>
+
+    <div class="top-menu"></div>
+
+    <header class="master-header">
+        <a href="index.html" class="brand-logo">REALAIID</a>
+    </header>
+
+    <div class="main-content">
+        <div class="success-box">
+            <span class="status-uplink">Uplink Confirmed</span>
+            <h1>Authorization Granted.</h1>
+            
+            <p style="color: #666; line-height: 1.6;">Your request for Sovereign Liaison access has been synchronized with the Philadelphia Mainframe.</p>
+            
+            <div class="uid-box">
+                NODE_AUTH: PHL-01-SVGN<br>
+                <span id="hex-code" style="color: var(--gold);">SECURE_HASH: [GENERATING]</span>
+            </div>
+
+            <a href="index.html" class="btn-action">RETURN TO MAINFRAME</a>
+        </div>
+    </div>
+
+    <footer>
+        REALAIID BUREAU // PHILADELPHIA MAINFRAME © 2026
+    </footer>
+
+    <script>
+        setTimeout(() => {
+            const hex = Math.random().toString(16).toUpperCase().substring(2, 14);
+            document.getElementById('hex-code').innerText = "SECURE_HASH: " + hex;
+        }, 1000);
+    </script>
+</body>
+</html>

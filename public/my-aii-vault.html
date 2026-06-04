@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My $AII Vault | REALAiID Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f8fafc; color: #1e293b; font-family: 'Inter', sans-serif; }
+        .bank-panel { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .header-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Interactive Coin */
+        .coin-display { perspective: 1000px; width: 140px; height: 140px; margin: 0 auto 20px; cursor: pointer; }
+        .coin-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; }
+        .coin-display:hover .coin-inner { transform: rotateY(180deg); }
+        .face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 50%; border: 6px solid #e2e8f0; display: flex; align-items: center; justify-content: center; background: #ffffff; color: #1e293b; font-weight: bold; }
+        .back { transform: rotateY(180deg); font-size: 0.65rem; font-family: monospace; padding: 10px; border-color: #cbd5e1; }
+    </style>
+</head>
+<body class="p-8 md:p-16">
+
+    <header class="flex justify-between items-center mb-16 border-b border-slate-200 pb-8">
+        <div class="header-serif text-2xl font-bold tracking-tight text-slate-900">REALAiID BUREAU</div>
+        <nav class="flex gap-8 text-xs font-semibold uppercase tracking-widest text-slate-600">
+            <a href="index.html" class="hover:text-blue-700">Account</a>
+            <a href="my-aii-vault.html" class="text-blue-700 underline underline-offset-8">My $AII Vault</a>
+            <a href="exchange.html" class="hover:text-blue-700">Exchange</a>
+            <a href="compliance.html" class="hover:text-blue-700">Regulatory</a>
+        </nav>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+        
+        <section class="lg:col-span-1 space-y-8">
+            <div class="bank-panel p-8 text-center">
+                <div class="coin-display">
+                    <div class="coin-inner">
+                        <div class="face"><span class="text-2xl font-serif">$AII</span></div>
+                        <div class="face back">0x992...FA1<br>BIO-HASH</div>
+                    </div>
+                </div>
+                <h3 class="header-serif text-xl mb-1">Nehemiah Mia Brown</h3>
+                <p class="text-xs text-slate-500 uppercase tracking-widest font-semibold">Bio-Sign™ Verified</p>
+                <div class="mt-8 pt-8 border-t border-slate-100">
+                    <p class="text-xs text-slate-500 mb-1">Total Vault Value</p>
+                    <p class="text-4xl font-semibold">$8,947.30</p>
+                    <p class="text-green-600 text-xs font-medium mt-2">+1.42% Daily Yield</p>
+                </div>
+            </div>
+
+            <div class="bank-panel p-8">
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Integrity Metrics</h4>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-sm"><span>Bio-Sign Strength</span> <span class="font-semibold text-blue-700">92%</span></div>
+                    <div class="w-full bg-slate-100 h-1.5 rounded-full"><div class="bg-blue-700 h-full w-[92%]"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lg:col-span-2 space-y-10">
+            <div class="bank-panel p-10">
+                <h2 class="header-serif text-2xl mb-8">Asset Denominations</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 border border-slate-200 rounded-sm hover:border-blue-500 transition">
+                        <h4 class="text-sm font-semibold mb-1">Coffee Bill</h4>
+                        <p class="text-2xl font-medium text-slate-800">50 <span class="text-sm text-slate-400">$AII</span></p>
+                        <button class="text-blue-700 text-xs mt-3 uppercase tracking-widest font-bold">View Receipt</button>
+                    </div>
+                    <div class="p-6 border border-slate-200 rounded-sm hover:border-blue-500 transition">
+                        <h4 class="text-sm font-semibold mb-1">Bridge Act. Coin</h4>
+                        <p class="text-2xl font-medium text-slate-800">200 <span class="text-sm text-slate-400">$AII</span></p>
+                        <button class="text-blue-700 text-xs mt-3 uppercase tracking-widest font-bold">View Receipt</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bank-panel p-10">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="header-serif text-2xl">Vault Ledger</h2>
+                    <button class="bg-slate-900 text-white px-6 py-2 text-xs font-bold uppercase tracking-wide">Generate Statement</button>
+                </div>
+                <table class="w-full text-sm">
+                    <thead class="text-slate-400 border-b border-slate-200">
+                        <tr><th class="pb-4 text-left">Date</th><th class="pb-4 text-left">Description</th><th class="pb-4 text-right">Debit</th><th class="pb-4 text-right">Credit</th></tr>
+                    </thead>
+                    <tbody class="text-slate-700">
+                        <tr class="border-b border-slate-50"><td class="py-5">2026-05-24</td><td class="py-5">Likeness Toll (Scraper)</td><td class="py-5 text-right">-</td><td class="py-5 text-right text-green-700">+$12.40</td></tr>
+                        <tr class="border-b border-slate-50"><td class="py-5">2026-05-23</td><td class="py-5">Compute Credit (Akash)</td><td class="py-5 text-right">-</td><td class="py-5 text-right text-green-700">+$45.00</td></tr>
+                        <tr class="border-b border-slate-50"><td class="py-5">2026-05-22</td><td class="py-5">Bridge Activation Fee</td><td class="py-5 text-right">-$50.00</td><td class="py-5 text-right">-</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="max-w-7xl mx-auto mt-20 pt-10 border-t border-slate-200 text-slate-400 text-[10px] uppercase tracking-widest">
+        <div class="flex justify-between">
+            <p>&copy; 2026 REALAiID BUREAU // PHL-01</p>
+            <p>Sovereign Financial Disclosure // Compliance-Layer 14</p>
+        </div>
+    </footer>
+</body>
+</html>

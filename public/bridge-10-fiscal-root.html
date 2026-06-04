@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 10 // Fiscal Root | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER SYNC HEADER --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D FISCAL CORE CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(184, 134, 11, 0.3);
+        }
+
+        /* --- FORENSIC PRESENTATION PANELS --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--bureau-gold);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--phl-blue);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--bureau-gold);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .utility-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .utility-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.05);
+        }
+
+        /* --- MASTER SYNC FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="fiscal-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.5em] mb-4 block">Fiscal Node // Bridge 10</span>
+                <h1 class="bridge-title">Fiscal <span class="text-amber-500">Root.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The industrial anchor bridging biological intent to global banking rails, high-value settlement, and Bio-Pay™ protocols.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-amber-600 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Authorize Fiscal Ingest</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- -->
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Marrow-Locked <br><span class="text-amber-500">Liquidity.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 10 technicalizes the "Possessed Secret." In legacy banking, your wealth is protected by a plastic card and a 4-digit PIN—vulnerabilities that AI can harvest in milliseconds. REALAiID establishes **Biological Wealth Anchoring**. By linking your bank root to your bone density resonance, we eliminate fraud at the source.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Funds are now released via **Biological Intent**. Whether it is a $5 retail purchase or a $500M institutional settlement, the rail only clears if the PHL-01 Mainframe confirms a live, matching biological frequency from the authorized node.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > UPLINK: VISA_B2B_CONNECT_v3<br>
+                        > PROTOCOL: ISO_20022_SOVEREIGN<br>
+                        > METHOD: SKELETAL_AUTH_HANDSHAKE<br>
+                        > STATUS: <span class="text-emerald-500">LIQUIDITY_SECURED</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Bio-Pay™ Ingest</h4>
+                        <p class="text-sm text-slate-400">Standard retail rails (Visa/Mastercard) are wrapped in a biological hash. Funds are biometrically inert until a 300ms handshake is performed.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Zero-Fraud Guarantee</h4>
+                        <p class="text-sm text-slate-400">Neutralizes stolen card numbers. Because the card data is biometrically-bound, the raw 16-digit string has zero utility for malicious actors.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Institutional Settlement</h4>
+                        <p class="text-sm text-slate-400">High-velocity capital transfer via the SODR Ring. Authorize petascale transfers between corporate nodes with forensic biological non-repudiation.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Instant Fiscal Burn</h4>
+                        <p class="text-sm text-slate-400">Remote asset freezing. If a node is compromised, the Bureau can freeze fiscal rails globally in under 200ms using the Burn Protocol.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-amber-500 uppercase tracking-[0.4em] mb-8">Wallet Loaded Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Your Existence is <br><span class="text-amber-500">The Universal Wallet.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🏦</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Card-less ATM Access</h4>
+                    <p class="text-slate-400 font-light">Interact with authorized financial kiosks via the 7G Mesh. Your biological node transmits authorization as you approach, no physical card required.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🖋️</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Sovereign Debt Sign</h4>
+                    <p class="text-slate-400 font-light">Sign for mortgages, loans, and high-value contracts biometrically. The signature is bound to your marrow and the 1.0v-Root Ledger for total legal recourse.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">🛒</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Frictionless Bio-Pay</h4>
+                    <p class="text-slate-400 font-light">Authorize point-of-sale transactions at global merchants via NFC. The checkout happens in 300ms, authorized by your live skeletal resonance.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-amber-500 text-3xl mb-6">💰</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Inherited Wealth Trigger</h4>
+                    <p class="text-sm text-slate-400">Automate estate distribution. Bridge 10 assets transfer automatically to Successor DNA Trees (Bridge 12) upon a biological 'Dead-Stop' signal from Vital Records.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying biological fiscal standards under ISO 20022 and the NO FAKES Act.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        //        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('fiscal-canvas').appendChild(renderer.domElement);
+
+        /* --- Create Fiscal Architecture --- */
+        const group = new THREE.Group();
+        
+        // The Outer Shield (The Banking Pillar)
+        const shieldGeo = new THREE.IcosahedronGeometry(3.5, 0);
+        const shieldMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            emissive: 0xb8860b,
+            emissiveIntensity: 0.2,
+            wireframe: true
+        });
+        const shield = new THREE.Mesh(shieldGeo, shieldMat);
+        group.add(shield);
+
+        // The Inner core (The Liquid Root)
+        const coreGeo = new THREE.OctahedronGeometry(1.2, 0);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0xffffff,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        /* --- Lights --- */
+        const light = new THREE.PointLight(0xb8860b, 2.5, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+        camera.position.z = 8;
+
+        /* --- Animation Loop --- */
+        function animate() {
+            requestAnimationFrame(animate);
+            shield.rotation.y += 0.003;
+            shield.rotation.z += 0.001;
+            core.rotation.y -= 0.01;
+            
+            // Liquidity pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.15;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

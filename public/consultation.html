@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liaison Consultation | RealAIID.com Institutional Ingress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface-light: #F8FAFC;
+            --border-color: #E2E8F0;
+            --white: #FFFFFF;
+            --bureau-gold: #b8860b;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER --- */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* --- CONTENT WRAPPER --- */
+        .consult-wrapper { max-width: 1400px; margin: 0 auto; width: 100%; padding: 60px 5%; flex-grow: 1; display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+        @media (max-width: 1024px) { .consult-wrapper { grid-template-columns: 1fr; gap: 40px; } }
+
+        .consult-info h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; font-weight: 700; margin-bottom: 20px; line-height: 1.1; }
+        .consult-info p { color: #64748B; font-size: 1.05rem; font-weight: 300; margin-bottom: 40px; }
+
+        .info-card { border-left: 3px solid var(--phl-blue); padding-left: 20px; margin-bottom: 30px; }
+        .info-card h4 { font-family: 'JetBrains Mono'; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; color: var(--phl-dark); }
+        .info-card p { font-size: 0.95rem; color: #475569; margin: 0; font-weight: 400; }
+
+        /* FORM BOX */
+        .form-terminal { background: var(--surface-light); border: 1px solid var(--border-color); padding: clamp(25px, 5vw, 50px); border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
+        .form-terminal label { display: block; font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; color: #64748B; font-weight: 700; }
+        .form-terminal input, .form-terminal select, .form-terminal textarea { width: 100%; background: var(--white); border: 1px solid var(--border-color); padding: 16px; margin-bottom: 25px; font-size: 14px; font-family: 'Inter', sans-serif; transition: var(--transition); border-radius: 2px; color: var(--phl-dark); }
+        .form-terminal input:focus, .form-terminal select:focus, .form-terminal textarea:focus { border-color: var(--phl-blue); outline: none; background: #fff; }
+        
+        .btn-submit { width: 100%; background: var(--phl-dark); color: white; border: none; padding: 20px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; transition: var(--transition); border-radius: 2px; font-family: 'JetBrains Mono'; }
+        .btn-submit:hover { background: var(--phl-blue); transform: translateY(-2px); box-shadow: 0 15px 30px rgba(22,147,233,0.15); }
+
+        /* --- FOOTER --- */
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid-fixed { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; width: 100%; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; max-width: 1700px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="consult-wrapper">
+        <section class="consult-info">
+            <h1>Liaison Request</h1>
+            <p>Enterprise solutions require high-fidelity security coordination. Our Security Engineers will design a custom node deployment for your infrastructure.</p>
+            
+            <div class="info-card">
+                <h4>Primary Anchor Base</h4>
+                <p>1900 Market Street<br>Philadelphia, PA 19103</p>
+            </div>
+            <div class="info-card">
+                <h4>Institutional Access</h4>
+                <p>Clears high-security parameters across Citadel and Sovereign layer credentials.</p>
+            </div>
+        </section>
+
+        <section class="form-terminal">
+            <form action="signin.html" method="POST">
+                <label>Organization Name</label>
+                <input type="text" placeholder="e.g. International Transit Commission" required>
+
+                <label>Lead Liaison Name</label>
+                <input type="text" placeholder="Your Name" required>
+
+                <label>Infrastructure Protocol Target</label>
+                <select required>
+                    <option value="government">Government / Municipal Node</option>
+                    <option value="transit">Transit / Aviation Network</option>
+                    <option value="media">Media Group / Record Label</option>
+                    <option value="banking">Financial Institution Matrix</option>
+                </select>
+
+                <label>Deployment Requirements Brief</label>
+                <textarea rows="5" placeholder="Outline your spatial or digital integration objectives..." required></textarea>
+
+                <button type="submit" class="btn-submit">Initiate Liaison Brief</button>
+            </form>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-grid-fixed">
+            <div class="footer-brand-col">
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html">Sovereign API Docs</a></li>
+                    <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                    <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <ul>
+                    <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                    <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                    <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Office</h4>
+                <ul>
+                    <li><a href="signin.html">Init Handshake</a></li>
+                    <li><a href="support.html">Support Core</a></li>
+                    <li><a href="consultation.html">Liaison Request</a></li>
+                    <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div>GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+</body>
+</html>

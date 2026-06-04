@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | MEDICAL ROOT</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; background: rgba(0, 242, 255, 0.02); }
+        .forensic-status { margin: 30px 0; font-family: monospace; text-align: left; display: inline-block; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--neon); color: var(--bg); }
+    </style>
+    <script>
+        // Sovereign Auth-Guard: Prevents unauthorized entry to Bureau Portals
+        (function checkSovereignAccess() {
+            const session = localStorage.getItem('phl01_session_token');
+            if (!session) {
+                console.warn("[!] UNAUTHORIZED ACCESS ATTEMPT // REDIRECTING");
+                window.location.replace('/login.html'); 
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1>MEDICAL ROOT // BRIDGE-13</h1>
+            <div class="forensic-status">
+                <p>NPDB Clearance: <span id="npdb-status">VERIFYING...</span></p>
+                <p>NFC Intake Protocol: <span id="nfc-status">READY</span></p>
+                <p>HIPAA Audit Hash: <span id="audit-status">SECURE</span></p>
+            </div>
+            <button onclick="triggerMedPass()">INITIATE NFC MEDICAL INTAKE</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        async function triggerMedPass() {
+            try {
+                const response = await fetch('/api/v1/bridge-13-medical-root/intake', { 
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (!response.ok) throw new Error('Medical Bridge Unreachable');
+                
+                const data = await response.json();
+                document.getElementById('npdb-status').innerText = data.npdbStatus || 'VERIFIED';
+                document.getElementById('nfc-status').innerText = data.nfcReady ? 'ACTIVE' : 'READY';
+                document.getElementById('audit-status').innerText = data.auditHash || 'SECURE';
+            } catch (err) {
+                console.error("Medical Bridge Error:", err);
+                alert("Critical System Error: Bridge-13 Intake Protocol Failed");
+            }
+        }
+    </script>
+</body>
+</html>

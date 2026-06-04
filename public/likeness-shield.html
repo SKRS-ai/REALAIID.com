@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likeness Shield | RealAIID.com Deepfake Defense</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --text-neutral: #5C6B8A;
+            --bg-light: #F6F7F9;
+            --pure-white: #FFFFFF;
+            --alert-red: #FF4D4D;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--pure-white); color: var(--text-neutral); line-height: 1.6; }
+
+        /* --- HEADER --- */
+        .header {
+            background: var(--pure-white);
+            height: 110px; 
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 1px solid #EBEEF2;
+        }
+
+        .logo-area img { height: 135px; margin-right: 40px; cursor: pointer; }
+
+        .nav-main { display: flex; align-items: center; }
+        .nav-item { padding: 0 20px; font-weight: 600; color: var(--text-strong); text-decoration: none; font-size: 0.95rem; }
+
+        /* --- SOLUTIONS HERO --- */
+        .shield-hero {
+            padding: 120px 10%;
+            background: radial-gradient(circle at top right, #E0F2FE 0%, #FFFFFF 50%);
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .hero-text { flex: 1.2; }
+        .hero-ui { flex: 1; background: white; border-radius: 16px; padding: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.1); border: 1px solid #eee; }
+
+        h1 { font-size: 3.5rem; color: var(--text-strong); font-weight: 800; line-height: 1.1; margin-bottom: 25px; }
+        h1 span { color: var(--sumsub-green); }
+
+        .alert-pill {
+            display: inline-block;
+            background: #FFEBEB;
+            color: var(--alert-red);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- UI SIMULATION: THE MONITOR --- */
+        .monitor-feed { font-family: monospace; font-size: 0.75rem; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px solid #e2e8f0; }
+        .feed-item { margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .status-verified { color: var(--sumsub-green); font-weight: bold; }
+        .status-threat { color: var(--alert-red); font-weight: bold; animation: blink 1s infinite; }
+
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- LEGAL BENEFITS SECTION --- */
+        .legal-section { padding: 100px 10%; background: var(--bg-light); }
+        .legal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        
+        .legal-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .legal-card h3 { color: var(--text-strong); margin-bottom: 15px; font-size: 1.4rem; }
+
+        /* --- CTA --- */
+        .shield-cta { padding: 100px 10%; text-align: center; }
+        .btn-green { background: var(--sumsub-green); color: white; padding: 20px 50px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; }
+
+        footer { background: #0B1320; color: white; padding: 60px 10%; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID.com">
+        </div>
+        <nav class="nav-main">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="vssn-hash.html" class="nav-item">Products</a>
+            <a href="#" class="nav-item" style="color:var(--sumsub-green);">Likeness Shield</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="shield-hero">
+            <div class="hero-text">
+                <span class="alert-pill">Active Likeness Monitoring</span>
+                <h1>Stop Deepfakes Before They <span>Scale.</span></h1>
+                <p>The Likeness Shield is your proactive digital bodyguard. We anchor your biological rights to the Philadelphia Mainframe, providing the statutory standing required to sue for damages under the NO FAKES Act.</p>
+                <br>
+                <a href="#" class="btn-green">Get Your Shield — $499</a>
+            </div>
+
+            <div class="hero-ui">
+                <h4 style="color:var(--text-strong); margin-bottom:15px;">Live Network Surveillance</h4>
+                <div class="monitor-feed">
+                    <div class="feed-item"><span>Scan: YouTube API...</span> <span class="status-verified">SECURE</span></div>
+                    <div class="feed-item"><span>Scan: TikTok CDN...</span> <span class="status-verified">SECURE</span></div>
+                    <div class="feed-item"><span>Scan: X (Twitter)...</span> <span class="status-threat">THREAT DETECTED</span></div>
+                    <div class="feed-item"><span>Match: Vocal VSSN-882...</span> <span style="color:var(--alert-red)">98% PROBABILITY</span></div>
+                </div>
+                <div style="margin-top:20px; font-size:0.8rem;">
+                    <p><b>Event:</b> Unauthorized Synthetic Reconstruction</p>
+                    <p><b>Action:</b> Legal "Cease & Assist" Packet Dispatched</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="legal-section">
+            <div class="legal-grid">
+                <div class="legal-card">
+                    <h3>Statutory Damages</h3>
+                    <p>Because you are pre-registered with a VSSN hash, you have "Prior Standing." This allows our legal team to claim maximum statutory damages without proving actual financial loss.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Takedown Automation</h3>
+                    <p>Our API links directly to major content platforms. Once a deepfake is verified against your VSSN, a cryptographic takedown request is sent instantly.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>24/7 Global Sentinel</h3>
+                    <p>We monitor broadcast television, radio, and social media worldwide. If your voice or face is used in an ad without your token, we know within 60 seconds.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Digital Residency ID</h3>
+                    <p>Receive a physical, biometric-encoded card that acts as your Sovereign ID for high-value banking and travel transactions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="shield-cta">
+            <h2 style="font-size:2.5rem; color:var(--text-strong);">Don't leave your identity to chance.</h2>
+            <p style="margin: 20px 0;">Secure your biological sovereignty today with the industry-standard Likeness Shield.</p>
+            <a href="#" class="btn-green">Protect My Identity</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 RealAIID.com | AI Identity Protection & Verification Bureau</p>
+    </footer>
+
+</body>
+</html>

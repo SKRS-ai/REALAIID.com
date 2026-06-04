@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Newborn Likeness Anchor | REALAiID Newborn Division</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --infant-teal: #18B494;
+            --surface: #FFFFFF;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: var(--phl-dark); 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D LIFE HELIX CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-newborn {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(24, 180, 148, 0.05) 0%, transparent 70%);
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 25px;
+            color: var(--phl-dark);
+            text-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .forensic-panel {
+            background: white;
+            border: 1px solid #f1f5f9;
+            padding: 100px 10%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .protocol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .protocol-step {
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .protocol-step:hover {
+            border-top-color: var(--infant-teal);
+            transform: translateY(-5px);
+        }
+
+        .step-num {
+            font-family: 'JetBrains Mono';
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(24, 180, 148, 0.1);
+            line-height: 1;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .capability-card {
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 4px;
+            border-bottom: 4px solid var(--infant-teal);
+            transition: var(--transition);
+        }
+
+        .capability-card:hover {
+            background: white;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            transform: translateY(-10px);
+        }
+
+        /* --- THE 35-BRIDGE UTILITY EXPLAINER --- */
+        .utility-section {
+            padding: 120px 10%;
+            background: var(--phl-dark);
+            color: white;
+        }
+
+        .utility-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .bridge-pill {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+        }
+
+        /* --- ORDER SECTION --- */
+        .order-section {
+            padding: 140px 10%;
+            text-align: center;
+            background: #fff;
+        }
+
+        .price-lock {
+            font-size: 5rem;
+            font-weight: 900;
+            color: var(--phl-dark);
+            letter-spacing: -3px;
+            margin-bottom: 10px;
+        }
+
+        .btn-order {
+            display: inline-block;
+            background: var(--phl-dark);
+            color: white;
+            padding: 24px 80px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .btn-order:hover {
+            background: var(--infant-teal);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(24, 180, 148, 0.3);
+        }
+
+        /* --- FOOTER SYNC --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--infant-teal); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="helix-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-newborn">
+            <div class="z-10 max-w-5xl mx-auto px-6">
+                <div class="mb-8 flex justify-center items-center gap-6 text-[10px] font-black uppercase tracking-[0.4em] text-teal-600">
+                    <span>STATUS: MAINFRAME ACTIVE</span>
+                    <div class="w-2 h-2 rounded-full bg-teal-500 animate-pulse"></div>
+                    <span>NODE: PHL-01</span>
+                </div>
+                <h1 class="hero-title">Because Their Legacy <br><span class="text-teal-600">Is Your Creation.</span></h1>
+                <p class="text-2xl font-light text-slate-500 mb-12 leading-relaxed">
+                    Establishing Biometric Sovereignty At Birth. The Ultimate Digital Newborn Likeness Anchor.
+                </p>
+                <a href="#order" class="btn-order">Establish Baseline Ingest</a>
+            </div>
+        </section>
+
+        <!-- CORE CONTENT PANEL -->
+        <section class="forensic-panel">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+                    <div>
+                        <h2 class="font-serif italic text-5xl mb-8">A Time for Celebration. <br><span class="text-teal-600">A Time for Sovereignty.</span></h2>
+                        <p class="text-lg text-slate-600 font-light mb-8 leading-relaxed">
+                            Welcome to the world of high-definition memory. Your newborn is more than an event; they are the start of a new history, a cherished family legacy, and in a world where AI can replicate any presence, they are a high-value **Domestic Asset**.
+                        </p>
+                        <p class="text-slate-500 mb-10 leading-loose">
+                            The **DIGITAL NEWBORN LIKENESS ANCHOR** is your perfect opportunity to synthesize the joy of birth with impenetrable security. We don’t just record your child; we hardware-lock their very existence against the synthetic future.
+                        </p>
+                        <div class="inline-block px-6 py-3 border-l-4 border-l-teal-500 bg-slate-50 font-mono text-[10px] font-black uppercase tracking-widest text-slate-400">
+                            RealAIID Bureau // Newborn Division // Succession 1.0v
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <img src="New born tier22 (1).png" class="w-full rounded-2xl shadow-2xl transition-transform duration-1000 group-hover:scale-105" alt="Newborn Tier" onerror="this.src='https://placehold.co/600x800/f8fafc/10b981?text=INFANT+BASELINE+INGEST'">
+                        <div class="absolute -bottom-10 -right-10 bg-white p-8 rounded-full shadow-2xl border border-slate-50">
+                            <span class="font-mono text-[10px] font-black text-teal-600 uppercase tracking-widest">Baseline Sync: Secure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center mb-20">
+                    <h2 class="font-serif italic text-5xl mb-4">The Unparalleled Power You Will Hold</h2>
+                    <p class="text-slate-500">By establishing a baseline at birth, you secure the irrevocable right to your child’s identity.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="capability-card">
+                        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Immutable Hashing</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            We convert unique infant geometry (hospital footprints or retinal patterns) into a non-reversible SHA-256 code. Impossible to spoof, verified by the Bureau mainframe.
+                        </p>
+                    </div>
+                    <div class="capability-card">
+                        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Legal Enforceability</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            This record is legal and technical "First-Right" evidence under the **NO FAKES Act** and the **ELVIS Act**, giving you the standing to issue permanent AI deepfake takedown requests.
+                        </p>
+                    </div>
+                    <div class="capability-card">
+                        <h3 class="text-xl font-bold mb-6 uppercase tracking-tighter">Crystallized Memories</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed">
+                            Their first visual and vocal frequencies are preserved in our high-security vault, allowing future generations to experience your child exactly as they were.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE SYNC PROTOCOL -->
+        <section class="forensic-panel bg-slate-50">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-24">
+                    <span class="font-mono text-xs text-teal-600 uppercase tracking-[0.5em] mb-4 block">Process Architecture</span>
+                    <h2 class="font-serif italic text-6xl">The Sync Protocol: <br>Step-by-Step Authority</h2>
+                </div>
+
+                <div class="protocol-grid">
+                    <div class="protocol-step">
+                        <span class="step-num">01</span>
+                        <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Biometric Intake</h4>
+                        <p class="text-sm text-slate-500">Parents provide the Bureau with initial markers: high-resolution footprint records or early-stage retinal patterns, ensuring a clean historical baseline.</p>
+                    </div>
+                    <div class="protocol-step">
+                        <span class="step-num">02</span>
+                        <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Mainframe Hashing</h4>
+                        <p class="text-sm text-slate-500">Bureau Security Engineers utilize **3Si Security Engineering** protocols to generate a cryptographic SHA-256 hash, hardware-locking the likeness baseline.</p>
+                    </div>
+                    <div class="protocol-step">
+                        <span class="step-num">03</span>
+                        <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Node Synchronization</h4>
+                        <p class="text-sm text-slate-500">The generated hash is permanently anchored to the Philadelphia Node (PHL-01), creating an immutable "Digital Twin" of the child within the mainframe vault.</p>
+                    </div>
+                    <div class="protocol-step">
+                        <span class="step-num">04</span>
+                        <h4 class="text-lg font-bold mb-4 uppercase tracking-widest">Ownership Certification</h4>
+                        <p class="text-sm text-slate-500">You receive the official **RealAIID Certificate of Ownership**, providing you with a verifiable Digital ID that serves as universal legal proof.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE 35-BRIDGE UTILITY -->
+        <section class="utility-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="utility-grid">
+                    <div>
+                        <h2 class="font-serif italic text-6xl mb-8">The Omni-Sovereign <br><span class="text-teal-400">Potential.</span></h2>
+                        <p class="text-xl text-slate-400 font-light mb-12">
+                            When an inhabitant synchronizes all 35 bridges, they achieve total human autonomy. For a newborn, this bridge establishes the **Succession Root** required for the next 100 years of digital existence.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="bridge-pill"><span>Bridge 12: Vital Records Sync</span> <span class="text-teal-400">ACTIVE</span></div>
+                            <div class="bridge-pill"><span>Bridge 25: Bone Density Maturation</span> <span class="text-teal-400">PENDING</span></div>
+                            <div class="bridge-pill"><span>Bridge 31: $AII Estate Escrow</span> <span class="text-teal-400">STAGED</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 p-12 rounded-2xl">
+                        <h4 class="text-teal-400 font-bold mb-8 uppercase tracking-widest text-xs">Mainframe Status Report</h4>
+                        <ul class="text-sm space-y-6 text-slate-500 font-bold uppercase tracking-widest">
+                            <li class="flex justify-between"><span>Infant Registry</span> <span class="text-white">SYNCHRONIZED</span></li>
+                            <li class="flex justify-between"><span>Node Lookup</span> <span class="text-white">ACTIVE [PHL]</span></li>
+                            <li class="flex justify-between"><span>NO FAKES Preemption</span> <span class="text-white">ENABLED</span></li>
+                            <li class="flex justify-between"><span>ELVIS Act Compliance</span> <span class="text-white">VERIFIED</span></li>
+                            <li class="flex justify-between"><span>Bureau Takedown</span> <span class="text-white">STANDBY</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDER SECTION -->
+        <section class="order-section" id="order">
+            <div class="max-w-4xl mx-auto">
+                <span class="font-mono text-xs text-teal-600 uppercase tracking-[0.6em] mb-6 block">Secure Your Legacy of Birth</span>
+                <h2 class="font-serif italic text-7xl mb-12">Digital Newborn <br>Likeness Anchor</h2>
+                <div class="price-lock">$149.00</div>
+                <p class="text-slate-400 font-bold uppercase tracking-widest text-xs mb-16">
+                    Active baseline Coverage until the first step. <br>
+                    Managed by Bureau Security Engineers // PHL-01 Sync.
+                </p>
+                <a href="https://buy.stripe.com/test_dRm5kEcaL3LTbxl9NGb3q07?locale=en&__embed_source=buy_btn_1TH6mkKIEi29Q59QhZKsUKgj" class="btn-order">Initialize Sovereign Anchor</a>
+                <p class="mt-8 text-[10px] text-slate-400 font-mono italic">
+                    INITIAL HASHING BASELINE: SHA-256 FOOTPRINT GEOMETRY. <br>
+                    SECURED UNDER REG-DIV-INFANT-AUTH // ESTABLISHED 2026.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- MASTER FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="maritime-charter-api.html">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // INFANT AUTH NODE 01
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('helix-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        /* The Protective Sphere (Succession Anchor) */
+        const sphereGeo = new THREE.SphereGeometry(4, 32, 32);
+        const sphereMat = new THREE.MeshPhongMaterial({
+            color: 0x18B494,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.1
+        });
+        const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+        group.add(sphere);
+
+        /* The DNA Helix Anchor (Custom geometry mockup) */
+        const helixCount = 20;
+        for (let i = 0; i < helixCount; i++) {
+            const y = (i / helixCount) * 8 - 4;
+            const angle = i * 0.8;
+            
+            const dotGeo = new THREE.SphereGeometry(0.15, 8, 8);
+            const dotMat = new THREE.MeshPhongMaterial({ color: 0x18B494 });
+            
+            const dot1 = new THREE.Mesh(dotGeo, dotMat);
+            dot1.position.set(Math.cos(angle) * 1.5, y, Math.sin(angle) * 1.5);
+            group.add(dot1);
+            
+            const dot2 = new THREE.Mesh(dotGeo, dotMat);
+            dot2.position.set(Math.cos(angle + Math.PI) * 1.5, y, Math.sin(angle + Math.PI) * 1.5);
+            group.add(dot2);
+
+            const lineGeo = new THREE.BoxGeometry(3, 0.05, 0.05);
+            const line = new THREE.Mesh(lineGeo, dotMat);
+            line.position.set(0, y, 0);
+            line.rotation.y = angle;
+            group.add(line);
+        }
+
+        scene.add(group);
+
+        /* Lights */
+        const light = new THREE.PointLight(0x18B494, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.005;
+            
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.05;
+            group.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.5;
+            group.rotation.y += mouseX * 0.1;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Onboard Station | REALAiID Provisional Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bureau-blue: #0b1320;
+            --bureau-gold: #b8860b;
+            --accent-blue: #1693E9;
+            --soft-gray: #f8fafc;
+            --border-color: #e2e8f0;
+            --provisional-red: #ff4444;
+            --verified-green: #18B494;
+            --citadel-gold: #FFD700;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background: #ffffff; 
+            color: #1a1a1a; 
+            font-family: 'Montserrat', sans-serif; 
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 300px;
+            background: var(--bureau-blue);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 40px 0;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            font-family: 'Libre Baskerville';
+            font-size: 1.4rem;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            padding: 15px 30px;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+            border-left-color: var(--bureau-gold);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 30px;
+            font-size: 0.55rem;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* --- MAIN STAGE --- */
+        .main-stage {
+            flex: 1;
+            background: var(--soft-gray);
+            overflow-y: auto;
+            padding: 60px;
+            position: relative;
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 50px;
+        }
+
+        .user-intro h1 { font-family: 'Libre Baskerville'; font-size: 2.2rem; color: var(--bureau-blue); font-style: italic; }
+        .status-badge {
+            display: inline-block;
+            background: #fff;
+            border: 1px solid var(--provisional-red);
+            color: var(--provisional-red);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* --- CONTENT SECTIONS --- */
+        .content-section { display: none; }
+        .content-section.active { display: block; animation: fadeIn 0.5s ease; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .station-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #94a3b8;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* LOGISTICS: WALLET TRACKING */
+        .logistics-track {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .logistics-track::before {
+            content: '';
+            position: absolute;
+            top: 10px; left: 0; right: 0;
+            height: 2px; background: #eee;
+            z-index: 1;
+        }
+        .track-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 25%;
+        }
+        .step-dot {
+            width: 20px; height: 20px;
+            background: #fff; border: 2px solid #ddd;
+            border-radius: 50%; margin: 0 auto 10px;
+        }
+        .track-step.active .step-dot { background: var(--bureau-gold); border-color: var(--bureau-gold); box-shadow: 0 0 10px var(--bureau-gold); }
+        .step-label { font-size: 0.55rem; font-weight: 800; text-transform: uppercase; color: #999; }
+        .track-step.active .step-label { color: var(--bureau-blue); }
+
+        /* FISCAL: BIOPAY SETUP */
+        .fiscal-module {
+            background: rgba(184, 134, 11, 0.05);
+            border: 1px solid var(--bureau-gold);
+            padding: 25px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .btn-fiscal {
+            background: var(--bureau-gold);
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ACCESS CONTROL LOG */
+        .uac-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .log-entry { margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .log-entry.denied { color: var(--provisional-red); }
+
+        /* PROFILE SWITCHER */
+        .profile-list { display: flex; gap: 15px; margin-top: 20px; }
+        .profile-thumb {
+            width: 60px; height: 60px;
+            border: 2px solid #eee;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: 0.3s;
+            background: #fff; font-size: 1.2rem;
+        }
+        .profile-thumb.active { border-color: var(--bureau-gold); box-shadow: 0 0 15px rgba(184, 134, 11, 0.2); }
+
+        /* UPGRADE CTA / EVOLUTION MARKETPLACE */
+        .upgrade-banner {
+            background: var(--bureau-blue);
+            color: #fff;
+            padding: 50px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+            border: 1px solid rgba(184, 134, 11, 0.3);
+        }
+        .btn-tier-action {
+            display: inline-block;
+            background: var(--bureau-gold);
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+        .btn-tier-action:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(184, 134, 11, 0.4);
+        }
+
+        /* Strategic Bio-Pay™ Ad-Snippet for Dashboard */
+        .biopay-highlight-snippet {
+            background: rgba(22, 147, 233, 0.1); 
+            border: 1px solid var(--accent-blue); 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin: 30px auto; 
+            max-width: 650px; 
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">REALAiID</div>
+        <nav>
+            <div onclick="showSection('main')" class="nav-item active" id="nav-main">Status Overview</div>
+            <div onclick="showSection('wallet')" class="nav-item" id="nav-wallet">REALAiID Wallet™</div>
+            <div onclick="showSection('biopay')" class="nav-item" id="nav-biopay">Bio-Pay™ Setup</div>
+            <div onclick="showSection('uac')" class="nav-item" id="nav-uac">Access Control</div>
+            <div onclick="showSection('support')" class="nav-item" id="nav-support">Bureau Support</div>
+        </nav>
+        
+        <!-- SIDEBAR SECURITY BULLETIN HS-01 -->
+        <div style="padding: 30px; margin-top: 20px;">
+            <div style="background: rgba(255,68,68,0.1); border: 1px solid var(--provisional-red); padding: 15px; border-radius: 8px;">
+                <div style="font-family:'JetBrains Mono'; font-size:0.5rem; color:var(--provisional-red); font-weight:800; letter-spacing:2px; margin-bottom:5px;">BULLETIN HS-01</div>
+                <p style="font-size: 0.6rem; color: #fff; line-height: 1.4;">Active scraper threat. Upgrade to Likeness Shield to blind AI hardware doxing.</p>
+            </div>
+        </div>
+
+        <div class="sidebar-footer">
+            BUREAU ONBOARDING STATION<br>
+            NODE: PHL-PROV-01<br>
+            <span style="color: var(--bureau-gold)">1.0v-ROOT SYNCHRONIZED</span>
+        </div>
+    </aside>
+
+    <main class="main-stage">
+        <div class="header-row">
+            <div class="user-intro">
+                <h1>Welcome, <span style="color: var(--bureau-gold)" id="user-display-name">Candidate</span></h1>
+                <div class="status-badge" id="user-status">Provisional Candidate</div>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #94a3b8; font-weight: 800; letter-spacing: 2px;">NODE ACCESS ID</div>
+                <div style="font-weight: 900; color: var(--bureau-blue);" id="node-id">ARC-PROV-8821</div>
+            </div>
+        </div>
+
+        <!-- SECTION: MAIN OVERVIEW -->
+        <div id="section-main" class="content-section active">
+            <div class="dashboard-grid">
+                <!-- Identity Profile Containers -->
+                <div class="station-card">
+                    <div class="card-title">Identity Containers</div>
+                    <p style="font-size: 0.8rem; color: #64748b;">Manage multiple biological anchors on this node.</p>
+                    <div class="profile-list">
+                        <div class="profile-thumb active" title="Primary Human">👤</div>
+                        <div class="profile-thumb" title="Add Pet Container">🐾</div>
+                        <div class="profile-thumb" title="Add Newborn Container">👶</div>
+                    </div>
+                </div>
+
+                <!-- Bio-Pay Quick Status -->
+                <div class="station-card">
+                    <div class="card-title">Bio-Pay™ Standing</div>
+                    <div class="fiscal-module">
+                        <div style="font-size: 1.5rem;">💳</div>
+                        <div>
+                            <div style="font-size: 0.65rem; font-weight: 800; text-transform: uppercase;">Fiscal Root</div>
+                            <div style="font-size: 0.75rem; color: var(--provisional-red); font-weight: 900;">UNLINKED</div>
+                        </div>
+                    </div>
+                    <a href="#" onclick="showSection('biopay')" style="display:block; margin-top:15px; font-size:0.6rem; font-weight:800; color:var(--accent-blue); text-decoration:none; text-transform:uppercase;">Connect Bank Account →</a>
+                </div>
+            </div>
+
+            <!-- Physical Wallet Logistics Mini -->
+            <div class="station-card">
+                <div class="card-title">REALAiID Wallet™ Logistics</div>
+                <div class="logistics-track">
+                    <div class="track-step active"><div class="step-dot"></div><div class="step-label">Order</div></div>
+                    <div class="track-step active"><div class="step-dot"></div><div class="step-label">NPI Sample</div></div>
+                    <div class="track-step"><div class="step-dot"></div><div class="step-label">Flashed</div></div>
+                    <div class="track-step"><div class="step-dot"></div><div class="step-label">In-Transit</div></div>
+                </div>
+            </div>
+
+            <!-- OVERHAULED EVOLUTION MARKETPLACE -->
+            <div class="upgrade-banner">
+                <h2 style="font-family:'Libre Baskerville'; font-style:italic;">Activate Bio-Pay™ Sovereignty</h2>
+                <p style="font-size: 0.95rem; opacity: 0.8; margin-top:15px; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    Standard mobile wallets rely on device passcodes. Bio-Pay™ connects your biological frequency directly to your fiscal root. 
+                    Secure your bank account with your unique spectral resonance and end fraud forever.
+                </p>
+
+                <!-- STRATEGIC FEATURE HIGHLIGHT SNIPPET -->
+                <div class="biopay-highlight-snippet">
+                    <h4 style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 2px;">
+                        <span style="background: var(--accent-blue); color: #fff; padding: 2px 8px; margin-right: 10px; border-radius: 2px;">TRADEMARK</span> 
+                        Bio-Pay™ Enabled
+                    </h4>
+                    <p style="font-size: 0.85rem; color: #fff; margin-top: 10px; line-height: 1.5; opacity: 0.9;">
+                        <strong>Double-Layer Sovereignty:</strong> Use your RealAIID as a primary payment method in Apple/Google Wallets. Bio-Pay™ uses your unique biological frequency to unlock funds directly from your bank—bypassing vulnerable card numbers entirely.
+                    </p>
+                </div>
+
+                <a href="mainframe.html?tier=sovereign" class="btn-tier-action">UNLOCK BIOPAY™ AUTHORITY</a>
+            </div>
+        </div>
+
+        <!-- SECTION: WALLET LOGISTICS -->
+        <div id="section-wallet" class="content-section">
+            <div class="station-card">
+                <div class="card-title">Hardware Anchor Management</div>
+                <h3 style="font-family:'Libre Baskerville'; margin-bottom: 20px;">REALAiID Wallet™ SA-01</h3>
+                <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 30px;">Your dedicated titanium identity device is currently being manufactured in <strong>Shenzhen (Excelsecu Facility)</strong>.</p>
+                
+                <div style="background: var(--soft-gray); padding: 30px; border-radius: 8px;">
+                    <div class="log-entry"><span>Firmware Version</span> <span>Keystone OS v1.0 [PENDING]</span></div>
+                    <div class="log-entry"><span>Secure Element ID</span> <span>HID-EAL6-SECURE</span></div>
+                    <div class="log-entry"><span>Battery Status</span> <span>Kinetic-Solar Passive</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: BIOPAY SETUP -->
+        <div id="section-biopay" class="content-section">
+            <div class="station-card">
+                <div class="card-title">Bio-Pay™ Fiscal Handshake</div>
+                <p style="margin-bottom: 25px;">Link your biology directly to your fiscal root using the <strong>Handshake Knot™</strong> protocol.</p>
+                
+                <div style="border: 1px dashed #ddd; padding: 50px; text-align: center; border-radius: 8px; background: #fafafa;">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🏦</div>
+                    <h4 style="text-transform:uppercase; letter-spacing:1px;">Connect Bank via Plaid / Visa B2B</h4>
+                    <p style="font-size: 0.75rem; color: #888; margin-top: 10px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                        Bypass vulnerable card numbers. Use your unique biological frequency to unlock funds at Apple/Google Pay terminals.
+                    </p>
+                    <button class="btn-tier-action" style="background: var(--bureau-blue); color: #fff;">Initialize Fiscal Link</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION: UAC -->
+        <div id="section-uac" class="content-section">
+            <div class="station-card">
+                <div class="card-title">Universal Access Control (UAC)</div>
+                <p style="margin-bottom: 25px;">Monitor active door and software authorizations Associated with PHL-NODE-01.</p>
+                
+                <div class="uac-log">
+                    <div class="log-entry"><span>[2026-05-01 09:12] Door Access: PHL-MAIN-ENTRANCE</span> <span style="color:var(--verified-green)">AUTHORIZED</span></div>
+                    <div class="log-entry"><span>[2026-05-01 09:15] SSO Login: Okta Dashboard</span> <span style="color:var(--verified-green)">AUTHORIZED</span></div>
+                    <div class="log-entry denied"><span>[2026-05-01 11:30] Door Access: SERVER-RM-04</span> <span>DENIED: LEVEL 5 REQ</span></div>
+                </div>
+                
+                <button class="btn-tier-action" style="width: 100%; border: 2px solid var(--provisional-red); background: none; color: var(--provisional-red); margin-top: 30px;">Initiate Emergency Node Burn</button>
+            </div>
+        </div>
+
+        <!-- SECTION: SUPPORT -->
+        <div id="section-support" class="content-section">
+            <div class="station-card" style="border-left: 5px solid #ff4444;">
+                <div class="card-title" style="color: #ff4444;">Vexilla Support Line</div>
+                <div style="font-family:'JetBrains Mono'; background: #000; color: #0f0; padding: 25px; border-radius: 8px; font-size: 0.7rem; line-height: 1.6; height: 300px; overflow-y: auto;">
+                    [SYSTEM] SECURE UPLINK ESTABLISHED...<br>
+                    [SYSTEM] SECURITY BULLETIN HS-01: CRITICAL THREAT DETECTED<br>
+                    [LIAISON] This is Vexilla Incident Command. How can the Bureau assist your defense today?
+                </div>
+                <input type="text" placeholder="Transmit query to Mainframe..." style="width:100%; padding:15px; margin-top:15px; border:1px solid #ddd; font-family:'Montserrat'; font-weight:600; outline: none;">
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+            
+            document.getElementById('section-' + sectionId).classList.add('active');
+            const navItem = document.getElementById('nav-' + sectionId);
+            if(navItem) navItem.classList.add('active');
+        }
+
+        window.onload = () => {
+            const userName = localStorage.getItem('REALAiID_USER_NAME') || "Candidate";
+            document.getElementById('user-display-name').innerText = userName;
+        };
+    </script>
+</body>
+</html>

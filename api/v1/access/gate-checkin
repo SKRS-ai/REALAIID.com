@@ -1,0 +1,63 @@
+// MEDPASS SECURE CLINICAL PATIENT INTAKE PROTOCOL
+app.post('/api/v1/medical/medpass-intake', async (req, res) => {
+    const { sovereignID, targetClinicToken } = req.body;
+
+    if (!sovereignID || !targetClinicToken) {
+        return res.status(400).json({
+            success: false,
+            error: "MISSING_INTAKE_PARAMETERS",
+            message: "SovereignID and targetClinicToken are mandatory to seat a MedPass record channel."
+        });
+    }
+
+    try {
+        const medicalRecordReceipt = processMedPassIntake(sovereignID, targetClinicToken);
+
+        logger.info(`[MEDPASS ENGINE] Clinical record channel seated successfully for ID: ${sovereignID}`);
+        return res.status(200).json({
+            success: true,
+            status: "MEDPASS_CLINICAL_INTAKE_ANCHORED",
+            timestamp: new Date().toISOString(),
+            intakeData: medicalRecordReceipt
+        });
+    } catch (error) {
+        logger.error(`[!] MEDPASS_INTAKE_CRITICAL_FAILURE: ${error.message}`);
+        return res.status(500).json({
+            success: false,
+            error: "MEDPASS_RAIL_OFFLINE",
+            message: "The identity matrix failed to authorize clinical token parameters."
+        });
+    }
+});
+
+// BIOMETRIC ATTENDANCE HARDWARE EVENT GATE ROUTER
+app.post('/api/v1/access/gate-checkin', async (req, res) => {
+    const { sovereignID, physicalGateId } = req.body;
+
+    if (!sovereignID || !physicalGateId) {
+        return res.status(400).json({
+            success: false,
+            error: "MISSING_GATEWAY_PARAMETERS",
+            message: "Both sovereignID and physicalGateId are required to dispatch turnstile entry clearances."
+        });
+    }
+
+    try {
+        const structuralGateAuthorization = authorizeGateProximityEntry(sovereignID, physicalGateId);
+
+        logger.info(`[PHYSICAL ENTRY] Proximity gate authorization dispatched for entry terminal: ${physicalGateId}`);
+        return res.status(200).json({
+            success: true,
+            status: "ACCESS_PERIPHERAL_CLEARANCE_DISPATCHED",
+            timestamp: new Date().toISOString(),
+            clearanceReceipt: structuralGateAuthorization
+        });
+    } catch (error) {
+        logger.error(`[!] GATE_HARDWARE_INTERFACE_FAILURE: ${error.message}`);
+        return res.status(500).json({
+            success: false,
+            error: "GATEWAY_HARDWARE_OFFLINE",
+            message: "Mainframe failed to communicate access payload down to the hardware lock grid."
+        });
+    }
+});

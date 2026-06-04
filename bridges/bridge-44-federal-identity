@@ -1,0 +1,17 @@
+/**
+ * BRIDGE-44: Federal Identity (Login.gov / mDL)
+ * Entry point for U.S. Federal Identity integration
+ */
+const express = require('express');
+const router = express.Router();
+const loginGovController = require('./login-gov-controller');
+const mdlProtocol = require('./mdl-protocol');
+
+// Login.gov OIDC Flow Routes
+router.get('/login-gov/auth', loginGovController.initiateAuth);
+router.post('/login-gov/callback', loginGovController.handleCallback);
+
+// mDL (ISO/IEC 18013-5) Listener Route
+router.post('/mdl/verify', mdlProtocol.verifyPresentation);
+
+module.exports = router;

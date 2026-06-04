@@ -1,0 +1,48 @@
+// =========================================================================
+// PHASE 12: BIOMETRIC ENVIRONMENTAL SECURITY & INFRASTRUCTURE (AMBIENT CORES)
+// =========================================================================
+app.post('/api/v1/ambient/sustainability-sync', async (req, res) => {
+    const { sovereignID, carbonCredits, loopClosureRate } = req.body;
+
+    if (!sovereignID) {
+        return res.status(400).json({
+            success: false,
+            error: "MISSING_SOVEREIGN_ID",
+            message: "A verified biological sovereign reference key is required to seat environmental tokens."
+        });
+    }
+
+    try {
+        const offsetMetric = parseFloat(carbonCredits) || 0;
+        const efficiencyMetric = parseFloat(loopClosureRate) || 0;
+
+        const structuralIndex = calculateSustainabilityIndex(offsetMetric, efficiencyMetric);
+
+        if (structuralIndex <= 0) {
+            return res.status(422).json({
+                success: false,
+                error: "INVALID_SUSTAINABILITY_METRICS",
+                message: "Telemetry values are insufficient to generate infrastructure optimization seals."
+            });
+        }
+
+        logger.info(`[AMBIENT SYNC] Anchoring closed-loop ecosystem variables for entity node: ${sovereignID}`);
+        return res.status(200).json({
+            success: true,
+            status: "ENVIRONMENTAL_TELEMETRY_LEDGER_SEATED",
+            timestamp: new Date().toISOString(),
+            footprintData: {
+                targetNode: sovereignID,
+                calculatedCoefficient: structuralIndex,
+                sustainabilityClass: structuralIndex > 500 ? "OPTIMAL_GREEN_MATRIX" : "STANDARD_COMPLIANCE_TIER"
+            }
+        });
+    } catch (error) {
+        logger.error(`[!] AMBIENT_BRIDGE_INTEGRATION_FAILURE: ${error.message}`);
+        return res.status(500).json({
+            success: false,
+            error: "AMBIENT_INFRASTRUCTURE_RAIL_OFFLINE",
+            message: "Mainframe failed to finalize circular economic accounting matrix blocks."
+        });
+    }
+});

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 34 // Oracle Flux | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --oracle-purple: #8B5CF6;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--phl-dark); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(139, 92, 246, 0.3);
+        }
+
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--oracle-purple);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+        .spec-item:hover {
+            border-left-color: var(--bureau-gold);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--oracle-purple);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--oracle-purple);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bridge-button {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 18px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+            border-radius: 2px;
+            text-decoration: none;
+        }
+        .bridge-button:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: var(--oracle-purple);
+            transform: scale(1.02);
+        }
+        .bridge-icon { font-size: 1.4rem; color: var(--oracle-purple); }
+        .bridge-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--oracle-purple); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+        .footer-links a:hover { color: var(--oracle-purple); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="oracle-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-purple-500 uppercase tracking-[0.5em] mb-4 block">Risk & Trust Index // Bridge 34</span>
+                <h1 class="bridge-title">Oracle <span class="text-purple-500">Flux.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The intelligence anchor bridging behavioral integrity to the Sovereign Trust Index via real-time algorithmic risk scoring.
+                </p>
+                <div class="mt-12">
+                    <a href="fraud-score.html" class="bg-purple-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Integrity Audit</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Algorithmic <br><span class="text-purple-500">Trust Purity.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 34 technicalizes the concept of **Identity Certainty**. Powered by Sift and Socure, the Oracle of Flux establishes your **Behavioral Risk Score**. By anchoring the Trust Index to high-velocity digital footprints and biological intent, we ensure that your status as a "Safe Human" is verified with forensic accuracy.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Integrity is now executed via **Trust Handshake Knot™**. The system monitors for "Synthetic Identity" flags and behavioral anomalies. If your Risk Score remains below 0.05, the mainframe automatically unlocks priority access to Bridge 31 ($AII Economy) and high-clearance lobby nodes.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > AUTHORITY: ORACLE_FLUX_v2.0<br>
+                        > PROTOCOL: BEHAVIORAL_INTEGRITY_SYNC<br>
+                        > SOURCE: SIFT_SOCURE_RAIL_11<br>
+                        > STATUS: <span class="text-emerald-500">TRUST_INDEX_OPTIMAL</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Marrow-Locked Trust</h4>
+                        <p class="text-sm text-slate-400">Total reputational immunity. Your behavioral trust score is biometrically bound to your root node, preventing identity theft or reputational sabotage.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Predictive Fraud Shield</h4>
+                        <p class="text-sm text-slate-400">Zero-latency prevention. The Oracle identifies synthetic patterns before fraud occurs, neutralizing deepfake accounts in milliseconds.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Dynamic Merit Logic</h4>
+                        <p class="text-sm text-slate-400">Automated status optimization. Your REALAiID automatically shifts clearance levels based on consistent, high-integrity social handshakes.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Social Safety Root</h4>
+                        <p class="text-sm text-slate-400">Powering Node B-35. The Risk Score acts as the pre-clearance filter for all physical social interactions and Dating Safety handshakes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 border-t border-white/5">
+            <h2 class="text-center font-serif italic text-white text-3xl mb-12">Global Reserve Perimeter</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 max-w-[1600px] mx-auto" id="bridge-grid"></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying algorithmic trust standards under the MARITIME CHARTER and the ORACLE FLUX Protocol.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="index.html">The Bureau</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="bridge-35-justice-rail.html">Justice Rail</a>
+                <a href="charter.html">Maritime Charter</a>
+                <a href="api-docs.html">API Docs</a>
+            </div>
+            <div class="footer-links">
+                <h4>Accountability</h4>
+                <a href="dating-safety.html">Dating Safety</a>
+                <a href="fraud-score.html">Risk Score</a>
+                <a href="background-rail.html">Checkr Rail</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('oracle-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        const webGeo = new THREE.IcosahedronGeometry(4, 1);
+        const webMat = new THREE.MeshPhongMaterial({ color: 0x8B5CF6, transparent: true, opacity: 0.2, wireframe: true });
+        const web = new THREE.Mesh(webGeo, webMat);
+        group.add(web);
+
+        const coreGeo = new THREE.OctahedronGeometry(1.8, 0);
+        const coreMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0x8B5CF6, emissiveIntensity: 0.5, wireframe: true, transparent: true, opacity: 0.8 });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+        scene.add(new THREE.PointLight(0x8B5CF6, 2, 100).position.set(10, 10, 10));
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            web.rotation.x -= 0.003;
+            core.rotation.z += 0.01;
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.05;
+            core.scale.set(pulse, pulse, pulse);
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        const bridges = [
+            "auth-root", "civic-core", "hr-liaison", "civic-ballot", "ambient-auth", 
+            "keystone-plate", "entra-defense", "uac-physical", "dmv-authority", "fiscal-root", 
+            "pet-likeness", "vital-records", "medical-root", "property-deeds", "safe-owner", 
+            "satoshi-root", "professional", "ssa-tokenizer", "bio-sign", "sovereign-escrow", 
+            "citadel-escrow", "dtc-travel", "amex-anchor", "credit-authority", "insurance", 
+            "mastercard-rail", "academic-root", "global-notary", "logistics-sync", "automotive-anchor", 
+            "aii-economy", "god-sense", "benthic-pulse", "oracle-flux", "justice-rail", 
+            "doge-bridge", "federal-sync", "precinct-root"
+        ];
+
+        const grid = document.getElementById('bridge-grid');
+        bridges.forEach((b, i) => {
+            const id = (i+1).toString().padStart(2, '0');
+            const btn = document.createElement('a');
+            btn.href = `bridge-${id}-${b}.html`;
+            btn.className = "bridge-button";
+            btn.innerHTML = `<i class="ph-fill ph-shield-check" style="color:var(--oracle-purple)"></i><div class="flex flex-col"><span class="mono text-[8px] opacity-40">NODE B-${id}</span><span class="mono text-[9px] uppercase font-bold">${b.replace(/-/g, ' ')}</span></div>`;
+            grid.appendChild(btn);
+        });
+
+        animate();
+    </script>
+</body>
+</html>

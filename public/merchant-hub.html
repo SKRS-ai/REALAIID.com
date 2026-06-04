@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Ingest Hub | REALAiID Institutional Settlement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --satoshi-orange: #F7931A;
+            --doge-gold: #C2A633;
+            --merchant-emerald: #10B981;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D MULTI-RAIL CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .hero-merchant {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--merchant-emerald);
+            text-shadow: 0 0 80px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- FORENSIC PANELS --- */
+        .hub-panel {
+            background: rgba(2, 6, 23, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .sdk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .sdk-card {
+            border-top: 2px solid var(--merchant-emerald);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .sdk-card:hover {
+            border-top-color: var(--phl-blue);
+            transform: translateY(-5px);
+        }
+
+        .sdk-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--merchant-emerald);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .value-prop {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #94A3B8;
+            margin-bottom: 15px;
+            display: block;
+            border-left: 2px solid rgba(16, 185, 129, 0.3);
+            padding-left: 15px;
+        }
+
+        /* --- TERMINAL INTERFACE --- */
+        .terminal-section {
+            padding: 120px 10%;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ingest-box {
+            background: #05080F;
+            border: 1px solid #1e293b;
+            padding: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cipher-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--merchant-emerald);
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-left: 4px solid var(--merchant-emerald);
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .rail-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rail-btn {
+            padding: 8px 16px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #64748B;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .rail-btn.active {
+            background: var(--merchant-emerald);
+            color: #000;
+            border-color: var(--merchant-emerald);
+        }
+
+        .btn-download {
+            background: var(--merchant-emerald);
+            color: #000;
+            padding: 22px 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .btn-download:hover {
+            background: #fff;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- CODE PREVIEW --- */
+        .code-preview {
+            background: #020617;
+            padding: 40px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: #94A3B8;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 40px;
+            position: relative;
+        }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="merchant-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-merchant">
+            <div class="z-10 px-6">
+                <span class="font-mono text-xs text-emerald-500 uppercase tracking-[0.6em] mb-4 block">Merchant Ingest Hub // Production Hardened</span>
+                <h1 class="hero-title">Hardened <br>Multi-Rail.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed">
+                    Synchronizing the 36-pillar industrial stack. Accept $AII, BTC, and DOGE liquidations with zero fraud liability via PHL-01 biological intent sensors.
+                </p>
+                <div class="mt-12">
+                    <a href="#sdk-download" class="bg-emerald-600 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Authorize SDK v2.9.3</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORENSIC VALUE PANEL -->
+        <section class="hub-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="mb-20">
+                <h2 class="font-serif italic text-6xl mb-6 text-white">Industrial <br><span class="text-emerald-500">Liquidity Ingest.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl">
+                    The REALAiID Merchant SDK technicalizes the transition from paper credentials to the **Handshake Economy**. By integrating these multi-rail routes, merchants capture the high-velocity flow of decentralized wealth with zero risk.
+                </p>
+            </div>
+
+            <div class="sdk-grid">
+                <!-- RETAIL & FISCAL -->
+                <div class="sdk-card">
+                    <h3>I. Multi-Rail Liquidation</h3>
+                    <span class="value-prop">/api/v1/fiscal/satoshi-pay (BTC)</span>
+                    <span class="value-prop">/api/v1/fiscal/doge-velocity (DOGE)</span>
+                    <span class="value-prop">/api/v1/fiscal/benthic-swap ($AII)</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Velocity Capture: Process payments across Bitcoin Lightning, Dogecoin, and the $AII Compute standard. Sub-300ms confirmation via biological resonance.
+                    </p>
+                </div>
+
+                <!-- AGE & CIVIC -->
+                <div class="sdk-card">
+                    <h3>II. Gated Compliance</h3>
+                    <span class="value-prop">/api/v1/dmv/verify-mdl (Age 21+)</span>
+                    <span class="value-prop">/api/v1/civic/voter-proof (ZKP)</span>
+                    <span class="value-prop">/api/v1/notary/biological-seal</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Compliance Gating: Inherit DMV authority to verify age without revealing raw identity. Issue biometrically-sealed receipts that serve as prima facie evidence.
+                    </p>
+                </div>
+
+                <!-- LOGISTICS & MEDICAL -->
+                <div class="sdk-card">
+                    <h3>III. Industrial Execution</h3>
+                    <span class="value-prop">/api/v1/logistics/proof-of-delivery</span>
+                    <span class="value-prop">/api/v1/auto/hardware-ignition</span>
+                    <span class="value-prop">/api/v1/medical/fhir-sync</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Physical Authority: Execute B-PoD (Biological Proof of Delivery) or authorize vehicle node ignition. Secure supply chains to the inhabitant's marrow.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SDK INTEGRATION TERMINAL -->
+        <section class="terminal-section" id="sdk-download">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-5xl mb-4 text-white">Integration Console</h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Active Node Sync: PHL-01 // Industrial Mainframe ONLINE</p>
+            </div>
+
+            <div class="ingest-box shadow-2xl">
+                <div class="cipher-log">
+                    [PHL-01] INITIALIZING MERCHANT UPLINK...<br>
+                    [SYSTEM] SYNCING 36-BRIDGE PERIMETER... [OK]<br>
+                    [RAILS] SATOSHI: ACTIVE // VELOCITY: ACTIVE // COMPUTE: ACTIVE<br>
+                    [LIABILITY] ZERO_FRAUD_SHIELD: ENGAGED // B25_BONE_SYNC: READY<br>
+                    [SDK] BUILD: v2.9.3_HARDENED // STATUS: WORLD_RENOWNED
+                </div>
+
+                <div class="rail-selector">
+                    <button class="rail-btn active" onclick="switchSnippet('btc')">Satoshi (BTC)</button>
+                    <button class="rail-btn" onclick="switchSnippet('doge')">Velocity (DOGE)</button>
+                    <button class="rail-btn" onclick="switchSnippet('aii')">Compute ($AII)</button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                    <div>
+                        <h4 class="text-emerald-500 font-bold mb-4 uppercase tracking-tighter">Implementation Snippet</h4>
+                        <div class="code-preview" id="code-snippet">
+                            <span style="color:#64748B">// Execute Satoshi Root BTC Liquidation</span><br>
+                            <span style="color:#1693E9">const</span> result = <span style="color:#1693E9">await</span> fetch(<span style="color:#10B981">'/api/v1/fiscal/satoshi-pay'</span>, {<br>
+                            &nbsp;&nbsp;method: <span style="color:#10B981">'POST'</span>,<br>
+                            &nbsp;&nbsp;body: JSON.stringify({<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;nodeId: <span style="color:#10B981">'ARC-EXEC-8821'</span>,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;amount: 0.00085,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;currency: <span style="color:#10B981">'BTC'</span><br>
+                            &nbsp;&nbsp;})<br>
+                            });
+                        </div>
+                    </div>
+                    <div class="bg-emerald-500/5 p-8 border border-emerald-500/10 rounded">
+                        <h4 class="text-emerald-500 font-bold mb-4 uppercase tracking-tighter">Genuine Presence Rationale</h4>
+                        <p class="text-[11px] text-slate-500 italic leading-relaxed">
+                            "By integrating the REALAiID Merchant SDK, you transition from 'Payment Processing' to 'Intent Verification.' When the system returns a successful handshake, the transaction is forensicly anchored to the skeletal resonance of the payer. Fraud is mathematically eliminated because the biological source cannot be cloned or phished."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn-download" onclick="simulateDownload()">Authorize Production SDK</button>
+                    <div class="mt-6 text-[9px] text-slate-600 font-mono tracking-widest uppercase">SHA-256: 10.3-HARDENED-RAILS-8821-X99-WORLD-RENOWNED</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="public-registry.html">Public Registry</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="bridge-14-property-deeds.html">Property Deeds</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital & Access</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="signin.html">Member Dashboard</a>
+                <a href="merchant-hub.html" style="color:var(--merchant-emerald)">Merchant Hub</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('merchant-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // --- 1. GLOBAL LIQUIDITY MESH (Dense geometric web for design depth) ---
+        const meshGeo = new THREE.IcosahedronGeometry(8, 2);
+        const meshMat = new THREE.MeshPhongMaterial({
+            color: 0x10B981,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.05
+        });
+        const mesh = new THREE.Mesh(meshGeo, meshMat);
+        scene.add(mesh);
+
+        // --- 2. MULTI-RAIL ARCHITECTURE (Three interlocking rings) ---
+        // Rail 1: Satoshi (Orange)
+        const rail1Geo = new THREE.TorusGeometry(3.5, 0.04, 16, 100);
+        const rail1Mat = new THREE.MeshPhongMaterial({ color: 0xF7931A, transparent: true, opacity: 0.6 });
+        const rail1 = new THREE.Mesh(rail1Geo, rail1Mat);
+        group.add(rail1);
+
+        // Rail 2: Velocity (Doge Gold)
+        const rail2Geo = new THREE.TorusGeometry(3.8, 0.04, 16, 100);
+        const rail2Mat = new THREE.MeshPhongMaterial({ color: 0xC2A633, transparent: true, opacity: 0.4 });
+        const rail2 = new THREE.Mesh(rail2Geo, rail2Mat);
+        rail2.rotation.x = Math.PI / 2;
+        group.add(rail2);
+
+        // Rail 3: Compute (Emerald)
+        const rail3Geo = new THREE.TorusGeometry(3.2, 0.04, 16, 100);
+        const rail3Mat = new THREE.MeshPhongMaterial({ color: 0x10B981, transparent: true, opacity: 0.5 });
+        const rail3 = new THREE.Mesh(rail3Geo, rail3Mat);
+        rail3.rotation.y = Math.PI / 2;
+        group.add(rail3);
+
+        // --- 3. TRANSACTION CORE (Pulsing Diamond) ---
+        const coreGeo = new THREE.OctahedronGeometry(1.8, 1);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x10B981,
+            emissiveIntensity: 0.6,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        const light = new THREE.PointLight(0x10B981, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            // Web Background rotation
+            mesh.rotation.y += 0.001;
+            mesh.rotation.x += 0.0005;
+
+            // Rail rotations
+            group.rotation.y += 0.003;
+            rail1.rotation.x += 0.005;
+            rail2.rotation.y -= 0.008;
+            rail3.rotation.z += 0.01;
+            
+            // Liquidity pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+
+        function switchSnippet(rail) {
+            const container = document.getElementById('code-snippet');
+            document.querySelectorAll('.rail-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(rail === 'btc') {
+                container.innerHTML = `
+                    <span style="color:#64748B">// Execute Satoshi Root BTC Liquidation</span><br>
+                    <span style="color:#1693E9">const</span> result = <span style="color:#1693E9">await</span> fetch(<span style="color:#10B981">'/api/v1/fiscal/satoshi-pay'</span>, {<br>
+                    &nbsp;&nbsp;method: <span style="color:#10B981">'POST'</span>,<br>
+                    &nbsp;&nbsp;body: JSON.stringify({<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nodeId: <span style="color:#10B981">'ARC-EXEC-8821'</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;amount: 0.00085,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;currency: <span style="color:#10B981">'BTC'</span><br>
+                    &nbsp;&nbsp;})<br>
+                    });
+                `;
+            } else if(rail === 'doge') {
+                container.innerHTML = `
+                    <span style="color:#64748B">// Execute Doge Velocity Rail Handshake</span><br>
+                    <span style="color:#1693E9">const</span> result = <span style="color:#1693E9">await</span> fetch(<span style="color:#10B981">'/api/v1/fiscal/doge-velocity'</span>, {<br>
+                    &nbsp;&nbsp;method: <span style="color:#10B981">'POST'</span>,<br>
+                    &nbsp;&nbsp;body: JSON.stringify({<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nodeId: <span style="color:#10B981">'ARC-EXEC-8821'</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;amount: 420.69,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;intent: <span style="color:#10B981">'RETAIL_AUTHORIZATION'</span><br>
+                    &nbsp;&nbsp;})<br>
+                    });
+                `;
+            } else {
+                container.innerHTML = `
+                    <span style="color:#64748B">// Execute $AII Compute Dividend Lease</span><br>
+                    <span style="color:#1693E9">const</span> result = <span style="color:#1693E9">await</span> fetch(<span style="color:#10B981">'/api/v1/economy/aii-settle'</span>, {<br>
+                    &nbsp;&nbsp;method: <span style="color:#10B981">'POST'</span>,<br>
+                    &nbsp;&nbsp;body: JSON.stringify({<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;nodeId: <span style="color:#10B981">'ARC-EXEC-8821'</span>,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;computeUnits: 12.5,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;target: <span style="color:#10B981">'INDUSTRIAL_LEASE_PHL'</span><br>
+                    &nbsp;&nbsp;})<br>
+                    });
+                `;
+            }
+        }
+        
+        function simulateDownload() {
+            const btn = document.querySelector('.btn-download');
+            btn.innerText = "VERIFYING INDUSTRIAL NODE...";
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerText = "AUTHENTICATED // DOWNLOADING v2.9.3...";
+                setTimeout(() => {
+                    const msg = document.createElement('div');
+                    msg.style = "position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; color:black; padding:40px; border-top:5px solid #10B981; z-index:20001; box-shadow:0 0 100px rgba(0,0,0,0.5); font-family:JetBrains Mono; text-align:center;";
+                    msg.innerHTML = "<h2 style='font-size:1.5rem; margin-bottom:20px;'>[ SUCCESS ]</h2>REALAiID Merchant SDK v2.9.3 provisioned.<br><br>Multi-Rail Liquidation Active: BTC, DOGE, $AII SYNCED.<br><br><button onclick='this.parentElement.remove()' style='background:black; color:white; padding:10px 20px; border:none; cursor:pointer; font-weight:900;'>CLOSE TERMINAL</button>";
+                    document.body.appendChild(msg);
+                    btn.innerText = "SDK AUTHORIZED";
+                }, 1500);
+            }, 1200);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.3;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

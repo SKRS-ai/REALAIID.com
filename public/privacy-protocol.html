@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Protocol | REALAiID Biological Shrouding Standard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --privacy-shield: #6366f1;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D PRIVACY CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-privacy {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .privacy-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--privacy-shield);
+            text-shadow: 0 0 80px rgba(99, 102, 241, 0.3);
+        }
+
+        /* --- FORENSIC DATA PANEL --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .shroud-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .shroud-card {
+            border-top: 2px solid var(--privacy-shield);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .shroud-card:hover {
+            border-top-color: var(--bureau-gold);
+            transform: translateY(-5px);
+        }
+
+        .shroud-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--privacy-shield);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .protocol-tag {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #94A3B8;
+            margin-bottom: 15px;
+            display: block;
+            border-left: 2px solid rgba(99, 102, 241, 0.3);
+            padding-left: 15px;
+        }
+
+        /* --- THE 35-BRIDGE PRIVACY UTILITY --- */
+        .utility-section {
+            padding: 120px 10%;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bridge-impact-box {
+            background: #05080F;
+            border: 1px solid #1e293b;
+            padding: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .cipher-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.7rem;
+            color: var(--privacy-shield);
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 4px;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            border-left: 4px solid var(--privacy-shield);
+        }
+
+        /* --- FOOTER SYNC --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="privacy-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-privacy">
+            <div class="z-10">
+                <span class="font-mono text-xs text-indigo-400 uppercase tracking-[0.6em] mb-4 block">Privacy Protocol // Bridge 20 Shrouding</span>
+                <h1 class="privacy-title">Biological <br>Shrouding.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-8">
+                    Neutralizing the "Static Data Liability." In the REALAiID ecosystem, identity is a proof of life, not a collection of leaked credentials. We anchor your frequency, then we purge the source.
+                </p>
+            </div>
+        </section>
+
+        <!-- FORENSIC PRIVACY PANEL -->
+        <section class="forensic-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="text-center mb-20">
+                <h2 class="font-serif italic text-6xl mb-6 text-white">The Zero-Raw <span class="text-indigo-500">Standard.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl mx-auto">
+                    Legacy identity providers store your face and name in centralized silos—vulnerabilities for weaponized AI. REALAiID technicalizes **Total Privacy** by separating the Biological Source from the Digital Standing.
+                </p>
+            </div>
+
+            <div class="shroud-grid">
+                <div class="shroud-card">
+                    <h3>I. The Purge Protocol</h3>
+                    <span class="protocol-tag">Source Image Incineration</span>
+                    <span class="protocol-tag">Raw PII Decoupling</span>
+                    <span class="protocol-tag">Ephemeral Handshakes</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Mechanism: Once the 512-point biological hash is generated at the PHL-01 Station, the raw biometric image is forensicly incinerated. The Bureau only retains the mathematical frequency.
+                    </p>
+                </div>
+
+                <div class="shroud-card">
+                    <h3>II. Zero-Knowledge Proofs</h3>
+                    <span class="protocol-tag">Anonymous Standing Check</span>
+                    <span class="protocol-tag">Age-Gate Obfuscation</span>
+                    <span class="protocol-tag">Residency Masking</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Mechanism: Prove you are "Adult" or "Certified" to a 3rd party without revealing your full name or SSN. Bridge 18 (SSA) and 25 (Age) provide a simple "Yes/No" token.
+                    </p>
+                </div>
+
+                <div class="shroud-card">
+                    <h3>III. Extraterritorial Shrouding</h3>
+                    <span class="protocol-tag">Maritime Escrow (B20)</span>
+                    <span class="protocol-tag">Likeness Statutory Shield</span>
+                    <span class="protocol-tag">Jurisdictional Cloaking</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Mechanism: Your likeness rights are moved into the REALAiIsland registry, placing them under a protective legal shroud that legacy national scrapers cannot legally penetrate.
+                    </p>
+                </div>
+
+                <div class="shroud-card">
+                    <h3>IV. Hardware Enclave Lock</h3>
+                    <span class="protocol-tag">ARM TrustZone Isolation</span>
+                    <span class="protocol-tag">No Cloud Persistence</span>
+                    <span class="protocol-tag">300ms Intent Gating</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Mechanism: Private keys are stored in the SA-02 Titanium card's Secure Element. They never leave the physical device. Access requires a live biological pulse.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE 35-BRIDGE PRIVACY UTILITY EXPLAINER -->
+        <section class="utility-section">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-5xl mb-4 text-white">Privacy in the <span class="text-indigo-500">Wallet.</span></h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Psychological Impact of the 35-Bridge Synchronization</p>
+            </div>
+
+            <div class="bridge-impact-box">
+                <div class="cipher-log">
+                    [SYSTEM_LOG] INITIATING PRIVACY AUDIT...<br>
+                    [ANALYSIS] 35 BRIDGES SYNCHRONIZED ON NODE ARC-EXEC-8821.<br>
+                    [RESULT] INHABITANT HAS ACHIEVED TOTAL PRIVACY AUTONOMY.<br>
+                    [STATUS] RAW PII DETECTED: 0.00% // BIOLOGICAL HASHES ACTIVE: 100%
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h4 class="text-indigo-400 font-bold mb-4 uppercase tracking-tighter">Total Sovereignty Utility</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed mb-6">
+                            When an inhabitant carries all 35 bridges in their **REALAiID Wallet**, they move through the world in a state of **Technological Cloaking**. 
+                        </p>
+                        <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                            <li class="flex items-center gap-3"><i class="ph-bold ph-check text-indigo-500"></i> No more physical ID to lose/be photographed.</li>
+                            <li class="flex items-center gap-3"><i class="ph-bold ph-check text-indigo-500"></i> No passwords to be phished or harvested.</li>
+                            <li class="flex items-center gap-3"><i class="ph-bold ph-check text-indigo-500"></i> 100% immunity to Face-to-Data scrapers.</li>
+                            <li class="flex items-center gap-3"><i class="ph-bold ph-check text-indigo-500"></i> Juridical standing for any likeness breach.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-indigo-500/5 p-8 border border-indigo-500/10 rounded">
+                        <h4 class="text-indigo-400 font-bold mb-4 uppercase tracking-tighter">Forensic Standing</h4>
+                        <p class="text-[11px] text-slate-400 italic leading-relaxed">
+                            "The Privacy Protocol is not just about hiding data; it is about **Controlling Access**. By using Bridge 19 (Bio-Sign) and Bridge 28 (Global Notary), you prove your biological intent during every interaction. This creates a non-repudiable forensic record that *you* authorized the data release, and if that record is missing, the release is legally void under the NO FAKES Act."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="maritime-charter-api.html">Maritime Charter</a>
+                <a href="privacy-protocol.html" style="color:var(--phl-blue)">Privacy Protocol</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PRIVACY PERIMETER SECURED
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('privacy-canvas').appendChild(renderer.domElement);
+
+        // --- Create Privacy Shroud (Geometric Cage) ---
+        const group = new THREE.Group();
+        
+        // The Shroud Cage (Indigo)
+        const cageGeo = new THREE.IcosahedronGeometry(4, 1);
+        const cageMat = new THREE.MeshPhongMaterial({
+            color: 0x6366f1,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2
+        });
+        const cage = new THREE.Mesh(cageGeo, cageMat);
+        group.add(cage);
+
+        // The Inner Void (Pulsing Center)
+        const voidGeo = new THREE.OctahedronGeometry(1.5, 0);
+        const voidMat = new THREE.MeshPhongMaterial({
+            color: 0x6366f1,
+            emissive: 0x6366f1,
+            emissiveIntensity: 0.5,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.8
+        });
+        const core = new THREE.Mesh(voidGeo, voidMat);
+        group.add(core);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0x6366f1, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const whiteLight = new THREE.PointLight(0xffffff, 0.5, 100);
+        whiteLight.position.set(-10, -10, 10);
+        scene.add(whiteLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            cage.rotation.y += 0.002;
+            cage.rotation.x += 0.001;
+            core.rotation.y -= 0.01;
+            
+            // Pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

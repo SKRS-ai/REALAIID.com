@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Realm Pictures | Solomon Kin Media</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Playfair+Display:wght@700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sk-gold: #D4AF37;
+            --sk-black: #050505;
+            --sk-gray: #111111;
+            --sk-accent: #B91C1C; /* Ledger Red as a secondary accent */
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--sk-black); color: white; line-height: 1.6; overflow-x: hidden; }
+
+        /* --- NAVIGATION --- */
+        .header {
+            height: 110px;
+            padding: 0 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 3px; color: white; text-transform: uppercase; }
+        .brand-logo span { color: var(--sk-gold); }
+
+        /* --- PORTFOLIO HERO --- */
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--sk-black)), url('https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; line-height: 1; }
+        .hero p { font-family: 'JetBrains Mono'; font-size: 0.9rem; color: var(--sk-gold); letter-spacing: 5px; margin-top: 20px; text-transform: uppercase; }
+
+        /* --- THE FILM REEL GRID --- */
+        .portfolio-grid { padding: 100px 5%; }
+        .project-card { 
+            display: grid; 
+            grid-template-columns: 1.2fr 0.8fr; 
+            gap: 60px; 
+            margin-bottom: 120px; 
+            align-items: center;
+        }
+        .project-card:nth-child(even) { direction: rtl; }
+        .project-card:nth-child(even) .project-info { direction: ltr; }
+
+        .project-visual { 
+            position: relative; 
+            height: 450px; 
+            background: #1A1A1A; 
+            overflow: hidden; 
+            border: 1px solid #333;
+            transition: 0.5s ease;
+        }
+        .project-visual:hover { border-color: var(--sk-gold); }
+        .project-visual img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+
+        .project-info h2 { font-size: 2.5rem; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
+        .project-tags { margin-bottom: 25px; }
+        .tag { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--sk-gold); border: 1px solid var(--sk-gold); padding: 4px 10px; border-radius: 4px; margin-right: 10px; }
+
+        .btn-play { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 15px; 
+            color: white; 
+            text-decoration: none; 
+            font-weight: 800; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+        .btn-play:hover { color: var(--sk-gold); }
+        .play-circle { width: 50px; height: 50px; border: 1px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+        /* --- FOOTER --- */
+        footer { padding: 80px 5%; background: var(--sk-gray); text-align: center; }
+        .footer-logo { font-size: 1.2rem; margin-bottom: 20px; font-family: 'Playfair Display'; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="brand-logo">REALM <span>PICTURES</span></div>
+        <nav style="display: flex; gap: 40px; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">
+            <a href="index.html" style="color:#666; text-decoration:none;">BUREAU</a>
+            <a href="media-group.html" style="color:white; text-decoration:none;">RECORDS</a>
+            <a href="lethal-ledger.html" style="color:white; text-decoration:none;">LEDGER</a>
+            <a href="#" style="color:var(--sk-gold); text-decoration:none;">PRODUCTION</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div>
+                <h1>Authentic Vision.</h1>
+                <p>Human Stories // Verified by VSSN</p>
+            </div>
+        </section>
+
+        <section class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="https://images.unsplash.com/photo-1594908900066-3f47337549d8?q=80&w=2070&auto=format&fit=crop" alt="The Case Keeper">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags"><span class="tag">DOCUMENTARY</span><span class="tag">FORENSIC</span></div>
+                    <h2>The Case Keeper: 1900 Market</h2>
+                    <p style="color: #999; margin-bottom: 30px;">An intimate look at the activation of the Philadelphia Mainframe through the eyes of Malachi. A story of tech, soul, and sovereignty.</p>
+                    <a href="#" class="btn-play">
+                        <div class="play-circle">▶</div> VIEW TRAILER
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="https://images.unsplash.com/photo-15120706327b2-ac7c5c9749e7?q=80&w=2012&auto=format&fit=crop" alt="VSSN Origins">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags"><span class="tag">TECH-NOIR</span><span class="tag">NARRATIVE</span></div>
+                    <h2>Sovereign Silence</h2>
+                    <p style="color: #999; margin-bottom: 30px;">A character-driven short film exploring a world where human voices are the only currency that cannot be forged.</p>
+                    <a href="#" class="btn-play">
+                        <div class="play-circle">▶</div> VIEW TRAILER
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-visual">
+                    <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=2070&auto=format&fit=crop" alt="The Ledger Leak">
+                </div>
+                <div class="project-info">
+                    <div class="project-tags"><span class="tag">TRUE CRIME</span><span class="tag">SERIES</span></div>
+                    <h2>Lethal Ledger: Volume I</h2>
+                    <p style="color: #999; margin-bottom: 30px;">The definitive investigative series hosted by Black Beauty. Unmasking the synthetic threats of the modern era.</p>
+                    <a href="#" class="btn-play">
+                        <div class="play-circle">▶</div> VIEW EPISODES
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">REALM <span>PICTURES</span></div>
+        <p style="color:#555; font-size: 0.7rem; font-family: 'JetBrains Mono';">© 2026 SOLOMON KIN MEDIA GROUP | PHILADELPHIA MAINFRAME ANCHOR</p>
+    </footer>
+
+</body>
+</html>

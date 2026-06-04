@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script>
+        (function() {
+            if (localStorage.getItem('BUREAU_TOKEN') !== 'SOVEREIGN_ADMIN_ALPHA') {
+                // Wipe the document immediately
+                document.documentElement.innerHTML = "<div style='background:#05080F; color:#1693E9; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; font-family:\"JetBrains Mono\", monospace; text-align:center;'><h1>[ ACCESS DENIED ]</h1><p style='color:#64748B;'>NODE: PHL-VOICE-08 // UNAUTHORIZED UPLINK</p></div>";
+                window.stop(); 
+            }
+        })();
+    </script>
+
+    <title>Voice Terminal | VSSN Ingest - RealAIID Bureau</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --terminal-bg: #0B1320;
+            --white: #FFFFFF;
+            --success: #10B981;
+        }
+        /* ... keep the rest of your existing CSS here ... */

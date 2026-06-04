@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Human Mainframe | REALAiID Sign-In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Montserrat:wght@400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --bureau-blue: #001f3f;
+            --bureau-gold: #b8860b;
+            --accent-blue: #1693E9;
+            --soft-gray: #f8fafc;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background: var(--soft-gray); 
+            color: var(--text-main); 
+            font-family: 'Montserrat', sans-serif; 
+            height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- 3D PARTICLE LAYER --- */
+        #canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- DIGITAL COMMONWEALTH POPULATION (STABILIZED GROUND) --- */
+        .commonwealth-ground {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 200px;
+            z-index: 2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .walking-track {
+            display: flex;
+            width: 300%;
+            position: absolute;
+            bottom: 10px;
+            gap: 150px;
+            align-items: flex-end;
+            opacity: 0.15;
+            animation: move-track 120s linear infinite;
+        }
+
+        @keyframes move-track {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        .walking-track-far {
+            bottom: 60px;
+            opacity: 0.08;
+            animation: move-track-reverse 150s linear infinite;
+        }
+
+        @keyframes move-track-reverse {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+        }
+
+        .sil-human { height: 90px; fill: var(--bureau-blue); }
+        .sil-child { height: 50px; fill: var(--bureau-blue); }
+        .sil-dog { height: 35px; fill: var(--bureau-blue); }
+        .sil-cat { height: 25px; fill: var(--bureau-blue); }
+        .sil-reptile { height: 15px; fill: var(--bureau-blue); }
+        .sil-bird { 
+            height: 20px; fill: var(--accent-blue); 
+            animation: bird-fly 0.6s ease-in-out infinite alternate; 
+            position: relative; 
+            bottom: 110px; 
+        }
+
+        @keyframes bird-fly { from { transform: translateY(0); } to { transform: translateY(-15px); } }
+
+        /* Institutional Frame */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: 15px solid #fff;
+            pointer-events: none;
+            z-index: 10000;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.02);
+        }
+
+        /* --- AUTH CARD --- */
+        .auth-card { 
+            width: 90%;
+            max-width: 520px; 
+            max-height: 95vh;
+            background: rgba(255, 255, 255, 0.97); 
+            backdrop-filter: blur(35px);
+            padding: 40px 50px; 
+            border-radius: 40px;
+            box-shadow: 0 40px 150px rgba(0,0,0,0.12);
+            z-index: 10;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 1);
+            position: relative;
+            overflow-y: auto;
+            scrollbar-width: none;
+        }
+        .auth-card::-webkit-scrollbar { display: none; }
+
+        .header-section { margin-bottom: 25px; }
+        
+        .welcome-label {
+            font-family: 'JetBrains Mono';
+            font-size: 0.5rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 10px;
+        }
+
+        .bureau-title { 
+            font-family: 'Libre Baskerville'; 
+            color: var(--bureau-blue); 
+            text-transform: uppercase; 
+            letter-spacing: 6px; 
+            font-size: 1.7rem; 
+        }
+        .mainframe-sub {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 800;
+        }
+
+        .input-group { text-align: left; margin-bottom: 18px; }
+        label { 
+            display: block; 
+            font-family: 'JetBrains Mono'; 
+            font-size: 0.55rem; 
+            color: #94a3b8; 
+            margin-bottom: 8px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+        input { 
+            width: 100%; 
+            padding: 16px 24px; 
+            background: #f8fafc; 
+            border: 2px solid transparent; 
+            border-radius: 16px;
+            color: var(--text-main); 
+            font-family: 'Montserrat'; 
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        input:focus { 
+            outline: none; 
+            border-color: var(--accent-blue); 
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(22, 147, 233, 0.08);
+        }
+
+        .btn-access { 
+            width: 100%; 
+            padding: 20px; 
+            background: var(--bureau-blue); 
+            color: #fff; 
+            border: none; 
+            border-radius: 18px;
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            cursor: pointer; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 0.95rem;
+        }
+        .btn-access:hover { background: var(--accent-blue); transform: translateY(-3px); }
+
+        .divider { 
+            margin: 30px 0; 
+            display: flex; 
+            align-items: center; 
+            gap: 20px; 
+            color: #cbd5e1; 
+            font-family: 'JetBrains Mono'; 
+            font-size: 0.55rem; 
+            letter-spacing: 4px; 
+        }
+        .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; }
+
+        .biosign-section {
+            background: #fff;
+            border: 2px solid #f1f5f9;
+            border-radius: 30px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .biosign-section:hover { 
+            border-color: var(--bureau-gold); 
+            box-shadow: 0 20px 50px rgba(184, 134, 11, 0.1); 
+            transform: translateY(-5px);
+        }
+
+        .biosign-logo-img {
+            height: 225px; 
+            width: auto;
+            object-fit: contain;
+        }
+
+        .biosign-label {
+            font-family: 'JetBrains Mono';
+            font-weight: 800;
+            font-size: 0.75rem;
+            color: var(--bureau-gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        #portal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.99);
+            z-index: 20000;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-links {
+            margin-top: 35px;
+            font-size: 0.7rem;
+            color: #94a3b8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .footer-links a { color: var(--accent-blue); text-decoration: none; margin: 0 15px; }
+    </style>
+</head>
+<body>
+
+    <div id="canvas-container"></div>
+
+    <!-- Digital Commonwealth Population -->
+    <div class="commonwealth-ground">
+        <div class="walking-track">
+            <svg class="sil-human" viewBox="0 0 24 24"><path d="M12,2c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,2,12,2z M21,9h-6v13h-2v-6h-2v6H9V9H3V7h18V9z"/></svg>
+            <svg class="sil-dog" viewBox="0 0 24 24"><path d="M19,3L15,7H9L5,3L3,7L7,11V18L10,21H14L17,18V11L21,7L19,3Z"/></svg>
+            <svg class="sil-human" viewBox="0 0 24 24"><path d="M12,2c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,2,12,2z M18,22h-3l-1.1-6h-3.8L9,22H6l3-12h6L18,22z"/></svg>
+            <svg class="sil-bird" viewBox="0 0 24 24"><path d="M21,12L14,4L7,12L14,20L21,12Z"/></svg>
+            <svg class="sil-child" viewBox="0 0 24 24"><path d="M12,4c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,4,12,4z M17,11h-4v9h-2v-5h-2v5H7v-9H3v-2h14V11z"/></svg>
+            <svg class="sil-cat" viewBox="0 0 24 24"><path d="M12,8L8.5,14L12,17L15.5,14L12,8Z"/></svg>
+            <svg class="sil-reptile" viewBox="0 0 24 24"><path d="M22,12L12,22L2,12L12,2L22,12Z"/></svg>
+            <svg class="sil-human" viewBox="0 0 24 24"><path d="M12,2c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,2,12,2z M21,9h-6v13h-2v-6h-2v6H9V9H3V7h18V9z"/></svg>
+        </div>
+        <div class="walking-track walking-track-far">
+             <svg class="sil-human" viewBox="0 0 24 24"><path d="M12,2c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,2,12,2z M18,22h-3l-1.1-6h-3.8L9,22H6l3-12h6L18,22z"/></svg>
+             <svg class="sil-dog" viewBox="0 0 24 24"><path d="M19,3L15,7H9L5,3L3,7L7,11V18L10,21H14L17,18V11L21,7L19,3Z"/></svg>
+             <svg class="sil-child" viewBox="0 0 24 24"><path d="M12,4c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,4,12,4z M17,11h-4v9h-2v-5h-2v5H7v-9H3v-2h14V11z"/></svg>
+             <svg class="sil-human" viewBox="0 0 24 24"><path d="M12,2c1.1,0,2,0.9,2,2s-0.9,2-2,2s-2-0.9-2-2S10.9,2,12,2z M21,9h-6v13h-2v-6h-2v6H9V9H3V7h18V9z"/></svg>
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <div class="header-section">
+            <span class="welcome-label">Welcome to the Commonwealth of Digital Identity</span>
+            <div class="bureau-title">REALAiID</div>
+            <div class="mainframe-sub">Digital Human Mainframe</div>
+        </div>
+
+        <form id="login-form">
+            <div class="input-group">
+                <label>Digital Human Candidate ID</label>
+                <input type="text" placeholder="ARC-XXXX-XXXX" required>
+            </div>
+            
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-access">Enter Mainframe</button>
+        </form>
+
+        <div class="divider">OR EXECUTE BIOSIGN™</div>
+
+        <div class="biosign-section" onclick="openBioPortal()">
+            <img src="biosign_trademark_logo.png" alt="BioSign™ Logo" class="biosign-logo-img" onerror="this.src='https://via.placeholder.com/600x300/ffffff/b8860b?text=BioSign™+Active'">
+            <div class="biosign-label">Biometric Sign-In Signature</div>
+        </div>
+
+        <div class="footer-links">
+            <a href="register.html">Registry Gate</a> | <a href="identity-station.html">Claim Identity</a>
+        </div>
+    </div>
+
+    <!-- Biometric Handshake Modal -->
+    <div id="portal-overlay">
+        <div class="bureau-title" style="margin-bottom: 10px; font-size: 2.2rem;">BioSign™</div>
+        <div class="mainframe-sub" style="margin-bottom: 50px; font-size: 0.8rem;">Authenticating Biometric Sign-In Signature</div>
+        <div id="bio-status" style="font-family: 'JetBrains Mono'; font-weight: 700; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 4px; font-size: 1.2rem;">Awaiting Biological Input...</div>
+        <button onclick="closeBioPortal()" style="margin-top: 30px; background: none; border: none; color: #94a3b8; cursor: pointer; font-family: 'JetBrains Mono'; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;">Cancel Access</button>
+    </div>
+
+    <script>
+        /* --- HIGH-DENSITY BINARY MAGNETIC SWARM (v2.0) --- */
+        let scene, camera, renderer, bioCloud, binaryCloud, starGeo, binaryGeo;
+        let mouseX = 0, mouseY = 0, targetX = 0, targetY = 0;
+
+        function init3D() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 3000);
+            camera.position.z = 700;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Textures
+            const tex0 = createBinaryTexture("0");
+            const tex1 = createBinaryTexture("1");
+
+            // Bio Particles (Blue) - INCREASED TO 25,000 FOR HIGH DENSITY
+            starGeo = new THREE.BufferGeometry();
+            let stars = [];
+            for(let i=0; i<25000; i++) {
+                stars.push(Math.random() * 1600 - 800, Math.random() * 1600 - 800, Math.random() * 1600 - 800);
+            }
+            starGeo.setAttribute('position', new THREE.Float32BufferAttribute(stars, 3));
+            bioCloud = new THREE.Points(starGeo, new THREE.PointsMaterial({ 
+                color: 0x1693E9, 
+                size: 1.2, 
+                transparent: true, 
+                opacity: 0.45,
+                blending: THREE.AdditiveBlending 
+            }));
+            scene.add(bioCloud);
+
+            // Binary Swarm (Gold) - INCREASED TO 12,000 FOR WORLD-RENOWNED DEPTH
+            binaryGeo = new THREE.BufferGeometry();
+            let bPoints = [];
+            for(let i=0; i<12000; i++) {
+                bPoints.push(Math.random() * 1600 - 800, Math.random() * 1600 - 800, Math.random() * 1600 - 800);
+            }
+            binaryGeo.setAttribute('position', new THREE.Float32BufferAttribute(bPoints, 3));
+            
+            // Alternating Map for 1s and 0s
+            const binaryMat = new THREE.PointsMaterial({ 
+                map: Math.random() > 0.5 ? tex1 : tex0, 
+                size: 5, 
+                transparent: true, 
+                opacity: 0.55, 
+                color: 0xb8860b,
+                blending: THREE.AdditiveBlending 
+            });
+            binaryCloud = new THREE.Points(binaryGeo, binaryMat);
+            scene.add(binaryCloud);
+
+            document.addEventListener('mousemove', (e) => {
+                // Hardened tracking for magnetic follow effect
+                targetX = (e.clientX - window.innerWidth / 2);
+                targetY = (e.clientY - window.innerHeight / 2);
+            });
+            animate();
+        }
+
+        function createBinaryTexture(txt) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64; canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = "white";
+            ctx.font = "bold 52px 'JetBrains Mono', monospace";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(txt, 32, 32);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        function animate() {
+            // Enhanced magnetic interpolation
+            mouseX += (targetX - mouseX) * 0.08;
+            mouseY += (targetY - mouseY) * 0.08;
+
+            // Swarm Rotation (Magnetic Follow)
+            bioCloud.rotation.x = mouseY * 0.0012;
+            bioCloud.rotation.y = mouseX * 0.0012;
+            binaryCloud.rotation.x = mouseY * 0.0015;
+            binaryCloud.rotation.y = mouseX * 0.0015;
+
+            // Dynamic Camera Sway
+            camera.position.x += (mouseX/2.5 - camera.position.x) * 0.025;
+            camera.position.y += (-mouseY/2.5 - camera.position.y) * 0.025;
+            camera.lookAt(scene.position);
+
+            // Data Fall (Continuous Streaming)
+            [starGeo, binaryGeo].forEach(geo => {
+                let pos = geo.attributes.position.array;
+                for(let i=0; i<pos.length; i+=3) {
+                    pos[i+1] -= 0.6; // Velocity increase for "Velocity Economy" feel
+                    if (pos[i+1] < -800) pos[i+1] = 800;
+                }
+                geo.attributes.position.needsUpdate = true;
+            });
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        init3D();
+
+        /* --- AUTH PROTOCOLS --- */
+
+        /**
+         * SOVEREIGN WALLET HANDSHAKE
+         * Binds decentralized assets to biological identity via Bridge 01.
+         */
+        async function connectSovereignWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    console.log("[HANDSHAKE] WALLET_ANCHORED:", accounts[0]);
+                    // PHL-01 Node Sync initialized for account: accounts[0]
+                } catch (error) {
+                    console.error("[HANDSHAKE] WALLET_CONNECTION_REJECTED:", error);
+                }
+            } else {
+                alert("METAMASK ENCLAVE NOT DETECTED.");
+            }
+        }
+
+        async function openBioPortal() { 
+            // Optional: Connect wallet during BioSign trigger for Bridge 01 Sync
+            // await connectSovereignWallet(); 
+            document.getElementById('portal-overlay').style.display = 'flex'; 
+        }
+
+        function closeBioPortal() { document.getElementById('portal-overlay').style.display = 'none'; }
+
+        document.getElementById('login-form').onsubmit = (e) => {
+            e.preventDefault();
+            localStorage.setItem('REALAiID_AUTH_TOKEN', 'DIGITAL_HUMAN_ACTIVE');
+            window.location.href = 'dashboard.html';
+        };
+    </script>
+</body>
+</html>

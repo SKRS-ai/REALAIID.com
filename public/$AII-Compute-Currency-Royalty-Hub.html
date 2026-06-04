@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royalty Hub | REALAiID Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; font-family: 'Inter', sans-serif; }
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+        .royalty-card { background: rgba(22, 147, 233, 0.05); border: 1px solid #1693E9; padding: 40px; }
+        .ledger-row { display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 20px; border-bottom: 1px solid #1e293b; font-family: 'JetBrains Mono'; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
+            <a href="$AII-Compute-Currency-Royalty-Hub.html" class="text-blue-500">Royalty Hub</a>
+            <a href="forensic-terminal.html">Forensic Terminal</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-20">
+        <section class="text-center mb-20">
+            <h1 class="text-6xl font-serif italic mb-6">Likeness Royalty Hub</h1>
+            <p class="text-slate-400 text-lg">Your identity is an income-generating asset. Monitor real-time royalties generated from Bio-Hash exploitation defense.</p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+            <div class="royalty-card">
+                <h4 class="text-blue-500 font-mono text-xs uppercase mb-2">Total Royalty Revenue</h4>
+                <p class="text-5xl font-bold">$1,248.50 <span class="text-sm text-slate-500 font-normal">USD</span></p>
+            </div>
+            <div class="royalty-card border-emerald-500 bg-emerald-900/5">
+                <h4 class="text-emerald-500 font-mono text-xs uppercase mb-2">Active Bio-Hash Protects</h4>
+                <p class="text-5xl font-bold text-emerald-400">42</p>
+            </div>
+        </section>
+
+        <section class="bg-slate-900/20 border border-slate-800 p-8">
+            <h2 class="text-2xl font-serif italic mb-8">Recent Settlement Ledger</h2>
+            <div class="text-slate-500 text-xs font-mono mb-4 grid grid-cols-2">
+                <span>EVENT / SOURCE</span>
+                <span class="text-right">CREDIT</span>
+            </div>
+            <div id="royalty-ledger">
+                <div class="ledger-row">
+                    <span>Likeness Scrape Block // Social-Node-X</span>
+                    <span class="text-right text-emerald-500">+$5.00</span>
+                    <span class="text-right text-slate-500">2026-05-21</span>
+                </div>
+                <div class="ledger-row">
+                    <span>Biometric Lease // Research-Node-A</span>
+                    <span class="text-right text-emerald-500">+$12.50</span>
+                    <span class="text-right text-slate-500">2026-05-20</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="p-20 bg-[#020617] border-t border-white/5 text-center text-slate-500 text-sm italic font-mono">
+        "Every pixel of your likeness is protected by the Bureau."
+    </footer>
+
+</body>
+</html>

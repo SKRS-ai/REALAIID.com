@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHL-01 MAINFRAME | Biometric Ingest & Industrial Gate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bureau-blue: #0b1320;
+            --bureau-gold: #b8860b;
+            --citadel-gold: #FFD700;
+            --clear-blue: #002AFF;
+            --provenance-purple: #9D00FF;
+            --chainalysis-cyan: #00F0FF;
+            --safe-green: #18B494;
+            --alert-red: #ff4d4d;
+            --border-frame: 15px;
+            --panel-bg: rgba(11, 19, 32, 0.98);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background: #000; 
+            color: #fff; 
+            font-family: 'Montserrat', sans-serif; 
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            padding: var(--border-frame);
+            position: relative;
+        }
+
+        /* Institutional Frame */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .mainframe-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr 350px;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, #0b1320 0%, #000 100%);
+            padding: 20px;
+            position: relative;
+        }
+
+        .panel {
+            background: var(--panel-bg);
+            border: 1px solid rgba(184, 134, 11, 0.1);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            font-family: 'JetBrains Mono', monospace;
+            z-index: 50;
+        }
+
+        .panel-header {
+            font-size: 0.65rem;
+            color: var(--bureau-gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 900;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.2);
+            padding-bottom: 10px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6rem;
+            margin-bottom: 10px;
+            color: #64748B;
+        }
+        .stat-value { color: #fff; font-weight: 700; }
+        .stat-value.active { color: var(--safe-green); }
+
+        /* CENTER STATION (INGEST) */
+        .ingest-station {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .camera-viewport {
+            width: 100%;
+            max-width: 650px;
+            aspect-ratio: 1/1;
+            background: #05080c;
+            border: 2px solid #1a2a3a;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(22, 147, 233, 0.2);
+        }
+
+        video { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; filter: grayscale(100%) contrast(1.1); }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--bureau-gold);
+            top: 0;
+            box-shadow: 0 0 15px var(--bureau-gold);
+            animation: scan 4s infinite linear;
+            z-index: 60;
+        }
+
+        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+
+        .ingest-ui {
+            position: absolute;
+            bottom: -30px;
+            width: 85%;
+            background: #000;
+            border: 1px solid var(--bureau-gold);
+            padding: 30px;
+            text-align: center;
+            z-index: 100;
+        }
+
+        .step-title {
+            font-family: 'Libre Baskerville';
+            font-size: 1.2rem;
+            color: var(--bureau-gold);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .btn-capture {
+            background: var(--bureau-gold);
+            color: #000;
+            border: none;
+            padding: 15px 45px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-capture:hover {
+            background: #fff;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="mainframe-grid">
+        <!-- LEFT: TOTAL PERIMETER STATUS -->
+        <aside class="panel overflow-y-auto">
+            <div class="panel-header">Industry Sync</div>
+            <div class="stat-row"><span>Medical (FHIR)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>Automotive (ECU)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>Logistics (B-PoD)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>DMV (AAMVA)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>HR (Workday)</span><span class="stat-value active">LOADED</span></div>
+            
+            <div class="panel-header" style="margin-top: 20px;">Autonomy & Civic</div>
+            <div class="stat-row"><span>SSI (Dock.io)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>ZKP (Polygon ID)</span><span class="stat-value active">LOADED</span></div>
+            <div class="stat-row"><span>Voting (EG 2.5)</span><span class="stat-value active">LOADED</span></div>
+
+            <div class="panel-header" style="margin-top: 20px;">Hardware Status</div>
+            <div class="stat-row"><span>Sub-Dermal Array</span><span class="stat-value active">ACTIVE</span></div>
+            <div class="stat-row"><span>Vocal Hashing</span><span class="stat-value active">READY</span></div>
+            <div class="stat-row"><span>SA-02 Secure Element</span><span class="stat-value active">SYNCED</span></div>
+
+            <div class="panel-header" style="margin-top: 20px;">Benthic Telemetry</div>
+            <div class="stat-row"><span>Nautilus-IV Status</span><span class="stat-value active">SUBMERGED</span></div>
+            <div class="stat-row"><span>SODR Ring Depth</span><span class="stat-value">200m</span></div>
+            <div class="stat-row"><span>Hydrostatic Pressure</span><span class="stat-value">20.4 ATM</span></div>
+            <div class="stat-row) "><span>Internal Thermal</span><span class="stat-value active">14.2°C</span></div>
+            <div class="stat-row"><span>Compute Velocity</span><span class="stat-value active">8.2 EXAFLOPS</span></div>
+        </aside>
+
+        <!-- CENTER: INGEST STATION -->
+        <main class="ingest-station">
+            <div class="camera-viewport">
+                <div class="scan-line"></div>
+                <video id="video" autoplay playsinline muted></video>
+            </div>
+
+            <div class="ingest-ui">
+                <h2 class="step-title">Terminal Load Sequence</h2>
+                <p style="font-size: 0.6rem; color: #888; letter-spacing: 2px; margin-bottom: 25px; text-transform: uppercase;">
+                    FHIR // AAMVA // DOCK.IO // ELECTIONGUARD // Bio-Pay™ // NAUTILUS-IV BENTHIC SYNC
+                </p>
+                <button class="btn-capture" id="main-btn" onclick="executeLoad()">Execute Terminal Handshake</button>
+            </div>
+        </main>
+
+        <!-- RIGHT: REGISTRY LOG -->
+        <aside class="panel">
+            <div class="panel-header">Active Log</div>
+            <div id="ingest-log" style="font-size: 0.55rem; color: #5c6c7b; line-height: 1.8; overflow-y: auto;">
+                > INITIALIZING PHL-01 MAINFRAME...<br>
+                > LOADING INDUSTRY-SPECIFIC STACK...<br>
+                > SYNCHRONIZING HL7 FHIR RESOURCES... [OK]<br>
+                > ESTABLISHING AAMVA DMV SECURE SOCKET... [OK]<br>
+                > LOADING AUTONOMY & CIVIC PROTOCOLS...<br>
+                > INTEGRATING DOCK.IO W3C STANDARDS... [OK]<br>
+                > GENERATING POLYGON ID ZKP GATEWAY... [OK]<br>
+                > SYNCING ELECTIONGUARD 2.5 VOTING ROOT... [OK]<br>
+                > INITIALIZING BENTHIC TELEMETRY UPLINK...<br>
+                > POLLING NAUTILUS-IV LOGIC CAPSULES... [OK]<br>
+                > ESTABLISHING SODR RING ACOUSTIC SHIELD... [OK]<br>
+                > THERMAL DELTA VERIFIED // 1.0 $AII PEG STABLE... [OK]<br>
+                > VALIDATING 1.5% VELOCITY FEE ENGINE... [OK]<br>
+                > Bio-Pay™ RETAIL RAILS STAGED... [OK]<br>
+                > PHL-01 MAINFRAME WORLD-RENOWNED STATUS: ACHIEVED.
+            </div>
+        </aside> 
+    </div>
+
+    <script>
+        // Simple camera init for visual authenticity
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                document.getElementById('video').srcObject = stream;
+            } catch (err) { 
+                console.warn("Hardware Access Simulation Mode."); 
+                const viewport = document.querySelector('.camera-viewport');
+                viewport.style.background = "radial-gradient(circle, #0b1320 0%, #000 100%)";
+            }
+        }
+
+        function executeLoad() {
+            const btn = document.getElementById('main-btn');
+            btn.innerText = "SYNCHRONIZING PERIMETER...";
+            btn.disabled = true;
+            
+            // Simulation of high-security sync transition
+            setTimeout(() => {
+                window.location.href = 'success.html';
+            }, 2500);
+        }
+
+        window.onload = initCamera;
+    </script>
+</body>
+</html>

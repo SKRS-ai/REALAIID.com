@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSSN Protocol | RealAIID.com Technical Specifications</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --text-neutral: #5C6B8A;
+            --bg-light: #F6F7F9;
+            --pure-white: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--pure-white); color: var(--text-neutral); line-height: 1.6; }
+
+        /* --- SHARED HEADER (REPLICATED FROM MAIN) --- */
+        .header {
+            background: var(--pure-white);
+            height: 110px; 
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 1px solid #EBEEF2;
+        }
+
+        .logo-area img { height: 135px; margin-right: 40px; cursor: pointer; }
+
+        .nav-main { display: flex; height: 100%; align-items: center; }
+        .nav-item { padding: 0 20px; font-weight: 600; color: var(--text-strong); text-decoration: none; font-size: 0.95rem; }
+        .nav-item:hover { color: var(--sumsub-green); }
+
+        /* --- VSSN HERO SECTION --- */
+        .vssn-hero {
+            padding: 100px 10%;
+            background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-content { flex: 1; }
+        .hero-visual { flex: 1; position: relative; }
+
+        h1 { font-size: 3.5rem; color: var(--text-strong); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        h1 span { color: var(--sumsub-blue); }
+
+        .tech-badge {
+            display: inline-block;
+            background: #E0F2FE;
+            color: var(--sumsub-blue);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* --- THE HASH VISUALIZER --- */
+        .hash-box {
+            background: #0B1320;
+            border-radius: 12px;
+            padding: 30px;
+            color: var(--sumsub-green);
+            font-family: 'JetBrains Mono', monospace;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-anim {
+            height: 60px;
+            border-bottom: 1px solid #1E293B;
+            margin-bottom: 20px;
+            background: repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(24, 180, 148, 0.1) 21px);
+        }
+
+        .hash-string { font-size: 0.9rem; word-break: break-all; opacity: 0.8; }
+
+        /* --- PROCESS STEPS --- */
+        .process-section { padding: 100px 10%; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        
+        .step-card { padding: 30px; border-left: 3px solid #E2E8F0; transition: 0.3s; }
+        .step-card:hover { border-left-color: var(--sumsub-green); background: #F8FAFC; }
+        .step-num { font-weight: 800; color: var(--sumsub-green); font-size: 1.5rem; margin-bottom: 10px; }
+        .step-card h3 { color: var(--text-strong); margin-bottom: 15px; }
+
+        /* --- CALL TO ACTION --- */
+        .cta-strip {
+            background: var(--text-strong);
+            padding: 80px 10%;
+            text-align: center;
+            color: white;
+        }
+
+        .btn-green {
+            background: var(--sumsub-green);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        footer { background: #0B1320; color: white; padding: 60px 10%; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID.com">
+        </div>
+        <nav class="nav-main">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="#" class="nav-item">Products</a>
+            <a href="#" class="nav-item">Pricing</a>
+            <a href="#" class="nav-item">Company</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="vssn-hero">
+            <div class="hero-content">
+                <span class="tech-badge">PROTOCOL v2.4 / VSSN-SHA256</span>
+                <h1>Your Voice, <span>Hardened.</span></h1>
+                <p>The Vocal Signature Serial Number (VSSN) is a proprietary cryptographic hash generated from 409 unique biological frequency markers. It is the only verification standard compliant with the ELVIS Act of 2026.</p>
+                <a href="#" class="btn-green">Generate Your VSSN</a>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="hash-box">
+                    <div class="wave-anim">
+                        <div style="width: 40%; height: 100%; border-right: 2px solid var(--sumsub-green); animation: pulse 2s infinite;"></div>
+                    </div>
+                    <div class="hash-string">
+                        F7E9-2B1A-88C4-0021-996B-VSSN-X92L-MARKET-1900-PHL
+                    </div>
+                    <div style="margin-top: 15px; font-size: 0.7rem; color: #5C6B8A;">STATUS: PHILADELPHIA MAINFRAME ENCRYPTED</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="process-section">
+            <div style="margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; color: var(--text-strong);">The Verification Lifecycle</h2>
+                <p>How we transform biological data into institutional sovereignty.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="step-card">
+                    <div class="step-num">01</div>
+                    <h3>Frequency Capture</h3>
+                    <p>Our neural engine isolates your unique vocal resonance, filtering out background noise and digital interference to find the "Human Core."</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">02</div>
+                    <h3>Sovereign Hashing</h3>
+                    <p>The frequency is processed through a one-way SHA-256 function. RealAIID never stores your actual voice—only the unique numerical VSSN.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">03</div>
+                    <h3>Mainframe Anchor</h3>
+                    <p>Your VSSN is timestamped and anchored to the Philadelphia Mainframe at 1900 Market St, creating a permanent, verifiable legal record.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-strip">
+            <h2>Ready to secure your biological likeness?</h2>
+            <p style="color: #94A3B8; margin-top: 10px;">Join the 50,000+ citizens already verified by the Commonwealth.</p>
+            <a href="#" class="btn-green">Start Standard Registration</a>
+        </section>
+    </main>
+
+    <footer>
+        <div style="text-align: center; font-size: 0.8rem; color: #64748B;">
+            © 2026 RealAIID.com AI Identity Protection Bureau | VSSN Protocol Standard
+        </div>
+    </footer>
+
+</body>
+</html>

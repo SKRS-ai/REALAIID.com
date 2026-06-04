@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sovereign Grid // Bridge Registry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bridge-card { transition: all 0.2s ease; }
+        .bridge-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-slate-50 p-10 font-sans text-slate-900">
+    <header class="mb-12 flex justify-between items-end">
+        <div>
+            <h1 class="text-4xl font-serif font-bold">Sovereign Grid Registry</h1>
+            <p class="text-slate-500 mt-2">PHL-01 Node // 38-Bridge Orchestration Layer</p>
+        </div>
+        <button onclick="syncAll()" class="bg-blue-900 text-white px-8 py-3 uppercase text-xs font-bold tracking-widest hover:bg-blue-800 transition">
+            Execute Global Registry Sync
+        </button>
+    </header>
+
+    <div id="grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        </div>
+
+    <script>
+        const bridges = ['DMV', 'MEDICAL', 'HR', 'CIVIC', 'FISCAL', 'PROPERTY', 'PET', 'VITAL', 'SATOSHI', 'ENTRA', 'OKTA', 'DIGID', 'EIDAS', 'HID', 'DTC', 'COMPLIANCE', 'AUDIT', 'AMBIENT', 'KEYSTONE', 'PROFESSIONAL', 'SSN', 'BIOSIGN', 'CITADEL', 'AUTO', 'MARITIME', 'AERO', 'LOGISTICS', 'ENERGY', 'QUANTUM', 'NEURAL', 'SPATIAL', 'TEMPORAL', 'GENOMIC', 'CLIMATIC', 'BENTHIC', 'SYNTHETIC', 'TACTILE', 'GUSTATORY'];
+
+        const grid = document.getElementById('grid');
+        bridges.forEach(b => {
+            grid.innerHTML += `
+                <div class="bridge-card p-5 bg-white border border-slate-200 shadow-sm rounded-sm">
+                    <h3 class="font-bold text-[10px] tracking-wider mb-2">${b}-BRIDGE</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        <span class="text-[9px] uppercase font-mono">STABLE</span>
+                    </div>
+                </div>
+            `;
+        });
+
+        function syncAll() {
+            alert("Orchestrating global sync across all 38 bridge nodes...");
+        }
+    </script>
+</body>
+</html>

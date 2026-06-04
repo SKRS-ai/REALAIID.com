@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manager // REALAiID Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/BureauTelemetrySDK.js"></script>
+    <script src="js/BureauDefenseSDK.js"></script>
+    <script src="js/BureauBridgeMarketplaceAPI.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card { background: #ffffff; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .bridge-button { 
+            display: flex; align-items: center; gap: 12px; padding: 12px; 
+            background: white; border: 1px solid #e5e7eb; border-radius: 8px; 
+            transition: all 0.2s; width: 100%; text-decoration: none; color: #0f172a;
+        }
+        .bridge-button:hover { border-color: #1e3a8a; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <header class="bg-white border-b border-slate-200 p-8 flex justify-between items-center sticky top-0 z-50">
+        <div>
+            <h1 class="text-2xl font-bold uppercase tracking-widest text-blue-900">Array Manager</h1>
+            <p class="text-[10px] text-slate-500 font-mono italic">PHL-01 // 39-CORE ARRAY OPERATIONAL</p>
+        </div>
+        <div class="px-4 py-2 bg-emerald-50 border border-emerald-500 text-emerald-700 text-[10px] font-bold uppercase rounded">
+            Forensic Shield: Active
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-8 grid grid-cols-12 gap-8">
+        <section class="col-span-12 mb-8 bg-blue-900 p-8 text-white rounded-lg shadow-xl">
+            <h2 class="text-lg font-bold mb-2">The Sovereign Ecosystem</h2>
+            <p class="text-sm text-blue-100 max-w-3xl">
+                By loading these 39 bridges into your REALAiID Wallet, you gain total data sovereignty. You can automate identity verification, 
+                secure personal deeds via Benthic Ledger, manage municipal civic ballots, and audit electronic signal integrity—all through a single, 
+                forensically audited portal.
+            </p>
+        </section>
+
+        <section class="col-span-8">
+            <h2 class="text-xs uppercase text-slate-400 mb-6 font-mono font-bold">// Active Bridge Telemetry (Total: 39)</h2>
+            <div id="bridge-grid" class="grid grid-cols-3 gap-4">
+                </div>
+        </section>
+
+        <aside class="col-span-4">
+            <h2 class="text-xs uppercase text-slate-400 mb-6 font-mono font-bold">// Marketplace Gateway</h2>
+            <div class="glass-card p-6 rounded-lg">
+                <input type="text" id="bridgeName" placeholder="Protocol Name" class="w-full border border-slate-300 p-2 mb-4 text-sm rounded">
+                <button onclick="registerNewBridge()" class="w-full bg-blue-900 text-white font-bold text-xs uppercase py-3 rounded hover:bg-blue-800 transition">
+                    Register New Bridge
+                </button>
+                <div id="reg-status" class="mt-4 text-[10px] font-mono italic"></div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 mt-16 p-12">
+        <div class="grid grid-cols-4 gap-8 text-[10px] uppercase tracking-widest text-slate-500">
+            <div><h4 class="font-bold text-slate-900 mb-4">Governance</h4><ul class="space-y-2"><li><a href="bridge-39-identity-vault.html">Identity Vault (B39)</a></li><li><a href="forensic-terminal.html">Forensic Terminal</a></li><li><a href="array-manager.html">Array Manager</a></li><li><a href="compliance-dashboard.html">Compliance Gateway</a></li></ul></div>
+            <div><h4 class="font-bold text-slate-900 mb-4">Civic & NonProfit</h4><ul class="space-y-2"><li><a href="aeah-dashboard.html">AEAH Data Repository</a></li><li><a href="koinonia-foundation.html">Koinonia Foundation</a></li><li><a href="civic-ballot.html">Civic Ballot (B-04)</a></li><li><a href="deed-protocol.html">Property Deed Lock</a></li></ul></div>
+            <div><h4 class="font-bold text-slate-900 mb-4">Economic</h4><ul class="space-y-2"><li><a href="compute-balance.html">$AII Compute Currency</a></li><li><a href="grant-portal.html">Grant Disbursement</a></li><li><a href="marketplace.html">Bridge Marketplace</a></li></ul></div>
+            <div><h4 class="font-bold text-slate-900 mb-4">Status</h4><ul class="space-y-2"><li><a href="network-pulse.html">Network Telemetry</a></li><li><a href="defense-shield.html">Forensic Defense Log</a></li><li><a href="precinct-anchor.html">Precinct Geospatial</a></li></ul></div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. SDK Initialization
+        const telemetry = new BureauTelemetrySDK("PHL-01-K7XP");
+        const defense = new BureauDefenseSDK("PHL-01-K7XP");
+        const marketplace = new BureauBridgeMarketplaceAPI("PHL-01-K7XP");
+
+        // 2. Data Definition
+        const bridges = [
+            {id: "01", name: "Auth Root", icon: "ph-fingerprint"}, {id: "02", name: "Civic Core", icon: "ph-buildings"}, {id: "03", name: "HR Liaison", icon: "ph-users-four"}, {id: "04", name: "Civic Ballot", icon: "ph-archive"}, {id: "05", name: "Ambient Auth", icon: "ph-waves"}, {id: "06", name: "Keystone Plate", icon: "ph-identification-card"}, {id: "07", name: "Entra Defense", icon: "ph-microsoft-outlook-logo"}, {id: "08", name: "Physical UAC", icon: "ph-door-open"}, {id: "09", name: "DMV Authority", icon: "ph-car-profile"}, {id: "10", name: "Fiscal Root", icon: "ph-bank"}, {id: "11", name: "Pet Likeness", icon: "ph-dog"}, {id: "12", name: "Vital Records", icon: "ph-scroll"}, {id: "13", name: "Medical Root", icon: "ph-first-aid"}, {id: "14", name: "Property Deeds", icon: "ph-house-line"}, {id: "15", name: "Safe Owner", icon: "ph-vault"}, {id: "16", name: "Satoshi Root", icon: "ph-currency-btc"}, {id: "17", name: "Professional", icon: "ph-briefcase-metal"}, {id: "18", name: "SSA Tokenizer", icon: "ph-barcode"}, {id: "19", name: "Bio-Sign", icon: "ph-signature"}, {id: "20", name: "Escrow Ruler", icon: "ph-handshake"}, {id: "21", name: "Citadel Escrow", icon: "ph-fortress"}, {id: "22", name: "DTC Travel", icon: "ph-airplane-tilt"}, {id: "23", name: "Amex Anchor", icon: "ph-credit-card"}, {id: "24", name: "Credit Authority", icon: "ph-chart-bar"}, {id: "25", name: "Insurance", icon: "ph-umbrella"}, {id: "26", name: "Mastercard Rail", icon: "ph-arrows-left-right"}, {id: "27", name: "Academic Root", icon: "ph-student"}, {id: "28", name: "Global Notary", icon: "ph-seal-check"}, {id: "29", name: "Logistics Sync", icon: "ph-truck"}, {id: "30", name: "Auto Anchor", icon: "ph-key"}, {id: "31", name: "AII Economy", icon: "ph-coins"}, {id: "32", name: "God Sense", icon: "ph-eye"}, {id: "33", name: "Benthic Pulse", icon: "ph-cpu"}, {id: "34", name: "Oracle Flux", icon: "ph-lightning"}, {id: "35", name: "Justice Rail", icon: "ph-scales"}, {id: "36", name: "Doge Bridge", icon: "ph-rocket-launch"}, {id: "37", name: "Federal Sync", icon: "ph-flag-banner"}, {id: "38", name: "Precinct Root", icon: "ph-map-pin"}, {id: "39", name: "Identity Vault", icon: "ph-shield-check"}
+        ];
+
+        // 3. Render Loop
+        const bGrid = document.getElementById('bridge-grid');
+        bridges.forEach(b => {
+            const btn = document.createElement('a'); 
+            btn.className = "bridge-button";
+            btn.href = `bridge-${b.id}-${b.name.toLowerCase().replace(/ /g, '-')}.html`;
+            btn.innerHTML = `<i class="ph-bold ${b.icon}" style="color:#1e3a8a; font-size: 24px; flex-shrink:0;"></i><div class="flex flex-col overflow-hidden"><span class="mono text-[9px] opacity-40 uppercase">BRIDGE B-${b.id}</span><span style="font-size:13px; font-weight:700; text-transform:uppercase; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${b.name}</span></div>`;
+            bGrid.appendChild(btn);
+        });
+
+        // 4. Registration Handler
+        async function registerNewBridge() {
+            const bridgeName = document.getElementById('bridgeName').value;
+            const statusDiv = document.getElementById('reg-status');
+            if (!bridgeName) { statusDiv.innerText = "[ERROR]: Name required."; return; }
+            statusDiv.innerText = "[SYSTEM]: Auditing protocols...";
+            try {
+                await marketplace.registerNewBridge({ id: Date.now(), name: bridgeName });
+                statusDiv.innerText = `[SUCCESS]: ${bridgeName} Registered.`;
+                setTimeout(() => location.reload(), 1000);
+            } catch (err) { statusDiv.innerText = `[ERROR]: ${err.message}`; }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE B-37 // Federal Sync Handshake // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { --phl-blue: #1693E9; --fed-indigo: #4f46e5; --dark: #020617; }
+        body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .hero-gradient { background: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15), transparent); }
+        #canvas-container { height: 400px; width: 100%; }
+        header { background: #fff; color: #000; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; }
+        footer { background: #000; padding: 4rem 5%; border-top: 1px solid #1e293b; color: #64748b; }
+    </style>
+</head>
+<body>
+
+    <header class="flex justify-between items-center sticky top-0 z-50">
+        <div class="logo-area">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" class="h-16" onerror="this.src='https://placehold.co/200x60/ffffff/000000?text=REALAiID'">
+        </div>
+        <nav class="hidden md:flex gap-8 text-[10px] font-black uppercase tracking-widest">
+            <a href="index.html">The Bureau</a>
+            <a href="mainframe.html">Mainframe</a>
+            <a href="signin.html" class="text-blue-500">Secure Ingest</a>
+        </nav>
+    </header>
+
+    <main class="relative hero-gradient pt-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-16 items-start">
+                
+                <div class="flex-1 space-y-8">
+                    <div>
+                        <span class="mono text-blue-400 text-xs tracking-[0.5em] uppercase">Node Bridge Access // B-37</span>
+                        <h1 class="text-7xl font-black italic tracking-tighter mt-4" style="font-family: 'Playfair Display', serif;">Federal <span style="color:var(--fed-indigo)">Sync.</span></h1>
+                    </div>
+
+                    <p class="text-xl text-slate-400 leading-relaxed">
+                        This bridge unifies your biological marrow-root with the <span class="text-white font-bold">General Services Administration (GSA)</span>. By seating Node B-37, your REALAiID achieves <span class="mono text-white">NIST SP 800-63 (IAL2)</span> status—the gold standard for federal identity assurance.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="glass p-6 rounded-sm">
+                            <i class="ph-fill ph-shield-check text-blue-400 text-3xl mb-4"></i>
+                            <h4 class="mono text-sm uppercase text-white mb-2">IAL2 Handshake</h4>
+                            <p class="text-xs opacity-60">Verified against federal authoritative records. No passwords. Only biology.</p>
+                        </div>
+                        <div class="glass p-6 rounded-sm">
+                            <i class="ph-fill ph-identification-card text-indigo-400 text-3xl mb-4"></i>
+                            <h4 class="mono text-sm uppercase text-white mb-2">Anti-Synthetic</h4>
+                            <p class="text-xs opacity-60">Neutralizes deepfake fraud by requiring live federal OIDC token triggers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full glass rounded-xl p-8 relative overflow-hidden">
+                    <div id="canvas-container"></div>
+                    <div class="absolute bottom-8 left-8">
+                        <div class="flex items-center gap-4">
+                            <div class="w-3 h-3 bg-indigo-500 rounded-full animate-pulse"></div>
+                            <span class="mono text-[10px] uppercase tracking-widest text-indigo-400">Signal: Login.gov Secure Handshake Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="py-24 border-t border-white/5 mt-24">
+                <h3 class="mono text-xs text-center mb-16 opacity-40 uppercase tracking-[1em]">Operational Capabilities</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div class="space-y-4">
+                        <h5 class="text-2xl font-bold italic">Institutional SSO</h5>
+                        <p class="text-slate-400 text-sm">Access the SSA, VA, and IRS instantly. Your REALAiID acts as the universal key for federal benefits and records.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-2xl font-bold italic">Digital Passport</h5>
+                        <p class="text-slate-400 text-sm">Provides the technical root for International Liaison travel protocols. Your identity is recognized by the state.</p>
+                    </div>
+                    <div class="space-y-4">
+                        <h5 class="text-2xl font-bold italic">Clearance Staging</h5>
+                        <p class="text-slate-400 text-sm">Required for Sovereign Class A users. Seeds your standing for high-clearance bureaucratic access nodes.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="mono text-[10px] uppercase tracking-widest">© 2026 Solomon Kin LLC // Node: PHL-01 // Philadelphia, PA</div>
+            <div class="flex gap-8 mono text-[10px] uppercase tracking-widest">
+                <span>Status: God-Sense Online</span>
+                <span class="text-indigo-500">IAL2 Verified</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let scene, camera, renderer, crystal;
+        const init = () => {
+            const container = document.getElementById('canvas-container');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            // Federal Indigo Crystal
+            const geometry = new THREE.OctahedronGeometry(2, 0);
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x4f46e5,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.8
+            });
+            crystal = new THREE.Mesh(geometry, material);
+            scene.add(crystal);
+
+            // Core Light
+            const light = new THREE.PointLight(0x4f46e5, 2, 50);
+            light.position.set(0, 0, 5);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+            camera.position.z = 6;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                crystal.rotation.y += 0.005;
+                crystal.rotation.z += 0.002;
+                crystal.scale.setScalar(1 + Math.sin(Date.now() * 0.002) * 0.1);
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+        init();
+    </script>
+</body>
+</html>

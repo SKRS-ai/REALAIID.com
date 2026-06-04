@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Pass Handshake | Apple & Google Wallet Integration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Playfair+Display:ital,wght@1,700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--phl-dark); color: white; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .border-frame { border: 15px solid #111; }
+        .gradient-bg { background: radial-gradient(circle at top right, #1e293b, #0b1320); }
+    </style>
+</head>
+<body class="p-8 border-frame min-h-screen">
+    <nav class="flex justify-between items-center mb-16 px-10">
+        <div class="text-2xl font-bold tracking-tighter">REALAiID // <span class="text-blue-500">INTEGRATION</span></div>
+        <a href="index.html" class="text-xs font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">Return to Bureau</a>
+    </nav>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div>
+            <span class="font-mono text-xs text-amber-500 tracking-[0.3em] uppercase mb-4 block">Bridge 10 & 22 // Mobile Authority</span>
+            <h1 class="font-serif text-6xl italic leading-tight mb-8">Your Biology is the <br><span class="text-blue-500">Only Spend-Key.</span></h1>
+            <p class="text-lg text-slate-400 mb-10 leading-relaxed">
+                Traditional mobile wallets rely on device passcodes—a secondary possession. REALAiID transforms Apple Pay and Google Pay into a primary biological gateway. Using ISO 18013-5 and OIDC4VC standards, your phone becomes the hardware witness to your physical presence.
+            </p>
+            <div class="flex gap-6">
+                <div class="bg-white/5 border border-white/10 p-6 rounded-lg flex-1">
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2 text-blue-400">Apple Wallet</h3>
+                    <p class="text-xs text-slate-500">Secure Element (SE) anchoring with native FaceID attestation.</p>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-6 rounded-lg flex-1">
+                    <h3 class="font-bold text-sm uppercase tracking-wider mb-2 text-amber-500">Google Pay</h3>
+                    <p class="text-xs text-slate-500">Android StrongBox integration for 1.0v-Root persistence.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex justify-center">
+            <div class="w-72 h-[500px] bg-black border-[6px] border-slate-800 rounded-[3rem] shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 w-full h-6 bg-black flex justify-center pt-1"><div class="w-20 h-4 bg-slate-900 rounded-full"></div></div>
+                <div class="p-4 mt-8 text-center">
+                    <div class="text-[10px] font-mono text-slate-500 mb-2">HOLD NEAR READER</div>
+                    <div class="w-full h-40 bg-gradient-to-br from-blue-600 to-blue-900 rounded-xl p-4 text-left relative overflow-hidden border border-white/20">
+                        <div class="text-[8px] font-bold">REALAiID BUREAU</div>
+                        <div class="mt-8 text-xs font-mono">NEHEMIAH M. BROWN</div>
+                        <div class="mt-1 text-[6px] opacity-50 uppercase tracking-tighter">Sovereign Class A // Bridges: 32/35</div>
+                        <div class="absolute bottom-2 right-2 w-8 h-8 bg-amber-500/20 rounded-full blur-xl"></div>
+                    </div>
+                    <div class="mt-4 w-full h-40 bg-white rounded-xl flex items-center justify-center">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=REALAiID_DTC_VERIFIED" alt="Dynamic QR" class="w-32 h-32 grayscale">
+                    </div>
+                    <div class="mt-6 text-[8px] font-mono text-amber-500 uppercase tracking-widest">Sovereign Tier // $AII Enabled</div>
+                </div>
+            </div>
+            <!-- Glow background -->
+            <div class="absolute -z-10 w-96 h-96 bg-blue-500/20 blur-[100px] rounded-full"></div>
+        </div>
+    </main>
+
+    <section class="max-w-6xl mx-auto mt-32 pb-20">
+        <h2 class="text-sm font-mono text-blue-500 uppercase tracking-[0.5em] mb-12 text-center">Protocol Specifications</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="border-t border-white/10 pt-8">
+                <h4 class="font-bold text-lg mb-4">Double-Layer Sovereignty</h4>
+                <p class="text-sm text-slate-400">Transactions are authorized via the device, but the funds are only released upon a verified Biological Pulse from the Mainframe.</p>
+            </div>
+            <div class="border-t border-white/10 pt-8">
+                <h4 class="font-bold text-lg mb-4">Temporal Handshake</h4>
+                <p class="text-sm text-slate-400">Tokens generated for Apple/Google Pay are short-lived (60s) and bound to a specific geofenced retail node.</p>
+            </div>
+            <div class="border-t border-white/10 pt-8">
+                <h4 class="font-bold text-lg mb-4">Liability Neutralization</h4>
+                <p class="text-sm text-slate-400">By using our Wallet Bridge, merchants receive a forensic "Genuine Presence" guarantee, shifting fraud liability to the Bureau.</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

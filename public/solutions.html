@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions | RealAIID.com Commonwealth Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-green: #18B494;
+            --sumsub-blue: #1693E9;
+            --text-strong: #0B1320;
+            --bg-light: #F8FAFC;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: white; color: #5C6B8A; line-height: 1.6; }
+
+        .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
+        .logo img { height: 135px; }
+
+        /* --- SOLUTIONS HERO --- */
+        .solutions-hero { padding: 100px 10%; background: var(--text-strong); color: white; text-align: center; }
+        .solutions-hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; }
+        .solutions-hero p { max-width: 800px; margin: 0 auto; font-size: 1.2rem; opacity: 0.8; }
+
+        /* --- SOLUTION SEGMENTS --- */
+        .solutions-grid { padding: 80px 10%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .solution-card { 
+            background: white; 
+            border: 1px solid #E2E8F0; 
+            border-radius: 16px; 
+            padding: 40px; 
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .solution-card:hover { transform: translateY(-10px); border-color: var(--sumsub-blue); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        
+        .icon-box { width: 60px; height: 60px; background: #F1F5F9; border-radius: 12px; margin-bottom: 25px; display: flex; align-items: center; justify-content: center; color: var(--sumsub-blue); }
+        .solution-card h3 { color: var(--text-strong); font-size: 1.5rem; margin-bottom: 15px; }
+        .solution-card p { font-size: 0.95rem; margin-bottom: 25px; flex-grow: 1; }
+
+        /* --- TIER INDICATOR --- */
+        .tier-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; font-weight: bold; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; align-self: flex-start; margin-bottom: 15px; }
+        .tier-sovereign { background: #0B1320; color: #D4AF37; border: 1px solid #D4AF37; }
+        .tier-shield { background: #E0F2FE; color: var(--sumsub-blue); }
+
+        .btn-link { color: var(--sumsub-blue); text-decoration: none; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 80px; }
+        .btn-link::after { content: '→'; margin-left: 8px; transition: 0.2s; }
+        .btn-link:hover::after { margin-left: 15px; }
+
+        /* --- PHL MAINFRAME CALLOUT --- */
+        .mainframe-callout { margin: 0 10% 100px; background: linear-gradient(135deg, #1693E9 0%, #0747a6 100%); border-radius: 24px; padding: 60px; color: white; display: flex; align-items: center; justify-content: space-between; }
+        .mainframe-text h2 { font-size: 2.5rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
+        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
+            <a href="index.html" style="text-decoration:none; color:var(--text-strong);">Home</a>
+            <a href="vssn-hash.html" style="text-decoration:none; color:var(--text-strong);">Products</a>
+            <a href="company.html" style="text-decoration:none; color:var(--text-strong);">The Bureau</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="solutions-hero">
+            <h1>Industrial Solutions for <span>Identity Sovereignty.</span></h1>
+            <p>From individual likeness protection to government-scale biometric corridors, we provide the cryptographic anchors necessary to navigate a synthetic world.</p>
+        </section>
+
+        <section class="solutions-grid">
+            <div class="solution-card">
+                <span class="tier-label tier-sovereign">Sovereign Tier</span>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <h3>Public Safety & Aviation</h3>
+                <p>High-speed "Biometric-in-Motion" corridors for airport commissions and secure transit hubs. Integrated with the Philadelphia Mainframe for <150ms latency.</p>
+                <a href="aviation-node.html" class="btn-link">Explore PHL Node</a>
+            </div>
+
+            <div class="solution-card">
+                <span class="tier-label tier-shield">Shield Tier</span>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+                <h3>Talent & Creative Rights</h3>
+                <p>Protecting the vocal and physical likeness of artists and broadcasters under the NO FAKES Act. Secure VSSN hashing for Solomon Kin Media Group standards.</p>
+                <a href="likeness-shield.html" class="btn-link">View Likeness Shield</a>
+            </div>
+
+            <div class="solution-card">
+                <span class="tier-label tier-sovereign">Sovereign Tier</span>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h3>Institutional Asset Access</h3>
+                <p>Multi-factor biological verification for bank vaults and high-security digital repositories. Direct 3Si security systems engineering integration.</p>
+                <a href="screening.html" class="btn-link">View Forensic Audit</a>
+            </div>
+        </section>
+
+        <section class="mainframe-callout">
+            <div class="mainframe-text">
+                <h2>Philadelphia Mainframe</h2>
+                <p>The core processing anchor for all Commonwealth Solutions. Physically located at 1900 Market St, providing hardware-level trust for global identity.</p>
+            </div>
+            <a href="company.html" class="btn-link" style="color: white; font-size: 1.1rem; border: 1px solid rgba(255,255,255,0.3); padding: 15px 30px; border-radius: 8px;">Bureau Profile</a>
+        </section>
+    </main>
+
+    <footer style="padding:40px 10%; text-align:center; font-size:0.8rem; color:#94A3B8;">
+        © 2026 RealAIID.com | Strategic Solutions Division | Commonwealth of Digital Identity
+    </footer>
+
+</body>
+</html>

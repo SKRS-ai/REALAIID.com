@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Identity | RealAIID.com Verification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --sumsub-blue: #1693E9;
+            --sumsub-green: #18B494;
+            --phl-gold: #D4AF37;
+            --mainframe-dark: #0B1320;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #F1F5F9; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; }
+
+        /* --- THE PHYSICAL CERTIFICATE LOOK --- */
+        .cert-container { 
+            background: white; 
+            width: 100%; 
+            max-width: 850px; 
+            padding: 80px; 
+            border: 20px solid var(--mainframe-dark); 
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+        }
+
+        .cert-inner-border { 
+            position: absolute; 
+            top: 10px; left: 10px; right: 10px; bottom: 10px; 
+            border: 1px solid var(--phl-gold); 
+            pointer-events: none;
+        }
+
+        /* --- CONTENT --- */
+        .cert-header { text-align: center; margin-bottom: 50px; }
+        .cert-header img { height: 80px; margin-bottom: 20px; }
+        .cert-header h1 { font-family: 'JetBrains Mono'; font-size: 0.8rem; letter-spacing: 5px; color: var(--sumsub-blue); text-transform: uppercase; }
+
+        .main-title { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--mainframe-dark); text-align: center; margin-bottom: 10px; font-style: italic; }
+        .sub-title { text-align: center; font-size: 1.1rem; color: #64748B; margin-bottom: 60px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+
+        .user-name { font-size: 2.5rem; font-weight: 800; color: var(--mainframe-dark); text-align: center; border-bottom: 2px solid #E2E8F0; padding-bottom: 10px; margin-bottom: 40px; }
+
+        .cert-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .meta-item { border-left: 3px solid var(--sumsub-green); padding-left: 20px; }
+        .meta-label { font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #94A3B8; text-transform: uppercase; }
+        .meta-value { font-family: 'JetBrains Mono'; font-size: 0.9rem; color: var(--mainframe-dark); font-weight: 700; word-break: break-all; }
+
+        /* --- SECURITY SEAL --- */
+        .security-seal { 
+            position: absolute; 
+            bottom: 60px; 
+            right: 80px; 
+            width: 120px; 
+            height: 120px; 
+            border: 2px dashed var(--phl-gold); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            text-align: center;
+            font-size: 0.6rem;
+            font-family: 'JetBrains Mono';
+            color: var(--phl-gold);
+            transform: rotate(-15deg);
+        }
+
+        .btn-download { 
+            position: fixed; 
+            bottom: 30px; 
+            background: var(--mainframe-dark); 
+            color: white; 
+            padding: 15px 30px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 800; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+        .btn-download:hover { transform: translateY(-5px); background: var(--sumsub-blue); }
+    </style>
+</head>
+<body>
+
+    <div class="cert-container">
+        <div class="cert-inner-border"></div>
+
+        <div class="cert-header">
+            <img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID">
+            <h1>Commonwealth Identity Bureau</h1>
+        </div>
+
+        <h2 class="main-title">Certificate of Sovereignty</h2>
+        <p class="sub-title">Human-Core Verification Record</p>
+
+        <div class="user-name">Nehemiah Brown</div>
+
+        <div class="cert-meta">
+            <div class="meta-item">
+                <span class="meta-label">VSSN Hash ID</span>
+                <span class="meta-value">VSSN-PHL-9921-X-0041-882</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Anchor Node</span>
+                <span class="meta-value">1900 Market St // Mainframe Alpha</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Timestamp</span>
+                <span class="meta-value">2026-03-27 // 17:16:03 EST</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Liveness Score</span>
+                <span class="meta-value">99.9% Spatial-Vocal Match</span>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.8rem; color: #94A3B8; max-width: 500px; margin: 0 auto;">
+            This document confirms that the individual above has undergone successful hardware-level biometric hashing. This identity is cryptographically unique and protected under the Commonwealth Likeness Shield.
+        </p>
+
+        <div class="security-seal">
+            VERIFIED<br>HARDWARE<br>CORE<br>2026
+        </div>
+    </div>
+
+    <a href="#" class="btn-download">Download Secure PDF</a>
+
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating Safety // Integrity Audit // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { --phl-blue: #1693E9; --safety-emerald: #10b981; --dark: #020617; }
+        body { background: var(--dark); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); }
+        .safety-gradient { background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent 60%); }
+        header { background: #fff; color: #000; padding: 15px 5%; border-bottom: 1px solid #e2e8f0; }
+        #trust-canvas { height: 450px; width: 100%; cursor: crosshair; }
+        .scanline { position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: rgba(16, 185, 129, 0.2); animation: scan 4s linear infinite; }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
+    </style>
+</head>
+<body>
+
+    <header class="flex justify-between items-center sticky top-0 z-50">
+        <div class="logo-area"><img src="RealAiIDlogo.png" alt="Logo" class="h-12"></div>
+        <nav class="flex gap-10 text-[10px] font-black uppercase tracking-widest">
+            <a href="index.html">Mainframe</a>
+            <a href="product-vssn2.html">VSSN Hash</a>
+            <a href="signin.html" class="text-emerald-500">Active Audit</a>
+        </nav>
+    </header>
+
+    <main class="safety-gradient relative pt-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row gap-20 items-start">
+                
+                <div class="flex-1 space-y-12">
+                    <div>
+                        <span class="tag bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Safety Rail Active</span>
+                        <h1 class="text-7xl font-black italic tracking-tighter mt-6" style="font-family: 'Playfair Display', serif;">Dating <span class="text-emerald-500">Safety.</span></h1>
+                    </div>
+
+                    <p class="text-xl text-slate-400 leading-relaxed">
+                        Physical meeting security via the **Checkr & Sift Integrity Rails**. A REALAiID Dating Audit forensically verifies criminal clearance and behavioral trust indices to protect the biological human.
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="glass p-8 rounded-xl border-l-4 border-emerald-500">
+                            <h4 class="mono text-xs uppercase text-emerald-400 mb-4 tracking-widest">Audit Mode: Handshake</h4>
+                            <p class="text-sm opacity-70 leading-relaxed">Exchange safety scores with potential partners via hardware-locked biometric consent. No data is stored; only integrity is proven.</p>
+                        </div>
+                        <div class="glass p-8 rounded-xl">
+                            <h4 class="mono text-xs uppercase text-slate-400 mb-4 tracking-widest">Global Watchlist</h4>
+                            <p class="text-sm opacity-70 leading-relaxed">Real-time matching against 4,000+ databases, including sex offender registries and domestic flags.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full glass rounded-3xl p-12 relative overflow-hidden shadow-2xl">
+                    <div class="scanline"></div>
+                    <div id="trust-canvas"></div>
+                    <div class="absolute bottom-12 left-12 right-12 flex justify-between items-end">
+                        <div class="mono">
+                            <div class="text-[10px] opacity-40 uppercase">Risk Coefficient</div>
+                            <div class="text-4xl font-bold text-emerald-500">0.03</div>
+                        </div>
+                        <div class="text-right mono">
+                            <div class="text-[10px] opacity-40 uppercase">Status</div>
+                            <div class="text-emerald-500 text-sm font-bold">SOVEREIGN CLEAR</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="max-w-7xl mx-auto px-6 py-32 mt-20 border-t border-white/5">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+                 <div class="space-y-4">
+                     <i class="ph ph-fingerprint text-4xl text-emerald-500"></i>
+                     <h3 class="text-2xl font-bold italic">Biometric Consent</h3>
+                     <p class="text-sm text-slate-400">Safety reports are only generated upon a mutual marrow-root handshake. You control who sees your clear status.</p>
+                 </div>
+                 <div class="space-y-4">
+                     <i class="ph ph-shield-warning text-4xl text-emerald-500"></i>
+                     <h3 class="text-2xl font-bold italic">Red Flag Neutralization</h3>
+                     <p class="text-sm text-slate-400">Automated notification to emergency contacts if a safety handshake is initiated in a high-risk zone.</p>
+                 </div>
+                 <div class="space-y-4">
+                     <i class="ph ph-activity text-4xl text-emerald-500"></i>
+                     <h3 class="text-2xl font-bold italic">Behavioral Index</h3>
+                     <p class="text-sm text-slate-400">Proprietary scoring based on historical "Handshake Integrity," rewarding consistent, safe social interactions.</p>
+                 </div>
+             </div>
+        </section>
+    </main>
+
+    <footer class="bg-black py-12 px-[5%] border-t border-white/5 text-[10px] uppercase tracking-widest text-slate-600 flex justify-between">
+        <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+        <div class="text-emerald-500">Safety Rail: Seated & Operational</div>
+    </footer>
+
+    <script>
+        let scene, camera, renderer, trustSphere;
+        const init = () => {
+            const container = document.getElementById('trust-canvas');
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+
+            const geo = new THREE.IcosahedronGeometry(2, 2);
+            const mat = new THREE.MeshPhongMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.6 });
+            trustSphere = new THREE.Mesh(geo, mat);
+            scene.add(trustSphere);
+
+            scene.add(new THREE.PointLight(0x10b981, 2, 50).position.set(5, 5, 5));
+            scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+            camera.position.z = 6;
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                trustSphere.rotation.y += 0.002;
+                trustSphere.rotation.x += 0.001;
+                const scale = 1 + Math.sin(Date.now() * 0.001) * 0.05;
+                trustSphere.scale.set(scale, scale, scale);
+                renderer.render(scene, camera);
+            };
+            animate();
+        };
+        init();
+    </script>
+</body>
+</html>

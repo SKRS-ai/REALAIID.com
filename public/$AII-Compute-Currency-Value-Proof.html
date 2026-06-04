@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$AII Value Proof Matrix | REALAiID Bureau Protocol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght@400;500;700&family=Libre+Baskerville:ital,wght=0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body { background-color: #05080F !important; color: #ffffff !important; margin: 0; padding: 0; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        
+        /* NAVIGATION & MASTER HEADER SYNC */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #1693E9; }
+        .nav-cta { background: #1693E9; color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* THREE.JS DRIFT CANVAS CONTAINER */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; opacity: 0.2; pointer-events: none; }
+
+        /* PORTAL STRUCTURAL CONTAINERS */
+        .prospectus-frame { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(50px); padding: 80px; max-width: 1150px; margin: 40px auto; box-shadow: 0 50px 100px rgba(0,0,0,0.8); position: relative; z-index: 10; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-style: italic; }
+        .p-callout { border-left: 3px solid #1693E9; padding-left: 20px; margin: 30px 0; color: #94A3B8; font-style: italic; }
+        
+        /* INTERACTIVE LOGIC MODULES */
+        .value-panel-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; margin: 40px 0; }
+        .proof-row { display: grid; grid-template-columns: 1fr; padding: 18px 20px; border-bottom: 1px solid rgba(255,255,255,0.03); font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; cursor: pointer; transition: all 0.2s ease; color: #94A3B8; }
+        .proof-row:hover { background: rgba(22, 147, 233, 0.04); color: #ffffff; }
+        .proof-row.active { background: rgba(22, 147, 233, 0.08); color: #ffffff; border-left: 3px solid #1693E9; font-weight: 700; }
+        .proof-screen { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); padding: 40px; display: flex; flex-direction: column; justify-content: center; min-height: 280px; }
+
+        /* FOOTER BRAND MATRIX LINKS */
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid #1693E9; position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1600px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: #1693E9; padding-left: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="flow-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <div class="nav-container w-full max-w-[1600px] mx-auto flex justify-between items-center">
+            <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+            <nav class="nav-links flex items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <div class="prospectus-frame rounded-sm">
+            
+            <section class="border-b border-white/10 pb-8 mb-12">
+                <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mb-4 block">Mainframe Transparency Ledger</span>
+                <h1 class="text-6xl font-black text-white leading-none">The Thermodynamics of Value</h1>
+                <p class="text-xl font-light text-slate-400 mt-6 leading-relaxed">
+                    $AII is not backed by debt protocols or artificial speculation indexes. It is backed entirely by <b>Physical Compute Utility</b>. In this era, human identity is the resource, and compute processing capacity is the fuel.
+                </p>
+            </section>
+
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-white mb-2">The Valuation Pillars Matrix</h2>
+                <p class="text-slate-400 font-light max-w-2xl leading-relaxed text-sm">
+                    Select a core system economic pillar below to inspect the forensic data parameters, transaction clearing logs, and system validation rules compiled under version 21.7.
+                </p>
+
+                <div class="value-panel-grid">
+                    <div class="border border-white/5 bg-black/40 rounded-sm overflow-hidden h-fit" id="proof-menu">
+                        <div class="proof-row active" data-proof="peg">
+                            <span>I. THE UTILITY PEG</span>
+                        </div>
+                        <div class="proof-row" data-proof="burn">
+                            <span>II. THE SOVEREIGN BURN</span>
+                        </div>
+                        <div class="proof-row" data-proof="abyssal">
+                            <span>III. OPEN ABYSSAL MESH</span>
+                        </div>
+                        <div class="proof-row" data-proof="mobility">
+                            <span>IV. KINETIC MOBILITY</span>
+                        </div>
+                    </div>
+
+                    <div class="proof-screen rounded-sm" id="proof-screen-view">
+                        <span class="font-mono text-xs text-blue-500 mb-2 uppercase tracking-widest" id="proof-node-id">Protocol Node V-01</span>
+                        <h3 class="text-3xl font-bold mb-4 text-white" id="proof-node-title">The Utility Resource Peg</h3>
+                        <p class="text-slate-400 font-light text-sm leading-relaxed text-justify mb-6" id="proof-node-desc">
+                            1 $AII matches exactly 1 Standardized Compute Unit (SCU). The ledger is hard-pegged to real-world hardware execution velocities balanced across decentralized cluster networks (including Akash and Render grids), securing an unshakeable pricing floor backed by physics.
+                        </p>
+                        <div class="bg-black/50 p-4 border border-slate-800 rounded-sm font-mono text-[11px] text-blue-400 space-y-1" id="proof-node-shell">
+                            <div>&gt; CURRENT_PEG_STATUS: 1.00_AII_SCU_AUM_VALIDATED</div>
+                            <div>&gt; ORACLE_RESOLUTION: CHAINLINK_DECENTRALIZED_FEED_SYNCED</div>
+                            <div>&gt; STRUCTURAL_EQUILIBRIUM: HARDWARE_BACKED_FLOOR_ENFORCED</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="border-t border-white/5 pt-12">
+                <h2 class="text-4xl font-serif italic text-white mb-6">The Trillion-Dollar Infrastructure Vision</h2>
+                <p class="text-slate-300 font-light leading-relaxed text-justify mb-6">
+                    Beyond decentralized network aggregation, the Bureau owns the comprehensive core blueprints, patents, and engineering plans for the physical <b>SODR Ring and Nautilus Capsules</b>. These ocean-floor subsea server installations utilize natural hydrostatic pressure boundaries and deep-sea current velocities to achieve absolute zero cooling overheads while running massive machine learning calculations.
+                </p>
+                <div class="bg-blue-950/20 p-6 border-l-4 border-blue-500 rounded-sm text-slate-400 text-sm text-justify">
+                    <b class="text-white font-semibold">Institutional Investor Directive:</b> The development of our proprietary subsea arrays represents a massive, capital-intensive infrastructure roadmap. The $AII ecosystem generates the immediate transaction volume, user onboarding networks, and market liquidity loops required to anchor consortium allocations safely into physical oceanic real estate.
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        // --- PROOF CALCULUS CONFIGURATION MATRIX ---
+        const proofMatrix = {
+            "peg": {
+                node: "Protocol Node V-01",
+                title: "The Utility Resource Peg",
+                desc: "1 $AII matches exactly 1 Standardized Compute Unit (SCU). The ledger is hard-pegged to real-world hardware execution velocities balanced across decentralized cluster networks (including Akash and Render grids), securing an unshakeable pricing floor backed by physics.",
+                shell: "<div>&gt; CURRENT_PEG_STATUS: 1.00_AII_SCU_AUM_VALIDATED</div><div>&gt; ORACLE_RESOLUTION: CHAINLINK_DECENTRALIZED_FEED_SYNCED</div><div>&gt; STRUCTURAL_EQUILIBRIUM: HARDWARE_BACKED_FLOOR_ENFORCED</div>"
+            },
+            "burn": {
+                node: "Protocol Node V-02",
+                title: "The Sovereign Supply Burn",
+                desc: "Every instance of biological multi-bridge deployment execution or credentials clearing triggers a micro-burn of token parameters. As multi-bridge integration across municipal, estate, or identity sectors climbs, circulating token availability steps down, programmatically increasing individual asset value profiles.",
+                shell: "<div>&gt; METRIC_BURNT_FRACTION: 0.00142_AII_PER_HANDSHAKE</div><div>&gt; CONTRACT_BURN_LAW: INFLATION_MITIGATION_DAEMON_ACTIVE</div><div>&gt; PERIMETER_VELOCITY: DEFICIT_EQUILIBRIUM_STABLE</div>"
+            },
+            "abyssal": {
+                node: "Protocol Node V-03",
+                title: "Open Abyssal Mesh Network",
+                desc: "Enterprise subsea data capsules run an isolated hypervisor module, translating natural fluid velocities and thermal cold-sink exchange multipliers straight into asset validation blocks. Institutional operators monetize the physics of the ocean floor under Solomon Kin, LLC parameters.",
+                shell: "<div>&gt; ABYSSAL_GRID_NODES: 342_PODS_VERIFIED_INGESTING</div><div>&gt; FLUID_CONVERSION_EFFICIENCY: 94.2%_tPoW_PERFORMANCE</div><div>&gt; B2B_ALLOCATION_FLOW: AUTOMATED_Ledger_DISTRIBUTION</div>"
+            },
+            "mobility": {
+                node: "Protocol Node V-04",
+                title: "Kinetic Mobility Arbitrage",
+                desc: "Electric vehicles tracking mechanical friction deceleration metrics through the Drive-Knot CAN-bus overlay translate braking joules directly into token blocks. Complemented by Supercharger station vehicle-to-grid (V2G) network load-balancing operations, turning transit cycles into liquidity runs.",
+                shell: "<div>&gt; ACTIVE_FLEET_SIGNALS: 14,842_VEHICLES_ROUTING_PACKETS</div><div>&gt; KINETIC_RECOVERY_VOLUME: 924,118_JOULES_LEDGER_SIGNED</div><div>&gt; AUTO_MINT_THROTTLE: LIVE_REGEN_MINTING_ACTIVE</div>"
+            }
+        };
+
+        // --- ATTACH EVENT LISTENERS TO INTERACTIVE PILL ITEMS ---
+        document.querySelectorAll('.proof-row').forEach(row => {
+            row.addEventListener('click', function() {
+                const proofKey = this.getAttribute('data-proof');
+                const data = proofMatrix[proofKey];
+                
+                if (data) {
+                    // Update Text Visualizer Outputs
+                    document.getElementById('proof-node-id').innerText = data.node;
+                    document.getElementById('proof-node-title').innerText = data.title;
+                    document.getElementById('proof-node-desc').innerText = data.desc;
+                    document.getElementById('proof-node-shell').innerHTML = data.shell;
+                    
+                    // Toggle UI Selected Highlighting Codes
+                    document.querySelectorAll('.proof-row').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // --- THREE.JS COMPUTATIONAL COMPUTE FLOW ENERGY LINES MESH ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('flow-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        const curvePoints = [];
+        for (let i = 0; i < 5; i++) {
+            curvePoints.push(new THREE.Vector3((i - 2) * 3, Math.sin(i * 1.5) * 2, (Math.random() - 0.5) * 2));
+        }
+        
+        // Multi-curve fluid spline geometry compilation
+        const curve = new THREE.CatmullRomCurve3(curvePoints);
+        const tubeGeo = new THREE.TubeGeometry(curve, 64, 0.05, 8, false);
+        const tubeMat = new THREE.MeshBasicMaterial({
+            color: 0x1693E9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        
+        const computeMeshLines = new THREE.Mesh(tubeGeo, tubeMat);
+        group.add(computeMeshLines);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+        camera.position.z = 6;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            group.rotation.y = targetX * 1.2;
+            group.rotation.x = targetY * 0.8;
+            
+            // Slow continuous fluid matrix rotation oscillation
+            computeMeshLines.rotation.z = time * 0.05;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    </script>
+</body>
+</html>

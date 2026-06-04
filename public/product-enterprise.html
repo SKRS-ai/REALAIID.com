@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Infrastructure | RealAIID.com Government & Label Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface: #0B1320;
+            --white: #FFFFFF;
+            --border-glow: #1E293B;
+            --bureau-gold: #b8860b;
+            --transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: var(--white); line-height: 1.6; padding: var(--border-frame); overflow-x: hidden; }
+        
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-box img { height: 140px !important; width: auto !important; display: block; }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; }
+
+        @media (max-width: 1024px) { .nav-links { display: none; } }
+
+        /* --- ENTERPRISE HERO --- */
+        .enterprise-hero { position: relative; padding: 12rem 5% 8rem; text-align: center; background: radial-gradient(circle at center, #111827 0%, #05080F 100%); border-bottom: 1px solid #1E293B; overflow: hidden; }
+        .enterprise-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 25px; font-style: italic; font-weight: 700; line-height: 1.05; }
+        .enterprise-hero p { font-size: clamp(1.1rem, 2vw, 1.35rem); color: #94A3B8; max-width: 900px; margin: 0 auto 3rem; font-weight: 300; }
+        
+        #canvas-hardware-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.15; z-index: 1; }
+        .hero-interactive-frame { position: relative; z-index: 10; }
+
+        /* --- IMMUTABLE SYSTEM MATRIX CAPABILITIES --- */
+        .matrix-section { padding: 10rem 5%; max-width: 1700px; margin: 0 auto; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .section-header { text-align: center; margin-bottom: 6rem; }
+        .section-header h2 { font-family: 'Playfair Display', serif; font-size: 3rem; font-style: italic; margin-bottom: 1.5rem; }
+        .section-header p { font-family: 'JetBrains Mono'; color: var(--phl-blue); font-size: 11px; tracking: 3px; text-transform: uppercase; }
+
+        .matrix-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px; }
+        .matrix-card { background: #0B1320; border: 1px solid rgba(255,255,255,0.05); padding: 45px; border-radius: 4px; transition: var(--transition); display: flex; flex-direction: column; }
+        .matrix-card:hover { border-color: var(--phl-blue); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(22,147,233,0.05); }
+        .matrix-card i { font-size: 3rem; color: var(--phl-blue); margin-bottom: 2rem; }
+        .matrix-card h4 { font-family: 'JetBrains Mono'; font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; color: #FFF; }
+        .matrix-card p { font-size: 14px; color: #94A3B8; line-height: 1.7; font-weight: 300; }
+
+        /* --- CONSULTATION FORM SECTION --- */
+        .form-section { padding: 10rem 5%; max-width: 1700px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.3fr; gap: 80px; }
+        @media (max-width: 1024px) { .form-section { grid-template-columns: 1fr; gap: 60px; } }
+        
+        .contact-info h3 { color: var(--phl-blue); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; font-size: 11px; font-family: 'JetBrains Mono'; }
+        .contact-info p { font-size: 1.1rem; color: #94A3B8; margin-bottom: 40px; font-weight: 300; line-height: 1.8; }
+
+        .anchor-badge-box { border-left: 3px solid var(--phl-blue); padding-left: 25px; margin-top: 40px; }
+        .anchor-badge-box h4 { font-size: 11px; color: white; margin-bottom: 12px; font-family: 'JetBrains Mono'; letter-spacing: 2px; text-transform: uppercase; }
+        .anchor-badge-box p { font-size: 14px; color: #64748B; font-family: 'Inter', sans-serif; font-weight: 500; }
+
+        .enterprise-form { background: #0B1320; padding: clamp(25px, 5vw, 60px); border: 1px solid #1E293B; border-radius: 4px; box-shadow: 0 50px 100px rgba(0,0,0,0.6); }
+        .enterprise-form label { display: block; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; color: #64748B; font-family: 'JetBrains Mono'; font-weight: 700; }
+        
+        .enterprise-form input, .enterprise-form select, .enterprise-form textarea {
+            width: 100%; background: #05080F; border: 1px solid #1E293B; color: white; padding: 20px; margin-bottom: 35px; border-radius: 2px; font-family: 'JetBrains Mono'; font-size: 14px; transition: var(--transition);
+        }
+        .enterprise-form input:focus, .enterprise-form select:focus, .enterprise-form textarea:focus { border-color: var(--phl-blue); outline: none; background: #0B1320; }
+        .enterprise-form select { appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%231693E9' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>"); background-repeat: no-repeat; background-position: right 20px center; background-size: 16px; cursor: pointer; }
+
+        .btn-submit { 
+            width: 100%; background: var(--phl-blue); color: white; border: none; padding: 24px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; transition: var(--transition); border-radius: 2px; font-family: 'JetBrains Mono';
+        }
+        .btn-submit:hover { background: var(--white); color: var(--phl-dark); transform: translateY(-3px); box-shadow: 0 25px 50px rgba(22,147,233,0.2); }
+
+        /* --- FOOTER --- */
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
+        .footer-links h4 { color: white; font-size: 0.75rem; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .footer-links a { display: block; color: #94A3B8; text-decoration: none; margin-bottom: 14px; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; max-width: 1700px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="enterprise-hero">
+            <div id="canvas-hardware-container"></div>
+            <div class="hero-interactive-frame">
+                <h1>Infrastructure for Sovereignty.</h1>
+                <p>Deploy the RealAIID Mainframe within your own organization. Custom node integration for governments, transit commissions, and international media groups.</p>
+            </div>
+        </section>
+
+        <section class="matrix-section">
+            <div class="section-header">
+                <h2>The Decentralized Wallet Capability Matrix</h2>
+                <p>What authorization capabilities occur when all 38 bridges are seated in the user core</p>
+            </div>
+            
+            <div class="matrix-grid">
+                <div class="matrix-card">
+                    <i class="ph-fill ph-fingerprint"></i>
+                    <h4>01 - 08 // Sovereign Access Rails</h4>
+                    <p>Enables real-time verification vectors (`Auth Root`, `Civic Core`) mapping biometrics directly to dynamic, non-custodial organizational directories without data latency.</p>
+                </div>
+                <div class="matrix-card">
+                    <i class="ph-fill ph-shield-checkered"></i>
+                    <h4>09 - 15 // Legal & Vital Anchors</h4>
+                    <p>Bridges real-world tracking vectors (`DMV Authority`, `Vital Records`) directly onto the mainframe, securing cross-verification signatures for high-security environments.</p>
+                </div>
+                <div class="matrix-card">
+                    <i class="ph-fill ph-bank"></i>
+                    <h4>16 - 24 // Fiscal Ingest & Escrow</h4>
+                    <p>Secures cryptographic validation over multi-chain liquidation events, high-value asset holdings, and automated commercial banking processing (`Satoshi Root`).</p>
+                </div>
+                <div class="matrix-card">
+                    <i class="ph-fill ph-airplane-tilt"></i>
+                    <h4>25 - 30 // Logistics & Autonomous Transit</h4>
+                    <p>Hardens verification controls for transit ecosystems (`DTC Travel`, `Drive-Knot Auto`), syncing biometrics instantly with physical locks and international border grids.</p>
+                </div>
+                <div class="matrix-card">
+                    <i class="ph-fill ph-cpu"></i>
+                    <h4>31 - 38 // Abyssal Logic & Sync Protocols</h4>
+                    <p>Deploys decentralized ledger verification tools (`Benthic Pulse`, `Oracle Flux`), processing automated infrastructure auditing against real-world assets without exposure.</p>
+                </div>
+                <div class="matrix-card">
+                    <i class="ph-fill ph-intersect"></i>
+                    <h4>Custom Mainframe Isolation</h4>
+                    <p>Allows deep integration to coordinate high-fidelity forensic data pipelines directly within independent network frames, running parallel to the parent hub.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <div class="contact-info">
+                <h3>Liaison Consultation</h3>
+                <p>Enterprise solutions require high-fidelity security coordination. Our Security Engineers will design a custom node deployment for your infrastructure.</p>
+                
+                <div class="anchor-badge-box">
+                    <h4>ANCHOR LOCATION</h4>
+                    <p>1900 Market Street<br>Philadelphia, PA 19103</p>
+                </div>
+            </div>
+
+            <div class="enterprise-form">
+                <form action="signin.html" method="POST">
+                    <label>Organization Name</label>
+                    <input type="text" placeholder="e.g. Metropolitan Airport Commission" required>
+
+                    <label>Lead Liaison Name</label>
+                    <input type="text" placeholder="Your Name" required>
+
+                    <label>Infrastructure Type</label>
+                    <select required>
+                        <option value="government">Government / Municipal</option>
+                        <option value="transit">Transit / Aviation Commission</option>
+                        <option value="media">Media Group / Record Label</option>
+                        <option value="financial">Financial Institution</option>
+                        <option value="security">High-Security Asset Management</option>
+                    </select>
+
+                    <label>Request Brief</label>
+                    <textarea rows="5" placeholder="Describe your node integration requirements..." required></textarea>
+
+                    <button type="submit" class="btn-submit">INITIATE LIAISON BRIEF</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div>
+                <h4 class="footer-links">Infrastructure</h4>
+                <ul style="list-style: none; font-size: 0.8rem; line-height: 2.2;">
+                    <li><a href="mainframe.html" class="hover:text-white transition-colors">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html" class="hover:text-white transition-colors">Sovereign API Docs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-links">Product Tiers</h4>
+                <ul style="list-style: none; font-size: 0.8rem; line-height: 2.2;">
+                    <li><a href="product-vssn2.html" class="hover:text-white transition-colors">Starter Anchor</a></li>
+                    <li><a href="product-likeness-shield.html" class="hover:text-white transition-colors">Likeness Shield</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-links">Accountability</h4>
+                <ul style="list-style: none; font-size: 0.8rem; line-height: 2.2;">
+                    <li><a href="lethal-ledger.html" class="hover:text-white transition-colors">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html" class="hover:text-white transition-colors">Bio-Sign™ Audit</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-links">Liaison Office</h4>
+                <ul style="list-style: none; font-size: 0.8rem; line-height: 2.2;">
+                    <li><a href="signin.html" class="hover:text-white transition-colors">Initialize Handshake</a></li>
+                    <li><a href="support.html" class="hover:text-white transition-colors">Bureau Support</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div>STATUS: GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('canvas-hardware-container');
+            if(!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 1, 1000);
+            camera.position.z = 40;
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // Generate an industrial digital mainframe topology map structure
+            const geometry = new THREE.IcosahedronGeometry(20, 2);
+            const material = new THREE.MeshPhongMaterial({
+                color: 0x1693E9,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.6
+            });
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            // Seating hardware node point indicators
+            const pointGeo = new THREE.SphereGeometry(0.3, 8, 8);
+            const pointMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.8 });
+            
+            for (let i = 0; i < geometry.attributes.position.count; i += 4) {
+                const pointMesh = new THREE.Mesh(pointGeo, pointPointMat = pointMat);
+                pointMesh.position.set(
+                    geometry.attributes.position.getX(i),
+                    geometry.attributes.position.getY(i),
+                    geometry.attributes.position.getZ(i)
+                );
+                mesh.add(pointMesh);
+            }
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
+            scene.add(ambientLight);
+
+            const directionalLight = new THREE.DirectionalLight(0x1693E9, 1);
+            directionalLight.position.set(10, 20, 10);
+            scene.add(directionalLight);
+
+            const animate = () => {
+                requestAnimationFrame(animate);
+                mesh.rotation.y += 0.0015;
+                mesh.rotation.x += 0.0008;
+                renderer.render(scene, camera);
+            };
+
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+
+            animate();
+        });
+    </script>
+</body>
+</html>

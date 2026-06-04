@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | $AII SOVEREIGN ECONOMY</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .economy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 60px; }
+        .data-panel { border: 1px solid #333; padding: 30px; border-radius: 12px; background: rgba(255,255,255,0.03); }
+        #velocity-ticker { font-size: 3rem; color: var(--neon); font-family: 'Courier New', monospace; }
+        .tier-card { border-left: 3px solid var(--neon); padding-left: 20px; margin: 20px 0; background: rgba(0,242,255,0.05); }
+    </style>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="economy-grid">
+        <section class="overview">
+            <h1>$AII SOVEREIGN ECONOMY</h1>
+            <p>"Your Identity is Your Wealth. Your Movement is Your Money."</p>
+            
+            <div class="data-panel">
+                <h3>LIVE MESH VELOCITY</h3>
+                <div id="velocity-ticker">0</div>
+                <p>Status: <span id="mesh-status">CONNECTING...</span></p>
+            </div>
+        </section>
+
+        <section class="guide">
+            <h2>IDENTITY TRADING PROTOCOL</h2>
+            <p>Monetize your reputation. Create Premium Identity Units carrying your Bio-Sign™.</p>
+            
+            <div class="tier-card">
+                <h4>Tier 4: Sovereign Contributor (+15% Premium)</h4>
+                <p>Earn royalties on every secondary transaction of your branded units.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <nav>
+            <a href="/identity-vault">Identity Vault</a> | 
+            <a href="/logistics-sync">Logistics</a> | 
+            <a href="/medical-root">Medical</a> | 
+            <a href="/fiscal-root">Fiscal</a> | 
+            <a href="/dvc-travel">Travel</a> |
+            <a href="/precinct-root">Precinct</a> |
+            <a href="/academic-root">Academic</a> |
+            <a href="/property-deeds">Deeds</a>
+        </nav>
+        <p>© 2026 REALAiID BUREAU // PHL-01 MAINFRAME</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            async function updateTelemetry() {
+                try {
+                    const response = await fetch('/api/v1/telemetry/live-mesh');
+                    if (!response.ok) throw new Error('Mesh Unreachable');
+                    const data = await response.json();
+                    
+                    const ticker = document.getElementById('velocity-ticker');
+                    const status = document.getElementById('mesh-status');
+                    
+                    if (ticker) ticker.innerText = data.totalNetworkVelocity.toLocaleString();
+                    if (status) status.innerText = data.meshStatus;
+                } catch (err) { 
+                    console.error("Telemetry Sync Failed:", err);
+                    const status = document.getElementById('mesh-status');
+                    if (status) status.innerText = "OFFLINE";
+                }
+            }
+
+            // Sync Interval
+            setInterval(updateTelemetry, 5000);
+            updateTelemetry();
+        });
+    </script>
+</body>
+</html>

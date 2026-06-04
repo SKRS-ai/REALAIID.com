@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Validator | REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #020617; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .terminal-panel { background: rgba(5, 10, 20, 0.9); border: 1px solid #1e293b; }
+        .scan-line { animation: scan 2s linear infinite; }
+        @keyframes scan { 0% { transform: translateY(0%); } 100% { transform: translateY(300px); } }
+    </style>
+</head>
+<body class="p-10">
+
+    <header class="flex justify-between items-center mb-12">
+        <h1 class="font-bold text-xl tracking-widest uppercase">REALAiID // FORENSIC VALIDATOR</h1>
+        <div class="flex gap-4 font-mono text-sm text-blue-500">
+            <span>NODE: PHL-01</span>
+            <span>STATUS: ACTIVE_INGEST</span>
+        </div>
+    </header>
+
+    <main class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <section class="terminal-panel p-10 flex flex-col items-center justify-center min-h-[400px] border-dashed border-2 border-slate-800 hover:border-blue-500 transition">
+            <i class="ph ph-upload-simple text-6xl text-slate-600 mb-6"></i>
+            <h2 class="text-xl font-bold mb-2">Ingest Media Asset</h2>
+            <p class="text-sm text-slate-500 mb-8">Drag and drop C2PA sealed media for verification</p>
+            <input type="file" id="mediaUpload" class="hidden" onchange="runValidation()">
+            <button onclick="document.getElementById('mediaUpload').click()" class="bg-blue-600 px-8 py-3 rounded-sm font-bold text-sm">SELECT ASSET</button>
+        </section>
+
+        <section class="terminal-panel p-10">
+            <h2 class="font-mono text-blue-400 mb-6">TRUTH_INGEST_FEED</h2>
+            <div id="results" class="space-y-4">
+                <div class="bg-slate-900 p-4 border border-slate-800 text-sm font-mono text-slate-400">
+                    [AWAITING_PAYLOAD]
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        async function runValidation() {
+            const results = document.getElementById('results');
+            results.innerHTML = `<div class="bg-slate-900 p-4 border border-blue-900/50 animate-pulse text-blue-400 font-mono">SCANNING_FORENSIC_SEAL...</div>`;
+            
+            // Simulate forensic verification call to server
+            setTimeout(() => {
+                results.innerHTML = `
+                    <div class="bg-green-900/20 border border-green-800 p-4 font-mono text-green-400 text-sm">
+                        [SEAL_VERIFIED] Provenance hash matches Bio-Sign™ registry.<br>
+                        Asset: Hana_Heat_Concept_01.jpg<br>
+                        Governance: NO_FAKES_ACT_2026_COMPLIANT
+                    </div>
+                `;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>

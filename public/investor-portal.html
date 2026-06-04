@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Portal | REALAiID Global Reserve ($102.7B)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --satoshi-orange: #F7931A;
+            --emergency-red: #ff4444;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D RESERVE CORE --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-investor {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .valuation-text {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--bureau-gold);
+            text-shadow: 0 0 80px rgba(184, 134, 11, 0.4);
+        }
+
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .utility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+        }
+
+        .utility-category {
+            border-top: 1px solid rgba(184, 134, 11, 0.3);
+            padding-top: 30px;
+        }
+
+        .utility-category h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--bureau-gold);
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .bridge-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            transition: var(--transition);
+        }
+
+        .bridge-pill:hover {
+            border-color: var(--phl-blue);
+            background: rgba(22, 147, 233, 0.1);
+        }
+
+        /* --- CONTACT FORM --- */
+        .investor-form-section {
+            padding: 120px 10%;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .form-terminal {
+            background: #05080F;
+            border: 1px solid #1e293b;
+            padding: 60px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .input-terminal {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #1e293b;
+            padding: 15px 0;
+            color: #fff;
+            font-family: 'JetBrains Mono';
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 40px;
+            transition: 0.3s;
+        }
+
+        .input-terminal:focus {
+            border-bottom-color: var(--phl-blue);
+        }
+
+        .btn-transmit {
+            background: var(--bureau-gold);
+            color: #000;
+            padding: 20px 50px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-transmit:hover {
+            background: #fff;
+            box-shadow: 0 0 30px var(--bureau-gold);
+        }
+
+        /* --- FOOTER SYNC --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="reserve-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-investor">
+            <div class="z-10">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.6em] mb-4 block">Institutional Staging // Phase IV</span>
+                <h1 class="valuation-text">$102.7B</h1>
+                <h2 class="text-4xl font-serif italic text-white mb-8">Global Reserve Valuation</h2>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                    REALAiID is the first industrial sovereign to bridge biological reality with petascale compute and energy output. We are not a company; we are the **Infrastructure of Truth**.
+                </p>
+            </div>
+        </section>
+
+        <!-- THE 35-BRIDGE UTILITY POWERHOUSE -->
+        <section class="forensic-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="text-center mb-20">
+                <h2 class="font-serif italic text-6xl mb-6">The Handshake <span class="text-blue-500">Economy.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl mx-auto">
+                    When an inhabitant loads all 35 bridges into their **REALAiID Wallet (SA-02)**, they achieve total autonomy across every sector of human existence. Below is the functional mapping of the $102.7B perimeter.
+                </p>
+            </div>
+
+            <div class="utility-grid">
+                <!-- CATEGORY: IDENTITY & PASSAGE -->
+                <div class="utility-category">
+                    <h3>I. Identity & Passage</h3>
+                    <div class="bridge-pill"><span>01-08 Core Auth & UAC</span> <span class="text-blue-500 font-bold">ACTIVE</span></div>
+                    <div class="bridge-pill"><span>09 DMV Authority inheritance</span> <span class="text-blue-500 font-bold">VERIFIED</span></div>
+                    <div class="bridge-pill"><span>19 Bio-Sign™ Attestation</span> <span class="text-blue-500 font-bold">DEPLOYED</span></div>
+                    <div class="bridge-pill"><span>22 DTC Worldwide Passage</span> <span class="text-blue-500 font-bold">ICAO_COMPLIANT</span></div>
+                    <p class="text-[10px] text-slate-500 mt-4 leading-relaxed uppercase font-bold">
+                        Result: Sub-300ms eGate clearance at 21 international nodes. Elimination of physical passports and passwords.
+                    </p>
+                </div>
+
+                <!-- CATEGORY: FISCAL LIQUIDITY -->
+                <div class="utility-category">
+                    <h3>II. Fiscal Liquidity</h3>
+                    <div class="bridge-pill"><span>10 Fiscal Root (Stripe/Visa)</span> <span class="text-amber-500 font-bold">LIVE</span></div>
+                    <div class="bridge-pill"><span>16 Satoshi Root (BTC)</span> <span class="text-amber-500 font-bold">LIVE</span></div>
+                    <div class="bridge-pill"><span>23 Amex Financial Anchor</span> <span class="text-amber-500 font-bold">PREMIUM</span></div>
+                    <div class="bridge-pill"><span>26 Mastercard Retail Rail</span> <span class="text-amber-500 font-bold">ACTIVE</span></div>
+                    <p class="text-[10px] text-slate-500 mt-4 leading-relaxed uppercase font-bold">
+                        Result: 0% Fraud retail rails. Liquidate BTC or Platinum credit at any POS via biological resonance. No plastic required.
+                    </p>
+                </div>
+
+                <!-- CATEGORY: ASSET SOVEREIGNTY -->
+                <div class="utility-category">
+                    <h3>III. Asset Sovereignty</h3>
+                    <div class="bridge-pill"><span>11 Pet Likeness Anchor</span> <span class="text-emerald-500 font-bold">VERIFIED</span></div>
+                    <div class="bridge-pill"><span>14 Property Deed Hashing</span> <span class="text-emerald-500 font-bold">SYNCED</span></div>
+                    <div class="bridge-pill"><span>28 Global Notary Seal</span> <span class="text-emerald-500 font-bold">PRIMA_FACIE</span></div>
+                    <div class="bridge-pill"><span>30 Automotive Anchor</span> <span class="text-emerald-500 font-bold">ISO_18013_5</span></div>
+                    <p class="text-[10px] text-slate-500 mt-4 leading-relaxed uppercase font-bold">
+                        Result: Deed and title fraud reduced to zero. High-value assets are biometrically inert without the owner's pulse.
+                    </p>
+                </div>
+
+                <!-- CATEGORY: SENTINEL ROOT -->
+                <div class="utility-category">
+                    <h3>IV. Sentinel Root</h3>
+                    <div class="bridge-pill"><span>31 $AII Economy Root</span> <span class="text-white font-bold">MINTING</span></div>
+                    <div class="bridge-pill"><span>33 Benthic Pulse Sentinel</span> <span class="text-white font-bold">SUBMERGED</span></div>
+                    <div class="bridge-pill"><span>35 Sovereign Justice</span> <span class="text-white font-bold">EXECUTING</span></div>
+                    <p class="text-[10px] text-slate-500 mt-4 leading-relaxed uppercase font-bold">
+                        Result: Algorithmic dispute resolution in 300ms. Assets protected by abyssal physical security nodes.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INVESTOR LIAISON FORM -->
+        <section class="investor-form-section">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-5xl mb-4">Institutional Liaison</h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Awaiting Tier-0 Transmission // Nehemiah M. Brown // Solomon Kin Records</p>
+            </div>
+
+            <div class="form-terminal">
+                <div class="mb-12 font-mono text-[10px] text-blue-500">
+                    > STATUS: SECURE_UPLINK_PHL-01<br>
+                    > ENCRYPTION: AES-256-GCM<br>
+                    > DESTINATION: nehemiah.brown@solomonkinrecords.com
+                </div>
+
+                <form id="investor-contact-form" action="mailto:nehemiah.brown@solomonkinrecords.com" method="post" enctype="text/plain">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+                        <div>
+                            <label class="font-mono text-[8px] text-slate-500 uppercase tracking-widest block mb-2">Subject Entity Name</label>
+                            <input type="text" name="Institution" class="input-terminal" placeholder="e.g. Goldman Sachs / BlackRock" required>
+                        </div>
+                        <div>
+                            <label class="font-mono text-[8px] text-slate-500 uppercase tracking-widest block mb-2">Authorized Officer</label>
+                            <input type="text" name="Representative" class="input-terminal" placeholder="Liaison Full Name" required>
+                        </div>
+                    </div>
+                    
+                    <label class="font-mono text-[8px] text-slate-500 uppercase tracking-widest block mb-2">Institutional Email</label>
+                    <input type="email" name="Email" class="input-terminal" placeholder="officer@institution.com" required>
+
+                    <label class="font-mono text-[8px] text-slate-500 uppercase tracking-widest block mb-2">Vetting Tier Requested</label>
+                    <select name="Tier" class="input-terminal bg-transparent">
+                        <option value="Sovereign">Sovereign Investment ($1B+)</option>
+                        <option value="Citadel">Citadel Infrastructure Partnership</option>
+                        <option value="Reserve">Global Reserve Staking</option>
+                    </select>
+
+                    <label class="font-mono text-[8px] text-slate-500 uppercase tracking-widest block mb-2">Liaison Transmission</label>
+                    <textarea name="Message" class="input-terminal h-32 resize-none" placeholder="Details of strategic interest..."></textarea>
+
+                    <div class="flex justify-between items-center mt-12">
+                        <div class="text-[9px] text-slate-600 font-mono italic max-w-md">
+                            By transmitting this request, you authorize the Philadelphia Mainframe to perform a preliminary forensic audit of your institutional standing.
+                        </div>
+                        <button type="submit" class="btn-transmit">Authorize Transmission</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('reserve-canvas').appendChild(renderer.domElement);
+
+        // --- Create Reserve Octahedron (The $102.7B Core) ---
+        const group = new THREE.Group();
+        
+        // Outer Wireframe
+        const outerGeo = new THREE.OctahedronGeometry(4, 0);
+        const outerMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        const outer = new THREE.Mesh(outerGeo, outerMat);
+        group.add(outer);
+
+        // Inner Core (Pulsing Capital)
+        const innerGeo = new THREE.IcosahedronGeometry(1.5, 1);
+        const innerMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
+        const inner = new THREE.Mesh(innerGeo, innerMat);
+        group.add(inner);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0xb8860b, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            outer.rotation.y += 0.002;
+            inner.rotation.y -= 0.01;
+            inner.rotation.x += 0.005;
+            
+            // Pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            inner.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

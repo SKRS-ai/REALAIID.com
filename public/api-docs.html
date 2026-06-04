@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Docs | RealAIID Bureau VSSN & Citadel Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --sidebar-bg: #F8FAFC;
+            --code-bg: #020617;
+            --white: #FFFFFF;
+            --citadel-gold: #b8860b;
+            --emergency-red: #ff4444;
+            --border-frame: 15px;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER --- */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* --- DOCUMENTATION WRAPPER LAYOUT --- */
+        .docs-wrapper { display: grid; grid-template-columns: 320px 1fr; max-width: 1700px; margin: 0 auto; width: 100%; flex-grow: 1; position: relative; }
+        
+        .docs-sidebar { background: var(--sidebar-bg); padding: 40px 30px; border-right: 1px solid #E2E8F0; height: calc(100vh - 140px); position: sticky; top: 120px; overflow-y: auto; z-index: 100; }
+        .docs-sidebar h5 { font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #64748B; margin-bottom: 20px; margin-top: 35px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+        .docs-sidebar h5:first-child { margin-top: 0; }
+        .docs-sidebar a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--phl-dark); font-size: 0.85rem; margin-bottom: 14px; font-weight: 600; transition: var(--transition); }
+        .docs-sidebar a:hover { color: var(--phl-blue); transform: translateX(5px); }
+        .docs-sidebar .citadel-link { color: var(--citadel-gold); }
+        .docs-sidebar .citadel-link:hover { color: var(--phl-blue); }
+
+        .docs-content { padding: 60px clamp(20px, 5vw, 80px); overflow-x: hidden; }
+        .docs-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; font-weight: 700; margin-bottom: 20px; color: var(--phl-dark); }
+        .docs-content h2 { margin-top: 90px; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; border-bottom: 1px solid #E2E8F0; padding-bottom: 15px; margin-bottom: 30px; color: var(--phl-dark); display: flex; flex-wrap: wrap; align-items: center; gap: 15px; }
+        .docs-content p { color: #475569; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; font-weight: 300; }
+        
+        /* --- ARTIFACT COMPONENTS --- */
+        .method { font-family: 'JetBrains Mono'; display: inline-block; background: var(--phl-blue); color: white; padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+        .method.gold { background: var(--citadel-gold); }
+        .method.red { background: var(--emergency-red); }
+        .endpoint { font-family: 'JetBrains Mono'; font-weight: 700; color: #475569; font-size: 1rem; letter-spacing: -0.5px; }
+
+        .code-block { background: var(--code-bg); color: #10B981; padding: 35px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 0.85rem; margin: 25px 0 50px; overflow-x: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.05); line-height: 1.6; border-left: 4px solid var(--phl-blue); }
+        .code-comment { color: #64748B; font-style: italic; }
+        
+        .parameter-table { width: 100%; border-collapse: collapse; margin-bottom: 50px; background: #fff; margin-top: 20px; }
+        .parameter-table th { text-align: left; padding: 18px; border-bottom: 2px solid #E2E8F0; font-size: 0.75rem; text-transform: uppercase; color: #64748B; letter-spacing: 1.5px; font-family: 'JetBrains Mono'; }
+        .parameter-table td { padding: 18px; border-bottom: 1px solid #F1F5F9; font-size: 0.9rem; color: #334155; }
+        .parameter-table td:first-child { font-family: 'JetBrains Mono'; font-weight: 700; color: var(--phl-dark); }
+
+        .badge { font-family: 'JetBrains Mono'; display: inline-block; padding: 4px 8px; font-size: 8px; font-weight: 800; border-radius: 2px; text-transform: uppercase; margin-left: 10px; vertical-align: middle; tracking: 1px; }
+        .badge-citadel { background: var(--citadel-gold); color: white; }
+        .badge-beta { background: #6366f1; color: white; }
+
+        /* --- FOOTER MAP STABILIZATION --- */
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--phl-blue); margin-top: auto; position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid-fixed { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; width: 100%; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; max-width: 1700px; margin-left: auto; margin-right: auto; }
+        @media (max-width: 1024px) { .docs-wrapper { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="api-docs.html" style="color: var(--phl-blue);">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="docs-wrapper">
+        <aside class="docs-sidebar">
+            <h5>Core Auth</h5>
+            <a href="#authentication"><i class="ph-bold ph-key"></i> Bearer Handshake</a>
+            <a href="#vssn-check"><i class="ph-bold ph-waveform"></i> VSSN Spectral Check</a>
+            
+            <h5>Citadel Infrastructure <span class="badge badge-citadel">B2B</span></h5>
+            <a href="#deepfake-radar" class="citadel-link"><i class="ph-bold ph-radar"></i> Deepfake Radar</a>
+            <a href="#handshake-knot" class="citadel-link"><i class="ph-bold ph-intersect"></i> Handshake Knot™</a>
+            <a href="#industrial-strike" class="citadel-link"><i class="ph-bold ph-shield-warning"></i> Industrial Strike</a>
+
+            <h5>Universal Access (UAC)</h5>
+            <a href="#origo-sync"><i class="ph-bold ph-arrows-clockwise"></i> HID Origo Sync</a>
+            <a href="#uac-burn"><i class="ph-bold ph-fire"></i> Instant Burn Protocol</a>
+            <a href="#hr-hook"><i class="ph-bold ph-users-four"></i> Workday / HR Sync</a>
+
+            <h5>Ambient Auth <span class="badge badge-beta">Beta</span></h5>
+            <a href="#palm-verify"><i class="ph-bold ph-hand-palm"></i> Palm Resonance Match</a>
+            <a href="#stylized-match"><i class="ph-bold ph-eye-scan"></i> Stylized Match</a>
+
+            <h5>Hardware Systems</h5>
+            <a href="#qr-rotation"><i class="ph-bold ph-qr-code"></i> Keystone QR Rotation</a>
+            <a href="#se-provision"><i class="ph-bold ph-cpu"></i> SE Card Provisioning</a>
+            
+            <h5>Infrastructure</h5>
+            <a href="#node-status"><i class="ph-bold ph-activity"></i> Mainframe Status</a>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Industrial API v1.3</h1>
+            <p>The REALAiID Technical Interface allows institutional partners to anchor biological truth to fiscal, civic, and physical utility. Powered by the PHL-01 Mainframe Anchor network block.</p>
+
+            <section id="authentication">
+                <h2>Institutional Authentication</h2>
+                <p>All programmatic endpoint requests targeting the active grid matrix must pass a validated cryptographic key string within the header parameters. Sovereign and Citadel access clearances authorize dynamic actions directly across the root ledgers.</p>
+                <div class="code-block">
+Authorization: Bearer REALAiID_CITADEL_MASTER_KEY_XXXXX
+                </div>
+            </section>
+
+            <section id="vssn-check">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/core/vssn/spectral-check</span></h2>
+                <p>Verify live acoustic patterns against verified multi-point Vocal Signature Serial Number (VSSN) vectors. Evaluates resonance variation mapping to isolate synthesized cloning vectors.</p>
+                <div class="code-block">
+<span class="code-comment">// INGEST FIELD PROFILE</span>
+{
+  "node_id": "ARC-HUMAN-9910",
+  "audio_stream_vector": "base64_vocal_frequency_matrix_string",
+  "tolerance_coefficient": 0.002
+}
+                </div>
+            </section>
+
+            <section id="deepfake-radar">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/citadel/defense/radar</span></h2>
+                <p>Runs scanning analysis against physical appearance assets. Detects mathematical artifact variations, fake boundaries, and pixel noise layout manipulation.</p>
+                <div class="code-block">
+<span class="code-comment">// RADAR ANALYSIS RECONNAISSANCE LOOP</span>
+{
+  "media_target_url": "https://storage.realaiid.com/ingress/check-file.mp4",
+  "continuous_feed_scan": true,
+  "webhook_callback_url": "https://partner-node.internal/callbacks"
+}
+                </div>
+            </section>
+
+            <section id="handshake-knot">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/citadel/provenance/knot-seal</span></h2>
+                <p>Generate an absolute Handshake Knot™ verification block token. Connects active user consent instances with permanent cryptographic time markers to anchor transactions legally.</p>
+                <div class="code-block">
+<span class="code-comment">// SUCCESS RESPONSE (200 OK)</span>
+{
+  "knot_id": "KNOT-992-PHL-SECURE",
+  "standing": "VERIFIED_DIGITAL_HUMAN",
+  "consensus_seal": "0x8fa3bc772e8f710d846310aef710d846310a",
+  "timestamp": "2026-05-16T15:39:32Z"
+}
+                </div>
+            </section>
+
+            <section id="industrial-strike">
+                <h2><span class="method red">POST</span> <span class="endpoint">/v1/citadel/action/strike</span></h2>
+                <p>Initialize a protective legal framework deployment action. Automatically issues signed cease-and-desist declarations and tracking tokens across target platforms under the NO FAKES Act parameters.</p>
+                <div class="code-block">
+{
+  "target_compromise_signature": "SIG_FRAUD_3321_ALPHA",
+  "enforcement_jurisdiction": "US_EAST_PHL_01",
+  "automated_dmca_dispatch": true
+}
+                </div>
+            </section>
+
+            <section id="origo-sync">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/uac/origo/sync</span></h2>
+                <p>Synchronize biological status validations with hardware security tokens via HID Origo endpoints. Refreshes structural parameters on physical wall sensors automatically.</p>
+                <div class="code-block">
+{
+  "hardware_reader_cluster": "MAC_AIRCRAFT_GATE_ZONE_4",
+  "origo_profile_token": "OP-99281-SECURE",
+  "reauth_ttl_seconds": 3600
+}
+                </div>
+            </section>
+
+            <section id="uac-burn">
+                <h2><span class="method red">POST</span> <span class="endpoint">/v1/citadel/uac/burn</span></h2>
+                <p><strong>Instant Burn Protocol™.</strong> Completely terminates physical access rights (HID Origo locks) and corporate credential profiles (Okta, Azure AD, Entra) across the entire system matrix simultaneously upon discovery of a token leak.</p>
+                
+                <table class="parameter-table">
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>node_id</td><td>string</td><td>Target ARC-Node ID to burn.</td></tr>
+                        <tr><td>scope</td><td>string</td><td>"GLOBAL_REVOCATION" or "LOCAL_ONLY".</td></tr>
+                        <tr><td>reason</td><td>string</td><td>C2PA compliant reason for revocation logs.</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+curl -X POST https://api.realaiid.com/v1/citadel/uac/burn \
+  -H "Authorization: Bearer CITADEL_KEY" \
+  -d '{
+    "node_id": "ARC-EXEC-8821",
+    "scope": "GLOBAL_REVOCATION",
+    "reason": "TERMINATION_OF_RELATIONSHIP"
+  }'
+                </div>
+            </section>
+
+            <section id="palm-verify">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/ambient/palm-verify</span></h2>
+                <p><strong>Ambient Dead-Phone Continuity.</strong> Authenticate identity profiles directly at local scanner terminals using underlying palm-resonance structure parameters when cell endpoints are out of power.</p>
+                <div class="code-block">
+{
+  "dermal_vector": "base64_dermal_string_from_sensor",
+  "terminal_id": "PHL-TERMINAL-R04",
+  "intent": "FISCAL_AUTHORIZATION_SOVEREIGN"
+}
+                </div>
+            </section>
+
+            <section id="stylized-match">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/ambient/verify/stylized</span></h2>
+                <p><strong>Zero-Raw Biometric Match.</strong> Evaluates a 512-point Stylized Template configuration sequence against live root registries. Raw biological telemetry maps are never mirrored, shared, or held within intermediate cloud blocks.</p>
+                <div class="code-block">
+{
+  "match": true,
+  "confidence": 0.9998,
+  "knot_id": "KNOT-992-PHL-SECURE",
+  "standing": "VERIFIED_DIGITAL_HUMAN"
+}
+                </div>
+            </section>
+
+            <section id="qr-rotation">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/hardware/keystone/qr-rotate</span></h2>
+                <p>Generates a dynamic Keystone QR rotation payload. Re-keys terminal interaction loops every 400ms to block screen capture recording attacks on validation entry vectors.</p>
+                <div class="code-block">
+{
+  "session_token": "SESS_ROTATE_88291_Z",
+  "rotation_interval_ms": 400,
+  "seed_nonce": "0x4b7e9c21d846"
+}
+                </div>
+            </section>
+
+            <section id="se-provision">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/hardware/se/provision</span></h2>
+                <p>Provision cryptographic elements inside hardware token layouts. Writes personal root validation profiles directly to non-cloneable Secure Element Java Cards.</p>
+                <div class="code-block">
+curl -X POST https://api.realaiid.com/v1/hardware/se/provision \
+  -H "Content-Type: application/json" \
+  -d '{
+    "node_id": "ARC-PROV-992",
+    "hardware_uid": "TITANIUM-SA-01-XXXX",
+    "fips_standard": "140-3_LEVEL_4"
+  }'
+                </div>
+            </section>
+
+            <section id="hr-hook">
+                <h2>HR Infrastructure Sync</h2>
+                <p>Monitors system lifecycle alerts from **Workday** or **SAP SuccessFactors** architectures to trigger immediate, automated profile token updates.</p>
+                <div class="code-block">
+// Webhook Listener Pattern
+app.post('/webhooks/workday-sync', (req, res) => {
+  const { event, employee_id } = req.body;
+  if(event === 'EMPLOYEE_DISCHARGE') {
+    executeInstantBurn(employee_id);
+  }
+});
+                </div>
+            </section>
+
+            <section id="node-status">
+                <h2>Infrastructure Status</h2>
+                <p>Monitor the structural operations and ledger data latency statistics across active physical server frames in real time.</p>
+                <div class="code-block">
+{
+  "node_id": "PHL-01-MAIN",
+  "status": "OPERATIONAL",
+  "handshake_latency": "142ms",
+  "active_sovereign_nodes": 842102,
+  "uplink": "AES-256-GCM-TUNNEL"
+}
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid-fixed">
+            <div class="footer-brand-col">
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html">Sovereign API Docs</a></li>
+                    <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                    <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <ul>
+                    <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                    <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                    <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Office</h4>
+                <ul>
+                    <li><a href="signin.html">Init Handshake</a></li>
+                    <li><a href="support.html">Support Core</a></li>
+                    <li><a href="consultation.html">Liaison Request</a></li>
+                    <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div>GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+</body>
+</html>

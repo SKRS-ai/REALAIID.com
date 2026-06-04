@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Tier | RealAIID.com Institutional Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --penn-navy: #001E44;
+            --surface: #F1F5F9;
+            --white: #FFFFFF;
+            --sovereign-gold: #B8860B;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; }
+
+        /* --- HEADER & NAVIGATION (SYNCED) --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 10px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1600px; margin: 0 auto; }
+        .logo-box img { height: 120px; width: auto; display: block; background: transparent; }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 4px; }
+
+        /* --- PRODUCT HERO: SOVEREIGN DESIGN --- */
+        .product-hero { 
+            padding: 100px 10%; 
+            background: radial-gradient(circle at top right, #1e293b, #0B1320); 
+            color: white; 
+            border-bottom: 2px solid var(--sovereign-gold); 
+        }
+        .product-container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
+        
+        .product-visual { 
+            background: rgba(184, 134, 11, 0.05); 
+            padding: 40px; 
+            border-radius: 4px; 
+            border: 1px solid var(--sovereign-gold);
+            text-align: center;
+        }
+        .tier-status { font-family: 'JetBrains Mono'; color: var(--sovereign-gold); font-size: 0.8rem; letter-spacing: 3px; font-weight: 800; text-transform: uppercase; }
+
+        .product-info h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin: 20px 0; line-height: 1; color: var(--white); }
+        .price-tag { font-size: 3rem; font-weight: 800; color: var(--sovereign-gold); margin-bottom: 20px; display: block; }
+        
+        .btn-register { 
+            display: inline-block; background: var(--sovereign-gold); color: white; text-decoration: none; 
+            padding: 22px 45px; font-weight: 800; border-radius: 2px; transition: 0.3s; width: 100%; text-align: center;
+            letter-spacing: 1px;
+        }
+        .btn-register:hover { background: var(--white); color: var(--phl-dark); }
+
+        /* --- DETAILS SECTION --- */
+        .details { padding: 100px 10%; max-width: 1200px; margin: 0 auto; }
+        .details h2 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 50px; text-align: center; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .feature-item { border: 1px solid #E2E8F0; padding: 40px; transition: 0.3s; }
+        .feature-item:hover { border-color: var(--sovereign-gold); background: #FFFDF5; }
+        .feature-item h4 { color: var(--sovereign-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-weight: 800; }
+
+        /* --- FOOTER (SYNCED) --- */
+        footer { background: #05080F; color: #94A3B8; padding: 80px 10% 40px; border-top: 1px solid #1E293B; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; text-align: left; margin-bottom: 60px; }
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; }
+        .footer-links h4 { color: white; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #64748B; text-decoration: none; margin-bottom: 12px; font-size: 0.85rem; }
+        .footer-links a:hover { color: var(--phl-blue); }
+        .copyright-bar { border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="RealAIID Bureau Logo">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="vssn-hashing.html">VSSN Hashing</a>
+                <a href="no-fakes.html">Likeness Shield</a>
+                <a href="1900-market.html">Mainframe Anchor</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="start-verification.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-hero">
+            <div class="product-container">
+                <div class="product-info">
+                    <span class="tier-status">Sovereign Institutional Tier</span>
+                    <h1>The Total Human Anchor.</h1>
+                    <span class="price-tag">$2,499 / Year</span>
+                    <p style="margin-bottom: 40px; font-size: 1.25rem; opacity: 0.9;">The highest standard of identity registration. Designed for global leaders, executives, and high-net-worth individuals who require a hardware-locked, biometric synchronization with the Philadelphia Mainframe and the Aviation Identity Nodes.</p>
+                    
+                    <a href="register-checkout.html?tier=sovereign" class="btn-register">ENROLL IN SOVEREIGN REGISTRY</a>
+                </div>
+                <div class="product-visual">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=600" alt="Mainframe Server" style="width: 100%; border-radius: 2px; filter: contrast(1.1) brightness(0.9);">
+                    <p style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--sovereign-gold);">STRICT_ENROLLMENT_NODE // PHL_USA_001</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details">
+            <h2>Elite Specifications</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>PHL Airport Biometric Link</h4>
+                    <p>Direct synchronization with Metropolitan Airport Commission security protocols. Establish your RealAIID as a verified credential for aviation-grade identity checks.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>High-Value Banking API</h4>
+                    <p>Enable secure, biometric-locked financial transactions. Your RealAIID hash acts as the master key for institutional-scale asset management.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>White-Glove Liaison Access</h4>
+                    <p>Direct communication line to a dedicated Security Engineer for custom hashing, likeness audits, and identity restoration services.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Hardware-Locked Keys</h4>
+                    <p>Deployment of a physical, non-cloneable hardware key (HSM) that serves as the secondary physical anchor for your digital sovereignty.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Legal Concierge</h4>
+                    <p>Premium legal coordination for rapid enforcement of the NO FAKES Act, including custom-written cease-and-desist mandates backed by Bureau authority.</p>
+                </div>
+                <div class="feature-item">
+                    <h4>Quantum-Resistant Hashing</h4>
+                    <p>Upgrade to the next-generation VSSN protocols, ensuring your identity remains secure against future synthetic intelligence and quantum computing threats.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="1900-market.html">1900 Market Anchor</a>
+                <a href="vssn-hashing.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="legal-compliance.html">Compliance Hub</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="privacy.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="start-verification.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            © 2026 REALAIID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // ALL HUMAN RIGHTS RESERVED
+        </div>
+    </footer>
+
+</body>
+</html>

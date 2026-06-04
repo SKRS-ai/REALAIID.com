@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="js/BureauStorageSDK.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Vault (B39) // The Green Card Digitization Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --phl-blue: #1693E9; --phl-dark: #05080F; }
+        body { background: var(--phl-dark); color: #fff; font-family: 'Inter', sans-serif; }
+        .vault-container { max-width: 1200px; margin: 0 auto; padding: 40px; }
+        .glass-panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 40px; }
+    </style>
+</head>
+<body>
+
+    <header class="border-b border-white/10 p-6 flex justify-between items-center">
+        <div class="text-xl font-bold tracking-widest text-blue-500">REALAiID // BUREAU</div>
+        <nav class="space-x-8 text-[10px] uppercase tracking-widest">
+            <a href="index.html" class="hover:text-blue-500">The Bureau</a>
+            <a href="forensic-terminal.html" class="bg-blue-600 px-4 py-2 hover:bg-blue-500">Initialize Handshake</a>
+        </nav>
+    </header>
+
+    <main class="vault-container">
+        <section class="grid md:grid-cols-2 gap-12 mb-16">
+            <div class="space-y-6">
+                <span class="text-blue-500 font-mono text-xs uppercase">Bridge 39 // Immigration Sovereign Node</span>
+                <h1 class="text-5xl font-serif italic">The Identity Vault: <br><span class="text-gray-400">Your Green Card, Digitized.</span></h1>
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    The Identity Vault is the secure, digital home for your U.S. Green Card and immigration status. We have transformed the physical, easily lost Green Card into an immutable, biometric-locked digital credential that lives in your REALAiID wallet.
+                </p>
+            </div>
+            <div id="b39-canvas" class="h-[400px] w-full border border-white/10"></div>
+        </section>
+        <!-- Benthic Storage Ingestion Interface -->
+<div class="glass-panel mt-8">
+    <h3 class="text-blue-500 font-bold mb-4">Ingest Immigration Credential</h3>
+    <input type="file" id="docUpload" class="block w-full text-xs text-gray-400 mb-4">
+    <button onclick="ingestCredential()" class="bg-blue-600 px-6 py-2 text-xs uppercase font-bold hover:bg-blue-500 transition-all">
+        Secure to Benthic Pulse
+    </button>
+    <div id="storageStatus" class="mt-4 text-[10px] font-mono text-emerald-500"></div>
+</div>
+
+        <section class="glass-panel grid md:grid-cols-3 gap-8 mb-16">
+            <div>
+                <h3 class="text-blue-500 font-bold mb-3">What is it for?</h3>
+                <p class="text-sm text-gray-400">It is for every lawful permanent resident who needs to verify their status instantly—at airports, employers, ICE (NICE) or government offices—without carrying fragile physical plastic.</p>
+            </div>
+            <div>
+                <h3 class="text-blue-500 font-bold mb-3">The Benefits</h3>
+                <p class="text-sm text-gray-400">Instant verification, protection against card loss or theft, and real-time status updates. It turns a piece of plastic into a living, verified record of your legal presence.</p>
+            </div>
+            <div>
+                <h3 class="text-blue-500 font-bold mb-3">How to obtain it</h3>
+                <p class="text-sm text-gray-400">Once your REALAiID primary ingest is complete, link your immigration documentation via our secure B39 portal. Your status is then encrypted to your unique biometric baseline.</p>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-serif italic mb-8 border-b border-white/10 pb-4">The REALAiID Ecosystem: What can you do?</h2>
+            <div class="grid md:grid-cols-4 gap-4 text-xs font-mono text-gray-400">
+                <div class="p-4 border border-white/5">1. Aggregated Verification: Use your B39 Vault to instantly prove identity to all other 38 bridges.</div>
+                <div class="p-4 border border-white/5">2. Forensic Proof: Timestamped, immutable logs of every time your status has been verified.</div>
+                <div class="p-4 border border-white/5">3. Asset Linking: Link your Green Card status directly to your $AII Compute Dividends.</div>
+                <div class="p-4 border border-white/5">4. Sovereign Mobility: Experience cross-border travel with your identity backed by deep forensic watermarking.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="p-10 border-t border-white/10">
+        <div class="grid grid-cols-5 gap-8 text-[10px] uppercase tracking-widest text-gray-500">
+            <div><h4>Bureau Core</h4><a href="index.html" class="block py-1">Home</a><a href="api-docs.html" class="block py-1">API Docs</a></div>
+            <div><h4>Wallet Nodes</h4><a href="product-vssn2.html" class="block py-1">VSSN</a><a href="product-likeness-shield.html" class="block py-1">Shield</a><a href="product-standard.html" class="block py-1">Standard</a></div>
+            <div><h4>Identity Portals</h4><a href="bridge-13-medical-root.html" class="block py-1">Medical</a><a href="bridge-14-property-deeds.html" class="block py-1">Property</a><a href="bridge-27-academic-root.html" class="block py-1">Academic</a><a href="bridge-29-logistics-sync.html" class="block py-1">Logistics</a></div>
+            <div><h4>Financial</h4><a href="$AII-Compute-Currency-Exchange.html" class="block py-1">Exchange</a><a href="product-liquidity-vault.html" class="block py-1">Vault</a><a href="$AII-Compute-Currency-Royalty-Hub.html" class="block py-1">Royalty Hub</a></div>
+            <div><h4>Governance</h4><a href="compliance-hub.html" class="block py-1">Compliance</a><a href="forensic-records.html" class="block py-1">Blueprints</a><a href="network-status.html" class="block py-1">Health Pulse</a></div>
+        </div>
+    </footer>
+
+    <script>
+// Initialize the Storage SDK with the current Node ID
+const bStorage = new BureauStorageSDK("PHL-01-K7XP");
+
+async function ingestCredential() {
+    const statusDiv = document.getElementById('storageStatus');
+    const fileInput = document.getElementById('docUpload');
+    
+    if (fileInput.files.length > 0) {
+        statusDiv.innerText = "[BENTHIC PULSE]: Encrypting and Sharding...";
+        
+        // Call the SDK to store the document
+        const result = await bStorage.storeDocument("IMM_DATA", { docType: "GREEN_CARD" });
+        
+        if (result.status === "SECURED_IN_BENTHIC_PULSE") {
+            statusDiv.innerText = `[SUCCESS]: Document locked to ledger. CID: ${result.cid}`;
+        } else {
+            statusDiv.innerText = "[ERROR]: Ingestion failed.";
+        }
+    } else {
+        statusDiv.innerText = "[ERROR]: No document detected.";
+    }
+}
+        const scene = new THREE.Scene();
+        const container = document.getElementById('b39-canvas');
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(400, 400); container.appendChild(renderer.domElement);
+        const geo = new THREE.TorusGeometry(1.5, 0.4, 16, 100);
+        const mat = new THREE.MeshPhongMaterial({ color: 0xb8860b, wireframe: true });
+        const torus = new THREE.Mesh(geo, mat);
+        scene.add(torus); scene.add(new THREE.AmbientLight(0xffffff, 1)); camera.position.z = 5;
+        function animate() { requestAnimationFrame(animate); torus.rotation.x += 0.005; torus.rotation.y += 0.005; renderer.render(scene, camera); }
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nautilus-IV Telemetry | REALAiID Abyssal Infrastructure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --benthic-cyan: #06B6D4;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D BENTHIC CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-telemetry {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--benthic-cyan);
+            text-shadow: 0 0 80px rgba(6, 182, 212, 0.4);
+        }
+
+        /* --- DATA MODULES --- */
+        .telemetry-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .stat-card:hover {
+            border-color: var(--benthic-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .stat-label {
+            font-family: 'JetBrains Mono';
+            font-size: 0.6rem;
+            color: var(--benthic-cyan);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1px;
+        }
+
+        .cipher-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--benthic-cyan);
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-left: 4px solid var(--benthic-cyan);
+            line-height: 2;
+            margin-top: 40px;
+        }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="benthic-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-telemetry">
+            <div class="z-10 px-6">
+                <span class="font-mono text-xs text-cyan-500 uppercase tracking-[0.6em] mb-4 block">Abyssal Node // SODR Ring PHL-01</span>
+                <h1 class="hero-title">Logic <br>Capsules.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed">
+                    The physical backing of the $AII Economy. Submerged Nautilus-IV units providing petascale compute and 300ms juridical consensus from the deep ocean floor.
+                </p>
+            </div>
+        </section>
+
+        <!-- FORENSIC TELEMETRY PANEL -->
+        <section class="telemetry-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="mb-20">
+                <h2 class="font-serif italic text-6xl mb-6">Real-Time <span class="text-cyan-500">Stability.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl">
+                    Each Nautilus-IV unit is a hardware-locked private key to the Bureau’s 1.0v-Root Ledger. Below is the live diagnostic feed of the Logic Abyss™ processing nodes.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Benthic Depth</span>
+                    <div class="stat-value">3,500m</div>
+                    <p class="text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-widest">Abyssal Zone // Zero-Visibility</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Compute Capacity</span>
+                    <div class="stat-value">58.2 TFLOPS</div>
+                    <p class="text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-widest">Per Nautilus Node // H100 Equivalent</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Energy Source</span>
+                    <div class="stat-value">Fusion</div>
+                    <p class="text-[10px] text-slate-500 mt-4 uppercase font-bold tracking-widest">Submerged Thermal Hybrid</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Security Protocol</span>
+                    <div class="stat-value">Active</div>
+                    <p class="text-[10px] text-emerald-500 mt-4 uppercase font-bold tracking-widest">Benthic Pulse Sentinel // Bridge 33</p>
+                </div>
+            </div>
+
+            <div class="cipher-log">
+                [SYSTEM_LOG] POLLING NAUTILUS_NODE_X92...<br>
+                [DIAGNOSTIC] EXTERNAL_PRESSURE: 350 ATM // INTERNAL_TEMP: 14°C<br>
+                [STATUS] $AII_MINTING_CAPACITY: 100% // NO_FAKES_STRIKE_STANDBY<br>
+                [ORACLE] MARKET_PEG_VERIFIED: 1.0 $AII = 1.0hr_COMPUTE
+            </div>
+        </section>
+
+        <!-- INDUSTRIAL SPECS -->
+        <section class="max-w-6xl mx-auto px-6 py-32">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8">Hardware-Locked <br><span class="text-cyan-500">Sovereignty.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        The Nautilus-IV is not a shared server. It is a **Sovereign Industrial Commodity**. When you lease compute through Bridge 31, your biological intent is the only signal that can move the logic gate.
+                    </p>
+                    <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-slate-500">
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check text-cyan-500"></i> Titanium-Gold PVD Pressure Shield</li>
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check text-cyan-500"></i> Sub-Dermal Bone Resonance Sync</li>
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check text-cyan-500"></i> Magnetic Valve Maintenance Lock</li>
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check text-cyan-500"></i> 10,000 tx/sec M2M Velocity</li>
+                    </ul>
+                </div>
+                <div class="p-12 border border-white/10 bg-white/2 rounded-2xl">
+                    <h4 class="text-cyan-500 font-bold mb-8 uppercase tracking-widest text-xs">Bridge 33: Benthic Pulse</h4>
+                    <p class="text-sm text-slate-400 mb-8 italic">
+                        "The deep ocean provides the ultimate air-gap. Your biological root is physically separated from legacy land-based threats."
+                    </p>
+                    <div class="w-full h-1 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="h-full bg-cyan-500 w-[94%] animate-pulse shadow-[0_0_15px_#06b6d4]"></div>
+                    </div>
+                    <div class="mt-4 flex justify-between text-[10px] font-mono text-slate-500">
+                        <span>PERIMETER PURITY</span>
+                        <span>99.99%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="satoshi-multi-rail.html">Satoshi Multi-Rail</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="bridge-14-property-deeds.html">Property Deeds</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="investor-data-room.html">Investor Data Room</a>
+                <a href="executive-summary.html" style="color:var(--phl-blue)">Financial Summary</a>
+                <a href="signin.html">Member Dashboard</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('benthic-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // --- Create Logic Capsule (Nautilus-IV) ---
+        const capsuleGeo = new THREE.CylinderGeometry(1.5, 1.5, 4, 32);
+        const capsuleMat = new THREE.MeshPhongMaterial({
+            color: 0x06B6D4,
+            transparent: true,
+            opacity: 0.6,
+            wireframe: true
+        });
+        const capsule = new THREE.Mesh(capsuleGeo, capsuleMat);
+        group.add(capsule);
+
+        // --- The Pulse Shield (Acoustic Deterrent) ---
+        const ringGeo = new THREE.TorusGeometry(3.5, 0.05, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x06B6D4, transparent: true, opacity: 0.2 });
+        const rings = [];
+        for(let i=0; i<3; i++) {
+            const ring = new THREE.Mesh(ringGeo, ringMat);
+            ring.rotation.x = Math.PI / 2;
+            ring.scale.set(0.1, 0.1, 0.1);
+            group.add(ring);
+            rings.push(ring);
+        }
+
+        // --- Floating Data Particles ---
+        const pointsCount = 60;
+        const pointsGeo = new THREE.BufferGeometry();
+        const positions = new Float32Array(pointsCount * 3);
+        for(let i=0; i<pointsCount*3; i++) { positions[i] = (Math.random()-0.5)*15; }
+        pointsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const pointsMat = new THREE.PointsMaterial({ color: 0x06B6D4, size: 0.08, transparent: true, opacity: 0.5 });
+        const particles = new THREE.Points(pointsGeo, pointsMat);
+        group.add(particles);
+
+        scene.add(group);
+
+        const light = new THREE.PointLight(0x06B6D4, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const goldLight = new THREE.PointLight(0xb8860b, 1, 100);
+        goldLight.position.set(-10, -10, 10);
+        scene.add(goldLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+        camera.position.y = 2;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            capsule.rotation.z = Math.sin(Date.now() * 0.001) * 0.1;
+            particles.rotation.y -= 0.005;
+            
+            /* Expanding pulse logic */
+            rings.forEach((ring, i) => {
+                const s = ( (Date.now() * 0.0008 + i) % 3 ) / 3;
+                ring.scale.set(s * 4, s * 4, s * 4);
+                ring.material.opacity = 0.4 * (1 - s);
+            });
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

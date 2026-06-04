@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node B-36 | Doge Bridge | RealAIID Bureau</title>
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co https://via.placeholder.com;">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --doge-gold: #EAB308;
+            --phl-dark: #05080F;
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--phl-dark); color: #fff; overflow: hidden; height: 100vh; }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- 3D VELOCITY ENGINE --- */
+        #bridge-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+
+        /* --- LAYOUT STRUCTURE --- */
+        .master-container { 
+            position: relative; 
+            z-index: 20; 
+            height: 100vh; 
+            display: grid; 
+            grid-template-columns: 1.2fr 1fr;
+            background: radial-gradient(circle at 30% 50%, transparent 0%, rgba(5,8,15,0.9) 100%);
+        }
+
+        /* --- LEFT PILLAR: SOVEREIGN UTILITY --- */
+        .content-pillar { padding: 0 10%; display: flex; flex-direction: column; justify-content: center; }
+        .node-header { font-family: 'JetBrains Mono'; color: var(--doge-gold); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5em; margin-bottom: 2rem; display: flex; align-items: center; gap: 15px; }
+        .node-header::before { content: ""; width: 40px; height: 1px; background: var(--doge-gold); }
+
+        .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; line-height: 0.85; margin-bottom: 2.5rem; letter-spacing: -2px; }
+        .bridge-desc { max-width: 500px; color: #94a3b8; font-size: 1.1rem; line-height: 1.7; margin-bottom: 4rem; font-weight: 300; }
+
+        .velocity-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; border-top: 1px solid rgba(234, 179, 8, 0.2); padding-top: 3rem; }
+        .stat-item { display: flex; flex-direction: column; gap: 5px; }
+        .stat-label { font-family: 'JetBrains Mono'; font-size: 9px; color: #475569; text-transform: uppercase; letter-spacing: 2px; }
+        .stat-value { font-size: 1.4rem; font-weight: 900; color: #fff; letter-spacing: 1px; }
+
+        /* --- RIGHT PILLAR: FORENSIC TERMINAL --- */
+        .forensic-pillar { 
+            background: rgba(255,255,255,0.02); 
+            backdrop-filter: blur(20px); 
+            border-left: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .data-card {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 30px;
+            font-family: 'JetBrains Mono';
+            position: relative;
+        }
+        .data-card::after { content: "PHL-01 // B-36"; position: absolute; top: -10px; right: 20px; background: var(--doge-gold); color: #000; font-size: 8px; padding: 2px 8px; font-weight: 900; }
+
+        .log-entry { font-size: 10px; color: var(--doge-gold); margin-bottom: 10px; opacity: 0.8; }
+        .terminal-text { color: #fff; font-size: 12px; line-height: 1.8; }
+
+        .back-nav { position: absolute; top: 50px; left: 50px; z-index: 100; text-decoration: none; color: #fff; font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 3px; display: flex; align-items: center; gap: 15px; }
+        .back-nav i { color: var(--doge-gold); font-size: 1.2rem; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-nav"><i class="ph ph-arrow-left"></i> Mainframe Portal</a>
+
+    <div id="bridge-canvas"></div>
+
+    <main class="master-container">
+        <section class="content-pillar">
+            <div class="node-header">Registry Node B-36 // Social Utility</div>
+            <h1 class="bridge-title">Doge <br><span style="color: var(--doge-gold)">Velocity™</span></h1>
+            
+            <p class="bridge-desc">
+                The Doge Bridge is the Bureau's primary rail for high-velocity, low-latency social liquidity. By binding biological intent to a verified pulse, we facilitate frictionless micro-settlements for the Real AI Island ecosystem.
+            </p>
+
+            <div class="velocity-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Network Protocol</span>
+                    <span class="stat-value">Scrypt L2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">TPS Capacity</span>
+                    <span class="stat-value">10,000+</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Sync Status</span>
+                    <span class="stat-value" style="color: #22c55e;">SYNCHRONIZED</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Marrow-Link</span>
+                    <span class="stat-value">ENABLED</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="forensic-pillar">
+            <div class="data-card">
+                <div class="log-entry">[SYSTEM_LOG] ATTACHING VELOCITY_RAIL...</div>
+                <div class="terminal-text">
+                    > PULSE_VERIFICATION: 100%<br>
+                    > AUTHENTICATING SOCIAL_LIQUIDITY...<br>
+                    > MAPPING BIOMETRIC_HASH TO SCRYPT_KEY...<br>
+                    > VELOCITY_LIMIT: UNRESTRICTED<br><br>
+                    <span style="color: var(--doge-gold)">The Doge Bridge enables REALAiID inhabitants to utilize social currency for real-world gated access. Every biological signature acts as a continuous spender-key for sub-cent transactions within the Commonwealth.</span>
+                </div>
+                <div class="mt-8 border-t border-white/10 pt-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[9px] text-gray-500">ENCRYPTION: AES-256-MARROW</span>
+                        <i class="ph-fill ph-check-circle text-green-500"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let scene, camera, renderer, particles, knot;
+
+        const init = () => {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('bridge-canvas').appendChild(renderer.domElement);
+
+            // Sophisticated Torus Knot (The Velocity Engine)
+            const geo = new THREE.TorusKnotGeometry(12, 2, 250, 20);
+            const mat = new THREE.MeshPhongMaterial({ 
+                color: 0xEAB308, 
+                wireframe: true,
+                transparent: true,
+                opacity: 0.2
+            });
+            knot = new THREE.Mesh(geo, mat);
+            scene.add(knot);
+
+            // Velocity Field Particles
+            const pGeo = new THREE.BufferGeometry();
+            const pCount = 2000;
+            const posArray = new Float32Array(pCount * 3);
+            for(let i=0; i < pCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 100;
+            }
+            pGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const pMat = new THREE.PointsMaterial({ size: 0.05, color: 0x1693E9, transparent: true, opacity: 0.5 });
+            particles = new THREE.Points(pGeo, pMat);
+            scene.add(particles);
+
+            const light = new THREE.PointLight(0xffffff, 1.5, 100);
+            light.position.set(10, 10, 20);
+            scene.add(light);
+            scene.add(new THREE.AmbientLight(0x404040));
+
+            camera.position.z = 40;
+            animate();
+        };
+
+        const animate = () => {
+            requestAnimationFrame(animate);
+            knot.rotation.y += 0.003;
+            knot.rotation.x += 0.001;
+            particles.rotation.y -= 0.0005;
+            
+            // Pulse matching the site-wide frequency
+            const scale = 1 + Math.sin(Date.now() * 0.002) * 0.04;
+            knot.scale.set(scale, scale, scale);
+
+            renderer.render(scene, camera);
+        };
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        init();
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 08 // UAC Physical | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --surface: #05080F;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- STREAMING_CHUNK:Styling the institutional border frame... --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER SYNC HEADER --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--phl-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D GATEWAY CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        /* --- CONTENT STRUCTURE --- */
+        .hero-bridge {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .bridge-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 50px rgba(22, 147, 233, 0.3);
+        }
+
+        /* --- FORENSIC PRESENTATION PANELS --- */
+        .forensic-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 60px;
+            border-radius: 4px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tech-spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .spec-item {
+            border-left: 2px solid var(--phl-blue);
+            padding-left: 25px;
+            transition: var(--transition);
+        }
+
+        .spec-item:hover {
+            border-left-color: var(--bureau-gold);
+            transform: translateX(10px);
+        }
+
+        .spec-item h4 {
+            font-family: 'JetBrains Mono';
+            color: var(--phl-blue);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .cipher-box {
+            font-family: 'JetBrains Mono';
+            background: #000;
+            padding: 30px;
+            border-radius: 4px;
+            border: 1px solid #111;
+            font-size: 0.8rem;
+            color: var(--phl-blue);
+            margin-top: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .utility-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .utility-card:hover {
+            border-color: var(--phl-blue);
+            background: rgba(22, 147, 233, 0.05);
+        }
+
+        /* --- MASTER SYNC FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px; 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { 
+            color: #fff; 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
+        }
+
+        .footer-links a { 
+            color: #64748B; 
+            text-decoration: none; 
+            display: block; 
+            margin-bottom: 12px; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+        }
+
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="uac-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="hardware-wallet.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        
+        <!-- --- STREAMING_CHUNK:Rendering the Hero Physical Gateway... --- -->
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.5em] mb-4 block">Industrial Node // Bridge 08</span>
+                <h1 class="bridge-title">UAC <span class="text-blue-500">Physical.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto">
+                    The physical command root bridging biological presence to industrial entry, high-security gates, and smart-infrastructure locks.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-blue-600 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Authorize Physical Ingest</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Defining the forensic UAC panel... --- -->
+        <section class="forensic-panel shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <h2 class="font-serif italic text-5xl mb-8 text-white">Biological <br><span class="text-blue-500">Entry Keys.</span></h2>
+                    <p class="text-lg text-slate-400 font-light mb-8 leading-relaxed">
+                        Bridge 08 technicalizes the physical boundary. In the REALAiID framework, your right of entry is not a piece of plastic with a mag-stripe—it is a **Verified Biological Pulse**. By anchoring physical door hardware (HID Origo / Assa Abloy) to your biological frequency, we eliminate the risk of card-cloning and unauthorized key distribution.
+                    </p>
+                    <p class="text-slate-500 mb-10">
+                        Physical access now requires **Biological Intent**. If the authorized liaison is not physically within the geofenced perimeter to provide the Handshake Knot™, the door remains electronically sealed.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > UPLINK: HID_ORIGO_SYNC<br>
+                        > HARDWARE: MAGNETIC_STRIKE_PHL_01<br>
+                        > METHOD: NFC_BIOLOGICAL_HANDSHAKE<br>
+                        > STATUS: <span class="text-emerald-500">PERIMETER_STABLE</span>
+                    </div>
+                </div>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item">
+                        <h4>Marrow-Locked Entry</h4>
+                        <p class="text-sm text-slate-400">Door hardware queries the REALAiID node via NFC. The strike releases only when biological resonance matches the credential.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Anti-Tailgating Sync</h4>
+                        <p class="text-sm text-slate-400">Continuous presence verification. If a liaison exits the room or loses biological contact, the room enters a lockout state.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Geofenced Authority</h4>
+                        <p class="text-sm text-slate-400">Dynamic permissions. Unlock specific zones only when high-security thresholds (Bridge 15/33) and location data align.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h4>Instant Strike Burn</h4>
+                        <p class="text-sm text-slate-400">Remote hardware revocation. Wiping physical access rights globally in under 400ms upon relationship termination.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- STREAMING_CHUNK:Rendering the Wallet Utility section... --- -->
+        <section class="py-40">
+            <div class="text-center mb-24">
+                <h3 class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] mb-8">Wallet Loaded Utility</h3>
+                <h2 class="font-serif text-6xl italic text-white">Your Existence is <br><span class="text-blue-500">The Credential.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="utility-card">
+                    <div class="text-blue-500 text-3xl mb-6">🚪</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Office & Suite Unlock</h4>
+                    <p class="text-slate-400 font-light">Forget the lanyard. Your REALAiID Wallet handles the handshake via NFC as you approach the strike. The door opens based on your real-time directory standing.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-blue-500 text-3xl mb-6">🏛️</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Gated Community Access</h4>
+                    <p class="text-slate-400 font-light">Bridge 08 synchronizes with residential UAC systems. Your biological node acts as the long-range credential for vehicle gates and secure lobbies.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-blue-500 text-3xl mb-6">🔒</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Server Rack Anchoring</h4>
+                    <p class="text-slate-400 font-light">Secure high-value hardware at the cabinet level. Only the authorized technician's biological intent can release the electronic rack locks.</p>
+                </div>
+                <div class="utility-card">
+                    <div class="text-blue-500 text-3xl mb-6">🛋️</div>
+                    <h4 class="text-xl font-bold uppercase tracking-widest mb-4">Hospitality Smart-Room</h4>
+                    <p class="text-sm text-slate-400">Automatic check-in and entry. Your room recognizes you at the elevator and unlocks as you arrive, personalizing atmospheric settings instantly.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- --- STREAMING_CHUNK:Rendering the Industrial Footer... --- -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Deploying biological defense standard HS-01 under the NO FAKES Act.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="#">Maritime Charter</a>
+                <a href="api-docs.html">API Documents</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="#" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        // --- STREAMING_CHUNK:Initializing 3D Gateway visualization... ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('uac-canvas').appendChild(renderer.domElement);
+
+        // --- Create Gateway architecture ---
+        const group = new THREE.Group();
+        
+        // The Frame (Physical Threshold)
+        const frameGeo = new THREE.TorusGeometry(3.5, 0.1, 16, 100);
+        const frameMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            wireframe: true
+        });
+        const frame = new THREE.Mesh(frameGeo, frameMat);
+        group.add(frame);
+
+        // The Core (Biological Signature)
+        const coreGeo = new THREE.TorusKnotGeometry(1.5, 0.4, 100, 16);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0x1693E9, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const goldLight = new THREE.PointLight(0xb8860b, 1.5, 100);
+        goldLight.position.set(-10, -10, 10);
+        scene.add(goldLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 8;
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+            frame.rotation.z += 0.005;
+            core.rotation.y += 0.01;
+            core.rotation.x += 0.005;
+            
+            // Pulse effect
+            const scale = 1 + Math.sin(Date.now() * 0.002) * 0.05;
+            core.scale.set(scale, scale, scale);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

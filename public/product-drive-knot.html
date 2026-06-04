@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive-Knot™ Auto // Node 30 // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --drive-cobalt: #2563eb;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: #fff; overflow-x: hidden; padding: var(--border-frame); }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+        
+        /* Master Sync Header */
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: 95px !important; width: auto !important; display: block; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* Cinematic Background */
+        #drive-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; opacity: 0.4; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-product { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .product-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7rem); font-style: italic; line-height: 0.9; text-shadow: 0 0 50px rgba(37, 99, 235, 0.4); }
+
+        .status-badge { background: #fef9c3; color: #854d0e; font-size: 10px; font-weight: 900; padding: 8px 16px; border-radius: 2px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 30px; border: 1px solid #222; font-size: 0.8rem; color: var(--drive-cobalt); border-left: 4px solid var(--drive-cobalt); }
+
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--drive-cobalt); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; max-width: 1700px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+    <div id="drive-canvas"></div>
+
+    <header>
+        <div class="flex justify-between items-center">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex gap-10 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="fraud-score.html">Trust Index</a>
+                <a href="lethal-ledger.html">Truth Ingest</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="hero-product">
+            <div class="z-10">
+                <span class="status-badge mb-8 inline-block">Mobility Node // Staging</span>
+                <span class="mono text-blue-500 text-xs uppercase tracking-[0.5em] mb-4 block">Product Node 30</span>
+                <h1 class="product-title">Drive-Knot™ <br><span class="text-blue-600">Auto.</span></h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto mt-10 font-light leading-relaxed">
+                    Replacing the legacy key fob with **Biological Ignition Architecture**. Your vehicle now recognizes your skeletal signature as the only valid key.
+                </p>
+                <div class="mt-12">
+                    <a href="contact.html" class="bg-blue-600 text-white px-12 py-5 font-black text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Secure Your Ignition</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass p-12 lg:p-20 rounded-sm shadow-2xl relative z-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-serif italic text-5xl mb-8">The End of the <br><span class="text-blue-500">Relay Attack.</span></h2>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed">
+                        Modern vehicle theft relies on intercepting radio signals between a fob and a car. Drive-Knot™ eliminates this attack vector entirely. By binding the ignition cycle to a **Skeletal ECU Interlock**, the car remains a static object until your biological frequency is verified through the steering column or haptic driver interface.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > AUTHORITY: NODE_30_MOBILITY<br>
+                        > PROTOCOL: SKELETAL_IGNITION_v4.2<br>
+                        > INTERLOCK: <span class="animate-pulse text-blue-500">ECU_HARDWARE_BOUND</span><br>
+                        > GUEST_KNOTS: 0 ACTIVE
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-2 border-blue-600 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-blue-500 tracking-widest">Marrow-Locked ECU</h4>
+                        <p class="text-xs text-slate-400">The vehicle's computer is biometrically encrypted. Without the biological resonance of the owner, the engine is electronically inert.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-600 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-blue-500 tracking-widest">GPS Geofencing</h4>
+                        <p class="text-xs text-slate-400">Set "Sovereign Zones." If the vehicle exits a predefined GPS boundary without a secondary biological handshake, the fuel system enters lockdown.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-600 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-blue-500 tracking-widest">Fleet Authority</h4>
+                        <p class="text-xs text-slate-400">Perfect for logistics and executive transport. Manage access for 100+ vehicles via a single REALAiID Administrative dashboard.</p>
+                    </div>
+                    <div class="border-l-2 border-blue-600 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-blue-500 tracking-widest">The $199 Standard</h4>
+                        <p class="text-xs text-slate-400">Ingest protocol for luxury and performance vehicles. Includes one physical SA-02 interlock adapter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 border-t border-white/5 mt-40">
+            <h2 class="text-center font-serif italic text-3xl mb-20 uppercase tracking-widest text-slate-500">Integrated Ecosystem</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="bridge-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="font-black text-white text-xl mono mb-6 uppercase">REALAiID // BUREAU</div>
+                <p class="text-sm leading-relaxed">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Truth.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="mono text-[10px] tracking-widest text-white uppercase mb-8">Infrastructure</h4>
+                <ul class="space-y-4 text-xs font-bold uppercase tracking-tighter">
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="sodr-ring.html">SODR Ring</a></li>
+                    <li><a href="bridge-30-automotive-anchor.html" class="text-blue-500">Node 30 Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col text-right col-span-2">
+                <div class="mono text-[10px] space-y-2">
+                    <div class="text-blue-500">SYSTEM STATUS: STAGING</div>
+                    <div>© 2026 SOLOMON KIN LLC // PHL-NODE-01</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* Three.js Visualization: Rotating Steering/Ignition Ring */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('drive-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        // Torus representing the steering/ignition interlock ring
+        const geo = new THREE.TorusGeometry(3, 0.1, 16, 100);
+        const mat = new THREE.MeshPhongMaterial({ color: 0x2563eb, wireframe: true, transparent: true, opacity: 0.3 });
+        const ring = new THREE.Mesh(geo, mat);
+        group.add(ring);
+        
+        // Inner complex core
+        const innerGeo = new THREE.IcosahedronGeometry(1.5, 1);
+        const innerMat = new THREE.MeshPhongMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 });
+        const core = new THREE.Mesh(innerGeo, innerMat);
+        group.add(core);
+
+        scene.add(group);
+        scene.add(new THREE.PointLight(0x2563eb, 3, 100).position.set(5, 5, 5));
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ring.rotation.z += 0.005;
+            core.rotation.y -= 0.002;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        /* Ecosystem Bridge Injection */
+        const ecosystem = [
+            { id: "30", name: "Auto Anchor", link: "bridge-30-automotive-anchor.html" },
+            { id: "29", name: "Logistics Sync", link: "bridge-29-logistics-sync.html" },
+            { id: "31", name: "$AII Economy", link: "bridge-31-aii-economy.html" },
+            { id: "08", name: "UAC Physical", link: "bridge-08-uac-physical.html" }
+        ];
+        const grid = document.getElementById('bridge-grid');
+        ecosystem.forEach(b => {
+            const btn = document.createElement('a');
+            btn.href = b.link;
+            btn.className = "p-8 glass border border-white/5 hover:border-blue-500 transition-all text-center flex flex-col items-center gap-4";
+            btn.innerHTML = `<span class="mono text-[8px] opacity-40 uppercase">Node B-${b.id}</span><span class="text-[10px] font-black uppercase tracking-widest">${b.name}</span>`;
+            grid.appendChild(btn);
+        });
+    </script>
+</body>
+</html>

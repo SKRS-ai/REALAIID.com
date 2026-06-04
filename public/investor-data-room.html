@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investor Data Room | REALAiID Global Reserve ($102.7B)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img { height: 95px; width: auto; transition: var(--transition); }
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #0B1320; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* --- 3D DATA MONOLITH CANVAS --- */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; opacity: 0.5; }
+
+        /* --- CONTENT --- */
+        .hero-investor { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .valuation-text { font-family: 'Playfair Display', serif; font-size: clamp(4rem, 10vw, 8rem); font-style: italic; line-height: 0.9; color: var(--bureau-gold); text-shadow: 0 0 80px rgba(184, 134, 11, 0.4); }
+
+        .data-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px); padding: 80px; margin-top: -100px; position: relative; z-index: 10; box-shadow: 0 50px 100px rgba(0,0,0,0.5); }
+
+        .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .revenue-card { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; transition: 0.4s; }
+        .revenue-card:hover { border-color: var(--bureau-gold); background: rgba(184, 134, 11, 0.05); }
+
+        .velocity-badge { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--bureau-gold); border: 1px solid var(--bureau-gold); padding: 4px 10px; text-transform: uppercase; letter-spacing: 2px; display: inline-block; margin-bottom: 20px; }
+
+        .roadmap-timeline { position: relative; padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .roadmap-item { display: grid; grid-template-columns: 200px 1fr; gap: 60px; margin-bottom: 80px; transition: var(--transition); }
+        .roadmap-year { font-family: 'Playfair Display', serif; font-size: 4rem; font-style: italic; line-height: 1; color: var(--phl-blue); }
+        .roadmap-content h3 { font-size: 2rem; font-weight: 700; margin-bottom: 15px; color: #fff; }
+
+        .audit-strip { display: flex; gap: 15px; margin-bottom: 30px; }
+        .audit-tag { background: #fff; color: #000; font-family: 'JetBrains Mono'; font-size: 9px; font-weight: 900; padding: 3px 10px; text-transform: uppercase; border-radius: 1px; }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px;
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="data-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-investor">
+            <div class="z-10">
+                <div class="audit-strip justify-center">
+                    <span class="audit-tag">SOC 2 TYPE II</span>
+                    <span class="audit-tag">ISO 27001</span>
+                    <span class="audit-tag">NIST LoA 4</span>
+                </div>
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.6em] mb-4 block">Institutional Repository // Phase IV Hardening</span>
+                <h1 class="valuation-text">$102.7B</h1>
+                <h2 class="text-4xl font-serif italic text-white mb-8">Investor Data Room</h2>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                    Accessing the technical blueprints, financial modeling, and 35-bridge industrial logic of the Global Reserve standard.
+                </p>
+            </div>
+        </section>
+
+        <!-- FINANCIAL & REVENUE MODELING -->
+        <section class="data-panel max-w-7xl mx-auto">
+            <div class="mb-20">
+                <h2 class="font-serif italic text-6xl mb-6">The Velocity <span class="text-blue-500">Economy.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl">
+                    REALAiID captures value through **Infrastructure Ingestion**. By integrating industrial APIs (**Sumsub, Fireblocks, Ripple**), the Bureau acts as the universal clearing house for biological intent.
+                </p>
+            </div>
+
+            <div class="revenue-grid">
+                <div class="revenue-card">
+                    <span class="velocity-badge">1.5% BRIDGE FEE</span>
+                    <h3>Satoshi Retail Rail</h3>
+                    <p class="text-sm text-slate-500 mt-4 leading-relaxed">
+                        Every transaction liquidated from the **Satoshi Root (Bridge 16)** to retail merchants generates a 1.5% velocity fee. 0.5% is forensicly burned into the $AII floor.
+                    </p>
+                </div>
+                <div class="revenue-card">
+                    <span class="velocity-badge">$9,999 / YR SUBSCRIPTION</span>
+                    <h3>Citadel Elite Access</h3>
+                    <p class="text-sm text-slate-500 mt-4 leading-relaxed">
+                        Institutional partners pay for **Terminal Justice (Bridge 35)** and automated session revocation. Citadel membership captures 100% of high-tier B2B demand.
+                    </p>
+                </div>
+                <div class="revenue-card">
+                    <span class="velocity-badge">400% MARGIN</span>
+                    <h3>Hardware Distribution</h3>
+                    <p class="text-sm text-slate-500 mt-4 leading-relaxed">
+                        The SA-02 Titanium card rollout provides high-margin hardware revenue. Crafted from aerospace titanium, it is the physical "Key" to the Global Reserve.
+                    </p>
+                </div>
+            </div>
+
+            <!-- INDUSTRIAL API INTEGRATION STATUS -->
+            <div class="mt-32 p-10 bg-black/40 border border-white/5 rounded">
+                <h4 class="text-blue-500 font-mono text-[10px] uppercase tracking-[0.5em] mb-10">Production API Integration Log</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div>
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-2">Sumsub / Jumio</div>
+                        <div class="text-xs font-black text-emerald-500">HANDSHAKING</div>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-2">Fireblocks / Ripple</div>
+                        <div class="text-xs font-black text-emerald-500">HANDSHAKING</div>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-2">Microsoft Entra</div>
+                        <div class="text-xs font-black text-emerald-500">HANDSHAKING</div>
+                    </div>
+                    <div>
+                        <div class="text-[9px] text-slate-500 font-bold uppercase mb-2">AAMVA / DMV</div>
+                        <div class="text-xs font-black text-amber-500">STAGED</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRATEGIC ROADMAP -->
+        <section class="max-w-6xl mx-auto px-6 py-32">
+            <div class="mb-24 text-center">
+                <span class="font-mono text-[10px] text-blue-500 uppercase tracking-[0.8em] mb-4 block">Strategic Deployment</span>
+                <h2 class="font-serif italic text-6xl text-white">The Roadmap to <span class="text-amber-500">Sovereignty.</span></h2>
+            </div>
+
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2026</div>
+                    <div class="roadmap-content">
+                        <h3>Mainframe Initialization</h3>
+                        <p class="text-slate-400">Completion of the 35-bridge technical architecture on Node PHL-01. Establishment of the $AII Sovereign Standard and the 1.0v-Root Ledger.</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2028</div>
+                    <div class="roadmap-content">
+                        <h3>Biometric-in-Motion Standard</h3>
+                        <p class="text-slate-400">REALAiID becomes the mandatory liveness verification standard for aviation corridors and high-security asset tracking (3Si compatible).</p>
+                    </div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-year">2030</div>
+                    <div class="roadmap-content">
+                        <h3>Global Sovereignty Network</h3>
+                        <p class="text-slate-400">The VSSN becomes a global ISO-standard. REALAiID manages the "Identity Trust Layer" for the decentralized web, ensuring human authenticity.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- LIAISON CALL TO ACTION -->
+        <section class="bg-black py-32 px-12 border-t border-white/5 text-center">
+            <h2 class="font-serif italic text-5xl mb-8 text-white">Request Forensic Vetting</h2>
+            <p class="text-slate-500 max-w-2xl mx-auto mb-12 text-lg font-light">
+                Tier-0 investors requesting access to the SODR Ring infrastructure logs must undergo a preliminary biological handshake audit.
+            </p>
+            <a href="investor-portal.html" class="inline-block bg-amber-500 text-black px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white transition-all shadow-2xl">Initialize Liaison Handshake</a>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[9px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="public-registry.html">Public Registry</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="identity-station.html">Start Hashing</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="investor-data-room.html" style="color:var(--phl-blue)">Data Room</a>
+                <a href="signin.html">Member Dashboard</a>
+                <a href="registration-gate.html">Registration Gate</a>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 40px; margin-top: 80px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #475569; letter-spacing: 2px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // DATA ROOM SECURED
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('data-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // The Data Monolith Frame (Gold Triangular Prism)
+        const frameGeo = new THREE.CylinderGeometry(3.5, 3.5, 8, 3);
+        const frameMat = new THREE.MeshPhongMaterial({
+            color: 0xb8860b,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.3
+        });
+        const monolith = new THREE.Mesh(frameGeo, frameMat);
+        group.add(monolith);
+
+        // The Capital Pulse (Blue Octahedron Core)
+        const coreGeo = new THREE.OctahedronGeometry(1.8, 1);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        // Orbiting satellites (Data nodes)
+        for(let i=0; i<3; i++) {
+            const satGeo = new THREE.IcosahedronGeometry(0.3, 0);
+            const satMat = new THREE.MeshBasicMaterial({ color: 0xb8860b });
+            const sat = new THREE.Mesh(satGeo, satMat);
+            sat.position.set(Math.cos(i * 2.1) * 5, Math.sin(i * 1.5) * 2, Math.sin(i * 2.1) * 5);
+            group.add(sat);
+        }
+
+        scene.add(group);
+
+        const light = new THREE.PointLight(0xb8860b, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+        camera.position.z = 12;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            monolith.rotation.y += 0.001;
+            monolith.rotation.x += 0.0005;
+            core.rotation.y -= 0.008;
+            core.rotation.x += 0.003;
+            
+            /* Data pulse effect */
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

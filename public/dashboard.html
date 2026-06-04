@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOVEREIGN COMMAND CENTER | REALAiID Bureau</title>
+    <!-- Tailwind CSS for Industrial Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- React Core Infrastructure -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel Standalone for Runtime Transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap');
+        
+        body { 
+            margin: 0; 
+            background: #000; 
+            overflow: hidden; 
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-serif { font-family: 'Libre Baskerville', serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .animate-shimmer {
+            animation: shimmer 3s infinite linear;
+        }
+
+        @keyframes scan-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(245, 158, 11, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.5); }
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        /**
+         * REALAiID SOVEREIGN COMMAND CENTER v1.9v
+         * STATUS: PHL-01 TOTAL PERIMETER SYNCHRONIZED
+         * RENDERING: REACT 18 + INLINE SVG (ZERO-DEPENDENCY ICONS)
+         */
+        const { useState, useEffect } = React;
+
+        // --- HARDENED INLINE SVG COMPONENTS ---
+        const IconBase = ({ children, size = 24, className = "" }) => (
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width={size} 
+                height={size} 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                className={className}
+            >
+                {children}
+            </svg>
+        );
+
+        const Shield = (props) => <IconBase {...props}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></IconBase>;
+        const Lock = (props) => <IconBase {...props}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></IconBase>;
+        const Activity = (props) => <IconBase {...props}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></IconBase>;
+        const Database = (props) => <IconBase {...props}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></IconBase>;
+        const FileCheck = (props) => <IconBase {...props}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m9 15 2 2 4-4"/></IconBase>;
+        const LogOut = (props) => <IconBase {...props}><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></IconBase>;
+        const MapIcon = (props) => <IconBase {...props}><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></IconBase>;
+        const Zap = (props) => <IconBase {...props}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></IconBase>;
+        const Globe = (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></IconBase>;
+        const Link2 = (props) => <IconBase {...props}><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></IconBase>;
+        const Unlink = (props) => <IconBase {...props}><path d="M18.85 9.14l.33-.34a5.37 5.37 0 1 1 7.59 7.59l-.34.33M9.14 18.85l-.33.34a5.37 5.37 0 1 1-7.59-7.59l.34-.33M15 9l-6 6"/></IconBase>;
+        const CheckCircle2 = (props) => <IconBase {...props}><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></IconBase>;
+        const ExternalLink = (props) => <IconBase {...props}><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 8"/><line x1="10" y1="14" x2="21" y2="3"/></IconBase>;
+        const AlertCircle = (props) => <IconBase {...props}><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></IconBase>;
+        const Cpu = (props) => <IconBase {...props}><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></IconBase>;
+        const Fingerprint = (props) => <IconBase {...props}><path d="M2 12a10 10 0 0 1 13-9.22"/><path d="M7 15a10 10 0 0 0 13-9.22"/><path d="M12 2a10 10 0 0 0-10 10"/><path d="M12 22a10 10 0 0 1-10-10"/><path d="M12 12a5 5 0 0 1 5-5"/><path d="M12 12a5 5 0 0 1-5 5"/><path d="M12 7V2"/><path d="M12 22v-5"/><path d="M7 12H2"/><path d="M22 12h-5"/></IconBase>;
+        const Plane = (props) => <IconBase {...props}><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5l-8.2-1.8c-.9-.2-1.8.1-2.4.8l-1.1 1.1c-.4.4-.4 1.2 0 1.6l6.2 4.5-2.7 2.7-3.7-.4c-.6-.1-1.2.1-1.5.7l-.3.3c-.4.4-.4 1.2 0 1.6l2.9 2.9c.4.4 1.2.4 1.6 0l.3-.3c.6-.3.8-.9.7-1.5l-.4-3.7 2.7-2.7 4.5 6.2c.4.4 1.2.4 1.6 0l1.1-1.1c.7-.6 1-1.5.8-2.4z"/></IconBase>;
+
+        const Dashboard = () => {
+            const [activeTab, setActiveTab] = useState('overview');
+            const [isBurnActive, setIsBurnActive] = useState(false);
+            
+            const userStats = {
+                name: "NEHEMIAH M. BROWN",
+                id: "AIID-ARC-99-NM-0226",
+                status: "SOVEREIGN ARCHITECT",
+                verifiedAssets: 142,
+                worldwideStanding: "eIDAS HIGH (LEVEL 3)",
+                jurisdiction: "GLOBAL_SOVEREIGN",
+                nodeHealth: "STABLE",
+                syncRate: "99.98%"
+            };
+
+            const activeNodes = [
+                { id: "node-1", name: "Philly Mainframe Entrance", type: "Physical UAC", protocol: "HID Origo", status: "Active", icon: Lock, location: "1900 Market St, PHL" },
+                { id: "node-2", name: "Netherlands Gateway", type: "International Bridge", protocol: "DigiD / OIDC", status: "Verified", icon: Globe, location: "Logius NL" },
+                { id: "node-3", name: "Corporate Hub", type: "Auth Root", protocol: "Okta", status: "Provisioning", icon: Cpu, location: "Global SSO" },
+                { id: "node-4", name: "Sovereign Vault", type: "Asset Escrow", protocol: "Island Shield", status: "Locked", icon: Database, location: "REALAiIsland" }
+            ];
+
+            const assetLedger = [
+                { id: "asset-1", name: "Primary Biological Root", type: "Digital Human", status: "Sovereign", provenance: "C2PA Verified", hash: "SHA-256: 8821...X99" },
+                { id: "asset-2", name: "K9-X Liaison (German Shepherd)", type: "Pet Likeness", status: "Protected", provenance: "Nose-Print Hash", hash: "SHA-256: 4421...B01" },
+                { id: "asset-3", name: "Newborn Baseline Baseline", type: "Successor Node", status: "Escrow", provenance: "Genetic Root", hash: "SHA-256: 0012...Z12" }
+            ];
+
+            const SidebarItem = ({ id, icon: IconComp, label }) => (
+                <button 
+                    onClick={() => setActiveTab(id)}
+                    className={`w-full flex items-center gap-3 px-6 py-4 transition-all ${
+                        activeTab === id 
+                            ? 'bg-slate-900 text-amber-500 border-r-4 border-amber-500 shadow-[inset_-10px_0_20px_rgba(245,158,11,0.05)]' 
+                            : 'text-slate-400 hover:bg-slate-800/50 hover:text-white'
+                    }`}
+                >
+                    <IconComp size={18} className={activeTab === id ? 'animate-pulse' : ''} />
+                    <span className="text-[10px] font-black tracking-[0.2em] uppercase">{label}</span>
+                </button>
+            );
+
+            return (
+                <div className={`min-h-screen bg-black text-slate-100 flex transition-colors duration-1000 ${isBurnActive ? 'grayscale invert' : ''}`}>
+                    {/* SIDEBAR NAVIGATION */}
+                    <div className="w-72 bg-slate-950 border-r border-slate-800 flex flex-col z-20">
+                        <div className="p-10 border-b border-slate-900 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-slate-900/50 to-transparent">
+                            <div className="text-amber-500 font-serif font-bold text-2xl tracking-tighter mb-1">REALAiID</div>
+                            <div className="text-[9px] text-slate-600 tracking-[0.4em] font-black uppercase">Mainframe PHL-01</div>
+                        </div>
+
+                        <nav className="flex-1 mt-6">
+                            <SidebarItem id="overview" icon={Activity} label="Sovereign Overview" />
+                            <SidebarItem id="global" icon={Globe} label="Worldwide Standing" />
+                            <SidebarItem id="nodes" icon={MapIcon} label="Active Node Map" />
+                            <SidebarItem id="vault" icon={Database} label="Asset Ledger" />
+                            <SidebarItem id="shield" icon={Shield} label="Likeness Shield" />
+                        </nav>
+
+                        {/* ACTIVE BRIDGE REGISTRY (THE 21-PILLAR STACK) */}
+                        <div className="p-8 bg-slate-900/30 border-t border-slate-900">
+                            <h5 className="text-[8px] font-black text-slate-500 uppercase tracking-[0.3em] mb-4">Industrial Handshakes</h5>
+                            <div className="space-y-3">
+                                <div className="flex items-center justify-between group cursor-help" title="Secure Enclave Handshake Active">
+                                    <span className="text-[9px] text-slate-400 uppercase font-bold flex items-center gap-2 tracking-widest"><Fingerprint size={10} className="text-amber-500"/> BIOSIGN (FIDO2)</span>
+                                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+                                </div>
+                                <div className="flex items-center justify-between" title="ICAO Digital Travel Credential Linked">
+                                    <span className="text-[9px] text-slate-400 uppercase font-bold flex items-center gap-2 tracking-widest"><Plane size={10} className="text-emerald-400"/> IATA TRAVEL</span>
+                                    <span className="text-[7px] text-emerald-500 font-black tracking-tighter">VERIFIED</span>
+                                </div>
+                                <div className="flex items-center justify-between" title="Bitcoin Lightning Network Settlement">
+                                    <span className="text-[9px] text-slate-400 uppercase font-bold flex items-center gap-2 tracking-widest"><Zap size={10} className="text-orange-500"/> SATOSHI ROOT</span>
+                                    <span className="text-[7px] text-emerald-500 font-black tracking-tighter">ACTIVE</span>
+                                </div>
+                                <div className="flex items-center justify-between opacity-50" title="Phase IV Expansion">
+                                    <span className="text-[9px] text-slate-400 uppercase font-bold flex items-center gap-2 tracking-widest"><Lock size={10} className="text-slate-600"/> CLOUD LOCK</span>
+                                    <span className="text-[7px] text-amber-500 font-black tracking-tighter animate-pulse">STAGING...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-8 border-t border-slate-900 bg-slate-950">
+                            <button 
+                                onMouseEnter={() => setIsBurnActive(true)}
+                                onMouseLeave={() => setIsBurnActive(false)}
+                                className="w-full mb-6 p-4 bg-red-950/20 border border-red-900/50 rounded flex flex-col items-center group hover:bg-red-900/40 transition-all"
+                            >
+                                <div className="flex items-center gap-2 text-red-500 text-[9px] font-black uppercase tracking-[0.3em] mb-1">
+                                    <Zap size={12} /> Instant Burn
+                                </div>
+                                <p className="text-[7px] text-red-700 font-bold uppercase text-center opacity-0 group-hover:opacity-100 transition-opacity">Execute Global Revocation</p>
+                            </button>
+                            <button className="w-full flex items-center justify-center gap-2 text-slate-600 text-[10px] font-black uppercase tracking-widest hover:text-white transition-colors" onClick={() => window.location.href='signin.html'}>
+                                <LogOut size={14} /> Terminate Session
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* MAIN CONTENT AREA */}
+                    <div className="flex-1 overflow-y-auto bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-900/20 via-black to-black relative">
+                        
+                        {/* TOP BAR / HEADER */}
+                        <div className="sticky top-0 z-10 px-12 py-8 bg-black/80 backdrop-blur-xl border-b border-slate-900 flex justify-between items-center">
+                            <div>
+                                <h1 className="text-3xl font-serif font-bold text-white mb-1 tracking-tight">
+                                    Sovereign: <span className="text-amber-500">{userStats.name}</span>
+                                </h1>
+                                <div className="flex items-center gap-6 text-[9px] tracking-[0.2em] font-black text-slate-500 uppercase">
+                                    <span className="flex items-center gap-2 text-emerald-500">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]" /> PHL-01 ONLINE
+                                    </span>
+                                    <span className="border-l border-slate-800 pl-6">ID: {userStats.id}</span>
+                                    <span className="text-amber-500 border-l border-slate-800 pl-6">STANDING: {userStats.worldwideStanding}</span>
+                                </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-4">
+                                <div className="text-right">
+                                    <div className="text-[8px] text-slate-500 font-black uppercase tracking-[0.3em] mb-1">Node Sync Rate</div>
+                                    <div className="text-emerald-500 font-mono text-xs">{userStats.syncRate}</div>
+                                </div>
+                                <div className="w-12 h-12 rounded-full border border-amber-500/20 flex items-center justify-center bg-amber-500/5 group hover:border-amber-500/5 transition-all cursor-pointer shadow-[0_0_15px_rgba(245,158,11,0.1)] animate-[scan-glow_3s_infinite]">
+                                    <Shield className="text-amber-500 group-hover:scale-110 transition-transform" size={20} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-12 max-w-7xl mx-auto">
+                            {activeTab === 'overview' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-2 duration-700">
+                                    {/* STATUS TILES */}
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                                        {[
+                                            { label: "Verified Assets", val: userStats.verifiedAssets, icon: FileCheck, trend: "+12.4%" },
+                                            { label: "Active Bridges", val: "22", icon: Zap, trend: "Terminal" },
+                                            { label: "Global Level", val: "HIGH", icon: Globe, color: "text-[#1693E9]", trend: "eIDAS 2.0" },
+                                            { label: "Shield Uptime", val: "100%", icon: Shield, color: "text-emerald-500", trend: "Active" }
+                                        ].map((stat, i) => (
+                                            <div key={i} className="bg-slate-950 border border-slate-900 p-8 rounded-sm group hover:border-amber-500/30 transition-all relative overflow-hidden">
+                                                <div className="absolute top-0 right-0 p-3 text-[8px] font-black text-slate-700 group-hover:text-amber-500/30 transition-colors uppercase tracking-widest">{stat.trend}</div>
+                                                <stat.icon className="text-slate-700 group-hover:text-amber-500 mb-6 transition-colors" size={20} />
+                                                <div className="text-[9px] text-slate-500 font-bold uppercase tracking-[0.2em] mb-2">{stat.label}</div>
+                                                <div className={`text-2xl font-black ${stat.color || 'text-white'}`}>{stat.val}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                        {/* WORLDWIDE JURISDICTION WIDGET */}
+                                        <div className="lg:col-span-2 bg-slate-950 border border-slate-900 rounded-sm overflow-hidden flex flex-col shadow-2xl">
+                                            <div className="p-8 border-b border-slate-900 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-slate-900/20 gap-4">
+                                                <div>
+                                                    <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mb-1">Worldwide Jurisdictional Status</h3>
+                                                    <p className="text-[11px] text-slate-400">Your sovereign proof is recognized within the following international perimeters.</p>
+                                                </div>
+                                                <button className="text-[9px] font-black uppercase tracking-widest bg-amber-500 text-black px-4 py-2 hover:bg-white transition-colors" onClick={() => setActiveTab('global')}>
+                                                    Bridge New Provider
+                                                </button>
+                                            </div>
+                                            
+                                            <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+                                                <div className="space-y-8">
+                                                    <div className="flex items-center gap-5 group cursor-pointer" onClick={() => setActiveTab('global')}>
+                                                        <div className="w-12 h-12 rounded bg-[#1693E9]/5 flex items-center justify-center border border-[#1693E9]/20 group-hover:border-[#1693E9] transition-colors">
+                                                            <Globe size={22} className="text-[#1693E9]" />
+                                                        </div>
+                                                        <div>
+                                                            <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">European Union (eIDAS)</div>
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="text-xl font-black text-white">LEVEL HIGH</span>
+                                                                <div className="bg-emerald-500/20 px-2 py-0.5 rounded text-[8px] font-black text-emerald-500 border border-emerald-500/30">SYNCED</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className="flex items-center gap-5 group">
+                                                        <div className="w-12 h-12 rounded bg-emerald-500/5 flex items-center justify-center border border-emerald-500/20 group-hover:border-emerald-500 transition-colors">
+                                                            <Plane size={22} className="text-emerald-500" />
+                                                        </div>
+                                                        <div>
+                                                            <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">International Air Passage</div>
+                                                            <div className="flex items-center gap-3">
+                                                                <span className="text-xl font-black text-white">IATA DTC READY</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-slate-900/40 p-8 border border-slate-800/50 rounded-sm relative shadow-[inset_0_0_20px_rgba(0,0,0,0.4)]">
+                                                    <div className="absolute top-4 right-4"><CheckCircle2 size={16} className="text-emerald-500" /></div>
+                                                    <h4 className="text-[11px] font-black text-amber-500 uppercase tracking-[0.2em] mb-4">Netherlands Bridge (DigiD)</h4>
+                                                    <p className="text-xs text-slate-400 leading-relaxed mb-6">
+                                                        Institutional handshake established with Logius NL. Your REALAiID acts as the **Sovereign Shroud** for your Dutch government credentials at EU industrial checkpoints.
+                                                    </p>
+                                                    <div className="flex flex-col gap-2 text-[8px] font-black text-slate-500 uppercase border-t border-slate-800/50 pt-5">
+                                                        <div className="flex justify-between"><span>Subject Origin</span> <span className="text-white">NETHERLANDS</span></div>
+                                                        <div className="flex justify-between"><span>Proof Method</span> <span className="text-white">OIDC-VC</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* SHIELD RADAR */}
+                                        <div className="bg-slate-950 border border-slate-900 rounded-sm p-10 flex flex-col relative overflow-hidden">
+                                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-amber-500/20 to-transparent animate-shimmer" />
+                                            <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 mb-10">Likeness Shield</h3>
+                                            <div className="flex-1 flex flex-col items-center justify-center text-center">
+                                                <div className="relative mb-10">
+                                                    <div className="absolute inset-0 bg-amber-500/10 blur-3xl animate-pulse rounded-full" />
+                                                    <div className="w-24 h-24 rounded-full border border-amber-500/20 flex items-center justify-center relative bg-black shadow-[0_0_30px_rgba(245,158,11,0.1)]">
+                                                        <Shield size={42} className="text-amber-500 animate-pulse" />
+                                                    </div>
+                                                </div>
+                                                <div className="text-white font-black text-lg mb-3 uppercase tracking-[0.2em]">Active Defense</div>
+                                                <p className="text-slate-500 text-[10px] leading-relaxed mb-8 px-6 font-bold uppercase tracking-widest">
+                                                    Neural Noise Injection is live. PHL-01 is actively blinding 42k+ scrapers.
+                                                </p>
+                                                <div className="w-full h-1 bg-slate-900 rounded-full overflow-hidden">
+                                                    <div className="h-full bg-amber-500 w-[84%] shadow-[0_0_10px_#f59e0b] transition-all duration-1000" />
+                                                </div>
+                                            </div>
+                                            <button className="w-full mt-10 py-4 border border-slate-900 text-[9px] font-black uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all" onClick={() => setActiveTab('shield')}>
+                                                Generate Enforcement Log
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'global' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                    <div className="flex items-center gap-3 mb-4">
+                                        <Globe className="text-amber-500" size={24} />
+                                        <h2 className="text-3xl font-serif font-bold text-white">Global Sovereignty Gateway</h2>
+                                    </div>
+                                    <p className="text-slate-500 text-sm mb-12 tracking-wide">Interface your local government identities with the 1.0v-Root Ledger to enable **Worldwide Human Passage**.</p>
+                                    
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        {[
+                                            { name: "DigiD", region: "Netherlands", status: "Linked", type: "OIDC", color: "border-[#1693E9]/50", details: "Handshake verified via Logius NL" },
+                                            { name: "Singpass", region: "Singapore", status: "Available", type: "SAML 2.0", color: "border-slate-900", details: "Ready for sovereign mapping" },
+                                            { name: "Aadhaar", region: "India", status: "Available", type: "UIDAI", color: "border-slate-900", details: "Supports biological anchoring" },
+                                            { name: "eID", region: "Germany", status: "In Progress", type: "nPA", color: "border-amber-500/20", details: "Synchronizing eIDAS High LoA" },
+                                            { name: "BankID", region: "Sweden", status: "Available", type: "OIDC", color: "border-slate-900", details: "Bank-grade identity bridge" },
+                                            { name: "MyNumber", region: "Japan", status: "Available", type: "FIDO2", color: "border-slate-900", details: "Hardware-bound ingest ready" }
+                                        ].map((prov, i) => (
+                                            <div key={i} className={`bg-slate-950 border ${prov.color} p-10 group hover:border-amber-500 transition-all cursor-pointer relative overflow-hidden`}>
+                                                <div className="absolute -right-4 -top-4 w-16 h-16 bg-white/5 rotate-45 group-hover:bg-amber-500/5 transition-colors"></div>
+                                                <div className="flex justify-between items-start mb-8">
+                                                    <div className="w-10 h-10 rounded border border-slate-800 flex items-center justify-center group-hover:bg-amber-500/5 transition-colors">
+                                                        <Globe size={18} className="text-slate-600 group-hover:text-amber-500" />
+                                                    </div>
+                                                    {prov.status === 'Linked' ? <CheckCircle2 className="text-emerald-500" size={14} /> : <ExternalLink className="text-slate-800" size={12} />}
+                                                </div>
+                                                <h4 className="text-xl font-black text-white mb-1 uppercase tracking-tighter">{prov.name}</h4>
+                                                <div className="text-[9px] text-slate-600 font-black uppercase tracking-[0.2em] mb-4">{prov.region} // {prov.type}</div>
+                                                <p className="text-[10px] text-slate-500 mb-10 leading-relaxed font-bold uppercase tracking-widest">{prov.details}</p>
+                                                
+                                                <div className="flex items-center justify-between">
+                                                    <span className={`text-[9px] font-black uppercase tracking-widest ${prov.status === 'Linked' ? 'text-emerald-500' : prov.status === 'In Progress' ? 'text-amber-500' : 'text-slate-700'}`}>
+                                                        {prov.status}
+                                                    </span>
+                                                    {prov.status === 'Available' && <button className="text-[9px] font-black text-amber-500 hover:text-white uppercase tracking-widest underline decoration-2 underline-offset-4">Initialize</button>}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-12 p-10 bg-slate-900/30 border border-slate-900 rounded flex gap-10 items-center shadow-xl">
+                                        <div className="w-20 h-20 bg-[#1693E9]/10 flex items-center justify-center rounded-full border border-[#1693E9]/20 shadow-[0_0_20px_rgba(22,147,233,0.1)]">
+                                            <Plane className="text-[#1693E9]" size={32} />
+                                        </div>
+                                        <div>
+                                            <h3 className="text-white font-black text-lg uppercase tracking-widest mb-2">Cross-Border Travel Continuity</h3>
+                                            <p className="text-slate-400 text-sm leading-relaxed max-w-3xl">
+                                                Your **Worldwide Standing** is now linked to the ICAO Digital Travel Credential (DTC) framework. This enables biological passage at all 21 international nodes, allowing you to bypass physical document checkpoints via a PHL-01 Handshake Knot™.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'nodes' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                    <div className="flex items-center justify-between mb-8">
+                                        <div className="flex items-center gap-3">
+                                            <MapIcon className="text-amber-500" size={24} />
+                                            <h2 className="text-3xl font-serif font-bold text-white">Active Node Map</h2>
+                                        </div>
+                                        <div className="px-4 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full text-[9px] font-black text-emerald-500 uppercase tracking-widest animate-pulse">
+                                            HID ORIGO TUNNEL ACTIVE
+                                        </div>
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {activeNodes.map(node => (
+                                            <div key={node.id} className="bg-slate-950 border border-slate-900 p-8 flex items-center justify-between group hover:border-amber-500/50 transition-all">
+                                                <div className="flex items-center gap-6">
+                                                    <div className="w-16 h-16 bg-slate-900 rounded-sm border border-slate-800 flex items-center justify-center relative overflow-hidden">
+                                                        <node.icon className="text-slate-500 group-hover:text-amber-500 transition-colors z-10" size={28} />
+                                                        {node.status === 'Active' && <div className="absolute inset-0 bg-emerald-500/5 animate-pulse"></div>}
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-amber-500 text-[9px] font-black uppercase tracking-widest mb-1">{node.protocol}</div>
+                                                        <h4 className="text-lg font-bold text-white">{node.name}</h4>
+                                                        <p className="text-[9px] text-slate-500 uppercase font-black tracking-widest">{node.location}</p>
+                                                    </div>
+                                                </div>
+                                                <div className="text-right">
+                                                    <span className={`text-[10px] font-black uppercase tracking-tighter px-3 py-1 rounded-full border ${node.status === 'Active' ? 'text-emerald-500 border-emerald-500/20 bg-emerald-500/5' : node.status === 'Verified' ? 'text-blue-400 border-blue-400/20 bg-blue-400/5' : 'text-amber-500 border-amber-500/20 bg-amber-500/5'}`}>
+                                                        {node.status}
+                                                    </span>
+                                                    <button className="block mt-4 text-[8px] font-black text-red-500/50 hover:text-red-500 uppercase tracking-widest transition-colors">
+                                                        Revoke Handshake
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'vault' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                    <div className="flex items-center gap-3 mb-8">
+                                        <Database className="text-amber-500" size={24} />
+                                        <h2 className="text-3xl font-serif font-bold text-white">Asset Ledger</h2>
+                                    </div>
+                                    <div className="bg-slate-950 border border-slate-900 rounded-sm overflow-hidden shadow-2xl">
+                                        <table className="w-full text-left">
+                                            <thead>
+                                                <tr className="bg-slate-900/50 border-b border-slate-800">
+                                                    <th className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Asset Target</th>
+                                                    <th className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Type</th>
+                                                    <th className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Provenance</th>
+                                                    <th className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest">Mainframe Hash</th>
+                                                    <th className="px-8 py-5 text-[10px] font-black text-slate-500 uppercase tracking-widest text-right">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="divide-y divide-slate-900">
+                                                {assetLedger.map(asset => (
+                                                    <tr key={asset.id} className="hover:bg-slate-900/30 transition-colors group">
+                                                        <td className="px-8 py-6 font-bold text-white uppercase text-xs">{asset.name}</td>
+                                                        <td className="px-8 py-6 text-[10px] font-black text-slate-500 uppercase">{asset.type}</td>
+                                                        <td className="px-8 py-6">
+                                                            <div className="flex items-center gap-2">
+                                                                <CheckCircle2 size={12} className="text-emerald-500" />
+                                                                <span className="text-[10px] font-black text-emerald-500 uppercase tracking-widest">{asset.provenance}</span>
+                                                            </div>
+                                                        </td>
+                                                        <td className="px-8 py-6 font-mono text-[10px] text-slate-600 tracking-tighter group-hover:text-slate-400 transition-colors">{asset.hash}</td>
+                                                        <td className="px-8 py-6 text-right">
+                                                            <button className="text-[9px] font-black text-amber-500 uppercase tracking-widest hover:underline decoration-2 underline-offset-4 transition-all">Export Deed</button>
+                                                        </td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'shield' && (
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                                        <div>
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <Shield className="text-amber-500" size={24} />
+                                                <h2 className="text-3xl font-serif font-bold text-white">Likeness Shield</h2>
+                                            </div>
+                                            <p className="text-slate-400 leading-relaxed mb-10 text-sm">
+                                                The PHL-01 Mainframe is currently performing a **Continuous Perimeter Sweep**. Any unauthorized attempt to ingest your biological data by weaponized AI scrapers is blocked via **Neural Noise Injection**.
+                                            </p>
+                                            
+                                            <div className="space-y-6 mb-12">
+                                                <div className="bg-slate-950 border border-slate-900 p-8 flex items-center justify-between shadow-lg">
+                                                    <div>
+                                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">Defense Status</div>
+                                                        <div className="text-emerald-500 font-black text-lg uppercase tracking-widest">Active Enforcement</div>
+                                                    </div>
+                                                    <div className="w-12 h-12 rounded-full border-2 border-emerald-500/20 flex items-center justify-center relative">
+                                                        <div className="absolute inset-0 bg-emerald-500/10 rounded-full animate-ping"></div>
+                                                        <Shield size={20} className="text-emerald-500" />
+                                                    </div>
+                                                </div>
+                                                <div className="bg-slate-950 border border-slate-900 p-8 flex items-center justify-between shadow-lg">
+                                                    <div>
+                                                        <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">NO FAKES Standing</div>
+                                                        <div className="text-white font-black text-lg uppercase tracking-widest">Juridical Ready</div>
+                                                    </div>
+                                                    <FileCheck size={24} className="text-amber-500" />
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-red-500/5 border border-red-500/20 p-10 rounded-sm shadow-xl">
+                                                <h4 className="text-red-500 font-black text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
+                                                    <Zap size={14} /> NO FAKES Strike Protocol
+                                                </h4>
+                                                <p className="text-[11px] text-slate-500 leading-relaxed mb-8 font-bold uppercase tracking-widest">
+                                                    In the event of a critical likeness breach, initiate a **HS-01 Strike**. This sends a cryptographically signed takedown order to all 42k+ scraped repositories instantly.
+                                                </p>
+                                                <button className="w-full py-4 bg-red-900/40 text-red-500 border border-red-500/30 text-[10px] font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all shadow-lg">
+                                                    Execute Forensic Strike
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div className="bg-slate-950 border border-slate-900 p-12 flex flex-col items-center justify-center text-center shadow-2xl relative overflow-hidden rounded-sm">
+                                            {/* RADAR VISUAL */}
+                                            <div className="relative w-80 h-80 mb-10">
+                                                <div className="absolute inset-0 border-2 border-slate-900 rounded-full"></div>
+                                                <div className="absolute inset-8 border-2 border-slate-900 rounded-full"></div>
+                                                <div className="absolute inset-16 border-2 border-slate-900 rounded-full"></div>
+                                                <div className="absolute top-1/2 left-1/2 w-[2px] h-40 bg-gradient-to-t from-amber-500 to-transparent origin-bottom animate-spin" style={{ animationDuration: '4s' }}></div>
+                                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-amber-500 rounded-full blur-sm"></div>
+                                                
+                                                {/* Simulated Detection Points */}
+                                                <div className="absolute top-20 right-20 w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_red]"></div>
+                                                <div className="absolute bottom-32 left-12 w-1.5 h-1.5 bg-amber-500 rounded-full animate-pulse shadow-[0_0_5px_rgba(245,158,11,0.5)]"></div>
+                                            </div>
+                                            
+                                            <div className="text-white font-black text-2xl uppercase tracking-tighter mb-4">Perimeter Sweep: 100%</div>
+                                            <div className="flex gap-4 w-full">
+                                                <div className="flex-1 bg-slate-900/50 p-4 border border-slate-800 rounded">
+                                                    <div className="text-[10px] font-black text-slate-600 uppercase mb-1">Bots Blocked</div>
+                                                    <div className="text-xl font-black text-white">42,801</div>
+                                                </div>
+                                                <div className="flex-1 bg-slate-900/50 p-4 border border-slate-800 rounded">
+                                                    <div className="text-[10px] font-black text-slate-600 uppercase mb-1">Likeness Purity</div>
+                                                    <div className="text-xl font-black text-emerald-500">100%</div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div className="mt-10 w-full text-left">
+                                                <div className="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-3">Recent Telemetry</div>
+                                                <div className="font-mono text-[8px] text-slate-600 space-y-1">
+                                                    <div>[2026-05-08 01:04:12] Neural Noise Injected: Repository_X</div>
+                                                    <div>[2026-05-08 01:02:44] Attempted Scrape Detected: IP_99.1.x.x</div>
+                                                    <div>[2026-05-08 01:01:05] C2PA Signature Verified: PHL_Uplink</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Dashboard />);
+    </script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerships | REALAiID Institutional Infrastructure</title>
+    
+    <!-- Authority Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bureau-blue: #0b1320;
+            --bureau-gold: #b8860b;
+            --phl-blue: #1693E9;
+            --gov-gray: #f8f9fa;
+            --text-dark: #0B1320;
+            --border-frame: 15px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --verified-green: #18B494;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: #ffffff; 
+            color: var(--text-dark); 
+            line-height: 1.7; 
+            padding: var(--border-frame);
+            overflow-x: hidden;
+        }
+
+        /* Institutional Border Frame */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- HEADER: AUTHORITY SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+            padding: 20px 8%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 999;
+        }
+
+        .logo-area img { height: 90px; width: auto; transition: var(--transition); }
+        .logo-area img:hover { transform: scale(1.05); }
+
+        nav a { 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            font-weight: 700; 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            margin-left: 30px;
+            transition: var(--transition);
+        }
+        nav a:hover { color: var(--phl-blue); }
+
+        /* --- HERO: INSTITUTIONAL FOCUS --- */
+        .hero {
+            padding: 140px 10%;
+            text-align: center;
+            background: var(--bureau-blue);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 { font-family: 'Libre Baskerville'; font-size: 3.5rem; font-style: italic; margin-bottom: 25px; font-weight: 400; }
+        .hero p { max-width: 900px; margin: 0 auto; color: rgba(255,255,255,0.8); font-size: 1.2rem; font-weight: 300; }
+        
+        .hero-status {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: var(--bureau-gold);
+            margin-top: 35px;
+            display: block;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+        }
+
+        /* --- INTEGRATION TRACKS GRID --- */
+        .integration-section {
+            padding: 100px 8%;
+            background: #ffffff;
+        }
+        
+        .section-intro { text-align: center; margin-bottom: 80px; }
+        .section-intro h2 { font-family: 'Libre Baskerville'; font-size: 2.8rem; color: var(--bureau-blue); margin-bottom: 15px; }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .track-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            padding: 50px;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .track-card:hover { transform: translateY(-10px); box-shadow: 0 40px 80px rgba(0,0,0,0.06); border-color: var(--phl-blue); }
+        .track-card::before { content: ""; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--phl-blue); }
+        
+        .track-card h3 { font-family: 'Libre Baskerville'; font-size: 1.7rem; margin-bottom: 15px; color: var(--bureau-blue); }
+        .track-tag { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: var(--phl-blue); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; display: block; }
+        
+        .feature-list { list-style: none; margin-top: 30px; }
+        .feature-list li { font-size: 0.9rem; margin-bottom: 15px; display: flex; gap: 15px; align-items: flex-start; color: #475569; }
+        .feature-list li::before { content: "→"; color: var(--phl-blue); font-weight: 900; }
+
+        /* --- ACCESS CONTROL & BURN PROTOCOL MODULE --- */
+        .uac-module {
+            background: var(--gov-gray);
+            padding: 120px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .uac-visual {
+            background: #000;
+            color: #10B981;
+            padding: 45px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.8rem;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.25);
+            border: 1px solid #1e293b;
+            line-height: 1.6;
+        }
+        
+        .burn-alert { color: #ff4444; font-weight: 900; margin-top: 15px; border-top: 1px solid #333; padding-top: 15px; }
+
+        /* --- BIO-PAY™ FISCAL FEATURE --- */
+        .bio-pay-feature {
+            background: var(--bureau-blue);
+            color: white;
+            padding: 120px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .highlight-box { 
+            background: rgba(255,255,255,0.05); 
+            padding: 40px; 
+            border: 1px solid rgba(184, 134, 11, 0.3); 
+            border-radius: 8px; 
+            position: relative;
+        }
+        .highlight-box h4 { color: var(--bureau-gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.75rem; margin-bottom: 20px; }
+
+        /* --- HARDWARE PARTNER LOGO STRIP --- */
+        .hardware-strip {
+            padding: 80px 8%;
+            text-align: center;
+            border-top: 1px solid #eee;
+        }
+        .logo-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            opacity: 0.6;
+            filter: grayscale(1);
+        }
+        .partner-name { font-family: 'JetBrains Mono'; font-size: 0.8rem; font-weight: 900; letter-spacing: 3px; color: #1a1a1a; }
+
+        /* --- LIAISON FORM --- */
+        .form-section { padding: 120px 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; background: #fff; }
+        .form-container { background: var(--gov-gray); padding: 60px; border-radius: 4px; }
+        .form-group { margin-bottom: 30px; }
+        .form-group label { display: block; font-size: 0.65rem; font-weight: 900; text-transform: uppercase; color: #94a3b8; margin-bottom: 12px; letter-spacing: 1px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 20px; background: #fff; border: 1px solid #e2e8f0; font-family: 'Montserrat'; font-weight: 600; font-size: 0.95rem; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus { border-color: var(--phl-blue); }
+        
+        .btn-submit {
+            width: 100%; padding: 25px; background: var(--bureau-blue); color: white; border: none; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.3s;
+        }
+        .btn-submit:hover { background: var(--phl-blue); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        footer { background: #000; color: #666; padding: 100px 8% 40px; }
+        .footer-logo { font-family: 'Libre Baskerville'; color: var(--bureau-gold); font-size: 1.8rem; margin-bottom: 25px; font-style: italic; }
+        .footer-bottom { margin-top: 80px; border-top: 1px solid #1E293B; padding-top: 40px; text-align: center; font-size: 0.7rem; letter-spacing: 3px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <img src="realaiid_commonwealth_logo_20262999.png" alt="REALAiID Authority Logo">
+        </div>
+        <nav>
+            <a href="index.html">The Bureau</a>
+            <a href="blue-paper.html">Architecture</a>
+            <a href="partners.html" style="color: var(--phl-blue);">Partnerships</a>
+            <a href="signin.html">Sign-In</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Institutional <span style="color: var(--bureau-gold)">Sovereignty.</span></h1>
+        <p>The global infrastructure anchor for banking, aviation, and enterprise access. We bridge biological reality with industrial-scale utility via the 1.0v-Root Ledger.</p>
+        <span class="hero-status">MAINFRAME STATUS: [ PHL-01 ] // NODE AUTH ACTIVE</span>
+    </section>
+
+    <section class="integration-section">
+        <div class="section-intro">
+            <h2>Industrial Integration Tracks</h2>
+            <p>Outsource your platform's trust to the Digital Human Ledger™ PHL-01 by REALAiID.com.</p>
+        </div>
+
+        <div class="track-grid">
+            <!-- TRACK 1: BANKING & FINANCE -->
+            <div class="track-card">
+                <span class="track-tag">Bio-Pay™ Infrastructure</span>
+                <h3>Banking & Fiscal Roots</h3>
+                <p style="font-size: 0.95rem; color: #64748b;">We provide banks with the <strong>Handshake Knot™ Gateway</strong> to eliminate synthetic liability.</p>
+                <ul class="feature-list">
+                    <li><strong>Bio-Pay™ Bridge:</strong> Link bank card roots to biological frequencies via Visa B2B Connect APIs.</li>
+                    <li><strong>Synthetic Fraud Elimination:</strong> Every transaction is backed by <strong>Genuine Presence</strong>, satisfying 2026 NO FAKES Act requirements.</li>
+                    <li><strong>Institutional Settlement:</strong> High-value capital transfers authorized by multi-modal biometric signatures.</li>
+                </ul>
+            </div>
+
+            <!-- TRACK 2: AVIATION -->
+            <div class="track-card" style="border-left: 6px solid var(--phl-blue);">
+                <span class="track-tag">Global Passage</span>
+                <h3>Aviation & eGates</h3>
+                <p style="font-size: 0.95rem; color: #64748b;">Zero-latency biometric passage for CLEAR eGates and TSA Innovation Sites.</p>
+                <ul class="feature-list">
+                    <li><strong>CLEAR1 Handshake:</strong> Sub-300ms identity verification at airport terminal security nodes.</li>
+                    <li><strong>ConfirmID Compliance:</strong> Fully compliant with 2026 REAL ID/TSA digital mandates.</li>
+                    <li><strong>Aviation eGate Bridge:</strong> Eliminate physical documentation for Verified Human travelers.</li>
+                </ul>
+            </div>
+
+            <!-- TRACK 3: UAC -->
+            <div class="track-card" style="border-left: 6px solid var(--bureau-gold);">
+                <span class="track-tag">Citadel Infrastructure</span>
+                <h3>Universal Access (UAC)</h3>
+                <p style="font-size: 0.95rem; color: #64748b;">Convert REALAiID into office badges and enterprise software keys.</p>
+                <ul class="feature-list">
+                    <li><strong>HID Origo Integration:</strong> Unlock physical office doors via NFC biological intent.</li>
+                    <li><strong>Okta / Entra Sync:</strong> Secure digital workstations with biological Single Sign-On (SSO).</li>
+                    <li><strong>Instant Burn Protocol:</strong> Remote revocation of all tokens for discharged personnel.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- UAC & BURN PROTOCOL EXPLAINER -->
+    <section class="uac-module">
+        <div>
+            <span class="track-tag" style="color:var(--phl-blue)">Enterprise Security</span>
+            <h2 style="font-family: 'Libre Baskerville'; font-size: 3rem; margin-bottom: 25px; color: var(--bureau-blue);">The Zero-Card <br><span style="color: var(--phl-blue)">Enterprise.</span></h2>
+            <p style="font-size: 1.1rem; color: #475569; margin-bottom: 30px;">Traditional keycards and software tokens are vulnerable to physical theft and synthetic cloning. REALAiID <strong>Citadel Authority</strong> anchors corporate access to the human, not the device.</p>
+            <p style="font-size: 0.95rem; color: #64748b;">Deploy the <strong>REALAiID Wallet™</strong> to push corporate authorization layers directly to employee hardware. When a personnel relationship ends, initiate the <strong>Instant Burn Protocol™</strong> to wipe all access tokens globally in milliseconds.</p>
+        </div>
+        <div class="uac-visual">
+            <div>> SYSTEM: CITADEL_DASHBOARD_PHL</div>
+            <div>> SELECT_NODE: ARC-EXEC-8821</div>
+            <div>> STATUS: ACTIVE_EMPLOYMENT</div>
+            <div class="burn-alert">> ACTION: INITIATE_INSTANT_BURN_PROTOCOL...</div>
+            <div>> STATUS: WIPING_NFC_TOKENS [COMPLETE]</div>
+            <div>> STATUS: REVOKING_OKTA_SSO [COMPLETE]</div>
+            <div>> STATUS: ACCESS_BURNED_SUCCESSFULLY</div>
+            <div style="font-size: 0.6rem; color: #444; margin-top: 40px; text-align: center;">[ AUTH_NODE: REALAiID-PHL-SECURE ]</div>
+        </div>
+    </section>
+
+    <!-- BIO-PAY™ FEATURE: THE INSTITUTIONAL GATEWAY -->
+    <section class="bio-pay-feature">
+        <div>
+            <h2 style="font-family: 'Libre Baskerville'; font-size: 3rem; margin-bottom: 30px;">REALAiID <br><span style="color: var(--bureau-gold)">Bio-Pay™ Infrastructure.</span></h2>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 35px; line-height: 1.8;">We provide banks and retailers with the <strong>Handshake Knot™ Gateway</strong>. This ensures that every transaction is backed by <strong>Genuine Presence</strong>, meeting the highest standards of the 2026 NO FAKES Act.</p>
+            
+            <div class="highlight-box">
+                <h4>Institutional Bio-Pay™ Protocol</h4>
+                <p style="font-size: 0.9rem;">By integrating our SDK, retailers allow customers to authorize funds directly from Apple/Google Wallets via biological resonance. This eliminates the risk of stolen card numbers and shifts liability to the 1.0v-Root Ledger.</p>
+                <div style="font-family: 'JetBrains Mono'; font-size: 0.7rem; color: var(--verified-green); margin-top: 25px; border-left: 2px solid var(--verified-green); padding-left: 20px;">
+                    > GATEWAY: BIOPAY_INDUSTRIAL_UPLINK<br>
+                    > AUTH_PROTOCOL: HANDSHAKE_KNOT_V1<br>
+                    > NO_FAKES_COMPLIANCE: VERIFIED [GENUINE_PRESENCE]<br>
+                    > STATUS: LIABILITY_SHIELD_ACTIVE
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 50px;">
+            <div class="highlight-box" style="background: white; color: black; border-color: var(--bureau-blue);">
+                <h4 style="color: var(--bureau-blue);">Partner Benefits</h4>
+                <ul style="list-style: none; font-size: 0.9rem; font-weight: 700; line-height: 2.2;">
+                    <li>✓ <strong>Synthetic Fraud Immunity:</strong> Zero card numbers stored.</li>
+                    <li>✓ <strong>Regulatory Alignment:</strong> Fully NO FAKES compliant.</li>
+                    <li>✓ <strong>Forensic Evidence:</strong> 1:1 proof of biological intent.</li>
+                    <li>✓ <strong>Institutional Settlement:</strong> Instant clearing via PHL-01.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- HARDWARE STRIP -->
+    <section class="hardware-strip">
+        <span class="track-tag" style="color:#94a3b8">Infrastructure Partners</span>
+        <div class="logo-grid">
+            <div class="partner-name">HID GLOBAL</div>
+            <div class="partner-name">OKTA</div>
+            <div class="partner-name">EXCELSECU</div>
+            <div class="partner-name">INFINEON</div>
+            <div class="partner-name">CLEAR1</div>
+            <div class="partner-name">VISA B2B</div>
+        </div>
+    </section>
+
+    <!-- PARTNER REQUEST FORM -->
+    <section class="form-section">
+        <div>
+            <h2 style="font-family: 'Libre Baskerville'; font-size: 2.5rem; font-style: italic;">Bureau Liaison Request</h2>
+            <p style="color: #64748b; margin-top: 20px; font-size: 1.1rem;">Institutional vetting is a forensic audit process. Begin your organization's enrollment on the 1.0v-Root Ledger.</p>
+            <div style="margin-top: 50px; padding: 35px; border: 1px solid #eee; background: var(--gov-gray);">
+                <div style="font-size: 0.6rem; color: #94a3b8; text-transform: uppercase; font-weight: 900; margin-bottom: 12px;">Mainframe Uplink Status</div>
+                <div style="font-size: 0.75rem; color: var(--phl-blue); font-weight: 800;">NODE: PHL-01 // STATUS: SECURED (1.0v-ROOT SYNC)</div>
+            </div>
+        </div>
+        <div class="form-container">
+            <form>
+                <div class="form-group">
+                    <label>Enterprise / Institution Name</label>
+                    <input type="text" placeholder="e.g. Bank of America / PHL Aviation Hub">
+                </div>
+                <div class="form-group">
+                    <label>Requested Track</label>
+                    <select>
+                        <option>Banking & Bio-Pay™ Integration</option>
+                        <option>Aviation eGate Bridge (CLEAR)</option>
+                        <option>Enterprise Citadel (UAC Access)</option>
+                        <option>Governmental Identity Ledger</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Liaison Transmission</label>
+                    <textarea rows="5" placeholder="Specify your institutional integration requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Initialize Institutional Vetting</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">REALAiID BUREAU</div>
+        <p style="font-size: 0.95rem;">Anchored in Philadelphia, PA. The world's primary authority for human likeness and biological authorization.</p>
+        <div class="footer-bottom">
+            © 2026 REALAiID BUREAU // 1900 MARKET ST // PHILADELPHIA, PA // ALL RIGHTS RESERVED
+        </div>
+    </footer>
+
+</body>
+</html>

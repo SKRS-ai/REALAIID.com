@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registry Gate | REALAiID Global Public Ledger</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --registry-emerald: #10B981;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D REGISTRY CORE --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-registry {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .registry-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--registry-emerald);
+            text-shadow: 0 0 80px rgba(16, 185, 129, 0.3);
+        }
+
+        /* --- OMNI-SOVEREIGN UTILITY PANEL --- */
+        .omni-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .pillar-card {
+            border-top: 2px solid var(--registry-emerald);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .pillar-card:hover {
+            border-top-color: var(--bureau-gold);
+            transform: translateY(-5px);
+        }
+
+        .pillar-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--registry-emerald);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .utility-tag {
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: #94A3B8;
+            margin-bottom: 15px;
+            display: block;
+            border-left: 2px solid rgba(16, 185, 129, 0.3);
+            padding-left: 15px;
+        }
+
+        /* --- REGISTRY LOOKUP TERMINAL --- */
+        .lookup-section {
+            padding: 120px 10%;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-box {
+            background: #05080F;
+            border: 1px solid #1e293b;
+            padding: 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            font-family: 'JetBrains Mono';
+            position: relative;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .terminal-header {
+            color: var(--registry-emerald);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .terminal-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #1e293b;
+            padding: 15px 0;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            margin-bottom: 40px;
+            transition: 0.3s;
+        }
+
+        .terminal-input:focus { border-bottom-color: var(--registry-emerald); }
+
+        .btn-query {
+            background: var(--registry-emerald);
+            color: #000;
+            padding: 15px 40px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-query:hover { background: #fff; box-shadow: 0 0 30px var(--registry-emerald); }
+
+        /* --- ENHANCED RESULTS CARD --- */
+        #terminal-results {
+            margin-top: 40px;
+            background: rgba(16, 185, 129, 0.02);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            padding: 40px;
+            display: none;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .status-badge-circle {
+            width: 80px;
+            height: 80px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid var(--registry-emerald);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .forensic-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .detail-label { font-size: 0.55rem; color: #64748B; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .detail-value { font-size: 0.75rem; color: #fff; font-weight: 600; }
+
+        /* --- FOOTER SYNC --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: 2fr 1fr 1fr 1fr; 
+            gap: 40px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 2.2rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="registry-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html" style="color:var(--registry-emerald)">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-registry">
+            <div class="z-10">
+                <span class="font-mono text-xs text-emerald-500 uppercase tracking-[0.6em] mb-4 block">1.0v-Root Public Access // Node PHL-01</span>
+                <h1 class="registry-title">Registry <br>Gate.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-8">
+                    The transparency layer of the Global Reserve. Verifying biological standing, active perimeters, and jurisdictional proofs in real-time.
+                </p>
+            </div>
+        </section>
+
+        <!-- THE 35-BRIDGE OMNI-SOVEREIGN CAPABILITY -->
+        <section class="omni-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="text-center mb-20">
+                <h2 class="font-serif italic text-6xl mb-6 text-white">The Omni-Sovereign <span class="text-emerald-500">Standard.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl mx-auto">
+                    When an inhabitant synchronizes all 35 industrial bridges into their **REALAiID Wallet**, they transcend the limitations of statehood. They achieve **Total Human Autonomy**.
+                </p>
+            </div>
+
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <h3>I. Total Identity (B01-B19)</h3>
+                    <span class="utility-tag">Zero-Password Existence</span>
+                    <span class="utility-tag">Biological Hardware Attestation</span>
+                    <span class="utility-tag">Stateless Board Standing</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Capability: Every digital interaction is a biological proof of presence. Passwords and forged credentials become technically impossible.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>II. Fiscal Liquidity (B10, B16, B23, B26)</h3>
+                    <span class="utility-tag">Lightning BTC Liquidation</span>
+                    <span class="utility-tag">Fraud-Zero Retail Rails</span>
+                    <span class="utility-tag">Sovereign Credit Standing</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Capability: Authorize high-value capital transfers and retail liquidations via marrow resonance. Your biology is the only spend-key.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>III. Physical Authority (B14, B22, B28, B30)</h3>
+                    <span class="utility-tag">World-Wide Human Passage</span>
+                    <span class="utility-tag">Biological Title Anchoring</span>
+                    <span class="utility-tag">Marrow-to-Motor Ignition</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Capability: Clear international eGates and unlock physical assets (homes/vehicles) using 300ms biological intent signals.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <h3>IV. Terminal Justice (B31-B35)</h3>
+                    <span class="utility-tag">$AII Economy Dividends</span>
+                    <span class="utility-tag">Algorithmic Dispute Resolution</span>
+                    <span class="utility-tag">Benthic Perimeter Defense</span>
+                    <p class="text-[10px] text-slate-500 mt-6 leading-relaxed uppercase font-bold">
+                        Capability: Access logic-labyrinth justice and assets protected by submerged physical nodes. Sovereign legal immunity.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- REGISTRY LOOKUP TERMINAL -->
+        <section class="lookup-section">
+            <div class="text-center mb-16">
+                <h2 class="font-serif italic text-5xl mb-4 text-white">Forensic Node Search</h2>
+                <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Search the Certified Human Index // Global Ledger Transparency</p>
+            </div>
+
+            <div class="terminal-box">
+                <div class="terminal-header">
+                    <span>> MAINFRAME_SEARCH_UPLINK: ACTIVE</span>
+                    <span id="terminal-clock">00:00:00 UTC</span>
+                </div>
+
+                <div class="mb-10 text-slate-500 text-xs leading-loose">
+                    Enter ARC-Node ID, VSSN Hash, or Biological Anchor to verify jurisdictional standing. <br>
+                    Note: Verification is performed via a one-way cryptographic check. Raw PII is protocol-level hidden.
+                </div>
+
+                <div class="relative">
+                    <input type="text" class="terminal-input" placeholder="VSSN-XXXX-MARKET-1900-PHL" id="node-query">
+                    <button class="btn-query absolute right-0 top-0 h-[52px]" onclick="simulateSearch()">Verify Status</button>
+                </div>
+                
+                <div id="terminal-results">
+                    <div class="flex items-center gap-8 border-b border-white/5 pb-8">
+                        <div class="status-badge-circle">
+                            <i class="ph-fill ph-shield-check text-4xl text-emerald-500"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <h2 class="text-2xl font-bold text-white uppercase tracking-tighter">Human Status: <span class="text-emerald-500">VERIFIED</span></h2>
+                                <span class="bg-emerald-500/10 text-emerald-500 text-[8px] font-black px-2 py-0.5 rounded border border-emerald-500/20">SOVEREIGN_CLASS_A</span>
+                            </div>
+                            <p class="font-mono text-xs text-blue-500 mb-2">VSSN-X92L-MARKET-1900-PHL</p>
+                            <p class="text-[11px] text-slate-400 max-w-xl">
+                                Subject is registered in the <strong>Philadelphia Mainframe</strong> and is currently protected by the <strong>NO FAKES</strong> statutory shield. Node standing is compliant with eIDAS High assurance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="forensic-detail-grid">
+                        <div class="detail-card">
+                            <span class="detail-label">Liveness Gate</span>
+                            <span class="detail-value text-emerald-500">PASS (3D Spatial Verified)</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="detail-label">Residency Root</span>
+                            <span class="detail-value">PHL_AV_CORRIDOR_01</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="detail-label">Legal Standing</span>
+                            <span class="detail-value">Active Statutory Protection</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="detail-label">Forensic Timestamp</span>
+                            <span class="detail-value" id="res-timestamp">2026-05-09 // 17:03 UTC</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="detail-label">Bridges Anchored</span>
+                            <span class="detail-value text-blue-500">35 / 35 Active</span>
+                        </div>
+                        <div class="detail-card">
+                            <span class="detail-label">Jurisdiction</span>
+                            <span class="detail-value">REALAiISLAND_EXTRATERRITORIAL</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 text-[10px] text-slate-600 font-mono italic leading-relaxed text-center">
+                        Access to deep-level forensic logs is restricted to Sovereign-tier institutional partners. <br>
+                        Authorized by PHL-01 Autonomous Mainframe // Handshake Knot™ Verified.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SYNC -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. The primary registry for human likeness and biological truth under the NO FAKES Act of 2026.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+                <a href="maritime-charter-api.html">Maritime Charter</a>
+                <a href="public-registry.html" style="color:var(--registry-emerald)">Public Registry</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Capital</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold); font-weight:900;">Investor Portal ($102.7B)</a>
+                <a href="partners.html">Industrial Nodes</a>
+                <a href="#">Mainframe Sync</a>
+                <a href="#">Privacy Protocol</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // REGISTRY GATE VERIFIED
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('registry-canvas').appendChild(renderer.domElement);
+
+        // --- Create Core Registry Gate (Geometric Sphere) ---
+        const group = new THREE.Group();
+        
+        // Outer Wireframe Gate
+        const gateGeo = new THREE.SphereGeometry(4, 32, 32);
+        const gateMat = new THREE.MeshPhongMaterial({
+            color: 0x10B981,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.2
+        });
+        const gate = new THREE.Mesh(gateGeo, gateMat);
+        group.add(gate);
+
+        // Inner Pulsing Node
+        const nodeGeo = new THREE.IcosahedronGeometry(1.5, 0);
+        const nodeMat = new THREE.MeshPhongMaterial({
+            color: 0x10B981,
+            emissive: 0x10B981,
+            emissiveIntensity: 0.4,
+            wireframe: true
+        });
+        const node = new THREE.Mesh(nodeGeo, nodeMat);
+        group.add(node);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0x10B981, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const whiteLight = new THREE.PointLight(0xffffff, 1, 100);
+        whiteLight.position.set(-10, -10, 10);
+        scene.add(whiteLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            gate.rotation.y += 0.001;
+            node.rotation.x += 0.01;
+            node.rotation.y -= 0.005;
+            
+            // Resonance pulse
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            node.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+
+        function simulateSearch() {
+            const btn = document.querySelector('.btn-query');
+            const results = document.getElementById('terminal-results');
+            const timestamp = document.getElementById('res-timestamp');
+            
+            btn.innerText = "QUERYING LEDGER...";
+            btn.disabled = true;
+            results.style.display = 'none';
+
+            setTimeout(() => {
+                const now = new Date();
+                timestamp.innerText = now.toISOString().split('T')[0] + " // " + now.toISOString().split('T')[1].split('.')[0] + " UTC";
+                results.style.display = 'block';
+                btn.innerText = "Verify Status";
+                btn.disabled = false;
+            }, 1200);
+        }
+
+        // Clock Update
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('terminal-clock').innerText = now.toISOString().split('T')[1].split('.')[0] + " UTC";
+        }, 1000);
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.y += mouseX * 0.05;
+            group.rotation.x += mouseY * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

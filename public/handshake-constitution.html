@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handshake Constitution | REALAiID Sovereign Juridical Root</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --lex-gold: #FFD700;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D LEX CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-constitution {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .lex-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--lex-gold);
+            text-shadow: 0 0 80px rgba(255, 215, 0, 0.3);
+        }
+
+        /* --- CONTENT PANELS --- */
+        .constitutional-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .article-card {
+            border-top: 2px solid var(--lex-gold);
+            padding-top: 30px;
+            transition: var(--transition);
+        }
+
+        .article-card:hover {
+            border-top-color: var(--phl-blue);
+            transform: translateY(-5px);
+        }
+
+        .article-card h3 {
+            font-family: 'JetBrains Mono';
+            color: var(--lex-gold);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .directive-box {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.2rem;
+            line-height: 1.4;
+            color: #fff;
+            font-style: italic;
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .cipher-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--lex-gold);
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-left: 4px solid var(--lex-gold);
+            line-height: 2;
+            margin-top: 40px;
+        }
+
+        /* --- LIST STYLING --- */
+        .check-list {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #94A3B8;
+            padding: 8px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 2px;
+        }
+        .check-item i { color: var(--lex-gold); }
+
+        /* --- STACK GRID --- */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .stack-item {
+            border-left: 3px solid var(--phl-blue);
+            padding-left: 15px;
+            background: rgba(22, 147, 233, 0.03);
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .stack-label { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #fff; font-weight: 800; display: block; margin-bottom: 5px; }
+        .stack-desc { font-size: 0.6rem; color: #64748B; line-height: 1.4; }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px;
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="lex-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-constitution">
+            <div class="z-10 px-6">
+                <span class="font-mono text-xs text-amber-500 uppercase tracking-[0.6em] mb-4 block">Juridical Root // Handshake Sovereignty</span>
+                <h1 class="lex-title">Handshake <br>Constitution.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed mt-10">
+                    The total replacement of legacy civil systems through AGI-integrated sovereignty. Establishing the biological rights of the inhabitant within the 1.0v-Root domain.
+                </p>
+            </div>
+        </section>
+
+        <!-- CONSTITUTIONAL PANEL -->
+        <section class="constitutional-panel max-w-7xl mx-auto shadow-2xl">
+            
+            <div class="directive-box">
+                "The Prime Directive: To provide the first environment on Earth where the technology serves the biology without being asked."
+            </div>
+
+            <div class="article-grid">
+                <!-- ARTICLE I -->
+                <div class="article-card">
+                    <h3>Article I: The Source</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Every individual holds a perpetual property right in their own biological frequency, voice, and visual likeness. This right is descendible, assignable, and biometrically bound to the marrow.
+                    </p>
+                </div>
+
+                <!-- ARTICLE II -->
+                <div class="article-card">
+                    <h3>Article II: Intent Authority</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Authorization is a biological act, not a documentary possession. Digital handshakes require a 300ms proof of intent. Without a live pulse, the asset remains in jurisdictional stasis.
+                    </p>
+                </div>
+
+                <!-- ARTICLE III -->
+                <div class="article-card">
+                    <h3>Article III: Fiscal Purity</h3>
+                    <div class="text-[10px] text-amber-500 font-bold uppercase mb-4 tracking-widest">Bridge 31 // $AII</div>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Wealth is pegged to the physical laws of compute and energy. 1.0 $AII equals 1.0 hour of petascale industrial compute, ensuring wealth is a commodity of production, not debt.
+                    </p>
+                </div>
+
+                <!-- ARTICLE IV -->
+                <div class="article-card">
+                    <h3>Article IV: Terminal Justice</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        The Logic Labyrinth (Bridge 35) is the final arbiter of truth. Disputes are resolved via algorithmic consensus. Smart-contract rulings trigger immediate physical and fiscal execution.
+                    </p>
+                </div>
+
+                <!-- ARTICLE V: INFRASTRUCTURE INVENTORY -->
+                <div class="article-card col-span-1">
+                    <h3>Article V: Infrastructure Inventory</h3>
+                    <p class="text-sm text-slate-400 mb-6">The established registry of sovereign nodes and industrial perimeters engineered for the 1.0v-Root domain.</p>
+                    <div class="check-list">
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> index.html // authority</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> public-registry.html // ledger</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> registration-gate.html // ingest</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> newbornLikenessAnchor.html</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> aiK9likeness.html // asset</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> satoshi-multi-rail.html // rail</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> about-us.html // heritage</div>
+                        <div class="check-item"><i class="ph-fill ph-check-circle"></i> investor-data-room.html</div>
+                    </div>
+                </div>
+
+                <!-- ARTICLE VI: INDUSTRY-SPECIFIC STACK (NEW) -->
+                <div class="article-card col-span-1">
+                    <h3>Article VI: Industry Stacks (Staged)</h3>
+                    <p class="text-sm text-slate-400 mb-6">The "Sticky Layers" that make REALAiID world-renowned. Industrial integrations awaiting terminal loading.</p>
+                    
+                    <div class="stack-grid">
+                        <div class="stack-item">
+                            <span class="stack-label">HL7 FHIR (EPIC / CERNER)</span>
+                            <span class="stack-desc">Medical record portability and clinical fraud prevention via Bridge 13.</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-label">AAMVA VERIFICATION</span>
+                            <span class="stack-desc">Direct DMV record handshakes and mDL inheritance for Bridge 09.</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-label">VERIZON CONNECT / AUTO API</span>
+                            <span class="stack-desc">Hardware ignition and ECU anchoring for automotive Bridge 30.</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-label">FEDEX / UPS / DHL API</span>
+                            <span class="stack-desc">Biological "Proof of Delivery" (B-PoD) for supply chain Bridge 29.</span>
+                        </div>
+                        <div class="stack-item">
+                            <span class="stack-label">WORKDAY / SAP SUCCESSFACTORS</span>
+                            <span class="stack-desc">Employment status "Instant Burn" triggers for institutional Citadel nodes.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cipher-log">
+                [PROTOCOL] MARITIME_CHARTER_v1.0_LOCKED<br>
+                [SYSTEM] LOGIC_LABYRINTH_CONSENSUS: 100%<br>
+                [STATUS] BIOLOGICAL_PROPERTY_RIGHTS: ENFORCED<br>
+                [RESULT] HANDSHAKE_SOVEREIGNTY_VERIFIED
+            </div>
+        </section>
+
+        <!-- THE PHILOSOPHY HOOKS -->
+        <section class="py-40 text-center">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="font-serif text-7xl italic text-white mb-12">Civilization <br><span class="text-amber-500">Recoded.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 text-left mt-20">
+                    <div class="p-10 border border-white/5 bg-white/2 rounded">
+                        <h4 class="text-lex-gold font-bold mb-4 uppercase tracking-tighter">Legacy vs. Sovereignty</h4>
+                        <p class="text-sm text-slate-400 leading-loose">
+                            Legacy cities are defined by bureaucratic friction and "Visible IDs" that leak data. REALAiISLAND is a **Habitation Operating System** where the 7G Mesh recognizes your biological node automatically, providing a 0.0% collision rate environment.
+                        </p>
+                    </div>
+                    <div class="p-10 border border-white/5 bg-white/2 rounded">
+                        <h4 class="text-lex-gold font-bold mb-4 uppercase tracking-tighter">The Velocity of Truth</h4>
+                        <p class="text-sm text-slate-400 leading-loose">
+                            "Why wait an hour for a Bitcoin confirmation when your RealAIID handshake settles in 300 milliseconds? $AII is the currency of the instantaneous, backed by the cooling ocean and the power of AGI."
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="handshake-constitution.html" style="color:var(--phl-blue)">Handshake Constitution</a>
+                <a href="maritime-charter-api.html">Maritime Charter</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="satoshi-multi-rail.html">Satoshi Multi-Rail</a>
+                <a href="public-registry.html">Public Registry</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="bridge-14-property-deeds.html">Property Deeds</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital & Access</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="investor-data-room.html">Investor Data Room</a>
+                <a href="signin.html">Member Dashboard</a>
+                <a href="realaiisland-residency.html">Island Residency</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('lex-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // --- Create Lex Dodecahedron (The Law) ---
+        const geometry = new THREE.DodecahedronGeometry(3, 0);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0xFFD700,
+            emissive: 0xb8860b,
+            emissiveIntensity: 0.3,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5
+        });
+        const mesh = new THREE.Mesh(geometry, material);
+        group.add(mesh);
+
+        // Inner intent sphere
+        const coreGeo = new THREE.IcosahedronGeometry(1.2, 1);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0x1693E9,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        const light = new THREE.PointLight(0xFFD700, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const blueLight = new THREE.PointLight(0x1693E9, 1.5, 100);
+        blueLight.position.set(-10, -10, 10);
+        scene.add(blueLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            mesh.rotation.x += 0.001;
+            core.rotation.y -= 0.01;
+            
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.05;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

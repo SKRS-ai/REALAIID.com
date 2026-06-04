@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oracle Arbitrage // Node 34 // REALAiID Bureau</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@500;700&family=Playfair+Display:ital,wght@1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --oracle-emerald: #10b981;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: #fff; overflow-x: hidden; padding: var(--border-frame); }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+        
+        /* Master Sync Header */
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: 140px !important; width: auto !important; display: block; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* Cinematic Background */
+        #oracle-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; opacity: 0.4; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .hero-product { height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .product-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7.5rem); font-style: italic; line-height: 0.9; text-shadow: 0 0 60px rgba(16, 185, 129, 0.4); }
+
+        .status-badge { background: #fef9c3; color: #854d0e; font-size: 10px; font-weight: 900; padding: 8px 16px; border-radius: 2px; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 30px; border: 1px solid #222; font-size: 0.8rem; color: var(--oracle-emerald); border-left: 4px solid var(--oracle-emerald); }
+
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--oracle-emerald); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 50px; max-width: 1700px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+
+    <div id="oracle-canvas"></div>
+
+    <header>
+        <div class="flex justify-between items-center">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="hero-product">
+            <div class="z-10">
+                <span class="status-badge mb-8 inline-block">Computational Node // Staging</span>
+                <span class="mono text-emerald-500 text-xs uppercase tracking-[0.5em] mb-4 block">Product Node 34</span>
+                <h1 class="product-title">Oracle <br><span class="text-emerald-500">Arbitrage.</span></h1>
+                <p class="text-xl text-slate-400 max-w-2xl mx-auto mt-10 font-light leading-relaxed">
+                    Transitioning market analysis from speculative psychology to **Algorithmic Compute Parity**. Wealth that senses the speed of light.
+                </p>
+                <div class="mt-12">
+                    <a href="identity-station.html" class="bg-emerald-700 text-white px-12 py-5 font-black text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">Initialize Oracle Sense</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass p-12 lg:p-20 rounded-sm shadow-2xl relative z-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="font-serif italic text-5xl mb-8">Yield at the <br><span class="text-emerald-500">Speed of Logic.</span></h2>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed">
+                        Legacy arbitrage is a liability of latency. Oracle Arbitrage (Node 34) technicalizes **Market Velocity**. By utilizing Bridge 34 (Oracle Flux), your REALAiID wallet biometrically authorizes the movement of capital into the highest-density compute contracts across the Benthic Zone and SODR Ring. Your biological heartbeat is the clock-cycle for your wealth.
+                    </p>
+                    
+                    <div class="cipher-box">
+                        > ORACLE_ID: B-34-FLUX-PHL<br>
+                        > SCAN_RATE: 1.2M_EVENTS/SEC<br>
+                        > ARBITRAGE_SYNC: <span class="animate-pulse text-emerald-500">ACTIVE_COMPUTE_PARITY</span><br>
+                        > PARITY_GAP: 0.00042 $AII
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="border-l-2 border-emerald-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-emerald-500 tracking-widest">Flux Negotiation</h4>
+                        <p class="text-xs text-slate-400">Automatically identifies and captures value discrepancies between regional compute power and global $AII liquidity.</p>
+                    </div>
+                    <div class="border-l-2 border-emerald-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-emerald-500 tracking-widest">Biological Permission</h4>
+                        <p class="text-xs text-slate-400">High-velocity shifts only occur within the biological safety parameters set by your skeletal resonance profile.</p>
+                    </div>
+                    <div class="border-l-2 border-emerald-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-emerald-500 tracking-widest">$AII Ingest Integration</h4>
+                        <p class="text-xs text-slate-400">Seamlessly feeds arbitrage yields back into the B-31 Wealth Vault for continuous compound presence staking.</p>
+                    </div>
+                    <div class="border-l-2 border-emerald-700 pl-6 space-y-4">
+                        <h4 class="mono text-[10px] uppercase text-emerald-500 tracking-widest">The $999 Standard</h4>
+                        <p class="text-xs text-slate-400">Advanced ingest for algorithmic traders and high-net-worth sovereigns. Includes Node 34 Flux license.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40 border-t border-white/5 mt-40">
+            <h2 class="text-center font-serif italic text-3xl mb-20 uppercase tracking-widest text-slate-500">Economic Perimeter</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="bridge-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid px-[5%]">
+            <div class="footer-col col-span-2">
+                <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono'; margin-bottom: 1.5rem;">REALAiID // BUREAU</div>
+                <p style="font-size: 0.95rem; line-height: 1.8;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Truth under the Solomon Kin Maritime Charter.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="benthic-pulse.html">Benthic Pulse</a></li>
+                    <li><a href="sodr-ring.html">SODR Ring</a></li>
+                    <li><a href="product-logistics.html">Node 29 Logistics</a></li>
+                    <li><a href="product-drive-knot.html">Node 30 Auto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Sovereignty</h4>
+                <ul>
+                    <li><a href="blue-paper.html">Forensic Blue Paper</a></li>
+                    <li><a href="aii-economy.html">$AII Economy</a></li>
+                    <li><a href="product-liquidity-vault.html">Wealth Vault</a></li>
+                    <li><a href="charter.html">Maritime Charter</a></li>
+                    <li><a href="product-benthic-lease.html">Benthic Lease</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Forensics</h4>
+                <ul>
+                    <li><a href="product-likeness-shield.html">Likeness Shield</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign™ Audit</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal</a></li>
+                    <li><a href="product-oracle-arbitrage.html" class="text-emerald-500">Oracle Root</a></li>
+                    <li><a href="forensic-pdl.html">PDL Enrichment</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Accountability</h4>
+                <ul>
+                    <li><a href="dating-safety.html">Dating Safety</a></li>
+                    <li><a href="product-authority-pass.html">Authority Pass</a></li>
+                    <li><a href="background-rail.html">Checkr Rail</a></li>
+                    <li><a href="fraud-score.html">Trust Index</a></li>
+                    <li><a href="lethal-ledger.html">Truth Ingest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; padding-left: 5%; padding-right: 5%;">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div id="sync-status">STATUS: ORACLE SENSE ACTIVE</div>
+        </div>
+    </footer>
+
+    <script>
+        /* Three.js Visualization: The Flux Oracle (Flowing Data Crystal) */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('oracle-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // Icosahedron representing the "Eye" of the Oracle
+        const geo = new THREE.IcosahedronGeometry(3, 1);
+        const mat = new THREE.MeshPhongMaterial({ 
+            color: 0x10b981, 
+            wireframe: true, 
+            transparent: true, 
+            opacity: 0.3,
+            shininess: 100
+        });
+        const crystal = new THREE.Mesh(geo, mat);
+        group.add(crystal);
+        
+        // Internal spinning data core
+        const coreGeo = new THREE.SphereGeometry(1.2, 16, 16);
+        const coreMat = new THREE.MeshPhongMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.1 });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+        scene.add(new THREE.PointLight(0x10b981, 4, 100).position.set(5, 5, 5));
+        camera.position.z = 8;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            crystal.rotation.y += 0.002;
+            crystal.rotation.z += 0.001;
+            core.rotation.x -= 0.008;
+            
+            // "Pulse" effect to simulate data scanning
+            const pulse = 1 + Math.sin(Date.now() * 0.002) * 0.1;
+            crystal.scale.set(pulse, pulse, pulse);
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        /* Ecosystem Bridge Injection */
+        const ecosystem = [
+            { id: "34", name: "Oracle Flux", link: "bridge-34-oracle-flux.html" },
+            { id: "31", name: "$AII Economy", link: "bridge-31-aii-economy.html" },
+            { id: "33", name: "Benthic Pulse", link: "bridge-33-benthic-pulse.html" },
+            { id: "32", name: "God Sense", link: "bridge-32-god-sense.html" }
+        ];
+        const grid = document.getElementById('bridge-grid');
+        ecosystem.forEach(b => {
+            const btn = document.createElement('a');
+            btn.href = b.link;
+            btn.className = "p-8 glass border border-white/5 hover:border-emerald-500 transition-all text-center flex flex-col items-center gap-4";
+            btn.innerHTML = `<span class="mono text-[8px] opacity-40 uppercase">Node B-${b.id}</span><span class="text-[10px] font-black uppercase tracking-widest">${b.name}</span>`;
+            grid.appendChild(btn);
+        });
+    </script>
+</body>
+</html>

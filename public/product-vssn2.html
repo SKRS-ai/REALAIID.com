@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VSSN CORE | REALAiID Vocal Sovereignty Protocols</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #0B1320;
+            --bureau-gold: #b8860b;
+            --satoshi-orange: #F7931A;
+            --surface: #F8FAFC;
+            --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--phl-dark); line-height: 1.7; padding: var(--border-frame); }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        .vocal-wave {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: var(--phl-blue);
+            border-radius: 50px;
+            animation: pulse-wave 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-wave {
+            0%, 100% { height: 20px; }
+            50% { height: 80px; }
+        }
+
+        .tier-toggle-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            padding: 60px 40px;
+            transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-toggle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+            border-color: var(--phl-blue);
+        }
+
+        .level-badge {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: var(--phl-blue);
+            background: rgba(22, 147, 233, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .price-tag {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--phl-dark);
+            margin: 20px 0;
+            letter-spacing: -2px;
+        }
+
+        .price-tag span {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #64748B;
+            letter-spacing: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        .feature-item svg {
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+
+        .btn-authorize {
+            display: block;
+            background: var(--phl-dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            margin-top: auto;
+            transition: var(--transition);
+        }
+
+        .btn-authorize:hover {
+            background: var(--phl-blue);
+            letter-spacing: 4px;
+        }
+
+        .performer-tier {
+            border: 2px solid var(--bureau-gold);
+            background: #FFFDF5;
+        }
+
+        .performer-tier .level-badge {
+            background: rgba(184, 134, 11, 0.1);
+            color: var(--bureau-gold);
+        }
+
+        .performer-tier .btn-authorize {
+            background: var(--bureau-gold);
+            color: black;
+        }
+
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <header class="flex justify-between items-center px-12 py-8 bg-white border-b border-gray-100 sticky top-[15px] z-[1000]">
+        <div class="flex items-center gap-4">
+            <img src="realaiid_commonwealth_logo_20262999.png" class="h-16" alt="Bureau Logo" onerror="this.src='https://placehold.co/200x80/ffffff/0b1320?text=REALAiID'">
+            <div class="h-8 w-[1px] bg-gray-200"></div>
+            <span class="font-mono text-[10px] font-black uppercase tracking-widest text-gray-400">VSSN // PROTOCOL</span>
+        </div>
+        <nav class="flex gap-10 items-center">
+            <a href="index.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition-colors">Mainframe Gate</a>
+            <a href="blue-paper.html" class="text-[11px] font-black uppercase tracking-widest hover:text-blue-500 transition-colors">Technical Specs</a>
+            <a href="#" class="bg-blue-600 text-white px-8 py-3 font-black text-[11px] uppercase tracking-widest rounded-sm">Join Registry</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-24 px-6">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+            <div>
+                <span class="text-blue-500 font-mono text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">Vocal Social Security Number</span>
+                <h1 class="font-serif italic text-7xl leading-none mb-10 text-slate-900">Your Voice is <br><span class="text-blue-500">Biological IP.</span></h1>
+                <p class="text-xl text-slate-600 font-light leading-relaxed mb-12">
+                    Traditional identity relies on strings of numbers. VSSN relies on the unique spectral frequency of your larynx. 
+                    Anchor your vocal root to the Philadelphia Mainframe to prevent cloning, theft, and unauthorized synthesis.
+                </p>
+                <div class="vocal-wave">
+                    <div class="wave-bar" style="animation-delay: 0.1s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.3s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.5s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.2s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.4s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.6s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.3s"></div>
+                    <div class="wave-bar" style="animation-delay: 0.1s"></div>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-2xl p-12 shadow-2xl relative overflow-hidden border border-white/5">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <svg width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="0.5"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8M8 12h8"></path></svg>
+                </div>
+                <h4 class="text-blue-400 font-mono text-xs uppercase tracking-widest mb-8">> CORE_INGEST_LOG_v1.0</h4>
+                <div class="space-y-6 text-sm font-mono text-slate-400">
+                    <p class="flex justify-between border-b border-white/10 pb-2"><span>[STATUS]</span> <span class="text-emerald-400">AWAITING HASH</span></p>
+                    <p class="flex justify-between border-b border-white/10 pb-2"><span>[BRIDGE_01]</span> <span class="text-white">AUTH ROOT ENABLED</span></p>
+                    <p class="flex justify-between border-b border-white/10 pb-2"><span>[BRIDGE_18]</span> <span class="text-white">SSA TOKENIZER READY</span></p>
+                    <p class="flex justify-between border-b border-white/10 pb-2"><span>[FREQUENCY]</span> <span class="text-white">256-BIT SPECTRAL</span></p>
+                </div>
+                <div class="mt-12 text-[10px] text-slate-500 uppercase tracking-widest leading-relaxed">
+                    Once anchored, your vocal frequency becomes a cryptographic key. Any attempt to replicate your voice without the Handshake Knot™ is forensicly flagged globally.
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mb-20">
+            <h2 class="font-serif italic text-5xl mb-4 text-slate-900">Biometric Sovereignty Levels</h2>
+            <p class="text-slate-500 font-medium tracking-wide">Select your depth of vocal protection and attribution.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            
+            <!-- LEVEL 01: INDIVIDUAL -->
+            <div class="tier-toggle-card">
+                <span class="level-badge">LEVEL 01 // INDIVIDUAL</span>
+                <h3 class="font-serif text-3xl font-black italic mb-2">Individual Core</h3>
+                <p class="text-sm text-slate-500 mb-8">Personal defense for the conversational self.</p>
+                
+                <div class="price-tag">$29.00 <span>/ ONE TIME FEE</span></div>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1693E9" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Secure Biological Voice Anchoring:</strong> Permanent SHA-256 frequency record.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1693E9" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Conversational Likeness Protection:</strong> Guards against unauthorized voice deepfakes.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1693E9" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>VSSN Sovereign Identifier:</strong> Your global vocal social security node.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1693E9" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Philadelphia Mainframe Registry:</strong> Official industrial listing.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1693E9" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>24/7 Identity Spoof Detection:</strong> Active radar monitoring of your vocal IP.</p>
+                    </div>
+                </div>
+
+                <a href="https://checkout.stripe.com/pay/vssn_individual" class="btn-authorize">Establish Individual Root</a>
+            </div>
+
+            <!-- LEVEL 02: PROFESSIONAL -->
+            <div class="tier-toggle-card performer-tier">
+                <span class="level-badge">LEVEL 02 // PROFESSIONAL</span>
+                <h3 class="font-serif text-3xl font-black italic mb-2">Performer Core</h3>
+                <p class="text-sm text-slate-500 mb-8">Authorship and attribution for the creative elite.</p>
+                
+                <div class="price-tag">$89.00 <span>/ ONE TIME FEE</span></div>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Artistic Vocal Hashing:</strong> Captures nuances in singing and melodic performance.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Melodic Sovereignty:</strong> Legal protection for your specific musical frequency.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Extended Likeness Attribution:</strong> C2PA metadata tagging for all media exports.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Authorship Metadata:</strong> Proves human origin in AI-generated environments.</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                        <p><strong>Smart-Contract Ready:</strong> Automate royalties for licensed vocal usage.</p>
+                    </div>
+                </div>
+
+                <a href="https://checkout.stripe.com/pay/vssn_professional" class="btn-authorize">Establish Performer Root</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-[#020617] border-t-4 border-blue-600 pt-32 pb-16 px-12 text-gray-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div>
+                <div class="text-white font-mono text-2xl font-black mb-8">REALAiID // BUREAU</div>
+                <p class="leading-relaxed text-sm">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. 
+                    Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Infrastructure</h4>
+                <div class="flex flex-col gap-4 text-xs">
+                    <a href="blue-paper.html" class="hover:text-white transition-colors">Technical Blue Paper</a>
+                    <a href="api-docs.html" class="hover:text-white transition-colors">API Documentation</a>
+                    <a href="mainframe.html" class="hover:text-white transition-colors">Mainframe Node Sync</a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Legal Roots</h4>
+                <div class="flex flex-col gap-4 text-xs">
+                    <a href="#" class="hover:text-white transition-colors">NO FAKES Compliance</a>
+                    <a href="#" class="hover:text-white transition-colors">UETA Act Standing</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy Protocol</a>
+                </div>
+            </div>
+        </div>
+        <div class="mt-32 border-t border-white/5 pt-12 text-center font-mono text-[9px] uppercase tracking-[0.5em] text-gray-600">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // 256-BIT SPECTRAL HASH ACTIVE
+        </div>
+    </footer>
+
+</body>
+</html>

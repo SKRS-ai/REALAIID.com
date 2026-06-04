@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiISLAND Residency | Sovereign Habitation Standards</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --sanctuary-teal: #10B981;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D SANCTUARY CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .hero-residency {
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: var(--sanctuary-teal);
+            text-shadow: 0 0 80px rgba(16, 185, 129, 0.4);
+        }
+
+        /* --- DATA PANELS --- */
+        .habitation-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            margin-top: -100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .tier-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            border-top: 4px solid var(--sanctuary-teal);
+            transition: var(--transition);
+        }
+
+        .tier-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.05);
+            transform: translateY(-10px);
+        }
+
+        .tier-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .cap-tag {
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: var(--sanctuary-teal);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .utility-list li {
+            font-size: 0.85rem;
+            color: #94A3B8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .utility-list li i { color: var(--sanctuary-teal); }
+
+        .philosophy-box {
+            background: #000;
+            padding: 60px;
+            border-radius: 4px;
+            border: 1px solid #1e293b;
+            margin-top: 80px;
+        }
+
+        .cipher-log {
+            font-family: 'JetBrains Mono';
+            font-size: 0.75rem;
+            color: var(--sanctuary-teal);
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-left: 4px solid var(--sanctuary-teal);
+            line-height: 2;
+            margin-top: 40px;
+        }
+
+        /* --- MEGA FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 10% 40px; 
+            border-top: 4px solid var(--phl-blue); 
+            margin-top: 150px;
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(1, 1fr);
+            gap: 60px; 
+            max-width: 1600px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        @media (min-width: 1280px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr; }
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 20px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+            text-transform: uppercase;
+        }
+
+        .footer-mission { font-size: 0.85rem; line-height: 1.8; color: #64748B; max-width: 320px; margin-bottom: 25px; }
+        .footer-links-col h4 { color: #fff; font-size: 0.65rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; font-weight: 900; }
+        .footer-links-col a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.75rem; font-weight: 600; transition: 0.3s; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-links-col a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'JetBrains Mono';
+            font-size: 0.65rem;
+            color: #475569;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="sanctuary-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="executive-summary.html">Financial Summary</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-residency">
+            <div class="z-10 px-6">
+                <span class="font-mono text-xs text-emerald-500 uppercase tracking-[0.6em] mb-4 block">Habitation Operating System // Domain Sanctuary</span>
+                <h1 class="hero-title">Sovereign <br>Residency.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-4xl mx-auto leading-relaxed">
+                    AI Island is not a location; it is a **Sovereign Node**. A physical air-gap from legacy civil systems where technology serves the biology without being asked.
+                </p>
+            </div>
+        </section>
+
+        <!-- HABITATION PANEL -->
+        <section class="habitation-panel max-w-7xl mx-auto shadow-2xl">
+            <div class="mb-20">
+                <h2 class="font-serif italic text-6xl mb-6 text-white">The Handshake <span class="text-emerald-500">Sanctuary.</span></h2>
+                <p class="text-slate-400 text-lg max-w-4xl">
+                    By synchronizing all 35 bridges into the REALAiID Wallet, inhabitants achieve Total Human Autonomy. Residents of AI Island live within a 0.0% collision rate environment, governed by real-time smart-contract justice.
+                </p>
+            </div>
+
+            <div class="tier-grid">
+                <!-- TIER: EXECUTIVE PINNACLE -->
+                <div class="tier-card" style="border-top-color: var(--bureau-gold);">
+                    <span class="cap-tag">Tier: Executive Pinnacle</span>
+                    <h3>The Pinnacle <br>Standing.</h3>
+                    <div class="text-2xl font-black text-white mb-6">$10M+ Capital Anchor</div>
+                    <ul class="utility-list">
+                        <li><i class="ph-fill ph-check-circle"></i> Unlimited Industrial Compute Quota</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 5x Constitutional Voting Weight</li>
+                        <li><i class="ph-fill ph-check-circle"></i> 24/7 Pegasus Flight Standby</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Private Benthic Pulse Sentinel</li>
+                    </ul>
+                    <p class="text-[10px] text-slate-500 mt-10 uppercase font-black tracking-widest">Reserved for Architects of the Global Reserve</p>
+                </div>
+
+                <!-- TIER: SOVEREIGN FOUNDER -->
+                <div class="tier-card">
+                    <span class="cap-tag">Tier: Sovereign Founder</span>
+                    <h3>The Founder <br>Legacy.</h3>
+                    <div class="text-2xl font-black text-white mb-6">$1M+ Development Ingest</div>
+                    <ul class="utility-list">
+                        <li><i class="ph-fill ph-check-circle"></i> Ability to "Plant" Nautilus Capsules</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Retain 85% of Compute Leasing Revenue</li>
+                        <li><i class="ph-fill ph-check-circle"></i> Priority Node Allocation on PHL-01</li>
+                        <li><i class="ph-fill ph-check-circle"></i> $AII Economy Dividend Escalation</li>
+                    </ul>
+                    <p class="text-[10px] text-slate-500 mt-10 uppercase font-black tracking-widest">Foundational Rights to the SODR Ring Infrastructure</p>
+                </div>
+            </div>
+
+            <div class="philosophy-box">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                    <div>
+                        <h4 class="text-emerald-500 font-bold mb-4 uppercase tracking-widest text-xs">Architectural Philosophy</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                            Legacy cities are defined by bureaucratic friction, decaying infrastructure, and "Visible IDs" (plastic cards that leak data). AI Island replaces these vulnerabilities with a **Habitation OS**.
+                        </p>
+                        <p class="text-slate-500 text-xs italic">
+                            "The Prime Directive: To provide the first environment on Earth where the technology serves the biology without being asked."
+                        </p>
+                    </div>
+                    <div>
+                        <div class="cipher-log">
+                            [STATUS] COLLISION_RATE: 0.0%<br>
+                            [SYSTEM] SMART_CONTRACT_JUSTICE: ACTIVE<br>
+                            [BRIDGE_35] CONSENSUS_LATENCY: 300ms<br>
+                            [RESULT] HABITATION_SOVEREIGNTY_VERIFIED
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- THE VELOCITY HOOKS -->
+        <section class="py-40 text-center">
+            <div class="max-w-4xl mx-auto px-6">
+                <h2 class="font-serif text-6xl italic text-white mb-12">Claim Your <br><span class="text-emerald-500">Handshake.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-left mt-20">
+                    <div class="p-8 border border-white/5 bg-white/2">
+                        <h5 class="text-emerald-500 font-bold mb-4 uppercase tracking-tighter">The Velocity Hook</h5>
+                        <p class="text-xs text-slate-400">"Why wait an hour for a Bitcoin confirmation when your RealAIID handshake settles in 300 milliseconds? $AII is the currency of the instantaneous."</p>
+                    </div>
+                    <div class="p-8 border border-white/5 bg-white/2">
+                        <h5 class="text-emerald-500 font-bold mb-4 uppercase tracking-tighter">The Stability Hook</h5>
+                        <p class="text-xs text-slate-400">"Your bank account is backed by debt. My economy is backed by the cooling ocean and the power of AGI. Which one would you rather trust?"</p>
+                    </div>
+                    <div class="p-8 border border-white/5 bg-white/2">
+                        <h5 class="text-emerald-500 font-bold mb-4 uppercase tracking-tighter">The Action Hook</h5>
+                        <p class="text-xs text-slate-400">"Sovereignty isn't a location. It's a Handshake. Claim yours today at RealAIID.com."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MEGA FOOTER DATABASE -->
+    <footer>
+        <div class="footer-grid">
+            <div class="col-span-1 lg:col-span-1">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p class="footer-mission">
+                    Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Established 2026.
+                </p>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-2">Philadelphia Mainframe PHL-01</div>
+                <div class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Anchored at 1900 Market St</div>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Infrastructure</h4>
+                <a href="about-us.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Juridical & Legal</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="privacy-protocol.html">Privacy Protocol</a>
+                <a href="bridge-35-sovereign-justice.html">Sovereign Justice</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="satoshi-multi-rail.html">Satoshi Multi-Rail</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Asset Registry</h4>
+                <a href="newbornLikenessAnchor.html">Digital Newborn</a>
+                <a href="aiK9likeness.html">Pet Likeness</a>
+                <a href="bridge-14-property-deeds.html">Property Deeds</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Capital & Access</h4>
+                <a href="investor-portal.html" style="color:var(--bureau-gold)">Investor Portal</a>
+                <a href="investor-data-room.html">Investor Data Room</a>
+                <a href="signin.html">Member Dashboard</a>
+                <a href="realaiisland-residency.html" style="color:var(--sanctuary-teal)">Island Residency</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // PHL-NODE-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('sanctuary-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        
+        // --- Create Sovereign Prism (Three.js) ---
+        // A crystalline pyramid representing the sanctuary
+        const prismGeo = new THREE.ConeGeometry(3, 5, 4);
+        const prismMat = new THREE.MeshPhongMaterial({
+            color: 0x10B981,
+            emissive: 0x10B981,
+            emissiveIntensity: 0.3,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.5
+        });
+        const prism = new THREE.Mesh(prismGeo, prismMat);
+        group.add(prism);
+
+        // Inner Capital Pulse
+        const coreGeo = new THREE.SphereGeometry(1.2, 32, 32);
+        const coreMat = new THREE.MeshPhongMaterial({
+            color: 0xffffff,
+            emissive: 0xb8860b,
+            emissiveIntensity: 0.5,
+            transparent: true,
+            opacity: 0.8,
+            wireframe: true
+        });
+        const core = new THREE.Mesh(coreGeo, coreMat);
+        group.add(core);
+
+        scene.add(group);
+
+        // --- Lights ---
+        const light = new THREE.PointLight(0x10B981, 2, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+        
+        const goldLight = new THREE.PointLight(0xb8860b, 1.5, 100);
+        goldLight.position.set(-10, -10, 10);
+        scene.add(goldLight);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            group.rotation.y += 0.002;
+            prism.rotation.x += 0.001;
+            
+            // Pulse effect
+            const pulse = 1 + Math.sin(Date.now() * 0.003) * 0.1;
+            core.scale.set(pulse, pulse, pulse);
+            
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = (e.clientX / window.innerWidth) - 0.5;
+            const mouseY = (e.clientY / window.innerHeight) - 0.5;
+            group.rotation.x = mouseY * 0.2;
+            group.rotation.y += mouseX * 0.05;
+        });
+
+        window.onload = animate;
+    </script>
+</body>
+</html>

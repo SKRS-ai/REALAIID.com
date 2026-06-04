@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sovereign Privacy Statutes | REALAiID Bureau Data Ownership Regulation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --sidebar-bg: rgba(2, 6, 23, 0.7);
+            --code-bg: #020617;
+            --border-frame: 15px;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark) !important; color: #ffffff !important; line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- STYLIZED MASTER HEADER --- */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: var(--border-frame); z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* --- THREE.JS SHIELD MESH CANVAS --- */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.16; pointer-events: none; }
+
+        /* --- DUAL PANE WRAPPER MATRIX --- */
+        .docs-wrapper { display: grid; grid-template-columns: 390px 1fr; max-width: 1750px; margin: 0 auto; width: 100%; flex-grow: 1; position: relative; z-index: 10; gap: 40px; }
+        
+        .docs-sidebar { background: var(--sidebar-bg); padding: 40px 30px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); height: calc(100vh - 140px); position: sticky; top: 120px; overflow-y: auto; border-radius: 2px; }
+        .docs-sidebar h5 { font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #64748B; margin-bottom: 20px; margin-top: 35px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .docs-sidebar h5:first-child { margin-top: 0; }
+        
+        /* Interactive Menu Buttons */
+        .menu-btn { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.01); text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; color: #94A3B8; transition: all 0.3s; margin-bottom: 8px; cursor: pointer; }
+        .menu-btn:hover { border-color: rgba(22, 147, 233, 0.3); color: #ffffff; }
+        .menu-btn.active { border-color: var(--phl-blue); background: rgba(22, 147, 233, 0.08); color: #ffffff; font-weight: 700; box-shadow: 0 0 15px rgba(22, 147, 233, 0.1); }
+
+        .docs-content { padding: 40px 20px; }
+        .display-screen { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(40px); padding: 60px; min-height: 650px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+        
+        .code-block { background: var(--code-bg); color: #10B981; padding: 35px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 0.85rem; margin: 25px 0; overflow-x: auto; border-left: 4px solid var(--phl-blue); line-height: 1.6; }
+        .code-comment { color: #64748B; font-style: italic; }
+
+        /* --- FOOTER SYNC --- */
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid var(--phl-blue); margin-top: 100px; position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1700px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        @media (max-width: 1150px) { .docs-wrapper { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div id="shield-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="product-vssn2.html">VSSN Hashing</a>
+            <a href="product-likeness-shield.html">Likeness Shield</a>
+            <a href="api-docs.html">API Docs</a>
+            <a href="privacy-statutes.html" class="active">Privacy Statutes</a>
+        </nav>
+    </header>
+
+    <div class="docs-wrapper mt-12">
+        <aside class="docs-sidebar">
+            <h5>Statutory Enforcements</h5>
+            <button class="menu-btn active" data-node="sovereignty-codes">DATA SOVEREIGNTY CODES</button>
+            <button class="menu-btn" data-node="no-fakes-compliance">NO FAKES COMPLIANCE</button>
+            <button class="menu-btn" data-node="neural-noise-spec">NEURAL NOISE INJECTION</button>
+            
+            <h5>38-Bridge Privacy Architecture</h5>
+            <button class="menu-btn" data-node="b01-privacy">BRIDGE B-01 // ANONYMOUS ROOT</button>
+            <button class="menu-btn" data-node="b02-civic">BRIDGE B-02 // BALLOT ENCRYPTION</button>
+            <button class="menu-btn" data-node="b09-transit">BRIDGE B-09 // DMV CLOAKING</button>
+            <button class="menu-btn" data-node="b10-fiscal">BRIDGE B-10 // UTILITY BYPASS</button>
+            <button class="menu-btn" data-node="b14-deeds">BRIDGE B-14 // TITLE ISOLATION</button>
+            <button class="menu-btn" data-node="b31-royalty">BRIDGE B-31 // AUTOMATED TOLLS</button>
+            <button class="menu-btn" data-node="b35-firewall">BRIDGE B-35 // CITADEL SHIELD</button>
+        </aside>
+
+        <main class="docs-content">
+            <div class="display-screen rounded-sm" id="golden-view-panel">
+                <span class="font-mono text-xs text-blue-500 uppercase tracking-widest block mb-2" id="gold-node-id">Statute Code: RS-4.01 // Primary Ownership Mandate</span>
+                <h1 class="text-4xl font-serif font-bold italic mb-6 text-white" id="gold-node-title">Sovereign Data Sovereignty Codes</h1>
+                
+                <div class="text-slate-300 font-light text-sm leading-relaxed mb-6 space-y-4" id="gold-node-desc">
+                    <p class="text-justify">The Bureau's primary data directive explicitly separates an individual's biometric presence from centralized programmatic tracking. Under Section 4.01, third-party crawlers, deep-learning models, and surveillance matrices are barred from storing or modeling biological telemetry maps without an verified token exchange. Raw human biometric configurations are protocol-isolated, meaning personal records remain encrypted within the hardware secure element enclave, never stored or visible on cloud boxes.</p>
+                </div>
+
+                <div class="code-block" id="gold-node-code">
+<span class="code-comment">// PROTOCOL PRIVACY POLICY PARITY PARAMETERS</span>
+{
+  "sovereign_ownership_status": "TRUE",
+  "biometric_cloud_mirroring": "RESTRICTED_BLOCKED",
+  "hardware_enclave_grade": "FIPS_140-3_LEVEL_4",
+  "data_clearance_protocol": "HANDSHAKE_KNOT_ENFORCED"
+}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B; margin-top: 15px;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026. Securing the "Human Core" through decentralized hashing. Your identity, your sovereignty.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html" class="text-blue-500">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px; text-transform: uppercase;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE // GOVERNANCE SYNC ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const statuteMatrix = {
+            "sovereignty-codes": {
+                nodeId: "Statute Code: RS-4.01 // Primary Ownership Mandate",
+                title: "Sovereign Data Sovereignty Codes",
+                desc: `<p class="text-justify">The Bureau's primary data directive explicitly separates an individual's biometric presence from centralized programmatic tracking. Under Section 4.01, third-party crawlers, deep-learning models, and surveillance matrices are barred from storing or modeling biological telemetry maps without an verified token exchange. Raw human biometric configurations are protocol-isolated, meaning personal records remain encrypted within the hardware secure element enclave, never stored or visible on cloud boxes.</p>`,
+                code: `<span class="code-comment">// PROTOCOL PRIVACY POLICY PARITY PARAMETERS</span>\n{\n  "sovereign_ownership_status": "TRUE",\n  "biometric_cloud_mirroring": "RESTRICTED_BLOCKED",\n  "hardware_enclave_grade": "FIPS_140-3_LEVEL_4",\n  "data_clearance_protocol": "HANDSHAKE_KNOT_ENFORCED"\n}`
+            },
+            "no-fakes-compliance": {
+                nodeId: "Statute Code: RS-4.02 // Likeness Attribution",
+                title: "NO FAKES Act Statutory Compliance Architecture",
+                desc: `<p class="text-justify">Enforces the legal framework mandated under the 2026 federal parameters to guard individuals against the unauthorized creation or distribution of synthetic voice clones and digital likeness alterations. The system acts as a real-time tracking registry, stamping each pixel footprint with a forensic signature profile that provides immediate proof of genuine biological presence and authorization to courts.</p>`,
+                code: `<span class="code-comment">// NO FAKES JURIDICAL EVIDENCE SCHEMA</span>\n{\n  "statutory_law_basis": "NO_FAKES_ACT_2026",\n  "attribution_validation": "C2PA_PROVENANCE_SEALED",\n  "timestamp_authority": "PHL-01_MAINFRAME_SIGNED",\n  "evidence_weight": "PRIMA_FACIE_VALID"\n}`
+            },
+            "neural-noise-spec": {
+                nodeId: "Statute Code: RS-4.03 // Counter-Surveillance Countermeasure",
+                title: "Neural Noise Injection & Identity Cloaking",
+                desc: `<p class="text-justify">The rise of mobile AI wearables (such as weaponized face-scraping wearables used in public spaces) creates an immediate physical doxing threat. The Bureau counters this vector via Neural Noise Injection. By overlaying personal media artifacts with subtle, non-perceptible biometric distortion vectors, public scraper databases (Clearview AI, PimEyes) are blinded against 100% matches, neutralizing social engineering traps before processing scripts can initialize access.</p>`,
+                code: `<span class="code-comment">// COUNTER-SURVEILLANCE SHROUD PARMS</span>\n{\n  "noise_injection_state": "ACTIVE_ENFORCED",\n  "scraper_database_matching": "BLINDED_MUTATED",\n  "face_to_data_pipeline_block": "TRUE",\n  "protection_envelope_radius": "OMNIPRESENT"\n}`
+            },
+            "b01-privacy": {
+                nodeId: "Bridge Privacy Code // B-01",
+                title: "Identity Auth Root Protocol Cloaking",
+                desc: `<p class="text-justify">Binds mutational biometrics and ocular signatures straight into your wallet secure layer without exposing raw records to edge hardware. Replaces standard clear-text static data strings with rotating, temporal cryptographic proofs, allowing full identity confirmation while keeping data protocol-level hidden from network sniffers.</p>`,
+                code: `<span class="code-comment">// IDENTITY PROTECTION PARAMETERS</span>\n{\n  "visibility_state": "PROTOCOL_LEVEL_HIDDEN",\n  "spoof_resistance_factor": "MAX_MULTI_MODAL",\n  "marrow_key_sync": "ENFORCED"\n}`
+            },
+            "b02-civic": {
+                nodeId: "Bridge Privacy Code // B-02",
+                title: "Civic Ballot Zero-Knowledge Interface",
+                desc: `<p class="text-justify">Enforces absolute privacy metrics during municipal validation runs. Employs zero-knowledge parameter checks to verify your distinct human presence baseline to state voting machines without linking back to your real-world identity data file, securing un-trackable civic agency.</p>`,
+                code: `<span class="code-comment">// CIVIC REGISTRY BALLOT STRUCT</span>\n{\n  "zk_proof_state": "ACTIVE_VERIFIED",\n  "human_core_match": "TRUE",\n  "identity_traceback": "IMPOSSIBLE_REDACTED"\n}`
+            },
+            "b09-transit": {
+                nodeId: "Bridge Privacy Code // B-09",
+                title: "DMV Attestation Credential Cloaking",
+                desc: `<p class="text-justify">Wraps transit certifications and vehicle licensing data inside an encrypted perimeter. Blocks distant tracking sensors from pulling state records from your wallet, responding to verification scanner beams only when a live biological handshake command is released.</p>`,
+                code: `<span class="code-comment">// DMV SECURE ESCROW INTERFACE</span>\n{\n  "visible_liability_status": "NEUTRALIZED",\n  "remote_harvest_block": "TRUE",\n  "sensor_handshake": "RESTRICTED"\n}`
+            },
+            "b10-fiscal": {
+                nodeId: "Bridge Privacy Code // B-10",
+                title: "Fiscal Corridor Isolation & Utility Checkout",
+                desc: `<p class="text-justify">Isolates cross-border settlement loops and bank-level accounting indices from public ledgers. Converts traditional fiat sums seamlessly into pre-funded $AII compute tracking blocks via an Automated Checkout engine, safeguarding consumer spending habits while cutting out operational toll fees.</p>`,
+                code: `<span class="code-comment">// FIAT CONVERSION PRIVACY PROFILE</span>\n{\n  "fiat_clearing_route": "BYPASS_ISOLATED",\n  "efficiency_discount_applied": "0.33",\n  "transaction_mix_status": "ANONYMIZED"\n}`
+            },
+            "b14-deeds": {
+                nodeId: "Bridge Privacy Code // B-14",
+                title: "Real Estate Property Deed Title Isolation",
+                desc: `<p class="text-justify">Tethers physical real estate holdings and municipal land records straight to your biometric frequency rail. Insulates property registries from remote tracking checks, confirming title transfers or modifications only when your physical identity authorizes the ledger row.</p>`,
+                code: `<span class="code-comment">// SPATIAL REGISTRY DEFENSE BLOCK</span>\n{\n  "deed_visibility": "OWNER_ONLY_RESERVED",\n  "bitcoin_block_hash": "MICRO_SECURED",\n  "unauthorized_transfer_block": "ACTIVE"\n}`
+            },
+            "b31-royalty": {
+                nodeId: "Bridge Privacy Code // B-31",
+                title: "Automated Likeness Exploitation Tolls",
+                desc: `<p class="text-justify">Binds an automated tracking daemon straight into your personal media footprint. The exact millisecond an un-authenticated artificial intelligence parsing loop or scraping bot indexes your vocal resonance or image signature, an automated toll clears, routing $AII compute units straight to your wallet.</p>`,
+                code: `<span class="code-comment">// AUTOMATED REVENUE MINTING METRICS</span>\n{\n  "likeness_protection_shield": "SHIELD_STRIKE_ACTIVE",\n  "automated_toll_multiplier": 1.424,\n  "settlement_latency": "100_MS_ATOMIC"\n}`
+            },
+            "b35-firewall": {
+                nodeId: "Bridge Privacy Code // B-35",
+                title: "Citadel Shield Sovereign Judicial Firewall",
+                desc: `<p class="text-justify">Enforces your data protection charter choices globally across the net. Shields profile assets from public scrapers down to the millisecond, isolating transaction footprints under statutory compliance rules and high-assurance international data laws.</p>`,
+                code: `<span class="code-comment">// CITADEL PRIVACY CORE ENGINE</span>\n{\n  "operational_firewall": "WORLD_ZONE_ACTIVE",\n  "assurance_grade": "HIGH_ASSURANCE_eIDAS_v1",\n  "jurisdiction_lock": "US_EAST_PHL_01"\n}`
+            }
+        };
+
+        // --- SIDEBAR SELECTION LINK CLICK INTERCHANGE LOGIC ---
+        document.querySelectorAll('.menu-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const nodeKey = this.getAttribute('data-node');
+                const data = statuteMatrix[nodeKey];
+                
+                if (data) {
+                    // Update Text Field Configurations within display panel
+                    document.getElementById('gold-node-id').innerText = data.nodeId;
+                    document.getElementById('gold-node-title').innerText = data.title;
+                    document.getElementById('gold-node-desc').innerHTML = data.desc;
+                    document.getElementById('gold-node-code').innerHTML = data.code;
+                    
+                    // Modify focus style indicators
+                    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // --- THREE.JS ADVANCED DATA PROTECTION SHIELD LOOM ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('shield-canvas').appendChild(renderer.domElement);
+
+        const shieldGroup = new THREE.Group();
+        scene.add(shieldGroup);
+
+        // Build premium protective capsule matrix wireframe layout mesh
+        const geometry = new THREE.CapsuleGeometry(2, 3, 8, 16);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.22
+        });
+        const shieldMesh = new THREE.Mesh(geometry, material);
+        shieldGroup.add(shieldMesh);
+
+        const pointLight = new THREE.PointLight(0x1693E9, 2.5, 50);
+        pointLight.position.set(6, 6, 6);
+        scene.add(pointLight);
+        
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+        camera.position.z = 8;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            shieldGroup.rotation.y = targetX * 1.5;
+            shieldGroup.rotation.x = targetY * 1.0;
+
+            // Slow linear mesh oscillation over time parameters
+            shieldMesh.rotation.z = time * 0.03;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    </script>
+</body>
+</html>

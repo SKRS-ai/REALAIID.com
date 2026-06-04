@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supreme Ruler Tier | RealAIID.com Institutional Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --penn-navy: #001E44;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --sovereign-gold: #B8860B;
+            --transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; padding: var(--border-frame); overflow-x: hidden; }
+        
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        @media (max-width: 1024px) { .nav-links { display: none; } }
+
+        /* --- PRODUCT HERO --- */
+        .product-hero { 
+            padding: clamp(60px, 10vw, 120px) 5%; 
+            background: radial-gradient(circle at top right, #1e293b, #05080F); 
+            color: white; 
+            border-bottom: 2px solid var(--sovereign-gold); 
+            position: relative;
+            z-index: 20;
+        }
+        .product-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
+        
+        @media (max-width: 900px) { .product-container { grid-template-columns: 1fr; } }
+
+        .product-visual { 
+            background: rgba(184, 134, 11, 0.03); 
+            padding: 40px; 
+            border-radius: 4px; 
+            border: 1px solid var(--sovereign-gold);
+            text-align: center;
+        }
+        .tier-status { font-family: 'JetBrains Mono'; color: var(--sovereign-gold); font-size: 0.8rem; letter-spacing: 3px; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 15px; }
+
+        .product-info h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; margin: 20px 0; line-height: 1; color: var(--white); }
+        .price-tag { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: var(--sovereign-gold); margin-bottom: 20px; display: block; }
+        
+        .btn-register { 
+            display: inline-block; background: var(--sovereign-gold); color: white; text-decoration: none; 
+            padding: 22px 45px; font-weight: 900; border-radius: 2px; transition: var(--transition); width: 100%; text-align: center;
+            letter-spacing: 2px; font-size: 11px; text-transform: uppercase; font-family: 'JetBrains Mono';
+        }
+        .btn-register:hover { background: var(--white); color: var(--phl-dark); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(184,134,11,0.2); }
+
+        /* --- DETAILS SECTION --- */
+        .details { padding: clamp(60px, 10vw, 120px) 5%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 20; }
+        .details h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-style: italic; margin-bottom: 60px; text-align: center; color: var(--phl-dark); }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 30px; }
+        .feature-item { border: 1px solid #E2E8F0; padding: 45px; transition: var(--transition); background: #FFF; border-radius: 4px; }
+        .feature-item:hover { border-color: var(--sovereign-gold); background: #FFFDF9; transform: translateY(-5px); box-shadow: 0 30px 60px rgba(184,134,11,0.04); }
+        
+        .f-icon-box { font-size: 2.5rem; color: var(--sovereign-gold); margin-bottom: 20px; display: block; }
+        .feature-item h4 { color: var(--phl-dark); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 15px; font-weight: 800; font-size: 1.1rem; }
+        .feature-item p { color: #64748B; font-size: 0.95rem; line-height: 1.7; font-weight: 300; }
+
+        /* --- FOOTER --- */
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 8rem; padding-top: 4rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-hero">
+            <div class="product-container">
+                <div class="product-info">
+                    <span class="tier-status">Sovereign Class A: Federal Sync</span>
+                    <h1>Supreme Ruler</h1>
+                    <span class="price-tag">$2,499 / Year</span>
+                    <p style="margin-bottom: 40px; font-size: 1.15rem; opacity: 0.9; font-weight: 300; line-height: 1.8;">The highest standard of identity registration. Designed for global leaders, executives, and high-net-worth individuals who require a hardware-locked, biometric synchronization with the Philadelphia Mainframe and the Aviation Identity Nodes. Provides direct access to the federal SSO and administrative logs.</p>
+                    
+                    <a href="signin.html?tier=supreme" class="btn-register">ENROLL IN SOVEREIGN REGISTRY</a>
+                </div>
+                <div class="product-visual">
+                    <img src="tile-supreme-ruler1.png" alt="Supreme Ruler Structural Image Frame" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=600'" style="width: 100%; border-radius: 2px; filter: contrast(1.05) brightness(0.95); height: 320px; object-fit: cover;">
+                    <p style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: var(--sovereign-gold); letter-spacing: 1px;">STRICT_ENROLLMENT_NODE // PHL_USA_001</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details">
+            <h2>Elite Specifications</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="ph-bold ph-airplane-takeoff f-icon-box"></i>
+                    <h4>PHL Airport Biometric Link</h4>
+                    <p>Direct synchronization with Metropolitan Airport Commission security protocols. Establish your RealAIID as a verified credential for aviation-grade identity checks.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-bank f-icon-box"></i>
+                    <h4>High-Value Banking API</h4>
+                    <p>Enable secure, biometric-locked financial transactions. Your RealAIID hash acts as the master key for institutional-scale asset management.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-user-gear f-icon-box"></i>
+                    <h4>White-Glove Liaison Access</h4>
+                    <p>Direct communication line to a dedicated Security Engineer for custom hashing, likeness audits, and identity restoration services.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-keyholder f-icon-box"></i>
+                    <h4>Hardware-Locked Keys</h4>
+                    <p>Deployment of a physical, non-cloneable hardware key (HSM) that serves as the secondary physical anchor for your digital sovereignty.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-scales f-icon-box"></i>
+                    <h4>Legal Concierge</h4>
+                    <p>Premium legal coordination for rapid enforcement of the NO FAKES Act, including custom-written cease-and-desist mandates backed by Bureau authority.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-shield-star f-icon-box"></i>
+                    <h4>Quantum-Resistant Hashing</h4>
+                    <p>Upgrade to the next-generation VSSN protocols, ensuring your identity remains secure against future synthetic intelligence and quantum computing threats.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+            <div class="sm:col-span-2 lg:col-span-1">
+                <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; margin-top: 1rem;">Establishing Biological Truth under Node PHL-01.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html">Sovereign API Docs</a></li>
+                    <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                    <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <ul>
+                    <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                    <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                    <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Office</h4>
+                <ul>
+                    <li><a href="signin.html">Init Handshake</a></li>
+                    <li><a href="support.html">Support Core</a></li>
+                    <li><a href="consultation.html">Liaison Request</a></li>
+                    <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div>GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+</body>
+</html>

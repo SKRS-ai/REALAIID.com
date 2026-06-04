@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standard AI ID | RealAIID.com Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght=500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface: #F8FAFC;
+            --white: #FFFFFF;
+            --bureau-gold: #b8860b;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--white); color: var(--phl-dark); line-height: 1.6; padding: var(--border-frame); overflow-x: hidden; }
+        
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #E2E8F0;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-box img { height: clamp(60px, 8vw, 120px); width: auto; display: block; }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+        .nav-cta:hover { background: var(--phl-dark); }
+
+        @media (max-width: 1024px) {
+            .nav-links { display: none; } /* Kept clean for core responsive architecture */
+        }
+
+        /* --- PRODUCT HERO --- */
+        .product-hero { padding: clamp(40px, 8vw, 100px) 5%; background: var(--surface); border-bottom: 1px solid #E2E8F0; position: relative; z-index: 20; }
+        .product-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
+        
+        @media (max-width: 900px) {
+            .product-container { grid-template-columns: 1fr; }
+        }
+        
+        .product-visual { background: white; padding: 40px; border-radius: 4px; border: 1px solid #E2E8F0; box-shadow: 0 10px 30px rgba(0,0,0,0.02); position: relative; }
+        .vssn-badge { font-family: 'JetBrains Mono'; background: #E0F2FE; color: var(--phl-blue); padding: 6px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; display: inline-block; letter-spacing: 1px; }
+
+        .product-info h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-style: italic; margin: 20px 0; line-height: 1.1; }
+        .price-tag { font-size: 2.5rem; font-weight: 900; color: var(--phl-blue); margin-bottom: 20px; display: block; }
+        
+        .btn-register { 
+            display: inline-block; background: var(--phl-dark); color: white; text-decoration: none; 
+            padding: 22px 40px; font-weight: 800; border-radius: 2px; transition: var(--transition); 
+            width: 100%; text-align: center; letter-spacing: 2px; font-size: 12px;
+        }
+        .btn-register:hover { background: var(--phl-blue); transform: translateY(-3px); box-shadow: 0 20px 40px rgba(22,147,233,0.2); }
+
+        /* --- DETAILS SECTION --- */
+        .details { padding: clamp(60px, 10vw, 120px) 5%; max-width: 1400px; margin: 0 auto; position: relative; z-index: 20; }
+        .details h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-style: italic; margin-bottom: 50px; text-align: center; }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; }
+        .feature-item { background: #FFF; border: 1px solid #F1F5F9; padding: 40px; border-radius: 4px; transition: var(--transition); }
+        .feature-item:hover { border-color: var(--phl-blue); box-shadow: 0 30px 60px rgba(0,0,0,0.03); }
+        
+        .f-icon-box { font-size: 2.5rem; color: var(--phl-blue); margin-bottom: 20px; display: block; }
+        .feature-item h4 { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; color: var(--phl-dark); }
+        .feature-item p { color: #64748B; font-size: 0.95rem; line-height: 1.7; }
+
+        /* --- FOOTER --- */
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
+        .footer-links h4 { color: white; font-size: 0.75rem; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; }
+        .footer-links a { display: block; color: #94A3B8; text-decoration: none; margin-bottom: 14px; font-size: 0.85rem; transition: var(--transition); }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; max-width: 1700px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Claim Identity</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-hero">
+            <div class="product-container">
+                <div class="product-visual">
+                    <span class="vssn-badge">VSSN CORE v4.1</span>
+                    <img src="tile-standard-human.png" alt="Standard Identity Anchor Image" onerror="this.src='https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=600'" style="width: 100%; border-radius: 2px; margin-top: 20px; height: 300px; object-fit: cover;">
+                    <p style="margin-top: 20px; font-family: 'JetBrains Mono'; font-size: 0.75rem; color: #64748B; letter-spacing: 1px;">Hardware Anchor: 1900_MARKET_PHL_NODE</p>
+                </div>
+                <div class="product-info">
+                    <span style="color: var(--phl-blue); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-family: 'JetBrains Mono'; font-size: 0.8rem;">Standard Registration</span>
+                    <h1>Claim Your Human Core.</h1>
+                    <span class="price-tag">$149 / Year</span>
+                    <p style="margin-bottom: 40px; font-size: 1.05rem; color: #475569; Sundial-line-height: 1.7;">Perfect for individuals seeking to establish their legal and technical identity in the AI era. Secure your vocal signature and establish a forensic record of your likeness.</p>
+                    
+                    <a href="signin.html?tier=standard" class="btn-register">BEGIN SECURE REGISTRATION</a>
+                    <p style="margin-top: 15px; font-size: 0.75rem; color: #94A3B8; text-align: center; font-family: 'JetBrains Mono'; letter-spacing: 1px;">Secure 256-bit Encrypted Checkout</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="details">
+            <h2>What’s Included</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <i class="ph-bold ph-waveform f-icon-box"></i>
+                    <h4>VSSN Vocal Hash</h4>
+                    <p>A mathematical, non-reversible serial number derived from your unique biological frequencies. Anchored at the Philadelphia Mainframe for life.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-portal f-icon-box"></i>
+                    <h4>Digital Residency Suite</h4>
+                    <p>A secure portal to manage your identity record and verify your "Human Core" status to third-party applications.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-eye-scan f-icon-box"></i>
+                    <h4>3D Liveness Pulse</h4>
+                    <p>Standard biometric verification that ensures you are a living human being, preventing unauthorized software-based enrollments.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="ph-bold ph-archive f-icon-box"></i>
+                    <h4>Forensic Archive</h4>
+                    <p>A timestamped legal record of your physical likeness to serve as foundational evidence for future identity claims.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand-col">
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Infrastructure</h4>
+                <a href="mainframe.html">1900 Market Anchor</a>
+                <a href="product-vssn2.html">VSSN Protocol</a>
+                <a href="api-docs.html">Developer API</a>
+                <a href="mainframe.html">The Mainframe</a>
+            </div>
+            <div class="footer-links">
+                <h4>Legal & Privacy</h4>
+                <a href="support.html">Compliance Hub</a>
+                <a href="product-likeness-shield.html">NO FAKES Act</a>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="support.html">Purge Protocol</a>
+            </div>
+            <div class="footer-links">
+                <h4>Registration</h4>
+                <a href="product-standard.html">Standard ID</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="product-sovereign.html">Sovereign Tier</a>
+                <a href="signin.html">Start Hashing</a>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 REALAiID Bureau // Philadelphia, PA // Node: PHL-01</div>
+            <div>Status: Governance Sync Active</div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiID BUREAU | TRAVEL ROOT</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        :root { --neon: #00f2ff; --bg: #0a0a0c; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; }
+        .portal-ui { padding: 60px; max-width: 900px; margin: auto; }
+        .bridge-gate { border: 1px solid var(--neon); padding: 40px; text-align: center; border-radius: 15px; background: rgba(0, 242, 255, 0.02); }
+        .forensic-status { margin: 30px 0; font-family: monospace; text-align: left; display: inline-block; }
+        button { background: transparent; border: 1px solid var(--neon); color: var(--neon); padding: 10px 20px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: var(--neon); color: var(--bg); }
+    </style>
+    <script>
+        // Sovereign Auth-Guard: Prevents unauthorized entry to Bureau Portals
+        (function checkSovereignAccess() {
+            const session = localStorage.getItem('phl01_session_token');
+            if (!session) {
+                console.warn("[!] UNAUTHORIZED ACCESS ATTEMPT // REDIRECTING");
+                window.location.replace('/login.html'); 
+            }
+        })();
+    </script>
+</head>
+<body>
+
+    <header class="header"> </header>
+
+    <main class="portal-ui">
+        <div class="bridge-gate">
+            <h1 id="portal-title">TRAVEL ROOT // BRIDGE-22</h1>
+            <div class="forensic-status">
+                <p>Passport Validity: <span id="passport-status">CURRENT</span></p>
+                <p>Visa/ESTA Clearance: <span id="visa-status">APPROVED</span></p>
+                <p>Global Entry/NEXUS: <span id="trusted-status">ACTIVE</span></p>
+            </div>
+            <button onclick="executeBridgeQuery()">SYNC TRAVEL ANCHORS</button>
+        </div>
+    </main>
+
+    <footer class="footer"> </footer>
+
+    <script>
+        async function executeBridgeQuery() {
+            try {
+                // Interfacing with Bridge-22 (DTC Travel)
+                const response = await fetch('/api/v1/bridge-22-dtc-travel/status');
+                if (!response.ok) throw new Error('Travel Bridge Unreachable');
+                
+                const data = await response.json();
+                document.getElementById('passport-status').innerText = data.passportValid ? 'CURRENT' : 'EXPIRED';
+                document.getElementById('visa-status').innerText = data.visaStatus || 'PENDING';
+                document.getElementById('trusted-status').innerText = data.trustedProgram || 'INACTIVE';
+            } catch (err) {
+                console.error("Travel Bridge Unreachable:", err);
+                document.getElementById('passport-status').innerText = "CONNECTION ERROR";
+                alert("Critical System Error: Bridge-22 Travel Data Unavailable");
+            }
+        }
+    </script>
+</body>
+</html>

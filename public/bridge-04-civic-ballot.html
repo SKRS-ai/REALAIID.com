@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIDGE 04 // Civic Ballot | REALAiID Technical Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --civic-indigo: #312e81;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: #ffffff; overflow-x: hidden; padding: var(--border-frame); }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: 95px !important; width: auto !important; display: block; }
+        .nav-links a { text-decoration: none; color: #0B1320; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        #civic-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; opacity: 0.5; }
+        .glass { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(40px); transition: var(--transition); }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .hero-bridge { height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .bridge-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7rem); font-style: italic; line-height: 0.9; text-shadow: 0 0 50px rgba(49, 46, 129, 0.5); }
+
+        .forensic-panel { margin-top: -50px; padding: 80px; position: relative; z-index: 20; }
+        .vote-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; border-radius: 4px; transition: 0.3s; }
+        .vote-card:hover { border-color: var(--phl-blue); background: rgba(22, 147, 233, 0.05); }
+
+        .btn-vote { background: var(--civic-indigo); color: white; padding: 15px 30px; font-weight: 900; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; width: 100%; margin-top: 20px; transition: 0.3s; cursor: pointer; }
+        .btn-vote:hover { background: var(--phl-blue); transform: translateY(-2px); }
+
+        .bridge-button { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 20px; display: flex; align-items: center; gap: 15px; transition: var(--transition); text-decoration: none; }
+        .bridge-button:hover { background: rgba(49, 46, 201, 0.15); border-color: var(--civic-indigo); transform: scale(1.02); }
+
+        .cipher-box { font-family: 'JetBrains Mono'; background: #000; padding: 30px; border: 1px solid #111; font-size: 0.8rem; color: var(--phl-blue); margin-top: 40px; }
+
+        footer { background: #020617; color: #94A3B8; padding: 8rem 5% 4rem; border-top: 4px solid var(--civic-indigo); position: relative; z-index: 20; }
+    </style>
+</head>
+<body>
+
+    <div id="civic-canvas"></div>
+
+    <header>
+        <div class="flex justify-between items-center px-[5%]">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="fraud-score.html">Trust Index</a>
+                <a href="lethal-ledger.html">Truth Ingest</a>
+                <a href="signin.html" class="nav-cta">Civic Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="hero-bridge">
+            <div class="z-10">
+                <span class="mono text-xs text-indigo-400 uppercase tracking-[0.5em] mb-6 block">Governance Node // Bridge 04</span>
+                <h1 class="bridge-title">Civic <span class="text-indigo-600">Ballot.</span></h1>
+                <p class="text-xl font-light text-slate-400 max-w-2xl mx-auto mt-8">
+                    Biological Consensus Protocol. One-Human, One-Vote, forensically anchored to the Precinct 05-02 Root for immutable jurisdictional standing.
+                </p>
+            </div>
+        </section>
+
+        <section class="glass forensic-panel rounded-lg shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                
+                <div class="space-y-8">
+                    <h2 class="font-serif italic text-4xl mb-4">Active <span class="text-indigo-400">Referendum.</span></h2>
+                    <div class="vote-card">
+                        <span class="mono text-[10px] text-indigo-400 uppercase mb-2 block">BALLOT_ID: PA-PHL-2026-01</span>
+                        <h4 class="text-xl font-bold mb-4">Authorize SODR Ring Expansion?</h4>
+                        <p class="text-sm opacity-60 mb-6">Vote to approve the installation of additional petascale compute nodes to strengthen the Philadelphia Bureau district.</p>
+                        <div class="flex gap-4">
+                            <button onclick="castBallot('YES')" class="btn-vote">AFFIRMATIVE</button>
+                            <button onclick="castBallot('NO')" class="btn-vote" style="background:transparent; border: 1px solid var(--civic-indigo);">DISSENT</button>
+                        </div>
+                    </div>
+                    <div id="vote-receipt" class="hidden glass p-4 rounded mono text-[10px] text-emerald-400 border border-emerald-900/30">
+                        STATUS: BALLOT_ACCEPTED // SIG: BIOMETRIC_WITNESS_CONFIRMED
+                    </div>
+                </div>
+
+                <div class="space-y-10">
+                    <h2 class="font-serif italic text-4xl">Technical <span class="text-indigo-400">Governance.</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border-l-2 border-indigo-700 pl-6">
+                            <h4 class="mono text-[10px] uppercase text-indigo-400 tracking-widest mb-2">Skeletal Witness</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Ballots are only decrypted and cast when the user's unique skeletal frequency is matched to the Precinct Root (B-38).</p>
+                        </div>
+                        <div class="border-l-2 border-indigo-700 pl-6">
+                            <h4 class="mono text-[10px] uppercase text-indigo-400 tracking-widest mb-2">Zero-Knowledge ZKP</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Your selection is immutable and anonymous on the ledger, but your biological eligibility is forensically guaranteed.</p>
+                        </div>
+                    </div>
+                    <div class="cipher-box mono">
+                        > PRECINCT_ROOT: PHL-05-02<br>
+                        > CONSENSUS_ENGINE: LOGIC_LABYRINTH_v4.1<br>
+                        > SYNC_STATUS: <span class="text-emerald-500">CONSTITUTIONAL_ALIGNMENT_OPTIMAL</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-40">
+            <h2 class="text-center font-serif italic text-white text-3xl mb-12 uppercase tracking-widest">38-Bridge master grid</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4" id="bridge-grid"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="max-w-[1700px] mx-auto flex justify-between items-center border-t border-white/5 pt-12">
+            <div class="mono text-[10px] opacity-40">© 2026 SOLOMON KIN LLC // PHILADELPHIA MAINFRAME PHL-01</div>
+            <div class="mono text-[10px] text-indigo-500 animate-pulse uppercase tracking-widest">Precinct Sync: Active</div>
+        </div>
+    </footer>
+
+    <script>
+        async function castBallot(choice) {
+            try {
+                const res = await fetch('/api/v1/governance/civic-ballot', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 
+                        sovereignID: "MUSTAFA-KING-BUREAU", 
+                        ballotID: "PA-PHL-2026-01", 
+                        voteHash: `${choice}-SKELETAL-RES`,
+                        precinctID: "PHL-05-02"
+                    })
+                });
+                const data = await res.json();
+                if(data.status === "BALLOT_ACCEPTED") {
+                    const receipt = document.getElementById('vote-receipt');
+                    receipt.classList.remove('hidden');
+                    receipt.innerHTML = `VOTE SEATED: ${data.payload.voteID} // LEDGER_INDEX: ${data.payload.ledgerIndex} // SIG: BIOMETRIC_VERIFIED`;
+                    lattice.material.color.setHex(0x10b981);
+                    lattice.scale.set(1.2, 1.2, 1.2);
+                }
+            } catch (e) {
+                console.error("Ballot Rail Error:", e);
+            }
+        }
+
+        /* Three.js Visualization: Consensus Lattice */
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('civic-canvas').appendChild(renderer.domElement);
+
+        const latticeGeo = new THREE.IcosahedronGeometry(4, 2);
+        const latticeMat = new THREE.MeshPhongMaterial({ color: 0x312e81, wireframe: true, transparent: true, opacity: 0.3 });
+        const lattice = new THREE.Mesh(latticeGeo, latticeMat);
+        scene.add(lattice);
+
+        scene.add(new THREE.PointLight(0x1693E9, 2, 100).position.set(10, 10, 10));
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+        camera.position.z = 10;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            lattice.rotation.y += 0.0015;
+            lattice.rotation.x += 0.0008;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        /* Bridge Injection Engine */
+        const bridges = [
+            "auth-root", "civic-core", "hr-liaison", "civic-ballot", "ambient-auth", 
+            "keystone-plate", "entra-defense", "uac-physical", "dmv-authority", "fiscal-root", 
+            "pet-likeness", "vital-records", "medical-root", "property-deeds", "safe-owner", 
+            "satoshi-root", "professional", "ssa-tokenizer", "bio-sign", "sovereign-escrow", 
+            "citadel-escrow", "dtc-travel", "amex-anchor", "credit-authority", "insurance", 
+            "mastercard-rail", "academic-root", "global-notary", "logistics-sync", "automotive-anchor", 
+            "aii-economy", "god-sense", "benthic-pulse", "oracle-flux", "justice-rail", 
+            "doge-bridge", "federal-sync", "precinct-root"
+        ];
+        
+        const grid = document.getElementById('bridge-grid');
+        bridges.forEach((b, i) => {
+            const id = (i+1).toString().padStart(2, '0');
+            const btn = document.createElement('a');
+            btn.href = `bridge-${id}-${b}.html`;
+            btn.className = "bridge-button";
+            btn.innerHTML = `<i class="ph-fill ph-shield-check" style="color:var(--civic-indigo)"></i><div class="flex flex-col"><span class="mono text-[8px] opacity-40">NODE B-${id}</span><span class="mono text-[9px] uppercase font-bold">${b.replace(/-/g, ' ')}</span></div>`;
+            grid.appendChild(btn);
+        });
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+    </script>
+</body>
+</html>

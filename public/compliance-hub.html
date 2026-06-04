@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maritime Compliance Hub | RealAIID.com Sovereignty Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --surface-dark: #0B1320;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --white: #FFFFFF;
+            --sovereign-gold: #B8860B;
+            --text-slate: #94A3B8;
+            --border-frame: 15px;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark); color: #F8FAFC; line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- HEADER --- */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #f1f5f9;
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 9000;
+            padding: 15px 5%;
+        }
+        .nav-container { display: flex; align-items: center; justify-content: space-between; max-width: 1700px; margin: 0 auto; width: 100%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* --- JURISDICTIONAL HERO --- */
+        .compliance-hero { padding: clamp(60px, 10vw, 140px) 5%; background: radial-gradient(circle at top right, #111827 0%, #05080F 100%); border-bottom: 1px solid var(--border-color); text-align: center; }
+        .compliance-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; font-weight: 700; margin-bottom: 25px; color: var(--white); }
+        .compliance-hero p { color: var(--text-slate); font-size: 1.2rem; max-width: 900px; margin: 0 auto; font-weight: 300; }
+
+        /* --- CHARTER FRAMEWORK MODULE --- */
+        .compliance-wrapper { max-width: 1400px; margin: 0 auto; width: 100%; padding: 80px 5%; flex-grow: 1; }
+        
+        .charter-tabs { display: flex; gap: 15px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 50px; overflow-x: auto; }
+        .tab-trigger { background: transparent; border: 1px solid var(--border-color); color: var(--text-slate); padding: 14px 24px; font-family: 'JetBrains Mono'; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: var(--transition); border-radius: 2px; white-space: nowrap; }
+        .tab-trigger.active-tab { border-color: var(--sovereign-gold); color: white; background: rgba(184, 134, 11, 0.05); }
+        .tab-trigger:hover:not(.active-tab) { border-color: var(--phl-blue); color: white; }
+
+        .charter-pane { display: none; }
+        .charter-pane.active-pane { display: block; animation: paneReveal 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        @keyframes paneReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .pane-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        @media (max-width: 900px) { .pane-layout { grid-template-columns: 1fr; gap: 40px; } }
+
+        .pane-details h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-style: italic; margin-bottom: 25px; color: white; }
+        .pane-details p { color: var(--text-slate); font-size: 1rem; line-height: 1.8; font-weight: 300; margin-bottom: 20px; }
+        
+        .pane-spec-box { background: var(--surface-dark); border: 1px solid var(--border-color); padding: 40px; border-radius: 4px; border-left: 3px solid var(--sovereign-gold); }
+        .pane-spec-box h4 { font-family: 'JetBrains Mono'; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; color: white; }
+        .spec-item { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.04); padding: 12px 0; font-family: 'JetBrains Mono'; font-size: 12px; }
+        .spec-item .label { color: #64748B; }
+        .spec-item .val { color: var(--text-slate); text-align: right; }
+
+        /* --- FOOTER --- */
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid-fixed { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; max-width: 1700px; margin: 0 auto; width: 100%; }
+        @media (min-width: 1024px) { .footer-brand-col { grid-column: span 2; } }
+        
+        .footer-logo { color: white; font-weight: 800; font-size: 1.5rem; margin-bottom: 20px; font-family: 'JetBrains Mono'; letter-spacing: 1px; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+        
+        .copyright-bar { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 6rem; padding-top: 3rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; max-width: 1700px; margin-left: auto; margin-right: auto; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="compliance-hero">
+            <h1>Maritime Compliance Hub</h1>
+            <p>Explaining the sovereign data protection parameters under the Solomon Kin Maritime Charter. Establishing an institutional fortress for biological assets operating in stateless and automated network architectures.</p>
+        </section>
+
+        <section class="compliance-wrapper">
+            <div class="charter-tabs">
+                <button class="tab-trigger active-tab" onclick="switchPane(event, 'pane-1')">01 / Data Protection</button>
+                <button class="tab-trigger" onclick="switchPane(event, 'pane-2')">02 / Sovereign Immunity</button>
+                <button class="tab-trigger" onclick="switchPane(event, 'pane-3')">03 / Charter Jurisdiction</button>
+                <button class="tab-trigger" onclick="switchPane(event, 'pane-4')">04 / Enforcement Matrix</button>
+            </div>
+
+            <div class="charter-pane active-pane" id="pane-1">
+                <div class="pane-layout">
+                    <div class="pane-details">
+                        <h2>Biological Isolation Mandate</h2>
+                        <p>Under Section 4.1 of the Solomon Kin Maritime Charter, biological identity vectors are protected from centralized commercial scraping or predictive serialization. The Bureau processes all identity validations inside stateless execution cells, discarding temporary telemetry instantly.</p>
+                        <p>No user verification data points are held inside unencrypted storage architectures. The private key belongs entirely to the individual biological anchor.</p>
+                    </div>
+                    <div class="pane-spec-box">
+                        <h4>Marrow-Locked Protocol Stats</h4>
+                        <div class="spec-item"><span class="label">Retention Factor</span><span class="val">Zero Dynamic Log State</span></div>
+                        <div class="spec-item"><span class="label">Encryption Rule</span><span class="val">AES-256-GCM-Marrow Tunnel</span></div>
+                        <div class="spec-item"><span class="label">Compliance Mapping</span><span class="val">C2PA / NO FAKES Core Alignment</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charter-pane" id="pane-2">
+                <div class="pane-layout">
+                    <div class="pane-details">
+                        <h2>Biometric Inviolability</h2>
+                        <p>This charter defines the human face topology and vocal resonance signatures as permanent sovereign assets. Centralized network operators, synthetic scraping platforms, or training models cannot legally claim or replicate these frequencies without explicit authorization tokens.</p>
+                        <p>The "Burn Rights" clause ensures individuals can revoke corporate token linkages instantly across the unified gateways.</p>
+                    </div>
+                    <div class="pane-spec-box">
+                        <h4>Sovereign Defense Parameters</h4>
+                        <div class="spec-item"><span class="label">Immunity Rating</span><span class="val">High-Assurance Class A</span></div>
+                        <div class="spec-item"><span class="label">Revocation Path</span><span class="val">Instant Burn Protocol™</span></div>
+                        <div class="spec-item"><span class="label">Biometric Lock</span><span class="val">HSM Non-Cloneable Key</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charter-pane" id="pane-3">
+                <div class="pane-layout">
+                    <div class="pane-details">
+                        <h2>The Solomon Kin Maritime Charter</h2>
+                        <p>The technical interface operates under a non-custodial, high-assurance regulatory zoning boundary. By establishing node infrastructure rules through stateless validation networks, REALAiID bridges legal protection parameters natively across cross-border network frameworks.</p>
+                        <p>This framework insulates verified digital humans from sudden jurisdictional variations or algorithmic policy disruptions.</p>
+                    </div>
+                    <div class="pane-spec-box">
+                        <h4>Zoning Spec Profiles</h4>
+                        <div class="spec-item"><span class="label">Charter Authority</span><span class="val">Solomon Kin Maritime Bureau</span></div>
+                        <div class="spec-item"><span class="label">Node Base Anchor</span><span class="val">PHL-01 // Philadelphia Mainframe</span></div>
+                        <div class="spec-item"><span class="label">Network Layer</span><span class="val">AIIPVB Stateless Mesh</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charter-pane" id="pane-4">
+                <div class="pane-layout">
+                    <div class="pane-details">
+                        <h2>Automated Counter-Measures</h2>
+                        <p>When a likeness compromise event is flagged via the Deepfake Radar or authorized by a Supreme Ruler node, the framework deploys tracking hashes across integrated channels. Cease-and-desist mandates are automatically formatted and pushed down major platform lines.</p>
+                        <p>Enforcement mechanisms run continuously to verify pixel signature compliance globally.</p>
+                    </div>
+                    <div class="pane-spec-box">
+                        <h4>Mitigation Action Metrics</h4>
+                        <div class="spec-item"><span class="label">Radar Scanning Ingest</span><span class="val">24/7 Platform Continuous Loop</span></div>
+                        <div class="spec-item"><span class="label">Takedown Dispatch</span><span class="val">Automated Direct API Trigger</span></div>
+                        <div class="spec-item"><span class="label">Legal Stand backing</span><span class="val">NO FAKES Statutory Authority</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid-fixed">
+            <div class="footer-brand-col">
+                <div class="footer-logo">REALAIID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8;">Securing the "Human Core" through decentralized hashing and the Philadelphia Mainframe Anchor. Your identity, your sovereignty.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Infrastructure</h4>
+                <ul>
+                    <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                    <li><a href="api-docs.html">Sovereign API Docs</a></li>
+                    <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                    <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul>
+                    <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Trust</h4>
+                <ul>
+                    <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                    <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                    <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                    <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Office</h4>
+                <ul>
+                    <li><a href="signin.html">Init Handshake</a></li>
+                    <li><a href="support.html">Support Core</a></li>
+                    <li><a href="consultation.html">Liaison Request</a></li>
+                    <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright-bar">
+            <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+            <div>GOVERNANCE SYNC ACTIVE</div>
+        </div>
+    </footer>
+
+    <script>
+        function switchPane(evt, paneId) {
+            const tabs = document.querySelectorAll('.tab-trigger');
+            const panes = document.querySelectorAll('.charter-pane');
+
+            tabs.forEach(t => t.classList.remove('active-tab'));
+            panes.forEach(p => p.classList.remove('active-pane'));
+
+            evt.currentTarget.classList.add('active-tab');
+            document.getElementById(paneId).classList.add('active-pane');
+        }
+    </script>
+</body>
+</html>

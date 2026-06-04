@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLUE PAPER | REALAiID Technical & Juridical Standard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght=0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bureau-blue: #0b1320;
+            --bureau-gold: #b8860b;
+            --phl-blue: #1693E9;
+            --accent-blue: #1693E9;
+            --safe-green: #18B494;
+            --emergency-red: #ff4444;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #05080F !important; 
+            color: #ffffff !important;
+            line-height: 1.8; 
+            padding: var(--border-frame); 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Institutional Border Frame */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* NAVIGATION MATRIX */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: var(--border-frame); z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #1693E9; }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* 3D NODE CANVAS */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; opacity: 0.2; pointer-events: none; }
+
+        .bluepaper-frame { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(50px); padding: 80px; max-width: 1150px; margin: 40px auto; box-shadow: 0 50px 100px rgba(0,0,0,0.8); position: relative; z-index: 10; }
+        
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-style: italic; }
+        h1 { color: #ffffff; font-size: 3rem; margin: 0; line-height: 1.1; font-style: italic; }
+        h2 { color: #ffffff; margin-top: 80px; font-size: 2.2rem; border-left: 6px solid var(--phl-blue); padding-left: 25px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Playfair Display', serif; }
+
+        .abstract { font-style: italic; color: #cbd5e1; background: rgba(255, 255, 255, 0.02); padding: 50px; margin: 40px 0; border: 1px solid rgba(255,255,255,0.05); position: relative; border-radius: 4px; line-height: 2; text-align: justify; }
+        .abstract::before { content: "EXECUTIVE SUMMARY & JURIDICAL ABSTRACT"; position: absolute; top: -12px; left: 30px; background: var(--phl-blue); color: #fff; padding: 4px 20px; font-size: 0.65rem; font-weight: 900; letter-spacing: 3px; border-radius: 2px; font-family: 'JetBrains Mono'; }
+
+        p { margin-bottom: 30px; font-size: 1.15rem; color: #94a3b8; text-align: justify; font-weight: 300; }
+        
+        .formula-box { background: #020617; color: #fff; padding: 50px; font-family: 'JetBrains Mono', monospace; margin: 50px 0; border-radius: 4px; border-left: 12px solid var(--phl-blue); box-shadow: 0 20px 50px rgba(0,0,0,0.4); font-size: 0.9rem; }
+        .formula-label { color: var(--phl-blue); font-size: 0.7rem; display: block; margin-bottom: 20px; font-weight: 900; letter-spacing: 3px; }
+
+        /* Tables & Grids */
+        .data-table { width: 100%; border-collapse: collapse; margin: 50px 0; font-size: 1rem; }
+        .data-table th { background: rgba(255,255,255,0.02); text-align: left; padding: 20px; border-bottom: 3px solid var(--phl-blue); color: #ffffff; text-transform: uppercase; letter-spacing: 2px; font-weight: 900; font-size: 0.8rem; font-family: 'JetBrains Mono'; }
+        .data-table td { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; color: #cbd5e1; }
+        .data-table tr:hover { background: rgba(255,255,255,0.01); }
+
+        .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin: 50px 0; }
+        .stat-item { border: 1px solid rgba(255,255,255,0.06); padding: 40px; border-radius: 4px; background: rgba(255,255,255,0.01); transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .stat-item:hover { border-color: var(--phl-blue); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+        .stat-title { font-family: 'JetBrains Mono'; font-size: 0.65rem; color: var(--phl-blue); font-weight: 900; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 3px; }
+
+        .hardware-alert-box { background: #000; color: #fff; padding: 60px; margin: 60px 0; border-radius: 8px; border-top: 5px solid var(--emergency-red); border-left: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .hardware-alert-box h3 { color: var(--emergency-red); border: none; margin-top: 0; margin-bottom: 25px; font-size: 1.8rem; }
+
+        .comparison-block { background: #020617; color: #fff; padding: 60px; margin: 60px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); }
+        .comparison-block h3 { color: var(--phl-blue); border: none; padding: 0; margin-top: 0; margin-bottom: 30px; font-size: 1.8rem; }
+
+        .interactive-bridge-row { display: grid; grid-template-columns: 1fr 3fr; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px; cursor: pointer; transition: all 0.3s; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: #94A3B8; }
+        .interactive-bridge-row:hover { background: rgba(22, 147, 233, 0.04); color: #fff; }
+        .interactive-bridge-row.active { background: rgba(22, 147, 233, 0.08); color: #fff; border-left: 3px solid var(--phl-blue); font-weight: 700; }
+
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1600px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+    </style>
+</head>
+<body>
+
+    <div id="mesh-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <div class="nav-container w-full max-w-[1600px] mx-auto flex justify-between items-center">
+            <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+            <nav class="nav-links flex items-center">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html" class="text-blue-500">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 relative z-10">
+        <div class="bluepaper-frame rounded-sm">
+            <div class="doc-header">
+                <div class="doc-category">Technical Publication // REALAiID-BP-2026.v22</div>
+                <h1>The Digital Human Ledger™:<br>Global Supreme Authority & Hardware Defense Standards</h1>
+                <p class="mt-4 text-sm font-mono text-slate-400"><strong>Chief Architect:</strong> Nehemiah Mia Brown // Solomon Kin, LLC</p>
+                <p class="text-sm font-mono text-slate-400"><strong>Node Anchor:</strong> PHL-01 // Philadelphia Mainframe // REALAiiD.com</p>
+            </div>
+            
+            <div class="abstract">
+                The transition to a synthetic economy has rendered legacy identity systems (passwords, 2FA, plastic cards) obsolete. This document establishes the technical response to <strong>Physical-World Doxing</strong> and <strong>AI-Enabled Credential Harvesting</strong>. By deploying <b>Neural Noise Injection</b>, the <b>Handshake Knot™</b> protocol, and the <b>$AII Compute Currency Economy</b>, the REALAiID Bureau provides the first defensive infrastructure capable of neutralizing weaponized AI wearables and established Face-to-Data pipelines globally.
+            </div>
+
+            <h2>I. The Digital Human Ledger™ (DHL)</h2>
+            <p>The <strong>Digital Human Ledger™</strong> is a high-resolution, multi-modal registry that replaces legacy static documents. While a passport verifies a historical biological existence, the DHL proves <strong>Sovereign Authorization</strong> in real-time. It moves identity from the physical surface to a 1.0v-Root biological frequency, backing individual data portfolios natively with tradeable computational utility.</p>
+
+            <div class="stat-grid">
+                <div class="stat-item">
+                    <div class="stat-title">FORENSIC RESOLUTION</div>
+                    <div style="font-weight: 900; font-size: 1.4rem; color: #ffffff;">Sub-Dermal & Ocular</div>
+                    <p style="font-size: 0.9rem; margin-top: 15px; color: #94a3b8;">Mapping palm-vein structures and iris geometry to create a hardware-locked private key that cannot be scraped, recorded, or photographed.</p>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-title">JURIDICAL WEIGHT</div>
+                    <div style="font-weight: 900; font-size: 1.4rem; color: #ffffff;">Prima Facie Evidence</div>
+                    <p style="font-size: 0.9rem; margin-top: 15px; color: #94a3b8;">The only ledger providing the forensic timestamp and baseline verification required to prove "Genuine Presence" under the 2026 NO FAKES Act.</p>
+                </div>
+            </div>
+
+            <h2>II. Technical Architecture: The Handshake Knot™</h2>
+            <p>The fundamental unit of authorization on the ledger is the <strong>Handshake Knot™</strong>. It is a cryptographic intersection of biological intent and temporal reality. If the biological frequency is missing, the Knot cannot be formed, preventing any unauthorized synthetic use of the user's likeness. This structural standard natively calculates value using our fundamental operational parameters:</p>
+
+            <div class="formula-box">
+                <span class="formula-label">DHL AUTHORIZATION FORMULA (HS-01)</span>
+                Knot = [Ocular_Hash] + [Vocal_Resonance (VSSN)] + [Thermal_Liveness] + [Temporal_Stamp]
+                <br><br>
+                DEFENSE_STATUS = (Neural_Noise_Active == TRUE) && (Handshake_Requirement == ENFORCED)
+            </div>
+
+            <h2>III. The 38-Bridge Perimeter Matrix</h2>
+            <p>
+                When an individual fully initializes the 38-Bridge array within their wallet perimeter, their biological presence gains direct command over financial, civic, and spatial systems. Select a node below to trace its forensic capability layout:
+            </p>
+
+            <div class="border border-white/5 bg-black/40 rounded-sm my-8">
+                <div class="interactive-bridge-row active" data-b="01">
+                    <span>BRIDGE B-01 // AUTH ROOT</span>
+                    <span id="bridge-text-01">Converts physical biometrics and skeletal frames into uncopyable verification keys, bypassing legacy password software arrays entirely.</span>
+                </div>
+                <div class="interactive-bridge-row" data-b="14">
+                    <span>BRIDGE B-14 // DEEDS PROPERTY</span>
+                    <span id="bridge-text-14" class="hidden">Binds real estate titles, deeds, and land registries straight to biological frequency. Prevents fraudulent transfer maneuvers at county offices.</span>
+                </div>
+                <div class="interactive-bridge-row" data-b="31">
+                    <span>BRIDGE B-31 // $AII ECONOMY</span>
+                    <span id="bridge-text-31" class="hidden">Anchors your personal profile straight into the utility token pool. Levitates asset multiplier values dynamically as identity protection parameters scale.</span>
+                </div>
+                <div class="interactive-bridge-row" data-b="34">
+                    <span>BRIDGE B-34 // MOBILITY INFRA</span>
+                    <span id="bridge-text-34" class="hidden">Integrates subsea data mesh metrics and electric vehicle kinetic braking systems (Tesla platforms) straight into your liquid token ledger.</span>
+                </div>
+            </div>
+
+            <h2>IV. The Global Partner Ecosystem</h2>
+            <p>The REALAiID Bureau achieves its verification depth through the orchestration of elite biometric and financial signals. We feed these high-authority signals into the PHL-01 Mainframe to provide a defense-in-depth shield against synthetic fraud.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Partner Entity</th>
+                        <th>Functional Role</th>
+                        <th>Interaction Depth</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>iProov</strong></td>
+                        <td>Flashmark Liveness</td>
+                        <td>Chromatic challenge-response to verify a living human presence in under 300ms.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reality Defender</strong></td>
+                        <td>Deepfake Detection</td>
+                        <td>Scanning ingest sessions for frame-warping or AI-generated artifacts in the noise floor.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Truepic (C2PA)</strong></td>
+                        <td>Asset Provenance</td>
+                        <td>Signing the pixels of authorized media to ensure a forensic chain of custody.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BioCatch</strong></td>
+                        <td>Behavioral Telemetry</td>
+                        <td>Analyzing interaction rhythms to ensure biological intent and motor-pattern matching.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Chainalysis</strong></td>
+                        <td>Financial Purity</td>
+                        <td>Real-time screening to ensure the "Fiscal Root" of high-value transactions is compliant.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>V. The Identity Enrollment Permit™</h2>
+            <p>Before becoming a <strong>Verified Digital Human</strong>, applicants are issued a provisional <strong>Identity Permit™</strong>. This serves as a "Digital Deed" of intent, gathering legacy foundations (Passports/DLs) into a secure escrow before the final biometric handshake.</p>
+
+            <div class="comparison-block">
+                <h3>Legacy Documents vs. Digital Human Status</h3>
+                <table class="data-table" style="background: transparent; color: #fff; margin-bottom: 0;">
+                    <thead>
+                        <tr>
+                            <th style="color: var(--phl-blue);">Feature</th>
+                            <th style="color: #fff;">Static Passport</th>
+                            <th style="color: var(--phl-blue);">REALAiID Node</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: #cbd5e1; font-size: 0.9rem;">
+                        <tr><td><strong>Visibility</strong></td><td>Visible to AI/Eyes</td><td>Protocol-Level Hidden</td></tr>
+                        <tr><td><strong>Spoof Resistance</strong></td><td>Low (Digital)</td><td>Total (Multi-Modal)</td></tr>
+                        <tr><td><strong>Likeness Defense</strong></td><td>Passive</td><td>24/7 Shield Strike Engine</td></tr>
+                        <tr><td><strong>Authorship Proof</strong></td><td>None</td><td>C2PA Handshake Knot Framework</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>VI. Hardware Defense Briefing: I-XRAY Scrapers</h2>
+            <p>The rise of consumer-grade AI wearables (such as Meta Ray-Bans weaponized by I-XRAY researchers) has created a <strong>"Physical-World Doxing"</strong> crisis. These devices feed a live visual stream into a <strong>Face-to-Data Pipeline</strong>, identifying individuals and harvesting leaked credentials from a distance.</p>
+
+            <div class="hardware-alert-box">
+                <h3>Credential Harvesting Neutralization</h3>
+                <p style="color: #ccc; font-size: 1rem;">The REALAiID Bureau identifies physical identification cards as <strong>Visible Liabilities</strong>. A legacy plastic ID reveals your home address and PII to any distant AI sensor. Our protocol provides primary structural defenses:</p>
+                <ul style="list-style: none; margin-top: 25px; color: #1693E9; font-weight: 800; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; class=font-mono">
+                    <li style="margin-bottom: 15px;">→ NEURAL NOISE INJECTION: Blinding facial recognition scrapers globally.</li>
+                    <li style="margin-bottom: 15px;">→ PROTOCOL CLOAKING: Hiding identity behind the Handshake Knot™.</li>
+                    <li>→ BIOLOGICAL INTENT: Requiring live presence parameters for data access.</li>
+                </ul>
+            </div>
+
+            <p>By anchoring identity to the PHL-01 Node, members ensure that even if AI glasses capture their face, they cannot harvest their biological authority. The Bureau's <strong>Neural Noise Injection</strong> creates a "Digital Shroud" that prevents 100% matches in public scraper databases (Pimeyes, Clearview AI), effectively neutralizing social engineering attacks before they begin.</p>
+
+            <h2>VII. The Future: A Bureau of Absolute Reality</h2>
+            <p>The <strong>REALAiID Bureau</strong> is the primary infrastructure for a post-fake economy. In the future, the Real AI-ID will be the only credential recognized for high-value transactions and civic participation, ensuring that the "Digital Human" remains the immutable core of the network.</p>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html" class="text-blue-500">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-col footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        // --- INTERACTIVE LINK ROW CODES ---
+        document.querySelectorAll('.interactive-bridge-row').forEach(row => {
+            row.addEventListener('click', function() {
+                const targetB = this.getAttribute('data-b');
+                
+                // Toggle row selection states
+                document.querySelectorAll('.interactive-bridge-row').forEach(r => r.classList.remove('active'));
+                this.classList.add('active');
+
+                // Toggle visibility parameters of child description spans
+                document.querySelectorAll('[id^="bridge-text-"]').forEach(text => text

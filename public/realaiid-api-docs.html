@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Docs | REALAiID Bureau Ingestion & Currency Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --sidebar-bg: rgba(2, 6, 23, 0.4);
+            --code-bg: #020617;
+            --white: #FFFFFF;
+            --citadel-gold: #b8860b;
+            --emergency-red: #ff4444;
+            --border-frame: 15px;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark) !important; color: #ffffff !important; line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- MASTER HEADER SYNC --- */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: var(--border-frame); z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* --- 3D FLOATING BACKGROUND CANVAS --- */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; opacity: 0.15; pointer-events: none; }
+
+        /* --- DOCUMENTATION LAYOUT MATRIX --- */
+        .docs-wrapper { display: grid; grid-template-columns: 320px 1fr; max-width: 1700px; margin: 0 auto; width: 100%; flex-grow: 1; position: relative; z-index: 10; }
+        
+        .docs-sidebar { background: var(--sidebar-bg); padding: 40px 30px; border-right: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); height: calc(100vh - 140px); position: sticky; top: 120px; overflow-y: auto; z-index: 100; }
+        .docs-sidebar h5 { font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #64748B; margin-bottom: 20px; margin-top: 35px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .docs-sidebar h5:first-child { margin-top: 0; }
+        .docs-sidebar a { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #94A3B8; font-size: 0.85rem; margin-bottom: 14px; font-weight: 600; transition: var(--transition); }
+        .docs-sidebar a:hover { color: var(--phl-blue); transform: translateX(5px); }
+        .docs-sidebar .citadel-link { color: var(--citadel-gold); }
+        .docs-sidebar .citadel-link:hover { color: var(--phl-blue); }
+
+        .docs-content { padding: 60px clamp(20px, 5vw, 80px); overflow-x: hidden; }
+        .docs-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; font-weight: 700; margin-bottom: 20px; color: #ffffff; }
+        .docs-content h2 { margin-top: 90px; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; margin-bottom: 30px; color: #ffffff; display: flex; flex-wrap: wrap; align-items: center; gap: 15px; }
+        .docs-content p { color: #94A3B8; font-size: 0.95rem; line-height: 1.8; margin-bottom: 25px; font-weight: 300; text-align: justify; }
+        
+        /* --- CORE ARTIFACT SPECS --- */
+        .method { font-family: 'JetBrains Mono'; display: inline-block; background: var(--phl-blue); color: white; padding: 4px 12px; border-radius: 2px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
+        .method.gold { background: var(--citadel-gold); }
+        .method.red { background: var(--emergency-red); }
+        .endpoint { font-family: 'JetBrains Mono'; font-weight: 700; color: #cbd5e1; font-size: 1rem; letter-spacing: -0.5px; }
+
+        .code-block { background: var(--code-bg); color: #10B981; padding: 35px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 0.85rem; margin: 25px 0 50px; overflow-x: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.4); line-height: 1.6; border-left: 4px solid var(--phl-blue); border-top: 1px solid rgba(255,255,255,0.02); border-right: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); }
+        .code-comment { color: #64748B; font-style: italic; }
+        
+        .parameter-table { width: 100%; border-collapse: collapse; margin-bottom: 50px; background: rgba(255,255,255,0.01); margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        .parameter-table th { text-align: left; padding: 18px; border-bottom: 2px solid rgba(255,255,255,0.05); font-size: 0.75rem; text-transform: uppercase; color: #64748B; letter-spacing: 1.5px; font-family: 'JetBrains Mono'; }
+        .parameter-table td { padding: 18px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: #cbd5e1; }
+        .parameter-table td:first-child { font-family: 'JetBrains Mono'; font-weight: 700; color: #ffffff; }
+
+        .badge { font-family: 'JetBrains Mono'; display: inline-block; padding: 4px 8px; font-size: 8px; font-weight: 800; border-radius: 2px; text-transform: uppercase; margin-left: 10px; vertical-align: middle; letter-spacing: 1px; }
+        .badge-citadel { background: var(--citadel-gold); color: white; }
+        .badge-beta { background: #6366f1; color: white; }
+
+        /* --- FOOTER SYNC --- */
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid var(--phl-blue); margin-top: auto; position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1600px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        @media (max-width: 1024px) { .docs-wrapper { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div id="spline-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="public-registry.html">Public Registry</a>
+            <a href="investor-portal.html">Investor Portal</a>
+            <a href="blue-paper.html">Blue Paper</a>
+            <a href="api-docs.html" style="color: var(--phl-blue);">API Docs</a>
+            <a href="signin.html" class="nav-cta">Member Dashboard</a>
+        </nav>
+    </header>
+
+    <div class="docs-wrapper">
+        <aside class="docs-sidebar">
+            <h5>Core Auth</h5>
+            <a href="#authentication"><i class="ph-bold ph-key"></i> Bearer Handshake</a>
+            <a href="#vssn-check"><i class="ph-bold ph-waveform"></i> VSSN Spectral Check</a>
+            
+            <h5>Citadel Infrastructure <span class="badge badge-citadel">B2B</span></h5>
+            <a href="#deepfake-radar" class="citadel-link"><i class="ph-bold ph-radar"></i> Deepfake Radar</a>
+            <a href="#handshake-knot" class="citadel-link"><i class="ph-bold ph-intersect"></i> Handshake Knot™</a>
+            <a href="#industrial-strike" class="citadel-link"><i class="ph-bold ph-shield-warning"></i> Industrial Strike</a>
+
+            <h5>Universal Access (UAC)</h5>
+            <a href="#origo-sync"><i class="ph-bold ph-arrows-clockwise"></i> HID Origo Sync</a>
+            <a href="#uac-burn"><i class="ph-bold ph-fire"></i> Instant Burn Protocol</a>
+            <a href="#hr-hook"><i class="ph-bold ph-users-four"></i> Workday / HR Sync</a>
+
+            <h5>Ambient Auth <span class="badge badge-beta">Beta</span></h5>
+            <a href="#palm-verify"><i class="ph-bold ph-hand-palm"></i> Palm Resonance Match</a>
+            <a href="#stylized-match"><i class="ph-bold ph-eye-scan"></i> Stylized Match</a>
+
+            <h5>Hardware Systems</h5>
+            <a href="#qr-rotation"><i class="ph-bold ph-qr-code"></i> Keystone QR Rotation</a>
+            <a href="#se-provision"><i class="ph-bold ph-cpu"></i> SE Card Provisioning</a>
+            
+            <h5>Sovereign Ingestion</h5>
+            <a href="#abyssal-daemon"><i class="ph-bold ph-waves"></i> Abyssal Ingest</a>
+            <a href="#driveknot-ev"><i class="ph-bold ph-car-profile"></i> Drive-Knot EV</a>
+            <a href="#v2g-arbitrage"><i class="ph-bold ph-lightning"></i> V2G Settlement</a>
+            <a href="#checkout-fiat"><i class="ph-bold ph-credit-card"></i> Utility Checkout</a>
+            <a href="#node-status"><i class="ph-bold ph-activity"></i> Mainframe Status</a>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Industrial API v1.3</h1>
+            <p>The REALAiID Technical Interface allows institutional partners to anchor biological truth to fiscal, civic, and physical utility. Powered by the PHL-01 Mainframe Anchor network block under Solomon Kin, LLC orchestration guidelines.</p>
+
+            <section id="authentication">
+                <h2>Institutional Authentication</h2>
+                <p>All programmatic endpoint requests targeting the active grid matrix must pass a validated cryptographic key string within the header parameters. Sovereign and Citadel access clearances authorize dynamic actions directly across the root ledgers.</p>
+                <div class="code-block">
+Authorization: Bearer REALAiID_CITADEL_MASTER_KEY_XXXXX
+                </div>
+            </section>
+
+            <section id="vssn-check">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/core/vssn/spectral-check</span></h2>
+                <p>Verify live acoustic patterns against verified multi-point Vocal Signature Serial Number (VSSN) vectors. Evaluates resonance variation mapping to isolate synthesized cloning vectors.</p>
+                <div class="code-block">
+<span class="code-comment">// INGEST FIELD PROFILE</span>
+{
+  "node_id": "ARC-HUMAN-9910",
+  "audio_stream_vector": "base64_vocal_frequency_matrix_string",
+  "tolerance_coefficient": 0.002
+}
+                </div>
+            </section>
+
+            <section id="deepfake-radar">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/citadel/defense/radar</span></h2>
+                <p>Runs scanning analysis against physical appearance assets. Detects mathematical artifact variations, fake boundaries, and pixel noise layout manipulation.</p>
+                <div class="code-block">
+<span class="code-comment">// RADAR ANALYSIS RECONNAISSANCE LOOP</span>
+{
+  "media_target_url": "https://storage.realaiid.com/ingress/check-file.mp4",
+  "continuous_feed_scan": true,
+  "webhook_callback_url": "https://partner-node.internal/callbacks"
+}
+                </div>
+            </section>
+
+            <section id="handshake-knot">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/citadel/provenance/knot-seal</span></h2>
+                <p>Generate an absolute Handshake Knot™ verification block token. Connects active user consent instances with permanent cryptographic time markers to anchor transactions legally.</p>
+                <div class="code-block">
+<span class="code-comment">// SUCCESS RESPONSE (200 OK)</span>
+{
+  "knot_id": "KNOT-992-PHL-SECURE",
+  "standing": "VERIFIED_DIGITAL_HUMAN",
+  "consensus_seal": "0x8fa3bc772e8f710d846310aef710d846310a",
+  "timestamp": "2026-05-16T15:39:32Z"
+}
+                </div>
+            </section>
+
+            <section id="industrial-strike">
+                <h2><span class="method red">POST</span> <span class="endpoint">/v1/citadel/action/strike</span></h2>
+                <p>Initialize a protective legal framework deployment action. Automatically issues signed cease-and-desist declarations and tracking tokens across target platforms under the NO FAKES Act parameters.</p>
+                <div class="code-block">
+{
+  "target_compromise_signature": "SIG_FRAUD_3321_ALPHA",
+  "enforcement_jurisdiction": "US_EAST_PHL_01",
+  "automated_dmca_dispatch": true
+}
+                </div>
+            </section>
+
+            <section id="origo-sync">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/uac/origo/sync</span></h2>
+                <p>Synchronize biological status validations with hardware security tokens via HID Origo endpoints. Refreshes structural parameters on physical wall sensors automatically.</p>
+                <div class="code-block">
+{
+  "hardware_reader_cluster": "MAC_AIRCRAFT_GATE_ZONE_4",
+  "origo_profile_token": "OP-99281-SECURE",
+  "reauth_ttl_seconds": 3600
+}
+                </div>
+            </section>
+
+            <section id="uac-burn">
+                <h2><span class="method red">POST</span> <span class="endpoint">/v1/citadel/uac/burn</span></h2>
+                <p><strong>Instant Burn Protocol™.</strong> Completely terminates physical access rights (HID Origo locks) and corporate credential profiles (Okta, Azure AD, Entra) across the entire system matrix simultaneously upon discovery of a token leak.</p>
+                
+                <table class="parameter-table">
+                    <thead>
+                        <tr><th>Field</th><th>Type</th><th>Description</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>node_id</td><td>string</td><td>Target ARC-Node ID to burn.</td></tr>
+                        <tr><td>scope</td><td>string</td><td>"GLOBAL_REVOCATION" or "LOCAL_ONLY".</td></tr>
+                        <tr><td>reason</td><td>string</td><td>C2PA compliant reason for revocation logs.</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="code-block">
+curl -X POST https://api.realaiid.com/v1/citadel/uac/burn \
+  -H "Authorization: Bearer CITADEL_KEY" \
+  -d '{
+    "node_id": "ARC-EXEC-8821",
+    "scope": "GLOBAL_REVOCATION",
+    "reason": "TERMINATION_OF_RELATIONSHIP"
+  }'
+                </div>
+            </section>
+
+            <section id="palm-verify">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/ambient/palm-verify</span></h2>
+                <p><strong>Ambient Dead-Phone Continuity.</strong> Authenticate identity profiles directly at local scanner terminals using underlying palm-resonance structure parameters when cell endpoints are out of power.</p>
+                <div class="code-block">
+{
+  "dermal_vector": "base64_dermal_string_from_sensor",
+  "terminal_id": "PHL-TERMINAL-R04",
+  "intent": "FISCAL_AUTHORIZATION_SOVEREIGN"
+}
+                </div>
+            </section>
+
+            <section id="stylized-match">
+                <h2><span class="method gold">POST</span> <span class="endpoint">/v1/ambient/verify/stylized</span></h2>
+                <p><strong>Zero-Raw Biometric Match.</strong> Evaluates a 512-point Stylized Template configuration sequence against live root registries. Raw biological telemetry maps are never mirrored, shared, or held within intermediate cloud blocks.</p>
+                <div class="code-block">
+{
+  "match": true,
+  "confidence": 0.9998,
+  "knot_id": "KNOT-992-PHL-SECURE",
+  "standing": "VERIFIED_DIGITAL_HUMAN"
+}
+                </div>
+            </section>
+
+            <section id="qr-rotation">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/hardware/keystone/qr-rotate</span></h2>
+                <p>Generates a dynamic Keystone QR rotation payload. Re-keys terminal interaction loops every 400ms to block screen capture recording attacks on validation entry vectors.</p>
+                <div class="code-block">
+{
+  "session_token": "SESS_ROTATE_88291_Z",
+  "rotation_interval_ms": 400,
+  "seed_nonce": "0x4b7e9c21d846"
+}
+                </div>
+            </section>
+
+            <section id="se-provision">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/hardware/se/provision</span></h2>
+                <p>Provision cryptographic elements inside hardware token layouts. Writes personal root validation profiles directly to non-cloneable Secure Element Java Cards.</p>
+                <div class="code-block">
+curl -X POST https://api.realaiid.com/v1/hardware/se/provision \
+  -H "Content-Type: application/json" \
+  -d '{
+    "node_id": "ARC-PROV-992",
+    "hardware_uid": "TITANIUM-SA-01-XXXX",
+    "fips_standard": "140-3_LEVEL_4"
+  }'
+                </div>
+            </section>
+
+            <section id="abyssal-daemon">
+                <h2><span class="method">DAEMON</span> <span class="endpoint">abyssal-knot-mesh.js</span></h2>
+                <p>Calculates subsea node performance allocations using the Thermodynamic Proof-of-Work framework. Monitors ambient fluid velocities and thermal cold-sink deltas to mint $AII asset payloads safely.</p>
+                <div class="code-block">
+const abyssalMesh = require('./abyssal-knot-mesh');
+abyssalMesh.initializeNode({
+  nodeID: "0xNODE_ABYSS_ENT_01",
+  hydrokineticFluxJoules: 4592.12,
+  ambientOceanTemperatureCelsius: 2.4
+});
+                </div>
+            </section>
+
+            <section id="driveknot-ev">
+                <h2><span class="method">SDK</span> <span class="endpoint">drive-knot-ev.js</span></h2>
+                <p>Asynchronously reads deceleration forces from vehicle secure elements over localized CAN-bus configurations to route kinetic friction rewards straight down to user ledgers.</p>
+                <div class="code-block">
+const driveKnot = require('./drive-knot-ev');
+driveKnot.monitorBrakingSystem({
+  vinHash: "0xVEHICLE_TSLA_EMBEDDED_88",
+  decelerationForceJoules: 1204.50,
+  marrowKeyAddress: "PHL_SOVEREIGN_NODE_M3"
+});
+                </div>
+            </section>
+
+            <section id="v2g-arbitrage">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/infrastructure/v2g/discharge</span></h2>
+                <p>Executes bi-directional charging station settlement routines. Tracks specific kilowatt-hour discharge events during municipal grid balancing actions to emit automatic payouts.</p>
+                <div class="code-block">
+{
+  "stationID": "0xSTATION_PHL_88F",
+  "requestedDischargeKwh": 45.5,
+  "sessionID": "0xSESS_ARB_9921_A"
+}
+                </div>
+            </section>
+
+            <section id="checkout-fiat">
+                <h2><span class="method">POST</span> <span class="endpoint">/v1/billing/compute/purchase</span></h2>
+                <p>Clears fiat capital transactions (credit deposits) and programmatically purchases corresponding processing credits at a base conversion coefficient of $0.12 per SCU.</p>
+                <div class="code-block">
+{
+  "marrowKeyAddress": "PHL_SOVEREIGN_NODE_M3",
+  "depositAmountUSD": 5000.00,
+  "applyDiscount": true
+}
+                </div>
+            </section>
+
+            <section id="node-status">
+                <h2>Infrastructure Status</h2>
+                <p>Monitor the structural operations and ledger data latency statistics across active physical server frames in real time.</p>
+                <div class="code-block">
+{
+  "node_id": "PHL-01-MAIN",
+  "status": "OPERATIONAL",
+  "handshake_latency": "142ms",
+  "active_sovereign_nodes": 842102,
+  "uplink": "AES-256-GCM-TUNNEL"
+}
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('spline-canvas').appendChild(renderer.domElement);
+
+        const splineGroup = new THREE.Group();
+        scene.add(splineGroup);
+
+        const pointCount = 45;
+        const positions = [];
+        const originalPositions = [];
+
+        // Distribute token nodes randomly along 3D grid axes limits
+        for (let i = 0; i < pointCount; i++) {
+            const x = (Math.random() - 0.5) * 12;
+            const y = (Math.random() - 0.5) * 12;
+            const z = (Math.random() - 0.5) * 12;
+            positions.push(x, y, z);
+            originalPositions.push({ x, y, z, oscillation: Math.random() * Math.PI, deltaSpeed: 0.2 + Math.random() * 0.5 });
+        }
+
+        const pointGeo = new THREE.BufferGeometry();
+        pointGeo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        const pointMat = new THREE.PointsMaterial({ color: 0x1693E9, size: 0.12, transparent: true, opacity: 0.55 });
+        const particlePoints = new THREE.Points(pointGeo, pointMat);
+        splineGroup.add(particlePoints);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+        camera.position.z = 6;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            splineGroup.rotation.y = targetX * 1.1;
+            splineGroup.rotation.x = targetY * 0.9;
+
+            // Dynamically modulate particle position parameters over time
+            const posAttr = pointGeo.getAttribute('position');
+            for (let i = 0; i < pointCount; i++) {
+                const idx = i * 3;
+                const orig = originalPositions[i];
+                posAttr.array[idx + 1] = orig.y + Math.sin(time * orig.deltaSpeed + orig.oscillation) * 0.15;
+            }
+            posAttr.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Gate | REALAiID Provisional Member Registry</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght@1,700;1,900&family=JetBrains+Mono:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --surface: #020617;
+            --border-frame: 15px;
+            --transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--surface); 
+            color: #ffffff; 
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding: var(--border-frame);
+        }
+
+        /* --- INSTITUTIONAL FRAME --- */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border: var(--border-frame) solid #111;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        /* --- MASTER HEADER SYNC --- */
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            position: sticky;
+            top: var(--border-frame);
+            z-index: 1000;
+            padding: 15px 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-box img {
+            height: 95px;
+            width: auto;
+            transition: var(--transition);
+        }
+        
+        .nav-links { display: flex; gap: 25px; align-items: center; }
+        .nav-links a {
+            text-decoration: none;
+            color: #0B1320;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--phl-blue); }
+
+        .nav-cta {
+            background: var(--phl-blue);
+            color: white !important;
+            padding: 14px 28px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        /* --- 3D FORM CANVAS --- */
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .hero-registration {
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 80px rgba(22, 147, 233, 0.3);
+        }
+
+        /* --- REGISTRATION FORM TERMINAL --- */
+        .registration-panel {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            padding: 80px;
+            max-width: 1000px;
+            margin: -100px auto 100px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-family: 'JetBrains Mono';
+            font-size: 0.6rem;
+            color: #64748B;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--phl-blue);
+            background: rgba(22, 147, 233, 0.05);
+        }
+
+        .full-width { grid-column: span 2; }
+
+        .btn-register {
+            background: var(--phl-blue);
+            color: white;
+            padding: 22px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-register:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 40px rgba(22, 147, 233, 0.4);
+        }
+
+        /* --- MEMBER PERKS GRID --- */
+        .perks-section {
+            padding: 100px 10%;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .perk-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .perk-card:hover {
+            border-color: var(--bureau-gold);
+            background: rgba(184, 134, 11, 0.02);
+        }
+
+        .perk-icon {
+            font-size: 2.5rem;
+            color: var(--bureau-gold);
+            margin-bottom: 25px;
+        }
+
+        /* --- EXPANDED 6-COLUMN FOOTER --- */
+        footer { 
+            background: #020617; 
+            color: #94A3B8; 
+            padding: 100px 60px 40px 60px; 
+            border-top: 4px solid var(--phl-blue); 
+        }
+        
+        .footer-grid { 
+            display: grid; 
+            grid-template-columns: repeat(6, 1fr); 
+            gap: 30px; 
+            max-width: 1700px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+
+        .footer-logo { 
+            color: white; 
+            font-weight: 900; 
+            font-size: 1.8rem; 
+            margin-bottom: 25px; 
+            font-family: 'JetBrains Mono'; 
+            letter-spacing: -1px; 
+        }
+
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.8rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+    </style>
+</head>
+<body>
+
+    <div id="registration-canvas" class="canvas-container"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-box">
+                <img src="realaiid_commonwealth_logo_20262999.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/300x110/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">The Bureau</a>
+                <a href="public-registry.html">Public Registry</a>
+                <a href="investor-portal.html">Investor Portal</a>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="signin.html" class="nav-cta">Member Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero-registration">
+            <div class="z-10">
+                <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.6em] mb-4 block">Registry Gate // Global Ingest</span>
+                <h1 class="hero-title">Member <br>Enrollment.</h1>
+                <p class="text-xl font-light text-slate-400 max-w-3xl mx-auto leading-relaxed mt-8">
+                    Establishing Baseline PHL-01 Record. Integrating IDEMIA/ID.me/Identiv Enclaves. Synchronizing Banking Rails.
+                </p>
+            </div>
+        </section>
+
+        <section class="registration-panel shadow-2xl">
+            <div class="mb-12">
+                <h2 class="font-serif italic text-4xl mb-4">Forensic Profile <span class="text-blue-500">Initiation.</span></h2>
+                <p class="text-slate-500 text-sm font-mono uppercase tracking-widest">Stage 1: Identity / Biometric / Fiscal Root Sync</p>
+            </div>
+
+            <form id="provisional-form">
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>First Name (Biological)</label>
+                        <input type="text" placeholder="GIVEN NAME" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Last Name (Biological)</label>
+                        <input type="text" placeholder="FAMILY NAME" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label>IDEMIA/ID.me Trust Token</label>
+                        <input type="text" placeholder="ENTER FEDERATED TOKEN" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Identiv/Identy.io Hardware Key</label>
+                        <input type="text" placeholder="HARDWARE ACCESS TOKEN" required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>Institutional Banking Gateway (Plaid/Stripe/FedNow)</label>
+                        <input type="text" placeholder="LINK CUSTODIAN ACCOUNT FOR $AII LIQUIDITY" required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>Uplink Email Address</label>
+                        <input type="email" placeholder="liaison@domain.com" required>
+                    </div>
+
+                    <div class="input-group full-width">
+                        <label>Identity Sector of Interest</label>
+                        <select class="bg-[#0b1320]">
+                            <option value="individual">Individual Likeness Shield (Standard)</option>
+                            <option value="professional">Professional Board Standing (Liaison)</option>
+                            <option value="asset">High-Value Asset Governance (Sovereign)</option>
+                            <option value="institutional">Institutional Infrastructure (Citadel)</option>
+                        </select>
+                    </div>
+
+                    <div class="full-width">
+                        <button type="submit" class="btn-register">Initialize Provisional Node & Bank Sync</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="perks-section">
+            <div class="text-center mb-20">
+                <h2 class="font-serif italic text-5xl mb-4">Constituent <span class="text-amber-500">Access.</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <div class="perk-card">
+                    <i class="ph ph-shield perk-icon"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Bio-Sign™ Secure</h3>
+                    <p class="text-sm text-slate-400">Advanced IDEMIA/Identy.io multi-modal iris, fingerprint, and vocal mapping for high-assurance ID anchoring.</p>
+                </div>
+                <div class="perk-card">
+                    <i class="ph ph-bank perk-icon"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Liquidity Rails</h3>
+                    <p class="text-sm text-slate-400">Plaid/Stripe Treasury integration for automated treasury clearings and $AII token settlement.</p>
+                </div>
+                <div class="perk-card">
+                    <i class="ph ph-globe perk-icon"></i>
+                    <h3 class="text-xl font-bold mb-4 uppercase">Federal Sync</h3>
+                    <p class="text-sm text-slate-400">Native integration with ID.me trust signals and DMV transit registries via Bridge 09/37.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B;">Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. The Global Reserve of biological truth.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet</a>
+                <a href="hardware-wallet.html">Hardware</a>
+                <a href="aii-economy.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">Blue Paper</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Statutes</a>
+                <a href="regulatory-filings.html">SEC Filings</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot EV</a>
+                <a href="supercharger-v2g-balancing.html">V2G Grid</a>
+                <a href="compute-yield-oracle.html">Yield Oracle</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Registry</h4>
+                <a href="property-deeds.html">Property Deeds</a>
+                <a href="vital-records.html">Vital Status</a>
+                <a href="dmv-attestations.html">DMV Registry</a>
+                <a href="licensure-mesh.html">Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics</h4>
+                <a href="truth-ingest.html">Truth Ingest</a>
+                <a href="biomedia-seals.html">Media Seals</a>
+                <a href="watchtower-scrapes.html">Likeness Radar</a>
+                <a href="companion-registry.html">Companion Assets</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('registration-canvas').appendChild(renderer.domElement);
+
+        const group = new THREE.Group();
+        const gridGeo = new THREE.SphereGeometry(5, 48, 48);
+        const gridMat = new THREE.MeshPhongMaterial({ color: 0x1693E9, wireframe: true, transparent: true, opacity: 0.15 });
+        const sphere = new THREE.Mesh(gridGeo, gridMat);
+        group.add(sphere);
+
+        const nodeGeo = new THREE.OctahedronGeometry(1.5, 0);
+        const nodeMat = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0x1693E9, emissiveIntensity: 0.5, wireframe: true });
+        const node = new THREE.Mesh(nodeGeo, nodeMat);
+        group.add(node);
+
+        scene.add(group);
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+        camera.position.z = 12;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            sphere.rotation.y += 0.001;
+            node.rotation.y -= 0.005;
+            renderer.render(scene, camera);
+        }
+        
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        document.getElementById('provisional-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-register');
+            btn.innerText = "QUERYING MAINFRAME...";
+            setTimeout(() => { window.location.href = 'basic-dashboard.html'; }, 2000);
+        });
+        window.onload = animate;
+    </script>
+</body>
+</html>

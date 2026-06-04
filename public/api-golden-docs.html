@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden API Architecture Docs | REALAiID Bureau Sovereign Blueprint</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --sidebar-bg: rgba(2, 6, 23, 0.7);
+            --code-bg: #020617;
+            --bureau-gold: #b8860b;
+            --border-frame: 15px;
+            --transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--phl-dark) !important; color: #ffffff !important; line-height: 1.6; padding: var(--border-frame); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        /* --- STYLIZED MASTER HEADER --- */
+        .nav-header { background: rgba(5, 8, 15, 0.95); border-bottom: 1px solid #1e293b; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: var(--border-frame); z-index: 9000; backdrop-filter: blur(20px); }
+        .nav-logo { font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px; color: #ffffff; text-decoration: none; }
+        .nav-links a { margin-left: 35px; text-decoration: none; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; transition: color 0.3s ease; }
+        .nav-links a:hover, .nav-links a.active { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: white !important; padding: 14px 28px; border-radius: 2px; text-decoration: none; font-weight: 800; font-size: 12px; text-transform: uppercase; }
+
+        /* --- THREE.JS QUANTUM GEODESIC CANVAS --- */
+        .canvas-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; opacity: 0.18; pointer-events: none; }
+
+        /* --- DUAL PANE WRAPPER MATRIX --- */
+        .docs-wrapper { display: grid; grid-template-columns: 390px 1fr; max-width: 1750px; margin: 0 auto; width: 100%; flex-grow: 1; position: relative; z-index: 10; gap: 40px; }
+        
+        .docs-sidebar { background: var(--sidebar-bg); padding: 40px 30px; border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(20px); height: calc(100vh - 140px); position: sticky; top: 120px; overflow-y: auto; border-radius: 2px; }
+        .docs-sidebar h5 { font-family: 'JetBrains Mono'; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: #64748B; margin-bottom: 20px; margin-top: 35px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px; }
+        .docs-sidebar h5:first-child { margin-top: 0; }
+        
+        /* Interactive Menu Buttons */
+        .menu-btn { display: flex; align-items: center; gap: 12px; width: 100%; padding: 12px 16px; border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.01); text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 500; color: #94A3B8; transition: all 0.3s; margin-bottom: 8px; cursor: pointer; }
+        .menu-btn:hover { border-color: rgba(22, 147, 233, 0.3); color: #ffffff; }
+        .menu-btn.active { border-color: var(--phl-blue); background: rgba(22, 147, 233, 0.08); color: #ffffff; font-weight: 700; box-shadow: 0 0 15px rgba(22, 147, 233, 0.1); }
+
+        .docs-content { padding: 40px 20px; }
+        .display-screen { background: rgba(2, 6, 23, 0.75); border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(40px); padding: 60px; min-height: 650px; box-shadow: 0 40px 80px rgba(0,0,0,0.6); }
+        
+        .code-block { background: var(--code-bg); color: #10B981; padding: 35px; border-radius: 4px; font-family: 'JetBrains Mono'; font-size: 0.85rem; margin: 25px 0; overflow-x: auto; border-left: 4px solid var(--phl-blue); line-height: 1.6; }
+        .code-comment { color: #64748B; font-style: italic; }
+
+        /* --- FOOTER SYNC --- */
+        footer { background: #020617; color: #94A3B8; padding: 100px 60px 40px 60px; border-top: 4px solid var(--phl-blue); margin-top: 100px; position: relative; z-index: 20; width: 100%; display: block; }
+        .footer-grid { display: grid; grid-template-columns: 2fr repeat(5, 1fr); gap: 30px; max-width: 1700px; margin: 0 auto; text-align: left; }
+        .footer-logo { color: white; font-weight: 900; font-size: 1.8rem; margin-bottom: 25px; font-family: 'JetBrains Mono'; letter-spacing: -1px; }
+        .footer-links h4 { color: #fff; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 2px; }
+        .footer-links a { color: #64748B; text-decoration: none; display: block; margin-bottom: 12px; font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--phl-blue); padding-left: 5px; }
+
+        @media (max-width: 1150px) { .docs-wrapper { grid-template-columns: 1fr; } .docs-sidebar { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div id="geodesic-canvas" class="canvas-container"></div>
+
+    <header class="nav-header">
+        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
+        <nav class="nav-links">
+            <a href="index.html">The Bureau</a>
+            <a href="product-vssn2.html">VSSN Hashing</a>
+            <a href="product-likeness-shield.html">Likeness Shield</a>
+            <a href="api-docs.html">API Docs</a>
+            <a href="api-golden-docs.html" class="active">Golden Specs</a>
+        </nav>
+    </header>
+
+    <div class="docs-wrapper mt-12">
+        <aside class="docs-sidebar">
+            <h5>$AII Ingestion Matrix</h5>
+            <button class="menu-btn active" data-node="peg-proof">PILLAR I // THE UTILITY PEG</button>
+            <button class="menu-btn" data-node="burn-proof">PILLAR II // THE SOVEREIGN BURN</button>
+            <button class="menu-btn" data-node="coin-mechanics">PILLAR III // PERSONAL BIO-COIN</button>
+            <button class="menu-btn" data-node="abyssal-spec">B2B MESH // OPEN ABYSSAL INFRA</button>
+            <button class="menu-btn" data-node="ev-spec">KINETIC ARBITRAGE // DRIVE-KNOT</button>
+            <button class="menu-btn" data-node="v2g-spec">GRID INTERACTION // V2G SINK</button>
+            
+            <h5>Wallet Perimeter Core (38-Bridges)</h5>
+            <button class="menu-btn" data-node="b01-auth">BRIDGE B-01 // IDENTITY ROOT</button>
+            <button class="menu-btn" data-node="b02-civic">BRIDGE B-02 // CIVIC REGISTRY</button>
+            <button class="menu-btn" data-node="b09-dmv">BRIDGE B-09 // DMV AUTHORITIES</button>
+            <button class="menu-btn" data-node="b10-fiscal">BRIDGE B-10 // FISCAL CORRIDOR</button>
+            <button class="menu-btn" data-node="b14-deeds">BRIDGE B-14 // REAL ESTATE DEEDS</button>
+            <button class="menu-btn" data-node="b31-economy">BRIDGE B-31 // LIKENESS YIELD</button>
+            <button class="menu-btn" data-node="b35-justice">BRIDGE B-35 // SOVEREIGN JUSTICE</button>
+        </aside>
+
+        <main class="docs-content">
+            <div class="display-screen rounded-sm" id="golden-view-panel">
+                <span class="font-mono text-xs text-blue-500 uppercase tracking-widest block mb-2" id="gold-node-id">Spec Node: PE-01 // Primary Currency Peg</span>
+                <h1 class="text-4xl font-serif font-bold italic mb-6 text-white" id="gold-node-title">The Standardized Compute Unit Invariant</h1>
+                
+                <div class="text-slate-300 font-light text-sm leading-relaxed mb-6 space-y-4" id="gold-node-desc">
+                    <p class="text-justify">The foundation of the $AII Economy relies on absolute resource alignment. Unlike uncollateralized fiat currencies backed by macro-economic debt formulas, every single token in circulation matches exactly 1 Standardized Compute Unit (SCU). This means ownership of $AII commands a direct, unalterable slice of real-world server infrastructure processing hours balanced across decentralized networks (Akash and Render), providing a permanent valuation floor derived from the laws of physics.</p>
+                </div>
+
+                <div class="code-block" id="gold-node-code">
+<span class="code-comment">// REALAiID ECONOMY CORE INVARIANT PARITY CHECK</span>
+{
+  "fiat_equivalent_base_usd": 0.12,
+  "internal_bureau_discount_factor": 0.33,
+  "oracle_attestation_network": "CHAINLINK_DECENTRALIZED_AGREEMENT",
+  "equilibrium_status": "HARDWARE_BACKED_PEG_ENFORCED"
+}
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-links">
+                <div class="footer-logo">REALAiID // BUREAU</div>
+                <p style="font-size: 0.85rem; line-height: 1.8; color: #64748B; margin-top: 15px;">
+                    Philadelphia Mainframe PHL-01. Anchored at 1900 Market St. Establishing the Global Reserve of Biological Reality under the NO FAKES Act of 2026. Securing the "Human Core" through decentralized hashing. Your identity, your sovereignty.
+                </p>
+                <p style="font-size: 0.7rem; color: #334155; margin-top: 20px; font-family: 'JetBrains Mono';">© 2026 Solomon Kin LLC // REALAiiD.com</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Ecosystem</h4>
+                <a href="wallet-integration.html">Digital Wallet Hub</a>
+                <a href="hardware-wallet.html">Hardware Anchor</a>
+                <a href="$AII-Compute-Currency-Exchange.html">Economy Hub</a>
+                <a href="identity-station.html">Identity Station</a>
+                <a href="mainframe.html">Mainframe Anchor</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Juridical</h4>
+                <a href="blue-paper.html">The Blue Paper</a>
+                <a href="no-fakes.html">NO FAKES Act</a>
+                <a href="sovereign-charter.html">Sovereign Charter</a>
+                <a href="privacy-statutes.html">Data Ownership Codes</a>
+                <a href="regulatory-filings.html">SEC Form S-1 Stubs</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Sovereign Grid</h4>
+                <a href="abyssal-knot-mesh.html">Abyssal Knot Mesh</a>
+                <a href="drive-knot-automotive.html">Drive-Knot Automotive</a>
+                <a href="supercharger-v2g-balancing.html">Supercharger V2G</a>
+                <a href="thermodynamic-pow-spec.html">Thermodynamic t-PoW</a>
+                <a href="compute-yield-oracle.html">Akash/Render Pools</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Asset Registry</h4>
+                <a href="property-deeds.html">Property Deeds Title</a>
+                <a href="vital-records.html">Vital Status Records</a>
+                <a href="dmv-attestations.html">DMV State Issuances</a>
+                <a href="companion-registry.html">Companion Assets Pool</a>
+                <a href="licensure-mesh.html">Professional Licensure</a>
+            </div>
+
+            <div class="footer-links">
+                <h4>Forensics Bureau</h4>
+                <a href="truth-ingest.html">Truth Ingest Feed</a>
+                <a href="biomedia-seals.html">Bio-Media Seal Logs</a>
+                <a href="watchtower-scrapes.html">Likeness Abuse Scrapes</a>
+                <a href="compliance-hub.html">Compliance Logs</a>
+                <a href="forensic-records.html">Forensic Blueprint Index</a>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #1E293B; padding-top: 50px; text-align: center; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #475569; letter-spacing: 2px; margin-top: 80px; text-transform: uppercase;">
+            © 2026 REALAiID BUREAU // PHILADELPHIA, PA // ANCHORED AT 1900 MARKET ST // NODE PHL-01 ACTIVE // GOVERNANCE SYNC ACTIVE
+        </div>
+    </footer>
+
+    <script>
+        const goldenMatrix = {
+            "peg-proof": {
+                nodeId: "Spec Node: PE-01 // Primary Currency Peg",
+                title: "The Standardized Compute Unit Invariant",
+                desc: `<p class="text-justify">The foundation of the $AII Economy relies on absolute resource alignment. Unlike uncollateralized fiat currencies backed by macro-economic debt formulas, every single token in circulation matches exactly 1 Standardized Compute Unit (SCU). This means ownership of $AII commands a direct, unalterable slice of real-world server infrastructure processing hours balanced across decentralized networks (Akash and Render), providing a permanent valuation floor derived from the laws of physics.</p>
+                       <p class="text-justify mt-2"><b>Decoding the Third "I":</b> Standard tech definitions classify AI simply as Artificial Intelligence. The REALAiID Bureau deploys the distinct ticker $AII because it captures an explicit three-dimensional truth: <i>First I: Artificial</i> (the decentralized processing layer), <i>Second I: Intelligence</i> (the raw machine learning infrastructure arrays), and <i>Third I: Identity</i> (the biological human anchor). By interlocking Identity directly into the currency's name and execution code, human likeness and data presence are established as the foundational asset values of the entire computing grid.</p>`,
+                code: `<span class="code-comment">// REALAiID ECONOMY CORE INVARIANT PARITY CHECK</span>\n{\n  "fiat_equivalent_base_usd": 0.12,\n  "internal_bureau_discount_factor": 0.33,\n  "oracle_attestation_network": "CHAINLINK_DECENTRALIZED_AGREEMENT",\n  "equilibrium_status": "HARDWARE_BACKED_PEG_ENFORCED"\n}`
+            },
+            "burn-proof": {
+                nodeId: "Spec Node: PE-02 // Deflationary Mechanism",
+                title: "Sovereign Supply-Side Burn Protocols",
+                desc: `<p class="text-justify">To expand structural value parameters across the ecosystem, the core runtime environment triggers an un-bypassable micro-burn sequence whenever an individual clears biological identity validations or registers a title parcel. As consumer use of the 38-Bridge network scales over geographic nodes, the total circulating asset pool automatically shrinks, driving personal token values upwards.</p>`,
+                code: `<span class="code-comment">// AUTOMATED REVENUE EXTRACTION DAEMON CONTEXT</span>\n{\n  "burn_fraction_per_handshake": 0.00142,\n  "supply_mitigation_index": "DAEMON_BURNING_ACTIVE",\n  "deficit_equilibrium": "STABLE_SCARCITY_ENFORCED"\n}`
+            },
+            "coin-mechanics": {
+                nodeId: "Spec Node: PE-03 // Personal Coin Paradigm",
+                title: "Biometric Coin Personalization & Balance Dynamics",
+                desc: `<p class="text-justify">Within the $AII ecosystem, identity is literal currency. Every verified user generates a unique Personal Likeness Coin watermarked forensically with their individual biological hash, face geometry, and core structural parameters for identification and safety verification. The current value of this personalized coin represents the live balance within that person's $AII compute currency account.</p>
+                       <p class="text-justify mt-2">As resources are generated via kinetic or thermal ingestion loops, the coin rises in value. When compute units are spent, transferred, or deployed across the 38-Bridge network perimeter, the metric balance decreases accordingly, executing fluent value transformations in real-time. It incentivizes protection: the more secure a profile becomes by loading bridges, the higher their personal coin multiplier scales.</p>`,
+                code: `<span class="code-comment">// BIOMETRIC CORE COIN ACCOUNT STATE ENGINE</span>\n{\n  "personal_coin_identifier": "M3-BIO-PHL-1981",\n  "biomark_watermark_status": "FORENSIC_COVERT_50S_LOCK",\n  "account_balance_scu": 14204.00,\n  "real_time_velocity_scalar": "4.2m_per_sec",\n  "likeness_retrospective_yield": "+$124.80"\n}`
+            },
+            "abyssal-spec": {
+                nodeId: "Spec Node: PE-04 // Subsea Integration Mesh",
+                title: "The Open Abyssal Telemetry Overlay",
+                desc: `<p class="text-justify">To capture the immediate commitment of sovereign wealth funds and technology consortiums, the Bureau bypasses terrestrial constraints by deploying an enterprise integration module: The Abyssal Node Overlay. Instead of forcing external cloud providers or tech billionaires to compete with our hardware installations, we inject a software-defined telemetry hook directly into third-party underwater data center hypervisors.</p>
+                       <p class="text-justify mt-2">If their subsea data center captures excess hydrodynamic fluid flux or kinetic energy from tidal flow currents within their low-entropy ocean floor sinks, that raw energy is instantly calibrated, validated by our Mainframe down to the millisecond via <code>abyssal-knot-mesh.js</code>, and normalized into $AII Compute Currency, creating an efficient dual-revenue loop.</p>`,
+                code: `<span class="code-comment">// UNIVERSAL THERMODYNAMIC PROOF-OF-WORK (t-PoW) SPEC</span>\n\n// Equation: tPoW = ∫ [ Φ_kinetic · η_conv + ΔQ_thermal ] dt\n\n{\n  "active_abyssal_nodes_polling": 342,\n  "kinetic_fluid_flux_efficiency": 0.942,\n  "pue_coefficient_equilibrium": 1.02,\n  "hypervisor_daemon_status": "CORE_TELEMETRY_STREAMING"\n}`
+            },
+            "ev-spec": {
+                nodeId: "Spec Node: PE-05 // Kinetic Mobility Ingestion",
+                title: "Drive-Knot Vehicular CAN-Bus SDK Platform",
+                desc: `<p class="text-justify">Vehicles are mobile compute cells on wheels. The Bureau transforms individual transit cycles into active liquidity runs by integrating our Drive-Knot API overlay directly into vehicular onboard terminal computers (optimized for flagship templates like Tesla builds). When a vehicle decelerates, its braking array utilizes regenerative systems to capture kinetic energy.</p>
+                       <p class="text-justify mt-2">As this physical energy transaction occurs, the embedded <code>drive-knot-ev.js</code> SDK parses lightweight cryptographic validation hashes, transforming miles driven and joules recovered into fractions of $AII minted directly to the driver's biometric core wallet loop.</p>`,
+                code: `<span class="code-comment">// DRIVER KINETIC RECOVERY ARBITRAGE SCHEMA</span>\n{\n  "fleet_nodes_monitored": 14842,\n  "kinetic_modifier_scalar": 1.42,\n  "can_bus_sandbox_isolation": "SECURE_PARTITION_BOUND",\n  "minting_throttle_state": "STABLE_PRODUCTION"\n}`
+            },
+            "v2g-spec": {
+                nodeId: "Spec Node: PE-06 // Grid Settlement Sync",
+                title: "Supercharger V2G Power Arbitrage Layer",
+                desc: `<p class="text-justify">Charging stations serve as primary power-grid interactive hubs. When a mobile compute node plugs into a Supercharger station terminal, the energy exchange architecture behaves bi-directionally. If the localized power grid registers an overload condition, the connected vehicle feeds its reserve battery capacity back into the municipal network (Vehicle-to-Grid / V2G).</p>
+                       <p class="text-justify mt-2">The station software records this thermodynamic balancing action via <code>supercharger-v2g.js</code> and immediately disperses highly-liquid $AII Compute Credits straight to the user's account wallet framework, providing automated grid balance and utility-checkout coordination.</p>`,
+                code: `<span class="code-comment">// MUNICIPAL GRID ARBITRAGE SETTLEMENT MATRICES</span>\n{\n  "substation_identifier": "0xSUB_PHL_CENTER_CITY_01",\n  "arbitrage_rate_multiplier_kwh": 1.424,\n  "grid_feedback_loop": "LOAD_SHEDDING_ACTIVE",\n  "clearing_speed_latency": "100_MS_ATOMIC"\n}`
+            },
+            "b01-auth": {
+                nodeId: "Core Node: B-01 // Primary Identity Link",
+                title: "Identity Auth Root Perimeter",
+                desc: `<p class="text-justify">Binds your structural biometrics, multi-point iris templates, and vocal audio chords directly into a universal cryptographic access card key string. Bypasses classic digital credentials completely to insulate profiles from phishing attacks, remote device spoofing, or data leaks. High-assurance physical locking scales your asset premium exponentially.</p>`,
+                code: `<span class="code-comment">// HARDWARE LEVEL ROOT VALIDATION PACKET</span>\n{\n  "biometric_grade": "IAL3_MAX_ASSURANCE",\n  "hardware_enclave": "ARM_TRUSTZONE_ISOLATED",\n  "credential_state": "SOVEREIGN_SHIELD_ACTIVE"\n}`
+            },
+            "b02-civic": {
+                nodeId: "Core Node: B-02 // Civic Interface Link",
+                title: "Civic Registry Integration Bridge",
+                desc: `<p class="text-justify">Hooks state administrative and voting databases natively to your protected human data folder. Simplifies municipal passport issuances and standard tax routing loops while cutting administrative paper and processing friction out of the architecture. For the first time, civic voting platforms (via the Civic Ballot Bridge) can be run with 100% verified human presence without compromising anonymity.</p>`,
+                code: `<span class="code-comment">// MUNICIPAL GOVERNANCE ENTRY CORRIDOR</span>\n{\n  "civic_status": "AUTHENTICATED_CITIZEN",\n  "ledger_sync_latency": "14ms",\n  "records_encryption": "AES_GCM_256"\n}`
+            },
+            "b09-dmv": {
+                nodeId: "Core Node: B-09 // Transit Authorization Link",
+                title: "DMV State Attestation Pass",
+                desc: `<p class="text-justify">Permanently seals your municipal driving credentials, registration tokens, and operator histories with active biological stamps. Removes reliance on physical plastic cards, preventing identity duplication and establishing an uncopyable, hardware-level vehicle operator baseline across state boundary scanners.</p>`,
+                code: `<span class="code-comment">// MUNICIPAL TRANSIT REGISTRY SECURITY PACKET</span>\n{\n  "dmv_profile_provenance": "BIO_SIGNED_LEDGER",\n  "cloning_counter_measure": "FREQUENCY_STAMP_ENFORCED"\n}`
+            },
+            "b10-fiscal": {
+                nodeId: "Core Node: B-10 // Currency Clearing Link",
+                title: "Fiscal Corridor Tokenization System",
+                desc: `<p class="text-justify">Links traditional banking channels and cross-border routing modules seamlessly to your sovereign signature. Allows instant financial transfer execution while isolating transaction values under multi-factor hardware security blocks. Traditional Fiat (USD) converts cash into pre-funded $AII compute allocations through an Automated Utility Checkout, saving users 33% via internal Bureau efficiencies.</p>`,
+                code: `<span class="code-comment">// ATOMIC CLEARING SETTLEMENT LAYER</span>\n{\n  "clearing_status": "PROCESSED_IMMEDIATE",\n  "liquidity_oracle": "CHAINLINK_POLLED",\n  "vault_protection": "CITADEL_RESERVE_LOCKED"\n}`
+            },
+            "b14-deeds": {
+                nodeId: "Core Node: B-14 // Real Estate Link",
+                title: "Real Estate Title & Deeds Anchor",
+                desc: `<p class="text-justify">Binds real estate holdings, land registry files, and corporate deed assets directly to your biophysical parameters. Prevents fraudulent transfer maneuvers across remote filing platforms—contracts will only execute when your live signal handshakes the grid. High-value financial escrows are micro-anchored directly onto the Bitcoin block framework to employ maximum proof-of-work chain security.</p>`,
+                code: `<span class="code-comment">// PROPERTY ESCROW SETTLEMENT VERIFICATION</span>\n{\n  "title_transfer_contract": "BIOMETRIC_INTENT_REQUIRED",\n  "county_recorder_sync": "ATOMIC_LEDGER_LOCK"\n}`
+            },
+            "b31-economy": {
+                nodeId: "Core Node: B-31 // Economic Ingestion Link",
+                title: "Likeness Retrospective Yield Core",
+                desc: `<p class="text-justify">Tracks micro-yield allocations, dynamic token balances, and automated compute credit distribution paths. Manages your automated micro-royalties whenever external synthetic AI modules target or query your checked identity character footprint. Right now, big tech companies scrape your photos, voice, and data for free to train their models. With $AII, your identity is locked behind your biometric perimeter. If an AI wants to use your likeness, it must automatically pay you an $AII royalty, creating a stable human-sourced data pool.</p>`,
+                code: `<span class="code-comment">// PROFILE VALUE ALLOCATION COEFFICIENTS</span>\n{\n  "likeness_protection_shield": "SHIELD_STRIKE_ACTIVE",\n  "automated_penalty_multiplier": 1.424,\n  "settlement_latency": "100_MS_ATOMIC"\n}`
+            },
+            "b35-justice": {
+                nodeId: "Core Node: B-35 // Legal Compliance Link",
+                title: "Sovereign Justice Legal Charter Rail",
+                desc: `<p class="text-justify">Maintains your cryptographically sealed personal legal templates and sovereign data charters. Aligns infrastructure operations flawlessly with statutory definitions including the NO FAKES Act, high assurance eIDAS traveler protocols, and maritime laws. When you load the 38 Bridges onto your wallet profile, you configure an operational firewall for the physical world. Your matrix node does not merely present static identity credentials; it exerts sovereign control over digital human assets. Reclaim immediate micro-royalties the millisecond an external neural network attempts to index, capture, or reproduce your organic image or character IP signatures.</p>`,
+                code: `<span class="code-comment">// COMPLIANCE VALIDATION ENVELOPE</span>\n{\n  "legal_framework_alignment": "NO_FAKES_ACT_2026",\n  "assurance_grade": "HIGH_ASSURANCE_eIDAS_v1",\n  "jurisdiction_lock": "US_EAST_PHL_01"\n}`
+            }
+        };
+
+        document.querySelectorAll('.menu-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const nodeKey = this.getAttribute('data-node');
+                const data = goldenMatrix[nodeKey];
+                
+                if (data) {
+                    document.getElementById('gold-node-id').innerText = data.nodeId;
+                    document.getElementById('gold-node-title').innerText = data.title;
+                    document.getElementById('gold-node-desc').innerHTML = data.desc;
+                    document.getElementById('gold-node-code').innerHTML = data.code;
+                    
+                    document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // --- THREE.JS ADVANCED GEODESIC NODE LATTICE MATRIX ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        document.getElementById('geodesic-canvas').appendChild(renderer.domElement);
+
+        const meshGroup = new THREE.Group();
+        scene.add(meshGroup);
+
+        const geometry = new THREE.IcosahedronGeometry(4, 2);
+        const material = new THREE.MeshPhongMaterial({
+            color: 0x1693E9,
+            wireframe: true,
+            transparent: true,
+            opacity: 0.28
+        });
+        const latticeMesh = new THREE.Mesh(geometry, material);
+        meshGroup.add(latticeMesh);
+
+        const lightA = new THREE.PointLight(0x1693E9, 2, 50);
+        lightA.position.set(5, 5, 5);
+        scene.add(lightA);
+        
+        scene.add(new THREE.AmbientLight(0xffffff, 0.1));
+        camera.position.z = 7;
+
+        let mouseX = 0, mouseY = 0;
+        let targetX = 0, targetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+
+            targetX += (mouseX - targetX) * 0.05;
+            targetY += (mouseY - targetY) * 0.05;
+            meshGroup.rotation.y = targetX * 1.4;
+            meshGroup.rotation.x = targetY * 1.0;
+
+            latticeMesh.rotation.z = time * 0.02;
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    </script>
+</body>
+</html>
