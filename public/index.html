@@ -319,9 +319,62 @@
 
             // Add these to your products array
 
-{ cat: "maritime", name: "EmbarkSecure™", price: "$49/pass", nodes: "60-61", icon: "ph-anchor", img: "EmbarkSecure.png", link: "embarksecure-main.html", desc: "Sovereign biometric embarkation matrix. Replaces manual check-in with fast, contactless Bio-Sign™ verification, reducing boarding times from hours to minutes.", type: "active" },
-{ cat: "maritime", name: "SentryBoard™ Terminal Core", price: "Custom", nodes: "62", icon: "ph-device-mobile-camera", img: "SentryBoard.png", link: "sentryboard-core.html", desc: "Hardware-bound terminal kiosk core running local edge processing arrays. Seamlessly verifies identity, tickets, and baggage integration simultaneously.", type: "active" },
-                
+<!-- Main-Mesh Active NODE 60-62: Maritime Tier Container -->
+<div class="mesh-category-section" data-category="maritime">
+    <div class="category-header-wrap">
+        <div class="category-title-flex">
+            <i class="ph ph-anchor category-section-icon"></i>
+            <h3 class="mesh-tier-heading">Maritime Transport & Port Sovereignty</h3>
+        </div>
+        <span class="tier-status-pill">Main-Mesh Active Protocols</span>
+    </div>
+    
+    <div class="products-matrix-grid">
+        <!-- The template engine loops through the array items matching 'maritime' here -->
+        <!-- Each item dynamically populates the template structure below: -->
+        <div class="product-presentation-card active-node">
+            <div class="card-image-frame">
+                <img src="img/EmbarkSecure.png" alt="EmbarkSecure™ Visual Asset" class="product-node-image">
+            </div>
+            <div class="card-body-content">
+                <div class="node-meta-row">
+                    <span class="node-mesh-tag">NODE 60-61 // MARITIME</span>
+                    <i class="ph ph-anchor node-type-icon"></i>
+                </div>
+                <h4 class="node-product-title">EmbarkSecure™</h4>
+                <p class="node-product-description">Sovereign biometric embarkation matrix. Replaces manual check-in with fast, contactless Bio-Sign™ verification, reducing boarding times from hours to minutes.</p>
+                <div class="node-card-footer">
+                    <div class="price-display-block">
+                        <span class="price-label">Cost per Token</span>
+                        <span class="price-value">$49/pass</span>
+                    </div>
+                    <a href="embarksecure-main.html" class="initialize-mesh-btn">Initialize Protocol</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="product-presentation-card active-node">
+            <div class="card-image-frame">
+                <img src="img/SentryBoard.png" alt="SentryBoard™ Visual Asset" class="product-node-image">
+            </div>
+            <div class="card-body-content">
+                <div class="node-meta-row">
+                    <span class="node-mesh-tag">NODE 62 // HARDWARE</span>
+                    <i class="ph ph-device-mobile-camera node-type-icon"></i>
+                </div>
+                <h4 class="node-product-title">SentryBoard™ Terminal Core</h4>
+                <p class="node-product-description">Hardware-bound terminal kiosk core running local edge processing arrays. Seamlessly verifies identity, tickets, and baggage integration simultaneously.</p>
+                <div class="node-card-footer">
+                    <div class="price-display-block">
+                        <span class="price-label">Cost per Token</span>
+                        <span class="price-value">Custom</span>
+                    </div>
+                    <a href="sentryboard-core.html" class="initialize-mesh-btn">Initialize Protocol</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                 // Add this entry to your categories array
 { id: "civic", name: "Civic // Institutional Infrastructure", icon: "ph-shield-check", status: "active" },
                 { id: "anchor", name: "The Bio-Anchor Tier", icon: "ph-fingerprint", status: "active" },
