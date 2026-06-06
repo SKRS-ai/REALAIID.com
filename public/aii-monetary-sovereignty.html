@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$AII Monetary Sovereignty Layer // REALAiID Bureau Mint</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.2);
+            --bg-dark: #0a0c10;
+            --surface-card: #12161f;
+            --border-muted: #222b3c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-mono: 'SF Mono', 'Courier New', monospace;
+            --gold-reserve: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.18);
+            --bio-emerald: #00ffcc;
+            --emerald-glow: rgba(0, 255, 204, 0.15);
+            --fiat-navy: #162238;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UNIFIED BUREAU HEADER --- */
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(10, 12, 16, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); }
+        .logo-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        nav a.active, nav a:hover { color: var(--mesh-blue); }
+
+        /* --- MAIN AREA CANVAS --- */
+        main { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+
+        .currency-hero { margin-bottom: 4rem; border-left: 3px solid var(--gold-reserve); padding-left: 2rem; }
+        .core-registry { font-family: var(--font-mono); color: var(--gold-reserve); font-size: 0.9rem; letter-spacing: 2px; }
+        h1 { font-size: 3.2rem; font-weight: 800; margin: 0.5rem 0; letter-spacing: -1px; }
+        .currency-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; }
+
+        /* --- 3D HIGH-SOPHISTICATION VAULT KINETIC GRID --- */
+        .grid-layout { display: grid; grid-template-columns: 1fr 450px; gap: 3rem; margin-bottom: 6rem; }
+
+        .vault-render-stage {
+            background: radial-gradient(circle at center, var(--fiat-navy) 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            height: 580px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+        }
+
+        .gold-grid-floor {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(212, 175, 55, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(212, 175, 55, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) translateY(-45%) rotateZ(-15deg);
+        }
+
+        /* 3D Isometric Gold Vault Coin Lattices */
+        .isometric-vault-3d {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(55deg) rotateZ(-45deg);
+        }
+
+        .vault-coin-tier {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 3px solid var(--gold-reserve);
+            background: rgba(18, 22, 31, 0.85);
+            border-radius: 50%;
+            box-shadow: 0 0 30px var(--gold-glow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            color: var(--gold-reserve);
+            transition: all 0.5s ease;
+        }
+        .tier-alpha { top: 20px; left: 20px; transform: translateZ(80px); animation: spin-tier 20s linear infinite; }
+        .tier-beta  { top: 90px; left: 90px; transform: translateZ(20px); border-color: var(--mesh-blue); color: var(--mesh-blue); box-shadow: 0 0 30px var(--mesh-glow); }
+
+        .minting-vector-beam {
+            position: absolute;
+            width: 4px;
+            height: 120px;
+            background: linear-gradient(0deg, var(--mesh-blue), var(--gold-reserve));
+            top: 100px;
+            left: 158px;
+            opacity: 0.6;
+        }
+
+        /* --- RESERVE TELEMETRY SIDEBAR --- */
+        .reserve-monitor-sidebar {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            padding: 2.5rem;
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        .sidebar-header-block { margin-bottom: 2rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 1rem; }
+        .sidebar-tag-label { font-family: var(--font-mono); color: var(--gold-reserve); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .sidebar-headline { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
+
+        .fiat-metrics-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; }
+        .fiat-metrics-table tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .fiat-metrics-table td { padding: 0.75rem 0; }
+        .fiat-metrics-table td:last-child { text-align: right; color: var(--gold-reserve); font-weight: bold; }
+
+        .banking-standard-notice {
+            background: rgba(212, 175, 55, 0.04);
+            border-left: 2px solid var(--gold-reserve);
+            padding: 1.2rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* --- CORE ECONOMIC ARCHITECTURE PILLARS --- */
+        .economy-breakdown-section { border-top: 1px solid var(--border-muted); padding-top: 5rem; margin-bottom: 6rem; }
+        .section-headline { text-align: center; margin-bottom: 4rem; }
+        .section-headline h2 { font-size: 2.4rem; font-weight: 800; }
+        .section-headline p { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.1rem; }
+
+        .economy-pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+        .economy-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+        .economy-card:hover { border-color: var(--gold-reserve); transform: translateY(-3px); }
+        .economy-card i { font-size: 2.5rem; color: var(--gold-reserve); margin-bottom: 1.5rem; display: block; }
+        .economy-card h3 { font-size: 1.4rem; color: #ffffff; margin-bottom: 1rem; font-weight: 700; }
+        .economy-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem; }
+
+        .forensic-banking-ledger {
+            background: #06080c; border: 1px solid var(--border-muted); padding: 1.25rem; border-radius: 6px;
+            font-family: var(--font-mono); font-size: 0.8rem; color: var(--bio-emerald);
+        }
+
+        /* --- UNLOCKED WALLET CAPABILITIES FOR BRIDGES --- */
+        .bridge-wallet-capabilities {
+            background: linear-gradient(135deg, rgba(22, 34, 56, 0.4) 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 4rem 3rem;
+            margin-bottom: 6rem;
+        }
+        .bridge-cap-header { text-align: center; margin-bottom: 4rem; }
+        .bridge-cap-header h2 { font-size: 2rem; font-weight: 800; }
+        
+        .bridge-cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+        .bridge-cap-item { display: flex; gap: 1.5rem; background: rgba(10, 12, 16, 0.5); border: 1px solid var(--border-muted); padding: 2rem; border-radius: 8px; }
+        .bridge-cap-icon { width: 50px; height: 50px; background: rgba(212, 175, 55, 0.05); border: 1px solid var(--gold-reserve); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--gold-reserve); flex-shrink: 0; }
+        .bridge-cap-text h4 { font-size: 1.1rem; color: white; margin-bottom: 0.5rem; }
+        .bridge-cap-text p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* --- DEEP TECHNICAL ESSAY PANEL --- */
+        .monetary-thesis-container { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; margin-bottom: 6rem; background: #0b0e14; border: 1px solid var(--border-muted); border-radius: 12px; padding: 3.5rem; }
+        .thesis-content h3 { font-size: 1.75rem; margin-bottom: 1.2rem; font-weight: 800; }
+        .thesis-content p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.7; }
+        
+        .fiat-comparison-card { background: var(--surface-card); border: 1px solid var(--border-muted); border-radius: 8px; padding: 2rem; height: fit-content; }
+        .comparison-title { font-family: var(--font-mono); font-size: 0.8rem; color: var(--mesh-blue); letter-spacing: 1px; margin-bottom: 1rem; text-transform: uppercase; }
+        .comparison-stat-row { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px dashed rgba(255,255,255,0.05); font-size: 0.85rem; }
+        .comparison-stat-row span:first-child { color: var(--text-secondary); }
+        .comparison-stat-row span:last-child { color: #ffffff; font-weight: bold; }
+
+        @keyframes spin-tier {
+            0% { transform: translateZ(80px) rotateZ(0deg); }
+            100% { transform: translateZ(80px) rotateZ(360deg); }
+        }
+
+        /* --- UNIFIED HIGH DENSITY MASTER FOOTER MATRIX --- */
+        footer {
+            background-color: #06080b;
+            border-top: 1px solid var(--border-muted);
+            padding: 6rem 2rem 2rem;
+            width: 100%;
+        }
+
+        .footer-matrix {
+            max-width: 1400px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+        .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; max-width: 320px; }
+
+        .footer-links h5 {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links ul li a:hover { color: var(--mesh-blue); padding-left: 2px; }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout, .economy-pillars-grid, .bridge-cap-grid, .monetary-thesis-container { grid-template-columns: 1fr; }
+            .footer-matrix { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UNIFIED GLOBAL NAVIGATION HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.75rem;"></i>
+                <span class="logo-title">REALAiID Bureau</span>
+            </a>
+            <nav>
+                <a href="protocol-architecture-core.html">The Protocol</a>
+                <a href="bridge-network-integration.html">Bridges</a>
+                <a href="aii-monetary-sovereignty.html" class="active">$AII Economy</a>
+                <a href="governance-ledger-consensus.html">Governance</a>
+                <button onclick="window.location.href='biogenesis-human.html';" style="background: var(--mesh-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.8rem;">ACCESS WALLET</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- MONETARY HERO -->
+        <section class="currency-hero">
+            <span class="core-registry">MONETARY STANDARD // HARD REAL-ASSET VALUATIONS</span>
+            <h1>$AII Economy Layer</h1>
+            <p class="currency-subtitle">Explore the algorithmic engine transforming raw mathematical processing cycles directly into asset-backed capital. $AII bypasses standard institutional debt mechanics to achieve terminal fiscal sovereignty.</p>
+        </section>
+
+        <!-- VISUAL ENGINE LABELS & TELEMETRY SIDEBAR -->
+        <div class="grid-layout">
+            <div class="vault-render-stage">
+                <div class="gold-grid-floor"></div>
+                <div class="minting-vector-beam"></div>
+                
+                <div class="isometric-vault-3d">
+                    <div class="vault-coin-tier tier-alpha"><i class="ph-bold ph-currency-eth"></i></div>
+                    <div class="vault-coin-tier tier-beta"><i class="ph-fill ph-coins"></i></div>
+                </div>
+            </div>
+
+            <div class="reserve-monitor-sidebar">
+                <div class="sidebar-header-block">
+                    <div class="sidebar-tag-label">CENTRAL BANK RESERVE POOL</div>
+                    <div class="sidebar-headline">Mint Ledger</div>
+                </div>
+
+                <table class="fiat-metrics-table">
+                    <tr><td>Circulating Supply</td><td>840,129,481 $AII</td></tr>
+                    <tr><td>Silicon Yield Index</td><td>1.402 Ph/s Base</td></tr>
+                    <tr><td>Gold Reserve Value</td><td>$4,109,281,400 USD</td></tr>
+                    <tr><td>Clearing Parity Rate</td><td>1 $AII = 1.00000000 COMP</td></tr>
+                </table>
+
+                <div class="banking-standard-notice">
+                    <strong>Sovereign Valuation Note:</strong> $AII functions independently of commercial bank lending limits and credit markets. Fractional credit generation mechanics are fundamentally blocked at the ledger code level.
+                </div>
+            </div>
+        </div>
+
+        <!-- CORE ECONOMIC PILLARS BREAKDOWN -->
+        <section class="economy-breakdown-section">
+            <div class="section-headline">
+                <h2>The Compute Extraction Mechanics</h2>
+                <p>Every single transaction, validation block, and token minting operation corresponds directly to processing cycles completed across the global node network:</p>
+            </div>
+
+            <div class="economy-pillars-grid">
+                <!-- PILLAR 1: HUMAN INDIVIDUALS -->
+                <div class="economy-card">
+                    <i class="ph-bold ph-lightning"></i>
+                    <h3>Individual Silicon Monetization</h3>
+                    <p>Every user gets paid directly off their idle device compute power. By running background network container protocols inside local security loops, your hardware translates local operational cycles into automated $AII allocations paid directly to your wallet.</p>
+                    <div class="forensic-banking-ledger">
+                        // ENGINE STATUS: MINTING BACKWARD COMPUTE YIELDS //
+                    </div>
+                </div>
+
+                <!-- PILLAR 2: MACHINE TO MACHINE ROBOTIC GENERATION -->
+                <div class="economy-card">
+                    <i class="ph-bold ph-robot"></i>
+                    <h3>Autonomous Machine Fleets</h3>
+                    <p>Connected automation systems and autonomous industrial hardware units independently generate compute value. Automated machines earn $AII currency simply by completing physical logistical cycles and processing tasks across factory corridors.</p>
+                    <div class="forensic-banking-ledger">
+                        // ENGINE STATUS: M2M INDUSTRIAL HARVESTING ACTIVE //
+                    </div>
+                </div>
+
+                <!-- PILLAR 3: CHARGING STATION VALUATION -->
+                <div class="economy-card">
+                    <i class="ph-bold ph-battery-charging"></i>
+                    <h3>Kinetic Energy Offsetting</h3>
+                    <p>Autonomous hardware nodes convert downtime cycles cleanly into financial capitalization arrays. While docked at physical charging station infrastructure networks, hardware systems routing processing streams through grid elements are credited with energy-stabilized $AII yields.</p>
+                    <div class="forensic-banking-ledger">
+                        // ENGINE STATUS: GRID INGESTION RECOMPENSE STAGED //
+                    </div>
+                </div>
+
+                <!-- PILLAR 4: HARD DEFLATIONARY PARITY -->
+                <div class="economy-card">
+                    <i class="ph-bold ph-trend-down"></i>
+                    <h3>True Non-Inflationary Capital</h3>
+                    <p>Commercial currency models dilute individual wealth balances through unchecked printing. The $AII algorithm locks absolute asset limits down tightly, allowing value to scale naturally relative to global computational processing demand frameworks.</p>
+                    <div class="forensic-banking-ledger">
+                        // ENGINE STATUS: SUPPLY CAP IMMUTABLE //
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHAT LOADED WALLET BRIDGES UNLOCK FOR THIS ECONOMIC LAYER -->
+        <section class="bridge-wallet-capabilities">
+            <div class="bridge-cap-header">
+                <h2>Sovereign Rights Unlocked by Loaded Wallet Bridges</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">Loading active functional network modules into your REALAiID secure wallet container triggers direct systemic power across our banking grid mechanics:</p>
+            </div>
+
+            <div class="bridge-cap-grid">
+                <div class="bridge-cap-item">
+                    <div class="bridge-cap-icon"><i class="ph-bold ph-vault"></i></div>
+                    <div class="bridge-cap-text">
+                        <h4>Direct Bank-Backed Reimbursements</h4>
+                        <p>Authorizes the extraction and routing of accrued compute yields directly into verified corporate banking accounts, matching decentralized currency to standard legal settlement channels smoothly.</p>
+                    </div>
+                </div>
+                <div class="bridge-cap-item">
+                    <div class="bridge-cap-icon"><i class="ph-bold ph-key-return"></i></div>
+                    <div class="bridge-cap-text">
+                        <h4>Isolated Blind Capital Hiding</h4>
+                        <p>Enforces zero-knowledge masking parameters over active ledger balance records, protecting your cumulative capital assets from arbitrary administrative oversight.</p>
+                    </div>
+                </div>
+                <div class="bridge-cap-item">
+                    <div class="bridge-cap-icon"><i class="ph-bold ph-cpu"></i></div>
+                    <div class="bridge-cap-text">
+                        <h4>High-Yield Processing Acceleration</h4>
+                        <p>Unlocks advanced validation path routing for synchronized systems, scaling your asset generation capacity upwards relative to underlying silicon contributions.</p>
+                    </div>
+                </div>
+                <div class="bridge-cap-item">
+                    <div class="bridge-cap-icon"><i class="ph-bold ph-arrows-left-right"></i></div>
+                    <div class="bridge-cap-text">
+                        <h4>Sovereign Counterparty Clearing</h4>
+                        <p>Bypasses intermediate institutional clearing networks to settle large asset transactions peer-to-peer across border control perimeters safely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DEEP TECHNICAL FIAT FORENSIC ESSAY -->
+        <section class="monetary-thesis-container">
+            <div class="thesis-content">
+                <h3>Forensic Evaluation of Decentralized Capital Assets</h3>
+                <p>Commercial banking networks require individuals to surrender asset ownership under the guise of security. Legacy cash storage systems operate on structural debt mechanisms where individual accounts are legally classified as simple unsecured institutional loans.</p>
+                <p>The REALAiID Bureau platform establishes a true physical alternative layer. $AII operates as a cryptographic currency engine that captures, quantifies, and settles value solely through real-world computational work. No central administrator has the systemic leverage to issue unbacked tokens, adjust circulation parameters, or execute arbitrary balance clawbacks.</p>
+            </div>
+
+            <div class="fiat-comparison-card">
+                <div class="comparison-title">Structural Disruption Matrix</div>
+                <div class="comparison-stat-row"><span>Central Vault Custody</span><span>Zero (User Owned)</span></div>
+                <div class="comparison-stat-row"><span>Counterparty Failure Risk</span><span>Mathematically Null</span></div>
+                <div class="comparison-stat-row"><span>Algorithmic Minting Base</span><span>Decentralized Silicon</span></div>
+                <div class="comparison-stat-row"><span>Cross-Border Settle Time</span><span>12ms Latency Base</span></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- UNIFIED HIGH DENSITY MULTI-COLUMN COMPREHENSIVE LINK MATRIX FOOTER -->
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-block">
+                    <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.5rem;"></i>
+                    <span class="logo-title">REALAiID Bureau</span>
+                </a>
+                <p>The global infrastructure framework layer for verified human identity, autonomous banking nodes, and asset sovereignty networks.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Identity Anchors</h5>
+                <ul>
+                    <li><a href="passport-download.html">REALAiID Passport™</a></li>
+                    <li><a href="biogenesis-human.html">BioGenesis™ Human</a></li>
+                    <li><a href="product-vssn2.html">Starter Anchor Node</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="aiK9likeness.html">Pet Likeness Anchor</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Digital Newborn Base</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Security Bricks</h5>
+                <ul>
+                    <li><a href="vocalforge-core.html">VocalForge™ Hashing</a></li>
+                    <li><a href="animalock-pet.html">AnimaLock™ Companion</a></li>
+                    <li><a href="heirroot-baby.html">HeirRoot™ Legacy</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield™</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal™</a></li>
+                    <li><a href="product-drive-knot.html">Drive-Knot Auto™</a></li>
+                    <li><a href="schoolsecure-main.html">SchoolSecure™ Core</a></li>
+                    <li><a href="schoolsecure-visitor.html">SchoolSecure™ Visitor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Compute Economy</h5>
+                <ul>
+                    <li><a href="sandbox-signup.html" style="color: var(--gold-reserve); font-weight: bold;">Core-Mesh Sandbox™</a></li>
+                    <li><a href="product-liquidity-vault.html">$AII Vault Node</a></li>
+                    <li><a href="presenceyield-vault.html">PresenceYield™ Matrix</a></li>
+                    <li><a href="aii-individual.html">$AII Nexus Individual™</a></li>
+                    <li><a href="aii-fleet.html">$AII Synapse Grid™</a></li>
+                    <li><a href="aii-m2m.html">$AII Kinetic Flow™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>The Bureau Matrix</h5>
+                <ul>
+                    <li><a href="voyagepass-free.html">REALAiID Voyage Pass™</a></li>
+                    <li><a href="embarksecure-main.html">EmbarkSecure™ Matrix</a></li>
+                    <li><a href="sentryboard-core.html">SentryBoard™ Terminal</a></li>
+                    <li><a href="robosign-industrial.html">RoboSign™ Industrial</a></li>
+                    <li><a href="robosign-hearth.html">RoboSign™ Hearth</a></li>
+                    <li><a href="robosign-fleet.html">RoboSign™ Fleet</a></li>
+                    <li><a href="robosign-foundry.html">RoboSign™ Foundry</a></li>
+                    <li><a href="lexmed-verifier.html">LexMed Verifier™</a></li>
+                    <li><a href="aegispass-transit.html">Aegis Pass™ Transit</a></li>
+                    <li><a href="bridge-17-professional.html">Prof. Liaison Node</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler™ Core</a></li>
+                    <li><a href="precinct-seating.html">Precinct Seating™</a></li>
+                    <li><a href="oracle-arbitrage.html">Oracle Arbitrage™</a></li>
+                    <li><a href="citadel-elite.html">Citadel Elite™ Loop</a></li>
+                    <li><a href="benthic-lease.html">Benthic Lease™ Module</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau // COMPUTATIONAL BANKING NODE 50</span>
+            <span>RESERVE BALANCE: FULL AUDIT METRICS ACTIVE // DATA STATE: SOVEREIGN</span>
+        </div>
+    </footer>
+
+</body>
+</html>
