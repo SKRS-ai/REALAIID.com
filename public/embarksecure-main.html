@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmbarkSecure™ // Maritime Transport & Port Sovereignty Node 60-61</title>
+    <!-- Phosphor Icons for Infrastructure Mapping -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.15);
+            --bg-dark: #0a0c10;
+            --surface-card: #12161f;
+            --border-muted: #222b3c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-mono: 'SF Mono', 'Courier New', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- HARDENED MAIN-MESH HEADER --- */
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(10, 12, 16, 0.8);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-title {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--mesh-blue);
+        }
+
+        .btn-handshake {
+            background: var(--mesh-blue);
+            color: #fff;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-handshake:hover {
+            transform: translateY(-1px);
+        }
+
+        /* --- MAIN CORE GRID LAYOUT --- */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem 2rem;
+        }
+
+        .hero-banner {
+            border-left: 3px solid var(--mesh-blue);
+            padding-left: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .node-tag {
+            font-family: var(--font-mono);
+            color: var(--mesh-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .hero-banner h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-banner p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        .presentation-frame {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* --- 3-D RENDERED INTERACTION SIMULATOR --- */
+        .visual-ingest-terminal {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .terminal-header {
+            background: #181e2a;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .terminal-status-dot {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #34c759;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #34c759;
+            border-radius: 50%;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .simulated-environment {
+            height: 480px;
+            position: relative;
+            background: linear-gradient(180deg, rgba(18,22,31,0) 0%, rgba(10,12,16,0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .simulated-portal-graphic {
+            position: absolute;
+            width: 85%;
+            height: 85%;
+            border: 1px dashed rgba(0, 113, 227, 0.3);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 2rem;
+        }
+
+        .scan-line {
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--mesh-blue), transparent);
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: scan-move 4s linear infinite;
+            box-shadow: 0 0 10px var(--mesh-blue);
+        }
+
+        .telemetry-overlay {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--mesh-blue);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        /* --- CHECKOUT CONTROL TIER PANEL --- */
+        .checkout-control-panel {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 2rem;
+            position: sticky;
+            top: 7.5rem;
+        }
+
+        .tier-header {
+            border-bottom: 1px solid var(--border-muted);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .price-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .spec-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .spec-list li i {
+            color: var(--mesh-blue);
+            font-size: 1.1rem;
+        }
+
+        .action-btn-primary {
+            width: 100%;
+            background: var(--mesh-blue);
+            color: #fff;
+            padding: 1rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .action-btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* --- DEEP DATA ARCHITECTURE LABELS --- */
+        .deep-dive-technical {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+        }
+
+        .tech-card {
+            background: rgba(18, 22, 31, 0.5);
+            border: 1px solid var(--border-muted);
+            border-radius: 6px;
+            padding: 2rem;
+        }
+
+        .tech-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tech-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- COVERT SYSTEMS INTEL BAR --- */
+        .covert-intelligence-ticker {
+            grid-column: span 2;
+            background: rgba(227, 0, 0, 0.03);
+            border: 1px dashed rgba(227, 0, 0, 0.2);
+            border-radius: 4px;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+        }
+
+        .covert-title {
+            color: #ff453a;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .covert-body {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- HIGH INDUSTRIAL FOOTER SPACE MATRIX --- */
+        footer {
+            margin-top: 6rem;
+            border-top: 1px solid var(--border-muted);
+            background: #07090d;
+            padding: 4rem 2rem 2rem 2rem;
+        }
+
+        .footer-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            max-width: 260px;
+        }
+
+        .footer-column h5 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--mesh-blue);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(34, 43, 60, 0.5);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(52, 199, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
+        }
+
+        @keyframes scan-move {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+
+        @media (max-width: 1024px) {
+            .presentation-frame {
+                grid-template-columns: 1fr;
+            }
+            .checkout-control-panel {
+                position: relative;
+                top: 0;
+            }
+            .deep-dive-technical {
+                grid-template-columns: 1fr;
+            }
+            .covert-intelligence-ticker {
+                grid-column: span 1;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STATIC HEADER SYSTEM FRAMEWORK -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.75rem;"></i>
+                <span class="logo-title">REALAiID.com</span>
+            </a>
+            <nav>
+                <a href="#bureau">The Bureau</a>
+                <a href="#whatis">What is REALAiID?</a>
+                <a href="#vssn">VSSN Hashing</a>
+                <a href="#shield">Likeness Shield</a>
+                <a href="#exchange">$AII Exchange</a>
+                <a href="api-docs.html">API Docs</a>
+                <button class="btn-handshake">Initialize Handshake</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CORE PRESENTATION CONTENT LAYER -->
+    <main>
+        <div class="hero-banner">
+            <span class="node-tag">Main-Mesh Active // NODE 60-61</span>
+            <h1>EmbarkSecure™</h1>
+            <p>Sovereign biometric embarkation matrix. Replaces slow, manual entry procedures with low-friction, contactless verification pipelines to scale port intake infrastructure.</p>
+        </div>
+
+        <div class="presentation-frame">
+            <!-- LEFT LAYER: THE TERMINAL SIMULATOR FRAME -->
+            <div class="visual-ingest-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-status-dot">
+                        <div class="pulse-dot"></div>
+                        <span>PORT-PHL-01 // TRANSIT PIPELINE ACTIVE</span>
+                    </div>
+                    <i class="ph ph-unite" style="color: var(--text-secondary);"></i>
+                </div>
+                <div class="simulated-environment">
+                    <div class="scan-line"></div>
+                    <div class="simulated-portal-graphic">
+                        <div class="telemetry-overlay" style="align-items: flex-start;">
+                            <span>SYS_INGEST: ACTIVE</span>
+                            <span>FREQ_LOCK: 432.18Hz</span>
+                            <span>MESH_ID: B-22_DTC</span>
+                        </div>
+                        <i class="ph ph-anchor" style="font-size: 6rem; color: rgba(0, 113, 227, 0.15); align-self: center;"></i>
+                        <div class="telemetry-overlay" style="align-items: flex-end;">
+                            <span>BIOMETRIC HASH VALUE: SUCCESS</span>
+                            <span>ZERO_KNOWLEDGE_PROOF: APPLIED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT LAYER: INTERACTIVE TRANSACTION NODES -->
+            <div class="checkout-control-panel">
+                <div class="tier-header">
+                    <span class="node-tag" style="margin-bottom: 0.25rem;">Maritime Jurisdiction</span>
+                    <div class="price-tag">$49<span style="font-size: 1rem; font-weight: 400; color: var(--text-secondary);"> / pass</span></div>
+                    <span class="price-sub">B2B Volume & Carrier Integration Models Tiered Appropriately</span>
+                </div>
+                <ul class="spec-list">
+                    <li><i class="ph ph-fingerprint"></i> <span>Contactless Passport Tokenization</span></li>
+                    <li><i class="ph ph-identification-card"></i> <span>DTC Travel Bridge Integration</span></li>
+                    <li><i class="ph ph-waves"></i> <span>Sub-200ms Biological Verification</span></li>
+                    <li><i class="ph ph-currency-eth"></i> <span>$AII Micro-Incentive Dispersal</span></li>
+                </ul>
+                <button class="action-btn-primary" onclick="alert('Initializing Protocol Node 60-61 Deployment Layer...')">
+                    <span>Initialize Protocol</span>
+                    <i class="ph ph-arrow-square-out"></i>
+                </button>
+            </div>
+
+            <!-- BOTTOM SPATIAL GRID: FORENSIC SPECS & DATA BRIDGES -->
+            <div class="deep-dive-technical">
+                <div class="tech-card">
+                    <h3><i class="ph ph-git-branch"></i> Combined Bridge Functions</h3>
+                    <p>When loaded into the REALAiID wallet, these unified protocols activate multi-mesh configurations. They run cross-checks against verified official profiles while syncing instantly with Bridge 22 (DTC Travel) and Authority Pass components to match port authority manifests without local file retention.</p>
+                </div>
+                <div class="tech-card">
+                    <h3><i class="ph ph-cpu"></i> KinOS Edge Telemetry</h3>
+                    <p>Utilizes spatial sensor captures processed directly inside on-site hardware arrays. Biological matrices (face, gate, and structural features) are immediately evaluated and purged, writing back immutable validation verification hashes to ensure 100% data sovereignty.</p>
+                </div>
+                
+                <!-- COVERT BRIEFING COMPONENT -->
+                <div class="covert-intelligence-ticker">
+                    <div class="covert-title">
+                        <i class="ph ph-warning-octagon"></i>
+                        <span>Forensically Covert Infrastructure Architecture Notice</span>
+                    </div>
+                    <div class="covert-body">
+                        System operations execute inside secure sandboxes. Data channels utilize randomized network shifting rules to block signal tracking attempts. All connections to foreign ports or multi-jurisdictional networks pass through secure cryptographic validation protocols to guarantee continuous perimeter integrity.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FULL PLENTY MATRIX HIGH CAPACITY FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo-block" style="margin-bottom: 1rem;">
+                    <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.5rem;"></i>
+                    <span class="logo-title">REALAiID Bureau</span>
+                </div>
+                <p>The global infrastructure layer for biological data sovereignty, sovereign entity identity, and decentralized compute architecture.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h5>Identity Protocol Nodes</h5>
+                <ul>
+                    <li><a href="product-vssn2.html">Node 11 // Vocal Forge</a></li>
+                    <li><a href="aiK9likeness.html">Node 01-10 // AnimaLock</a></li>
+                    <li><a href="product-standard.html">Node 12 // BioGenesis</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Node 13 // HeirRoot</a></li>
+                    <li><a href="product-liquidity-vault.html">Node 17 // PresenceYield</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>Hardened Perimeters</h5>
+                <ul>
+                    <li><a href="product-likeness-shield.html">Node 14 // Likeness Shield</a></li>
+                    <li><a href="product-media-seal.html">Node 33 // BioSeal Media</a></li>
+                    <li><a href="product-drive-knot.html">Node 31 // KnotDrive Auto</a></li>
+                    <li><a href="schoolsecure-main.html">Node 90 // SchoolSecure™</a></li>
+                    <li><a href="schoolsecure-visitor.html">Node 91 // Visitor Entry</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>Autonomous Entities</h5>
+                <ul>
+                    <li><a href="robosign-basic.html">Node 40 // RoboSign Hearth</a></li>
+                    <li><a href="robosign-pro.html">Node 41 // RoboSign Fleet</a></li>
+                    <li><a href="robosign-industrial.html">Node 42 // RoboSign Foundry</a></li>
+                    <li><a href="embarksecure-main.html" class="active">Node 60 // EmbarkSecure™</a></li>
+                    <li><a href="sentryboard-core.html">Node 62 // SentryBoard™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h5>Compute Exchange</h5>
+                <ul>
+                    <li><a href="aii-individual.html">Node 50 // AII Nexus</a></li>
+                    <li><a href="aii-fleet.html">Node 51 // AII Synapse</a></li>
+                    <li><a href="aii-m2m.html">Node 52 // AII Kinetic Flow</a></li>
+                    <li><a href="product-sovereign.html">Node 33 // Imperium Sync</a></li>
+                    <li><a href="api-docs.html">Developer Schema API</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau. All sovereign rights reserved.</span>
+            <span>MAINFRAME COMPLIANT // SECURE ENDPOINT VERIFIED</span>
+        </div>
+    </footer>
+
+</body>
+</html>
