@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$AII Compute Currency Engine // REALAiID Bureau Financial Node</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.2);
+            --bg-dark: #0a0c10;
+            --surface-card: #12161f;
+            --border-muted: #222b3c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-mono: 'SF Mono', 'Courier New', monospace;
+            --gold-reserve: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.2);
+            --bio-emerald: #00ffcc;
+            --emerald-glow: rgba(0, 255, 204, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UNIFIED BUREAU HEADER --- */
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(10, 12, 16, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); }
+        .logo-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        nav a.active, nav a:hover { color: var(--mesh-blue); }
+
+        /* --- MAIN CANVAS CONTENT --- */
+        main { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+
+        .economy-hero { margin-bottom: 5rem; border-left: 3px solid var(--gold-reserve); padding-left: 2rem; }
+        .core-registry { font-family: var(--font-mono); color: var(--gold-reserve); font-size: 0.9rem; letter-spacing: 2px; }
+        h1 { font-size: 3.2rem; font-weight: 800; margin: 0.5rem 0; letter-spacing: -1px; }
+        .economy-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; }
+
+        /* --- 3D INTERACTIVE FISCAL ENGINE GRID --- */
+        .grid-layout { display: grid; grid-template-columns: 1fr 450px; gap: 3rem; margin-bottom: 6rem; }
+
+        .financial-render-stage {
+            background: radial-gradient(circle at center, #1b1712 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+        }
+
+        .gold-ticker-overlay {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(214, 175, 55, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(214, 175, 55, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(600px) rotateX(65deg) translateY(-30%) rotateZ(10deg);
+            animation: currency-drift 25s linear infinite;
+        }
+
+        /* 3D Kinetic Ledger Sphere Elements */
+        .kinetic-vault-box {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(45deg) rotateY(-25deg);
+            animation: container-float 6s ease-in-out infinite alternate;
+        }
+
+        .vault-plate {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--gold-reserve);
+            background: rgba(18, 22, 31, 0.9);
+            box-shadow: 0 0 40px var(--gold-glow);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            font-family: var(--font-mono);
+        }
+
+        .vault-balance-readout {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            margin: 0.5rem 0;
+            text-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        /* --- FISCAL SUMMARY PANEL --- */
+        .fiscal-summary-panel {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            padding: 2.5rem;
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        .fiscal-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 1rem; }
+        .fiscal-title-label { font-family: var(--font-mono); color: var(--bio-emerald); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .fiscal-headline { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
+
+        .ledger-metrics-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+        .metric-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; font-size: 0.95rem; }
+        .metric-row span:first-child { color: var(--text-secondary); }
+        .metric-row span:last-child { font-family: var(--font-mono); color: var(--gold-reserve); font-weight: bold; }
+
+        .hardware-disclaimer {
+            margin-top: 2rem;
+            background: rgba(214, 175, 55, 0.05);
+            border-left: 2px solid var(--gold-reserve);
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* --- FORENSIC INCENTIVE GRID --- */
+        .incentive-grid-title { border-top: 1px solid var(--border-muted); padding-top: 5rem; margin-bottom: 3rem; text-align: center; }
+        .incentive-grid-title h2 { font-size: 2.2rem; font-weight: 800; }
+
+        .incentive-matrix {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 6rem;
+        }
+
+        .incentive-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .incentive-card:hover { transform: translateY(-5px); border-color: var(--mesh-blue); }
+        .incentive-card i { font-size: 2.2rem; color: var(--mesh-blue); margin-bottom: 1.2rem; }
+        .incentive-card h3 { font-size: 1.3rem; margin-bottom: 1rem; color: #ffffff; }
+        .incentive-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- LOADED BRIDGE CAPABILITIES --- */
+        .bridge-yield-integration {
+            background: linear-gradient(180deg, rgba(18, 22, 31, 0.6) 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 4rem 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .yield-integration-header { text-align: center; margin-bottom: 4rem; }
+        .yield-integration-header h2 { font-size: 2rem; font-weight: 800; }
+
+        .yield-matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+        .yield-node {
+            background: rgba(10, 12, 16, 0.4);
+            border: 1px solid var(--border-muted);
+            padding: 2rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .yield-icon-frame {
+            width: 50px; height: 50px; background: rgba(0, 255, 204, 0.05); border: 1px solid var(--bio-emerald);
+            border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--bio-emerald); flex-shrink: 0;
+        }
+        .yield-content h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .yield-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+        @keyframes currency-drift {
+            0% { background-position: 0 0; }
+            100% { background-position: -120px -120px; }
+        }
+
+        @keyframes container-float {
+            0% { transform: perspective(1000px) rotateX(42deg) rotateY(-22deg) translateY(0px); }
+            100% { transform: perspective(1000px) rotateX(48deg) rotateY(-28deg) translateY(-15px); }
+        }
+
+        /* --- UNIFIED HIGH DENSITY MASTER FOOTER MATRIX --- */
+        footer {
+            background-color: #06080b;
+            border-top: 1px solid var(--border-muted);
+            padding: 6rem 2rem 2rem;
+            width: 100%;
+        }
+
+        .footer-matrix {
+            max-width: 1400px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+        .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; max-width: 320px; }
+
+        .footer-links h5 {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links ul li a:hover { color: var(--mesh-blue); padding-left: 2px; }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .incentive-matrix, .yield-matrix-grid { grid-template-columns: 1fr; }
+            .footer-matrix { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.75rem;"></i>
+                <span class="logo-title">REALAiID Bureau</span>
+            </a>
+            <nav>
+                <a href="protocol-architecture-core.html">The Protocol</a>
+                <a href="bridge-network-integration.html">Bridges</a>
+                <a href="aii-compute-currency-engine.html" class="active">$AII Economy</a>
+                <a href="governance-ledger-consensus.html">Governance</a>
+                <button style="background: var(--mesh-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.8rem;">ACCESS WALLET</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="economy-hero">
+            <span class="core-registry">MONETARY LAYERS // COMPUTATIONAL VAULT SYSTEM</span>
+            <h1>$AII Compute Currency Engine</h1>
+            <p class="economy-subtitle">Explore the financial sovereignty framework of the $AII tokenomics platform. Learn how your interface operates as an immutable cold-storage asset node while utilizing validation infrastructure pools.</p>
+        </section>
+
+        <div class="grid-layout">
+            <div class="financial-render-stage">
+                <div class="gold-ticker-overlay"></div>
+                <div class="kinetic-vault-box">
+                    <div class="vault-plate">
+                        <i class="ph-fill ph-cpu" style="font-size: 2.5rem; color: var(--gold-reserve); margin-bottom: 0.5rem;"></i>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary); letter-spacing: 1px;">AIR-GAPPED NODE VALUE</span>
+                        <div class="vault-balance-readout">4,912.05</div>
+                        <span style="font-size: 0.7rem; color: var(--bio-emerald); letter-spacing: 0.5px;">// YIELD ACCRUAL ACTIVE //</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fiscal-summary-panel">
+                <div class="fiscal-header">
+                    <div class="fiscal-title-label">Sovereign Financial Matrix</div>
+                    <div class="fiscal-headline">Ledger Metrics</div>
+                </div>
+                
+                <div class="ledger-metrics-stack">
+                    <div class="metric-row">
+                        <span>Network Token Name</span>
+                        <span>$AII Compute Currency</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Vault Security Rating</span>
+                        <span>EAL6+ Cryptographic</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Base Proof System</span>
+                        <span>Proof-of-Presence</span>
+                    </div>
+                    <div class="metric-row">
+                        <span>Current Pool APY</span>
+                        <span>12.42% Compounded</span>
+                    </div>
+                </div>
+
+                <div class="hardware-disclaimer">
+                    <strong>Sovereignty Framework Notification:</strong> Assets are fully operational across standard smartphone configurations (Apple/Google Wallet API). The standalone physical E-Ink card represents an optimal physical hardware isolation layer, currently in development.
+                </div>
+            </div>
+        </div>
+
+        <section class="incentive-grid-title">
+            <h2>The Financial Framework Foundation</h2>
+        </section>
+
+        <div class="incentive-matrix">
+            <div class="incentive-card">
+                <i class="ph-bold ph-snowflake"></i>
+                <h3>Cold Storage Isolation</h3>
+                <p>Your tokens remain detached entirely from standard, web-facing access risks. Private authentication keys are generated and preserved completely inside isolated hardware microprocessors, ensuring absolute protection against asset optimization risks.</p>
+            </div>
+            <div class="incentive-card">
+                <i class="ph-bold ph-chart-line-up"></i>
+                <h3>Decentralized Yield Generation</h3>
+                <p>By registering your identity presence state to local validation loops, your instance functions as a low-impact network routing verify node. It steadily compiles computing fee commissions directly back into your localized asset balances.</p>
+            </div>
+            <div class="incentive-card">
+                <i class="ph-bold ph-arrows-left-right"></i>
+                <h3>Zero-Gas Exchange Loops</h3>
+                <p>Transactions settling across the direct Bureau validation framework utilize state parity paths, allowing zero-overhead value swapping instantly between localized accounts without clearing fee overheads.</p>
+            </div>
+        </div>
+
+        <section class="bridge-yield-integration">
+            <div class="yield-integration-header">
+                <h2>Functional Yield Power of Loaded Bridges</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">When functional network bridges are loaded onto your REALAiID container instance, they open complex transactional automation capabilities across global networks:</p>
+            </div>
+
+            <div class="yield-matrix-grid">
+                <div class="matrix-node yield-node">
+                    <div class="yield-icon-frame"><i class="ph-bold ph-chart-pie"></i></div>
+                    <div class="yield-content">
+                        <h4>Automated Protocol Liquidity Allocation</h4>
+                        <p>Allows active bridges to automatically direct unused computational balances into decentralized liquidity matrix arrays, optimizing baseline operational generation performance safely.</p>
+                    </div>
+                </div>
+                <div class="matrix-node yield-node">
+                    <div class="yield-icon-frame"><i class="ph-bold ph-hand-coins"></i></div>
+                    <div class="yield-content">
+                        <h4>Biometric Micro-Settlements</h4>
+                        <p>Authorizes swift real-time algorithmic micropayments across corporate networks using instant physical fingerprint validations, processing settlements completely off global retail networks.</p>
+                    </div>
+                </div>
+                <div class="matrix-node yield-node">
+                    <div class="yield-icon-frame"><i class="ph-bold ph-shield-check"></i></div>
+                    <div class="yield-content">
+                        <h4>Forensic Verification Incentives</h4>
+                        <p>Earn direct programmatic $AII token rebates whenever enterprise networks access verification tokens via your identity architecture, turning identity verifications into active assets.</p>
+                    </div>
+                </div>
+                <div class="matrix-node yield-node">
+                    <div class="yield-icon-frame"><i class="ph-bold ph-bank"></i></div>
+                    <div class="yield-content">
+                        <h4>Sovereign Reserve Cross-Clearing</h4>
+                        <p>Enables structural bridges to settle multi-asset accounts directly against regional institutional banks, balancing fiat conversions cleanly within internal zero-knowledge parameters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-block">
+                    <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.5rem;"></i>
+                    <span class="logo-title">REALAiID Bureau</span>
+                </a>
+                <p>The global infrastructure framework layer for verified human identity, autonomous banking nodes, and asset sovereignty networks.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Identity Anchors</h5>
+                <ul>
+                    <li><a href="passport-download.html">REALAiID Passport™</a></li>
+                    <li><a href="biogenesis-human.html">BioGenesis™ Human</a></li>
+                    <li><a href="product-vssn2.html">Starter Anchor Node</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="aiK9likeness.html">Pet Likeness Anchor</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Digital Newborn Base</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Security Bricks</h5>
+                <ul>
+                    <li><a href="vocalforge-core.html">VocalForge™ Hashing</a></li>
+                    <li><a href="animalock-pet.html">AnimaLock™ Companion</a></li>
+                    <li><a href="heirroot-baby.html">HeirRoot™ Legacy</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield™</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal™</a></li>
+                    <li><a href="product-drive-knot.html">Drive-Knot Auto™</a></li>
+                    <li><a href="schoolsecure-main.html">SchoolSecure™ Core</a></li>
+                    <li><a href="schoolsecure-visitor.html">SchoolSecure™ Visitor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Compute Economy</h5>
+                <ul>
+                    <li><a href="sandbox-signup.html" style="color: var(--gold-reserve); font-weight: bold;">Core-Mesh Sandbox™</a></li>
+                    <li><a href="product-liquidity-vault.html">$AII Vault Node</a></li>
+                    <li><a href="presenceyield-vault.html">PresenceYield™ Matrix</a></li>
+                    <li><a href="aii-individual.html">$AII Nexus Individual™</a></li>
+                    <li><a href="aii-fleet.html">$AII Synapse Grid™</a></li>
+                    <li><a href="aii-m2m.html">$AII Kinetic Flow™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>The Bureau Matrix</h5>
+                <ul>
+                    <li><a href="voyagepass-free.html">REALAiID Voyage Pass™</a></li>
+                    <li><a href="embarksecure-main.html">EmbarkSecure™ Matrix</a></li>
+                    <li><a href="sentryboard-core.html">SentryBoard™ Terminal</a></li>
+                    <li><a href="robosign-industrial.html">RoboSign™ Industrial</a></li>
+                    <li><a href="robosign-hearth.html">RoboSign™ Hearth</a></li>
+                    <li><a href="robosign-fleet.html">RoboSign™ Fleet</a></li>
+                    <li><a href="robosign-foundry.html">RoboSign™ Foundry</a></li>
+                    <li><a href="lexmed-verifier.html">LexMed Verifier™</a></li>
+                    <li><a href="aegispass-transit.html">Aegis Pass™ Transit</a></li>
+                    <li><a href="bridge-17-professional.html">Prof. Liaison Node</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler™ Core</a></li>
+                    <li><a href="precinct-seating.html">Precinct Seating™</a></li>
+                    <li><a href="oracle-arbitrage.html">Oracle Arbitrage™</a></li>
+                    <li><a href="citadel-elite.html">Citadel Elite™ Loop</a></li>
+                    <li><a href="benthic-lease.html">Benthic Lease™ Module</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau // COMPUTATIONAL BANKING NODE 50</span>
+            <span>RESERVE BALANCE: FULL AUDIT METRICS ACTIVE // DATA STATE: SOVEREIGN</span>
+        </div>
+    </footer>
+
+</body>
+</html>
