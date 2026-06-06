@@ -106,43 +106,37 @@
 
     <div id="hero-canvas"></div>
 
-   <header class="w-full">
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-4">
+   <header class="w-full border-b border-gray-800 bg-black/40">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-4 max-w-7xl mx-auto">
         <!-- Logo Section -->
         <div class="logo-area flex-shrink-0">
-            <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" style="height: 45px;" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
         </div>
         
         <!-- Navigation Section -->
-        <nav class="w-full flex flex-col items-center gap-4">
-            <!-- Row 1: Text Links -->
-            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+        <nav class="w-full flex flex-col items-center gap-3">
+            <!-- Row 1: Core Institutional Links -->
+            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <style>
-                    .nav-links a {
-                        transition: color 0.3s ease, text-shadow 0.3s ease;
-                    }
-                    .nav-links a:hover {
-                        color: #0071e3 !important;
-                        text-shadow: 0 0 8px rgba(0, 113, 227, 0.6);
-                    }
-                    .nav-cta-container {
-                        width: 100%;
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 0.25rem;
-                    }
+                    .nav-links a { transition: color 0.3s ease; }
+                    .nav-links a:hover { color: #0071e3 !important; }
+                    .nav-cta { background: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; transition: background 0.3s; }
+                    .nav-cta:hover { background: #1d4ed8; }
                 </style>
                 <a href="index.html">The Bureau</a>
-                <a href="WhatisREALAiiD.html">What is REALAiID?</a>
-                <a href="REALaiid-wallet.html">REALaiiD Wallet Device</a>
+                <a href="bridge-infrastructure-hub.html">Infrastructure</a>
+                <a href="realaiid-wallet-integration.html">Mobile Sync</a>
+                <a href="biosign-core.html">BioSign™</a>
+                <a href="robosign-core.html">RoboSign™</a>
+                <a href="REALaiid-wallet.html">Hardware Vault</a>
+            </div>
+            
+            <!-- Row 2: Operational & Secondary Links -->
+            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="product-vssn2.html">VSSN Hashing</a>
                 <a href="product-likeness-shield.html">Likeness Shield</a>
                 <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
                 <a href="api-docs.html">API Docs</a>
-            </div>
-            
-            <!-- Row 2: Centered Button -->
-            <div class="nav-cta-container">
                 <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
             </div>
         </nav>
