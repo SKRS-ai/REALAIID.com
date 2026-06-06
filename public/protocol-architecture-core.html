@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protocol Architecture Core // REALAiID Bureau Technical Ledger</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.2);
+            --bg-dark: #0a0c10;
+            --surface-card: #12161f;
+            --border-muted: #222b3c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-mono: 'SF Mono', 'Courier New', monospace;
+            --gold-reserve: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --bio-emerald: #00ffcc;
+            --emerald-glow: rgba(0, 255, 204, 0.15);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UNIFIED BUREAU HEADER --- */
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(10, 12, 16, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); }
+        .logo-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        nav a.active, nav a:hover { color: var(--mesh-blue); }
+
+        /* --- MAIN TECHNICAL CANVAS --- */
+        main { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+
+        .architecture-hero { margin-bottom: 5rem; border-left: 3px solid var(--mesh-blue); padding-left: 2rem; }
+        .core-registry { font-family: var(--font-mono); color: var(--mesh-blue); font-size: 0.9rem; letter-spacing: 2px; }
+        h1 { font-size: 3.2rem; font-weight: 800; margin: 0.5rem 0; letter-spacing: -1px; }
+        .architecture-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; }
+
+        /* --- 3D STRUCTURAL GRAPHICS GRID --- */
+        .grid-layout { display: grid; grid-template-columns: 1fr 450px; gap: 3rem; margin-bottom: 6rem; }
+
+        .isometric-render-stage {
+            background: radial-gradient(circle at center, #131824 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            height: 550px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.8);
+        }
+
+        .cryptographic-grid {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 113, 227, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 113, 227, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(800px) rotateX(60deg) translateY(-30%) rotateZ(-15deg);
+            animation: grid-drift 30s linear infinite;
+        }
+
+        /* 3D Core Stack Elements */
+        .stack-container {
+            position: relative;
+            width: 300px;
+            height: 350px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateX(55deg) rotateZ(-35deg);
+        }
+
+        .stack-layer {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            background: rgba(18, 22, 31, 0.85);
+            border: 2px solid var(--mesh-blue);
+            box-shadow: 0 0 30px var(--mesh-glow);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #ffffff;
+            transition: all 0.4s ease;
+        }
+
+        .layer-1 { transform: translateZ(120px); border-color: var(--bio-emerald); box-shadow: 0 0 30px var(--emerald-glow); }
+        .layer-2 { transform: translateZ(60px); border-color: var(--mesh-blue); }
+        .layer-3 { transform: translateZ(0px); border-color: var(--gold-reserve); box-shadow: 0 0 30px var(--gold-glow); }
+
+        .layer-label {
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* --- TECH SPECIFICATION PANEL --- */
+        .technical-spec-panel {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            padding: 2.5rem;
+            border-radius: 12px;
+            height: fit-content;
+        }
+
+        .spec-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 1rem; }
+        .spec-title { font-family: var(--font-mono); color: var(--gold-reserve); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .spec-version { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
+
+        .spec-list { list-style: none; }
+        .spec-list li { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.8rem; font-size: 0.95rem; line-height: 1.5; }
+        .spec-list i { color: var(--mesh-blue); font-size: 1.3rem; margin-top: 2px; }
+
+        /* --- DEEP FORENSIC SECTIONS --- */
+        .forensic-breakdown {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            border-top: 1px solid var(--border-muted);
+            padding-top: 5rem;
+            margin-bottom: 6rem;
+        }
+
+        .forensic-card h3 { font-size: 1.4rem; color: #ffffff; margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.7rem; }
+        .forensic-card h3 i { color: var(--bio-emerald); }
+        .forensic-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- BRIDGE LOGIC HUB --- */
+        .hardware-bridge-integration {
+            background: linear-gradient(135deg, rgba(18, 22, 31, 0.6) 0%, rgba(10, 12, 16, 0.8) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 4rem 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .bridge-integration-title { text-align: center; margin-bottom: 3.5rem; }
+        .bridge-integration-title h2 { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.5px; }
+        
+        .bridge-matrix-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+        .matrix-node {
+            background: rgba(10, 12, 16, 0.5);
+            border: 1px solid var(--border-muted);
+            padding: 2rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1.5rem;
+        }
+        .matrix-node:hover { border-color: var(--mesh-blue); }
+        .matrix-icon-frame {
+            width: 50px; height: 50px; background: rgba(0, 113, 227, 0.1); border: 1px solid var(--mesh-blue);
+            border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--mesh-blue); flex-shrink: 0;
+        }
+        .matrix-content h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .matrix-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+        @keyframes grid-drift {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 -160px; }
+        }
+
+        /* --- FULL DENSITY MASTER FOOTER --- */
+        footer {
+            background-color: #06080b;
+            border-top: 1px solid var(--border-muted);
+            padding: 6rem 2rem 2rem;
+            width: 100%;
+        }
+
+        .footer-matrix {
+            max-width: 1400px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+        .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; max-width: 320px; }
+
+        .footer-links h5 {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links ul li a:hover { color: var(--mesh-blue); padding-left: 2px; }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .bridge-matrix-grid { grid-template-columns: 1fr; }
+            .footer-matrix { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.75rem;"></i>
+                <span class="logo-title">REALAiID Bureau</span>
+            </a>
+            <nav>
+                <a href="protocol-architecture-core.html" class="active">The Protocol</a>
+                <a href="bridge-nexus-integration.html">Bridges</a>
+                <a href="aii-monetary-sovereignty.html">$AII Economy</a>
+                <a href="governance-ledger-consensus.html">Governance</a>
+                <button style="background: var(--mesh-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.8rem;">ACCESS WALLET</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="architecture-hero">
+            <span class="core-registry">CORE CRYPTOGRAPHIC SPECIFICATION // NODE 50</span>
+            <h1>Protocol Architecture</h1>
+            <p class="architecture-subtitle">Explore the underlying cryptographic framework of REALAiID. Our network maps secure decentralized sovereign infrastructure onto local hardware vectors using zero-knowledge containment protocols and decentralized ledger states.</p>
+        </section>
+
+        <div class="grid-layout">
+            <div class="isometric-render-stage">
+                <div class="cryptographic-grid"></div>
+                <div class="stack-container">
+                    <div class="stack-layer layer-1">
+                        <i class="ph-bold ph-fingerprint" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--bio-emerald);"></i>
+                        <span class="layer-label">Application Layer</span>
+                        <span>BIOMETRIC HASH PARITY</span>
+                    </div>
+                    <div class="stack-layer layer-2">
+                        <i class="ph-bold ph-shield-check" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--mesh-blue);"></i>
+                        <span class="layer-label">Zero-Knowledge Loop</span>
+                        <span>PROVING ENGINE ACTIVE</span>
+                    </div>
+                    <div class="stack-layer layer-3">
+                        <i class="ph-bold ph-cube" style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--gold-reserve);"></i>
+                        <span class="layer-label">Consensus Core</span>
+                        <span>IMMUTABLE BLOCKCHAIN STATE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="technical-spec-panel">
+                <div class="spec-header">
+                    <div class="spec-title">Consensus Engine Definition</div>
+                    <div class="spec-version">ZK-Proof v4.92</div>
+                </div>
+
+                <ul class="spec-list">
+                    <li>
+                        <i class="ph-bold ph-git-merge"></i>
+                        <div><strong>Zero-Knowledge Integrity:</strong> Third parties verify identity assertions completely without ever accessing or transferring unencrypted raw personal metrics.</div>
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-link-simple"></i>
+                        <div><strong>Immutable Blockchain Anchor:</strong> Cryptographic identity hashes are anchored permanently to decentralized consensus blocks, entirely out of reach of single point institutional failure.</div>
+                    </li>
+                    <li>
+                        <i class="ph-bold ph-cpu"></i>
+                        <div><strong>Hardware Independence:</strong> While the premium physical REALAiID Wallet card offers absolute offline hardware separation, the architecture operates seamlessly within Apple or Google Wallet systems.</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="forensic-breakdown">
+            <div class="forensic-card">
+                <h3><i class="ph-bold ph-eye-slash"></i> Cryptographic Cloaking</h3>
+                <p>Traditional identification vectors leave an audit trail of metadata open to systematic tracking. The REALAiID Protocol implements advanced cryptographic cloaking layers, verifying transaction blocks while severing linkability vectors across consecutive verification loops.</p>
+            </div>
+            <div class="forensic-card">
+                <h3><i class="ph-bold ph-lock-keyhole"></i> Ephemeral Key Pairs</h3>
+                <p>Every validation transaction executes using transient, one-time session authentication codes generated locally within your wallet container. No long-term master access token is exposed over data airwaves, creating an absolute barrier against sniffing and side-channel exploits.</p>
+            </div>
+            <div class="forensic-card">
+                <h3><i class="ph-bold ph-globe"></i> Decentralized Validation</h3>
+                <p>Rather than pinging centralized servers, identity bridges query decentralized network node trees. Validation is achieved via mathematically verifiable state parameters, removing points of leverage from corporate or regional data intermediaries.</p>
+            </div>
+        </section>
+
+        <section class="hardware-bridge-integration">
+            <div class="bridge-integration-title">
+                <h2>Functional Capabilities of Loaded Bridges</h2>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">When functional network bridges are loaded onto your REALAiID container (Hardware Wallet or Mobile App), they grant absolute functional command over physical and digital spaces:</p>
+            </div>
+
+            <div class="bridge-matrix-grid">
+                <div class="matrix-node">
+                    <div class="matrix-icon-frame"><i class="ph-bold ph-buildings"></i></div>
+                    <div class="matrix-content">
+                        <h4>Sovereign Facility Clearances</h4>
+                        <p>Instantly unlock and access secured facilities and corporate perimeters matching institutional parameters without scanning corporate or national physical registration badges.</p>
+                    </div>
+                </div>
+                <div class="matrix-node">
+                    <div class="matrix-icon-frame"><i class="ph-bold ph-airplane"></i></div>
+                    <div class="matrix-content">
+                        <h4>Forensic Transit Clearances</h4>
+                        <p>Bypasses traditional physical customs documentation check-points by projecting an immutable, globally verified biometric proof token directly into clearing terminal networks.</p>
+                    </div>
+                </div>
+                <div class="matrix-node">
+                    <div class="matrix-icon-frame"><i class="ph-bold ph-cpu"></i></div>
+                    <div class="matrix-content">
+                        <h4>Autonomous Compute Exchange</h4>
+                        <p>Lease localized hardware compute arrays directly to node pools. The integrated system converts hardware operational processing metrics directly into $AII balances.</p>
+                    </div>
+                </div>
+                <div class="matrix-node">
+                    <div class="matrix-icon-frame"><i class="ph-bold ph-vault"></i></div>
+                    <div class="matrix-content">
+                        <h4>Zero-Knowledge Credential Masking</h4>
+                        <p>Fulfill enterprise, corporate, or legacy legal identity verifications flawlessly while keeping cleartext details encrypted safely within your localized parameter storage stack.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-block">
+                    <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.5rem;"></i>
+                    <span class="logo-title">REALAiID Bureau</span>
+                </a>
+                <p>The global infrastructure framework layer for verified human identity, autonomous banking nodes, and asset sovereignty networks.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Identity Anchors</h5>
+                <ul>
+                    <li><a href="passport-download.html">REALAiID Passport™</a></li>
+                    <li><a href="biogenesis-human.html">BioGenesis™ Human</a></li>
+                    <li><a href="product-vssn2.html">Starter Anchor Node</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="aiK9likeness.html">Pet Likeness Anchor</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Digital Newborn Base</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Security Bricks</h5>
+                <ul>
+                    <li><a href="vocalforge-core.html">VocalForge™ Hashing</a></li>
+                    <li><a href="animalock-pet.html">AnimaLock™ Companion</a></li>
+                    <li><a href="heirroot-baby.html">HeirRoot™ Legacy</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield™</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal™</a></li>
+                    <li><a href="product-drive-knot.html">Drive-Knot Auto™</a></li>
+                    <li><a href="schoolsecure-main.html">SchoolSecure™ Core</a></li>
+                    <li><a href="schoolsecure-visitor.html">SchoolSecure™ Visitor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Compute Economy</h5>
+                <ul>
+                    <li><a href="sandbox-signup.html" style="color: var(--gold-reserve); font-weight: bold;">Core-Mesh Sandbox™</a></li>
+                    <li><a href="product-liquidity-vault.html">$AII Vault Node</a></li>
+                    <li><a href="presenceyield-vault.html">PresenceYield™ Matrix</a></li>
+                    <li><a href="aii-individual.html">$AII Nexus Individual™</a></li>
+                    <li><a href="aii-fleet.html">$AII Synapse Grid™</a></li>
+                    <li><a href="aii-m2m.html">$AII Kinetic Flow™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>The Bureau Matrix</h5>
+                <ul>
+                    <li><a href="voyagepass-free.html">REALAiID Voyage Pass™</a></li>
+                    <li><a href="embarksecure-main.html">EmbarkSecure™ Matrix</a></li>
+                    <li><a href="sentryboard-core.html">SentryBoard™ Terminal</a></li>
+                    <li><a href="robosign-industrial.html">RoboSign™ Industrial</a></li>
+                    <li><a href="robosign-hearth.html">RoboSign™ Hearth</a></li>
+                    <li><a href="robosign-fleet.html">RoboSign™ Fleet</a></li>
+                    <li><a href="robosign-foundry.html">RoboSign™ Foundry</a></li>
+                    <li><a href="lexmed-verifier.html">LexMed Verifier™</a></li>
+                    <li><a href="aegispass-transit.html">Aegis Pass™ Transit</a></li>
+                    <li><a href="bridge-17-professional.html">Prof. Liaison Node</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler™ Core</a></li>
+                    <li><a href="precinct-seating.html">Precinct Seating™</a></li>
+                    <li><a href="oracle-arbitrage.html">Oracle Arbitrage™</a></li>
+                    <li><a href="citadel-elite.html">Citadel Elite™ Loop</a></li>
+                    <li><a href="benthic-lease.html">Benthic Lease™ Module</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau // COMPUTATIONAL BANKING NODE 50</span>
+            <span>RESERVE BALANCE: FULL AUDIT METRICS ACTIVE // DATA STATE: SOVEREIGN</span>
+        </div>
+    </footer>
+
+</body>
+</html>
