@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboSign™ // Department of Identity for Robotics // REALAiID Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root { --mesh-blue: #0071e3; --bg-dark: #06080c; --gold: #d4af37; --border: #222b3c; }
+        body { background-color: var(--bg-dark); color: #f5f5f7; font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(10, 12, 16, 0.9); border: 1px solid var(--border); }
+        .nav-link:hover { color: var(--mesh-blue); }
+        .pulse-ring { animation: pulse 3s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER HEADER -->
+    <header class="border-b border-gray-800 bg-black/40 sticky top-0 z-50">
+        <div class="flex justify-between items-center p-4 max-w-7xl mx-auto">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" style="height: 45px;" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            <nav class="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="index.html" class="nav-link">The Bureau</a>
+                <a href="realaiid-wallet-integration.html" class="nav-link">Mobile Sync</a>
+                <a href="biosign-core.html" class="nav-link">BioSign™</a>
+                <a href="robosign-core.html" class="text-blue-500">RoboSign™</a>
+                <a href="forensic-terminal.html" class="bg-blue-600 text-white px-3 py-1 rounded">Initialize Handshake</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <section class="grid lg:grid-cols-2 gap-16 mb-20 items-center">
+            <div>
+                <img src="RoboSign.png" alt="RoboSign Logo" class="h-20 mb-8">
+                <h1 class="text-5xl font-bold mb-6 tracking-tight">Department of Identity <span class="text-blue-500">for Robotics</span></h1>
+                <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+                    A "rogue" robot is simply an unidentified one. RoboSign™ serves as the authoritative registry for autonomous entities, providing immutable identity logs, technical spec tethering, and ownership chain verification for every unit integrated into your ecosystem.
+                </p>
+                <div class="glass p-8 rounded-xl border-l-4 border-l-gold shadow-[0_0_50px_rgba(212,175,55,0.05)]">
+                    <h3 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Forensic Robot Registry</h3>
+                    <ul class="text-sm text-slate-400 space-y-4">
+                        <li>• <strong>Technical Spec Tethering:</strong> Every unit’s hardware blueprint—from YZ-60 Versa-Types to industrial frames—is cryptographically hashed to the RoboSign registry.</li>
+                        <li>• <strong>Ownership Chain:</strong> Seamlessly log asset transitions. Prove legal custody of your autonomous units with biometric-verified ownership transfers.</li>
+                        <li>• <strong>Sovereign Integration:</strong> When coupled with your REALAiID Wallet, you gain master-controller override capabilities, ensuring your units are always identifiable, responsible, and secure.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 3D VISUALIZATION -->
+            <div class="flex justify-center">
+                <div class="w-80 h-80 rounded-2xl border border-gold/30 flex items-center justify-center bg-black/50 pulse-ring relative">
+                    <div class="w-40 h-40 border-t-2 border-l-2 border-blue-500 rotate-45"></div>
+                    <span class="absolute bottom-8 text-[10px] text-gold uppercase tracking-widest">Autonomous Identity Mesh</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- COMPREHENSIVE LINK MATRIX FOOTER -->
+    <footer class="bg-[#040507] border-t border-slate-800 p-20">
+        <div class="grid grid-cols-6 gap-8 max-w-7xl mx-auto text-[10px] text-slate-500 uppercase">
+            <div><h5 class="text-white mb-4">Identity</h5><ul><li><a href="passport-download.html">Passport™</a></li><li><a href="biogenesis-human.html">BioGenesis™</a></li><li><a href="realaiid-wallet.html">Hardware Vault</a></li><li><a href="realaiid-wallet-integration.html">Mobile Integration</a></li><li><a href="identity-vault.html">Vault Core</a></li></ul></div>
+            <div><h5 class="text-white mb-4">Security</h5><ul><li><a href="vocalforge-core.html">VocalForge™</a></li><li><a href="likeness-shield.html">Likeness Shield™</a></li><li><a href="bio-media-seal.html">Bio Media Seal™</a></li><li><a href="ambient-auth.html">Ambient Auth</a></li><li><a href="sentryboard.html">SentryBoard™</a></li></ul></div>
+            <div><h5 class="text-white mb-4">Authority</h5><ul><li><a href="bridge-14-deed.html">AuthorityDeed™</a></li><li><a href="lexmed-verifier.html">LexMed Verifier™</a></li><li><a href="bridge-17-professional.html">Prof. Liaison</a></li><li><a href="global-notary.html">Global Notary</a></li><li><a href="justice-rail.html">Justice Rail</a></li></ul></div>
+            <div><h5 class="text-white mb-4">Compute</h5><ul><li><a href="aii-monetary-sovereignty.html">Sovereignty Layer</a></li><li><a href="product-liquidity-vault.html">Vault Nodes</a></li><li><a href="oracle-arbitrage.html">Oracle Arb™</a></li><li><a href="aii-nexus.html">Nexus</a></li><li><a href="benthic-pulse.html">Benthic Pulse</a></li></ul></div>
+            <div><h5 class="text-white mb-4">RoboSign</h5><ul><li><a href="robosign-hearth.html">Hearth™</a></li><li><a href="robosign-fleet.html">Fleet™</a></li><li><a href="robosign-foundry.html">Foundry™</a></li><li><a href="robot-identity-mesh.html">Identity Mesh</a></li><li><a href="auto-anchor.html">Auto Anchor</a></li></ul></div>
+            <div><h5 class="text-white mb-4">Bureau</h5><ul><li><a href="charter.html">Charter API</a></li><li><a href="network-status.html">Status</a></li><li><a href="logistics.html">Logistics</a></li><li><a href="forensic-terminal.html">Terminal</a></li><li><a href="maritime-charter.html">Maritime API</a></li></ul></div>
+        </div>
+        <div class="text-center mt-20 text-[9px] text-slate-600 border-t border-slate-900 pt-8">© 2026 REALAiID BUREAU // PHILADELPHIA MAINFRAME // SECURE ASSET ANCHORING</div>
+    </footer>
+
+</body>
+</html>
