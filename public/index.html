@@ -106,20 +106,45 @@
 
     <div id="hero-canvas"></div>
 
-   <header>
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="logo-area">
+   <header class="w-full">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-4">
+        <!-- Logo Section -->
+        <div class="logo-area flex-shrink-0">
             <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
         </div>
-        <nav class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
-            <a href="index.html">The Bureau</a>
-            <a href="WhatisREALAiiD.html">What is REALAiID?</a>
-            <a href="REALaiid-wallet.html">REALaiiD Wallet Device</a>
-            <a href="product-vssn2.html">VSSN Hashing</a>
-            <a href="product-likeness-shield.html">Likeness Shield</a>
-            <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
-            <a href="api-docs.html">API Docs</a>
-            <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
+        
+        <!-- Navigation Section -->
+        <nav class="w-full flex flex-col items-center gap-4">
+            <!-- Row 1: Text Links -->
+            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center">
+                <style>
+                    .nav-links a {
+                        transition: color 0.3s ease, text-shadow 0.3s ease;
+                    }
+                    .nav-links a:hover {
+                        color: #0071e3 !important;
+                        text-shadow: 0 0 8px rgba(0, 113, 227, 0.6);
+                    }
+                    .nav-cta-container {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 0.25rem;
+                    }
+                </style>
+                <a href="index.html">The Bureau</a>
+                <a href="WhatisREALAiiD.html">What is REALAiID?</a>
+                <a href="REALaiid-wallet.html">REALaiiD Wallet Device</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
+                <a href="api-docs.html">API Docs</a>
+            </div>
+            
+            <!-- Row 2: Centered Button -->
+            <div class="nav-cta-container">
+                <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
+            </div>
         </nav>
     </div>
 </header>
