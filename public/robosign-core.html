@@ -19,7 +19,7 @@
     <!-- MASTER HEADER -->
     <header class="border-b border-gray-800 bg-black/40 sticky top-0 z-50">
         <div class="flex justify-between items-center p-4 max-w-7xl mx-auto">
-            <img src="RealAiIDlogo.png" alt="Bureau Logo" style="height: 120px;" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" style="height: 60px;" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
             <nav class="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
                 <a href="index.html" class="nav-link">The Bureau</a>
                 <a href="realaiid-wallet-integration.html" class="nav-link">Mobile Sync</a>
@@ -31,28 +31,45 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-6 py-16">
-        <section class="grid lg:grid-cols-2 gap-16 mb-20 items-center">
+        <section class="grid lg:grid-cols-2 gap-16 mb-20 items-start">
             <div>
-                <img src="RoboSign.png" alt="RoboSign Logo" class="h-32 mb-40">
+                <!-- Optimized Logo Size -->
+                <img src="RoboSign.png" alt="RoboSign Logo" class="h-48 mb-12">
+                
                 <h1 class="text-5xl font-bold mb-6 tracking-tight">Department of Identity <span class="text-blue-500">for Robotics</span></h1>
                 <p class="text-xl text-slate-300 mb-8 leading-relaxed">
-                    A "rogue" robot is simply an unidentified one. RoboSign™ serves as the authoritative registry for autonomous entities, providing immutable identity logs, technical spec tethering, and ownership chain verification for every unit integrated into your ecosystem.
+                    A "rogue" robot is simply an unidentified one. RoboSign™ provides the foundational infrastructure to convert autonomous machines from liabilities into logged, verifiable, and responsible assets within the REALAiID ecosystem.
                 </p>
-                <div class="glass p-8 rounded-xl border-l-4 border-l-gold shadow-[0_0_50px_rgba(212,175,55,0.05)]">
-                    <h3 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Forensic Robot Registry</h3>
-                    <ul class="text-sm text-slate-400 space-y-4">
-                        <li>• <strong>Technical Spec Tethering:</strong> Every unit’s hardware blueprint—from YZ-60 Versa-Types to industrial frames—is cryptographically hashed to the RoboSign registry.</li>
-                        <li>• <strong>Ownership Chain:</strong> Seamlessly log asset transitions. Prove legal custody of your autonomous units with biometric-verified ownership transfers.</li>
-                        <li>• <strong>Sovereign Integration:</strong> When coupled with your REALAiID Wallet, you gain master-controller override capabilities, ensuring your units are always identifiable, responsible, and secure.</li>
+
+                <!-- Expanded Technical Documentation -->
+                <div class="glass p-8 rounded-xl border-l-4 border-l-gold shadow-[0_0_50px_rgba(212,175,55,0.05)] mb-8">
+                    <h3 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">For Manufacturers: Registry Integration</h3>
+                    <p class="text-sm text-slate-400 mb-4">Manufacturers leverage the RoboSign™ API to embed a unique 'Forensic DNA' into the firmware of every chassis at the assembly stage.</p>
+                    <ul class="text-sm text-slate-400 space-y-2 list-disc pl-4">
+                        <li><strong>Immutable Hardware Hashing:</strong> Ensures the robot's physical sensor suite and computational core are inextricably linked to its digital ID.</li>
+                        <li><strong>Lifecycle Auditing:</strong> From factory output to final decommissioning, every state change is logged in the Bureau’s permanent ledger.</li>
+                    </ul>
+                </div>
+
+                <div class="glass p-8 rounded-xl border-l-4 border-l-blue-600 shadow-[0_0_50px_rgba(37,99,235,0.05)]">
+                    <h3 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">For Owners: Total Operational Oversight</h3>
+                    <p class="text-sm text-slate-400 mb-4">As an owner, RoboSign™ transforms your autonomous fleet into controlled, sovereign assets.</p>
+                    <ul class="text-sm text-slate-400 space-y-2 list-disc pl-4">
+                        <li><strong>Geofence Enforcement:</strong> Verify the operational boundaries of your autonomous assets in real-time.</li>
+                        <li><strong>Biometric Master Override:</strong> Only verified human-signature intent can authorize core firmware updates or emergency shutdowns.</li>
+                        <li><strong>Accountability Tether:</strong> Every unit functions as an extension of your own verified identity, ensuring regulatory compliance and industrial safety.</li>
                     </ul>
                 </div>
             </div>
             
-            <!-- 3D VISUALIZATION -->
-            <div class="flex justify-center">
+            <!-- 3D FORENSIC VISUAL -->
+            <div class="sticky top-32 flex flex-col items-center">
                 <div class="w-80 h-80 rounded-2xl border border-gold/30 flex items-center justify-center bg-black/50 pulse-ring relative">
                     <div class="w-40 h-40 border-t-2 border-l-2 border-blue-500 rotate-45"></div>
                     <span class="absolute bottom-8 text-[10px] text-gold uppercase tracking-widest">Autonomous Identity Mesh</span>
+                </div>
+                <div class="mt-8 p-6 glass max-w-sm text-center">
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest">"Identity is the difference between a tool and a threat."</p>
                 </div>
             </div>
         </section>
