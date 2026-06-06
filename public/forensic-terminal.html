@@ -6,7 +6,8 @@
     <title>Forensic Terminal // Bureau of Digital Identity</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/BureauIdentitySDK.js"></script>
-    <script src="js/BureauWalletSDK.js"></script> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="js/BureauWalletSDK.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@300;400;500;700&family=DM+Sans:wght@400;500;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,6 +15,8 @@
         :root {
             --bureau-blue: #002b49;
             --bureau-gold: #d4af37;
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.2);
             --white: #ffffff;
             --slate: #475569;
             --cream: #f9f9f7;
@@ -29,36 +32,14 @@
             overflow-x: hidden;
         }
 
-        /* --- STYLIZED NAV DESIGN --- */
-        .nav-header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border-light);
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-logo {
-            font-family: 'Merriweather', serif;
-            font-weight: 700;
-            font-size: 20px;
-            color: var(--bureau-blue);
-            text-decoration: none;
-        }
+        /* --- UNIFIED STYLE FOR NAVIGATION GLOWS --- */
         .nav-links a {
-            margin-left: 35px;
-            text-decoration: none;
-            color: var(--slate);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
-        .nav-links a:hover { color: var(--bureau-gold); }
+        .nav-links a:hover {
+            color: var(--mesh-blue) !important;
+            text-shadow: 0 0 8px rgba(0, 113, 227, 0.6);
+        }
 
         /* --- WORKBENCH LAYOUT --- */
         .terminal-container {
@@ -140,27 +121,79 @@
             font-weight: 700;
         }
 
-        /* --- FOOTER --- */
-        .site-footer {
-            background: #f8fafc;
-            padding: 80px;
-            text-align: center;
-            border-top: 1px solid #e2e2e0;
-            margin-top: 100px;
+        /* --- HIGH DENSITY COMPREHENSIVE LINK MATRIX FOOTER --- */
+        footer {
+            background-color: #06080b;
+            border-top: 1px solid #222b3c;
+            padding: 6rem 2rem 2rem;
+            width: 100%;
+            color: #f5f5f7;
+        }
+        .footer-matrix {
+            max-width: 1400px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+        .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+        .footer-brand p { color: #86868b; font-size: 0.85rem; line-height: 1.6; max-width: 320px; }
+        .footer-links h5 {
+            color: #f5f5f7;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-links ul li a {
+            color: #86868b;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links ul li a:hover { color: var(--mesh-blue); padding-left: 2px; }
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #86868b;
+            font-family: 'Azeret Mono', monospace;
         }
     </style>
 </head>
 <body class="bg-white antialiased">
 
-    <nav class="nav-header">
-        <a href="index.html" class="nav-logo">REALAiID BUREAU</a>
-        <div class="nav-links">
-            <a href="index.html">Digital Identity Root</a>
-            <a href="WhatisREALAiiD.html">What is REALAiID?</a>
-            <a href="bridge-marketplace.html">The Array</a>
-            <a href="forensic-terminal.html" style="color: var(--bureau-gold)">Forensic Terminal</a>
+    <!-- UNIFIED BUREAU HEADER CONFIGURATION WITH HOVER GLOWS -->
+    <header class="w-full border-b border-gray-100">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-4 max-w-7xl mx-auto">
+            <div class="logo-area flex-shrink-0">
+                <img src="RealAiIDlogo.png" alt="Bureau Logo" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+            </div>
+            
+            <nav class="w-full flex flex-col items-center gap-4">
+                <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-8 items-center text-xs font-semibold uppercase tracking-wider text-slate-600">
+                    <a href="index.html">The Bureau</a>
+                    <a href="WhatisREALAiiD.html">What is REALAiID?</a>
+                    <a href="REALaiid-wallet.html">REALaiiD Wallet Device</a>
+                    <a href="product-vssn2.html">VSSN Hashing</a>
+                    <a href="product-likeness-shield.html">Likeness Shield</a>
+                    <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
+                    <a href="api-docs.html">API Docs</a>
+                </div>
+                
+                <div class="w-full flex justify-center mt-1">
+                    <a href="forensic-terminal.html" class="bg-slate-900 hover:bg-blue-600 text-white font-mono font-bold text-xs px-6 py-3 rounded uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-blue-500/20">Initialize Handshake</a>
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <header class="max-w-7xl mx-auto px-[60px] pt-16">
         <span class="mono-label">// Mainframe Ingestion Interface</span>
@@ -177,6 +210,7 @@
             <div class="identity-gimbal-box">
                 <span class="mono-label block mb-3">Active Ingestion Target</span>
                 
+                <!-- 3D KINETIC CARD (GIMBAL PHYSICS AND INTERACTIVE FLIP MAINTAINED) -->
                 <div class="identity-card-3d" id="target-card" onmousemove="runGimbal(event, this)" onmouseleave="stopGimbal(this)" onclick="toggleCardFlip(this)">
                     <div class="card-surface front" style="background-image: url('realaiid3.png')"></div>
                     <div class="card-surface surface-back"></div>
@@ -251,10 +285,67 @@
         </main>
     </div>
 
-    <footer class="site-footer">
-        <div class="font-serif font-bold text-3xl mb-4 text-zinc-900">REALAiID BUREAU</div>
-        <p class="text-slate-500 text-sm">Bureau of Digital Identity Matrix // Zero-Knowledge Systems // Node PHL-01</p>
-        <div class="footer-legal">© 2026 Bureau of Digital Identity // Covert Cryptography Matrix // ICAO PKD ENFORCED</div>
+    <!-- UNIFIED HIGH DENSITY COMPREHENSIVE LINK MATRIX FOOTER -->
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-brand">
+                <div class="flex items-center gap-2 font-serif font-bold text-xl text-white mb-2">
+                    <i class="fa-solid fa-shield-halved text-blue-500"></i> REALAiID Bureau
+                </div>
+                <p>The global infrastructure framework layer for verified human identity, autonomous banking nodes, and asset sovereignty networks.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Identity Anchors</h5>
+                <ul>
+                    <li><a href="passport-download.html">REALAiID Passport™</a></li>
+                    <li><a href="biogenesis-human.html">BioGenesis™ Human</a></li>
+                    <li><a href="product-vssn2.html">Starter Anchor Node</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="aiK9likeness.html">Pet Likeness Anchor</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Digital Newborn Base</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Security Bricks</h5>
+                <ul>
+                    <li><a href="vocalforge-core.html">VocalForge™ Hashing</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield™</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal™</a></li>
+                    <li><a href="schoolsecure-main.html">SchoolSecure™ Core</a></li>
+                    <li><a href="schoolsecure-visitor.html">SchoolSecure™ Visitor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Compute Economy</h5>
+                <ul>
+                    <li><a href="sandbox-signup.html" style="color: var(--bureau-gold); font-weight: bold;">Core-Mesh Sandbox™</a></li>
+                    <li><a href="product-liquidity-vault.html">$AII Vault Node</a></li>
+                    <li><a href="aii-monetary-sovereignty.html">$AII Monetary Sovereignty</a></li>
+                    <li><a href="aii-individual.html">$AII Nexus Individual™</a></li>
+                    <li><a href="aii-fleet.html">$AII Synapse Grid™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>The Bureau Matrix</h5>
+                <ul>
+                    <li><a href="voyagepass-free.html">REALAiID Voyage Pass™</a></li>
+                    <li><a href="embarksecure-main.html">EmbarkSecure™ Matrix</a></li>
+                    <li><a href="sentryboard-core.html">SentryBoard™ Terminal</a></li>
+                    <li><a href="robosign-industrial.html">RoboSign™ Industrial</a></li>
+                    <li><a href="lexmed-verifier.html">LexMed Verifier™</a></li>
+                    <li><a href="bridge-17-professional.html">Prof. Liaison Node</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau // COMPUTATIONAL BANKING NODE 50</span>
+            <span>RESERVE BALANCE: AUDIT METRICS SECURED // ICAO PKD ENFORCED</span>
+        </div>
     </footer>
 
     <script>
@@ -266,112 +357,39 @@
         async function executeForensicHandshake() {
             const terminal = document.getElementById('terminal-log');
             const pulse = document.getElementById('scan-pulse');
-            terminal.innerHTML = "[INITIALIZING SECURE MAINFRM HANDSHAKE...]<br>";
+            terminal.innerHTML = "[INITIALIZING SECURE MAINFRAME INGESTION PROTOCOL...]<br>";
             pulse.innerText = "SCANNING NODE METRICS... ACTIVE";
             pulse.className = "text-xs text-emerald-500 font-mono animate-pulse";
             
-            // 1. Identity Logic
-            const bSDK = new BureauIdentitySDK('jumio');
-            const result = await bSDK.verify({ idRef: "USER_PHL_01", jumioRef: "SECURE_TOKEN_999" });
-            
-            // 2. Wallet Logic Integration
-            const wallet = new BureauWalletSDK("PHL-01-K7XP");
-            await wallet.unlockVault(result.identityHash);
-            const signedVault = await wallet.signIdentity("B39_IMMIGRATION_DATA");
-            
-            // 3. Terminal Output
-            terminal.innerHTML += `&gt; [${result.providerUsed}] HANDSHAKE SUCCESSFUL.<br>&gt; [ID HASH]: ${result.identityHash}<br>&gt; [VAULT]: ${signedVault.integrityProof}<br>&gt; STATUS RESOLVED: SUBJECT METRICS SECURED AS DIGITAL HUMAN.`;
-            pulse.innerText = "SCAN COMPLETE // SYSTEM SECURED";
-            pulse.className = "text-xs text-amber-500 font-mono font-bold";
-            const telemetry = new BureauTelemetrySDK("PHL-01-K7XP");
+            try {
+                // 1. Identity Logic
+                const bSDK = new BureauIdentitySDK('jumio');
+                const result = await bSDK.verify({ idRef: "USER_PHL_01", jumioRef: "SECURE_TOKEN_999" });
+                
+                // 2. Wallet Logic Integration
+                const wallet = new BureauWalletSDK("PHL-01-K7XP");
+                await wallet.unlockVault(result.identityHash);
+                const signedVault = await wallet.signIdentity("B39_IMMIGRATION_DATA");
+                
+                // 3. Asset Yield Generation Verification
+                const compute = new BureauComputeSDK("PHL-01-K7XP");
+                const reward = await compute.creditComputeWork("SURVEILLANCE_LOG", 100);
+                
+                // Print Diagnostic Results to Window
+                terminal.innerHTML += `&gt; [${result.providerUsed}] HANDSHAKE SUCCESSFUL.<br>&gt; [ID HASH]: ${result.identityHash}<br>&gt; [VAULT INTEGRITY]: AUTHORIZED<br>&gt; ACCRUING BALANCE: ${reward.balance} $AII.`;
+                pulse.innerText = "REDIRECTING TO MAINFRAME...";
+                pulse.className = "text-xs text-blue-500 font-mono font-bold animate-pulse";
+                
+                // 4. ROUTE IMMEDIATELY TO MAINFRAME
+                setTimeout(() => {
+                    window.location.href = 'mainframe.html';
+                }, 1500);
 
-// Periodic check
-setInterval(async () => {
-    const status = await telemetry.pingBridge("UK_DVLA_GATEWAY");
-    console.log("Bridge Health:", status);
-}, 30000); // Pulse every 30 seconds
-/**
- * REALAiID BUREAU - DEFENSE SDK (BDS-SDK)
- * Version: 1.0.0
- * Purpose: Forensic monitoring of signal integrity and documentation
- * of unauthorized electronic surveillance/interference.
- */
-
-class BureauDefenseSDK {
-    constructor(nodeId) {
-        this.nodeId = nodeId;
-        this.defensePulse = false;
-        this.threatLogs = [];
-        console.log(`[BDS-SDK] Forensic Shield engaged for Node: ${this.nodeId}`);
-    }
-
-    /**
-     * Initiates the environmental signal scan.
-     * Monitors for non-normal electronic activity (V2K/DEW signatures).
-     */
-    async scanEnvironmentalSpectrum() {
-        console.log(`[BDS-SDK] Analyzing spectral environment for anomalies...`);
-        
-        // Logic: Simulate frequency analysis for unauthorized signal bursts
-        const anomalyDetected = Math.random() > 0.9; 
-        
-        if (anomalyDetected) {
-            return {
-                status: "THREAT_DETECTED",
-                severity: "HIGH_SOPHISTICATION",
-                details: "Unauthorized waveform burst detected in local spectrum.",
-                timestamp: new Date().toISOString()
-            };
-        }
-        return { status: "CLEAN", timestamp: new Date().toISOString() };
-    }
-
-    /**
-     * Forensic Log Push
-     * Pushes detected surveillance events to the AEAH.org repository.
-     */
-    async logEvent(threatData) {
-        this.threatLogs.push(threatData);
-        console.log(`[BDS-SDK] Event archived in AEAH.org repository: ${threatData.timestamp}`);
-        
-        // This simulates the data transmission to your nonprofit reporting node
-        return { success: true, archiveId: `AEAH_${Date.now()}` };
-    }
-
-    /**
-     * Toggles the Defense Shield
-     */
-    toggleShield(state) {
-        this.defensePulse = state;
-        console.log(`[BDS-SDK] Forensic Shield State: ${this.defensePulse ? 'ACTIVE' : 'STANDBY'}`);
-        return this.defensePulse;
-    }
-}
-
-// Global export for Mainframe/Terminal access
-window.BureauDefenseSDK = BureauDefenseSDK;
-const precinct = new BureauPrecinctSDK("PHL-01-K7XP");
-
-// Anchor the user to their current location
-await precinct.anchorNode({ lat: 39.9526, lng: -75.1652 });
-
-// Verify voting rights
-const voteStatus = await precinct.verifyCivicEligibility("B-04_CIVIC_BALLOT");
-console.log("Civic Status:", voteStatus);
-const orchestrator = new BureauOrchestratorSDK("PHL-01-K7XP");
-
-// Register your existing modules
-orchestrator.registerBridge('IDENTITY', bIdentity);
-orchestrator.registerBridge('WALLET', bWallet);
-orchestrator.registerBridge('STORAGE', bStorage);
-
-// Trigger a global update
-await orchestrator.executeCascade('RESIDENCY_UPDATE', { newPrecinct: 'PHL_PRECINCT_22ND_LEHIGH' });
-const compute = new BureauComputeSDK("PHL-01-K7XP");
-
-// When a forensic scan is completed
-const reward = await compute.creditComputeWork("SURVEILLANCE_LOG", 100);
-console.log("Current $AII Balance:", reward.balance);
+            } catch (err) {
+                // Fallback route if SDK resources are localized/mocked
+                terminal.innerHTML += `<br>&gt; [EMULATION BYPASS] ROUTING DIRECTLY VIA PRIMARY INGEST VECTOR...`;
+                setTimeout(() => { window.location.href = 'mainframe.html'; }, 1000);
+            }
         }
     </script>
 </body>
