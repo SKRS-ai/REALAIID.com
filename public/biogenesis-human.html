@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGenesis™ Human Ingest Protocol // REALAiID Bureau</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-blue: #0071e3;
+            --mesh-glow: rgba(0, 113, 227, 0.2);
+            --bg-dark: #0a0c10;
+            --surface-card: #12161f;
+            --border-muted: #222b3c;
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --font-mono: 'SF Mono', 'Courier New', monospace;
+            --gold-reserve: #d4af37;
+            --gold-glow: rgba(212, 175, 55, 0.15);
+            --bio-emerald: #00ffcc;
+            --emerald-glow: rgba(0, 255, 204, 0.15);
+            --laser-red: #ff3b30;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- UNIFIED BUREAU HEADER --- */
+        header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-muted);
+            background: rgba(10, 12, 16, 0.9);
+            backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--text-primary); }
+        .logo-title { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+
+        nav { display: flex; gap: 2rem; align-items: center; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; }
+        nav a.active, nav a:hover { color: var(--mesh-blue); }
+
+        /* --- MAIN AREA CANVAS --- */
+        main { max-width: 1400px; margin: 0 auto; padding: 8rem 2rem 4rem; }
+
+        .ingest-hero { margin-bottom: 4rem; border-left: 3px solid var(--bio-emerald); padding-left: 2rem; }
+        .core-registry { font-family: var(--font-mono); color: var(--bio-emerald); font-size: 0.9rem; letter-spacing: 2px; }
+        h1 { font-size: 3.2rem; font-weight: 800; margin: 0.5rem 0; letter-spacing: -1px; }
+        .ingest-subtitle { font-size: 1.25rem; color: var(--text-secondary); max-width: 900px; }
+
+        /* --- 3D HIGH-SOPHISTICATION BIOMETRICS SCANNER GRID --- */
+        .grid-layout { display: grid; grid-template-columns: 1fr 450px; gap: 3rem; margin-bottom: 6rem; }
+
+        .scanner-render-stage {
+            background: radial-gradient(circle at center, #0a171c 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            height: 580px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.9);
+        }
+
+        .matrix-mesh-floor {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 204, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 204, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(600px) rotateX(65deg) translateY(-40%) rotateZ(0deg);
+        }
+
+        /* 3D Biological Target Lattice Hologram */
+        .hologram-container-3d {
+            position: relative;
+            width: 280px;
+            height: 350px;
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(15deg) rotateX(10deg);
+            animation: float-hologram 6s ease-in-out infinite;
+        }
+
+        .hologram-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px dashed rgba(0, 255, 204, 0.15);
+            border-radius: 50% 50% 0 0;
+            background: radial-gradient(ellipse at center, rgba(0, 255, 204, 0.03) 0%, transparent 70%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layer-depth-1 { transform: translateZ(40px); border-color: rgba(0, 113, 227, 0.3); }
+        .layer-depth-2 { transform: translateZ(0px); }
+        .layer-depth-3 { transform: translateZ(-40px); border-color: rgba(214, 175, 55, 0.2); }
+
+        .biometric-laser-line {
+            position: absolute;
+            width: 120%;
+            height: 2px;
+            left: -10%;
+            background: linear-gradient(90deg, transparent, var(--bio-emerald), transparent);
+            box-shadow: 0 0 15px var(--bio-emerald);
+            animation: laser-sweep 4s ease-in-out infinite;
+            z-index: 5;
+        }
+
+        .dna-node-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--bio-emerald);
+        }
+
+        /* --- INGEST TRACKING PANEL --- */
+        .ingest-monitor-sidebar {
+            background: var(--surface-card);
+            border: 1px solid var(--border-muted);
+            padding: 2.5rem;
+            border-radius: 12px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .monitor-header { margin-bottom: 2rem; border-bottom: 1px solid var(--border-muted); padding-bottom: 1rem; }
+        .monitor-tag { font-family: var(--font-mono); color: var(--bio-emerald); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+        .monitor-headline { font-size: 1.8rem; font-weight: 800; color: #ffffff; }
+
+        .ingest-steps-stack { display: flex; flex-direction: column; gap: 1.5rem; }
+        .step-row { display: flex; gap: 1rem; align-items: flex-start; }
+        .step-indicator { 
+            width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border-muted); 
+            display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); 
+            font-size: 0.75rem; color: var(--text-secondary); background: var(--bg-dark); flex-shrink: 0;
+        }
+        .step-row.active .step-indicator { border-color: var(--bio-emerald); color: var(--bio-emerald); box-shadow: 0 0 8px var(--emerald-glow); }
+        .step-details h4 { font-size: 0.95rem; color: #ffffff; font-weight: 600; }
+        .step-details p { font-size: 0.85rem; color: var(--text-secondary); }
+
+        .action-ingest-trigger {
+            margin-top: 2.5rem;
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--bio-emerald);
+            color: var(--bio-emerald);
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        .action-ingest-trigger:hover {
+            background: var(--bio-emerald);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--emerald-glow);
+        }
+
+        /* --- THE ULTIMATE CAPABILITY MATRIX: LOADED BRIDGES --- */
+        .wallet-capabilities-section {
+            background: linear-gradient(135deg, rgba(18, 22, 31, 0.6) 0%, var(--bg-dark) 100%);
+            border: 1px solid var(--border-muted);
+            border-radius: 12px;
+            padding: 4rem 3rem;
+            margin-bottom: 6rem;
+        }
+
+        .capabilities-title { text-align: center; margin-bottom: 4rem; }
+        .capabilities-title h2 { font-size: 2.4rem; font-weight: 800; letter-spacing: -0.5px; }
+        .capabilities-title p { color: var(--text-secondary); margin-top: 0.5rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .capabilities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .capability-node-card {
+            background: rgba(10, 12, 16, 0.5);
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .capability-node-card:hover { transform: translateY(-4px); border-color: var(--mesh-blue); }
+        .cap-icon-box {
+            font-size: 1.75rem; color: var(--mesh-blue); margin-bottom: 1.2rem;
+            width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 113, 227, 0.05); border-radius: 6px;
+        }
+        .capability-node-card h3 { font-size: 1.15rem; color: #ffffff; margin-bottom: 0.75rem; }
+        .capability-node-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+        /* --- FORENSIC SYSTEM SPECIFICATIONS --- */
+        .forensic-specs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 6rem;
+            border-top: 1px solid var(--border-muted);
+            padding-top: 5rem;
+        }
+        .spec-essay h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1.5rem; }
+        .spec-essay p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; }
+        
+        .technical-telemetry-box {
+            background: #06080c;
+            border: 1px solid var(--border-muted);
+            border-radius: 8px;
+            padding: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .telemetry-line { border-bottom: 1px dashed rgba(255,255,255,0.05); padding: 0.5rem 0; display: flex; justify-content: space-between; }
+        .telemetry-line span:last-child { color: var(--bio-emerald); }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float-hologram {
+            0%, 100% { transform: perspective(1000px) rotateY(15deg) rotateX(10deg) translateY(0px); }
+            50% { transform: perspective(1000px) rotateY(20deg) rotateX(12deg) translateY(-10px); }
+        }
+        @keyframes laser-sweep {
+            0%, 100% { top: 0%; opacity: 0.3; }
+            50% { top: 100%; opacity: 1; }
+        }
+
+        /* --- UNIFIED HIGH DENSITY MASTER FOOTER MATRIX --- */
+        footer {
+            background-color: #06080b;
+            border-top: 1px solid var(--border-muted);
+            padding: 6rem 2rem 2rem;
+            width: 100%;
+        }
+
+        .footer-matrix {
+            max-width: 1400px;
+            margin: 0 auto 5rem auto;
+            display: grid;
+            grid-template-columns: 1.5fr repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .footer-brand { display: flex; flex-direction: column; gap: 1.2rem; }
+        .footer-brand p { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.6; max-width: 320px; }
+
+        .footer-links h5 {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .footer-links ul li a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+            display: inline-block;
+        }
+        .footer-links ul li a:hover { color: var(--mesh-blue); padding-left: 2px; }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+
+        @media (max-width: 1200px) {
+            .grid-layout, .capabilities-grid, .forensic-specs { grid-template-columns: 1fr; }
+            .footer-matrix { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- UNIFIED GLOBAL NAVIGATION HEADER -->
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo-block">
+                <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.75rem;"></i>
+                <span class="logo-title">REALAiID Bureau</span>
+            </a>
+            <nav>
+                <a href="protocol-architecture-core.html">The Protocol</a>
+                <a href="bridge-network-integration.html">Bridges</a>
+                <a href="aii-compute-currency-engine.html">$AII Economy</a>
+                <a href="governance-ledger-consensus.html">Governance</a>
+                <button onclick="window.location.href='biogenesis-human.html';" style="background: var(--mesh-blue); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.8rem;">ACCESS WALLET</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- INGEST HERO TITLE -->
+        <section class="ingest-hero">
+            <span class="core-registry">IDENTITY INITIALIZATION ENGINE // PHYSICAL TO CHIPS MATRIX</span>
+            <h1>BioGenesis™ Human Ingest</h1>
+            <p class="ingest-subtitle">Bind your physical existence to the unalterable sovereign grid. The BioGenesis platform registers localized biological parameters without transmitting raw trace metadata to remote locations.</p>
+        </section>
+
+        <!-- VISUAL THEATER & LIVE CHECKPOINT STEPPERS -->
+        <div class="grid-layout">
+            <div class="scanner-render-stage">
+                <div class="matrix-mesh-floor"></div>
+                
+                <div class="hologram-container-3d">
+                    <div class="biometric-laser-line"></div>
+                    
+                    <div class="hologram-layer layer-depth-1">
+                        <div class="dna-node-dot" style="top: 20%; left: 40%;"></div>
+                        <div class="dna-node-dot" style="top: 60%; left: 70%;"></div>
+                    </div>
+                    <div class="hologram-layer layer-depth-2">
+                        <i class="ph-light ph-user-focus" style="font-size: 8rem; color: var(--bio-emerald); opacity: 0.6;"></i>
+                        <div class="dna-node-dot" style="top: 40%; left: 25%; background: var(--mesh-blue);"></div>
+                        <div class="dna-node-dot" style="top: 75%; left: 50%; background: var(--mesh-blue);"></div>
+                    </div>
+                    <div class="hologram-layer layer-depth-3">
+                        <div class="dna-node-dot" style="top: 30%; left: 80%; background: var(--gold-reserve);"></div>
+                        <div class="dna-node-dot" style="top: 80%; left: 20%; background: var(--gold-reserve);"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ingest-monitor-sidebar">
+                <div>
+                    <div class="monitor-header">
+                        <div class="monitor-tag">LOCAL CAPTURE MATRIX</div>
+                        <div class="monitor-headline">Ingest Pipeline</div>
+                    </div>
+
+                    <div class="ingest-steps-stack">
+                        <div class="step-row active">
+                            <div class="step-indicator">01</div>
+                            <div class="step-details">
+                                <h4>Hardware Sandbox Binding</h4>
+                                <p>Isolating primary secure computing elements to receive localized algorithmic identity seeds.</p>
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-indicator">02</div>
+                            <div class="step-details">
+                                <h4>Biological Structuring</h4>
+                                <p>Extracting zero-knowledge facial lattice models and signature vectors cleanly.</p>
+                            </div>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-indicator">03</div>
+                            <div class="step-details">
+                                <h4>Sovereign Bridge Verification</h4>
+                                <p>Cross-validating data points against loaded identification modules seamlessly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="action-ingest-trigger">INITIALIZE INGEST PROTOCOL</button>
+            </div>
+        </div>
+
+        <!-- THE ULTIMATE WALLET BRIDGE CAPABILITY MATRIX -->
+        <section class="wallet-capabilities-section">
+            <div class="capabilities-title">
+                <h2>Functional Matrix of Loaded Wallet Bridges</h2>
+                <p>When credential and cryptographic bridges are fully initialized and loaded into your sovereign REALAiID Wallet framework, you achieve immediate structural power across multiple distributed computational layers:</p>
+            </div>
+
+            <div class="capabilities-grid">
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-fingerprint"></i></div>
+                    <h3>Sovereign Document Digitalization</h3>
+                    <p>Convert real-world state passports, physical operating credentials, and foundational identification papers into cryptographic assets securely tied to your unique biological signature.</p>
+                </div>
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-arrows-merge"></i></div>
+                    <h3>Cross-Protocol Zero Knowledge Integration</h3>
+                    <p>Authorize verification checks across global transit parameters, medical registration networks, and asset ledgers without revealing your raw underlying document details.</p>
+                </div>
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-bank"></i></div>
+                    <h3>Autonomous Wealth Settlement</h3>
+                    <p>Initialize personal asset vaults tied explicitly to your biological proof-of-life status. Execute zero-counterparty transactions over verified currency networks instantly.</p>
+                </div>
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-network"></i></div>
+                    <h3>Consensus Modification Sponsorship</h3>
+                    <p>Leverage the structural weight of your combined validation history to propose structural protocol updates and cast protected architectural votes directly on the governance ledger.</p>
+                </div>
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-shield-check"></i></div>
+                    <h3>Forensic Asset Insulation</h3>
+                    <p>Enforce strict air-gapped cryptographic defense profiles. If hardware theft parameters are crossed, your assets decouple from local viewing software securely.</p>
+                </div>
+                <div class="capability-node-card">
+                    <div class="cap-icon-box"><i class="ph-bold ph-users-three"></i></div>
+                    <h3>Multi-Signature Legacy Execution</h3>
+                    <p>Establish automated smart recovery conditions, routing structural identity titles, computing credits, and asset rights to successor nodes upon loss of physical validation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORENSIC SPECIFICATIONS AND ESSAY FOR CUSTOMER DEEP UNDERSTANDING -->
+        <section class="forensic-specs">
+            <div class="spec-essay">
+                <h2>Forensically Covert Distribution</h2>
+                <p>The BioGenesis design rejects centralized verification entirely. Standard frameworks stream biometric profiles directly into corporate server rooms, exposing users to systemic database failures, corporate monetization loops, and tracking vectors.</p>
+                <p>REALAiID processes all ingestion mathematics inside your isolated chip layers. The system matches facial points and biological structures locally, generating a blind mathematical token. This token proves identity across the decentralized network while leaving your actual physical identity parameters hidden.</p>
+            </div>
+
+            <div class="technical-telemetry-box">
+                <div style="border-bottom: 1px solid var(--border-muted); padding-bottom: 0.75rem; margin-bottom: 0.75rem; font-weight: bold; color: white;">
+                    SYSTEM DIAGNOSTIC TELEMETRY
+                </div>
+                <div class="telemetry-line"><span>Local Processing Layer</span> <span>Secure Element / Air-Gapped Sandbox</span></div>
+                <div class="telemetry-line"><span>Hash Resolution Algorithm</span> <span>ZK-Biogenesis-v4</span></div>
+                <div class="telemetry-line"><span>Network Synchronization Mode</span> <span>Peer-To-Peer Mesh (Node 50)</span></div>
+                <div class="telemetry-line"><span>Identity Sovereignty Status</span> <span>100% USER OWNED // NO CENTRAL LOGS</span></div>
+                <div class="telemetry-line"><span>Cryptographic Validation Speed</span> <span>12ms Local Compile</span></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- UNIFIED HIGH DENSITY MULTI-COLUMN COMPREHENSIVE LINK MATRIX FOOTER -->
+    <footer>
+        <div class="footer-matrix">
+            <div class="footer-brand">
+                <a href="index.html" class="logo-block">
+                    <i class="ph-fill ph-shield-star" style="color: var(--mesh-blue); font-size: 1.5rem;"></i>
+                    <span class="logo-title">REALAiID Bureau</span>
+                </a>
+                <p>The global infrastructure framework layer for verified human identity, autonomous banking nodes, and asset sovereignty networks.</p>
+            </div>
+
+            <div class="footer-links">
+                <h5>Identity Anchors</h5>
+                <ul>
+                    <li><a href="passport-download.html">REALAiID Passport™</a></li>
+                    <li><a href="biogenesis-human.html">BioGenesis™ Human</a></li>
+                    <li><a href="product-vssn2.html">Starter Anchor Node</a></li>
+                    <li><a href="product-standard.html">Standard Human Core</a></li>
+                    <li><a href="aiK9likeness.html">Pet Likeness Anchor</a></li>
+                    <li><a href="newbornLikenessAnchor.html">Digital Newborn Base</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Security Bricks</h5>
+                <ul>
+                    <li><a href="vocalforge-core.html">VocalForge™ Hashing</a></li>
+                    <li><a href="animalock-pet.html">AnimaLock™ Companion</a></li>
+                    <li><a href="heirroot-baby.html">HeirRoot™ Legacy</a></li>
+                    <li><a href="product-likeness-shield.html">Likeness Shield™</a></li>
+                    <li><a href="product-media-seal.html">Bio Media Seal™</a></li>
+                    <li><a href="product-drive-knot.html">Drive-Knot Auto™</a></li>
+                    <li><a href="schoolsecure-main.html">SchoolSecure™ Core</a></li>
+                    <li><a href="schoolsecure-visitor.html">SchoolSecure™ Visitor</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>Compute Economy</h5>
+                <ul>
+                    <li><a href="sandbox-signup.html" style="color: var(--gold-reserve); font-weight: bold;">Core-Mesh Sandbox™</a></li>
+                    <li><a href="product-liquidity-vault.html">$AII Vault Node</a></li>
+                    <li><a href="presenceyield-vault.html">PresenceYield™ Matrix</a></li>
+                    <li><a href="aii-individual.html">$AII Nexus Individual™</a></li>
+                    <li><a href="aii-fleet.html">$AII Synapse Grid™</a></li>
+                    <li><a href="aii-m2m.html">$AII Kinetic Flow™</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h5>The Bureau Matrix</h5>
+                <ul>
+                    <li><a href="voyagepass-free.html">REALAiID Voyage Pass™</a></li>
+                    <li><a href="embarksecure-main.html">EmbarkSecure™ Matrix</a></li>
+                    <li><a href="sentryboard-core.html">SentryBoard™ Terminal</a></li>
+                    <li><a href="robosign-industrial.html">RoboSign™ Industrial</a></li>
+                    <li><a href="robosign-hearth.html">RoboSign™ Hearth</a></li>
+                    <li><a href="robosign-fleet.html">RoboSign™ Fleet</a></li>
+                    <li><a href="robosign-foundry.html">RoboSign™ Foundry</a></li>
+                    <li><a href="lexmed-verifier.html">LexMed Verifier™</a></li>
+                    <li><a href="aegispass-transit.html">Aegis Pass™ Transit</a></li>
+                    <li><a href="bridge-17-professional.html">Prof. Liaison Node</a></li>
+                    <li><a href="product-sovereign.html">Supreme Ruler™ Core</a></li>
+                    <li><a href="precinct-seating.html">Precinct Seating™</a></li>
+                    <li><a href="oracle-arbitrage.html">Oracle Arbitrage™</a></li>
+                    <li><a href="citadel-elite.html">Citadel Elite™ Loop</a></li>
+                    <li><a href="benthic-lease.html">Benthic Lease™ Module</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 REALAiID Bureau // COMPUTATIONAL BANKING NODE 50</span>
+            <span>RESERVE BALANCE: FULL AUDIT METRICS ACTIVE // DATA STATE: SOVEREIGN</span>
+        </div>
+    </footer>
+
+</body>
+</html>
