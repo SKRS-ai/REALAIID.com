@@ -2,51 +2,65 @@
 <html lang="en" class="bg-slate-950 text-slate-200">
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .id-card-glow { box-shadow: 0 0 30px rgba(6, 182, 212, 0.2); }
+        .wireframe-face { border: 2px solid #06b6d4; background: rgba(0,0,0,0.3); position: relative; }
+        .wireframe-face::after { content: "GRID SILHOUETTE"; color: #06b6d4; font-size: 10px; text-align: center; display: block; margin-top: 40%; }
+    </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="w-full border-b border-gray-800 bg-black/40">
-        <!-- (Insert your established header code here) -->
-    </header>
+<body class="p-8 max-w-6xl mx-auto">
 
-    <main class="flex-grow max-w-7xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-12">
-        <!-- 3D Visualization Section -->
-        <section class="sticky top-6">
-            <div id="id-template" class="w-full h-96 bg-gradient-to-br from-blue-900 to-black rounded-xl border border-blue-500/30 p-8 shadow-2xl shadow-blue-500/20 flex flex-col justify-between">
-                <h2 class="text-2xl font-bold tracking-widest text-blue-400">REALAiID BUREAU</h2>
-                <div id="live-name" class="text-4xl font-mono border-b border-blue-500/50 pb-2">FIRST LAST NAME</div>
-                <p class="text-xs uppercase opacity-70 tracking-tighter">Sovereign Biometric Root Initialized</p>
+    <div class="grid md:grid-cols-2 gap-12">
+        <!-- LIVE ID CARD -->
+        <div id="id-card" class="id-card-glow w-full max-w-md h-72 bg-slate-900 border border-cyan-500/50 p-6 rounded-lg flex gap-6">
+            <div class="wireframe-face w-32 h-full flex-shrink-0"></div>
+            <div class="flex flex-col justify-between w-full">
+                <div>
+                    <div id="display-name" class="text-xl font-bold uppercase text-cyan-400">YOUR NAME</div>
+                    <div class="mt-4 text-[10px] uppercase opacity-80">Digital Human Status</div>
+                    <div class="text-cyan-300 font-bold">NEUTRALIZING synthetic FRAUD</div>
+                </div>
+                <div class="text-[10px] uppercase">
+                    <p>Bridges Active: <span id="bridge-count">0</span>/38</p>
+                    <p>Randomized Sovereign ID: <span class="text-cyan-400">XXX-XXX-XXX</span></p>
+                    <p>Digital Human Class: <span class="text-cyan-400">TBA</span></p>
+                    <p>Valid Through: <span class="text-cyan-400">2029</span></p>
+                </div>
             </div>
-        </section>
+        </div>
 
-        <!-- Configuration Section -->
-        <section>
-            <h1 class="text-3xl font-bold uppercase mb-6">Initialize Prime Identity</h1>
-            <input id="nameInput" type="text" placeholder="Enter Full Name" class="w-full bg-slate-900 border border-slate-700 p-3 mb-6 rounded">
-            
-            <div class="grid grid-cols-2 gap-3 overflow-y-auto max-h-[500px] pr-2">
-                <!-- Dynamically generate bridges -->
+        <!-- FORM INPUTS -->
+        <div>
+            <input id="nameInput" type="text" placeholder="Enter Full Name" class="w-full bg-black border border-cyan-900 p-3 mb-6 rounded text-cyan-400 uppercase font-bold">
+            <div class="max-h-[400px] overflow-y-auto space-y-2 border border-slate-800 p-4">
+                <!-- Bridge Checkboxes -->
                 <script>
-                    const bridges = ["B-01 Auth Root", "B-02 Civic Core", "B-03 HR Liaison", "B-04 Civic Ballot", "B-05 Ambient Auth", "B-06 Keystone Plate", "B-07 Entra Defense", "B-08 Physical UAC", "B-09 DMV Authority", "B-10 Fiscal Root", "B-11 Pet Likeness", "B-12 Vital Records", "B-13 Medical Root", "B-14 Property Deeds", "B-15 Safe Owner", "B-16 Satoshi Root", "B-17 Professional", "B-18 SSA Tokenizer", "B-19 Bio-Sign", "B-20 Escrow Ruler", "B-21 Citadel Escrow", "B-22 DTC Travel", "B-23 Amex Anchor", "B-24 Credit Authority", "B-25 Insurance", "B-26 Mastercard Rail", "B-27 Academic Root", "B-28 Global Notary", "B-29 Logistics Sync", "B-30 Auto Anchor", "B-31 AII Economy", "B-32 God Sense", "B-33 Benthic Pulse", "B-34 Oracle Flux", "B-35 Justice Rail", "B-36 Doge Bridge", "B-37 Federal Sync", "B-38 Precinct Root", "B-39 Identity Vault"];
-                    bridges.forEach(b => {
-                        document.write(`<label class="flex items-center p-2 bg-slate-900 rounded cursor-pointer hover:bg-blue-900/20 text-[10px] uppercase font-bold">
-                            <input type="checkbox" class="mr-2">${b}
+                    const bridges = ["B-01 Auth Root", "B-02 Civic Core", "B-03 HR Liaison", "B-04 Civic Ballot", "B-05 Ambient Auth", "B-06 Keystone Plate", "B-07 Entra Defense", "B-08 Physical UAC", "B-09 DMV Authority", "B-10 Fiscal Root", "B-11 Pet Likeness", "B-12 Vital Records", "B-13 Medical Root", "B-14 Property Deeds", "B-15 Safe Owner", "B-16 Satoshi Root", "B-17 Professional", "B-18 SSA Tokenizer", "B-19 Bio-Sign", "B-20 Escrow Ruler", "B-21 Citadel Escrow", "B-22 DTC Travel", "B-23 Amex Anchor", "B-24 Credit Authority", "B-25 Insurance", "B-26 Mastercard Rail", "B-27 Academic Root", "B-28 Global Notary", "B-29 Logistics Sync", "B-30 Auto Anchor", "B-31 AII Economy", "B-32 God Sense", "B-33 Benthic Pulse", "B-34 Oracle Flux", "B-35 Justice Rail", "B-36 Doge Bridge", "B-37 Federal Sync", "B-38 Precinct Root"];
+                    bridges.forEach((b, i) => {
+                        document.write(`<label class="flex justify-between items-center text-[10px] hover:bg-slate-800 p-1 cursor-pointer">
+                            <span>${b}</span>
+                            <span class="text-cyan-600">$15.00/mo</span>
+                            <input type="checkbox" class="bridge-check" onchange="updateStats()">
                         </label>`);
                     });
                 </script>
             </div>
-            <button onclick="window.location.href='payment.html'" class="mt-8 w-full bg-blue-600 py-4 font-bold uppercase tracking-widest hover:bg-blue-500">Commit to Prime Identity</button>
-        </section>
-    </main>
-
-    <!-- Professional Footer -->
-    <footer class="border-t border-gray-800 bg-black mt-12 p-8 text-[10px] text-slate-500 uppercase tracking-widest">
-        <div class="grid grid-cols-4 gap-6 max-w-7xl mx-auto">
-            <div><h4 class="text-blue-500 mb-2">Institutional</h4><a href="index.html" class="block hover:text-white">The Bureau</a><a href="WhatisREALAiiD.html" class="block hover:text-white">What is REALAiiD?</a><a href="api-docs.html" class="block hover:text-white">API Documentation</a></div>
-            <div><h4 class="text-blue-500 mb-2">Bridges</h4><a href="bridge-infrastructure-hub.html" class="block hover:text-white">Infrastructure</a><a href="biosign-core.html" class="block hover:text-white">BioSign™</a><a href="robosign-core.html" class="block hover:text-white">RoboSign™</a></div>
-            <div><h4 class="text-blue-500 mb-2">Identity</h4><a href="REALaiid-wallet.html" class="block hover:text-white">Hardware Vault</a><a href="realaiid-wallet-integration.html" class="block hover:text-white">Mobile Sync</a><a href="forensic-terminal.html" class="block hover:text-white">Forensic Terminal</a></div>
-            <div><h4 class="text-blue-500 mb-2">Legal</h4><a href="#" class="block hover:text-white">Terms of Sovereignty</a><a href="#" class="block hover:text-white">Data Privacy Mesh</a><a href="#" class="block hover:text-white">No Fakes Compliance</a></div>
         </div>
-    </footer>
+    </div>
+
+    <script>
+        // Real-time updates
+        const nameInput = document.getElementById('nameInput');
+        const displayName = document.getElementById('display-name');
+        
+        nameInput.addEventListener('input', (e) => {
+            displayName.innerText = e.target.value || "YOUR NAME";
+        });
+
+        function updateStats() {
+            const checked = document.querySelectorAll('.bridge-check:checked').length;
+            document.getElementById('bridge-count').innerText = checked;
+        }
+    </script>
 </body>
 </html>
