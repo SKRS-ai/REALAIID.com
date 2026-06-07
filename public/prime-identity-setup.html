@@ -1,65 +1,99 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-black text-slate-300">
+<html lang="en">
 <head>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #ffffff; color: #1e293b; }
+        .id-card-shadow { box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); }
+        .wireframe-face { border: 2px solid #0f172a; background: #f8fafc; position: relative; }
+        .wireframe-face::after { content: "GRID SILHOUETTE"; color: #94a3b8; font-size: 8px; text-align: center; display: block; margin-top: 50%; }
+    </style>
 </head>
 <body class="p-4 md:p-8 max-w-6xl mx-auto">
 
-    <!-- Header (Assuming your existing header) -->
-    
-    <div class="grid md:grid-cols-2 gap-8 mt-8">
-        <!-- Visualization Card -->
-        <div class="space-y-6">
-            <div id="id-card" class="w-full max-w-md h-72 bg-slate-900 border border-cyan-500/50 p-6 rounded-lg flex gap-6 shadow-[0_0_20px_rgba(6,182,212,0.1)]">
-                <div class="w-32 h-full border-2 border-cyan-500 bg-black/50 flex flex-col items-center justify-center text-[8px] text-cyan-600">GRID SILHOUETTE</div>
+    <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="sticky top-8 space-y-6">
+            <div id="id-card" class="id-card-shadow w-full max-w-md h-72 bg-slate-50 border border-slate-200 p-8 rounded-2xl flex gap-6">
+                <div class="wireframe-face w-32 h-full flex-shrink-0"></div>
                 <div class="flex flex-col justify-between w-full">
                     <div>
-                        <div id="display-name" class="text-lg font-bold uppercase text-cyan-400">YOUR NAME</div>
-                        <div class="text-[9px] uppercase opacity-70 mt-2">Digital Human Status: Neutralized</div>
+                        <div id="display-name" class="text-xl font-black uppercase text-slate-900 tracking-wider">YOUR NAME</div>
+                        <div class="mt-4 text-[10px] font-bold uppercase text-slate-500">Digital Human Status</div>
+                        <div class="text-emerald-600 font-black text-sm uppercase">Neutralizing Synthetic Fraud</div>
                     </div>
-                    <div class="text-[10px] uppercase">
-                        <p>Bridges Active: <span id="bridge-count">0</span>/39</p>
-                        <p>ID: <span class="text-cyan-400">XXX-XXX-XXX</span></p>
-                        <p>Class: <span class="text-cyan-400">TBA</span> | Exp: <span class="text-cyan-400">2029</span></p>
+                    <div class="text-[11px] font-medium uppercase text-slate-600 space-y-1">
+                        <p>Bridges Active: <span id="bridge-count" class="text-slate-900 font-bold">0</span>/39</p>
+                        <p>ID: <span class="text-slate-900 font-bold">XXX-XXX-XXX</span></p>
+                        <p>Class: <span class="text-slate-900 font-bold">TBA</span> | Exp: <span class="text-slate-900 font-bold">2029</span></p>
                     </div>
                 </div>
             </div>
-            
-            <div class="bg-slate-900 p-6 border border-slate-800 rounded">
-                <h2 class="text-lg font-bold text-white mb-2">Instructions</h2>
-                <p class="text-sm">1. Enter your name to ghost it onto your digital ID. <br> 2. Select the "Bridges" below to digitize your physical documents. <br> 3. Click <b>"Ingest Biometrics"</b> to finalize your Handshake Knot™ and secure your identity.</p>
-                <button onclick="window.location.href='mainframe.html'" class="mt-6 w-full bg-cyan-700 py-3 font-bold uppercase hover:bg-cyan-600">Ingest Biometrics</button>
+
+            <div class="bg-slate-100 p-8 rounded-xl border border-slate-200">
+                <h2 class="text-xl font-bold mb-4">Identity Configuration</h2>
+                <p class="text-sm text-slate-600 mb-6 leading-relaxed">Ghost your identity into the Bureau's mesh. Select your credentials below to begin digitizing your physical existence.</p>
+                <button onclick="window.location.href='mainframe.html'" class="w-full bg-slate-900 text-white py-4 font-bold uppercase tracking-widest hover:bg-black transition-all">Ingest Biometrics</button>
             </div>
         </div>
 
-        <!-- Selection Grid -->
-        <div class="h-[600px] overflow-y-auto pr-4 border border-slate-800 p-4">
-            <h3 class="text-xl font-bold mb-4 text-white">Select Your Bridges</h3>
-            <div id="grid-container" class="space-y-3">
+        <div>
+            <input id="nameInput" type="text" placeholder="Enter Full Legal Name" class="w-full bg-white border border-slate-300 p-4 mb-8 rounded-lg text-lg uppercase font-bold focus:ring-2 focus:ring-slate-900 outline-none">
+            
+            <div class="h-[600px] overflow-y-auto space-y-2 pr-2">
                 <script>
-                    const bridges = [
-                        {id: "B-01", name: "Auth Root", desc: "Replaces all passwords with your fingerprint."},
-                        {id: "B-02", name: "Civic Core", desc: "Proof of personhood without metadata."},
-                        {id: "B-03", name: "HR Liaison", desc: "Replaces plastic work badges."},
-                        {id: "B-09", name: "DMV Authority", desc: "Digitizes your driver's license."},
-                        {id: "B-14", name: "Property Deeds", desc: "Secures real estate titles to your biometrics."},
-                        {id: "B-22", name: "DTC Travel", desc: "Replaces paper passport for travel."},
-                        {id: "B-28", name: "Global Notary", desc: "Legally binding digital witness seal."},
-                        {id: "B-39", name: "Identity Vault", desc: "Master encrypted backup of all credentials."}
-                        // Add remaining B-04 through B-38 here similarly
+                    const bridgeData = [
+                        {id: "B-01", name: "Auth Root", desc: "Replaces all passwords with your fingerprint.", link: "bridge-01-auth-root.html"},
+                        {id: "B-02", name: "Civic Core", desc: "Proof of personhood without metadata.", link: "bridge-02-civic-core.html"},
+                        {id: "B-03", name: "HR Liaison", desc: "Replaces plastic work badges.", link: "bridge-03-hr-liaison.html"},
+                        {id: "B-04", name: "Civic Ballot", desc: "Exercise democratic power anonymously.", link: "bridge-04-civic-ballot.html"},
+                        {id: "B-05", name: "Ambient Auth", desc: "Presence-based environment access.", link: "bridge-05-ambient-auth.html"},
+                        {id: "B-06", name: "Keystone Plate", desc: "Automated compliance filings.", link: "bridge-06-keystone-plate.html"},
+                        {id: "B-07", name: "Entra Defense", desc: "Bio-link to corporate identity mesh.", link: "bridge-07-entra-defense.html"},
+                        {id: "B-08", name: "Physical UAC", desc: "Hardware-bound building entry.", link: "bridge-08-uac-physical.html"},
+                        {id: "B-09", name: "DMV Authority", desc: "Digital driver's license replacement.", link: "bridge-09-dmv-authority.html"},
+                        {id: "B-10", name: "Fiscal Root", desc: "Anchored municipal tax compliance.", link: "bridge-10-fiscal-root.html"},
+                        {id: "B-11", name: "Pet Likeness", desc: "Microchip-to-Sovereign node anchor.", link: "bridge-11-pet-likeness.html"},
+                        {id: "B-12", name: "Vital Records", desc: "Birth/Marriage record digitization.", link: "bridge-12-vital-records.html"},
+                        {id: "B-13", name: "Medical Root", desc: "Emergency life-critical history sync.", link: "bridge-13-medical-root.html"},
+                        {id: "B-14", name: "Property Deeds", desc: "Real estate title theft protection.", link: "bridge-14-property-deeds.html"},
+                        {id: "B-15", name: "Safe Owner", desc: "Asset register bound to intent.", link: "bridge-15-safe-owner.html"},
+                        {id: "B-16", name: "Satoshi Root", link: "bridge-16-satoshi-root.html", desc: "Blockchain-anchored identity state."},
+                        {id: "B-17", name: "Professional", link: "bridge-17-professional.html", desc: "Diploma and licensure verification."},
+                        {id: "B-18", name: "SSA Tokenizer", link: "bridge-18-ssa-tokenizer.html", desc: "Zero-knowledge SSN registry proof."},
+                        {id: "B-19", name: "Bio-Sign", link: "bridge-19-bio-sign.html", desc: "Forensically unalterable witness seal."},
+                        {id: "B-20", name: "Sovereign Escrow", link: "bridge-20-sovereign-escrow.html", desc: "Bio-intent governed smart contracts."},
+                        {id: "B-21", name: "Citadel Escrow", link: "bridge-21-citadel-escrow.html", desc: "High-value asset safety deposit."},
+                        {id: "B-22", name: "DTC Travel", link: "bridge-22-dtc-travel.html", desc: "ICAO-verified global border passage."},
+                        {id: "B-23", name: "Amex Anchor", link: "bridge-23-amex-anchor.html", desc: "Direct institutional finance link."},
+                        {id: "B-24", name: "Credit Authority", link: "bridge-24-credit-authority.html", desc: "Real-time solvency projection."},
+                        {id: "B-25", name: "Insurance", link: "bridge-25-insurance.html", desc: "Active ledger-based coverage proof."},
+                        {id: "B-26", name: "Mastercard Rail", link: "bridge-26-mastercard-rail.html", desc: "POS biometric transaction key."},
+                        {id: "B-27", name: "Academic Root", link: "bridge-27-academic-root.html", desc: "Transcript/GPA university verification."},
+                        {id: "B-28", name: "Global Notary", link: "bridge-28-global-notary.html", desc: "Cryptographic witnessed affidavit."},
+                        {id: "B-29", name: "Logistics Sync", link: "bridge-29-logistics-sync.html", desc: "Presence-based parcel routing."},
+                        {id: "B-30", name: "Auto Anchor", link: "bridge-30-automotive-anchor.html", desc: "Car title anti-theft immobilization."},
+                        {id: "B-31", name: "$AII Economy", link: "bridge-31-aii-economy.html", desc: "Compute currency settlement engine."},
+                        {id: "B-32", name: "God Sense", link: "bridge-32-god-sense.html", desc: "Personalized AI cognitive data feed."},
+                        {id: "B-33", name: "Benthic Pulse", link: "bridge-33-benthic-pulse.html", desc: "Deep-data lifetime retrieval node."},
+                        {id: "B-34", name: "Oracle Flux", link: "bridge-34-oracle-flux.html", desc: "Bias-free real-world data stream."},
+                        {id: "B-35", name: "Sovereign Justice", link: "bridge-35-sovereign-justice.html", desc: "Court-sealed forensic data vault."},
+                        {id: "B-36", name: "Doge Bridge", link: "bridge-36-doge-bridge.html", desc: "Ultra-fast micro-payment rail."},
+                        {id: "B-37", name: "Federal Sync", link: "bridge-37-federal-sync.html", desc: "Automated federal registry alignment."},
+                        {id: "B-38", name: "Precinct Root", link: "bridge-38-precinct-root.html", desc: "Residency coordinate verification."},
+                        {id: "B-39", name: "Identity Vault", link: "bridge-39-identity-vault.html", desc: "Master forensic credential backup."}
                     ];
-                    
-                    bridges.forEach(b => {
+
+                    bridgeData.forEach(b => {
                         document.write(`
-                            <div class="flex items-center justify-between bg-slate-900 p-3 rounded border border-slate-700 hover:border-cyan-500 transition">
-                                <label class="flex items-center gap-3 w-full">
-                                    <input type="checkbox" class="bridge-check" onchange="updateStats()">
+                            <div class="flex items-center justify-between bg-white border border-slate-200 p-4 rounded hover:border-slate-900 transition-all">
+                                <label class="flex items-center gap-4 w-full cursor-pointer">
+                                    <input type="checkbox" class="bridge-check w-5 h-5" onchange="updateStats()">
                                     <div>
-                                        <div class="font-bold text-xs">${b.id} // ${b.name}</div>
-                                        <div class="text-[10px] text-slate-400">${b.desc}</div>
+                                        <div class="font-bold text-sm text-slate-900">${b.id} // ${b.name}</div>
+                                        <div class="text-xs text-slate-500">${b.desc}</div>
                                     </div>
                                 </label>
-                                <a href="bridge-${b.id.toLowerCase()}.html" target="_blank" class="text-[9px] text-cyan-500 underline ml-2">INFO</a>
+                                <a href="${b.link}" target="_blank" class="text-xs font-bold text-slate-400 hover:text-slate-900 underline uppercase ml-4">Info</a>
                             </div>
                         `);
                     });
@@ -67,5 +101,17 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        const displayName = document.getElementById('display-name');
+        nameInput.addEventListener('input', (e) => {
+            displayName.innerText = e.target.value || "YOUR NAME";
+        });
+        function updateStats() {
+            const checked = document.querySelectorAll('.bridge-check:checked').length;
+            document.getElementById('bridge-count').innerText = checked;
+        }
+    </script>
 </body>
 </html>
