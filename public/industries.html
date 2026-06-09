@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-black text-slate-300">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .service-card { border: 1px solid #1e293b; background: #0a0a0a; transition: border 0.3s; }
+        .service-card:hover { border: 1px solid #06b6d4; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="p-8 border-b border-slate-800 flex justify-between items-center">
+        <div class="text-white font-black text-2xl font-mono tracking-tighter">REALAiID // BUREAU</div>
+        <nav class="space-x-6 text-xs uppercase tracking-widest text-slate-500">
+            <a href="index.html" class="hover:text-cyan-400">Dashboard</a>
+            <a href="identity-app.html" class="hover:text-cyan-400">Wallet</a>
+            <a href="industries.html" class="text-cyan-400">Industries</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow p-8 max-w-6xl mx-auto">
+        <h1 class="text-4xl font-black text-white mb-2 tracking-tighter">INDUSTRIES WE SERVICE</h1>
+        <p class="text-slate-500 mb-12">Sovereign presence across critical global infrastructures.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Financial & Fiscal Services</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Authenticated transactions, credit reporting, escrow management, and tax compliance.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Replaces static cards and paperwork with biometric "handshake" authorizations.</p>
+            </div>
+            
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Travel, Logistics & Transportation</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: International border passage, domestic travel, shipping/freight routing, and automotive title management.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Modernizes the "passport" experience with real-time residency verification.</p>
+            </div>
+
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Civic & Government Infrastructure</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Voter registration, vital records (birth/marriage), and federal registry synchronization.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Exercises democratic rights with cryptographic anonymity and zero-metadata leaks.</p>
+            </div>
+
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Healthcare & Life Sciences</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Patient identity management, medical root records, and emergency access protocols.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Instantly ingests life-critical health history via biometric signature.</p>
+            </div>
+
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Corporate & Industrial</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Employee onboarding, access control, professional certifications, and corporate defense.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Proves credentials instantly to employers via unalterable verified rails.</p>
+            </div>
+
+            <div class="service-card p-6">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Property & Asset Management</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Real estate deeds, high-value asset registers, and property ownership.</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-slate-700 pl-3">Value: Anchors titles to your biological root, neutralizing real estate theft.</p>
+            </div>
+
+            <div class="service-card md:col-span-2 p-6 bg-slate-900 border-cyan-900/50">
+                <h3 class="text-lg font-bold text-cyan-400 mb-2">Digital Economy & AI Interaction</h3>
+                <p class="text-sm text-slate-400 mb-4">Focus: Compute currency ($AII), AI-assisted cognitive services (God Sense), and decentralized data storage (Benthic Pulse).</p>
+                <p class="text-xs text-slate-500 leading-relaxed italic border-l-2 border-cyan-700 pl-3">Value: Powers personalized AI assistants with verified, non-hallucinated personal data streams.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="p-16 border-t border-slate-800 bg-[#050505]">
+        <div class="max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+            <div class="sm:col-span-2 lg:col-span-1">
+                <div class="font-mono text-white font-black text-2xl">REALAiID // BUREAU</div>
+                <p class="text-xs text-slate-500 mt-4">Establishing Biological Truth under Node PHL-01.</p>
+            </div>
+            </div>
+    </footer>
+
+</body>
+</html>
