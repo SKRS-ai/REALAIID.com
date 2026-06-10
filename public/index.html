@@ -116,8 +116,14 @@
                 <style>
                     .nav-links a { transition: color 0.3s ease; text-decoration: none; }
                     .nav-links a:hover { color: #0071e3 !important; }
+                    
+                    /* Primary Handshake Button */
                     .nav-cta { background: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; transition: background 0.3s; }
                     .nav-cta:hover { background: #1d4ed8; }
+                    
+                    /* Secondary Sign In Button */
+                    .nav-cta-secondary { background: transparent; border: 1px solid #334155; color: #94a3b8; padding: 0.5rem 1rem; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s; }
+                    .nav-cta-secondary:hover { border-color: #06b6d4; color: #06b6d4; }
                 </style>
                 <a href="index.html">The Bureau</a>
                 <a href="WhatisREALAiiD.html">What is REALAiiD?</a>
@@ -128,7 +134,7 @@
                 <a href="REALaiid-wallet.html">Hardware Vault</a>
             </div>
             
-            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <div class="nav-links flex flex-wrap justify-center items-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
                 <a href="about-us.html" class="hover:text-cyan-400">About Us</a>
                 <a href="product-vssn2.html">VSSN Hashing</a>
                 <a href="product-likeness-shield.html">Likeness Shield</a>
@@ -136,7 +142,11 @@
                 <a href="api-docs.html">API Docs</a>
                 <a href="partnership.html">HarborLink Partnership</a>
                 <a href="contact.html" class="text-cyan-400 font-bold border-b border-cyan-400 pb-1">Liaison (Intake)</a>
-                <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
+                
+                <div class="flex gap-2">
+                    <a href="signin.html" class="nav-cta-secondary">Sign In / BioSign</a>
+                    <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
+                </div>
             </div>
         </nav>
     </div>
