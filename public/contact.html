@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liaison | RealAIID.com Institutional Intake</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     
     <style>
         :root {
@@ -32,16 +31,18 @@
         .office-label { font-family: 'JetBrains Mono'; color: var(--sumsub-green); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; display: block; }
         .office-value { font-size: 1rem; font-weight: 600; }
 
-        .contact-form-container { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; background: #FAFAFA; }
-        .form-box { max-width: 500px; width: 100%; }
+        .contact-form-container { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
+        .form-box { max-width: 500px; }
         
-        /* Updated Form Field Styles */
         .input-group { margin-bottom: 25px; }
-        .input-field { width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #CBD5E1; background: transparent; font-size: 1rem; outline: none; transition: 0.3s; }
-        .input-field:focus { border-bottom: 1px solid var(--sumsub-blue); }
-        
+        label { display: block; font-weight: 700; font-size: 0.85rem; color: var(--text-strong); margin-bottom: 8px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 16px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--sumsub-blue); box-shadow: 0 0 0 4px rgba(22, 147, 233, 0.1); }
+
         .btn-send { background: var(--sumsub-blue); color: white; border: none; padding: 18px 40px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.3s; }
         .btn-send:hover { background: #117aca; transform: translateY(-2px); }
+
+        .security-badge { margin-top: 30px; display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: #94A3B8; }
     </style>
 </head>
 <body>
@@ -83,26 +84,32 @@
                 <form action="https://formspree.io/f/mgobzgev" method="POST">
                     <div class="input-group">
                         <label>Full Name / Title</label>
-                        <input type="text" name="name" placeholder="E.G. DIRECTOR OF OPERATIONS" required class="input-field">
+                        <input type="text" name="name" placeholder="e.g. Director of Operations" required>
                     </div>
                     <div class="input-group">
                         <label>Organization</label>
-                        <input type="text" name="organization" placeholder="E.G. PHL AVIATION COMMISSION" required class="input-field">
+                        <input type="text" name="organization" placeholder="e.g. PHL Aviation Commission" required>
                     </div>
                     <div class="input-group">
                         <label>Inquiry Type</label>
-                        <select name="inquiry_type" class="input-field">
+                        <select name="inquiry_type">
                             <option>Sovereign Tier Deployment ($2,499+)</option>
-                            <option>Forensic Audit Consultation</option>
-                            <option>Infrastructure Inquiry</option>
-                            <option>Partnership Interest</option>
+                            <option>Likeness Shield Enterprise</option>
+                            <option>VSSN API License</option>
+                            <option>Media & Licensing (Solomon Kin)</option>
+                            <option>General Bureau Inquiry</option>
                         </select>
                     </div>
                     <div class="input-group">
                         <label>Message Payload</label>
-                        <textarea name="message" rows="5" placeholder="OUTLINE YOUR SECURITY REQUIREMENTS..." required class="input-field"></textarea>
+                        <textarea name="message" rows="5" placeholder="Outline your security requirements or creative project..." required></textarea>
                     </div>
                     <button type="submit" class="btn-send">Dispatch to Mainframe</button>
+                    
+                    <div class="security-badge">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        End-to-End Encrypted Handshake Protocol Active
+                    </div>
                 </form>
             </div>
         </section>
