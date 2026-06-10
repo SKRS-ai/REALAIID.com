@@ -5,95 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liaison | RealAIID.com Institutional Intake</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --sumsub-green: #18B494;
-            --sumsub-blue: #1693E9;
-            --text-strong: #0B1320;
-            --bg-liaison: #FFFFFF;
+        :root { 
+            --sumsub-green: #18B494; 
+            --sumsub-blue: #1693E9; 
+            --text-strong: #0B1320; 
+            --bg-liaison: #FFFFFF; 
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--bg-liaison); color: #475569; line-height: 1.6; }
-
+        
         .header { background: white; height: 110px; display: flex; align-items: center; padding: 0 5%; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 1000; }
         .logo img { height: 135px; }
-
+        
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - 110px); }
         .contact-info { padding: 80px 15%; background: var(--text-strong); color: white; display: flex; flex-direction: column; justify-content: center; }
         .contact-info h1 { font-size: 3rem; margin-bottom: 30px; line-height: 1.1; }
-        .contact-info p { font-size: 1.1rem; opacity: 0.7; margin-bottom: 40px; }
-
-        .office-details { margin-top: 50px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; }
-        .office-item { margin-bottom: 25px; }
-        .office-label { font-family: 'JetBrains Mono'; color: var(--sumsub-green); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; display: block; }
-        .office-value { font-size: 1rem; font-weight: 600; }
-
+        
         .contact-form-container { padding: 80px 10%; display: flex; flex-direction: column; justify-content: center; }
         .form-box { max-width: 500px; }
         
         .input-group { margin-bottom: 25px; }
         label { display: block; font-weight: 700; font-size: 0.85rem; color: var(--text-strong); margin-bottom: 8px; text-transform: uppercase; }
         input, select, textarea { width: 100%; padding: 16px; border: 1px solid #E2E8F0; border-radius: 8px; font-family: inherit; font-size: 1rem; outline: none; transition: 0.3s; }
-        input:focus { border-color: var(--sumsub-blue); box-shadow: 0 0 0 4px rgba(22, 147, 233, 0.1); }
-
+        input:focus { border-color: var(--sumsub-blue); }
+        
         .btn-send { background: var(--sumsub-blue); color: white; border: none; padding: 18px 40px; border-radius: 8px; font-weight: 800; cursor: pointer; width: 100%; transition: 0.3s; }
-        .btn-send:hover { background: #117aca; transform: translateY(-2px); }
-        .security-badge { margin-top: 30px; display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: #94A3B8; }
+        .btn-send:hover { background: #117aca; }
     </style>
 </head>
 <body>
-
     <header class="header">
         <div class="logo"><img src="realaiid_commonwealth_logo_2026217.png" alt="RealAIID"></div>
-        <nav style="margin-left:auto; display:flex; gap:30px; font-weight: 600;">
-            <a href="index.html" style="text-decoration:none; color:var(--text-strong);">Home</a>
-            <a href="solutions.html" style="text-decoration:none; color:var(--text-strong);">Solutions</a>
-            <a href="resources.html" style="text-decoration:none; color:var(--text-strong);">Resources</a>
-        </nav>
     </header>
-
+    
     <main class="contact-grid">
         <section class="contact-info">
             <h1>Engage the <span>Bureau.</span></h1>
-            <p>Establish a direct link with our Philadelphia Mainframe team for institutional deployment, forensic auditing, or Sovereign-tier support.</p>
-            <div class="office-details">
-                <div class="office-item">
-                    <span class="office-label">Anchor Node</span>
-                    <span class="office-value">1900 Market Street<br>Philadelphia, PA 19103</span>
-                </div>
-            </div>
+            <p>Establish a direct link with our Philadelphia Mainframe team.</p>
         </section>
-
+        
         <section class="contact-form-container">
             <div class="form-box">
-                <h2 style="color: var(--text-strong); margin-bottom: 30px; font-size: 1.8rem;">Intake Request</h2>
-                
                 <form action="https://formspree.io/f/mgobzgev" method="POST">
                     <div class="input-group">
                         <label>Full Name / Title</label>
-                        <input type="text" name="name" placeholder="Director of Operations" required>
+                        <input type="text" name="name" required>
                     </div>
                     <div class="input-group">
                         <label>Work Email</label>
-                        <input type="email" name="email" placeholder="liaison@yourcompany.com" required>
+                        <input type="email" name="email" required>
                     </div>
                     <div class="input-group">
                         <label>Organization</label>
-                        <input type="text" name="organization" placeholder="PHL Aviation Commission" required>
+                        <input type="text" name="organization" required>
                     </div>
+                    
                     <div class="input-group">
                         <label>Inquiry Type</label>
-                        <select name="inquiry_type">
-                            <option value="Sovereign Deployment">Sovereign Tier Deployment</option>
-                            <option value="Forensic Audit">Forensic Audit Consultation</option>
+                        <select name="inquiry_type" required>
+                            <option value="HarborLink-Port-Service">HarborLink: Port Infrastructure Service</option>
+                            <option value="HarborLink-Biometric-Array">HarborLink: Biometric Sensing Array Deployment</option>
+                            <option value="Sovereign-Tier-Deployment">REALAiiD: Sovereign Tier Deployment</option>
+                            <option value="Forensic-Audit">REALAiiD: Forensic Audit Consultation</option>
+                            <option value="Likeness-Shield-Enterprise">REALAiiD: Likeness Shield Enterprise</option>
+                            <option value="VSSN-API-License">REALAiiD: VSSN API Licensing</option>
+                            <option value="Compliance-MTSA">MTSA Regulatory Compliance</option>
+                            <option value="Data-Forensics">Deep Node Data Forensics</option>
+                            <option value="Media-Licensing">Media & Licensing (Solomon Kin)</option>
+                            <option value="General-Bureau-Inquiry">General Bureau Inquiry</option>
                         </select>
                     </div>
+                    
                     <div class="input-group">
                         <label>Message Payload</label>
-                        <textarea name="message" rows="5" placeholder="Outline requirements..." required></textarea>
+                        <textarea name="message" rows="5" required></textarea>
                     </div>
+                    
                     <button type="submit" class="btn-send">Dispatch to Mainframe</button>
                 </form>
             </div>
