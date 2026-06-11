@@ -290,36 +290,99 @@
             </div>
         </section>
 
-        <section class="bridge-explorer-panel">
-            <div class="max-w-6xl mx-auto text-center md:text-left">
-                <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] block mb-2">Operational Command Console</span>
-                <h2 class="text-5xl font-black mb-4">The Saturated Perimeter Matrix</h2>
-                <p class="text-slate-400 font-light max-w-2xl leading-relaxed">
-                    Select an active network node below to inspect exactly what parameters your perimeter commands when the 38-Bridge Core is fully initialized within your wallet infrastructure.
-                </p>
+       <section class="hero-about">
+    <div class="z-10 px-6">
+        <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.6em] mb-4 block animate-pulse">Institutional Heritage // Node PHL-01</span>
+        <h1 class="hero-title">From Micro-Start <br>to Macro-Infrastructure.</h1>
+        <p class="text-xl font-light text-slate-500 max-w-3xl mx-auto leading-relaxed">
+            REALAiID began as a focused engineering startup with a singular goal: to resolve the "Static Identity Crisis." Today, we stand as the primary architects of the 39-bridge sovereign perimeter, scaling our micro-beginnings into a global standard for human-infrastructural verification.
+        </p>
+    </div>
+</section>
 
-                <div class="interactive-grid">
-                    <div class="bridge-list-menu" id="bridge-menu">
-                        <button class="bridge-menu-item active" data-node="B-01">BRIDGE B-01 // AUTH ROOT</button>
-                        <button class="bridge-menu-item" data-node="B-02">BRIDGE B-02 // CIVIC CORE</button>
-                        <button class="bridge-menu-item" data-node="B-09">BRIDGE B-09 // DMV AUTHORITY</button>
-                        <button class="bridge-menu-item" data-node="B-10">BRIDGE B-10 // FISCAL ROOT</button>
-                        <button class="bridge-menu-item" data-node="B-14">BRIDGE B-14 // PROPERTY DEEDS</button>
-                        <button class="bridge-menu-item" data-node="B-31">BRIDGE B-31 // $AII ECONOMY</button>
-                        <button class="bridge-menu-item" data-node="B-35">BRIDGE B-35 // SOVEREIGN JUSTICE</button>
-                    </div>
+<section class="bridge-explorer-panel">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center md:text-left mb-12">
+            <span class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] block mb-2">Startup Stage: Scaling Alpha</span>
+            <h2 class="text-5xl font-black mb-4 text-white">The Saturated Perimeter Matrix</h2>
+            <p class="text-slate-400 font-light max-w-2xl leading-relaxed">
+                Born in a lab and forged in the field, our 39-bridge ecosystem is now fully operational. Select any node below to inspect your sovereign perimeter.
+            </p>
+        </div>
 
-                    <div class="display-screen" id="telemetry-screen">
-                        <span class="font-mono text-xs text-blue-500 mb-2 uppercase tracking-widest" id="tel-node">Node B-01 Matrix</span>
-                        <h3 class="text-3xl font-bold mb-4 text-white" id="tel-title">Auth Root Network</h3>
-                        <p class="text-slate-400 font-light text-sm leading-relaxed text-justify" id="tel-desc">
-                            Turns your uncopyable physical biometrics and skeletal frame coordinates into a universal verification key. Completely bypasses legacy password stacks, eliminating standard phishing, credential harvesting, or synthetic profile takeover attacks at the hardware source layer.
-                        </p>
-                    </div>
+        <div class="interactive-grid">
+            <div class="bridge-list-menu" id="bridge-menu">
                 </div>
+            <div class="display-screen" id="telemetry-screen">
+                <span class="font-mono text-xs text-blue-500 mb-2 uppercase tracking-widest" id="tel-node">Node B-01 Matrix</span>
+                <h3 class="text-3xl font-bold mb-4 text-white" id="tel-title">Auth Root Network</h3>
+                <p class="text-slate-400 font-light text-sm leading-relaxed text-justify" id="tel-desc">
+                    Replaces passwords with hardware-bound biological verification.
+                </p>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
+<script>
+    const fullTelemetryMatrix = {
+        "B-01": { title: "Auth Root", desc: "Replaces passwords with hardware-bound biological verification." },
+        "B-02": { title: "Civic Core", desc: "Liquidates secondary ID checks; proves personhood status." },
+        "B-03": { title: "HR Liaison", desc: "Eliminates work badges; syncs with active rosters." },
+        "B-04": { title: "Civic Ballot", desc: "Precinct eligibility confirmed at the gate with anonymity." },
+        "B-05": { title: "Ambient Auth", desc: "Presence-based authorization for environments." },
+        "B-06": { title: "Keystone Plate", desc: "Automated high-assurance audit logging." },
+        "B-07": { title: "Entra Defense", desc: "Handshake with Entra/Okta via biometric hardware." },
+        "B-08": { title: "Physical UAC", desc: "Interfaces with HID turnstiles; replaces NFC." },
+        "B-09": { title: "DMV Authority", desc: "Digital Driver’s License liquidation for travel." },
+        "B-10": { title: "Fiscal Root", desc: "Automated fiscal anchoring to municipal pools." },
+        "B-11": { title: "Pet Likeness", desc: "Anchors companion medical history to your node." },
+        "B-12": { title: "Vital Records", desc: "Birth/Marriage certificates anchored to state mesh." },
+        "B-13": { title: "Medical Root", desc: "Emergency room life-critical health ingest." },
+        "B-14": { title: "Property Deeds", desc: "Land titles tied to fingerprint for fraud prevention." },
+        "B-15": { title: "Safe Owner", desc: "Asset registers bound to biological intent." },
+        "B-16": { title: "Satoshi Root", desc: "Bitcoin-network interval anchoring for identity." },
+        "B-17": { title: "Professional", desc: "Board certifications and diploma verification." },
+        "B-18": { title: "SSA Tokenizer", desc: "Zero-Knowledge proof for SSN matching." },
+        "B-19": { title: "Bio-Sign", desc: "Forensically unalterable digital contract seals." },
+        "B-20": { title: "Sovereign Escrow", desc: "Smart contracts governed by biological intent." },
+        "B-21": { title: "Citadel Escrow", desc: "Multi-signature asset release bound to your knot." },
+        "B-22": { title: "DTC Travel", desc: "ICAO PKD verified passport projection." },
+        "B-23": { title: "Amex Anchor", desc: "Institutional transaction authorization via rails." },
+        "B-24": { title: "Credit Authority", desc: "Real-time solvency projection for lenders." },
+        "B-25": { title: "Insurance", desc: "Live bridge to carrier ledgers; proves coverage." },
+        "B-26": { title: "Mastercard Rail", desc: "Biometric presence for POS authorization." },
+        "B-27": { title: "Academic Root", desc: "Direct GPA/Degree status verification." },
+        "B-28": { title: "Global Notary", desc: "Witnessed seals for all digital affidavits." },
+        "B-29": { title: "Logistics Sync", desc: "Package routing via 'Current Presence' tracking." },
+        "B-30": { title: "Auto Anchor", desc: "Vehicle ownership bound to root node." },
+        "B-31": { title: "AII Economy", desc: "Engine for compute currency and settlement." },
+        "B-32": { title: "God Sense", desc: "Personal cognitive data for AI capsules." },
+        "B-33": { title: "Benthic Pulse", desc: "Lifetime retrieval of deep data history." },
+        "B-34": { title: "Oracle Flux", desc: "Verified real-world data feeds for dashboards." },
+        "B-35": { title: "Justice Rail", desc: "Forensic vault for legal standing." },
+        "B-36": { title: "Doge Bridge", desc: "Micro-payments for everyday commerce." },
+        "B-37": { title: "Federal Sync", desc: "Automated national/federal pool sync." },
+        "B-38": { title: "Precinct Root", desc: "Residency anchoring via coordinates." },
+        "B-39": { title: "TWIC Anchor", desc: "Biometric validation for maritime security." }
+    };
+
+    const menu = document.getElementById('bridge-menu');
+    for (let i = 1; i <= 39; i++) {
+        const nodeID = `B-${i.toString().padStart(2, '0')}`;
+        const btn = document.createElement('button');
+        btn.className = `bridge-menu-item ${i === 1 ? 'active' : ''}`;
+        btn.innerText = `BRIDGE ${nodeID} // NODE ACTIVE`;
+        btn.onclick = () => {
+            document.getElementById('tel-node').innerText = `${nodeID} Matrix`;
+            document.getElementById('tel-title').innerText = fullTelemetryMatrix[nodeID].title;
+            document.getElementById('tel-desc').innerText = fullTelemetryMatrix[nodeID].desc;
+            document.querySelectorAll('.bridge-menu-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+        menu.appendChild(btn);
+    }
+</script>
         <section class="py-40 text-center bg-slate-50 relative z-10">
             <div class="max-w-4xl mx-auto px-6">
                 <h3 class="font-mono text-xs text-blue-500 uppercase tracking-[0.4em] mb-8">The Global Reserve Standard</h3>
