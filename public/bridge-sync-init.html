@@ -84,10 +84,16 @@
             document.getElementById('robo-state-2').style.opacity = '1';
             document.getElementById('robo-state-1').classList.remove('animate-pulse');
             
-            // Optional: Disable button after click
-            document.getElementById('syncTrigger').disabled = true;
-            document.getElementById('syncTrigger').innerText = "Sync Finalized";
-            document.getElementById('syncTrigger').classList.replace('bg-blue-600', 'bg-slate-400');
+            // Disable button and update text
+            const trigger = document.getElementById('syncTrigger');
+            trigger.disabled = true;
+            trigger.innerText = "Sync Finalized";
+            trigger.classList.replace('bg-blue-600', 'bg-slate-400');
+            
+            // Add a 2-second delay to admire the result before routing
+            setTimeout(() => {
+                window.location.href = "sovereignty-active.html";
+            }, 2000); 
         }
     </script>
 </body>
