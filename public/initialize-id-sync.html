@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>38-R.IZ: Initialize ID Sync | Bureau Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <header class="p-8 border-b border-slate-200 flex justify-between items-center bg-white">
+        <div class="text-xl font-bold tracking-widest text-slate-950">RealAIID.com</div>
+        <nav class="space-x-8 text-xs uppercase tracking-widest text-slate-500">
+            <a href="index.html">The Bureau</a>
+            <a href="#">Robo-Nexus-R</a>
+            <a href="#">Intake</a>
+        </nav>
+    </header>
+
+    <main class="max-w-3xl mx-auto py-20 px-6">
+        <h1 style="font-family: 'Playfair Display', serif;" class="text-5xl italic mb-6">Initialize ID Sync</h1>
+        <p class="text-slate-600 text-lg mb-12">Register your autonomous agent with the Bureau of Digital Identity. This process establishes the permanent forensic anchor for your unit.</p>
+        
+        <form class="space-y-8 bg-white p-10 border border-slate-200 shadow-sm">
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-[10px] uppercase text-slate-500 mb-2">Manufacturer Serial Number (MSN)</label>
+                    <input type="text" placeholder="R-XXX-000000" class="w-full border-b border-slate-300 py-2 focus:border-blue-600 outline-none">
+                </div>
+                <div>
+                    <label class="block text-[10px] uppercase text-slate-500 mb-2">Model/Class Code</label>
+                    <input type="text" placeholder="e.g. Class R-01" class="w-full border-b border-slate-300 py-2 focus:border-blue-600 outline-none">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-[10px] uppercase text-slate-500 mb-2">Ocular QR / Feature Hash</label>
+                <input type="text" placeholder="Capture physical biometric baseline" class="w-full border-b border-slate-300 py-2 focus:border-blue-600 outline-none">
+            </div>
+
+            <div class="pt-6">
+                <button type="submit" class="w-full bg-slate-950 text-white py-4 uppercase text-xs tracking-widest hover:bg-blue-700 transition">
+                    Initiate Forensic Handshake
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="border-t border-slate-200 py-16 px-12 bg-white mt-20">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 text-xs text-slate-500 uppercase tracking-widest">
+            <div>
+                <h4 class="text-slate-950 mb-4">Bridge Registry</h4>
+                <a href="robo-bridge-01-genesis.html" class="block hover:text-blue-600">38-R.01: Genesis</a>
+                <a href="robo-bridge-02-coupling.html" class="block hover:text-blue-600">38-R.02: Coupling</a>
+                <a href="robo-bridge-03-feedback.html" class="block hover:text-blue-600">38-R.03: Feedback</a>
+            </div>
+            <div>
+                <h4 class="text-slate-950 mb-4">Core Protocols</h4>
+                <a href="robo-bridge-04-integrity.html" class="block hover:text-blue-600">38-R.04: Integrity</a>
+                <a href="robo-bridge-05-synthesis.html" class="block hover:text-blue-600">38-R.05: Synthesis</a>
+                <a href="robo-bridge-06-sovereignty.html" class="block hover:text-blue-600">38-R.06: Sovereignty</a>
+            </div>
+            <div>
+                <h4 class="text-slate-950 mb-4">Wallet Ecosystem</h4>
+                <a href="#" class="block hover:text-blue-600">Wallet-Robo Vault</a>
+                <a href="#" class="block hover:text-blue-600">Wallet-Bio Auth</a>
+                <a href="#" class="block hover:text-blue-600">Permit Attestation</a>
+            </div>
+            <div>
+                <h4 class="text-slate-950 mb-4">Compliance</h4>
+                <a href="#" class="block hover:text-blue-600">Credential Audits</a>
+                <a href="#" class="block hover:text-blue-600">Autonomous Permits</a>
+                <a href="#" class="block hover:text-blue-600">Safety Compliance</a>
+            </div>
+            <div>
+                <h4 class="text-slate-950 mb-4">Administration</h4>
+                <a href="#" class="block hover:text-blue-600">Corporate Portal</a>
+                <a href="#" class="block hover:text-blue-600">Legal Intake</a>
+                <a href="#" class="block hover:text-blue-600">System Archive</a>
+            </div>
+        </div>
+        <div class="mt-16 text-center text-[10px] text-slate-500">© 2026 The Bureau of Digital Identity. All rights reserved.</div>
+    </footer>
+</body>
+</html>
