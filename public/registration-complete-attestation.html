@@ -51,10 +51,18 @@
                     <li><strong>Status:</strong> Bureau-Verified</li>
                     <li><strong>Ownership:</strong> Wallet-Bio Bonded</li>
                 </ul>
-                <div class="flex space-x-4">
-                    <button class="bg-slate-950 text-white px-6 py-3 text-xs uppercase hover:bg-blue-700">Initialize Bridge Sync</button>
-                    <button class="border border-slate-300 px-6 py-3 text-xs uppercase hover:bg-slate-100">Audit Log (JSON)</button>
-                </div>
+               <!-- Action Buttons Section -->
+<div class="flex space-x-4">
+    <!-- Navigate to Bridge Sync -->
+    <a href="bridge-sync-init.html" class="bg-slate-950 text-white px-6 py-3 text-xs uppercase hover:bg-blue-700 transition">
+        Initialize Bridge Sync
+    </a>
+    
+    <!-- Trigger JSON Audit Log Download -->
+    <a href="data/audit-log-latest.json" download="Bureau_Audit_Log.json" class="border border-slate-300 px-6 py-3 text-xs uppercase hover:bg-slate-100 transition">
+        Sync Audit Log (JSON)
+    </a>
+</div>
             </div>
         </div>
     </main>
