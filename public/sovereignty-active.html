@@ -7,12 +7,11 @@
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
-    <!-- Header (Global Bureau Navigation) -->
     <header class="p-8 border-b border-slate-200 bg-white flex justify-between items-center">
         <div class="text-xl font-bold tracking-widest text-slate-950">BUREAU OF DIGITAL IDENTITY</div>
         <nav class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
             <a href="index.html">Sovereignty Archive</a>
-            <a href="robo-nexus.html">Robo-Nexus-R</a>
+            <a href="robo-nexus-r.html">Robo-Nexus-R</a>
             <a href="initialize-id-sync.html">ID Intake</a>
         </nav>
     </header>
@@ -30,22 +29,34 @@
                 </div>
             </div>
             
-            <!-- Surrogate Asset -->
             <div class="bg-slate-950 p-12 flex items-center justify-center">
                 <img src="FullySolidROBO2.png" class="w-64 h-64 object-contain" alt="Sovereign Unit">
             </div>
         </div>
 
-        <!-- Operational Command Grid -->
-        <div class="grid grid-cols-4 gap-6 border-t border-slate-200 pt-16">
-            <div class="border p-6 bg-white"><h4 class="font-bold text-xs mb-2">M2M Console</h4><p class="text-[10px] text-slate-500">Manage autonomous transactions.</p></div>
-            <div class="border p-6 bg-white"><h4 class="font-bold text-xs mb-2">Forensic Log</h4><p class="text-[10px] text-slate-500">Review ledger-anchored history.</p></div>
-            <div class="border p-6 bg-white"><h4 class="font-bold text-xs mb-2">Health Data</h4><p class="text-[10px] text-slate-500">Hardware enclave diagnostics.</p></div>
-            <div class="border p-6 bg-white"><h4 class="font-bold text-xs mb-2">Permit Registry</h4><p class="text-[10px] text-slate-500">View active operating permits.</p></div>
-        </div>
+        <section class="mt-20 border-t border-slate-200 pt-16">
+            <h2 class="text-xs uppercase tracking-widest text-slate-500 mb-8">Operational Command Modules</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="m2m-command-console.html" class="block border border-slate-200 p-6 bg-white hover:border-blue-600 transition">
+                    <h4 class="font-bold text-xs mb-2">M2M Console</h4>
+                    <p class="text-[10px] text-slate-400">Issue autonomous directives.</p>
+                </a>
+                <a href="forensic-audit-archive.html" class="block border border-slate-200 p-6 bg-white hover:border-blue-600 transition">
+                    <h4 class="font-bold text-xs mb-2">Audit Archive</h4>
+                    <p class="text-[10px] text-slate-400">Immutable ledger logs.</p>
+                </a>
+                <a href="hardware-enclave-telemetry.html" class="block border border-slate-200 p-6 bg-white hover:border-blue-600 transition">
+                    <h4 class="font-bold text-xs mb-2">Enclave Health</h4>
+                    <p class="text-[10px] text-slate-400">Hardware integrity status.</p>
+                </a>
+                <a href="wallet-robo-vault.html" class="block border border-slate-200 p-6 bg-white hover:border-blue-600 transition">
+                    <h4 class="font-bold text-xs mb-2">Robo-Vault</h4>
+                    <p class="text-[10px] text-slate-400">Asset & key management.</p>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <!-- Professional Mega-Footer -->
     <footer class="border-t border-slate-200 py-20 px-12 bg-white">
         <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[9px] uppercase tracking-widest text-slate-400">
             <div><h4 class="text-slate-900 mb-4">Identity</h4><a href="#" class="block hover:text-blue-600">Bio-Vault</a><a href="#" class="block hover:text-blue-600">Robo-Registry</a><a href="#" class="block hover:text-blue-600">Wallet Coupling</a></div>
