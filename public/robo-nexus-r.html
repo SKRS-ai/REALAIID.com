@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>38-R.NEXUS: Robo-Nexus-R | Bureau Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <!-- Header (Global Bureau Navigation) -->
+    <header class="p-8 border-b border-slate-200 bg-white flex justify-between items-center">
+        <div class="text-xl font-bold tracking-widest text-slate-950">BUREAU OF DIGITAL IDENTITY</div>
+        <nav class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
+            <a href="index.html">Sovereignty Archive</a>
+            <a href="robo-nexus.html">Robo-Nexus-R</a>
+            <a href="initialize-id-sync.html">ID Intake</a>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-20 px-6">
+        <header class="mb-16">
+            <h1 class="text-5xl font-light mb-4">Robo-Nexus-R</h1>
+            <p class="text-slate-500 uppercase tracking-widest text-xs">Fleet Sovereignty & Asset Management Command Center</p>
+        </header>
+
+        <!-- Active Fleet Grid -->
+        <div class="grid md:grid-cols-3 gap-8 mb-20">
+            <!-- Asset Card -->
+            <div class="border border-slate-200 bg-white p-8">
+                <div class="w-12 h-12 bg-blue-600 mb-6"></div>
+                <h3 class="font-bold mb-2">Unit: RPID-019</h3>
+                <p class="text-[10px] text-slate-500 uppercase mb-4">Status: Sovereign / Active</p>
+                <a href="sovereignty-active.html" class="text-[10px] uppercase font-bold text-blue-600 hover:underline">View Telemetry &raquo;</a>
+            </div>
+            <div class="border border-slate-200 bg-white p-8 opacity-60">
+                <h3 class="font-bold mb-2">Unit: RPID-020</h3>
+                <p class="text-[10px] text-slate-500 uppercase mb-4">Status: Standby</p>
+            </div>
+            <div class="border border-dashed border-slate-300 bg-slate-100 p-8 flex items-center justify-center">
+                <p class="text-[10px] uppercase tracking-widest text-slate-400">+ Initialize New Unit</p>
+            </div>
+        </div>
+
+        <!-- System Overview -->
+        <div class="grid grid-cols-2 gap-16 border-t border-slate-200 pt-16">
+            <div>
+                <h4 class="font-bold text-xs uppercase mb-4">Ecosystem Architecture</h4>
+                <p class="text-sm text-slate-600 leading-relaxed mb-6">
+                    The Nexus-R environment synchronizes your <strong>Wallet-Robo</strong> hardware enclaves with the Bureau's core ledger. This ensures that every autonomous action is logged, verified, and legally attributable within the sovereignty framework.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="p-4 border bg-white"><p class="text-[9px] uppercase font-bold">Total Assets</p><p class="text-xl">01</p></div>
+                <div class="p-4 border bg-white"><p class="text-[9px] uppercase font-bold">Audit Reliability</p><p class="text-xl">99.9%</p></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-slate-200 py-20 px-12 bg-white">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[9px] uppercase tracking-widest text-slate-400">
+            <div><h4 class="text-slate-900 mb-4">Dashboard</h4><a href="m2m-console.html" class="block hover:text-blue-600">M2M Command</a><a href="forensic-audit.html" class="block hover:text-blue-600">Audit Logs</a><a href="telemetry.html" class="block hover:text-blue-600">Health Data</a></div>
+            <div><h4 class="text-slate-900 mb-4">Operations</h4><a href="permits.html" class="block hover:text-blue-600">Permit Matrix</a><a href="zones.html" class="block hover:text-blue-600">Op-Zones</a><a href="scheduling.html" class="block hover:text-blue-600">Sync Tasks</a></div>
+            <div><h4 class="text-slate-900 mb-4">Sovereignty</h4><a href="enclave-key.html" class="block hover:text-blue-600">Key Rotation</a><a href="attestation.html" class="block hover:text-blue-600">Hardware Proof</a><a href="identity.html" class="block hover:text-blue-600">Unit ID</a></div>
+            <div><h4 class="text-slate-900 mb-4">Logistics</h4><a href="supply.html" class="block hover:text-blue-600">Deployment</a><a href="maintenance.html" class="block hover:text-blue-600">Upgrades</a><a href="shipping.html" class="block hover:text-blue-600">Batch Archive</a></div>
+            <div><h4 class="text-slate-900 mb-4">Governance</h4><a href="legal.html" class="block hover:text-blue-600">Mandates</a><a href="policy.html" class="block hover:text-blue-600">Compliance</a><a href="counsel.html" class="block hover:text-blue-600">Protocol Review</a></div>
+            <div><h4 class="text-slate-900 mb-4">Enterprise</h4><a href="api.html" class="block hover:text-blue-600">Gateway</a><a href="sdk.html" class="block hover:text-blue-600">Developer Kit</a><a href="cloud.html" class="block hover:text-blue-600">Cloud Link</a></div>
+        </div>
+    </footer>
+</body>
+</html>
