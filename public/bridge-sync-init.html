@@ -6,11 +6,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .crystallize-effect { filter: drop-shadow(0 0 10px #2563eb); }
+        #robo-state-2 { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2)); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans">
 
-    <!-- Header (Global Bureau Navigation) -->
+    <!-- Header -->
     <header class="p-8 border-b border-slate-200 bg-white flex justify-between items-center">
         <div class="text-xl font-bold tracking-widest text-slate-950">BUREAU OF DIGITAL IDENTITY</div>
         <nav class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
@@ -29,13 +30,20 @@
                     Once bridges are loaded, your <strong>REALAIID Wallet-Robo</strong> functions as a sovereign entity. Unlike the Wallet-Bio (which manages personal identity), the Wallet-Robo governs <strong>M2M transaction autonomy</strong>, hardware forensic health, and protocol-level bridge authorization.
                 </p>
                 <!-- Trigger Button -->
-                <button id="syncTrigger" class="bg-blue-600 text-white px-12 py-4 uppercase text-xs tracking-widest hover:bg-slate-950 transition">
+                <button id="syncTrigger" onclick="finalizeSovereignty()" class="bg-blue-600 text-white px-12 py-4 uppercase text-xs tracking-widest hover:bg-slate-950 transition">
                     Execute Crystallization
                 </button>
             </div>
-            <!-- 3D Surrogate Placeholder -->
-            <div class="h-96 bg-slate-200 flex items-center justify-center border border-slate-300">
-                <p class="text-slate-500 uppercase tracking-widest text-xs animate-pulse">3D Crystallization Engine [Pending Asset]</p>
+
+            <!-- 3D Surrogate Container -->
+            <div id="robo-container" class="relative h-96 w-full flex items-center justify-center border border-slate-300 bg-slate-200 overflow-hidden">
+                <!-- Image 1: Pre-Verification (Pulse Animation) -->
+                <img id="robo-state-1" src="CrystallizationStateROBO1.png" 
+                     class="absolute max-h-full transition-opacity duration-1000 opacity-100 animate-pulse">
+                     
+                <!-- Image 2: Post-Sync (Solid) -->
+                <img id="robo-state-2" src="FullySolidROBO2.png" 
+                     class="absolute max-h-full transition-opacity duration-1000 opacity-0">
             </div>
         </div>
 
@@ -67,5 +75,20 @@
             <div><h4 class="text-slate-900 mb-4">Enterprise</h4><a href="#" class="block hover:text-blue-600">API Gateway</a><a href="#" class="block hover:text-blue-600">SDK Documentation</a><a href="#" class="block hover:text-blue-600">Cloud Sync</a></div>
         </div>
     </footer>
+
+    <!-- Forensic Logic Script -->
+    <script>
+        function finalizeSovereignty() {
+            // Initiate the visual swap
+            document.getElementById('robo-state-1').style.opacity = '0';
+            document.getElementById('robo-state-2').style.opacity = '1';
+            document.getElementById('robo-state-1').classList.remove('animate-pulse');
+            
+            // Optional: Disable button after click
+            document.getElementById('syncTrigger').disabled = true;
+            document.getElementById('syncTrigger').innerText = "Sync Finalized";
+            document.getElementById('syncTrigger').classList.replace('bg-blue-600', 'bg-slate-400');
+        }
+    </script>
 </body>
 </html>
