@@ -29,12 +29,12 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
 
-   <!-- NAVIGATION -->
+ <!-- NAVIGATION -->
 <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
     <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         
-        <!-- Logo + Brand -->
-        <div class="flex items-center gap-4">
+        <!-- LEFT: Logo + Brand -->
+        <div class="flex items-center gap-4 flex-shrink-0">
             <img src="RealAiIDlogo.png" 
                  alt="REALAiiD" 
                  class="h-20 md:h-24 w-auto object-contain transition-all duration-300 hover:scale-105">
@@ -45,15 +45,14 @@
             </div>
         </div>
 
-        <!-- Main Navigation Menu -->
-        <div class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium">
+        <!-- CENTER: Navigation Menu (Now properly centered) -->
+        <div class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium mx-auto">
             <a href="/" class="hover:text-cyan-400 transition">Home</a>
             
             <div class="relative group" onclick="toggleDropdown(this)">
                 <button class="flex items-center gap-1 hover:text-cyan-400 transition">
                     Marketplace <span class="text-xs">▼</span>
                 </button>
-                <!-- Dropdown remains the same -->
                 <div class="dropdown absolute left-0 mt-2 w-72 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl py-4 z-50">
                     <a href="/marketplace?category=human" class="block px-6 py-3 hover:bg-slate-800">Digital Human Identity</a>
                     <a href="/marketplace?category=robo" class="block px-6 py-3 hover:bg-slate-800">RoboSign™ Ecosystem</a>
@@ -83,14 +82,13 @@
             <a href="/resources" class="hover:text-cyan-400 transition">Resources</a>
         </div>
 
-        <!-- Search + CTA -->
-        <div class="flex items-center gap-4">
-            
+        <!-- RIGHT: Search + CTA -->
+        <div class="flex items-center gap-4 flex-shrink-0">
             <!-- Search Bar with Button -->
-            <div class="relative group">
+            <div class="relative">
                 <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400 transition-all">
                     <input type="text" id="search" placeholder="Search products, bridges..." 
-                           class="bg-transparent border-none focus:outline-none px-5 py-3 text-sm w-72 lg:w-80">
+                           class="bg-transparent border-none focus:outline-none px-5 py-3 text-sm w-64 lg:w-80">
                     <button onclick="performSearch()" 
                             class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 text-white transition-all flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
