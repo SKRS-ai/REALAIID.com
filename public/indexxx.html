@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+    <script>
+        
+function toggleDropdown(element) {
+    const dropdown = element.querySelector('.dropdown');
+    if (dropdown) {
+        // Close all other dropdowns first
+        document.querySelectorAll('.dropdown').forEach(dd => {
+            if (dd !== dropdown) dd.classList.add('hidden');
+        });
+        // Toggle current dropdown
+        dropdown.classList.toggle('hidden');
+    }
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.group')) {
+        document.querySelectorAll('.dropdown').forEach(dd => {
+            dd.classList.add('hidden');
+        });
+    }
+});
+
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>REALAiiD • Commonwealth of Digital Identity</title>
