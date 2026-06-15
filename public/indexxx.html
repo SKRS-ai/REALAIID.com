@@ -3,16 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="REALAiiD - Sovereign Biometric Digital Identity Platform. Bio-Sign™, RoboSign™, $AII Compute Currency, Maritime Security, 50+ Bridges. Biological Truth. Sovereign Identity.">
-    <meta name="keywords" content="biometric identity, sovereign identity, digital identity, Bio-Sign, RoboSign, AII compute currency, realaiid, TWIC, MARSEC, NIST compliant, zero knowledge identity, blockchain identity, maritime security, port security, deepfake protection">
-    <meta name="author" content="Solomon Kin LLC">
-    <meta property="og:title" content="REALAiiD • Commonwealth of Digital Identity">
-    <meta property="og:description" content="The world's first sovereign biometric identity infrastructure with 50+ active bridges.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.realaiid.com">
-    <meta property="og:image" content="https://www.realaiid.com/og-image.jpg">
-
-    <title>REALAiiD • Commonwealth of Digital Identity | Bio-Sign™ • RoboSign™ • $AII</title>
+    <meta name="description" content="REALAiiD - Sovereign Biometric Digital Identity Platform with 50+ Bridges. Bio-Sign™, RoboSign™, $AII Compute Currency, Maritime Security & Energy Infrastructure.">
+    <meta name="keywords" content="REALAiiD, Bio-Sign, RoboSign, sovereign identity, biometric identity, AII compute currency, MARSEC, TWIC, NIST, digital identity, port security, deepfake protection, Wallet-Bio, Wallet-Robo">
+    <title>REALAiiD • Commonwealth of Digital Identity</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -29,24 +22,23 @@
 
     <!-- NAVIGATION -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="REAL.png" alt="REALAiiD" class="h-9 md:h-10">
+                <img src="REAL.png" alt="REALAiiD" class="h-10">
                 <div>
-                    <span class="text-2xl md:text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
-                    <p class="text-[10px] md:text-xs text-slate-400 -mt-1 hidden sm:block">Commonwealth of Digital Identity</p>
+                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                    <p class="text-xs text-slate-400 -mt-1">Commonwealth of Digital Identity</p>
                 </div>
             </div>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-medium">
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="/" class="hover:text-cyan-400 transition">Home</a>
                 
-                <div class="relative group" onclick="toggleDropdown(this)">
+                <div class="relative group cursor-pointer" onclick="toggleDropdown(this)">
                     <button class="flex items-center gap-1 hover:text-cyan-400 transition">Marketplace <span class="text-xs">▼</span></button>
-                    <div class="dropdown absolute left-0 mt-3 w-72 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl py-4 z-50 text-sm">
-                        <a href="/marketplace?category=human" class="block px-6 py-3 hover:bg-slate-800">Digital Human Identity</a>
-                        <a href="/marketplace?category=robo" class="block px-6 py-3 hover:bg-slate-800">RoboSign™ Ecosystem</a>
+                    <div class="dropdown absolute left-0 mt-3 w-72 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl py-4 z-50">
+                        <a href="/marketplace?category=human" class="block px-6 py-3 hover:bg-slate-800">Digital Human Identity (Wallet-Bio)</a>
+                        <a href="/marketplace?category=robo" class="block px-6 py-3 hover:bg-slate-800">RoboSign™ (Wallet-Robo)</a>
                         <a href="/marketplace?category=economy" class="block px-6 py-3 hover:bg-slate-800">$AII Compute Economy</a>
                         <a href="/marketplace?category=energy" class="block px-6 py-3 hover:bg-slate-800">Energy & Infrastructure</a>
                     </div>
@@ -58,55 +50,145 @@
                 <a href="/for-grantors" class="text-amber-400 font-semibold hover:text-amber-300 transition">For Grantors</a>
             </div>
 
-            <div class="flex items-center gap-3">
-                <input type="text" id="search" placeholder="Search..." 
-                       class="bg-slate-800 border border-slate-600 rounded-full px-4 py-2 text-sm w-48 md:w-72 focus:outline-none focus:border-cyan-400">
-                <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-sm font-semibold transition whitespace-nowrap">Handshake</a>
+            <div class="flex items-center gap-4">
+                <input type="text" id="search" placeholder="Search bridges & products..." class="bg-slate-800 border border-slate-600 rounded-full px-5 py-2.5 text-sm w-72 focus:outline-none focus:border-cyan-400">
+                <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
             </div>
         </div>
     </nav>
 
     <!-- HERO SLIDESHOW -->
     <section class="hero-bg relative min-h-screen flex items-center overflow-hidden">
-        <!-- Slides (same as before - abbreviated for brevity) -->
+        <!-- Slide 1 -->
         <div class="slide active absolute inset-0 flex items-center">
             <div class="max-w-4xl mx-auto px-6 text-center z-10">
                 <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6 leading-tight">
                     Biological Truth.<br><span class="text-cyan-400">Sovereign Identity.</span>
                 </h1>
-                <p class="text-xl md:text-2xl text-slate-300 mb-10">50+ Active Bridges • Bio-Sign™ • RoboSign™ • $AII Compute Economy</p>
+                <p class="text-xl md:text-2xl text-slate-300 mb-10">50+ Active Bridges • Wallet-Bio • Wallet-Robo • $AII Economy</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="/marketplace" class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-semibold text-lg">Explore Marketplace</a>
-                    <a href="/for-grantors" class="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-2xl font-semibold text-lg">For Grantors</a>
+                    <a href="/marketplace" class="bg-white text-slate-900 px-10 py-5 rounded-2xl font-semibold text-lg">Explore Marketplace</a>
+                    <a href="/for-grantors" class="border-2 border-cyan-400 text-cyan-400 px-10 py-5 rounded-2xl font-semibold text-lg">For Grantors</a>
                 </div>
             </div>
         </div>
 
-        <!-- Other slides (Maritime, Robotics, Economy, Institutional, Future) - same as previous version -->
-        <!-- ... (I kept them identical to the last working version) ... -->
+        <!-- Slide 2: Maritime -->
+        <div class="slide absolute inset-0 flex items-center">
+            <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">Maritime Sovereignty</h1>
+                <p class="text-2xl text-slate-300 mb-8">HarborLink • EmbarkSecure™ • MARSEC</p>
+                <p class="text-lg text-slate-400">Forensic logistics and port security infrastructure.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Robotics -->
+        <div class="slide absolute inset-0 flex items-center">
+            <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">RoboSign™</h1>
+                <p class="text-2xl text-slate-300 mb-8">Wallet-Robo • Autonomous Identity</p>
+                <p class="text-lg text-slate-400">Ceramic • XMTP • Lit Protocol • Chainlink</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: $AII Economy -->
+        <div class="slide absolute inset-0 flex items-center">
+            <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">$AII Compute Economy</h1>
+                <p class="text-2xl text-amber-400 mb-8">Energy-Backed Sovereign Currency</p>
+                <p class="text-lg text-slate-400">Render • Akash • Bittensor • Gelato • Pyth</p>
+            </div>
+        </div>
+
+        <!-- Slide 5: Institutional -->
+        <div class="slide absolute inset-0 flex items-center">
+            <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">Institutional Trust</h1>
+                <p class="text-2xl text-slate-300 mb-8">Wallet-Bio • NIST Aligned</p>
+                <p class="text-lg text-slate-400">Polygon ID • World ID • Safe Core</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Energy -->
+        <div class="slide absolute inset-0 flex items-center">
+            <div class="max-w-4xl mx-auto px-6 text-center z-10">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter mb-6">Energy & Infrastructure</h1>
+                <p class="text-2xl text-cyan-400 mb-8">SentryAi • Nautilus • Benthic Pulse</p>
+                <p class="text-lg text-slate-400">Energy-harvesting sovereign nodes.</p>
+            </div>
+        </div>
 
         <!-- Controls -->
-        <div class="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-20">
-            <button onclick="prevSlide()" class="bg-black/70 hover:bg-black px-5 py-3 rounded-full text-xl transition">←</button>
-            <button onclick="nextSlide()" class="bg-black/70 hover:bg-black px-5 py-3 rounded-full text-xl transition">→</button>
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-4 z-20">
+            <button onclick="prevSlide()" class="bg-black/70 hover:bg-black px-6 py-3 rounded-full text-xl">←</button>
+            <button onclick="nextSlide()" class="bg-black/70 hover:bg-black px-6 py-3 rounded-full text-xl">→</button>
         </div>
     </section>
 
-    <!-- CHOOSE YOUR DOMAIN (responsive grid) -->
-    <section class="py-16 md:py-20 bg-slate-900">
+    <!-- CHOOSE YOUR DOMAIN -->
+    <section class="py-20 bg-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-4">Choose Your Domain</h2>
-            <p class="text-center text-slate-400 mb-12">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
+            <p class="text-center text-slate-400 mb-16">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <!-- 4 Category Cards (same as before, fully responsive) -->
-                <!-- ... Digital Human, RoboSign, $AII, Energy ... -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="/marketplace?category=human" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
+                    <div class="text-6xl mb-6">👤</div>
+                    <h3 class="text-2xl font-semibold mb-2">Digital Human</h3>
+                    <p class="text-slate-400">Wallet-Bio • Bio-Sign™ Products</p>
+                </a>
+                <a href="/marketplace?category=robo" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
+                    <div class="text-6xl mb-6">🤖</div>
+                    <h3 class="text-2xl font-semibold mb-2">RoboSign™</h3>
+                    <p class="text-slate-400">Wallet-Robo • Autonomous Systems</p>
+                </a>
+                <a href="/economy" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
+                    <div class="text-6xl mb-6">💰</div>
+                    <h3 class="text-2xl font-semibold mb-2">$AII Economy</h3>
+                    <p class="text-slate-400">Compute Currency & Energy Value</p>
+                </a>
+                <a href="/marketplace?category=energy" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
+                    <div class="text-6xl mb-6">⚡</div>
+                    <h3 class="text-2xl font-semibold mb-2">Energy & Infrastructure</h3>
+                    <p class="text-slate-400">SentryAi • Maritime • Benthic</p>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-slate-400 text-sm">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <span class="text-cyan-400 font-bold">REALAiiD</span><br>
+                    Commonwealth of Digital Identity
+                </div>
+                <div>
+                    <strong class="block mb-3 text-white">Marketplace</strong>
+                    <a href="/marketplace?category=human" class="block hover:text-white">Digital Human</a>
+                    <a href="/marketplace?category=robo" class="block hover:text-white">RoboSign™</a>
+                    <a href="/economy" class="block hover:text-white">$AII Economy</a>
+                </div>
+                <div>
+                    <strong class="block mb-3 text-white">Company</strong>
+                    <a href="/for-grantors" class="block hover:text-white">For Grantors</a>
+                    <a href="/technology" class="block hover:text-white">Technology</a>
+                    <a href="/compliance-hub" class="block hover:text-white">Compliance</a>
+                </div>
+                <div>
+                    <strong class="block mb-3 text-white">Contact</strong>
+                    <p>Solomon Kin LLC</p>
+                    <p>Philadelphia, PA • Port of Miami</p>
+                </div>
+            </div>
+            <div class="text-center mt-12 text-xs border-t border-slate-800 pt-8">
+                © 2026 REALAiiD • Solomon Kin LLC • All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
     <script>
-        // Slideshow + Dropdown + Search (same reliable code as previous)
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
 
@@ -115,8 +197,15 @@
             slides[n].classList.add('active');
         }
 
-        function nextSlide() { currentSlide = (currentSlide + 1) % slides.length; showSlide(currentSlide); }
-        function prevSlide() { currentSlide = (currentSlide - 1 + slides.length) % slides.length; showSlide(currentSlide); }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
 
         setInterval(nextSlide, 6500);
 
@@ -126,7 +215,9 @@
         }
 
         document.addEventListener('click', e => {
-            if (!e.target.closest('.group')) document.querySelectorAll('.group').forEach(g => g.classList.remove('active'));
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.group').forEach(g => g.classList.remove('active'));
+            }
         });
 
         document.getElementById('search').addEventListener('keypress', e => {
