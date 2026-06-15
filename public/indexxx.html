@@ -34,23 +34,23 @@
     <div class="max-w-[90rem] mx-auto px-6 py-2">
         <div class="flex items-center justify-between">
             
-            <!-- Logo (Fixed Width Zone) -->
+            <!-- Logo -->
             <div class="flex-shrink-0 w-48">
                 <img src="RealAiIDlogo.png" 
                      alt="REALAiiD" 
                      class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
             </div>
 
-            <!-- Main Menu (Centered Zone) -->
+            <!-- Main Menu -->
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
                 <a href="/" class="hover:text-cyan-400 transition whitespace-nowrap">Home</a>
                 
-                <!-- Marketplace Dropdown -->
-                <div class="relative group">
+                <!-- Marketplace Dropdown - Click Activated -->
+                <div class="relative group" onclick="toggleDropdown(this)">
                     <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
                         Marketplace <span class="text-[10px]">▼</span>
                     </button>
-                    <div class="absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
+                    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
                         <a href="/marketplace?category=human" class="block px-4 py-2 hover:bg-slate-800 text-xs">Digital Human Identity</a>
                         <a href="/marketplace?category=robo" class="block px-4 py-2 hover:bg-slate-800 text-xs">RoboSign™ Ecosystem</a>
                         <a href="/marketplace?category=economy" class="block px-4 py-2 hover:bg-slate-800 text-xs">$AII Compute Economy</a>
@@ -60,12 +60,12 @@
 
                 <a href="/technology" class="hover:text-cyan-400 transition whitespace-nowrap">Technology</a>
                 
-                <!-- Solutions Dropdown -->
-                <div class="relative group">
+                <!-- Solutions Dropdown - Click Activated -->
+                <div class="relative group" onclick="toggleDropdown(this)">
                     <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
                         Solutions <span class="text-[10px]">▼</span>
                     </button>
-                    <div class="absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
+                    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
                         <a href="/solutions/maritime" class="block px-4 py-2 hover:bg-slate-800 text-xs">Maritime & HarborLink</a>
                         <a href="/solutions/education" class="block px-4 py-2 hover:bg-slate-800 text-xs">Education (SchoolSecure™)</a>
                         <a href="/solutions/travel" class="block px-4 py-2 hover:bg-slate-800 text-xs">Travel & Embarkation</a>
@@ -80,11 +80,12 @@
                 <a href="/resources" class="hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
             </div>
 
-            <!-- Search + CTA (Fixed Width Zone) -->
+            <!-- Search + CTA -->
             <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
                 <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
-                    <input type="text" placeholder="Search..." class="bg-transparent border-none focus:outline-none px-4 py-2 text-xs w-full">
-                    <button class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
+                    <input type="text" id="search" placeholder="Search..." 
+                           class="bg-transparent border-none focus:outline-none px-4 py-2 text-xs w-full">
+                    <button onclick="performSearch()" class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
                         </svg>
