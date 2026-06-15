@@ -31,25 +31,26 @@
 
 <!-- NAVIGATION -->
 <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between gap-6">
+    <div class="max-w-[90rem] mx-auto px-6 py-2">
+        <div class="flex items-center justify-between">
             
-            <!-- Logo -->
-            <div class="flex-shrink-0">
+            <!-- Logo (Fixed Width Zone) -->
+            <div class="flex-shrink-0 w-48">
                 <img src="RealAiIDlogo.png" 
                      alt="REALAiiD" 
-                     class="h-26 md:h-28 w-auto object-contain transition-all duration-300 hover:scale-105">
+                     class="h-24 w-auto object-contain transition-all duration-300 hover:scale-105">
             </div>
 
-            <!-- Main Menu -->
+            <!-- Main Menu (Centered Zone) -->
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
-                <a href="/" class="hover:text-cyan-400 transition">Home</a>
+                <a href="/" class="hover:text-cyan-400 transition whitespace-nowrap">Home</a>
                 
-                <div class="relative group" onclick="toggleDropdown(this)">
-                    <button class="flex items-center gap-1 hover:text-cyan-400 transition">
-                        Marketplace <span class="text-xs">▼</span>
+                <!-- Marketplace Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
+                        Marketplace <span class="text-[10px]">▼</span>
                     </button>
-                    <div class="dropdown absolute left-0 absolute mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
+                    <div class="absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
                         <a href="/marketplace?category=human" class="block px-4 py-2 hover:bg-slate-800 text-xs">Digital Human Identity</a>
                         <a href="/marketplace?category=robo" class="block px-4 py-2 hover:bg-slate-800 text-xs">RoboSign™ Ecosystem</a>
                         <a href="/marketplace?category=economy" class="block px-4 py-2 hover:bg-slate-800 text-xs">$AII Compute Economy</a>
@@ -57,13 +58,14 @@
                     </div>
                 </div>
 
-                <a href="/technology" class="hover:text-cyan-400 transition">Technology</a>
+                <a href="/technology" class="hover:text-cyan-400 transition whitespace-nowrap">Technology</a>
                 
-                <div class="relative group" onclick="toggleDropdown(this)">
-                    <button class="flex items-center gap-1 hover:text-cyan-400 transition">
-                        Solutions <span class="text-xs">▼</span>
+                <!-- Solutions Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
+                        Solutions <span class="text-[10px]">▼</span>
                     </button>
-                    <div class="dropdown left-0 absolute mt-2 w-60 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
+                    <div class="absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden group-hover:block">
                         <a href="/solutions/maritime" class="block px-4 py-2 hover:bg-slate-800 text-xs">Maritime & HarborLink</a>
                         <a href="/solutions/education" class="block px-4 py-2 hover:bg-slate-800 text-xs">Education (SchoolSecure™)</a>
                         <a href="/solutions/travel" class="block px-4 py-2 hover:bg-slate-800 text-xs">Travel & Embarkation</a>
@@ -72,22 +74,24 @@
                     </div>
                 </div>
 
-                <a href="/economy" class="hover:text-cyan-400 transition">$AII Economy</a>
-                <a href="/for-grantors" class="text-amber-400 font-semibold hover:text-amber-300 transition">For Grantors</a>
+                <a href="/economy" class="hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
+                <a href="/for-grantors" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
+                <a href="/compliance-hub" class="hover:text-cyan-400 transition whitespace-nowrap">Compliance</a>
+                <a href="/resources" class="hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
             </div>
 
-            <!-- Search + CTA -->
-            <div class="flex items-center gap-3 flex-shrink-0">
-                <div class="hidden xl:flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden">
-                    <input type="text" placeholder="Search..." class="bg-transparent border-none focus:outline-none px-4 py-2 text-xs w-40">
-                    <button class="bg-cyan-500 hover:bg-cyan-400 px-3 py-2 text-white">
+            <!-- Search + CTA (Fixed Width Zone) -->
+            <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
+                <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
+                    <input type="text" placeholder="Search..." class="bg-transparent border-none focus:outline-none px-4 py-2 text-xs w-full">
+                    <button class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
                 </div>
                 <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition whitespace-nowrap">
-                    Initialize Handshake
+                    Initialize
                 </a>
             </div>
         </div>
