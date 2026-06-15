@@ -29,11 +29,11 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
 
- <!-- NAVIGATION -->
+<!-- NAVIGATION -->
 <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between gap-8">
         
-        <!-- LEFT: Logo Only -->
+        <!-- LEFT: Logo -->
         <div class="flex-shrink-0">
             <img src="RealAiIDlogo.png" 
                  alt="REALAiiD" 
@@ -41,7 +41,7 @@
         </div>
 
         <!-- CENTER: Navigation Menu -->
-        <div class="hidden md:flex items-center gap-8 lg:gap-10 text-sm font-medium mx-auto">
+        <div class="hidden md:flex items-center gap-6 lg:gap-9 text-sm font-medium mx-auto">
             <a href="/" class="hover:text-cyan-400 transition">Home</a>
             
             <div class="relative group" onclick="toggleDropdown(this)">
@@ -77,15 +77,15 @@
             <a href="/resources" class="hover:text-cyan-400 transition">Resources</a>
         </div>
 
-        <!-- RIGHT: Search + CTA -->
-        <div class="flex items-center gap-4 flex-shrink-0">
-            <!-- Search Bar with Button -->
-            <div class="relative">
+        <!-- RIGHT: Search + CTA (More compact) -->
+        <div class="flex items-center gap-3 flex-shrink-0">
+            <!-- Compact Search -->
+            <div class="relative hidden lg:flex">
                 <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400 transition-all">
-                    <input type="text" id="search" placeholder="Search products, bridges..." 
-                           class="bg-transparent border-none focus:outline-none px-5 py-3 text-sm w-64 lg:w-80">
+                    <input type="text" id="search" placeholder="Search..." 
+                           class="bg-transparent border-none focus:outline-none px-5 py-3 text-sm w-60 lg:w-72">
                     <button onclick="performSearch()" 
-                            class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 text-white transition-all flex items-center justify-center">
+                            class="bg-cyan-500 hover:bg-cyan-400 px-5 py-3 text-white transition-all flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
                         </svg>
@@ -94,7 +94,7 @@
             </div>
 
             <a href="/signin" 
-               class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition whitespace-nowrap">
+               class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 rounded-full text-sm font-semibold transition whitespace-nowrap">
                 Initialize Handshake
             </a>
         </div>
