@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        :root { --primary: #22d3ee; }
         .hero-bg { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
         .slide { display: none; }
         .slide.active { display: block; }
@@ -94,7 +93,7 @@
             <div class="max-w-4xl mx-auto px-6 text-center z-10">
                 <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">Maritime Sovereignty</h1>
                 <p class="text-2xl text-slate-300 mb-10">HarborLink • EmbarkSecure™ • TWIC & MARSEC Hardened</p>
-                <p class="text-lg text-slate-400">Forensic supply chain. Port security. Sovereign maritime infrastructure.</p>
+                <p class="text-lg text-slate-400 max-w-xl mx-auto">Forensic supply chain. Port security. Sovereign maritime infrastructure.</p>
             </div>
         </div>
 
@@ -103,7 +102,7 @@
             <div class="max-w-4xl mx-auto px-6 text-center z-10">
                 <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">RoboSign™</h1>
                 <p class="text-2xl text-slate-300 mb-10">Identity for the Autonomous Age</p>
-                <p class="text-lg text-slate-400">Genesis • Fleet • Industrial • Machine-to-Machine Trust</p>
+                <p class="text-lg text-slate-400">Genesis • Fleet • Industrial • Machine Trust</p>
             </div>
         </div>
 
@@ -145,7 +144,7 @@
     <section class="py-20 bg-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-4">Choose Your Domain</h2>
-            <p class="text-center text-slate-400 mb-16 max-w-xl mx-auto">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
+            <p class="text-center text-slate-400 mb-16">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <a href="/marketplace?category=human" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
@@ -172,8 +171,40 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+            <div>
+                <img src="REAL.png" alt="REALAiiD" class="h-8 mb-4">
+                <p class="text-slate-400 text-sm">Commonwealth of Digital Identity<br>Node PHL-01 • Solomon Kin LLC</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Platform</h4>
+                <a href="/marketplace" class="block text-slate-400 hover:text-white py-1">Marketplace</a>
+                <a href="/technology" class="block text-slate-400 hover:text-white py-1">Technology</a>
+                <a href="/economy" class="block text-slate-400 hover:text-white py-1">$AII Economy</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Solutions</h4>
+                <a href="/solutions/maritime" class="block text-slate-400 hover:text-white py-1">Maritime</a>
+                <a href="/solutions/education" class="block text-slate-400 hover:text-white py-1">Education</a>
+                <a href="/solutions/robotics" class="block text-slate-400 hover:text-white py-1">Robotics</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Company</h4>
+                <a href="/for-grantors" class="block text-slate-400 hover:text-white py-1">For Grantors</a>
+                <a href="/compliance-hub" class="block text-slate-400 hover:text-white py-1">Compliance</a>
+                <a href="/resources" class="block text-slate-400 hover:text-white py-1">Resources</a>
+                <a href="/contact" class="block text-slate-400 hover:text-white py-1">Contact</a>
+            </div>
+        </div>
+        <div class="text-center text-slate-500 text-xs mt-12">
+            © 2026 Solomon Kin LLC • All Rights Reserved • UEI Pending
+        </div>
+    </footer>
+
     <script>
-        // Dropdown toggle
+        // Dropdown
         function toggleDropdown(el) {
             document.querySelectorAll('.group').forEach(g => {
                 if (g !== el) g.classList.remove('active');
