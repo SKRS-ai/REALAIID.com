@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In • REALAiiD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <style>
+        body { background: #0f172a; overflow: hidden; }
+        .auth-card {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+        }
+        .glow-cyan { box-shadow: 0 0 40px rgba(34, 211, 238, 0.4); }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center font-sans relative">
+
+    <!-- 3D Background -->
+    <div id="canvas-container" class="absolute inset-0 z-0"></div>
+
+    <!-- Sign In Card -->
+    <div class="auth-card max-w-md w-full mx-4 p-10 rounded-3xl z-10 glow-cyan">
+        <div class="text-center mb-10">
+            <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-16 mx-auto mb-4">
+            <h1 class="text-4xl font-bold tracking-tighter text-white">Welcome Back</h1>
+            <p class="text-slate-400 mt-2">Sign in to your Sovereign Identity</p>
+        </div>
+
+        <!-- Email / Password Form -->
+        <form id="login-form" class="space-y-6">
+            <div>
+                <label class="block text-sm text-slate-400 mb-2">Digital Human ID or Email</label>
+                <input type="text" id="identifier" placeholder="you@domain.com or ARC-XXXX" 
+                       class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-cyan-400">
+            </div>
+            <div>
+                <label class="block text-sm text-slate-400 mb-2">Password</label>
+                <input type="password" id="password" placeholder="••••••••" 
+                       class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 text-white focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <button type="submit" 
+                    class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold py-4 rounded-2xl transition text-lg">
+                Sign In with Credentials
+            </button>
+        </form>
+
+        <div class="my-8 text-center text-slate-500 text-sm">— OR —</div>
+
+        <!-- BioSign Button -->
+        <button onclick="triggerBioSign()" 
+                class="w-full border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 font-semibold py-5 rounded-2xl flex items-center justify-center gap-3 transition">
+            <span class="text-2xl">🔬</span>
+            Sign In with Bio-Sign™
+        </button>
+
+        <!-- Extra Links -->
+        <div class="flex justify-between text-sm mt-8 text-slate-400">
+            <a href="register.html" class="hover:text-white">Create New Account</a>
+            <a href="#" onclick="claimIdentity()" class="hover:text-white">Claim Identity</a>
+        </div>
+    </div>
+
+    <script>
+        // 3D Cursor-Following Background (Branding-friendly)
+        let scene, camera, renderer;
+        let particles;
+
+        function init3D() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+            // Glowing key-like particles (our branding)
+            const geometry = new THREE.BufferGeometry();
+            const vertices = [];
+            for (let i = 0; i < 800; i++) {
+                vertices.push(
+                    Math.random() * 60 - 30,
+                    Math.random() * 60 - 30,
+                    Math.random() * 60 - 30
+                );
+            }
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+
+            const material = new THREE.PointsMaterial({
+                color: 0x22d3ee,
+                size: 0.35,
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+
+            particles = new THREE.Points(geometry, material);
+            scene.add(particles);
+
+            animate();
+        }
+
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particles.rotation.y += 0.0008;
+            particles.rotation.x = mouseY * 0.15;
+            particles.rotation.y += mouseX * 0.08;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Form Submit
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simulate successful login
+            window.location.href = '/dashboard.html';
+        });
+
+        function triggerBioSign() {
+            alert("🔬 Bio-Sign™ Handshake Initiated...\n\n(Connect your biometric device or use hardware key)");
+            // In real implementation: trigger WebAuthn / Bio-Sign API
+        }
+
+        function claimIdentity() {
+            window.location.href = '/register.html';
+        }
+
+        // Initialize 3D
+        init3D();
+    </script>
+</body>
+</html>
