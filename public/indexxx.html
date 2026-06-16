@@ -322,25 +322,41 @@ document.addEventListener('click', function(e) {
             </div>
         </div>
 
-      <!-- Slide 6: The Next Infrastructure -->
+             <!-- Slide 6: The Next Infrastructure -->
         <div class="slide absolute inset-0 flex items-center" 
              style="background-image: url('JJodyNewring.png');
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;">
             
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80"></div>
+            <!-- Dark overlay for readability -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black/90"></div>
             
             <div class="max-w-4xl mx-auto px-6 text-center z-10 relative">
-                <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                <!-- Larger, Gradient Heading -->
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-r from-cyan-300 via-white to-amber-300 bg-clip-text text-transparent">
                     The Next Infrastructure
                 </h1>
+                
                 <p class="text-2xl text-cyan-400 mb-10">
                     SentryAi • Nautilus Capsules • Benthic Pulse
                 </p>
-                <p class="text-lg text-slate-200 max-w-2xl mx-auto">
+                
+                <p class="text-lg text-slate-200 max-w-2xl mx-auto mb-12">
                     Energy-harvesting sovereign nodes powering civilization.
                 </p>
+                
+                <!-- Pertinent Clickable Buttons -->
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="/economy" 
+                       class="bg-white text-slate-900 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-slate-100 transition">
+                        Explore $AII Economy
+                    </a>
+                    <a href="/marketplace?category=energy" 
+                       class="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-cyan-400/10 transition">
+                        Energy & Infrastructure
+                    </a>
+                </div>
             </div>
         </div>
 
