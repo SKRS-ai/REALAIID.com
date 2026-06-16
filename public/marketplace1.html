@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace • REALAiiD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px -15px rgb(34 211 238 / 0.3); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
+                <div>
+                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                    <p class="text-xs text-slate-400 -mt-1">Commonwealth of Digital Identity</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="/" class="hover:text-cyan-400 transition">Home</a>
+                <a href="/marketplace" class="text-cyan-400 font-semibold">Marketplace</a>
+                <a href="/technology" class="hover:text-cyan-400 transition">Technology</a>
+                <a href="/solutions" class="hover:text-cyan-400 transition">Solutions</a>
+                <a href="/economy" class="hover:text-cyan-400 transition">$AII Economy</a>
+                <a href="/for-grantors" class="hover:text-cyan-400 transition">For Grantors</a>
+                <a href="/compliance-hub" class="hover:text-cyan-400 transition">Compliance</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <input type="text" id="search" placeholder="Search products or bridges..." 
+                       class="bg-slate-800 border border-slate-600 rounded-full px-5 py-2.5 text-sm w-80 focus:outline-none focus:border-cyan-400">
+                <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="bg-slate-900 py-20 text-center border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-6">
+            <h1 class="text-6xl font-bold tracking-tighter mb-6">Marketplace</h1>
+            <p class="text-2xl text-slate-400">Sovereign Products • Bridge-Nodes • $AII Economy</p>
+        </div>
+    </section>
+
+    <!-- CATEGORY FILTERS -->
+    <div class="sticky top-[73px] z-40 bg-slate-900 border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex gap-3 overflow-x-auto">
+            <button onclick="filterCategory('all')" class="category-tab active px-6 py-2 rounded-full text-sm font-medium">All Products</button>
+            <button onclick="filterCategory('human')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">Digital Human</button>
+            <button onclick="filterCategory('robo')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">RoboSign™</button>
+            <button onclick="filterCategory('economy')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">$AII Economy</button>
+            <button onclick="filterCategory('energy')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">Energy & Infrastructure</button>
+        </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div id="product-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be populated by JS from your data -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const products = [
+            // Your full product list from index.html
+            { category: "human", name: "Standard Digital Human", price: "$149", link: "product-standard.html", desc: "Full spectrum human ingest protocol." },
+            { category: "human", name: "VocalForge™", price: "$29", link: "product-vssn2.html", desc: "Vocal hashing core." },
+            { category: "human", name: "Likeness Shield™", price: "$499", link: "product-likeness-shield.html", desc: "Deepfake protection." },
+            { category: "robo", name: "RoboSign™ Hearth", price: "$99", link: "robosign-basic.html", desc: "Home robot identity." },
+            { category: "robo", name: "RoboSign™ Fleet", price: "$499", link: "robosign-pro.html", desc: "Commercial fleet." },
+            { category: "economy", name: "$AII Individual", price: "$19/mo", link: "aii-individual.html", desc: "Personal compute credits." },
+            { category: "economy", name: "$AII Fleet-Link", price: "$499/mo", link: "aii-fleet.html", desc: "Autonomous fleet compute." },
+            { category: "energy", name: "EmbarkSecure™", price: "$49", link: "embarksecure-main.html", desc: "Maritime embarkation." },
+            // Add more from your full list as needed
+        ];
+
+        function renderProducts(filteredProducts) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            filteredProducts.forEach(p => {
+                const card = document.createElement('a');
+                card.href = p.link;
+                card.className = "product-card bg-slate-800 rounded-3xl overflow-hidden block hover:ring-2 hover:ring-cyan-400";
+                card.innerHTML = `
+                    <div class="h-56 bg-slate-700 flex items-center justify-center text-6xl">${p.icon || '🔑'}</div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-xl mb-1">${p.name}</h3>
+                        <p class="text-amber-400 text-2xl font-bold">${p.price}</p>
+                        <p class="text-slate-400 text-sm mt-3 line-clamp-2">${p.desc}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCategory(cat) {
+            document.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active', 'bg-cyan-400', 'text-slate-900'));
+            event.target.classList.add('active', 'bg-cyan-400', 'text-slate-900');
+            
+            if (cat === 'all') renderProducts(products);
+            else renderProducts(products.filter(p => p.category === cat));
+        }
+
+        // Initial render
+        renderProducts(products);
+    </script>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500">
+            © 2026 Solomon Kin LLC • Node PHL-01
+        </div>
+    </footer>
+</body>
+</html>
