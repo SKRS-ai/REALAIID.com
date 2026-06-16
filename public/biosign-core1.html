@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-Sign™ Core • Bureau of Digital Identity • REALAiiD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root { --mesh-blue: #0071e3; --gold: #d4af37; }
+        .hero-biosign { background: linear-gradient(135deg, #1e2937 0%, #0f172a 100%); }
+        .glass { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(148, 163, 184, 0.2); }
+        .float-3d { animation: float 7s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-25px) rotate(3deg); } }
+        .tech-glow { box-shadow: 0 0 40px rgba(0, 113, 227, 0.3); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- HEADER -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
+                <div>
+                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                    <p class="text-xs text-slate-400 -mt-1">Bureau of Digital Identity</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="/" class="hover:text-cyan-400 transition">Home</a>
+                <a href="/marketplace" class="hover:text-cyan-400 transition">Marketplace</a>
+                <a href="/technology" class="hover:text-cyan-400 transition">Technology</a>
+                <a href="/solutions" class="hover:text-cyan-400 transition">Solutions</a>
+                <a href="/economy" class="hover:text-cyan-400 transition">$AII Economy</a>
+                <a href="/energy-infrastructure" class="hover:text-cyan-400 transition">Energy &amp; Infrastructure</a>
+                <a href="/robotics-solutions" class="hover:text-cyan-400 transition">Robotics Solutions</a>
+                <a href="/biosign-core" class="text-cyan-400 font-semibold">Bio-Sign™</a>
+                <a href="/for-grantors" class="hover:text-cyan-400 transition">For Grantors</a>
+                <a href="/compliance-hub" class="hover:text-cyan-400 transition">Compliance</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-biosign py-32 text-center relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6">
+            <img src="biosign_trademark_logo.png" alt="Bio-Sign™" class="mx-auto h-48 mb-10">
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent">
+                Bio-Sign™ Core
+            </h1>
+            <p class="text-3xl text-cyan-400 mb-8">Human vs Machine Authentication</p>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                The definitive marrow-locked biometric protocol that restores biological truth to the digital realm.
+            </p>
+        </div>
+    </section>
+
+    <!-- CORE EXPLANATION -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-semibold mb-10">The Foundation of Sovereign Identity</h2>
+                    <p class="text-lg text-slate-300 leading-relaxed mb-10">
+                        Bio-Sign™ is REALAiiD’s proprietary skeletal resonance hashing system. It captures unique bone conductivity, micro-vibrations, and biological frequency patterns to generate a non-replicable cryptographic root.
+                    </p>
+                    <div class="glass p-10 rounded-3xl tech-glow">
+                        <h3 class="uppercase text-xs tracking-widest text-cyan-400 mb-6">When Bio-Sign™ Bridges Are Loaded Into Your REALAiiD Wallet You Can:</h3>
+                        <ul class="space-y-6 text-slate-300">
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Perform universal, instant identity verification across 47+ bridges</li>
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Bind property deeds, financial rails, travel credentials, and professional licenses directly to your biology</li>
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Generate forensic-grade digital signatures that are legally superior to traditional methods</li>
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Activate Likeness Shield™ protection against deepfakes and synthetic media</li>
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Enable secure human-to-machine and machine-to-machine interactions with zero-trust intent verification</li>
+                            <li class="flex gap-4"><span class="text-cyan-400">→</span> Earn $AII compute dividends through verified biological presence and activity</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3D FORENSIC VISUAL -->
+                <div class="float-3d flex justify-center">
+                    <div class="relative w-96 h-96">
+                        <div class="absolute inset-0 border-4 border-cyan-400/30 rounded-full"></div>
+                        <div class="absolute inset-8 border-2 border-gold/40 rounded-full animate-spin-slow"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">🧬</div>
+                                <span class="text-xs uppercase tracking-widest text-gold">Live Skeletal Resonance Hash</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL FOUNDATION -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold text-center mb-16">Technical Architecture</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="tech-card bg-slate-800 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">Skeletal Resonance Hashing</h3>
+                    <p class="text-slate-400">Real-time capture of bone conductivity and micro-vibration patterns converted into a cryptographic seed.</p>
+                </div>
+                <div class="tech-card bg-slate-800 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">Zero-Knowledge Proof Engine</h3>
+                    <p class="text-slate-400">Prove eligibility without revealing underlying biometric data.</p>
+                </div>
+                <div class="tech-card bg-slate-800 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">Hardware Root of Trust</h3>
+                    <p class="text-slate-400">Integration with SA-02 Titanium Anchor and WebAuthn/FIDO2 standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-5xl font-bold mb-6">Claim Your Biological Sovereignty</h2>
+            <p class="text-xl text-slate-400 mb-12">The foundation of every REALAiiD product begins with Bio-Sign™.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="/signin" class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-12 py-6 rounded-3xl text-xl">Start Bio-Sign™ Onboarding</a>
+                <a href="/marketplace" class="border-2 border-cyan-400 text-cyan-400 px-12 py-6 rounded-3xl text-xl font-semibold hover:bg-cyan-400/10">Browse Products</a>
+                <a href="/technology" class="border border-slate-400 hover:border-white px-12 py-6 rounded-3xl text-xl font-semibold">Full Technical Specs</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-10">
+                    <span class="text-2xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                </div>
+                <p class="text-slate-400">Bureau of Digital Identity<br>Node PHL-01 • Philadelphia</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6 text-cyan-400">Bio-Sign™ Core</h4>
+                <div class="space-y-3">
+                    <a href="/biosign-core" class="block hover:text-cyan-400">Learn Bio-Sign™</a>
+                    <a href="/marketplace?category=human" class="block hover:text-cyan-400">Digital Human Products</a>
+                    <a href="/technology" class="block hover:text-cyan-400">Protocol Architecture</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6 text-emerald-400">Solutions</h4>
+                <div class="space-y-3">
+                    <a href="/energy-infrastructure" class="block hover:text-cyan-400">Energy &amp; Infrastructure</a>
+                    <a href="/robotics-solutions" class="block hover:text-cyan-400">Robotics Solutions</a>
+                    <a href="/solutions" class="block hover:text-cyan-400">Maritime &amp; HarborLink</a>
+                    <a href="/solutions" class="block hover:text-cyan-400">SchoolSecure™</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Platform</h4>
+                <div class="space-y-3">
+                    <a href="/marketplace" class="block hover:text-cyan-400">Marketplace</a>
+                    <a href="/economy" class="block hover:text-cyan-400">$AII Economy</a>
+                    <a href="/technology" class="block hover:text-cyan-400">Bridge Registry</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Bureau</h4>
+                <div class="space-y-3">
+                    <a href="/for-grantors" class="block hover:text-cyan-400">For Grantors</a>
+                    <a href="/compliance-hub" class="block hover:text-cyan-400">Compliance Hub</a>
+                    <a href="/signin" class="block hover:text-cyan-400">Initialize Handshake</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-500 mt-16 border-t border-slate-800 pt-8">
+            © 2026 Solomon Kin LLC • Bureau of Digital Identity • Node PHL-01 • All Rights Reserved
+        </div>
+    </footer>
+
+</body>
+</html>
