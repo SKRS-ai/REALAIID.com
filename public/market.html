@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="google-site-verification" content="8Uhtk60a3JwxznJn3-zvMHUSDF_Ribq7XkrwDkstBSo" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RealAIID.com | The Global Handshake Economy // BUREAU</title>
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co https://via.placeholder.com;">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:ital,wght=1,700;1,900&family=JetBrains+Mono:wght=500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <style>
+        :root {
+            --phl-blue: #1693E9;
+            --phl-dark: #05080F;
+            --bureau-gold: #b8860b;
+            --federal-indigo: #4f46e5;
+            --transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --border-frame: 15px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #fff; color: var(--phl-dark); overflow-x: hidden; padding: var(--border-frame); }
+        
+        /* RESPONSIVE FRAME ADJUSTMENT */
+        @media (max-width: 768px) { :root { --border-frame: 8px; } }
+        body::before { content: ""; position: fixed; inset: 0; border: var(--border-frame) solid #111; pointer-events: none; z-index: 10000; }
+
+        #hero-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.3; transition: opacity 2s ease; }
+
+        header { background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: var(--border-frame); z-index: 9000; padding: 15px 5%; }
+        .logo-area img { height: clamp(60px, 10vw, 140px) !important; width: auto !important; display: block; } 
+        .nav-links a { text-decoration: none; color: var(--phl-dark); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; transition: var(--transition); }
+        .nav-links a:hover { color: var(--phl-blue); }
+        .nav-cta { background: var(--phl-blue); color: #fff !important; padding: 12px 24px; border-radius: 2px; font-weight: 900; }
+
+        /* HERO CLEAN DESIGN RECOVERY */
+        .hero-spindle { position: relative; height: 85vh; background: var(--phl-dark); overflow: hidden; display: flex; align-items: center; justify-content: center; z-index: 10; margin: -15px -15px 0; }
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out; display: flex; align-items: center; justify-content: center; }
+        .slide.active { opacity: 1; z-index: 20; }
+        .slide-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.45) saturate(1.1); z-index: 1; transform: scale(1.05); transition: transform 12s linear; }
+        .slide-bg-knot { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(0.45) saturate(1.1); z-index: 1; transform: scale(1.05); transition: transform 12s linear; }
+        .slide.active .slide-bg { transform: scale(1.15); }
+        .slide.active .slide-bg-knot { transform: scale(1.15); }
+        
+        .hero-marketing-box {
+            position: relative; z-index: 30; background: transparent; 
+            padding: 0 10%; max-width: 1200px; width: 100%; text-align: center; color: white;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.6);
+        }
+        .hero-marketing-box h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 6.5rem); font-style: italic; margin-bottom: 25px; line-height: 0.9; }
+        .hero-marketing-box p { font-size: clamp(1.1rem, 2vw, 1.5rem); opacity: 0.9; margin-bottom: 35px; font-weight: 300; }
+        .hero-btn { 
+            display: inline-block; background: var(--phl-blue); color: white; 
+            padding: 18px 40px; font-weight: 900; text-transform: uppercase; 
+            letter-spacing: 2px; font-size: 11px; text-decoration: none; transition: var(--transition); border-radius: 2px;
+        }
+        .hero-btn:hover { background: #fff; color: var(--phl-dark); transform: translateY(-3px); }
+
+        /* PRODUCT GRIDS */
+        .category-container { margin-bottom: 8rem; width: 100%; }
+        .category-header { border-left: 4px solid var(--phl-blue); padding-left: 25px; margin-bottom: 3rem; display: flex; align-items: center; gap: 20px; }
+        .category-header.staging-header { border-left-color: var(--bureau-gold); }
+        .category-header h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 2.5rem); font-style: italic; color: var(--phl-dark); }
+        
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; max-width: 1700px; margin: 0 auto; }
+        .product-grid-tile { background: #fff; border: 1px solid #f1f5f9; padding: 45px; transition: var(--transition); display: flex; flex-direction: column; text-decoration: none; color: inherit; border-radius: 4px; position: relative; overflow: hidden; min-height: 620px; height: 100%; }
+        .product-grid-tile:hover { transform: translateY(-15px); border-color: var(--phl-blue); box-shadow: 0 50px 100px rgba(0,0,0,0.06); }
+        
+        /* STAGING TILES MODS */
+        .product-grid-tile.staging-tile:hover { border-color: var(--bureau-gold); cursor: help; }
+        .badge-status { font-family: 'JetBrains Mono'; font-size: 8px; font-weight: 800; padding: 4px 8px; border-radius: 2px; letter-spacing: 1px; position: absolute; top: 15px; right: 15px; z-index: 40; text-transform: uppercase; }
+
+        .product-image-frame { width: 100%; height: 220px; background: #f8fafc; margin-bottom: 20px; overflow: hidden; position: relative; border-radius: 2px; }
+        .product-image-frame img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+
+        .p-node { font-family: 'JetBrains Mono'; font-size: 9px; color: #94a3b8; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
+        .p-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-style: italic; font-weight: 700; margin-bottom: 15px; line-height: 1.2; color: var(--phl-dark); }
+        .p-desc { font-size: 0.9rem; color: #64748b; line-height: 1.6; margin-bottom: 20px; }
+        .p-icon-large { font-size: 3.5rem; color: #cbd5e1; margin-bottom: 1.5rem; transition: color 0.3s ease; }
+        .product-grid-tile:hover .p-icon-large { color: var(--phl-blue); }
+        .product-grid-tile.staging-tile:hover .p-icon-large { color: var(--bureau-gold); }
+
+        .pricing-footer { margin-top: auto; padding-top: 30px; border-top: 1px solid #f1f5f9; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+
+        .radar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; }
+        .bridge-button { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 25px; display: flex; align-items: center; gap: 15px; color: #fff; text-decoration: none; transition: 0.4s; }
+        .bridge-button:hover { background: rgba(22, 147, 233, 0.1); border-color: var(--phl-blue); transform: translateY(-5px); }
+
+        /* ID SHOWCASE DESIGN RECOVERY */
+        .id-showcase { background: #000; color: #fff; padding: 12rem 5%; position: relative; z-index: 20; overflow: hidden; }
+        .status-pill-id { font-size: 8px; font-weight: 900; padding: 6px 12px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1px; display: inline-block; }
+        
+        footer { background: #020617; color: #94A3B8; padding: 10rem 5% 4rem; border-top: 4px solid var(--phl-blue); position: relative; z-index: 20; }
+        .footer-col h4 { color: white; font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 2px; }
+        .footer-col ul li a { display: block; font-size: 0.85rem; line-height: 2.2; color: #94A3B8; text-decoration: none; transition: 0.3s; }
+        .footer-col ul li a:hover { color: white; padding-left: 4px; }
+    </style>
+</head>
+<body>
+
+    <div id="hero-canvas"></div>
+
+ <header class="w-full border-b border-gray-800 bg-black/40">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 p-4 max-w-7xl mx-auto">
+        <div class="logo-area flex-shrink-0">
+            <img src="RealAiIDlogo.png" alt="Bureau Logo" style="height: 45px;" onerror="this.src='https://placehold.co/900x330/ffffff/0b1320?text=REALAiID+BUREAU'">
+        </div>
+        
+        <nav class="w-full flex flex-col items-center gap-3">
+            <div class="nav-links flex flex-wrap justify-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <style>
+                    .nav-links a { transition: color 0.3s ease; text-decoration: none; }
+                    .nav-links a:hover { color: #0071e3 !important; }
+                    
+                    /* Primary Handshake Button */
+                    .nav-cta { background: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; transition: background 0.3s; }
+                    .nav-cta:hover { background: #1d4ed8; }
+                    
+                    /* Secondary Sign In Button */
+                    .nav-cta-secondary { background: transparent; border: 1px solid #334155; color: #94a3b8; padding: 0.5rem 1rem; border-radius: 4px; font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s; }
+                    .nav-cta-secondary:hover { border-color: #06b6d4; color: #06b6d4; }
+                </style>
+                <a href="index.html">The Bureau</a>
+                <a href="WhatisREALAiiD.html">What is REALAiiD?</a>
+                <a href="bridge-infrastructure-hub.html">Infrastructure</a>
+                <a href="realaiid-wallet-integration.html">Mobile Sync</a>
+                <a href="biosign-core.html">BioSign™</a>
+                <a href="robosign-core.html">RoboSign™</a>
+                <a href="REALaiid-wallet.html">Hardware Vault</a>
+            </div>
+            
+            <div class="nav-links flex flex-wrap justify-center items-center gap-4 md:gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                <a href="about-us.html" class="hover:text-cyan-400">About Us</a>
+                <a href="product-vssn2.html">VSSN Hashing</a>
+                <a href="product-likeness-shield.html">Likeness Shield</a>
+                <a href="$AII-Compute-Currency-Exchange.html">$AII Exchange</a>
+                <a href="api-docs.html">API Docs</a>
+                <a href="partnership.html">HarborLink Partnership</a>
+                <a href="contact.html" class="text-cyan-400 font-bold border-b border-cyan-400 pb-1">Contact (Intake)</a>
+                
+                <div class="flex gap-2">
+                    <a href="signin.html" class="nav-cta-secondary">Sign In / BioSign</a>
+                    <a href="forensic-terminal.html" class="nav-cta">Initialize Handshake</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+    
+    <main>
+        <section class="hero-spindle">
+            <div class="slide active">
+                <div class="slide-bg-knot" style="background-image: url('HandshakeKnot.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node PHL-01 // Primary Ingest</span>
+                    <h1>The Handshake Knot™ <br>is <span style="color:var(--phl-blue)">Biological Truth.</span></h1>
+                    <p>Anchor your digital existence to an immutable physical frequency. The ultimate handshake.</p>
+                    <a href="product-standard.html" class="hero-btn">Get Verified</a>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('DigitalNewborn.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 12 // Succession Root</span>
+                    <h1>Generational <span style="color:var(--bureau-gold)">Security.</span></h1>
+                    <p>Secure the digital future of your family at the point of origin. A legacy that never fades.</p>
+                    <a href="newbornLikenessAnchor.html" class="hero-btn">Protect Legacy</a>
+                </div>
+            </div>
+            
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('LikenessShield.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 38 // Oracle Root</span>
+                    <h1>Total <span style="color:var(--phl-blue)">Likeness Immunity.</span></h1>
+                    <p>Defend your frequency against synthetic replication and AI deepfakes. Be original.</p>
+                    <a href="product-likeness-shield.html" class="hero-btn">Initialize Shield</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('WorldwideHuman Passage.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 19 // Transit</span>
+                    <h1>Autonomous Transit<span style="color:var(--phl-blue)">Authority.</span></h1>
+                    <p>Unrestricted physical and digital passage across borders for verified elite experts.</p>
+                    <a href="product-authority-pass.html" class="hero-btn">Acquire Pass</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('LikenessImmunity.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 14 // Guardian Core</span>
+                    <h1>Immutable <span style="color:var(--phl-blue)">Presence.</span></h1>
+                    <p>Continuous neural baseline tracking designed to shield your physical likeness from synthesis.</p>
+                    <a href="product-likeness-shield.html" class="hero-btn">Lock Likeness</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('Bridge134Property Anchor.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Bridge B-14 // Estate Registry</span>
+                    <h1>Property <span style="color:var(--bureau-gold)">Anchoring.</span></h1>
+                    <p>Tie physical title, deeds, and high-value holdings straight to your biometric frequency.</p>
+                    <a href="bridge-14-property-deeds.html" class="hero-btn">Anchor Title</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('BiologicalIntent.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 11 // VSSN Mainframe</span>
+                    <h1>Vocal <span style="color:var(--phl-blue)">Hashing Core.</span></h1>
+                    <p>Capture unique physical audio frequencies to serialize your baseline voice signature node.</p>
+                    <a href="product-vssn2.html" class="hero-btn">Verify Audio</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('B$AIIs.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 31 // Asset Ruler</span>
+                    <h1>Kinetic Asset<span style="color:var(--bureau-gold)">Treasury.</span></h1>
+                    <p>Harness the $AII currency economy, backed fully by compute outputs and verified kinetic energy.</p>
+                    <a href="$AII-Compute-Currency-Exchange.html" class="hero-btn">View Economy</a>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-bg" style="background-image: url('AIIVault.png')"></div>
+                <div class="hero-marketing-box">
+                    <span class="mono text-[10px] uppercase tracking-widest text-white/60 mb-4 block">Node 17 // Vault Secure</span>
+                    <h1>The <span style="color:var(--bureau-gold)">AII Vault.</span></h1>
+                    <p>Convert tracked biological presence profiles into locked digital assets and dividend matrices.</p>
+                    <a href="product-liquidity-vault.html" class="hero-btn">Access Vault</a>
+                </div>
+            </div>
+
+            <div class="hero-nav" style="position: absolute; bottom: 40px; z-index: 100; display: flex; gap: 20px;">
+                <button id="prevSlide" style="color:white; background:rgba(0,0,0,0.5); padding: 10px 20px; cursor:pointer; border: 1px solid white;">PREV</button>
+                <button id="nextSlide" style="color:white; background:rgba(0,0,0,0.5); padding: 10px 20px; cursor:pointer; border: 1px solid white;">NEXT</button>
+            </div>
+        </section>
+
+        <section style="padding: 10rem 5%; background-color: white; position: relative; z-index: 20;">
+            <div class="max-w-7xl mx-auto text-center mb-24">
+                <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(2rem, 5vw, 4rem); color: #0f172a;">The Hierarchy of <span style="color:var(--phl-blue)">Verification.</span></h2>
+                <p class="mt-6 text-slate-400 mono text-[10px] uppercase tracking-widest">Select your jurisdictional active protocol layer</p>
+            </div>
+            <div id="product-grid" class="flex flex-col gap-24"></div>
+        </section>
+
+        <section class="bg-[#020617] py-40 px-6 md:px-12 relative z-20 border-t border-white/5">
+            <div class="max-w-7xl mx-auto text-center mb-20">
+                <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; color: white; text-transform: uppercase; letter-spacing: 0.3em;">The 38-Bridge Credential Grid</h2>
+            </div>
+            <div class="radar-grid max-w-[1700px] mx-auto" id="bridge-grid"></div>
+        </section>
+
+        <section class="id-showcase border-t border-white/10">
+            <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 md:gap-24">
+                <div class="flex-1 w-full relative">
+                    <div id="id-status-overlay" style="position: absolute; top: 20px; left: 20px; z-index: 50;">
+                        <div class="flex flex-col gap-2">
+                            <div class="status-pill-id" id="federal-badge" style="background: var(--federal-indigo); color: white;">Federal: SYNCING...</div>
+                            <div class="status-pill-id" id="spatial-badge" style="background: var(--bureau-gold); color: black;">Precinct: SEARCHING...</div>
+                        </div>
+                    </div>
+                    <div id="id-presentation-canvas" style="height: 500px; cursor: grab;"></div>
+                    <p class="text-center text-[10px] uppercase tracking-widest opacity-40 mt-4 mono">SA-02 High-Assurance Hardware // Marrow-Locked Logic</p>
+                </div>
+                <div class="flex-1 max-w-xl text-center lg:text-left">
+                    <span style="color: var(--phl-blue); font-family: 'JetBrains Mono'; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5em;">Industrial Defense // SA-02 Series</span>
+                    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-style: italic; line-height: 1; margin: 2rem 0;">Total <br><span style="color: var(--phl-blue)">Verification.</span></h2>
+                    <ul class="space-y-4 mono text-xs uppercase tracking-tighter text-[#94a3b8] inline-block text-left">
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check-circle text-blue-500"></i> IAL2 Marrow-Locked Identity</li>
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check-circle text-blue-500"></i> Node 22 Stateless Expert Mobility</li>
+                        <li class="flex items-center gap-3"><i class="ph-bold ph-check-circle text-blue-500"></i> Node 38 Precinct Seating</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- ROBO-NEXUS-R SECTION -->
+<section id="robo-nexus" class="bg-white py-24 px-6 md:px-12 relative z-20 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto mb-16">
+        <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; color: #0f172a;" class="uppercase tracking-[0.3em]">Robo-Nexus-R | Robotic Sovereignty</h2>
+        <p class="text-slate-500 mt-4 max-w-xl">Entity Identity and Embodied AI Anchoring Protocols. </p>
+    </div>
+    
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <a href="robo-bridge-01-genesis.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.01: Genesis</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Hardware Root of Trust establishment for embodied AI units.</p>
+    </a>
+
+    <a href="robo-bridge-02-coupling.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.02: Coupling</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Secure owner bio-link and proximity handshake initialization.</p>
+    </a>
+
+    <a href="robo-bridge-03-feedback.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.03: Feedback</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Real-time kinetic energy loop and compute parity verification.</p>
+    </a>
+
+    <a href="robo-bridge-04-integrity.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.04: Integrity</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Immutable logic hashing referencing node drift protocols.</p>
+    </a>
+
+    <a href="robo-bridge-05-synthesis.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.05: Synthesis</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Cross-platform authority pass validation for autonomous agents.</p>
+    </a>
+
+    <a href="robo-bridge-06-sovereignty.html" class="block p-8 border border-slate-200 hover:border-blue-500 transition-all hover:shadow-lg">
+        <h4 class="font-bold text-sm uppercase mb-2 text-slate-900">38-R.06: Sovereignty</h4>
+        <p class="text-xs text-slate-500 leading-relaxed">Final state lock for independent machine-to-machine transactions.</p>
+    </a>
+</div>
+
+</section>
+
+<section class="bg-white py-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex justify-center items-center space-x-12 mb-16">
+            <div class="relative w-64 h-96 perspective-1000">
+                <div class="w-full h-full transition-transform duration-1000 transform-style-3d animate-spin-slow">
+                    <div class="absolute w-full h-full backface-hidden">
+                        <img src="roboidfront.png" alt="Robo ID Front" class="w-full h-full object-contain drop-shadow-2xl">
+                        <p class="text-center text-slate-800 mt-4 text-sm font-semibold uppercase tracking-widest">Robo ID Front</p>
+                    </div>
+                    <div class="absolute w-full h-full backface-hidden rotate-y-180">
+                        <img src="roboidback.png" alt="Robo ID Back" class="w-full h-full object-contain drop-shadow-2xl">
+                        <p class="text-center text-slate-800 mt-4 text-sm font-semibold uppercase tracking-widest">Robo ID Back</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-slate-900 border-t border-slate-200 pt-12">
+            <h2 class="text-3xl font-bold mb-8 uppercase tracking-tighter">Bureau Portal Access: Wallet-Robo ID Anchor</h2>
+            <ul class="space-y-4 text-slate-700 mb-10">
+                <li class="flex items-start">
+                    <span class="mr-3">•</span> Forensic-grade audit trail: Immutable logging of all M2M transactions
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-3">•</span> Secure proximity handshake: Biometric owner coupling with Wallet-Bio
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-3">•</span> Active bridge authorization grid: Instant verification of protocol status
+                </li>
+                <li class="flex items-start">
+                    <span class="mr-3">•</span> Global traceability via RPID: Decentralized and auditable unit identification
+                </li>
+            </ul>
+            <a href="initialize-id-sync.html" class="inline-block">
+    <button class="bg-slate-900 text-white px-8 py-4 uppercase text-xs tracking-widest hover:bg-blue-600 transition cursor-pointer">
+        Initialize ID Sync
+    </button>
+</a>
+        </div>
+    </div>
+
+</section>
+<!-- AII // COMPUTE CURRENCY ECONOMY SECTION -->
+<section id="aii-compute" class="bg-[#0f172a] py-24 px-6 md:px-12 relative z-20 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto mb-16">
+        <h2 style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 2.5rem; color: #facc15;" class="uppercase tracking-[0.3em]">
+            $AII // Compute Currency Economy
+        </h2>
+        <p class="text-slate-400 mt-4 max-w-xl italic">Settlement layers for physical intelligence and autonomous economic agents.</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-7xl mx-auto">
+        <!-- Render Bridge -->
+        <a href="render-bridge.html" class="group block p-8 border border-slate-700 bg-[#1e293b] transition-all duration-500 hover:border-[#facc15] hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h4 class="font-bold text-sm uppercase mb-3 text-white group-hover:text-[#facc15] transition-colors">10. Render</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Decentralized GPU rendering and spatial mapping settlement.</p>
+        </a>
+
+        <!-- Akash Bridge -->
+        <a href="akash-bridge.html" class="group block p-8 border border-slate-700 bg-[#1e293b] transition-all duration-500 hover:border-[#facc15] hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h4 class="font-bold text-sm uppercase mb-3 text-white group-hover:text-[#facc15] transition-colors">11. Akash</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Autonomous cloud orchestration for robot agent deployment.</p>
+        </a>
+
+        <!-- Bittensor Bridge -->
+        <a href="bittensor-bridge.html" class="group block p-8 border border-slate-700 bg-[#1e293b] transition-all duration-500 hover:border-[#facc15] hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h4 class="font-bold text-sm uppercase mb-3 text-white group-hover:text-[#facc15] transition-colors">12. Bittensor</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Marketplace for specialized robotics AI models and training.</p>
+        </a>
+
+        <!-- Gelato Bridge -->
+        <a href="gelato-bridge.html" class="group block p-8 border border-slate-700 bg-[#1e293b] transition-all duration-500 hover:border-[#facc15] hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h4 class="font-bold text-sm uppercase mb-3 text-white group-hover:text-[#facc15] transition-colors">13. Gelato</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Automated, gasless transaction relay for background operations.</p>
+        </a>
+
+        <!-- Pyth Bridge -->
+        <a href="pyth-bridge.html" class="group block p-8 border border-slate-700 bg-[#1e293b] transition-all duration-500 hover:border-[#facc15] hover:shadow-[0_0_20px_rgba(250,204,21,0.3)]">
+            <h4 class="font-bold text-sm uppercase mb-3 text-white group-hover:text-[#facc15] transition-colors">14. Pyth</h4>
+            <p class="text-xs text-slate-400 leading-relaxed">Real-time financial price feeds for $AIIcompute valuation.</p>
+        </a>
+    </div>
+
+    <!-- Visual Anchor: $AIIRobotoBio.mp4 -->
+    <div class="max-w-7xl mx-auto mt-16 text-center">
+        <video class="w-full h-auto shadow-2xl border border-slate-800" autoplay loop muted playsinline>
+            <source src="$AIIRobotoBio.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+<style>
+    .perspective-1000 { perspective: 1000px; }
+    .transform-style-3d { transform-style: preserve-3d; }
+    .backface-hidden { backface-visibility: hidden; }
+    .rotate-y-180 { transform: rotateY(180deg); }
+    @keyframes spin-slow {
+        0% { transform: rotateY(0deg); }
+        50% { transform: rotateY(180deg); }
+        100% { transform: rotateY(360deg); }
+    }
+    .animate-spin-slow { animation: spin-slow 8s infinite linear; }
+</style>
+
+    <footer>
+    <div class="max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-16">
+        <div class="sm:col-span-2 lg:col-span-1">
+            <div style="color: white; font-weight: 800; font-size: 1.5rem; font-family: 'JetBrains Mono';">REALAiID // BUREAU</div>
+            <p style="font-size: 0.85rem; line-height: 1.8; margin-top: 1rem;">Establishing Biological Truth under Node PHL-01.</p>
+            
+            <div class="mt-8">
+                <p style="font-size: 0.65rem; color: #64748b; margin-bottom: 0.5rem; letter-spacing: 1px;">Strategic Port Partner</p>
+                <a href="https://kinsenseai.com/" target="_blank">
+                    <img src="HarborLinkPartners1.png" alt="HarborLink Partners" style="height: 200px; filter: grayscale(1) brightness(1.5); transition: filter 0.3s;" onmouseover="this.style.filter='grayscale(0)'" onmouseout="this.style.filter='grayscale(1) brightness(1.5)'">
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Infrastructure</h4>
+            <ul>
+                <li><a href="mainframe.html">Mainframe Anchor</a></li>
+                <li><a href="api-docs.html">API Docs</a></li>
+                <li><a href="bridge-33-benthic-pulse.html">Benthic Core Network</a></li>
+                <li><a href="bridge-34-oracle-flux.html">Oracle Compute Nodes</a></li>
+                <li><a href="$AII-Compute-Currency-Value-Proof.html">$AII Value Proof Matrix</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+                <li><a href="product-vssn2.html">Starter Anchor</a></li>
+                <li><a href="product-sovereign.html">Supreme Ruler</a></li>
+                <li><a href="product-standard.html">Standard Human Core</a></li>
+                <li><a href="product-likeness-shield.html">Likeness Shield System</a></li>
+                <li><a href="$AII-Compute-Currency-Exchange.html">$AII Exchange Hub</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Trust</h4>
+            <ul>
+                <li><a href="lethal-ledger.html">Lethal Ledger</a></li>
+                <li><a href="biometric-trust.html">Bio-Sign Audit</a></li>
+                <li><a href="compliance-hub.html">Maritime Compliance</a></li>
+                <li><a href="forensic-records.html">Forensic Blueprint Index</a></li>
+                <li><a href="$AII-Compute-Currency-Royalty-Hub.html">Likeness Royalty Hub</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Office</h4>
+            <ul>
+                <li><a href="signin.html">Init Handshake</a></li>
+                <li><a href="support.html">Support Core</a></li>
+                <li><a href="consultation.html">Liaison Request</a></li>
+                <li><a href="network-status.html">Mainframe Health Pulse</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div style="border-top: 1px solid rgba(255,255,255,0.05); margin-top: 8rem; padding-top: 4rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; font-size: 10px; text-transform: uppercase; letter-spacing: 2px;">
+        <div>© 2026 Solomon Kin LLC // Node: PHL-01</div>
+        <div id="sync-status">GOVERNANCE SYNC ACTIVE</div>
+    </div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categories = [
+  
+                // Add this entry to your categories array
+                { id: "architectural", name: "Architectural Access", icon: "ph-grid-nine", status: "active" },
+                { id: "maritime", name: "Maritime Transport & Port Sovereignty", icon: "ph-anchor", status: "active" }, 
+                { id: "civic", name: "Civic // Institutional Infrastructure", icon: "ph-shield-check", status: "active" },
+                { id: "anchor", name: "The Bio-Anchor Tier", icon: "ph-fingerprint", status: "active" },
+                { id: "legacy", name: "The Legacy Tier", icon: "ph-tree-structure", status: "active" },
+                { id: "guardian", name: "The Guardian Tier", icon: "ph-shield-checkered", status: "active" },
+                { id: "authority", name: "The Authority Tier", icon: "ph-identification-badge", status: "active" },
+                { id: "robosign", name: "RoboSign™ // Entity Identity", icon: "ph-robot", status: "active" },
+                { id: "aii-compute", name: "$AII // Compute Economy", icon: "ph-cpu", status: "active" },
+                { id: "supreme", name: "Future Horizons // Staging Node 2027", icon: "ph-crown", status: "staging" }
+            ];
+
+            const products = [
+
+                // Add these to your products array (with corrected matching image paths)
+                { cat: "architectural", name: "Prime Identity Tier", price: "Standard Digital Human", nodes: "B-01 thru B-38", icon: "ph-fingerprint-simple", img: "PrimeIdentityTier.png", link: "prime-identity-setup.html", desc: "The foundational gateway to Digital Human status. Prime Identity locks down your biological root via Bio-Sign™ and initializes your structural Array. This tier empowers you to select and activate from 38 forensic bridges, liquidating physical credentials and binding assets, identity, and intent directly to your sovereign biometric frequency. (Active Nodes B-01 // Array Access): Total Human Autonomy via biological projection.", type: "active" },
+                { cat: "maritime", name: "REALAiID Voyage Pass™", price: "$0", nodes: "60", icon: "ph-ticket", img: "NODE60REALAiIDVoyagePass.png", link: "voyagepass-free.html", desc: "Base passenger access token for maritime entry points. Allows basic digital manifest verification prior to carrier-level Bio-Sign™ integration.", type: "active" },
+                { cat: "maritime", name: "EmbarkSecure™", price: "$49 1-year term", nodes: "60-61", icon: "ph-anchor", img: "EmbarkSecure.png", link: "embarksecure-main.html", desc: "Sovereign biometric embarkation matrix. Replaces manual check-in with fast, contactless Bio-Sign™ verification, reducing boarding times from hours to minutes.", type: "active" },
+                { cat: "maritime", name: "SentryBoard™ Terminal Core", price: "Custom 5-year term", nodes: "62", icon: "ph-device-mobile-camera", img: "SentryBoard.png", link: "sentryboard-core.html", desc: "Hardware-bound terminal kiosk core running local edge processing arrays. Seamlessly verifies identity, tickets, and baggage integration simultaneously.", type: "active" },
+                // Anchor Tier
+                { cat: "anchor", name: "REALAiID Passport™", price: "$0", nodes: "11-12", icon: "ph-device-mobile", img: "REALAiIDPassport.png", link: "passport-download.html", desc: "Freemium application download. Establishes your sovereign cryptographic framework and localized wallet shell on personal hardware.", type: "active" },
+                { cat: "anchor", name: "VocalForge™", price: "$29 per 3-year term", nodes: "11", icon: "ph-waveform", img: "tile-starter-anchor.png", link: "product-vssn2.html", desc: "Fundamental VSSN vocal hashing. Establishing the primary frequency for all future biometric access.Active Node 11 // Vocal Hashing Core — $29): Captures unique physical audio frequencies to serialize and lock a permanent baseline voice signature. Prevents audio deepfakes.", type: "active" },
+                { cat: "anchor", name: "AnimaLock™", price: "$49 per 10-year term", nodes: "01-10", icon: "ph-paw-print", img: "tile-pet-likeness.png", link: "aiK9likeness.html", desc: "Cryptographic nose-print anchoring. Protect your high-value companions with the same rigor as human nodes. (Active Nodes 01-10 // Pet Likeness — $49): Cryptographic nose-print anchoring. Protects high-value companions and working animals with high-tier human security.", type: "active" },
+                { cat: "anchor", name: "BioGenesis™", price: "$149 per 10-year term", nodes: "12", icon: "ph-user-focus", img: "tile-standard-human.png", link: "product-standard.html", desc: "Full spectrum human ingest protocol. The definitive onboarding for a verified biological life on the global mesh. (Active Node 12 // Standard Human — $149): Full-spectrum human ingest protocol. The definitive cryptographic onboarding for a verified biological life on the global mesh.", type: "active" },
+                
+                // Legacy Tier
+                { cat: "legacy", name: "HeirRoot™", price: "$149 One-Time", nodes: "13, 17", icon: "ph-baby", img: "tile-digital-newborn.png", link: "newbornLikenessAnchor.html", desc: "Succession root established at origin. Secure your child's biological identity before it is diluted. (Active Nodes 13, 17 // Digital Newborn — $149): Succession root established at birth. Secures a child's biological identity before their biometric footprint is diluted or scraped online.", type: "active" },
+                { cat: "legacy", name: "PresenceYield™", price: "$499 5-year term", nodes: "17, 22", icon: "ph-vault", img: "AIIVault.png", link: "product-liquidity-vault.html", desc: "Staking dividends on presence. Convert your verified existence into a yield-generating engine. (Active Nodes 17, 22 // $AII Vault — $499): Converts tracked biological presence profiles into locked digital assets and dividend matrices, allowing users to earn staking yields on their existence.", type: "active" },
+                
+                // Guardian Tier
+                { cat: "guardian", name: "Likeness Shield™", price: "$499 per 2-year term", nodes: "14, 31, 37, 38", icon: "ph-shield-star", img: "LikenessShield.png", link: "product-likeness-shield.html", desc: "Neural Noise deepfake defense. Injects non-perceptible biological jitter to prevent replication. (Active Nodes 14, 31, 37, 38 // Neural Noise — $499/yr): Injects non-perceptible biological jitter and neural tracking to continuously defend a human profile against synthetic replication and deepfakes.", type: "active" },
+                { cat: "guardian", name: "Bio Media Seal™", price: "$49", nodes: "33", icon: "ph-seal-check", img: "BioMediaSeal.png", link: "product-media-seal.html", desc: "Forensic pixel-level signature. Permanently watermark your creative assets with biological proof. (Active Node 33 // Bio Media Seal — $49 One-time or Volume API): Forensic, pixel-level signatures that permanently watermark creative digital assets with immutable biological proof of origin.", type: "active" },
+                { cat: "guardian", name: "KnotDrive Auto™", price: "$199 per 5-year term", nodes: "31, 34", icon: "ph-steering-wheel", img: "Drive-Knot.png", link: "product-drive-knot.html", desc: "Biometric car ignition lock. Ensure your mobility is locked to your skeletal resonance. (Active Nodes 31, 34 // Drive-Knot Auto — $199): Biometric car ignition lock ensuring physical vehicles move only when keyed to your skeletal resonance.", type: "active" },
+                
+                // Authority Tier
+                { cat: "authority", name: "AuthorityDeed™", price: "Custom per 10-year term", nodes: "B-14", icon: "ph-bank", img: "AuthorityDeed.png", link: "bridge-14-deed.html", desc: "Estate Registry title lock. Directly ties physical titles, land deeds, and corporate holdings straight to biometric frequency. (Active Nodes B-14 // Estate Registry — Custom/Transactional): High-Value Asset Sovereignty. Secures physical real-estate titles and commercial land deeds via an unbreakable biometric cryptographic chain of custody. AuthorityDeed™ creates a dynamic, continuously audited title chain tied directly to the sovereign individual, eliminating document forgery risks and legacy notary silo vulnerabilities.", type: "active" },
+                { cat: "authority", name: "LexMed Verifier™", price: "$199 per 3-year term", nodes: "05-07, 19", icon: "ph-briefcase-metal", img: "ProfLiaison.png", link: "bridge-17-professional.html", desc: "MD/JD board standing verification. Verified credentials for medical and legal elite. (Active Nodes 05-07, 19 // Prof. Liaison — $199/yr): MD/JD board standing continuous verification. Instantly proves credentials to elite networks without manual regulatory checks.", type: "active" },
+                { cat: "authority", name: "Aegis Pass™", price: "$599 per 5-year term", nodes: "19, 21", icon: "ph-globe-stand", img: "tile-authority-pass.png", link: "product-authority-pass.html", desc: "Cross-border expert status. Accelerated transit for verified professionals across international nodes. (Active Nodes 19, 21 // Authority Pass — $599/yr): Autonomous Transit Authority. Provides accelerated transit and credential clearance for verified elite experts traversing international borders.", type: "active" },
+                
+                // RoboSign™ Tier (NEW)
+                { cat: "robosign", name: "RoboSign™ Hearth", price: "$99 per 3-year term", nodes: "40", icon: "ph-house", img: "RoboSignBasic1.png", link: "robosign-basic.html", desc: "Home robot identity + owner linkage. Secure, verifiable household agent onboarding. (Active Node 40 // RoboSign Basic — $99): Securely onboards home automation and domestic robotics, anchoring their hardware identity directly to the owner's biometric profile.", type: "active" },
+                { cat: "robosign", name: "RoboSign™ Fleet", price: "$499 per 1-year term", nodes: "41", icon: "ph-briefcase", img: "RoboSignPro1.png", link: "robosign-pro.html", desc: "Commercial service fleet audit and provenance tracking. (Active Node 41 // RoboSign Pro — $499/mo): Commercial service fleet audit, tracking, and provenance management for autonomous mobile delivery and logistics units.", type: "active" },
+                { cat: "robosign", name: "RoboSign™ Foundry", price: "Custom per 10-year term", nodes: "42", icon: "ph-factory", img: "RoboSignIndustrial1.png", link: "robosign-industrial.html", desc: "Hardware-bound (HAM) identity for heavy industrial fleets. (Active Node 42 // RoboSign Industrial — Custom Enterprise): Hardware-bound (HAM) identity protocols for heavy industrial automation, utility grids, and manufacturing infrastructure.", type: "active" },
+
+                // $AII Compute Economy (NEW)
+                { cat: "aii-compute", name: "Core-Mesh Sandbox™", price: "$0", nodes: "50", icon: "ph-terminal-window", img: "CoreMeshSandbox.png", link: "sandbox-signup.html", desc: "Zero-cost developer environment access. Build, test, and stage machine-to-machine integration protocols directly inside an isolated edge infrastructure layer.", type: "active" },
+                { cat: "aii-compute", name: "$AII Nexus Individual™", price: "$19 per month term", nodes: "50", icon: "ph-user-circle", img: "$AIIcompute.png", link: "aii-individual.html", desc: "Personal AI agent compute credits and data harvesting dividends. (Active Node 50 // $AII Individual — $19/mo): Supplies personal AI agents with compute credits and tracks data harvesting dividends directly to the user.", type: "active" },
+                { cat: "aii-compute", name: "$AII Synapse Grid™", price: "$499 per month term", nodes: "51", icon: "ph-truck", img: "aii-fleet.png", link: "aii-fleet.html", desc: "Grid-contribution compute for autonomous fleet mission orchestration. (Active Node 51 // $AII Fleet-Link — $499/mo): Grid-contribution compute optimization used for autonomous fleet mission orchestration and local cluster processing.", type: "active" },
+                { cat: "aii-compute", name: "$AII Kinetic Flow™", price: "Custom per 10-year term", nodes: "52", icon: "ph-gear-six", img: "aii-m2m.png", link: "aii-m2m.html", desc: "High-throughput liquid liquidity for machine-to-machine settlements. (Active Node 52 // $AII M2M Industrial — Custom Enterprise): High-throughput liquid liquidity rails optimized for sub-millisecond machine-to-machine (M2M) financial settlements.", type: "active" },
+                // Add these to your products array
+                { cat: "civic", name: "SchoolSecure™", price: "$5-15 1-year term", nodes: "90", icon: "ph-shield-check", img: "SchoolSecure.png", link: "schoolsecure-main.html", desc: "Sovereign biometric entry, attendance, and emergency management for educational institutions.", type: "active" },
+                { cat: "civic", name: "SchoolSecure™ // Visitor", price: "Custom 3-year term", nodes: "91", icon: "ph-user-list", img: "SchoolSecureVisitor.png", link: "schoolsecure-visitor.html", desc: "Hardened visitor vetting, time-bound access tokens, and background watch-lists.", type: "active" },
+                // Supreme Tier
+                { cat: "supreme", name: "Supreme Ruler™", price: "$2,499 per 1-year term", nodes: "33-35", icon: "ph-crown-simple", img: "tile-supreme-ruler1.png", link: "product-sovereign.html", desc: "Sovereign Class A: Federal Sync. Direct access to the federal SSO and administrative logs.", type: "active" },
+                { cat: "supreme", name: "Precinct Seating™", price: "$79 per 5-year term", nodes: "36", icon: "ph-map-pin", img: "PrecinctSeating.png", link: "#", desc: "Geospatial residency logging. Requires validated municipal trade charters.", type: "staging" },
+                { cat: "supreme", name: "Oracle Arbitrage™", price: "$999 per 1-year term", nodes: "38", icon: "ph-intersect", img: "tile-oracle-arbitrage.png", link: "#", desc: "Algorithmic compute parity. Continuous ledger verification requires primary mainframe synchronization.", type: "staging" },
+                { cat: "supreme", name: "Citadel Elite™", price: "$9,999 per 10-year term", nodes: "29", icon: "ph-castle-turret", img: "Citadel.png", link: "#", desc: "Absolute failover resilience. Terminal off-grid hardware protection loop deferred.", type: "staging" },
+                { cat: "supreme", name: "Benthic Lease™", price: "$24,999 per 10-year term", nodes: "34", icon: "ph-cpu", img: "tile-benthic-lease.png", link: "#", desc: "Deep-sea data residency inside automated Abyssal Logic Capsules.", type: "staging" }
+            ];
+
+            const mainGrid = document.getElementById('product-grid');
+            categories.forEach(cat => {
+                const catSection = document.createElement('div');
+                catSection.className = "category-container";
+                
+                const headerClass = cat.status === "staging" ? "category-header staging-header" : "category-header";
+                const headerColor = cat.status === "staging" ? "var(--bureau-gold)" : "var(--phl-blue)";
+                
+                catSection.innerHTML = `<div class="${headerClass}"><i class="ph-fill ${cat.icon}" style="font-size:2rem; color:${headerColor};"></i><h3>${cat.name}</h3></div><div class="product-grid" id="container-grid-${cat.id}"></div>`;
+                mainGrid.appendChild(catSection);
+                
+                const catGrid = document.getElementById(`container-grid-${cat.id}`);
+                products.filter(p => p.cat === cat.id).forEach(p => {
+                    const isStaging = p.type === "staging";
+                    const tileClass = isStaging ? "product-grid-tile staging-tile group" : "product-grid-tile group";
+                    const badgeText = isStaging ? "Staging Node" : "Main-Mesh Active";
+                    const badgeBg = isStaging ? "background: var(--bureau-gold); color: #000;" : "background: #E0F2FE; color: var(--phl-blue);";
+                    
+                    const footerAction = isStaging 
+                        ? `<span class="mono text-[8px] uppercase tracking-widest text-amber-600 font-bold">DEFERRED // INFO ONLY</span>`
+                        : `<span class="mono text-[8px] uppercase tracking-widest text-slate-400 group-hover:text-blue-500">Initialize</span>`;
+
+                    const tileHTML = `
+                        <div class="${tileClass}">
+                            <span class="badge-status" style="${badgeBg}">${badgeText}</span>
+                            <span class="p-node">NODE ${p.nodes}</span>
+                            <div class="product-image-frame">
+                                <img src="${p.img}" alt="${p.name}" onerror="this.src='https://placehold.co/600x400/05080f/ffffff?text=${p.name}'">
+                            </div>
+                            <i class="ph-bold ${p.icon} p-icon-large"></i>
+                            <h4 class="p-title">${p.name}</h4>
+                            <p class="p-desc">${p.desc}</p>
+                            <div class="pricing-footer">
+                                <span class="text-xl font-black ${isStaging ? 'text-amber-700' : 'text-blue-600'}">${p.price}</span>
+                                ${footerAction}
+                            </div>
+                        </div>`;
+                    
+                    if (!isStaging) {
+                        const anchorWrapper = document.createElement('a');
+                        anchorWrapper.href = p.link;
+                        anchorWrapper.className = "block h-100";
+                        anchorWrapper.innerHTML = tileHTML;
+                        catGrid.appendChild(anchorWrapper);
+                    } else {
+                        const containerDiv = document.createElement('div');
+                        containerDiv.className = "block h-100";
+                        containerDiv.innerHTML = tileHTML;
+                        catGrid.appendChild(containerDiv);
+                    }
+                });
+            });
+
+            // 38 BRIDGES MATRIX
+            const bridges = [
+                {id: "01", name: "Auth Root", icon: "ph-fingerprint"}, {id: "02", name: "Civic Core", icon: "ph-buildings"}, {id: "03", name: "HR Liaison", icon: "ph-users-four"}, {id: "04", name: "Civic Ballot", icon: "ph-archive"}, {id: "05", name: "Ambient Auth", icon: "ph-waves"}, {id: "06", name: "Keystone Plate", icon: "ph-identification-card"}, {id: "07", name: "Entra Defense", icon: "ph-microsoft-outlook-logo"}, {id: "08", name: "Physical UAC", icon: "ph-door-open"}, {id: "09", name: "DMV Authority", icon: "ph-car-profile"}, {id: "10", name: "Fiscal Root", icon: "ph-bank"}, {id: "11", name: "Pet Likeness", icon: "ph-dog"}, {id: "12", name: "Vital Records", icon: "ph-scroll"}, {id: "13", name: "Medical Root", icon: "ph-first-aid"}, {id: "14", name: "Property Deeds", icon: "ph-house-line"}, {id: "15", name: "Safe Owner", icon: "ph-vault"}, {id: "16", name: "Satoshi Root", icon: "ph-currency-btc"}, {id: "17", name: "Professional", icon: "ph-briefcase-metal"}, {id: "18", name: "SSA Tokenizer", icon: "ph-barcode"}, {id: "19", name: "Bio-Sign", icon: "ph-signature"}, {id: "20", name: "Escrow Ruler", icon: "ph-handshake"}, {id: "21", name: "Citadel Escrow", icon: "ph-fortress"}, {id: "22", name: "DTC Travel", icon: "ph-airplane-tilt"}, {id: "23", name: "Amex Anchor", icon: "ph-credit-card"}, {id: "24", name: "Credit Authority", icon: "ph-chart-bar"}, {id: "25", name: "Insurance", icon: "ph-umbrella"}, {id: "26", name: "Mastercard Rail", icon: "ph-arrows-left-right"}, {id: "27", name: "Academic Root", icon: "ph-student"}, {id: "28", name: "Global Notary", icon: "ph-seal-check"}, {id: "29", name: "Logistics Sync", icon: "ph-truck"}, {id: "30", name: "Auto Anchor", icon: "ph-key"}, {id: "31", name: "AII Economy", icon: "ph-coins"}, {id: "32", name: "God Sense", icon: "ph-eye"}, {id: "33", name: "Benthic Pulse", icon: "ph-cpu"}, {id: "34", name: "Oracle Flux", icon: "ph-lightning"}, {id: "35", name: "Justice Rail", icon: "ph-scales"}, {id: "36", name: "Doge Bridge", icon: "ph-rocket-launch"}, {id: "37", name: "Federal Sync", icon: "ph-flag-banner"}, {id: "38", name: "Precinct Root", icon: "ph-map-pin"},
+                {id: "39", name: "Identity Vault", icon: "ph-map-pin"} 
+            ];
+            const bGrid = document.getElementById('bridge-grid');
+            bridges.forEach(b => {
+                const btn = document.createElement('a'); btn.className = "bridge-button";
+                btn.href = `bridge-${b.id}-${b.name.toLowerCase().replace(/ /g, '-')}.html`;
+                btn.innerHTML = `<i class="ph-bold ${b.icon}" style="color:var(--phl-blue)"></i><div class="flex flex-col"><span class="mono text-[9px] opacity-40 uppercase">BRIDGE B-${b.id}</span><span style="font-size:13px; font-weight:700; text-transform:uppercase;">${b.name}</span></div>`;
+                bGrid.appendChild(btn);
+            });
+
+            const initIDPresent = () => {
+                const idScene = new THREE.Scene();
+                const idArea = document.getElementById('id-presentation-canvas');
+                if(!idArea) return;
+                const idCamera = new THREE.PerspectiveCamera(45, idArea.clientWidth / idArea.clientHeight, 0.1, 1000);
+                const idRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                idRenderer.setSize(idArea.clientWidth, idArea.clientHeight); idArea.appendChild(idRenderer.domElement);
+                const loader = new THREE.TextureLoader();
+                const materials = [
+                    new THREE.MeshPhongMaterial({ color: 0x111111 }), new THREE.MeshPhongMaterial({ color: 0x111111 }), 
+                    new THREE.MeshPhongMaterial({ color: 0x111111 }), new THREE.MeshPhongMaterial({ color: 0x111111 }), 
+                    new THREE.MeshPhongMaterial({ map: loader.load('realid.png'), shininess: 150 }), 
+                    new THREE.MeshPhongMaterial({ map: loader.load('realidback.png'), shininess: 150 })  
+                ];
+                const card = new THREE.Mesh(new THREE.BoxGeometry(5.4, 3.4, 0.12), materials);
+                idScene.add(card); idScene.add(new THREE.AmbientLight(0xffffff, 1.5)); idCamera.position.z = 8;
+                const animID = () => { requestAnimationFrame(animID); card.rotation.y += 0.005; idRenderer.render(idScene, idCamera); }; animID();
+            };
+            initIDPresent();
+
+            const initHero = () => {
+                const hScene = new THREE.Scene();
+                const hArea = document.getElementById('hero-canvas');
+                if(!hArea) return;
+                const hCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const hRenderer = new THREE.WebGLRenderer({ alpha: true });
+                hRenderer.setSize(window.innerWidth, window.innerHeight); hArea.appendChild(hRenderer.domElement);
+                const knot = new THREE.Mesh(new THREE.TorusKnotGeometry(10, 3, 100, 16), new THREE.MeshPhongMaterial({ color: 0x1693E9, wireframe: true }));
+                hScene.add(knot); hScene.add(new THREE.AmbientLight(0xffffff, 0.5)); hCamera.position.z = 30;
+                const animH = () => { requestAnimationFrame(animH); knot.rotation.y += 0.01; hRenderer.render(hScene, hCamera); };
+                animH();
+            };
+            initHero();
+
+            let c = 0; const slides = document.querySelectorAll('.slide');
+            const rotateHero = (i) => { slides.forEach(x => x.classList.remove('active')); slides[i].classList.add('active'); };
+            const nextHero = () => { c = (c+1)%slides.length; rotateHero(c); };
+            document.getElementById('nextSlide').onclick = nextHero;
+            document.getElementById('prevSlide').onclick = () => { c = (c-1+slides.length)%slides.length; rotateHero(c); };
+            setInterval(nextHero, 8000); 
+        });
+    </script>
+    
+</body>
+</html>
