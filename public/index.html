@@ -58,10 +58,18 @@ document.addEventListener('click', function(e) {
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    hamburgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-    });
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            
+            // Change icon between hamburger and X
+            if (mobileMenu.classList.contains('hidden')) {
+                hamburgerBtn.textContent = '☰';
+            } else {
+                hamburgerBtn.textContent = '✕';
+            }
+        });
+    }
 </script>
 
 <script>
