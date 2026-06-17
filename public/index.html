@@ -55,14 +55,45 @@ document.addEventListener('click', function(e) {
 </head>
 
 <script>
-    document.getElementById('global-search').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter' && this.value.trim() !== '') {
-            window.location.href = `/marketplace?search=${encodeURIComponent(this.value.trim())}`;
-        }
-    });
-</script>
+// Database of searchable items
+const searchDatabase = [
+    { title: "Digital Human Identity", url: "/DigitalHumanIdentity.html", category: "Product" },
+    { title: "Standard Digital Human", url: "/product-standard.html", category: "Product" },
+    { title: "Likeness Shield", url: "/product-likeness-shield.html", category: "Product" },
+    { title: "RoboSign™ Hearth", url: "/robosign-basic.html", category: "Robotics" },
+    { title: "RoboSign™ Fleet", url: "/robosign-pro.html", category: "Robotics" },
+    { title: "$AII Individual", url: "/marketplace?category=economy", category: "Economy" },
+    { title: "SentryAi Devices", url: "/energy-infrastructure.html", category: "Energy" },
+    { title: "Bio-Sign™ Core", url: "/biosign-core.html", category: "Technology" },
+    { title: "SchoolSecure™", url: "/EducationSchoolSecure.html", category: "Solutions" },
+    { title: "EmbarkSecure™", url: "/Maritime&HarborLink.html", category: "Maritime" },
+    // Add more items as needed
+];
 
-<body class="bg-slate-950 text-slate-100 font-sans">
+function performSearch() {
+    const query = document.getElementById('global-search').value.toLowerCase().trim();
+    if (!query) return;
+
+    const results = searchDatabase.filter(item => 
+        item.title.toLowerCase().includes(query) || 
+        (item.category && item.category.toLowerCase().includes(query))
+    );
+
+    if (results.length > 0) {
+        // Show first result or open a results modal
+        window.location.href = results[0].url;
+    } else {
+        alert("No results found for: " + query + "\n\nTry searching for: Bio-Sign, RoboSign, $AII, SentryAi, etc.");
+    }
+}
+
+// Allow pressing Enter in search box
+document.getElementById('global-search').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        performSearch();
+    }
+});
+</script>
 
 
 <!-- NAVIGATION -->
@@ -459,16 +490,17 @@ document.addEventListener('click', function(e) {
             <h2 class="text-4xl font-semibold text-center mb-4">Choose Your Domain</h2>
             <p class="text-center text-slate-400 mb-16">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
 
-            <!-- Centered Search Bar -->
-<div class="max-w-md mx-auto my-10 px-6">
+<!-- Centered Search Bar -->
+<div class="max-w-lg mx-auto my-8 px-6">
     <div class="relative">
         <input 
             type="text" 
             id="global-search" 
-            placeholder="Search products, bridges, or solutions..." 
+            placeholder="Search products, bridges, solutions..." 
             class="w-full bg-slate-800 border border-slate-600 focus:border-cyan-400 rounded-full px-6 py-4 text-sm placeholder-slate-500 focus:outline-none">
-        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400">
-            <i class="ph ph-magnifying-glass text-xl"></i>
+        <button onclick="performSearch()" 
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400 hover:text-white">
+            🔍
         </button>
     </div>
 </div>
