@@ -55,37 +55,93 @@ document.addEventListener('click', function(e) {
 </head>
 
 <script>
-// Database of searchable items
+    
+// Expanded Search Database
 const searchDatabase = [
     { title: "Digital Human Identity", url: "/DigitalHumanIdentity.html", category: "Product" },
     { title: "Standard Digital Human", url: "/product-standard.html", category: "Product" },
     { title: "Likeness Shield", url: "/product-likeness-shield.html", category: "Product" },
-    { title: "RoboSign™ Hearth", url: "/robosign-basic.html", category: "Robotics" },
-    { title: "RoboSign™ Fleet", url: "/robosign-pro.html", category: "Robotics" },
+    { title: "Bio-Sign Core", url: "/biosign-core.html", category: "Technology" },
+    { title: "RoboSign Ecosystem", url: "/RoboSignEcosystem.html", category: "Robotics" },
+    { title: "RoboSign Hearth", url: "/robosign-basic.html", category: "Robotics" },
+    { title: "RoboSign Fleet", url: "/robosign-pro.html", category: "Robotics" },
+    { title: "RoboSign Industrial", url: "/robosign-industrial.html", category: "Robotics" },
+    { title: "$AII Compute Economy", url: "/economy$AII.html", category: "Economy" },
     { title: "$AII Individual", url: "/marketplace?category=economy", category: "Economy" },
+    { title: "Energy & Infrastructure", url: "/Energy&Infrastructure.html", category: "Energy" },
     { title: "SentryAi Devices", url: "/energy-infrastructure.html", category: "Energy" },
-    { title: "Bio-Sign™ Core", url: "/biosign-core.html", category: "Technology" },
-    { title: "SchoolSecure™", url: "/EducationSchoolSecure.html", category: "Solutions" },
-    { title: "EmbarkSecure™", url: "/Maritime&HarborLink.html", category: "Maritime" },
-    // Add more items as needed
+    { title: "Maritime & HarborLink", url: "/Maritime&HarborLink.html", category: "Solutions" },
+    { title: "EmbarkSecure", url: "/Maritime&HarborLink.html", category: "Solutions" },
+    { title: "SchoolSecure", url: "/EducationSchoolSecure.html", category: "Solutions" },
+    { title: "For Grantors", url: "/for-grantors.html", category: "Company" },
+    { title: "Compliance Hub", url: "/compliance-hub1.html", category: "Company" },
+    { title: "Careers", url: "/careers.html", category: "Company" },
+    { title: "Technology", url: "/technology.html", category: "Platform" },
+    { title: "Resources", url: "/resources1.html", category: "Company" },
+    // Add more as needed
 ];
 
+const searchInput = document.getElementById('nav-search');
+const suggestionsBox = document.getElementById('search-suggestions');
+
+function showSuggestions(query) {
+    if (!query) {
+        suggestionsBox.classList.add('hidden');
+        return;
+    }
+
+    const results = searchDatabase.filter(item => 
+        item.title.toLowerCase().includes(query.toLowerCase())
+    ).slice(0, 8); // Limit to 8 suggestions
+
+    if (results.length === 0) {
+        suggestionsBox.classList.add('hidden');
+        return;
+    }
+
+    let html = '';
+    results.forEach(item => {
+        html += `
+            <a href="${item.url}" 
+               class="block px-4 py-3 hover:bg-slate-800 text-sm border-b border-slate-800 last:border-none">
+                <span class="text-cyan-400">${item.category}</span> — ${item.title}
+            </a>`;
+    });
+
+    suggestionsBox.innerHTML = html;
+    suggestionsBox.classList.remove('hidden');
+}
+
 function performSearch() {
-    const query = document.getElementById('global-search').value.toLowerCase().trim();
+    const query = searchInput.value.trim();
     if (!query) return;
 
     const results = searchDatabase.filter(item => 
-        item.title.toLowerCase().includes(query) || 
-        (item.category && item.category.toLowerCase().includes(query))
+        item.title.toLowerCase().includes(query.toLowerCase())
     );
 
     if (results.length > 0) {
-        // Show first result or open a results modal
         window.location.href = results[0].url;
     } else {
-        alert("No results found for: " + query + "\n\nTry searching for: Bio-Sign, RoboSign, $AII, SentryAi, etc.");
+        alert(`No results found for "${query}". Try broader terms.`);
     }
 }
+
+// Event Listeners
+searchInput.addEventListener('input', () => showSuggestions(searchInput.value));
+searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        performSearch();
+    }
+});
+
+// Close suggestions when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('#nav-search') && !e.target.closest('#search-suggestions')) {
+        suggestionsBox.classList.add('hidden');
+    }
+});
+</script>
 
 // Allow pressing Enter in search box
 document.getElementById('global-search').addEventListener('keypress', function(e) {
