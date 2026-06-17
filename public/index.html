@@ -719,5 +719,22 @@ document.getElementById('global-search').addEventListener('keypress', function(e
     });
 </script>
 
+<script>
+// Toggle mobile submenus
+function toggleMobileSubmenu(element) {
+    const submenu = element.querySelector('.mobile-submenu');
+    const arrow = element.querySelector('span:last-child');
+    
+    submenu.classList.toggle('hidden');
+    
+    // Rotate arrow
+    if (submenu.classList.contains('hidden')) {
+        arrow.style.transform = 'rotate(0deg)';
+    } else {
+        arrow.style.transform = 'rotate(90deg)';
+    }
+}
+</script>
+
 </body>
 </html>
