@@ -230,23 +230,51 @@ document.getElementById('global-search').addEventListener('keypress', function(e
 </nav>
 
     <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
-        <div class="flex flex-col gap-6 text-lg font-medium">
-            <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
-            <a href="/marketplace" class="hover:text-cyan-400 py-3 border-b border-slate-800">Marketplace</a>
-            <a href="/technology.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
-            <a href="/solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Solutions</a>
-            <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
-            <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
-            <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
-            <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
-            
-            <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
-                Initialize Handshake
-            </a>
+<div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
+    <div class="flex flex-col gap-6 text-lg font-medium">
+        <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
+        
+        <!-- Marketplace with Submenu -->
+        <div onclick="toggleMobileSubmenu(this)" class="cursor-pointer">
+            <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                <span>Marketplace</span>
+                <span class="text-xl transition-transform">›</span>
+            </div>
+            <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400">Digital Human™ Identity</a>
+                <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400">Digital Robot™ Ecosystem</a>
+                <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400">$AII Compute Economy</a>
+                <a href="/Energy&Infrastructure.html" class="block hover:text-cyan-400">Energy & Infrastructure</a>
+            </div>
         </div>
+
+        <a href="/technology.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
+        
+        <!-- Solutions with Submenu -->
+        <div onclick="toggleMobileSubmenu(this)" class="cursor-pointer">
+            <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                <span>Solutions</span>
+                <span class="text-xl transition-transform">›</span>
+            </div>
+            <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400">Maritime & HarborLink</a>
+                <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400">Education (SchoolSecure™)</a>
+                <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400">Travel & Embarkation</a>
+                <a href="/Governance&Civic.html" class="block hover:text-cyan-400">Governance & Civic</a>
+                <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400">Robotics & Autonomous</a>
+            </div>
+        </div>
+
+        <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
+        <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
+        <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
+        <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
+        
+        <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+            Initialize Handshake
+        </a>
     </div>
-</nav>
+</div>
 
   <!-- HERO SLIDESHOW -->
 <section class="hero-bg relative h-screen flex items-center overflow-hidden">
