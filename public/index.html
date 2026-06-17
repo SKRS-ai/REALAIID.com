@@ -54,7 +54,7 @@ document.addEventListener('click', function(e) {
     </style>
 </head>
 
-<script>
+<<script>
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -62,12 +62,8 @@ document.addEventListener('click', function(e) {
         hamburgerBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
             
-            // Change icon between hamburger and X
-            if (mobileMenu.classList.contains('hidden')) {
-                hamburgerBtn.textContent = '☰';
-            } else {
-                hamburgerBtn.textContent = '✕';
-            }
+            // Toggle icon between hamburger and X
+            hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
         });
     }
 </script>
@@ -447,29 +443,10 @@ document.addEventListener('click', function(e) {
         </div>
     </section>
 
-<<!-- Hamburger Button -->
-<button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">
+<!-- Hamburger Button -->
+<button id="hamburger-btn" class="text-4xl text-cyan-400 focus:outline-none p-3">
     ☰
 </button>
-
-<!-- Mobile + Tablet Menu -->
-<div id="mobile-menu" class="hidden lg:hidden fixed inset-0 bg-slate-950 z-[60] pt-20 px-6 overflow-y-auto">
-    <div class="flex flex-col gap-6 text-lg font-medium py-8">
-        <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
-        <a href="/marketplace" class="hover:text-cyan-400 py-3 border-b border-slate-800">Marketplace</a>
-        <a href="/technology" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
-        <a href="/solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Solutions</a>
-        <a href="/economy" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
-        <a href="/energy-infrastructure" class="hover:text-cyan-400 py-3 border-b border-slate-800">Energy & Infrastructure</a>
-        <a href="/robotics-solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Robotics Solutions</a>
-        <a href="/for-grantors" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
-        <a href="/compliance-hub" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
-        
-        <a href="/signin" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
-            Initialize Handshake
-        </a>
-    </div>
-</div>
 
     <!-- CHOOSE YOUR DOMAIN -->
     <section class="py-20 bg-slate-900">
@@ -606,5 +583,25 @@ document.addEventListener('click', function(e) {
             }
         });
     </script>
+
+    <!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden fixed inset-0 bg-slate-950 z-[9999] pt-24 px-8 overflow-y-auto">
+    <div class="flex flex-col gap-8 text-xl font-medium">
+        <a href="/" class="hover:text-cyan-400 py-4 border-b border-slate-800">Home</a>
+        <a href="/marketplace" class="hover:text-cyan-400 py-4 border-b border-slate-800">Marketplace</a>
+        <a href="/technology" class="hover:text-cyan-400 py-4 border-b border-slate-800">Technology</a>
+        <a href="/solutions" class="hover:text-cyan-400 py-4 border-b border-slate-800">Solutions</a>
+        <a href="/economy" class="hover:text-cyan-400 py-4 border-b border-slate-800">$AII Economy</a>
+        <a href="/energy-infrastructure" class="hover:text-cyan-400 py-4 border-b border-slate-800">Energy & Infrastructure</a>
+        <a href="/robotics-solutions" class="hover:text-cyan-400 py-4 border-b border-slate-800">Robotics Solutions</a>
+        <a href="/for-grantors" class="hover:text-cyan-400 py-4 border-b border-slate-800">For Grantors</a>
+        <a href="/compliance-hub" class="hover:text-cyan-400 py-4 border-b border-slate-800">Compliance</a>
+        
+        <a href="/signin" class="mt-12 bg-cyan-500 text-center py-5 rounded-3xl font-semibold text-lg">
+            Initialize Handshake
+        </a>
+    </div>
+</div>
+
 </body>
 </html>
