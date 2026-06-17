@@ -54,18 +54,14 @@ document.addEventListener('click', function(e) {
     </style>
 </head>
 
-<<script>
+<script>
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    if (hamburgerBtn && mobileMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Toggle icon between hamburger and X
-            hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-        });
-    }
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+    });
 </script>
 
 <script>
@@ -147,6 +143,11 @@ document.addEventListener('click', function(e) {
         </div>
     </div>
 </nav>
+
+<!-- Hamburger Button - RIGHT SIDE (Best Location) -->
+        <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">
+            ☰
+        </button>
 
   <!-- HERO SLIDESHOW -->
 <section class="hero-bg relative h-screen flex items-center overflow-hidden">
@@ -442,11 +443,6 @@ document.addEventListener('click', function(e) {
             <button onclick="nextSlide()" class="bg-black/70 hover:bg-black/90 px-6 py-3 rounded-full text-xl transition">→</button>
         </div>
     </section>
-
-<!-- Hamburger Button -->
-<button id="hamburger-btn" class="text-4xl text-cyan-400 focus:outline-none p-3">
-    ☰
-</button>
 
     <!-- CHOOSE YOUR DOMAIN -->
     <section class="py-20 bg-slate-900">
