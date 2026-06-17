@@ -115,15 +115,29 @@
             <h2 class="text-4xl font-semibold mb-6">Express Interest</h2>
             <p class="text-slate-400 mb-10">We are actively building our founding team. Let us know you're interested in joining the Bureau.</p>
             
-            <form id="interest-form" class="space-y-6">
-                <input type="text" placeholder="Full Name" class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-                <input type="email" placeholder="Email Address" class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
-                <textarea placeholder="What excites you about REALAiiD? (Optional)" rows="4" class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
-                
-                <button type="submit" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold py-5 rounded-3xl text-lg">
-                    Submit Interest
-                </button>
-            </form>
+            <!-- EXPRESS INTEREST FORM -->
+<form id="interest-form" action="https://formspree.io/f/xrevvjjz" method="POST" class="space-y-6">
+    <input type="text" name="name" placeholder="Full Name" required
+           class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+
+    <input type="email" name="email" placeholder="Email Address" required
+           class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+
+    <input type="text" name="role_interest" placeholder="Role or Area of Interest (e.g., Engineering, Policy, Biometrics)" 
+           class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+
+    <textarea name="message" placeholder="What excites you about REALAiiD? Why do you want to join the Bureau?" rows="5"
+              class="w-full bg-slate-800 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
+
+    <!-- Hidden fields for better email organization -->
+    <input type="hidden" name="_subject" value="New Career Interest - REALAiiD Bureau">
+    <input type="hidden" name="_next" value="https://www.realaiid.com/careers.html?thankyou=1">
+
+    <button type="submit" 
+            class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold py-5 rounded-3xl text-lg transition">
+        Submit Interest
+    </button>
+</form>
             
             <p class="text-xs text-slate-500 mt-8">We will reach out when relevant roles open. Thank you for believing in sovereign identity.</p>
         </div>
