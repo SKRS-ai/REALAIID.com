@@ -136,9 +136,25 @@ document.addEventListener('click', (e) => {
         suggestionsBox.classList.add('hidden');
     }
 });
-</script>
+<script>
+// Main Search Function
+function performSearch() {
+    const query = document.getElementById('global-search').value.trim();
+    if (!query) return;
+    
+    // Your existing search logic here
+    const results = searchDatabase.filter(item => 
+        item.title.toLowerCase().includes(query.toLowerCase())
+    );
 
-// Allow pressing Enter in search box
+    if (results.length > 0) {
+        window.location.href = results[0].url;
+    } else {
+        alert(`No results found for "${query}".`);
+    }
+}
+
+// Enter Key Support
 document.getElementById('global-search').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         performSearch();
