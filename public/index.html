@@ -53,6 +53,25 @@ document.addEventListener('click', function(e) {
         .active .dropdown { display: block; }
     </style>
 </head>
+
+<script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+    });
+</script>
+
+<script>
+    document.getElementById('global-search').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && this.value.trim() !== '') {
+            window.location.href = `/marketplace?search=${encodeURIComponent(this.value.trim())}`;
+        }
+    });
+</script>
+
 <body class="bg-slate-950 text-slate-100 font-sans">
 
 <!-- NAVIGATION -->
@@ -420,11 +439,49 @@ document.addEventListener('click', function(e) {
         </div>
     </section>
 
+<!-- Hamburger Button (Mobile Only) -->
+<button id="hamburger-btn" class="md:hidden text-3xl text-cyan-400 focus:outline-none">
+    ☰
+</button>
+
+<!-- Mobile Menu (Hidden by default) -->
+<div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-slate-950 z-50 pt-20 px-6 overflow-y-auto">
+    <div class="flex flex-col gap-6 text-lg font-medium">
+        <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
+        <a href="/marketplace" class="hover:text-cyan-400 py-3 border-b border-slate-800">Marketplace</a>
+        <a href="/technology" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
+        <a href="/solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Solutions</a>
+        <a href="/economy" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
+        <a href="/energy-infrastructure" class="hover:text-cyan-400 py-3 border-b border-slate-800">Energy & Infrastructure</a>
+        <a href="/robotics-solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Robotics Solutions</a>
+        <a href="/for-grantors" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
+        <a href="/compliance-hub" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
+        
+        <a href="/signin" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+            Initialize Handshake
+        </a>
+    </div>
+</div>
+
     <!-- CHOOSE YOUR DOMAIN -->
     <section class="py-20 bg-slate-900">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-4">Choose Your Domain</h2>
             <p class="text-center text-slate-400 mb-16">Core Pillars of the REALAiiD Sovereign Ecosystem</p>
+
+            <!-- Centered Search Bar -->
+<div class="max-w-md mx-auto my-10 px-6">
+    <div class="relative">
+        <input 
+            type="text" 
+            id="global-search" 
+            placeholder="Search products, bridges, or solutions..." 
+            class="w-full bg-slate-800 border border-slate-600 focus:border-cyan-400 rounded-full px-6 py-4 text-sm placeholder-slate-500 focus:outline-none">
+        <button class="absolute right-4 top-1/2 -translate-y-1/2 text-cyan-400">
+            <i class="ph ph-magnifying-glass text-xl"></i>
+        </button>
+    </div>
+</div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <a href="/DigitalHumanIdentity.html" class="group bg-slate-800 hover:bg-slate-700 p-10 rounded-3xl transition-all text-center border border-transparent hover:border-cyan-400">
