@@ -77,11 +77,11 @@ document.addEventListener('click', function(e) {
                      class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
             </div>
 
-            <!-- Main Menu -->
+            <!-- Main Desktop Menu -->
             <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
                 <a href="/" class="hover:text-cyan-400 transition whitespace-nowrap">Home</a>
                 
-                <!-- Marketplace Dropdown - Click Activated -->
+                <!-- Marketplace Dropdown -->
                 <div class="relative group" onclick="toggleDropdown(this)">
                     <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
                         Marketplace <span class="text-[10px]">▼</span>
@@ -96,7 +96,7 @@ document.addEventListener('click', function(e) {
 
                 <a href="/technology.html" class="hover:text-cyan-400 transition whitespace-nowrap">Technology</a>
                 
-                <!-- Solutions Dropdown - Click Activated -->
+                <!-- Solutions Dropdown -->
                 <div class="relative group" onclick="toggleDropdown(this)">
                     <button class="flex items-center gap-1 hover:text-cyan-400 transition whitespace-nowrap">
                         Solutions <span class="text-[10px]">▼</span>
@@ -116,7 +116,12 @@ document.addEventListener('click', function(e) {
                 <a href="/resources1.html" class="hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
             </div>
 
-            <!-- Search + CTA -->
+            <!-- Hamburger Button (Right Side) -->
+            <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2 ml-4">
+                ☰
+            </button>
+
+            <!-- Search + CTA (Desktop Only) -->
             <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
                 <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
                     <input type="text" id="search" placeholder="Search..." 
@@ -131,6 +136,24 @@ document.addEventListener('click', function(e) {
                     Initialize
                 </a>
             </div>
+        </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
+        <div class="flex flex-col gap-6 text-lg font-medium">
+            <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
+            <a href="/marketplace" class="hover:text-cyan-400 py-3 border-b border-slate-800">Marketplace</a>
+            <a href="/technology.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
+            <a href="/solutions" class="hover:text-cyan-400 py-3 border-b border-slate-800">Solutions</a>
+            <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
+            <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
+            <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
+            <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
+            
+            <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+                Initialize Handshake
+            </a>
         </div>
     </div>
 </nav>
@@ -565,6 +588,16 @@ document.addEventListener('click', function(e) {
             }
         });
     </script>
+
+    <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+    });
+</script>
 
 </body>
 </html>
