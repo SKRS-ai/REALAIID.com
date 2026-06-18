@@ -2,60 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vigilant™ | Bureau of Digital Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e0e0e0; margin: 0; line-height: 1.6; }
-        header { border-bottom: 1px solid #333; padding: 20px; text-align: center; background: #000; }
-        .hero { padding: 60px 20px; text-align: center; border-bottom: 1px solid #222; }
-        .content { max-width: 800px; margin: 40px auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
-        .card { background: #111; padding: 20px; border: 1px solid #333; }
-        footer { border-top: 1px solid #333; padding: 40px 20px; background: #000; font-size: 0.8em; color: #666; }
-        .footer-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        a { color: #007bff; text-decoration: none; }
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@200;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #050505; color: #d1d5db; }
+        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(10px); border: 1px solid #374151; }
+        .gradient-text { background: linear-gradient(90deg, #60a5fa, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .scan-line { height: 1px; background: #3b82f6; position: absolute; width: 100%; top: 0; animation: scan 4s linear infinite; }
+        @keyframes scan { from { top: 0; } to { top: 100%; } }
     </style>
 </head>
-<body>
+<body class="leading-relaxed">
 
-<header>
-    <h1>REALAIID | Bureau of Digital Identity</h1>
-    <nav>
-        <a href="robo-nexus-r.html">Dashboard</a> | <a href="identity.html">Identity</a> | <a href="marketplace.html">Marketplace</a>
-    </nav>
-</header>
+    <!-- Header -->
+    <header class="border-b border-gray-800 bg-black/80 sticky top-0 z-50 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-[0.2em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+            <div class="space-x-8 text-[10px] uppercase tracking-widest text-gray-400">
+                <a href="index.html" class="hover:text-blue-500">Home</a>
+                <a href="robo-nexus-r.html" class="hover:text-blue-500">Nexus-R</a>
+                <a href="identity.html" class="hover:text-blue-500">Bio-Wallet</a>
+                <a href="marketplace.html" class="hover:text-blue-500">Infrastructure</a>
+            </div>
+        </nav>
+    </header>
 
-<section class="hero">
-    <h1>Vigilant™</h1>
-    <p>Forensic Enforcement Credentialing for the Sovereign Age.</p>
-</section>
-
-<main class="content">
-    <h2>Why Vigilant™?</h2>
-    <p>Vigilant™ bridges the gap between raw authority and forensic proof. Once loaded into your <strong>Wallet-Bio</strong>, this credential provides an immutable, real-time handshake between the officer and the infrastructure they protect.</p>
-    
-    <div class="grid">
-        <div class="card">
-            <h3>Jurisdiction Binding</h3>
-            <p>Cryptographically locked to specific geographical and legal districts, ensuring authority cannot be spoofed outside of active command zones.</p>
+    <!-- Hero -->
+    <section class="py-24 border-b border-gray-900 relative overflow-hidden">
+        <div class="scan-line opacity-20"></div>
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="text-6xl font-bold text-white mb-6 tracking-tight">VIGILANT™</h1>
+            <p class="text-xl text-blue-400 mb-8 uppercase tracking-widest">Forensic Enforcement Credentialing</p>
+            <p class="text-gray-400 max-w-2xl mx-auto">The definitive sovereign identity solution for law enforcement, federal agents, and tactical public servants. Protecting the integrity of the badge through real-time biometric and jurisdictional attestation.</p>
         </div>
-        <div class="card">
-            <h3>Badge Integrity</h3>
-            <p>Utilizes a high-frequency "Pulse" encryption to prevent screen-capture or static forgery attempts.</p>
-        </div>
-    </div>
-</main>
+    </section>
 
-<footer>
-    <div class="footer-links">
-        <div><h4>Enforcement</h4><a href="vigilant.html">Vigilant™</a></div>
-        <div><h4>Emergency</h4><a href="vitallink.html">VitalLink™</a></div>
-        <div><h4>Fire/Rescue</h4><a href="infernoguard.html">InfernoGuard™</a></div>
-        <div><h4>Critical</h4><a href="civickey.html">CivicKey™</a></div>
-        <div><h4>System</h4><a href="api.html">API Access</a> | <a href="sdk.html">SDK Kits</a></div>
-        <div><h4>Legal</h4><a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms</a></div>
-        <div><h4>Corporate</h4><a href="about.html">About Bureau</a> | <a href="contact.html">Support</a></div>
-    </div>
-    <p style="text-align: center; margin-top: 20px;">&copy; 2026 Solomon Kin LLC / REALAIID. All Rights Reserved.</p>
-</footer>
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto py-20 px-6">
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="md:col-span-2 space-y-10">
+                <section>
+                    <h2 class="text-3xl font-bold text-white mb-6">The Sovereign Standard</h2>
+                    <p class="mb-6">Vigilant™ is not a static digital ID—it is a live, forensic handshake between the agent and the Bureau’s infrastructure. By loading this credential into a REALAIID Wallet-Bio, personnel create an immutable record of authority.</p>
+                    <ul class="space-y-4 text-gray-400 list-disc ml-5">
+                        <li><strong>Dynamic Jurisdictional Binding:</strong> Authorization is geo-fenced to the officer’s assigned district via real-time satellite verification.</li>
+                        <li><strong>Anti-Forgery Pulse:</strong> A high-frequency cryptographic refresh cycle that makes static images or screen captures instantly invalid.</li>
+                        <li><strong>Forensic Audit Logging:</strong> Every interaction, stop, or entry is timestamped and signed within the BUREAU Ledger.</li>
+                    </ul>
+                </section>
+            </div>
+            
+            <div class="glass-card p-8 flex flex-col justify-center">
+                <h3 class="text-blue-500 font-bold mb-4">SYSTEM CAPABILITIES</h3>
+                <ul class="text-sm space-y-4">
+                    <li>✓ Biometric Liveness Lock</li>
+                    <li>✓ Real-Time Duty Sync</li>
+                    <li>✓ Agency Ledger Access</li>
+                    <li>✓ Cross-Agency Handshake</li>
+                    <li>✓ Hardware Enclave Binding</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Ecosystem Explanation -->
+        <section class="mt-20 p-12 glass-card">
+            <h3 class="text-2xl font-bold mb-6">Ecosystem Synergy: Wallet-Bio & Wallet-Robo</h3>
+            <p class="text-gray-400">When Vigilant™ is deployed alongside the REALAIID ecosystem, the personnel's authority flows across the entire network. Authorized law enforcement can perform a "Sovereign Override" on robotic units in their jurisdiction, verified by the same Forensic Ledger that validates the officer’s badge. This creates a unified command structure where human authority and machine execution are perfectly aligned.</p>
+        </section>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-gray-900 py-20 px-12 bg-black">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[10px] uppercase tracking-widest text-gray-500">
+            <div><h4 class="text-white mb-4">Infrastructure</h4><a href="vigilant.html" class="block hover:text-white">Vigilant™</a><a href="vitallink.html" class="block hover:text-white">VitalLink™</a><a href="infernoguard.html" class="block hover:text-white">InfernoGuard™</a><a href="civickey.html" class="block hover:text-white">CivicKey™</a></div>
+            <div><h4 class="text-white mb-4">Identity Wallet</h4><a href="wallet-robo.html" class="block hover:text-white">Wallet-Robo</a><a href="wallet-bio.html" class="block hover:text-white">Wallet-Bio</a><a href="permits.html" class="block hover:text-white">Permits</a><a href="attestation.html" class="block hover:text-white">Attestation</a></div>
+            <div><h4 class="text-white mb-4">Robotics</h4><a href="robo-nexus-r.html" class="block hover:text-white">Nexus-R</a><a href="cloud.html" class="block hover:text-white">Cloud Sync</a><a href="coupling.html" class="block hover:text-white">Coupling</a><a href="maintenance.html" class="block hover:text-white">Maintenance</a></div>
+            <div><h4 class="text-white mb-4">Governance</h4><a href="policy.html" class="block hover:text-white">Policy</a><a href="counsel.html" class="block hover:text-white">Counsel</a><a href="integrity.html" class="block hover:text-white">Integrity</a><a href="synthesis.html" class="block hover:text-white">Synthesis</a></div>
+            <div><h4 class="text-white mb-4">Compliance</h4><a href="forensic-audit.html" class="block hover:text-white">Audits</a><a href="safety.html" class="block hover:text-white">Safety</a><a href="legal.html" class="block hover:text-white">Legal Intake</a><a href="archive.html" class="block hover:text-white">Archive</a></div>
+            <div><h4 class="text-white mb-4">Developer</h4><a href="api.html" class="block hover:text-white">API Gateway</a><a href="sdk.html" class="block hover:text-white">SDK Kits</a><a href="github.html" class="block hover:text-white">GitHub Repo</a><a href="docs.html" class="block hover:text-white">Tech Docs</a></div>
+        </div>
+        <div class="mt-16 text-center text-gray-700">© 2026 Solomon Kin LLC / REALAIID. All Rights Reserved.</div>
+    </footer>
 </body>
 </html>
