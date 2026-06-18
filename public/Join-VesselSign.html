@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Vessel Community • VesselSign™ • REALAiiD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .hero-vessel { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- HEADER -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
+                <div>
+                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                    <p class="text-xs text-slate-400 -mt-1">Bureau of Digital Identity</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="/" class="hover:text-cyan-400 transition">Home</a>
+                <a href="/marketplace1.html" class="hover:text-cyan-400 transition">Marketplace</a>
+                <a href="/solutions1.html" class="text-cyan-400 font-semibold">Solutions</a>
+                <a href="/economy$AII.html" class="hover:text-cyan-400 transition">$AII Economy</a>
+            </div>
+
+            <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-vessel py-32 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">Join the Vessel Community</h1>
+            <p class="text-3xl text-emerald-400 mb-8">VesselSign™ Network</p>
+            <p class="text-xl text-slate-300">
+                Register your vessel and become part of the world's first sovereign maritime identity ecosystem.
+            </p>
+        </div>
+    </section>
+
+    <!-- VESSEL REGISTRATION FORM -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold text-center mb-12">Vessel Registration Form</h2>
+            
+            <form id="vessel-form" action="https://formspree.io/f/xrevvjjz" method="POST" class="space-y-8">
+                <!-- Vessel Information -->
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="text-xl font-semibold mb-6 text-emerald-400">Vessel Information</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" name="vessel_name" placeholder="Vessel Name" required class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <input type="text" name="imo_number" placeholder="IMO Number" class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <input type="text" name="mmsi" placeholder="MMSI Number" class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <select name="vessel_type" required class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                            <option value="">Select Vessel Type</option>
+                            <option value="Cruise Ship">Cruise Ship</option>
+                            <option value="Container Ship">Container Ship</option>
+                            <option value="Tanker">Tanker</option>
+                            <option value="Bulk Carrier">Bulk Carrier</option>
+                            <option value="Cargo Ship">General Cargo Ship</option>
+                            <option value="Passenger Ferry">Passenger Ferry</option>
+                            <option value="Tugboat">Tugboat</option>
+                            <option value="Research Vessel">Research Vessel</option>
+                            <option value="Yacht">Yacht / Private Vessel</option>
+                            <option value="Fishing Vessel">Fishing Vessel</option>
+                            <option value="Offshore Supply">Offshore Supply Vessel</option>
+                            <option value="Military">Military / Naval Vessel</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Owner / Operator -->
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="text-xl font-semibold mb-6 text-emerald-400">Owner / Operator Information</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <input type="text" name="owner_name" placeholder="Owner / Company Name" required class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <input type="email" name="owner_email" placeholder="Contact Email" required class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <input type="tel" name="owner_phone" placeholder="Phone Number" class="bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                    </div>
+                </div>
+
+                <!-- Additional Details -->
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="text-xl font-semibold mb-6 text-emerald-400">Additional Details</h3>
+                    <textarea name="details" placeholder="Route information, current location, capacity, year built, or any other relevant details..." rows="5"
+                              class="w-full bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
+                </div>
+
+                <input type="hidden" name="_subject" value="New VesselSign™ Registration Request">
+                
+                <button type="submit" 
+                        class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold py-6 rounded-3xl text-xl transition">
+                    Register Vessel — Join the Network
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 text-center text-slate-500 text-sm">
+        © 2026 Solomon Kin LLC • REALAiiD Bureau • Node PHL-01
+    </footer>
+
+</body>
+</html>
