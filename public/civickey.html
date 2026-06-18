@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicKey™ | Bureau of Digital Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@200;400;600&display=swap');
+        :root { --accent: #2563eb; }
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #94a3b8; }
+        .glass-panel { background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(20px); border: 1px solid #1e293b; }
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        .section-header { border-left: 4px solid var(--accent); padding-left: 1rem; color: #f8fafc; font-weight: 600; }
+        .footer-link-group { border-top: 1px solid #1e293b; padding-top: 1rem; }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="text-lg font-bold tracking-[0.3em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+            <div class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
+                <a href="index.html" class="hover:text-blue-500">Dashboard</a>
+                <a href="robo-nexus-r.html" class="hover:text-blue-500">Nexus-R</a>
+                <a href="identity.html" class="hover:text-blue-500">Bio-Wallet</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="py-32 border-b border-slate-800 bg-slate-950">
+        <div class="max-w-5xl mx-auto px-8 text-center">
+            <h1 class="text-7xl font-bold text-white mb-6 tracking-tight">CIVICKEY™</h1>
+            <p class="text-xl text-blue-500 mb-8 uppercase tracking-[0.5em]">Critical Infrastructure Sovereign Access</p>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-loose">The definitive credential for municipal oversight. CivicKey™ bridges sovereign identity with real-time jurisdictional authority, granting verified administrators absolute, forensically logged control over essential utility grids and public facilities.</p>
+        </div>
+    </section>
+
+    <!-- Main Engine -->
+    <main class="max-w-7xl mx-auto py-24 px-8 space-y-24">
+        
+        <!-- Technical Specification -->
+        <div class="grid md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <h2 class="text-4xl font-bold text-white">Sovereign Authority Layers</h2>
+                <p>CivicKey™ functions as an extension of the state. When loaded into a REALAIID Wallet-Bio, the credential facilitates a high-trust handshake between the individual and the city’s foundational hardware.</p>
+                <div class="glass-panel p-8">
+                    <h4 class="section-header mb-4">Core Capability: Adaptive Access</h4>
+                    <p class="text-sm">Unlike static keycards, CivicKey™ is dynamic. Access permissions are re-evaluated in real-time based on your current role, shift status, and geographic proximity to infrastructure sites.</p>
+                </div>
+            </div>
+            <div class="data-grid">
+                <div class="glass-panel p-6 border-l-2 border-blue-500">
+                    <h5 class="text-white font-bold mb-2">Grid Interlock</h5>
+                    <p class="text-xs">Direct API control over substation breakers and power distribution management.</p>
+                </div>
+                <div class="glass-panel p-6 border-l-2 border-blue-500">
+                    <h5 class="text-white font-bold mb-2">Facility Over-Ride</h5>
+                    <p class="text-xs">Master entry for government buildings and secure municipal data centers.</p>
+                </div>
+                <div class="glass-panel p-6 border-l-2 border-blue-500">
+                    <h5 class="text-white font-bold mb-2">Water/Transit Link</h5>
+                    <p class="text-xs">Verified access to valve controls, terminal gates, and transit signaling arrays.</p>
+                </div>
+                <div class="glass-panel p-6 border-l-2 border-blue-500">
+                    <h5 class="text-white font-bold mb-2">Forensic Audit</h5>
+                    <p class="text-xs">Immutable, time-stamped ledger recording of every credential presentation.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Explanation -->
+        <section class="glass-panel p-16">
+            <h3 class="text-3xl font-bold text-white mb-8">The REALAIID Ecosystem: Unified Command</h3>
+            <p class="text-slate-400 mb-12 max-w-3xl">Within the REALAIID environment, CivicKey™ is not an isolated tool; it is a constituent part of a broader, forensic identity network. When a holder presents this credential, the Bureau’s Ledger performs a cross-reference verification, ensuring that the presenter's "Right-to-Act" is validated against current jurisdictional policy. This closes the gap between human intent and machine execution, allowing for secure, sovereign, and transparent operation of societal functions.</p>
+        </section>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-24 px-12">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[10px] uppercase tracking-widest text-slate-600">
+            <div><h4 class="text-white mb-6">Infrastructure</h4><a href="vigilant.html" class="block hover:text-white">Vigilant™</a><a href="vitallink.html" class="block hover:text-white">VitalLink™</a><a href="infernoguard.html" class="block hover:text-white">InfernoGuard™</a><a href="civickey.html" class="block hover:text-white">CivicKey™</a></div>
+            <div><h4 class="text-white mb-6">Wallet Ecosystem</h4><a href="wallet-robo.html" class="block hover:text-white">Wallet-Robo</a><a href="wallet-bio.html" class="block hover:text-white">Wallet-Bio</a><a href="bridge-sync.html" class="block hover:text-white">Bridge Sync</a><a href="attestation.html" class="block hover:text-white">Attestation</a></div>
+            <div><h4 class="text-white mb-6">Command Control</h4><a href="nexus-r.html" class="block hover:text-white">Nexus-R</a><a href="ledger-ops.html" class="block hover:text-white">Ledger Ops</a><a href="jurisdiction.html" class="block hover:text-white">Juri-Link</a><a href="dispatch.html" class="block hover:text-white">CAD Intake</a></div>
+            <div><h4 class="text-white mb-6">Governance</h4><a href="policy-frame.html" class="block hover:text-white">Policy</a><a href="counsel.html" class="block hover:text-white">Counsel</a><a href="integrity.html" class="block hover:text-white">Integrity</a><a href="synthesis.html" class="block hover:text-white">Synthesis</a></div>
+            <div><h4 class="text-white mb-6">Compliance</h4><a href="audit-forensics.html" class="block hover:text-white">Audits</a><a href="safety-regs.html" class="block hover:text-white">Safety</a><a href="legal-intake.html" class="block hover:text-white">Legal Intake</a><a href="archive.html" class="block hover:text-white">Archive</a></div>
+            <div><h4 class="text-white mb-6">Dev Hub</h4><a href="api.html" class="block hover:text-white">API Gateway</a><a href="sdk.html" class="block hover:text-white">SDK Kits</a><a href="github.html" class="block hover:text-white">GitHub Repo</a><a href="tech-docs.html" class="block hover:text-white">Tech Docs</a></div>
+        </div>
+        <div class="mt-20 text-center text-slate-800 text-[10px]">© 2026 Solomon Kin LLC / REALAIID BUREAU OF DIGITAL IDENTITY. ALL RIGHTS RESERVED.</div>
+    </footer>
+</body>
+</html>
