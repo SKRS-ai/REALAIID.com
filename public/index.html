@@ -237,47 +237,40 @@ document.getElementById('global-search').addEventListener('keypress', function(e
         </div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
-        <div class="flex flex-col gap-6 text-lg font-medium">
-            <!-- Mobile links here - same as before -->
-        </div>
-    </div>
-</nav>
-
-    <!-- MOBILE MENU -->
+   <!-- MOBILE MENU -->
 <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
     <div class="flex flex-col gap-6 text-lg font-medium">
+
         <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
-        
-        <!-- Marketplace with Submenu -->
-        <div onclick="toggleMobileSubmenu(this)" class="cursor-pointer">
+
+        <!-- MARKETPLACE SUBMENU -->
+        <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
             <div class="flex justify-between items-center py-3 border-b border-slate-800">
                 <span>Marketplace</span>
                 <span class="text-xl transition-transform">›</span>
             </div>
             <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
-                <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400">Digital Human™ Identity</a>
-                <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400">Digital Robot™ Ecosystem</a>
-                <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400">$AII Compute Economy</a>
-                <a href="/Energy&Infrastructure.html" class="block hover:text-cyan-400">Energy & Infrastructure</a>
+                <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400 py-2">Digital Human™ Identity</a>
+                <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400 py-2">Digital Robot™ Ecosystem</a>
+                <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400 py-2">$AII Compute Economy</a>
+                <a href="/Energy&Infrastructure.html" class="block hover:text-cyan-400 py-2">Energy & Infrastructure</a>
             </div>
         </div>
 
         <a href="/technology.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
-        
-        <!-- Solutions with Submenu -->
-        <div onclick="toggleMobileSubmenu(this)" class="cursor-pointer">
+
+        <!-- SOLUTIONS SUBMENU -->
+        <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
             <div class="flex justify-between items-center py-3 border-b border-slate-800">
                 <span>Solutions</span>
                 <span class="text-xl transition-transform">›</span>
             </div>
             <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
-                <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400">Maritime & HarborLink</a>
-                <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400">Education (SchoolSecure™)</a>
-                <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400">Travel & Embarkation</a>
-                <a href="/Governance&Civic.html" class="block hover:text-cyan-400">Governance & Civic</a>
-                <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400">Robotics & Autonomous</a>
+                <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400 py-2">Maritime & HarborLink</a>
+                <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400 py-2">Education (SchoolSecure™)</a>
+                <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400 py-2">Travel & Embarkation</a>
+                <a href="/Governance&Civic.html" class="block hover:text-cyan-400 py-2">Governance & Civic</a>
+                <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400 py-2">Robotics & Autonomous</a>
             </div>
         </div>
 
@@ -285,7 +278,7 @@ document.getElementById('global-search').addEventListener('keypress', function(e
         <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
         <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
         <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
-        
+
         <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
             Initialize Handshake
         </a>
@@ -723,33 +716,46 @@ document.getElementById('global-search').addEventListener('keypress', function(e
                 window.location.href = `/marketplace?search=${encodeURIComponent(e.target.value)}`;
             }
         });
-    </script>
 
-    <script>
+  <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Hamburger Menu Toggle
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
-    hamburgerBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-        hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-    });
-</script>
-
-<script>
-// Toggle mobile submenus
-function toggleMobileSubmenu(element) {
-    const submenu = element.querySelector('.mobile-submenu');
-    const arrow = element.querySelector('span:last-child');
-    
-    submenu.classList.toggle('hidden');
-    
-    // Rotate arrow
-    if (submenu.classList.contains('hidden')) {
-        arrow.style.transform = 'rotate(0deg)';
-    } else {
-        arrow.style.transform = 'rotate(90deg)';
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+        });
     }
-}
+
+    // Mobile Submenu Toggle (Marketplace & Solutions)
+    function toggleMobileSubmenu(element) {
+        const submenu = element.querySelector('.mobile-submenu');
+        const arrow = element.querySelector('span:last-child');
+        
+        if (submenu && arrow) {
+            submenu.classList.toggle('hidden');
+            
+            // Rotate arrow
+            if (submenu.classList.contains('hidden')) {
+                arrow.style.transform = 'rotate(0deg)';
+            } else {
+                arrow.style.transform = 'rotate(90deg)';
+            }
+        }
+    }
+
+    // Make sure all submenu triggers call the function
+    const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
+    submenuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
+    });
+
+});
 </script>
 
 </body>
