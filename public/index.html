@@ -705,6 +705,16 @@ document.addEventListener('click', (e) => {
             }
         });
 
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
 
         // Mobile Submenu Toggle (Marketplace & Solutions)
         function toggleMobileSubmenu(element) {
