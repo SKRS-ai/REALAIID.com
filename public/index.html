@@ -670,48 +670,49 @@ document.addEventListener('click', (e) => {
 </footer>
 
     <script>
-        // Dropdown
-        function toggleDropdown(el) {
-            document.querySelectorAll('.group').forEach(g => {
-                if (g !== el) g.classList.remove('active');
-            });
-            el.classList.toggle('active');
-        }
-
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.group')) {
-                document.querySelectorAll('.group').forEach(g => g.classList.remove('active'));
-            }
+    // Desktop Dropdown
+    function toggleDropdown(el) {
+        document.querySelectorAll('.group').forEach(g => {
+            if (g !== el) g.classList.remove('active');
         });
+        el.classList.toggle('active');
+    }
 
-        // Hero Slideshow
-        let current = 0;
-        const slides = document.querySelectorAll('.slide');
+    document.addEventListener('click', e => {
+        if (!e.target.closest('.group')) {
+            document.querySelectorAll('.group').forEach(g => g.classList.remove('active'));
+        }
+    });
 
-        function show(n) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[n].classList.add('active');
+    // Hero Slideshow
+    let current = 0;
+    let slides = [];
+
+    function show(n) {
+        slides.forEach(s => s.classList.remove('active'));
+        if (slides[n]) slides[n].classList.add('active');
+    }
+
+    function nextSlide() { 
+        current = (current + 1) % slides.length; 
+        show(current); 
+    }
+    function prevSlide() { 
+        current = (current - 1 + slides.length) % slides.length; 
+        show(current); 
+    }
+
+    // Main Initialization
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // Initialize Slides
+        slides = document.querySelectorAll('.slide');
+        if (slides.length > 0) {
+            show(0);
+            setInterval(nextSlide, 6000);
         }
 
-        function nextSlide() { 
-            current = (current + 1) % slides.length; 
-            show(current); 
-        }
-        function prevSlide() { 
-            current = (current - 1 + slides.length) % slides.length; 
-            show(current); 
-        }
-
-        setInterval(nextSlide, 6000);
-
-        // Search
-        document.getElementById('search').addEventListener('keypress', e => {
-            if (e.key === 'Enter') {
-                window.location.href = `/marketplace?search=${encodeURIComponent(e.target.value)}`;
-            }
-        });
-
-        // Hamburger Menu Toggle
+        // Hamburger Menu
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -722,29 +723,37 @@ document.addEventListener('click', (e) => {
             });
         }
 
-        // Mobile Submenu Toggle (Marketplace & Solutions)
+        // Mobile Submenu Toggle
         function toggleMobileSubmenu(element) {
             const submenu = element.querySelector('.mobile-submenu');
             const arrow = element.querySelector('span:last-child');
             
             if (submenu && arrow) {
                 submenu.classList.toggle('hidden');
-                
-                // Rotate arrow
-                if (submenu.classList.contains('hidden')) {
-                    arrow.style.transform = 'rotate(0deg)';
-                } else {
-                    arrow.style.transform = 'rotate(90deg)';
-                }
+                arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
             }
         }
 
-        // Make sure all submenu triggers call the function
         const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
         submenuTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
         });
-    </script>
+
+        // Search (safe)
+        const searchInput = document.getElementById('nav-search') || document.getElementById('global-search');
+        if (searchInput) {
+            searchInput.addEventListener('keypress', e => {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        // Update this to your actual search URL if needed
+                        window.location.href = `/marketplace?search=${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>
