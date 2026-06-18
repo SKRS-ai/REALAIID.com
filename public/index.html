@@ -678,25 +678,6 @@ document.addEventListener('click', (e) => {
             }
         });
 
-        // Hero Slideshow
-        let current = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function show(n) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[n].classList.add('active');
-        }
-
-        function nextSlide() { 
-            current = (current + 1) % slides.length; 
-            show(current); 
-        }
-        function prevSlide() { 
-            current = (current - 1 + slides.length) % slides.length; 
-            show(current); 
-        }
-
-        setInterval(nextSlide, 6000);
 
         // Search
         document.getElementById('search').addEventListener('keypress', e => {
