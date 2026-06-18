@@ -9,6 +9,8 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         .hero-safety { background: linear-gradient(135deg, #1e2937 0%, #0f172a 100%); }
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5); }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
@@ -59,68 +61,46 @@
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-16">Public Safety Credential Suite</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-slate-800 p-8 rounded-3xl hover:bg-slate-700 transition">
+                <a href="/vigilant.html" class="product-card bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group block">
                     <h3 class="text-2xl font-semibold mb-4">Vigilant™</h3>
                     <p class="text-cyan-400 text-3xl mb-6">$12.50–$18 / user/mo</p>
                     <p class="text-slate-400">Law Enforcement Credential — Real-time jurisdiction & authority verification.</p>
-                </div>
-                <div class="bg-slate-800 p-8 rounded-3xl hover:bg-slate-700 transition">
+                    <span class="block mt-8 text-emerald-400 group-hover:underline">Learn More &amp; Enroll →</span>
+                </a>
+
+                <a href="/vitallink.html" class="product-card bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group block">
                     <h3 class="text-2xl font-semibold mb-4">VitalLink™</h3>
                     <p class="text-cyan-400 text-3xl mb-6">$12.50–$18 / user/mo</p>
                     <p class="text-slate-400">EMS / Paramedic Credential — Medical certification & hospital access.</p>
-                </div>
-                <div class="bg-slate-800 p-8 rounded-3xl hover:bg-slate-700 transition">
+                    <span class="block mt-8 text-emerald-400 group-hover:underline">Learn More &amp; Enroll →</span>
+                </a>
+
+                <a href="/infernoguard.html" class="product-card bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group block">
                     <h3 class="text-2xl font-semibold mb-4">InfernoGuard™</h3>
                     <p class="text-cyan-400 text-3xl mb-6">$12.50–$18 / user/mo</p>
                     <p class="text-slate-400">Fire & Rescue Credential — Tactical role & incident command access.</p>
-                </div>
-                <div class="bg-slate-800 p-8 rounded-3xl hover:bg-slate-700 transition">
+                    <span class="block mt-8 text-emerald-400 group-hover:underline">Learn More &amp; Enroll →</span>
+                </a>
+
+                <a href="/civickey.html" class="product-card bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group block">
                     <h3 class="text-2xl font-semibold mb-4">CivicKey™</h3>
                     <p class="text-cyan-400 text-3xl mb-6">$12.50–$18 / user/mo</p>
                     <p class="text-slate-400">Critical Infrastructure Credential — Site access for utility & inspectors.</p>
-                </div>
+                    <span class="block mt-8 text-emerald-400 group-hover:underline">Learn More &amp; Enroll →</span>
+                </a>
+            </div>
+
+            <!-- Department Sign-Up CTA -->
+            <div class="text-center mt-16">
+                <a href="/public-safety-department-signup.html" 
+                   class="inline-block bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold px-16 py-6 rounded-3xl text-xl">
+                    For Public Safety Departments – Enterprise Signup
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- BRIDGE CAPABILITIES -->
-    <section class="py-20">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-semibold text-center mb-12">When Public Safety Bridges Are Loaded</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="bg-slate-800 p-10 rounded-3xl">
-                    <h3 class="text-emerald-400 font-semibold mb-8">What You Can Do</h3>
-                    <ul class="space-y-6 text-slate-300">
-                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Instant, cryptographically verified identity for first responders</li>
-                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Real-time on-duty status & jurisdiction confirmation</li>
-                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Citizen-safe verification via public scanner</li>
-                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Automatic revocation upon status change</li>
-                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Unified command during multi-agency incidents</li>
-                    </ul>
-                </div>
-                <div class="bg-slate-800 p-10 rounded-3xl">
-                    <h3 class="text-emerald-400 font-semibold mb-8">Enterprise & Individual Options</h3>
-                    <p class="text-slate-400 mb-6">• Department-wide enterprise licensing for cities & counties</p>
-                    <p class="text-slate-400">• Individual credentials for private security, investigators, and contractors</p>
-                    <p class="text-slate-400">• Volume discounts and custom agency integrations available</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-24 bg-slate-900">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h2 class="text-5xl font-bold mb-6">Protect Those Who Protect Us</h2>
-            <p class="text-xl text-slate-400 mb-12">From local departments to nationwide agencies — sovereign credentials for public safety.</p>
-            <div class="flex gap-4 justify-center flex-wrap">
-                <a href="/for-grantors.html" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold px-12 py-6 rounded-3xl text-xl">For Agencies & Grantors</a>
-                <a href="/signin1.html" class="border-2 border-cyan-400 text-cyan-400 px-12 py-6 rounded-3xl text-xl font-semibold hover:bg-cyan-400/10">Individual Sign-Up</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RICH FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-slate-950 border-t border-slate-800 py-16">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
             <div>
