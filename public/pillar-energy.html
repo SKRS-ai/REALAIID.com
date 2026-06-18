@@ -3,60 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy & Infrastructure | Harvest. Compute. Sovereign Power.</title>
+    <title>Energy & Infrastructure | Bureau of Digital Identity</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        .grid-cell:hover { background: rgba(6, 182, 212, 0.15); border-color: #06b6d4; transform: translateY(-2px); }
-        .footer-link { display: block; margin-bottom: 0.5rem; transition: color 0.2s ease; }
+        .nav-link { transition: all 0.2s ease; }
+        .nav-link:hover { color: #06b6d4; }
+        .grid-cell { transition: all 0.3s ease; border: 1px solid rgba(30, 41, 59, 1); }
+        .grid-cell:hover { background: rgba(6, 182, 212, 0.05); border-color: #06b6d4; transform: translateY(-2px); box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2); }
+        .footer-link { display: block; margin-bottom: 0.6rem; transition: color 0.2s ease; font-size: 0.7rem; letter-spacing: 0.05em; color: #64748b; }
         .footer-link:hover { color: #06b6d4; }
+        .glass-panel { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.5); }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased selection:bg-cyan-500/30">
 
-    <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
-        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
-            <div class="text-lg font-bold tracking-[0.3em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+    <header class="border-b border-slate-900 bg-slate-950/80 sticky top-0 z-50 backdrop-blur-md">
+        <nav class="max-w-[90rem] mx-auto px-10 py-6 flex justify-between items-center">
+            <div class="text-sm font-bold tracking-[0.2em] text-white">BUREAU OF DIGITAL IDENTITY</div>
             <div class="space-x-8 text-[10px] uppercase tracking-widest text-slate-400">
-                <a href="index.html" class="hover:text-cyan-500">Dashboard</a>
-                <a href="ecosystem-bridges.html" class="hover:text-cyan-500">Ecosystem</a>
-                <a href="marketplace.html" class="hover:text-cyan-500">Marketplace</a>
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="ecosystem-bridges.html" class="nav-link text-cyan-500">Infrastructure</a>
+                <a href="marketplace.html" class="nav-link">Marketplace</a>
+                <a href="forensics.html" class="nav-link">Forensics</a>
+                <a href="login.html" class="px-5 py-2 border border-slate-700 rounded hover:border-cyan-500 hover:text-cyan-500 transition-all">REALAiID LOGIN</a>
             </div>
         </nav>
     </header>
 
     <main class="max-w-7xl mx-auto py-24 px-8">
-        <div class="mb-20 text-center md:text-left">
+        
+        <div class="mb-20">
             <h1 class="text-6xl font-bold text-white mb-6 tracking-tight">Energy & Infrastructure</h1>
-            <p class="text-xl text-slate-400 max-w-3xl">Harvest. Compute. Sovereign Power. We are converting the kinetic, thermal, and mechanical forces of the physical world into the foundational compute currency of the future.</p>
+            <p class="text-xl text-slate-400 max-w-2xl font-light leading-relaxed">Harvest. Compute. Sovereign Power. Converting kinetic, thermal, and mechanical forces into the foundational $AII compute currency.</p>
         </div>
 
-        <div id="bridge-grid" class="grid grid-cols-2 md:grid-cols-5 gap-4"></div>
+        <div id="bridge-grid" class="grid grid-cols-2 md:grid-cols-5 gap-6 mb-24"></div>
 
-        <div class="mt-24 p-12 bg-slate-900/40 border border-slate-800 rounded-3xl">
-            <h2 class="text-3xl font-bold text-white mb-10">Forensic Utility: Energy-to-Compute</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h4 class="text-cyan-400 font-bold mb-2">Autonomous Minting</h4>
-                    <p class="text-sm">Every kWh produced by your SentryAi unit is cryptographically verified via DER API, automatically minting $AII credits to your REALAiID wallet without human intervention.</p>
+        <div class="grid md:grid-cols-2 gap-12 mb-24">
+            <div class="glass-panel p-10 rounded-3xl">
+                <h2 class="text-3xl font-bold text-white mb-8">REALAiID Wallet Integration</h2>
+                <p class="text-slate-400 mb-8 leading-relaxed">Loaded bridges within your REALAiID wallet transform hardware into active forensic nodes. Wallet integration provides:</p>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <i class="ph-shield-check text-cyan-500 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Automated Minting</h4>
+                            <p class="text-sm text-slate-500">Real-time verification via DER API; kWh output is cryptographically serialized and minted as $AII.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i class="ph-graph text-cyan-500 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Yield Settlement</h4>
+                            <p class="text-sm text-slate-500">Compute yield is settled instantly to your vault, facilitating sovereign staking and network security.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <i class="ph-globe-hemisphere-east text-cyan-500 text-2xl mt-1"></i>
+                        <div>
+                            <h4 class="font-bold text-white">Grid Sovereignty</h4>
+                            <p class="text-sm text-slate-500">Permission-less access to regional compute grids for deploying autonomous AI agents.</p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="text-cyan-400 font-bold mb-2">Maritime Sovereignty</h4>
-                    <p class="text-sm">VesselSign™ turns ships into autonomous nodes. By sharing real-time telemetry, maritime vessels contribute to the global mesh and earn yield.</p>
-                </div>
-                <div>
-                    <h4 class="text-cyan-400 font-bold mb-2">Deep-Sea Backbone</h4>
-                    <p class="text-sm">Nautilus Capsules leverage thermal gradients for long-term, high-throughput compute, creating a secure, sub-surface foundation for the Bureau's data reserves.</p>
+            </div>
+            
+            <div class="glass-panel p-10 rounded-3xl">
+                <h2 class="text-3xl font-bold text-white mb-8">Forensic Utility</h2>
+                <div class="space-y-6 text-sm text-slate-400">
+                    <p>The Bureau treats infrastructure as an immutable forensic data layer. Every asset is a node in a global mesh.</p>
+                    <div class="p-6 bg-slate-950 rounded-xl border border-slate-800">
+                        <span class="block text-cyan-500 text-xs font-mono mb-2">SYSTEM TELEMETRY // REAL-TIME</span>
+                        <div class="text-xs font-mono text-slate-500">
+                            > NODE_STATUS: ONLINE<br>
+                            > HARVEST_RATE: 44.2 KWH/S<br>
+                            > FORENSIC_VALIDATION: SECURE<br>
+                            > $AII_MINT_PATH: OPTIMIZED
+                        </div>
+                    </div>
+                    <p>Owning these bridges ensures your digital sovereignty remains independent of legacy utility fluctuations. You are the infrastructure.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-slate-900 bg-slate-950 pt-20 pb-10 px-8 mt-20">
-        <div class="max-w-[90rem] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8 text-[10px] uppercase tracking-widest text-slate-500">
+    <footer class="border-t border-slate-900 bg-slate-950 pt-20 pb-10 px-8">
+        <div class="max-w-[90rem] mx-auto grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
+            <div class="col-span-2 lg:col-span-2">
+                <div class="text-lg font-bold text-white mb-4">BUREAU OF DIGITAL IDENTITY</div>
+                <p class="text-[10px] text-slate-600 tracking-wider">SOVEREIGN COMPUTE PROTOCOLS. © 2026</p>
             </div>
+            
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Human</span>
+                <a href="passport.html" class="footer-link">REALAiID Passport</a>
+                <a href="vocalforge.html" class="footer-link">VocalForge</a>
+                <a href="likeness.html" class="footer-link">Likeness Shield</a>
+                <a href="biomedia.html" class="footer-link">Bio Media Seal</a>
+            </div>
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Robo</span>
+                <a href="hearth.html" class="footer-link">Robo Hearth</a>
+                <a href="fleet.html" class="footer-link">Robo Fleet</a>
+                <a href="foundry.html" class="footer-link">Robo Foundry</a>
+                <a href="drone.html" class="footer-link">Drone Sync</a>
+            </div>
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Economy</span>
+                <a href="render.html" class="footer-link">GPU Render</a>
+                <a href="akash.html" class="footer-link">Akash Cloud</a>
+                <a href="bittensor.html" class="footer-link">Bittensor</a>
+                <a href="gelato.html" class="footer-link">Gelato Relay</a>
+            </div>
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Energy</span>
+                <a href="sentry.html" class="footer-link">SentryAi</a>
+                <a href="nautilus.html" class="footer-link">Nautilus</a>
+                <a href="benthic.html" class="footer-link">Benthic Pulse</a>
+                <a href="kinetic.html" class="footer-link">KinetiCore</a>
+            </div>
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Maritime</span>
+                <a href="vessel.html" class="footer-link">VesselSign</a>
+                <a href="harbor.html" class="footer-link">HarborLink</a>
+                <a href="embark.html" class="footer-link">EmbarkSecure</a>
+                <a href="logistics.html" class="footer-link">Logistics Sync</a>
+            </div>
+            <div><span class="text-[10px] text-white font-bold uppercase tracking-widest mb-6 block">Ops</span>
+                <a href="map.html" class="footer-link">Global Nodes</a>
+                <a href="audit.html" class="footer-link">Forensic Audit</a>
+                <a href="policy.html" class="footer-link">Governance</a>
+                <a href="api.html" class="footer-link">SDK / API</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -71,13 +148,13 @@
         const grid = document.getElementById('bridge-grid');
         energyBridges.forEach(b => {
             const cell = document.createElement('a');
-            cell.href = `bridge-e-${b.id}.html`;
-            cell.className = "grid-cell p-6 rounded-2xl border border-slate-800 bg-slate-900/40 transition-all flex flex-col items-center text-center group cursor-pointer";
+            cell.href = "#";
+            cell.className = "grid-cell p-8 rounded-2xl bg-slate-900/20 flex flex-col items-center text-center group cursor-pointer";
             cell.innerHTML = `
-                <i class="${b.icon} text-3xl text-cyan-500 mb-4"></i>
-                <span class="text-[10px] font-mono text-cyan-500/80 mb-1">BRIDGE E-${b.id}</span>
+                <i class="${b.icon} text-4xl text-cyan-500 mb-6 group-hover:scale-110 transition-transform"></i>
+                <span class="text-[9px] font-mono text-cyan-500/60 mb-2">BRIDGE E-${b.id}</span>
                 <span class="text-sm font-bold text-white">${b.name}</span>
-                <span class="text-[10px] text-slate-500 uppercase mt-1">${b.desc}</span>
+                <span class="text-[10px] text-slate-500 uppercase mt-2 tracking-wider">${b.desc}</span>
             `;
             grid.appendChild(cell);
         });
