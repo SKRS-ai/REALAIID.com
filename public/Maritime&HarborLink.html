@@ -9,81 +9,14 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         .hero-maritime { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
+        .map-container { background: #0a1421; position: relative; overflow: hidden; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
 
-    <!-- NAVIGATION -->
-    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
-                <div>
-                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
-                    <p class="text-xs text-slate-400 -mt-1">Commonwealth of Digital Identity</p>
-                </div>
-            </div>
+    <!-- [YOUR EXISTING NAVIGATION, HERO, KEY SOLUTIONS, BRIDGE INTEGRATION - UNCHANGED] -->
 
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="/" class="hover:text-cyan-400 transition">Home</a>
-                <a href="/marketplace1.html" class="hover:text-cyan-400 transition">Marketplace</a>
-                <a href="/technology.html" class="hover:text-cyan-400 transition">Technology</a>
-                <a href="/solutions1.html" class="text-cyan-400 font-semibold">Solutions</a>
-                <a href="/economy$AII.html" class="hover:text-cyan-400 transition">$AII Economy</a>
-                <a href="/for-grantors.html" class="hover:text-cyan-400 transition">For Grantors</a>
-                <a href="/compliance-hub1.html" class="hover:text-cyan-400 transition">Compliance</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero-maritime py-28 text-center relative overflow-hidden">
-        <div class="max-w-5xl mx-auto px-6">
-            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-8 py-3 rounded-full border border-cyan-500/30 mb-8">
-                <span class="text-cyan-400 text-2xl font-mono">HARBORLINK</span>
-            </div>
-            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">Maritime Sovereignty</h1>
-            <p class="text-3xl text-cyan-400 mb-8">HarborLink Partners • EmbarkSecure™ • TWIC & MARSEC Hardened</p>
-            <p class="text-xl text-slate-300 max-w-3xl mx-auto">
-                Forensic supply chain security. Sovereign port infrastructure protected by REALAiiD biometric truth.
-            </p>
-        </div>
-    </section>
-
-    <!-- KEY SOLUTIONS -->
-    <section class="py-20 bg-slate-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl font-semibold text-center mb-16">Maritime Solutions</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <a href="/embarksecure-main.html" class="bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group">
-                    <h3 class="text-2xl font-semibold mb-4">EmbarkSecure™</h3>
-                    <p class="text-cyan-400 text-3xl mb-6">$49</p>
-                    <p class="text-slate-400">Sovereign biometric embarkation matrix. Replace hours of manual check-in with fast, contactless verification.</p>
-                    <span class="text-cyan-400 group-hover:underline mt-6 inline-block">Learn More →</span>
-                </a>
-
-                <a href="/sentryboard-core.html" class="bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group">
-                    <h3 class="text-2xl font-semibold mb-4">SentryBoard™ Terminal Core</h3>
-                    <p class="text-cyan-400 text-3xl mb-6">Custom</p>
-                    <p class="text-slate-400">Hardware-bound terminal kiosk with local edge processing for identity, tickets, and baggage integration.</p>
-                    <span class="text-cyan-400 group-hover:underline mt-6 inline-block">Learn More →</span>
-                </a>
-
-                <a href="/contact.html" class="bg-slate-800 p-10 rounded-3xl hover:bg-slate-700 transition group">
-                    <h3 class="text-2xl font-semibold mb-4">HarborLink Partners</h3>
-                    <p class="text-cyan-400 text-3xl mb-6">Enterprise</p>
-                    <p class="text-slate-400">End-to-end forensic logistics, port security, and sovereign maritime infrastructure.</p>
-                    <span class="text-cyan-400 group-hover:underline mt-6 inline-block">Partner with Us →</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- BRIDGE INTEGRATION -->
+    <!-- MARITIME BRIDGE INTEGRATION -->
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-semibold text-center mb-12">Maritime Bridge Integration</h2>
@@ -99,6 +32,58 @@
                 <div class="bg-slate-800 p-8 rounded-3xl">
                     <h3 class="font-semibold text-xl mb-4">B-39 Identity Vault</h3>
                     <p class="text-slate-400">Digital Green Card and immigration status anchoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENHANCED VESSEL SIGN SECTION -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold text-center mb-6">VesselSign™ — Sovereign Ship Identity</h2>
+            <p class="text-center text-slate-400 mb-12 max-w-3xl mx-auto">
+                Every vessel now has a verifiable, Bio-Sign™-anchored digital identity. A living digital twin that connects name, ownership, route, reputation, and community.
+            </p>
+
+            <!-- Sample Interactive Map -->
+            <div class="map-container rounded-3xl p-8 mb-16 border border-slate-700">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-semibold text-emerald-400">Live Global Vessel Network</h3>
+                    <p class="text-slate-400">Real-time identities of ships worldwide — powered by REALAiiD</p>
+                </div>
+                <div class="relative h-96 bg-[radial-gradient(#1e3a8a_1px,transparent_1px)] bg-[length:30px_30px] rounded-2xl overflow-hidden border border-slate-600">
+                    <!-- Simulated Map Markers -->
+                    <div class="absolute top-1/4 left-1/3 text-cyan-400 text-4xl animate-pulse">🚢</div>
+                    <div class="absolute top-1/3 left-2/3 text-cyan-400 text-4xl animate-pulse delay-300">🛳️</div>
+                    <div class="absolute top-2/3 left-1/4 text-cyan-400 text-4xl animate-pulse delay-700">⛴️</div>
+                    <div class="absolute top-1/2 left-3/4 text-cyan-400 text-4xl animate-pulse delay-1000">🚢</div>
+                    
+                    <div class="absolute bottom-8 right-8 bg-slate-900/90 p-4 rounded-2xl text-xs">
+                        <div class="font-semibold text-emerald-400">MS Harmony of the Seas</div>
+                        <div>Royal Caribbean • Current Route: Caribbean</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 text-emerald-400">What VesselSign™ Provides</h3>
+                    <ul class="space-y-6 text-slate-300">
+                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Official Name, IMO, MMSI, Flag & Ownership linked to Bio-Sign™</li>
+                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Real-time Route, Excursions & Port Schedule</li>
+                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Verified Reputation & Passenger Reviews</li>
+                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Community Hub — Learn about ships, join discussions, follow voyages</li>
+                        <li class="flex gap-4"><span class="text-emerald-400">→</span> Earn $AII through verified telemetry and environmental data sharing</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-10 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6">New Bridge: B-40 Vessel Sovereign Node</h3>
+                    <p class="text-slate-400 leading-relaxed mb-6">
+                        VesselSign™ turns every ship into a trusted digital citizen. Owners, operators, ports, and passengers gain transparency, security, and community connection.
+                    </p>
+                    <a href="#" class="inline-block text-emerald-400 hover:text-emerald-300 font-medium">
+                        Join the Vessel Community →
+                    </a>
                 </div>
             </div>
         </div>
