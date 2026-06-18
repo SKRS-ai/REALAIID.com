@@ -137,32 +137,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-<script>
-// Main Search Function
-function performSearch() {
-    const query = document.getElementById('global-search').value.trim();
-    if (!query) return;
-    
-    // Your existing search logic here
-    const results = searchDatabase.filter(item => 
-        item.title.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (results.length > 0) {
-        window.location.href = results[0].url;
-    } else {
-        alert(`No results found for "${query}".`);
-    }
-}
-
-// Enter Key Support
-document.getElementById('global-search').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        performSearch();
-    }
-});
 </script>
-
 
 <!-- NAVIGATION -->
 <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
@@ -718,45 +693,40 @@ document.getElementById('global-search').addEventListener('keypress', function(e
             }
         });
 
-  <script>
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-document.addEventListener('DOMContentLoaded', function() {
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
 
-    // Hamburger Menu Toggle
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (hamburgerBtn && mobileMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-        });
-    }
-
-    // Mobile Submenu Toggle (Marketplace & Solutions)
-    function toggleMobileSubmenu(element) {
-        const submenu = element.querySelector('.mobile-submenu');
-        const arrow = element.querySelector('span:last-child');
-        
-        if (submenu && arrow) {
-            submenu.classList.toggle('hidden');
+        // Mobile Submenu Toggle (Marketplace & Solutions)
+        function toggleMobileSubmenu(element) {
+            const submenu = element.querySelector('.mobile-submenu');
+            const arrow = element.querySelector('span:last-child');
             
-            // Rotate arrow
-            if (submenu.classList.contains('hidden')) {
-                arrow.style.transform = 'rotate(0deg)';
-            } else {
-                arrow.style.transform = 'rotate(90deg)';
+            if (submenu && arrow) {
+                submenu.classList.toggle('hidden');
+                
+                // Rotate arrow
+                if (submenu.classList.contains('hidden')) {
+                    arrow.style.transform = 'rotate(0deg)';
+                } else {
+                    arrow.style.transform = 'rotate(90deg)';
+                }
             }
         }
-    }
 
-    // Make sure all submenu triggers call the function
-    const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
-    submenuTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
-    });
-
-});
+        // Make sure all submenu triggers call the function
+        const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
+        submenuTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
+        });
+    </script>
 </script>
 
 </body>
