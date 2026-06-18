@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-slate-950 text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$AII Economy | Compute & Value Settlement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .grid-cell:hover { background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="text-lg font-bold tracking-[0.3em] text-white">$AII BUREAU</div>
+            <div class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
+                <a href="index.html" class="hover:text-amber-500">Dashboard</a>
+                <a href="ecosystem-bridges.html" class="hover:text-amber-500">Ecosystem</a>
+                <a href="marketplace.html" class="hover:text-amber-500">Marketplace</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-24 px-8">
+        <div class="mb-16">
+            <h1 class="text-5xl font-bold text-white mb-6">$AII: Compute Economy</h1>
+            <p class="text-lg text-slate-400 max-w-3xl">Settlement layers for physical intelligence and autonomous economic agents. This infrastructure turns compute cycles into hard currency, enabling self-sustaining robotic fleets and verified AI operations.</p>
+        </div>
+
+        <!-- Economy Bridges Matrix -->
+        <div id="bridge-grid" class="grid grid-cols-2 md:grid-cols-5 gap-3">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="mt-24 p-10 bg-slate-900/50 border border-slate-800 rounded-3xl">
+            <h2 class="text-2xl font-bold text-white mb-6">Autonomous Value Rails</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="border-l border-amber-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Machine Settlement</h4>
+                    <p class="text-sm">Eliminate human latency in financial transactions. $AII enables sub-millisecond M2M settlements for energy, storage, and compute.</p>
+                </div>
+                <div class="border-l border-amber-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Decentralized Compute</h4>
+                    <p class="text-sm">Access global edge-processing clusters for spatial mapping and rendering, billed directly to the robotic agent's wallet.</p>
+                </div>
+                <div class="border-l border-amber-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Dynamic Model Training</h4>
+                    <p class="text-sm">Autonomous marketplace for AI weight distribution, allowing agents to purchase specialized training modules on the fly.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-24 px-12">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[9px] uppercase tracking-widest text-slate-600">
+            <div><h4 class="text-white mb-4">Pillars</h4><a href="pillar-human.html" class="block hover:text-white">Human</a><a href="pillar-robotics.html" class="block hover:text-white">Robo</a><a href="pillar-economy.html" class="block hover:text-white">Economy</a><a href="pillar-energy.html" class="block hover:text-white">Energy</a></div>
+            <div><h4 class="text-white mb-4">Economic Rails</h4><a href="render.html" class="block hover:text-white">Render</a><a href="akash.html" class="block hover:text-white">Akash</a><a href="bittensor.html" class="block hover:text-white">Bittensor</a><a href="gelato.html" class="block hover:text-white">Gelato</a></div>
+            <div><h4 class="text-white mb-6">Governance</h4><a href="yield.html" class="block hover:text-white">Yield</a><a href="liquidity.html" class="block hover:text-white">Liquidity</a><a href="treasury.html" class="block hover:text-white">Treasury</a></div>
+            <div><h4 class="text-white mb-6">Operations</h4><a href="node-map.html" class="block hover:text-white">Map</a><a href="settlement.html" class="block hover:text-white">Settlement</a><a href="compute.html" class="block hover:text-white">Compute</a></div>
+            <div><h4 class="text-white mb-6">Infrastructure</h4><a href="oracle.html" class="block hover:text-white">Pyth/Oracle</a><a href="mesh.html" class="block hover:text-white">Grid</a><a href="data.html" class="block hover:text-white">Data</a></div>
+            <div><h4 class="text-white mb-6">Bureau Tech</h4><a href="api.html" class="block hover:text-white">API</a><a href="github.html" class="block hover:text-white">GitHub</a><a href="sdk.html" class="block hover:text-white">SDK</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const econBridges = [
+            {id: "10", name: "Render", icon: "ph-cube-transparent"}, {id: "11", name: "Akash", icon: "ph-cloud-arrow-up"}, {id: "12", name: "Bittensor", icon: "ph-brain"}, {id: "13", name: "Gelato", icon: "ph-gas-pump"}, {id: "14", name: "Pyth", icon: "ph-chart-line-up"}
+        ];
+
+        const grid = document.getElementById('bridge-grid');
+        econBridges.forEach(b => {
+            const cell = document.createElement('a');
+            cell.href = `bridge-e-${b.id}.html`;
+            cell.className = "grid-cell p-4 rounded-xl border border-slate-800 bg-slate-900/50 transition-all flex flex-col items-center text-center";
+            cell.innerHTML = `
+                <span class="text-[9px] font-mono text-amber-500 mb-2">E-${b.id}</span>
+                <i class="${b.icon} text-2xl mb-2 text-white"></i>
+                <span class="text-[10px] font-bold text-slate-300 uppercase leading-tight">${b.name}</span>
+            `;
+            grid.appendChild(cell);
+        });
+    </script>
+</body>
+</html>
