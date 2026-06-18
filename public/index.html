@@ -746,41 +746,5 @@ document.addEventListener('click', (e) => {
         });
     </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    if (hamburgerBtn && mobileMenu) {
-        hamburgerBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            
-            // Change icon between ☰ and ✕
-            if (mobileMenu.classList.contains('hidden')) {
-                hamburgerBtn.textContent = '☰';
-            } else {
-                hamburgerBtn.textContent = '✕';
-            }
-        });
-    }
-
-    // Mobile Submenu Toggle
-    function toggleMobileSubmenu(element) {
-        const submenu = element.querySelector('.mobile-submenu');
-        const arrow = element.querySelector('span:last-child');
-        
-        if (submenu && arrow) {
-            submenu.classList.toggle('hidden');
-            arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
-        }
-    }
-
-    const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
-    submenuTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
-    });
-});
-</script>
-
 </body>
 </html>
