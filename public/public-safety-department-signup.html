@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Intake | Bureau of Digital Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@200;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background: #020617; color: #94a3b8; }
+        .form-glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid #1e293b; }
+        input, select, textarea { background: #0f172a; border: 1px solid #334155; color: white; padding: 0.75rem; width: 100%; border-radius: 4px; }
+        label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: 0.5rem; display: block; }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Global Header -->
+    <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="text-lg font-bold tracking-[0.3em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+            <div class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
+                <a href="index.html" class="hover:text-blue-500">Dashboard</a>
+                <a href="marketplace.html" class="hover:text-blue-500">Infrastructure</a>
+                <a href="vigilant.html" class="hover:text-blue-500">Credentialing</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-24 px-8">
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-bold text-white mb-6">Agency Onboarding</h1>
+            <p class="text-slate-400">Institutional intake for public safety departments and municipal entities. Secure your jurisdiction under the Bureau's Forensic Identity Umbrella.</p>
+        </div>
+
+        <form class="form-glass p-12 space-y-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <label>Agency Name</label>
+                    <input type="text" placeholder="e.g. Philadelphia Police Department">
+                </div>
+                <div>
+                    <label>Department Type</label>
+                    <select>
+                        <option>Law Enforcement (Enforcement)</option>
+                        <option>EMS / Paramedic (Emergency)</option>
+                        <option>Fire & Rescue (Fire/Rescue)</option>
+                        <option>Public Utility / Critical Infrastructure (Civil)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label>Jurisdictional District ID</label>
+                <input type="text" placeholder="Official Agency ID Number">
+            </div>
+
+            <div>
+                <label>Department Head / Authorizing Officer</label>
+                <input type="text" placeholder="Full Name and Rank/Title">
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <label>Personnel Roster Size</label>
+                    <input type="number" placeholder="Total active badges">
+                </div>
+                <div>
+                    <label>Contact Email (Official)</label>
+                    <input type="email" placeholder="admin@agency.gov">
+                </div>
+            </div>
+
+            <div>
+                <label>Department Mission Statement / Objectives</label>
+                <textarea rows="4" placeholder="Brief summary of department's operational scope"></textarea>
+            </div>
+
+            <button class="w-full bg-blue-600 text-white font-bold py-4 uppercase tracking-widest hover:bg-blue-700 transition">Initialize Agency Handshake</button>
+        </form>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-24 px-12">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[10px] uppercase tracking-widest text-slate-600">
+            <div><h4 class="text-white mb-6">Infrastructure</h4><a href="vigilant.html" class="block hover:text-white">Vigilant™</a><a href="vitallink.html" class="block hover:text-white">VitalLink™</a><a href="infernoguard.html" class="block hover:text-white">InfernoGuard™</a><a href="civickey.html" class="block hover:text-white">CivicKey™</a></div>
+            <div><h4 class="text-white mb-6">Wallet Ecosystem</h4><a href="wallet-robo.html" class="block hover:text-white">Wallet-Robo</a><a href="wallet-bio.html" class="block hover:text-white">Wallet-Bio</a><a href="bridge-sync.html" class="block hover:text-white">Bridge Sync</a><a href="attestation.html" class="block hover:text-white">Attestation</a></div>
+            <div><h4 class="text-white mb-6">Command Control</h4><a href="nexus-r.html" class="block hover:text-white">Nexus-R</a><a href="ledger-ops.html" class="block hover:text-white">Ledger Ops</a><a href="juri-link.html" class="block hover:text-white">Juri-Link</a><a href="cad-intake.html" class="block hover:text-white">CAD Intake</a></div>
+            <div><h4 class="text-white mb-6">Governance</h4><a href="policy-frame.html" class="block hover:text-white">Policy</a><a href="counsel.html" class="block hover:text-white">Counsel</a><a href="integrity.html" class="block hover:text-white">Integrity</a><a href="synthesis.html" class="block hover:text-white">Synthesis</a></div>
+            <div><h4 class="text-white mb-6">Compliance</h4><a href="audit-forensics.html" class="block hover:text-white">Audits</a><a href="safety-regs.html" class="block hover:text-white">Safety</a><a href="legal-intake.html" class="block hover:text-white">Legal Intake</a><a href="archive.html" class="block hover:text-white">Archive</a></div>
+            <div><h4 class="text-white mb-6">Bureau Tech</h4><a href="api-gateway.html" class="block hover:text-white">API Gateway</a><a href="sdk-library.html" class="block hover:text-white">SDK Kits</a><a href="github-repo.html" class="block hover:text-white">GitHub</a><a href="tech-docs.html" class="block hover:text-white">Tech Docs</a></div>
+        </div>
+        <div class="mt-20 text-center text-slate-800 text-[10px]">© 2026 Solomon Kin LLC / REALAIID BUREAU OF DIGITAL IDENTITY. ALL RIGHTS RESERVED.</div>
+    </footer>
+</body>
+</html>
