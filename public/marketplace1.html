@@ -54,11 +54,11 @@
     <!-- CATEGORY FILTERS -->
     <div class="sticky top-[73px] z-40 bg-slate-900 border-b border-slate-700">
         <div class="max-w-7xl mx-auto px-6 py-4 flex gap-3 overflow-x-auto">
-            <button onclick="filterCategory('all')" class="category-tab active px-6 py-2 rounded-full text-sm font-medium">All Products</button>
-            <button onclick="filterCategory('human')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">Digital Human</button>
-            <button onclick="filterCategory('robo')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">RoboSign™</button>
-            <button onclick="filterCategory('economy')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">$AII Economy</button>
-            <button onclick="filterCategory('energy')" class="category-tab px-6 py-2 rounded-full text-sm font-medium">Energy & Infrastructure</button>
+            <button onclick="filterCategory('all', this)" class="category-tab bg-cyan-400 text-slate-900 px-6 py-2 rounded-full text-sm font-medium transition-all">All Products</button>
+            <button onclick="filterCategory('human', this)" class="category-tab px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-all text-slate-300">Digital Human</button>
+            <button onclick="filterCategory('robo', this)" class="category-tab px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-all text-slate-300">RoboSign™</button>
+            <button onclick="filterCategory('economy', this)" class="category-tab px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-all text-slate-300">$AII Economy</button>
+            <button onclick="filterCategory('energy', this)" class="category-tab px-6 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-all text-slate-300">Energy & Infrastructure</button>
         </div>
     </div>
 
@@ -66,23 +66,50 @@
     <section class="py-20">
         <div class="max-w-7xl mx-auto px-6">
             <div id="product-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Products will be populated by JS from your data -->
+                <!-- Products will be populated by JS from data below -->
             </div>
         </div>
     </section>
 
     <script>
         const products = [
-            // Your full product list from index.html
-            { category: "human", name: "Standard Digital Human", price: "$149", link: "product-standard.html", desc: "Full spectrum human ingest protocol." },
-            { category: "human", name: "VocalForge™", price: "$29", link: "product-vssn2.html", desc: "Vocal hashing core." },
-            { category: "human", name: "Likeness Shield™", price: "$499", link: "product-likeness-shield.html", desc: "Deepfake protection." },
-            { category: "robo", name: "RoboSign™ Hearth", price: "$99", link: "robosign-basic.html", desc: "Home robot identity." },
-            { category: "robo", name: "RoboSign™ Fleet", price: "$499", link: "robosign-pro.html", desc: "Commercial fleet." },
-            { category: "economy", name: "$AII Individual", price: "$19/mo", link: "aii-individual.html", desc: "Personal compute credits." },
-            { category: "economy", name: "$AII Fleet-Link", price: "$499/mo", link: "aii-fleet.html", desc: "Autonomous fleet compute." },
-            { category: "energy", name: "EmbarkSecure™", price: "$49", link: "embarksecure-main.html", desc: "Maritime embarkation." },
-            // Add more from your full list as needed
+            // --- DIGITAL HUMAN (Prime, Bio-Anchor, Legacy, Guardian, Authority, Horizons) ---
+            { category: "human", name: "Prime Identity Tier", price: "Contact Bureau", link: "prime-identity.html", desc: "Foundational gateway locking down biological root via Bio-Sign™.", icon: "🌌" },
+            { category: "human", name: "REALAiID Passport™", price: "$0", link: "passport.html", desc: "Freemium application establishing cryptographic framework and localized wallet shell.", icon: "🪪" },
+            { category: "human", name: "VocalForge™", price: "$29", link: "product-vssn2.html", desc: "Fundamental VSSN vocal hashing to lock baseline voice signatures.", icon: "🎙️" },
+            { category: "human", name: "AnimaLock™", price: "$49", link: "animalock.html", desc: "Cryptographic nose-print anchoring for high-value companions.", icon: "🐾" },
+            { category: "human", name: "BioGenesis™", price: "$149", link: "product-standard.html", desc: "Full-spectrum human ingest protocol for verified biological life.", icon: "🧬" },
+            { category: "human", name: "HeirRoot™", price: "$149", link: "heirroot.html", desc: "Succession root established at birth to secure digital newborn identity.", icon: "👶" },
+            { category: "human", name: "Likeness Shield™", price: "$499/yr", link: "product-likeness-shield.html", desc: "Neural Noise deepfake defense injecting non-perceptible jitter.", icon: "🛡️" },
+            { category: "human", name: "Bio Media Seal™", price: "$49", link: "biomediaseal.html", desc: "Forensic pixel-level signatures permanently watermarking creative assets.", icon: "📸" },
+            { category: "human", name: "LexMed Verifier™", price: "$199/yr", link: "lexmed.html", desc: "MD/JD board standing continuous verification for elite professionals.", icon: "⚖️" },
+            { category: "human", name: "Aegis Pass™", price: "$599/yr", link: "aegispass.html", desc: "Autonomous Transit Authority for cross-border expert status clearance.", icon: "✈️" },
+            { category: "human", name: "Supreme Ruler™", price: "$2,499", link: "supreme-ruler.html", desc: "Sovereign Class A: Federal Sync. Direct access to federal SSO.", icon: "👑" },
+
+            // --- ROBOSIGN™ (Entity Identity) ---
+            { category: "robo", name: "RoboSign™ Hearth", price: "$99", link: "robosign-basic.html", desc: "Home robot identity and owner linkage architecture.", icon: "🏠" },
+            { category: "robo", name: "RoboSign™ Fleet", price: "$499/mo", link: "robosign-pro.html", desc: "Commercial service fleet audit and provenance tracking.", icon: "🤖" },
+            { category: "robo", name: "RoboSign™ Foundry", price: "Custom", link: "robosign-industrial.html", desc: "Hardware-bound identity for heavy industrial fleets and utility grids.", icon: "🏭" },
+
+            // --- $AII ECONOMY (Compute Economy) ---
+            { category: "economy", name: "Core-Mesh Sandbox™", price: "$0", link: "sandbox.html", desc: "Zero-cost developer environment access for machine testing.", icon: "🧪" },
+            { category: "economy", name: "$AII Nexus Individual™", price: "$19/mo", link: "aii-individual.html", desc: "Personal AI agent compute credits and data harvesting dividends.", icon: "💳" },
+            { category: "economy", name: "$AII Synapse Grid™", price: "$499/mo", link: "aii-fleet.html", desc: "Grid-contribution compute for autonomous fleet orchestration.", icon: "📈" },
+            { category: "economy", name: "$AII Kinetic Flow™", price: "Custom", link: "aii-kinetic.html", desc: "High-throughput liquid liquidity rails for sub-millisecond M2M settlements.", icon: "⚡" },
+            { category: "economy", name: "PresenceYield™", price: "$499", link: "presenceyield.html", desc: "Converts tracked biological presence into yield-generating digital assets.", icon: "💎" },
+            { category: "economy", name: "Oracle Arbitrage™", price: "$999", link: "oracle-arbitrage.html", desc: "Algorithmic compute parity and continuous ledger verification.", icon: "🔮" },
+
+            // --- ENERGY & INFRASTRUCTURE (Maritime, Civic, Transit, Architectural) ---
+            { category: "energy", name: "REALAiID Voyage Pass™", price: "$0", link: "voyage-pass.html", desc: "Base passenger access token for maritime entry points.", icon: "🎫" },
+            { category: "energy", name: "EmbarkSecure™", price: "$49", link: "embarksecure-main.html", desc: "Sovereign biometric embarkation matrix for rapid check-in.", icon: "⚓" },
+            { category: "energy", name: "SentryBoard™ Terminal Core", price: "Custom", link: "sentryboard-core.html", desc: "Hardware-bound terminal kiosk core running local edge processing arrays.", icon: "🖥️" },
+            { category: "energy", name: "SchoolSecure™", price: "$5-15", link: "schoolsecure.html", desc: "Sovereign biometric entry and attendance for educational institutions.", icon: "🏫" },
+            { category: "energy", name: "SchoolSecure™ // Visitor", price: "Custom", link: "schoolsecure-visitor.html", desc: "Hardened visitor vetting and time-bound background watch-lists.", icon: "🚷" },
+            { category: "energy", name: "KnotDrive Auto™", price: "$199", link: "knotdrive.html", desc: "Biometric car ignition lock ensuring physical vehicles track to skeletal resonance.", icon: "🚗" },
+            { category: "energy", name: "AuthorityDeed™", price: "Custom", link: "authoritydeed.html", desc: "Estate Registry title lock binding physical deeds directly to biometric frequency.", icon: "📜" },
+            { category: "energy", name: "Precinct Seating™", price: "$79", link: "precinct-seating.html", desc: "Geospatial residency logging requiring validated municipal trade charters.", icon: "📍" },
+            { category: "energy", name: "Citadel Elite™", price: "$9,999", link: "citadel-elite.html", desc: "Absolute failover resilience off-grid hardware protection loop.", icon: "🏰" },
+            { category: "energy", name: "Benthic Lease™", price: "$24,999", link: "benthic-lease.html", desc: "Deep-sea data residency inside automated Abyssal Logic Capsules.", icon: "🌊" }
         ];
 
         function renderProducts(filteredProducts) {
@@ -91,12 +118,12 @@
             filteredProducts.forEach(p => {
                 const card = document.createElement('a');
                 card.href = p.link;
-                card.className = "product-card bg-slate-800 rounded-3xl overflow-hidden block hover:ring-2 hover:ring-cyan-400";
+                card.className = "product-card bg-slate-800 rounded-3xl overflow-hidden block hover:ring-2 hover:ring-cyan-400 border border-slate-700 transition-all duration-300";
                 card.innerHTML = `
                     <div class="h-56 bg-slate-700 flex items-center justify-center text-6xl">${p.icon || '🔑'}</div>
                     <div class="p-6">
-                        <h3 class="font-semibold text-xl mb-1">${p.name}</h3>
-                        <p class="text-amber-400 text-2xl font-bold">${p.price}</p>
+                        <h3 class="font-semibold text-white text-xl mb-1">${p.name}</h3>
+                        <p class="text-cyan-400 text-2xl font-bold">${p.price}</p>
                         <p class="text-slate-400 text-sm mt-3 line-clamp-2">${p.desc}</p>
                     </div>
                 `;
@@ -104,12 +131,25 @@
             });
         }
 
-        function filterCategory(cat) {
-            document.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active', 'bg-cyan-400', 'text-slate-900'));
-            event.target.classList.add('active', 'bg-cyan-400', 'text-slate-900');
+        function filterCategory(cat, btnElement) {
+            // Reset all buttons to default inactive state
+            document.querySelectorAll('.category-tab').forEach(btn => {
+                btn.classList.remove('bg-cyan-400', 'text-slate-900');
+                btn.classList.add('text-slate-300');
+            });
             
-            if (cat === 'all') renderProducts(products);
-            else renderProducts(products.filter(p => p.category === cat));
+            // Apply active state to clicked button
+            if (btnElement) {
+                btnElement.classList.add('bg-cyan-400', 'text-slate-900');
+                btnElement.classList.remove('text-slate-300');
+            }
+            
+            // Filter array rendering
+            if (cat === 'all') {
+                renderProducts(products);
+            } else {
+                renderProducts(products.filter(p => p.category === cat));
+            }
         }
 
         // Initial render
