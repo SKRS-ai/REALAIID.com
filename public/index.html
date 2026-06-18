@@ -670,81 +670,37 @@ document.addEventListener('click', (e) => {
 </footer>
 
     <script>
-        // Dropdown
-        function toggleDropdown(el) {
-            document.querySelectorAll('.group').forEach(g => {
-                if (g !== el) g.classList.remove('active');
-            });
-            el.classList.toggle('active');
-        }
+document.addEventListener('DOMContentLoaded', function() {
 
-        document.addEventListener('click', e => {
-            if (!e.target.closest('.group')) {
-                document.querySelectorAll('.group').forEach(g => g.classList.remove('active'));
-            }
+    // Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
         });
+    }
 
-        // Hero Slideshow
-        let current = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function show(n) {
-            slides.forEach(s => s.classList.remove('active'));
-            slides[n].classList.add('active');
+    // Mobile Submenu Toggle
+    function toggleMobileSubmenu(element) {
+        const submenu = element.querySelector('.mobile-submenu');
+        const arrow = element.querySelector('span:last-child');
+        
+        if (submenu && arrow) {
+            submenu.classList.toggle('hidden');
+            arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
         }
+    }
 
-        function nextSlide() { 
-            current = (current + 1) % slides.length; 
-            show(current); 
-        }
-        function prevSlide() { 
-            current = (current - 1 + slides.length) % slides.length; 
-            show(current); 
-        }
+    const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
+    submenuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
+    });
 
-        setInterval(nextSlide, 6000);
-
-        // Search
-        document.getElementById('search').addEventListener('keypress', e => {
-            if (e.key === 'Enter') {
-                window.location.href = `/marketplace?search=${encodeURIComponent(e.target.value)}`;
-            }
-        });
-
-        // Hamburger Menu Toggle
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (hamburgerBtn && mobileMenu) {
-            hamburgerBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
-            });
-        }
-
-        // Mobile Submenu Toggle (Marketplace & Solutions)
-        function toggleMobileSubmenu(element) {
-            const submenu = element.querySelector('.mobile-submenu');
-            const arrow = element.querySelector('span:last-child');
-            
-            if (submenu && arrow) {
-                submenu.classList.toggle('hidden');
-                
-                // Rotate arrow
-                if (submenu.classList.contains('hidden')) {
-                    arrow.style.transform = 'rotate(0deg)';
-                } else {
-                    arrow.style.transform = 'rotate(90deg)';
-                }
-            }
-        }
-
-        // Make sure all submenu triggers call the function
-        const submenuTriggers = document.querySelectorAll('.mobile-submenu-trigger');
-        submenuTriggers.forEach(trigger => {
-            trigger.addEventListener('click', () => toggleMobileSubmenu(trigger));
-        });
-    </script>
+});
+</script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
