@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfernoGuard™ | Bureau of Digital Identity</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700&family=Inter:wght@200;400;600&display=swap');
+        :root { --accent: #f97316; }
+        body { font-family: 'Inter', sans-serif; background: #050505; color: #d1d5db; }
+        .glass-card { background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(20px); border: 1px solid #404040; box-shadow: 0 10px 40px rgba(0,0,0,0.8); }
+        .hazard-border { border-left: 4px solid var(--accent); }
+        .glow-text { text-shadow: 0 0 10px rgba(249, 115, 22, 0.5); }
+        .viz-box { background: radial-gradient(circle at top right, #27272a, #000); }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Global Header -->
+    <header class="border-b border-orange-900/30 bg-black/95 sticky top-0 z-50 backdrop-blur-lg">
+        <nav class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold tracking-[0.2em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+            <div class="space-x-8 text-[9px] uppercase tracking-widest text-gray-400">
+                <a href="index.html" class="hover:text-orange-500">Home</a>
+                <a href="robo-nexus-r.html" class="hover:text-orange-500">Nexus-R</a>
+                <a href="identity.html" class="hover:text-orange-500">Bio-Wallet</a>
+                <a href="marketplace.html" class="hover:text-orange-500">Marketplace</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-32 border-b border-orange-900/20 viz-box relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="text-7xl font-bold text-white mb-6 tracking-tighter glow-text">INFERNOGUARD™</h1>
+            <p class="text-xl text-orange-500 mb-8 uppercase tracking-[0.4em]">Tactical Fire & Rescue Credential</p>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">Hardware-bound identity for high-stakes environments. InfernoGuard™ bridges the gap between tactical personnel and the Bureau's forensic incident-command ledger.</p>
+        </div>
+    </section>
+
+    <!-- Detailed Content -->
+    <main class="max-w-6xl mx-auto py-24 px-6 space-y-24">
+        
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div class="glass-card p-10">
+                <h3 class="text-2xl font-bold text-white mb-8">Tactical Role & Zone Authorization</h3>
+                <div class="space-y-6">
+                    <div class="hazard-border pl-6">
+                        <h4 class="font-bold text-orange-500">Zone-Clearing Protocol</h4>
+                        <p class="text-sm text-gray-400">Instantly register presence in incident hot-zones, providing tactical commanders with a real-time personnel manifest.</p>
+                    </div>
+                    <div class="hazard-border pl-6">
+                        <h4 class="font-bold text-orange-500">Equipment Interlock</h4>
+                        <p class="text-sm text-gray-400">Unlock specialized heavy-rescue gear and tactical communications arrays bound specifically to the user's verified role.</p>
+                    </div>
+                    <div class="hazard-border pl-6">
+                        <h4 class="font-bold text-orange-500">Forensic Incident Signing</h4>
+                        <p class="text-sm text-gray-400">Every action performed in the field is cryptographically signed and stored in the Bureau’s permanent, tamper-proof audit archive.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-4xl font-bold mb-8">The Infrastructure of Safety</h2>
+                <p class="text-gray-400 mb-8 leading-relaxed">InfernoGuard™ transforms the role of the firefighter. No longer just a responder, they become a mobile security node within the municipal grid. By binding their identity to their specific tactical role, the Bureau ensures that when a fire department arrives, they have the immediate, verified authority to take control of building automation systems, elevators, and local utility infrastructure.</p>
+                <div class="bg-orange-950/20 p-6 border border-orange-500/30">
+                    <h4 class="text-orange-500 font-bold uppercase text-xs mb-2">Technical Note: Hardware-Bound Identity</h4>
+                    <p class="text-sm text-gray-400">InfernoGuard™ utilizes the REALAIID enclave, ensuring that the credential cannot be lifted, copied, or spoofed—even if the physical device is compromised.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Synergy -->
+        <section class="glass-card p-12">
+            <h3 class="text-3xl font-bold mb-10 text-center text-white">Full-Stack Bureau Integration</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="p-6 border border-gray-800 bg-black">
+                    <h5 class="text-orange-500 font-bold text-sm mb-2">Nexus-R Sync</h5>
+                    <p class="text-xs text-gray-500">Coordinate fire-fighting drones and robotic ground units directly from the field.</p>
+                </div>
+                <div class="p-6 border border-gray-800 bg-black">
+                    <h5 class="text-orange-500 font-bold text-sm mb-2">Bio-Vault Auth</h5>
+                    <p class="text-xs text-gray-500">Biometric-locked command credentials for critical site takeover during emergencies.</p>
+                </div>
+                <div class="p-6 border border-gray-800 bg-black">
+                    <h5 class="text-orange-500 font-bold text-sm mb-2">Forensic Logging</h5>
+                    <p class="text-xs text-gray-500">Automated reporting of incident entry/exit times to the central municipal forensic ledger.</p>
+                </div>
+                <div class="p-6 border border-gray-800 bg-black">
+                    <h5 class="text-orange-500 font-bold text-sm mb-2">Cloud Synthesis</h5>
+                    <p class="text-xs text-gray-500">Seamless data handover to medical teams (VitalLink™) upon incident resolution.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-gray-900 py-20 px-12 bg-black">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[9px] uppercase tracking-widest text-gray-500">
+            <div><h4 class="text-white mb-4">Infrastructure</h4><a href="vigilant.html" class="block hover:text-white">Vigilant™</a><a href="vitallink.html" class="block hover:text-white">VitalLink™</a><a href="infernoguard.html" class="block hover:text-white">InfernoGuard™</a><a href="civickey.html" class="block hover:text-white">CivicKey™</a></div>
+            <div><h4 class="text-white mb-4">Identity Wallet</h4><a href="wallet-robo.html" class="block hover:text-white">Wallet-Robo</a><a href="wallet-bio.html" class="block hover:text-white">Wallet-Bio</a><a href="bridge.html" class="block hover:text-white">Bridge Sync</a><a href="auth.html" class="block hover:text-white">Auth Core</a></div>
+            <div><h4 class="text-white mb-4">Command Ops</h4><a href="nexus-r.html" class="block hover:text-white">Nexus-R</a><a href="ledger.html" class="block hover:text-white">Ledger Ops</a><a href="juri.html" class="block hover:text-white">Juri-Link</a><a href="cad.html" class="block hover:text-white">CAD Intake</a></div>
+            <div><h4 class="text-white mb-4">Bureau Gov</h4><a href="policy.html" class="block hover:text-white">Policy</a><a href="counsel.html" class="block hover:text-white">Counsel</a><a href="forensics.html" class="block hover:text-white">Forensics</a><a href="synthesis.html" class="block hover:text-white">Synthesis</a></div>
+            <div><h4 class="text-white mb-4">System Comp</h4><a href="certs.html" class="block hover:text-white">Certifications</a><a href="safety.html" class="block hover:text-white">Safety</a><a href="legal.html" class="block hover:text-white">Legal Intake</a><a href="archive.html" class="block hover:text-white">Archive</a></div>
+            <div><h4 class="text-white mb-4">Developers</h4><a href="api.html" class="block hover:text-white">API Gateway</a><a href="sdk.html" class="block hover:text-white">SDK Kits</a><a href="github.html" class="block hover:text-white">GitHub Repo</a><a href="docs.html" class="block hover:text-white">Tech Docs</a></div>
+        </div>
+        <div class="mt-16 text-center text-gray-700">&copy; 2026 Solomon Kin LLC / REALAIID. All Rights Reserved.</div>
+    </footer>
+</body>
+</html>
