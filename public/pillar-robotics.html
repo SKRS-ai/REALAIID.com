@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-slate-950 text-slate-300">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Robot™ Pillar | Autonomous Identity Grid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@300;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .grid-cell:hover { background: rgba(168, 85, 247, 0.2); border-color: #a855f7; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-950/90 sticky top-0 z-50 backdrop-blur-md">
+        <nav class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <div class="text-lg font-bold tracking-[0.3em] text-white">BUREAU OF DIGITAL IDENTITY</div>
+            <div class="space-x-8 text-[10px] uppercase tracking-widest text-slate-500">
+                <a href="index.html" class="hover:text-purple-500">Dashboard</a>
+                <a href="ecosystem-bridges.html" class="hover:text-purple-500">Ecosystem</a>
+                <a href="marketplace.html" class="hover:text-purple-500">Marketplace</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-24 px-8">
+        <div class="mb-16">
+            <h1 class="text-5xl font-bold text-white mb-6">Digital Robot™: Autonomous Identity Grid</h1>
+            <p class="text-lg text-slate-400 max-w-3xl">Secure onboarding for embodied AI. The Digital Robot™ pillar anchors hardware identities to sovereign biometric roots, enabling autonomous agents to navigate, transact, and interact within the global mesh with verified intent.</p>
+        </div>
+
+        <!-- Robot Bridges Matrix -->
+        <div id="bridge-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            <!-- Populated by JS -->
+        </div>
+
+        <div class="mt-24 p-10 bg-slate-900/50 border border-slate-800 rounded-3xl">
+            <h2 class="text-2xl font-bold text-white mb-6">Autonomous Mesh Integration</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="border-l border-purple-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Hardware-Bound (HAM) Trust</h4>
+                    <p class="text-sm">Each robot is provisioned with a unique, un-clonable identity, ensuring that commands originate from the authorized owner and not malicious actors.</p>
+                </div>
+                <div class="border-l border-purple-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Fleet Provenance</h4>
+                    <p class="text-sm">Continuous audit logs for every fleet movement, maintenance event, and data transfer, providing an unbreakable chain of custody for autonomous service units.</p>
+                </div>
+                <div class="border-l border-purple-500 pl-6">
+                    <h4 class="text-white font-bold mb-2">Economic Autonomy</h4>
+                    <p class="text-sm">Robotic assets can autonomously settle compute costs and energy usage through the $AII currency rail, effectively becoming self-sustaining infrastructure nodes.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Professional Mega-Footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-24 px-12">
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-12 text-[9px] uppercase tracking-widest text-slate-600">
+            <div><h4 class="text-white mb-4">Pillars</h4><a href="pillar-human.html" class="block hover:text-white">Human</a><a href="pillar-robotics.html" class="block hover:text-white">Robo</a><a href="pillar-economy.html" class="block hover:text-white">Economy</a><a href="pillar-energy.html" class="block hover:text-white">Energy</a></div>
+            <div><h4 class="text-white mb-4">RoboSign™</h4><a href="robosign-basic.html" class="block hover:text-white">Hearth</a><a href="robosign-pro.html" class="block hover:text-white">Fleet</a><a href="robosign-industrial.html" class="block hover:text-white">Foundry</a><a href="m2m-settlement.html" class="block hover:text-white">M2M</a></div>
+            <div><h4 class="text-white mb-6">Governance</h4><a href="policy.html" class="block hover:text-white">Policy</a><a href="counsel.html" class="block hover:text-white">Counsel</a><a href="integrity.html" class="block hover:text-white">Integrity</a></div>
+            <div><h4 class="text-white mb-6">Operations</h4><a href="node-map.html" class="block hover:text-white">Map</a><a href="mesh-sync.html" class="block hover:text-white">Mesh</a><a href="compute-grid.html" class="block hover:text-white">Compute</a></div>
+            <div><h4 class="text-white mb-6">Compliance</h4><a href="audit.html" class="block hover:text-white">Audit</a><a href="safety.html" class="block hover:text-white">Safety</a><a href="regs.html" class="block hover:text-white">Regs</a></div>
+            <div><h4 class="text-white mb-6">Bureau Tech</h4><a href="api.html" class="block hover:text-white">API</a><a href="github.html" class="block hover:text-white">GitHub</a><a href="sdk.html" class="block hover:text-white">SDK</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const robotBridges = [
+            {id: "40", name: "RoboSign Hearth", icon: "ph-house"}, {id: "41", name: "RoboSign Fleet", icon: "ph-robot"}, {id: "42", name: "RoboSign Foundry", icon: "ph-factory"}, {id: "43", name: "Drone Sync", icon: "ph-airplane"}, {id: "44", name: "UAV Provenance", icon: "ph-radar"}, {id: "45", name: "Edge Controller", icon: "ph-cpu"}, {id: "46", name: "Logistics Node", icon: "ph-package"}, {id: "47", name: "Mission Control", icon: "ph-target"}, {id: "48", name: "Safety Interlock", icon: "ph-shield-warning"}, {id: "49", name: "Data Siphon", icon: "ph-database"}
+        ];
+
+        const grid = document.getElementById('bridge-grid');
+        robotBridges.forEach(b => {
+            const cell = document.createElement('a');
+            cell.href = `bridge-r-${b.id}.html`;
+            cell.className = "grid-cell p-4 rounded-xl border border-slate-800 bg-slate-900/50 transition-all flex flex-col items-center text-center";
+            cell.innerHTML = `
+                <span class="text-[9px] font-mono text-purple-500 mb-2">R-${b.id}</span>
+                <i class="${b.icon} text-2xl mb-2 text-white"></i>
+                <span class="text-[10px] font-bold text-slate-300 uppercase leading-tight">${b.name}</span>
+            `;
+            grid.appendChild(cell);
+        });
+    </script>
+</body>
+</html>
