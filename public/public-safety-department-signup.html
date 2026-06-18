@@ -33,50 +33,51 @@
             <p class="text-slate-400">Institutional intake for public safety departments and municipal entities. Secure your jurisdiction under the Bureau's Forensic Identity Umbrella.</p>
         </div>
 
-        <form class="form-glass p-12 space-y-8">
+        <!-- Formspree Integrated Form -->
+        <form action="https://formspree.io/f/xgobjzob" method="POST" class="form-glass p-12 space-y-8">
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <label>Agency Name</label>
-                    <input type="text" placeholder="e.g. Philadelphia Police Department">
+                    <input type="text" name="agency_name" placeholder="e.g. Philadelphia Police Department" required>
                 </div>
                 <div>
                     <label>Department Type</label>
-                    <select>
-                        <option>Law Enforcement (Enforcement)</option>
-                        <option>EMS / Paramedic (Emergency)</option>
-                        <option>Fire & Rescue (Fire/Rescue)</option>
-                        <option>Public Utility / Critical Infrastructure (Civil)</option>
+                    <select name="department_type">
+                        <option value="law_enforcement">Law Enforcement (Enforcement)</option>
+                        <option value="ems">EMS / Paramedic (Emergency)</option>
+                        <option value="fire_rescue">Fire & Rescue (Fire/Rescue)</option>
+                        <option value="public_utility">Public Utility / Critical Infrastructure (Civil)</option>
                     </select>
                 </div>
             </div>
 
             <div>
                 <label>Jurisdictional District ID</label>
-                <input type="text" placeholder="Official Agency ID Number">
+                <input type="text" name="district_id" placeholder="Official Agency ID Number" required>
             </div>
 
             <div>
                 <label>Department Head / Authorizing Officer</label>
-                <input type="text" placeholder="Full Name and Rank/Title">
+                <input type="text" name="authorizing_officer" placeholder="Full Name and Rank/Title" required>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <label>Personnel Roster Size</label>
-                    <input type="number" placeholder="Total active badges">
+                    <input type="number" name="roster_size" placeholder="Total active badges">
                 </div>
                 <div>
                     <label>Contact Email (Official)</label>
-                    <input type="email" placeholder="admin@agency.gov">
+                    <input type="email" name="email" placeholder="admin@agency.gov" required>
                 </div>
             </div>
 
             <div>
                 <label>Department Mission Statement / Objectives</label>
-                <textarea rows="4" placeholder="Brief summary of department's operational scope"></textarea>
+                <textarea name="mission_statement" rows="4" placeholder="Brief summary of department's operational scope"></textarea>
             </div>
 
-            <button class="w-full bg-blue-600 text-white font-bold py-4 uppercase tracking-widest hover:bg-blue-700 transition">Initialize Agency Handshake</button>
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-4 uppercase tracking-widest hover:bg-blue-700 transition">Initialize Agency Handshake</button>
         </form>
     </main>
 
