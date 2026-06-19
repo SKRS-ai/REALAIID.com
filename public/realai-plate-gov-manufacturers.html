@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAi Plate™ • For Governments & Manufacturers • REALAiiD Bureau</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --mesh-cyan: #22d3ee;
+        }
+        .hero-gov {
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+        }
+        .float-3d {
+            animation: float 10s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(3deg); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- HEADER (Consistent with front page) -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
+                <div>
+                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                    <p class="text-xs text-slate-400 -mt-1">Bureau of Digital Identity</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="/" class="hover:text-cyan-400 transition">Home</a>
+                
+                <div class="relative group" onclick="toggleDropdown(this)">
+                    <button class="flex items-center gap-1 hover:text-cyan-400 transition">Marketplace <span class="text-xs">▼</span></button>
+                    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+                        <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human Identity</a>
+                        <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">RoboSign™ Ecosystem</a>
+                        <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Compute Economy</a>
+                        <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                        <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                    </div>
+                </div>
+
+                <div class="relative group" onclick="toggleDropdown(this)">
+                    <button class="flex items-center gap-1 hover:text-cyan-400 transition">Solutions <span class="text-xs">▼</span></button>
+                    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+                        <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                        <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education</a>
+                        <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel & Embarkation</a>
+                        <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance & Civic</a>
+                        <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics & Autonomous</a>
+                    </div>
+                </div>
+
+                <a href="/$AIIComputeEconomy.html" class="hover:text-cyan-400 transition">$AII Economy</a>
+                <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition">For Grantors</a>
+                <a href="/compliance-hub1.html" class="hover:text-cyan-400 transition">Compliance</a>
+                <a href="/resources1.html" class="hover:text-cyan-400 transition">Resources</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-gov py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_center,#22d3ee_0%,transparent_70%)] opacity-20"></div>
+        <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-6 py-2 rounded-full border border-cyan-400/30 mb-8">
+                <span class="text-cyan-400 font-mono tracking-widest text-sm">B-30 AUTO ANCHOR • GOVERNMENT & MANUFACTURER PROGRAM</span>
+            </div>
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6 bg-gradient-to-r from-white via-cyan-300 to-cyan-400 bg-clip-text text-transparent">
+                REALAi Plate™ for Governments & Manufacturers
+            </h1>
+            <p class="text-3xl md:text-4xl text-cyan-300 font-light tracking-tight mb-8 max-w-4xl mx-auto">
+                Modernizing vehicle identity for the 21st century
+            </p>
+            <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+                A sovereign, privacy-first digital license plate system designed for states, DMVs, and automotive manufacturers.
+            </p>
+        </div>
+    </section>
+
+    <!-- WHY GOVERNMENTS NEED IT -->
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-white">For State Governments & DMVs</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass p-10 rounded-3xl">
+                    <h3 class="text-3xl font-semibold mb-8 text-emerald-400">Key Benefits</h3>
+                    <ul class="space-y-6 text-slate-300">
+                        <li class="flex gap-4"><span class="text-emerald-400 text-2xl">•</span> Drastically reduce license plate fraud, cloning, and theft</li>
+                        <li class="flex gap-4"><span class="text-emerald-400 text-2xl">•</span> Enable real-time, forensically verifiable enforcement</li>
+                        <li class="flex gap-4"><span class="text-emerald-400 text-2xl">•</span> Lower administrative costs and manual processing</li>
+                        <li class="flex gap-4"><span class="text-emerald-400 text-2xl">•</span> Improve public safety through immutable location records</li>
+                        <li class="flex gap-4"><span class="text-emerald-400 text-2xl">•</span> Seamless integration with existing tolling and traffic systems</li>
+                    </ul>
+                </div>
+                <div class="glass p-10 rounded-3xl">
+                    <h3 class="text-3xl font-semibold mb-8 text-cyan-400">Technical Advantages</h3>
+                    <p class="text-slate-300 mb-6">REALAi Plate™ replaces 100-year-old static metal plates with a dynamic, Bio-Sign™-secured digital identity layer that is:</p>
+                    <ul class="space-y-4 text-slate-300">
+                        <li>• Daily rotating low-power E-Ink public code</li>
+                        <li>• Cryptographically bound to vehicle VIN and owner Bio-Sign™</li>
+                        <li>• Immutable audit trail in the Bureau ledger</li>
+                        <li>• Zero-knowledge proofs for privacy-preserving verification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY MANUFACTURERS NEED IT -->
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-5xl font-bold text-center mb-16 text-white">For Automotive Manufacturers</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-2xl text-slate-300 mb-12">Embed sovereign vehicle identity at the factory level — future-proofing connected and autonomous vehicles.</p>
+                <div class="glass p-12 rounded-3xl">
+                    <ul class="grid md:grid-cols-2 gap-8 text-left text-slate-300">
+                        <li class="flex gap-4"><span class="text-cyan-400">•</span> Native integration with connected car platforms</li>
+                        <li class="flex gap-4"><span class="text-cyan-400">•</span> $AII Compute Economy participation for vehicles</li>
+                        <li class="flex gap-4"><span class="text-cyan-400">•</span> Simplified compliance with future federal and state regulations</li>
+                        <li class="flex gap-4"><span class="text-cyan-400">•</span> Enhanced owner experience and data sovereignty</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRIDGE CAPABILITIES -->
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">What Becomes Possible When Bridges Are Loaded</h2>
+            <div class="prose prose-invert max-w-none text-slate-300">
+                <ul class="space-y-6 text-lg">
+                    <li><strong>B-30 Auto Anchor</strong> — Full sovereign vehicle identity binding and REALAi Plate™ activation</li>
+                    <li><strong>Bio-Sign™ (B-19)</strong> — Biometric dual-lock: Only authorized drivers can access detailed vehicle data</li>
+                    <li><strong>$AII Economy (B-31)</strong> — Vehicles earn compute credits through verified driving and energy contribution</li>
+                    <li><strong>Public Safety Bridges</strong> — Instant verification for law enforcement without exposing private data</li>
+                    <li><strong>Maritime & Logistics Bridges</strong> — Unified identity for multi-modal commercial fleets</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- INQUIRY FORM -->
+    <section class="py-24 bg-slate-950 border-t border-slate-700">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-4">Ready to Partner?</h2>
+            <p class="text-center text-slate-400 mb-12">Submit an inquiry for pilot programs, OEM integration, or state-wide deployment.</p>
+            
+            <form action="https://formspree.io/f/mjgddzen" method="POST" class="glass p-10 rounded-3xl space-y-6">
+                <input type="hidden" name="_subject" value="REALAi Plate™ Government / Manufacturer Inquiry">
+                <input type="hidden" name="_next" value="https://www.realaiid.com/thank-you.html">
+                
+                <div>
+                    <label class="block text-sm mb-2">Organization / Company Name</label>
+                    <input type="text" name="organization" required class="w-full bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm mb-2">Contact Name</label>
+                        <input type="text" name="name" required class="w-full bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2">Email</label>
+                        <input type="email" name="email" required class="w-full bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm mb-2">Type of Interest</label>
+                    <select name="interest" class="w-full bg-slate-900 border border-slate-600 rounded-2xl px-6 py-4 focus:outline-none focus:border-cyan-400">
+                        <option value="">Select...</option>
+                        <option value="State DMV / Government Pilot">State DMV / Government Pilot</option>
+                        <option value="OEM Integration / Manufacturing">OEM Integration / Manufacturing</option>
+                        <option value="Fleet Operator">Fleet Operator</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm mb-2">Message / Requirements</label>
+                    <textarea name="message" rows="5" class="w-full bg-slate-900 border border-slate-600 rounded-3xl px-6 py-4 focus:outline-none focus:border-cyan-400"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold py-6 rounded-3xl text-lg transition">
+                    Submit Partnership Inquiry
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- RICH FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <div class="flex items-center gap-4 mb-6">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-20">
+                </div>
+                <p class="text-slate-400">Bureau of Digital Identity<br>Solomon Kin LLC • Node PHL-01</p>
+                <p class="text-xs text-slate-500 mt-4">UEI: H8YDYLEK6283 • SAM.gov Registered</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4 text-slate-300">Platform</h4>
+                <a href="/marketplace1.html" class="block py-1.5 text-slate-400 hover:text-white">Marketplace</a>
+                <a href="/$AIIComputeEconomy.html" class="block py-1.5 text-slate-400 hover:text-white">$AII Economy</a>
+                <a href="/technology.html" class="block py-1.5 text-slate-400 hover:text-white">Technology</a>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4 text-slate-300">Solutions</h4>
+                <a href="/Maritime&HarborLink.html" class="block py-1.5 text-slate-400 hover:text-white">Maritime & VesselSign™</a>
+                <a href="/Energy&Infrastructure.html" class="block py-1.5 text-slate-400 hover:text-white">Energy & Infrastructure</a>
+                <a href="/Robotics&Autonomous.html" class="block py-1.5 text-slate-400 hover:text-white">Robotics</a>
+                <a href="/public-safety-market.html" class="block py-1.5 text-slate-400 hover:text-white">Public Safety</a>
+                <a href="/REALAi-Plate-Solutions.html" class="block py-1.5 text-slate-400 hover:text-white">REALAi Plate™ Solutions</a>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4 text-slate-300">Products</h4>
+                <a href="/DigitalHumanIdentity.html" class="block py-1.5 text-slate-400 hover:text-white">Digital Human</a>
+                <a href="/RoboSignEcosystem.html" class="block py-1.5 text-slate-400 hover:text-white">RoboSign™</a>
+                <a href="/biosign-core.html" class="block py-1.5 text-slate-400 hover:text-white">Bio-Sign™</a>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-4 text-slate-300">Bureau</h4>
+                <a href="/for-grantors.html" class="block py-1.5 text-slate-400 hover:text-white">For Grantors</a>
+                <a href="/compliance-hub1.html" class="block py-1.5 text-slate-400 hover:text-white">Compliance</a>
+                <a href="/resources1.html" class="block py-1.5 text-slate-400 hover:text-white">Resources</a>
+                <a href="/careers.html" class="block py-1.5 text-slate-400 hover:text-white">Careers</a>
+                <a href="/signin1.html" class="block py-1.5 text-slate-400 hover:text-white">Initialize Handshake</a>
+            </div>
+        </div>
+
+        <div class="text-center text-xs text-slate-500 mt-16 border-t border-slate-800 pt-8">
+            © 2026 Solomon Kin LLC • REALAiiD Bureau • All Rights Reserved • UEI: H8YDYLEK6283
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(el) {
+            const dropdown = el.querySelector('.dropdown');
+            if (dropdown) dropdown.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>
