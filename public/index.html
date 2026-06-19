@@ -168,26 +168,19 @@ document.addEventListener('click', (e) => {
         <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
     </div>
 </div>
-
-<!-- TECHNOLOGY DROPDOWN -->
-<div class="relative group" x-data="{ open: false }" @mouseover="open = true" @mouseleave="open = false">
-    <!-- Trigger Link -->
-    <a href="/technology.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap flex items-center gap-1">
-        Technology <i class="ph-caret-down text-[10px]"></i>
-    </a>
-
-    <!-- Dropdown Menu -->
-    <div x-show="open" 
-         class="absolute left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl py-2 z-[999] transition-all opacity-0 group-hover:opacity-100"
-         style="display: none;">
-        
-        <a href="pillar-human.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Human Identity</a>
-        <a href="pillar-robotics.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Robotics</a>
-        <a href="pillar-economy.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Economy</a>
-        <a href="pillar-energy.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Energy & Infra</a>
-        
+                <!-- TECHNOLOGY DROPDOWN -->
+                <div class="relative group" onclick="toggleDropdown(this)">
+    <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+        Technology <span class="text-[10px]">▼</span>
+    </button>
+    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+        <a href="pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Identity</a>
+        <a href="pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics</a>
+        <a href="pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy</a>
+        <a href="pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
     </div>
-</div>                
+</div>
+                
                 <!-- Solutions Dropdown -->
 <div class="relative group" onclick="toggleDropdown(this)">
     <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
