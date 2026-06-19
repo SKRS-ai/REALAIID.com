@@ -169,8 +169,25 @@ document.addEventListener('click', (e) => {
     </div>
 </div>
 
-                <a href="/technology.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Technology</a>
-                
+<!-- TECHNOLOGY DROPDOWN -->
+<div class="relative group" x-data="{ open: false }" @mouseover="open = true" @mouseleave="open = false">
+    <!-- Trigger Link -->
+    <a href="/technology.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap flex items-center gap-1">
+        Technology <i class="ph-caret-down text-[10px]"></i>
+    </a>
+
+    <!-- Dropdown Menu -->
+    <div x-show="open" 
+         class="absolute left-0 mt-2 w-48 bg-slate-900 border border-slate-700 rounded-lg shadow-2xl py-2 z-[999] transition-all opacity-0 group-hover:opacity-100"
+         style="display: none;">
+        
+        <a href="pillar-human.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Human Identity</a>
+        <a href="pillar-robotics.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Robotics</a>
+        <a href="pillar-economy.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Economy</a>
+        <a href="pillar-energy.html" class="block px-4 py-2 text-[10px] uppercase tracking-widest text-slate-400 hover:text-cyan-400 hover:bg-slate-800 transition">Energy & Infra</a>
+        
+    </div>
+</div>                
                 <!-- Solutions Dropdown -->
 <div class="relative group" onclick="toggleDropdown(this)">
     <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
