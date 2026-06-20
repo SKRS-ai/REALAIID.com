@@ -51,6 +51,19 @@ document.addEventListener('click', function(e) {
         }
         .dropdown { display: none; }
         .active .dropdown { display: block; }
+
+        <style>
+    /* FIX: Mobile Menu Text Color */
+    #mobile-menu a,
+    #mobile-menu .mobile-submenu a,
+    #mobile-menu span {
+        color: #f1f5f9 !important;     /* Light white / slate-100 */
+    }
+    
+    #mobile-menu a:hover {
+        color: #67e8f9 !important;     /* Cyan hover for better UX */
+    }
+
     </style>
 </head>
 
