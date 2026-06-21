@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Pass Handshake | Apple & Google Wallet Integration</title>
+    <title>Digital Pass Handshake • Apple & Google Wallet Integration • REALAiiD</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Playfair+Display:ital,wght@1,700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         :root {
             --phl-blue: #1693E9;
@@ -17,71 +18,273 @@
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         .border-frame { border: 15px solid #111; }
         .gradient-bg { background: radial-gradient(circle at top right, #1e293b, #0b1320); }
+        
+        .float-3d { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
+        
+        .glow-plate { box-shadow: 0 0 60px -10px rgb(22 147 233 / 0.6); }
     </style>
 </head>
 <body class="p-8 border-frame min-h-screen">
-    <nav class="flex justify-between items-center mb-16 px-10">
-        <div class="text-2xl font-bold tracking-tighter">REALAiID // <span class="text-blue-500">INTEGRATION</span></div>
-        <a href="index.html" class="text-xs font-bold uppercase tracking-widest hover:text-blue-500 transition-colors">Return to Bureau</a>
+
+    <!-- NAVIGATION - Master Fixed -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-[90rem] mx-auto px-6 py-2">
+            <div class="flex items-center justify-between">
+                <div class="flex-shrink-0 w-48">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+                </div>
+
+                <!-- Main Menu -->
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
+                    
+                    <!-- Marketplace Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Marketplace <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human™ Identity</a>
+                            <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Robot™ Ecosystem</a>
+                            <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Compute Economy</a>
+                            <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                            <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
+
+                    <!-- Technology Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Technology <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Pillar</a>
+                            <a href="/pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics Pillar</a>
+                            <a href="/pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy Pillar</a>
+                            <a href="/pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy Pillar</a>
+                            <div class="border-t border-slate-700 my-2"></div>
+                            <a href="/technology.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-medium">Full Technology Overview</a>
+                        </div>
+                    </div>
+
+                    <!-- Solutions Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Solutions <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education (SchoolSecure™)</a>
+                            <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel & Embarkation</a>
+                            <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance & Civic</a>
+                            <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics & Autonomous</a>
+                            <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
+
+                    <a href="/economy$AII.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
+                    <a href="/for-grantors.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">For Grantors</a>
+                    <a href="/compliance-hub1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Compliance</a>
+                    <a href="/resources1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
+                </div>
+
+                <!-- Search + CTA -->
+                <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
+                    <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
+                        <input type="text" id="nav-search" placeholder="Search..." class="bg-transparent border-none focus:outline-none px-4 py-2 text-sm w-full text-white placeholder-slate-400">
+                        <button onclick="performSearch()" class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition whitespace-nowrap">
+                        Initialize
+                    </a>
+                </div>
+
+                <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">☰</button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
+            <div class="flex flex-col gap-6 text-lg font-medium text-white">
+                <!-- Mobile submenus same as previous pages -->
+                <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
+                <!-- ... (Marketplace, Technology, Solutions mobile submenus as in previous masters) ... -->
+                <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
+                <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">Initialize Handshake</a>
+            </div>
+        </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-        <div>
+    <!-- HERO + MAIN CONTENT (Enhanced with 3D Appeal) -->
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center pt-12">
+        <div class="px-6">
             <span class="font-mono text-xs text-amber-500 tracking-[0.3em] uppercase mb-4 block">Bridge 10 & 22 // Mobile Authority</span>
             <h1 class="font-serif text-6xl italic leading-tight mb-8">Your Biology is the <br><span class="text-blue-500">Only Spend-Key.</span></h1>
             <p class="text-lg text-slate-400 mb-10 leading-relaxed">
-                Traditional mobile wallets rely on device passcodes—a secondary possession. REALAiID transforms Apple Pay and Google Pay into a primary biological gateway. Using ISO 18013-5 and OIDC4VC standards, your phone becomes the hardware witness to your physical presence.
+                Traditional mobile wallets rely on device passcodes — a weak secondary factor. REALAiID transforms Apple Pay and Google Pay into a primary biological gateway. Using ISO 18013-5, OIDC4VC, and Bio-Sign™ marrow resonance, your phone becomes the hardware witness to your physical presence.
             </p>
+
             <div class="flex gap-6">
                 <div class="bg-white/5 border border-white/10 p-6 rounded-lg flex-1">
                     <h3 class="font-bold text-sm uppercase tracking-wider mb-2 text-blue-400">Apple Wallet</h3>
-                    <p class="text-xs text-slate-500">Secure Element (SE) anchoring with native FaceID attestation.</p>
+                    <p class="text-xs text-slate-500">Secure Element anchoring with native FaceID + Bio-Sign™ attestation.</p>
                 </div>
                 <div class="bg-white/5 border border-white/10 p-6 rounded-lg flex-1">
                     <h3 class="font-bold text-sm uppercase tracking-wider mb-2 text-amber-500">Google Pay</h3>
-                    <p class="text-xs text-slate-500">Android StrongBox integration for 1.0v-Root persistence.</p>
+                    <p class="text-xs text-slate-500">Android StrongBox + Bio-Sign™ integration for persistent root verification.</p>
                 </div>
+            </div>
+
+            <!-- New Enhanced Section -->
+            <div class="mt-16 border-t border-white/10 pt-12">
+                <h3 class="font-semibold text-xl mb-6">When Bridges Are Loaded Into Your REALAiiD Wallet</h3>
+                <ul class="space-y-6 text-slate-300">
+                    <li class="flex gap-4"><span class="text-emerald-400">→</span> Instant, biometric-locked payments via Apple/Google Wallet</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">→</span> $AII Compute Currency settlement directly from your biological node</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">→</span> Travel & DTC credentials (Bridge 22) auto-activated at borders</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">→</span> Forensic audit trail for every transaction — non-repudiable proof of presence</li>
+                </ul>
             </div>
         </div>
 
+        <!-- 3D Enhanced Phone Visualization -->
         <div class="relative flex justify-center">
-            <div class="w-72 h-[500px] bg-black border-[6px] border-slate-800 rounded-[3rem] shadow-2xl relative overflow-hidden">
-                <div class="absolute top-0 w-full h-6 bg-black flex justify-center pt-1"><div class="w-20 h-4 bg-slate-900 rounded-full"></div></div>
-                <div class="p-4 mt-8 text-center">
-                    <div class="text-[10px] font-mono text-slate-500 mb-2">HOLD NEAR READER</div>
-                    <div class="w-full h-40 bg-gradient-to-br from-blue-600 to-blue-900 rounded-xl p-4 text-left relative overflow-hidden border border-white/20">
-                        <div class="text-[8px] font-bold">REALAiID BUREAU</div>
-                        <div class="mt-8 text-xs font-mono">NEHEMIAH M. BROWN</div>
-                        <div class="mt-1 text-[6px] opacity-50 uppercase tracking-tighter">Sovereign Class A // Bridges: 32/35</div>
-                        <div class="absolute bottom-2 right-2 w-8 h-8 bg-amber-500/20 rounded-full blur-xl"></div>
+            <div class="w-72 h-[520px] bg-black border-[12px] border-slate-800 rounded-[3.5rem] shadow-2xl relative overflow-hidden glow-plate float-3d">
+                <div class="absolute top-0 w-full h-6 bg-black flex justify-center pt-1">
+                    <div class="w-20 h-4 bg-slate-900 rounded-full"></div>
+                </div>
+                <div class="p-6 mt-12 text-center">
+                    <div class="text-[10px] font-mono text-slate-500 mb-3">HOLD NEAR READER • BIO-SIGN™ ACTIVE</div>
+                    <div class="w-full h-44 bg-gradient-to-br from-blue-600 to-blue-900 rounded-2xl p-5 text-left relative overflow-hidden border border-white/30">
+                        <div class="text-xs font-bold">REALAiID BUREAU</div>
+                        <div class="mt-10 text-sm font-mono">NEHEMIAH M. BROWN</div>
+                        <div class="mt-1 text-[10px] opacity-70">Sovereign Class A • Bridges: 35/47</div>
+                        <div class="absolute bottom-4 right-4 w-12 h-12 bg-amber-400/30 rounded-2xl blur-xl"></div>
                     </div>
-                    <div class="mt-4 w-full h-40 bg-white rounded-xl flex items-center justify-center">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=REALAiID_DTC_VERIFIED" alt="Dynamic QR" class="w-32 h-32 grayscale">
+                    <div class="mt-8 w-full h-44 bg-white rounded-2xl flex items-center justify-center border border-slate-300">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&data=REALAiID_DTC_VERIFIED_2026" alt="Dynamic QR" class="w-32 h-32">
                     </div>
-                    <div class="mt-6 text-[8px] font-mono text-amber-500 uppercase tracking-widest">Sovereign Tier // $AII Enabled</div>
+                    <div class="mt-6 text-[10px] font-mono text-amber-400 uppercase tracking-widest">$AII ENABLED • LIVE BIOMETRIC PULSE</div>
                 </div>
             </div>
-            <!-- Glow background -->
-            <div class="absolute -z-10 w-96 h-96 bg-blue-500/20 blur-[100px] rounded-full"></div>
+            <!-- Extra 3D Glow -->
+            <div class="absolute -z-10 w-[420px] h-[420px] bg-blue-500/20 blur-[120px] rounded-full -top-12 -right-12"></div>
         </div>
     </main>
 
-    <section class="max-w-6xl mx-auto mt-32 pb-20">
+    <!-- PROTOCOL SPECIFICATIONS -->
+    <section class="max-w-6xl mx-auto mt-32 pb-20 px-6">
         <h2 class="text-sm font-mono text-blue-500 uppercase tracking-[0.5em] mb-12 text-center">Protocol Specifications</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div class="border-t border-white/10 pt-8">
                 <h4 class="font-bold text-lg mb-4">Double-Layer Sovereignty</h4>
-                <p class="text-sm text-slate-400">Transactions are authorized via the device, but the funds are only released upon a verified Biological Pulse from the Mainframe.</p>
+                <p class="text-sm text-slate-400">Transactions are authorized via the device, but final release requires a verified Biological Pulse from the PHL-01 Mainframe.</p>
             </div>
             <div class="border-t border-white/10 pt-8">
                 <h4 class="font-bold text-lg mb-4">Temporal Handshake</h4>
-                <p class="text-sm text-slate-400">Tokens generated for Apple/Google Pay are short-lived (60s) and bound to a specific geofenced retail node.</p>
+                <p class="text-sm text-slate-400">Payment tokens are short-lived (60s) and bound to a specific geofenced retail node with Bio-Sign™ confirmation.</p>
             </div>
             <div class="border-t border-white/10 pt-8">
                 <h4 class="font-bold text-lg mb-4">Liability Neutralization</h4>
-                <p class="text-sm text-slate-400">By using our Wallet Bridge, merchants receive a forensic "Genuine Presence" guarantee, shifting fraud liability to the Bureau.</p>
+                <p class="text-sm text-slate-400">Merchants receive a forensic “Genuine Presence” guarantee, shifting fraud liability to the Bureau.</p>
             </div>
         </div>
     </section>
+
+    <!-- RICH FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-10">
+                    <span class="text-2xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                </div>
+                <p class="text-slate-400">Bureau of Digital Identity<br>Node PHL-01 • Philadelphia</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6 text-cyan-400">Solutions</h4>
+                <div class="space-y-3">
+                    <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400">Maritime</a>
+                    <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400">Education</a>
+                    <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400">Travel</a>
+                    <a href="/Governance&Civic.html" class="block hover:text-cyan-400">Governance</a>
+                    <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400">Robotics</a>
+                    <a href="/public-safety.html" class="block hover:text-cyan-400">Public Safety</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Platform</h4>
+                <div class="space-y-3">
+                    <a href="/marketplace1.html" class="block hover:text-cyan-400">Marketplace</a>
+                    <a href="/economy$AII.html" class="block hover:text-cyan-400">$AII Economy</a>
+                    <a href="/technology.html" class="block hover:text-cyan-400">Technology</a>
+                    <a href="/wallet-integration.html" class="block hover:text-cyan-400">Wallet Integration</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Resources</h4>
+                <div class="space-y-3">
+                    <a href="/for-grantors.html" class="block hover:text-cyan-400">For Grantors</a>
+                    <a href="/compliance-hub1.html" class="block hover:text-cyan-400">Compliance</a>
+                    <a href="/resources1.html" class="block hover:text-cyan-400">Resources</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Bureau</h4>
+                <div class="space-y-3">
+                    <a href="/careers.html" class="block hover:text-cyan-400">Careers</a>
+                    <a href="/signin1.html" class="block hover:text-cyan-400">Initialize Handshake</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-500 mt-16 border-t border-slate-800 pt-8">
+            © 2026 Solomon Kin LLC • Bureau of Digital Identity • Node PHL-01 • All Rights Reserved<br>
+            UEI: <strong>H8YDYLEK6283</strong> • SAM.gov Registered
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(el) {
+            document.querySelectorAll('.group').forEach(group => {
+                if (group !== el) group.classList.remove('active');
+            });
+            el.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.group').forEach(group => group.classList.remove('active'));
+            }
+        });
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
+
+        function toggleMobileSubmenu(el) {
+            const submenu = el.querySelector('.mobile-submenu');
+            const arrow = el.querySelector('span:last-child');
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                if (arrow) arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+            }
+        }
+    </script>
+
 </body>
 </html>
