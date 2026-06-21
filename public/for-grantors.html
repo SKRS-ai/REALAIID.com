@@ -13,31 +13,96 @@
 <body class="bg-slate-950 text-slate-100 font-sans">
 
     <!-- NAVIGATION -->
-    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
-                <div>
-                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
-                    <p class="text-xs text-slate-400 -mt-1">Commonwealth of Digital Identity</p>
+<nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+    <div class="max-w-[90rem] mx-auto px-6 py-2">
+        <div class="flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex-shrink-0 w-48">
+                <img src="RealAiIDlogo.png" 
+                     alt="REALAiiD" 
+                     class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+            </div>
+
+            <!-- Main Menu -->
+            <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
+                
+                <!-- Marketplace Dropdown-->
+               <div class="relative group" onclick="toggleDropdown(this)">
+    <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+        Marketplace <span class="text-[10px]">▼</span>
+    </button>
+    <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+        <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human™ Identity</a>
+        <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Robot™ Ecosystem</a>
+        <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Compute Economy</a>
+        <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+        <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+        
+        <!-- Divider to highlight the new additions -->
+        <div class="border-t border-slate-800 my-1"></div>
+        
+        <a href="/REALAi-Plate.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-bold">
+            AutoAnchor™ & REALAi Plate™
+        </a>
+    </div>
+</div>
+                <!-- TECHNOLOGY DROPDOWN -->
+                <div class="relative group" onclick="toggleDropdown(this)">
+    <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+        Technology <span class="text-[10px]">▼</span>
+    </button>
+    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+        <a href="pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Identity</a>
+        <a href="pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics</a>
+        <a href="pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy</a>
+        <a href="pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+    </div>
+</div>
+                
+                <!-- Solutions Dropdown -->
+<div class="relative group" onclick="toggleDropdown(this)">
+    <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+        Solutions <span class="text-[10px]">▼</span>
+    </button>
+    <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+        <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+        <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education (SchoolSecure™)</a>
+        <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel & Embarkation</a>
+        <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance & Civic</a>
+        <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics & Autonomous</a>
+        <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+        
+        <!-- New Vehicle Identification Solution -->
+        <div class="border-t border-slate-800 my-1"></div>
+        <a href="/REALAi-Plate-Solutions.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-bold">
+            Vehicle Identification
+        </a>
+    </div>
+</div>
+
+                <a href="/economy$AII.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
+                <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
+                <a href="/compliance-hub1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Compliance</a>
+                <a href="/resources1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
+            </div>
+
+            <!-- Search + CTA -->
+            <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
+                <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
+                    <input type="text" id="nav-search" placeholder="Search products, bridges..." 
+                           class="bg-transparent border-none focus:outline-none px-4 py-2 text-sm w-full text-white placeholder-slate-400">
+                    <button onclick="performSearch()" class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
                 </div>
+                <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition whitespace-nowrap">
+                    Initialize
+                </a>
             </div>
-
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="/" class="hover:text-cyan-400 transition">Home</a>
-                <a href="/marketplace1.html" class="hover:text-cyan-400 transition">Marketplace</a>
-                <a href="/technology.html" class="hover:text-cyan-400 transition">Technology</a>
-                <a href="/solutions1.html" class="hover:text-cyan-400 transition">Solutions</a>
-                <a href="/economy$AII.html" class="hover:text-cyan-400 transition">$AII Economy</a>
-                <a href="/for-grantors.html" class="text-amber-400 font-semibold">For Grantors</a>
-                <a href="/compliance-hub1.html" class="hover:text-cyan-400 transition">Compliance</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <a href="/contact.html" class="text-cyan-400 hover:text-cyan-300">Contact Us</a>
-            </div>
-        </div>
-    </nav>
 
     <!-- HERO -->
     <section class="hero-grant py-28 text-center">
