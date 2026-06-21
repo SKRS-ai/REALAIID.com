@@ -9,33 +9,160 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         .hero-economy { background: linear-gradient(135deg, #0f172a 0%, #451a03 100%); }
+        .product-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5); }
+        
+        /* Dropdown Fixes */
+        .dropdown { display: none; }
+        .group.active .dropdown { display: block; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION - Master Fixed Version -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-14">
-                <div>
-                    <span class="text-3xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
-                    <p class="text-xs text-slate-400 -mt-1">Commonwealth of Digital Identity</p>
+        <div class="max-w-[90rem] mx-auto px-6 py-2">
+            <div class="flex items-center justify-between">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 w-48">
+                    <img src="RealAiIDlogo.png" 
+                         alt="REALAiiD" 
+                         class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
                 </div>
-            </div>
 
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="/" class="hover:text-cyan-400 transition">Home</a>
-                <a href="/marketplace1.html" class="hover:text-cyan-400 transition">Marketplace</a>
-                <a href="/technology.html" class="hover:text-cyan-400 transition">Technology</a>
-                <a href="/solutions1.html" class="hover:text-cyan-400 transition">Solutions</a>
-                <a href="/economy$AII.html" class="text-amber-400 font-semibold">Economy</a>
-                <a href="/for-grantors.html" class="text-amber-400 font-semibold">For Grantors</a>
-                <a href="/compliance-hub1.html" class="hover:text-cyan-400 transition">Compliance</a>
-            </div>
+                <!-- Main Menu -->
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
+                    
+                    <!-- Marketplace Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Marketplace <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human™ Identity</a>
+                            <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Robot™ Ecosystem</a>
+                            <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Compute Economy</a>
+                            <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                            <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
 
-            <div class="flex items-center gap-4">
-                <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-7 py-3 rounded-full text-sm font-semibold transition">Initialize Handshake</a>
+                    <!-- Technology Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Technology <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Pillar</a>
+                            <a href="/pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics Pillar</a>
+                            <a href="/pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy Pillar</a>
+                            <a href="/pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy Pillar</a>
+                            <div class="border-t border-slate-700 my-2"></div>
+                            <a href="/technology.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-medium">Full Technology Overview</a>
+                        </div>
+                    </div>
+
+                    <!-- Solutions Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Solutions <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education (SchoolSecure™)</a>
+                            <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel & Embarkation</a>
+                            <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance & Civic</a>
+                            <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics & Autonomous</a>
+                            <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
+
+                    <a href="/economy$AII.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">$AII Economy</a>
+                    <a href="/for-grantors.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">For Grantors</a>
+                    <a href="/compliance-hub1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Compliance</a>
+                    <a href="/resources1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
+                </div>
+
+                <!-- Search + CTA -->
+                <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
+                    <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
+                        <input type="text" id="nav-search" placeholder="Search products, bridges..." 
+                               class="bg-transparent border-none focus:outline-none px-4 py-2 text-sm w-full text-white placeholder-slate-400">
+                        <button onclick="performSearch()" class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition whitespace-nowrap">
+                        Initialize
+                    </a>
+                </div>
+
+                <!-- Hamburger -->
+                <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">☰</button>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
+            <div class="flex flex-col gap-6 text-lg font-medium text-white">
+                <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
+
+                <!-- Marketplace Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Marketplace</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400 py-2">Digital Human™</a>
+                        <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400 py-2">Digital Robot™</a>
+                        <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400 py-2">$AII Economy</a>
+                    </div>
+                </div>
+
+                <!-- Technology Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Technology</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/pillar-human.html" class="block hover:text-cyan-400 py-2">Human Pillar</a>
+                        <a href="/pillar-robotics.html" class="block hover:text-cyan-400 py-2">Robotics Pillar</a>
+                        <a href="/pillar-economy.html" class="block hover:text-cyan-400 py-2">Economy Pillar</a>
+                        <a href="/pillar-energy.html" class="block hover:text-cyan-400 py-2">Energy Pillar</a>
+                        <a href="/technology.html" class="block hover:text-cyan-400 py-2">Full Technology Overview</a>
+                    </div>
+                </div>
+
+                <!-- Solutions Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Solutions</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400 py-2">Maritime</a>
+                        <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400 py-2">Education</a>
+                        <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400 py-2">Travel</a>
+                        <a href="/Governance&Civic.html" class="block hover:text-cyan-400 py-2">Governance</a>
+                        <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400 py-2">Robotics</a>
+                        <a href="/public-safety.html" class="block hover:text-cyan-400 py-2">Public Safety</a>
+                    </div>
+                </div>
+
+                <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
+                <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
+                <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
+                <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
+
+                <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+                    Initialize Handshake
+                </a>
             </div>
         </div>
     </nav>
@@ -150,13 +277,99 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- RICH FOOTER -->
     <footer class="bg-slate-950 border-t border-slate-800 py-16">
-        <div class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-sm">
-            © 2026 Solomon Kin LLC • Node PHL-01 • Commonwealth of Digital Identity • REALAiiD, INC.
-        UEI: <strong>H8YDYLEK6283</strong> • SAM.gov Registered
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-10">
+                    <span class="text-2xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                </div>
+                <p class="text-slate-400">Bureau of Digital Identity<br>Node PHL-01 • Philadelphia</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6 text-cyan-400">Solutions</h4>
+                <div class="space-y-3">
+                    <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400">Maritime</a>
+                    <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400">Education</a>
+                    <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400">Travel</a>
+                    <a href="/Governance&Civic.html" class="block hover:text-cyan-400">Governance</a>
+                    <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400">Robotics</a>
+                    <a href="/public-safety.html" class="block hover:text-cyan-400">Public Safety</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Platform</h4>
+                <div class="space-y-3">
+                    <a href="/marketplace1.html" class="block hover:text-cyan-400">Marketplace</a>
+                    <a href="/economy$AII.html" class="block hover:text-cyan-400">$AII Economy</a>
+                    <a href="/technology.html" class="block hover:text-cyan-400">Technology</a>
+                    <a href="/biosign-core.html" class="block hover:text-cyan-400">Bio-Sign™</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Resources</h4>
+                <div class="space-y-3">
+                    <a href="/for-grantors.html" class="block hover:text-cyan-400">For Grantors</a>
+                    <a href="/compliance-hub1.html" class="block hover:text-cyan-400">Compliance</a>
+                    <a href="/resources1.html" class="block hover:text-cyan-400">Resources</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Bureau</h4>
+                <div class="space-y-3">
+                    <a href="/careers.html" class="block hover:text-cyan-400">Careers</a>
+                    <a href="/signin1.html" class="block hover:text-cyan-400">Initialize Handshake</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-500 mt-16 border-t border-slate-800 pt-8">
+            © 2026 Solomon Kin LLC • Bureau of Digital Identity • Node PHL-01 • All Rights Reserved<br>
+            UEI: <strong>H8YDYLEK6283</strong> • SAM.gov Registered
         </div>
     </footer>
+
+    <script>
+        // Toggle Desktop Dropdowns
+        function toggleDropdown(el) {
+            document.querySelectorAll('.group').forEach(group => {
+                if (group !== el) group.classList.remove('active');
+            });
+            el.classList.toggle('active');
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.group').forEach(group => group.classList.remove('active'));
+            }
+        });
+
+        // Hamburger Menu
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
+
+        // Mobile Submenu Toggle
+        function toggleMobileSubmenu(el) {
+            const submenu = el.querySelector('.mobile-submenu');
+            const arrow = el.querySelector('span:last-child');
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                if (arrow) arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+            }
+        }
+    </script>
 
 </body>
 </html>
