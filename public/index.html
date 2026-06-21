@@ -226,11 +226,20 @@ document.addEventListener('click', (e) => {
         </a>
     </div>
 </div>
-
+ 
                 <a href="/economy$AII.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
+                
+                 
+                <!-- For Grantors Dropdown -->
+<div class="relative group" onclick="toggleDropdown(this)">
+    <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+        For Grantors <span class="text-[10px]">▼</span>
+    </button>
+                <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden"></div>
                 <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
                 <a href="/compliance-hub1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Compliance</a>
                 <a href="/resources1.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Resources</a>
+                <a href="/for-grantors.html" class="block hover:text-cyan-400 py-2">Full Grantors Overview</a>
             </div>
 
             <!-- Search + CTA -->
