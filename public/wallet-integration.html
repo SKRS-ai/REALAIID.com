@@ -23,16 +23,24 @@
         @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(3deg); } }
         
         .glow-plate { box-shadow: 0 0 60px -10px rgb(22 147 233 / 0.6); }
+
+        /* Dropdown Fixes - Click Only */
+        .dropdown { display: none; }
+        .group.active .dropdown { display: block; }
     </style>
 </head>
 <body class="p-8 border-frame min-h-screen">
 
-    <!-- NAVIGATION - Master Fixed -->
+    <!-- NAVIGATION - Master Fixed Version -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
         <div class="max-w-[90rem] mx-auto px-6 py-2">
             <div class="flex items-center justify-between">
+                
+                <!-- Logo -->
                 <div class="flex-shrink-0 w-48">
-                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+                    <img src="RealAiIDlogo.png" 
+                         alt="REALAiiD" 
+                         class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
                 </div>
 
                 <!-- Main Menu -->
@@ -92,7 +100,8 @@
                 <!-- Search + CTA -->
                 <div class="hidden xl:flex items-center gap-3 w-72 justify-end">
                     <div class="flex items-center bg-slate-800 border border-slate-600 rounded-full overflow-hidden focus-within:border-cyan-400">
-                        <input type="text" id="nav-search" placeholder="Search..." class="bg-transparent border-none focus:outline-none px-4 py-2 text-sm w-full text-white placeholder-slate-400">
+                        <input type="text" id="nav-search" placeholder="Search..." 
+                               class="bg-transparent border-none focus:outline-none px-4 py-2 text-sm w-full text-white placeholder-slate-400">
                         <button onclick="performSearch()" class="bg-cyan-500 hover:bg-cyan-400 p-2.5 text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 01-14 0 7 7 0 0114 0z" />
@@ -104,6 +113,7 @@
                     </a>
                 </div>
 
+                <!-- Hamburger -->
                 <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">☰</button>
             </div>
         </div>
@@ -111,16 +121,65 @@
         <!-- MOBILE MENU -->
         <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
             <div class="flex flex-col gap-6 text-lg font-medium text-white">
-                <!-- Mobile submenus same as previous pages -->
                 <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800">Home</a>
-                <!-- ... (Marketplace, Technology, Solutions mobile submenus as in previous masters) ... -->
+
+                <!-- Marketplace Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Marketplace</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400 py-2">Digital Human™</a>
+                        <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400 py-2">Digital Robot™</a>
+                        <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400 py-2">$AII Economy</a>
+                    </div>
+                </div>
+
+                <!-- Technology Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Technology</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/pillar-human.html" class="block hover:text-cyan-400 py-2">Human Pillar</a>
+                        <a href="/pillar-robotics.html" class="block hover:text-cyan-400 py-2">Robotics Pillar</a>
+                        <a href="/pillar-economy.html" class="block hover:text-cyan-400 py-2">Economy Pillar</a>
+                        <a href="/pillar-energy.html" class="block hover:text-cyan-400 py-2">Energy Pillar</a>
+                        <a href="/technology.html" class="block hover:text-cyan-400 py-2">Full Technology Overview</a>
+                    </div>
+                </div>
+
+                <!-- Solutions Mobile -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Solutions</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400 py-2">Maritime</a>
+                        <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400 py-2">Education</a>
+                        <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400 py-2">Travel</a>
+                        <a href="/Governance&Civic.html" class="block hover:text-cyan-400 py-2">Governance</a>
+                        <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400 py-2">Robotics</a>
+                        <a href="/public-safety.html" class="block hover:text-cyan-400 py-2">Public Safety</a>
+                    </div>
+                </div>
+
                 <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
-                <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">Initialize Handshake</a>
+                <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
+                <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
+                <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
+
+                <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+                    Initialize Handshake
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO + MAIN CONTENT (Enhanced with 3D Appeal) -->
+    <!-- HERO + MAIN CONTENT -->
     <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center pt-12">
         <div class="px-6">
             <span class="font-mono text-xs text-amber-500 tracking-[0.3em] uppercase mb-4 block">Bridge 10 & 22 // Mobile Authority</span>
@@ -140,7 +199,6 @@
                 </div>
             </div>
 
-            <!-- New Enhanced Section -->
             <div class="mt-16 border-t border-white/10 pt-12">
                 <h3 class="font-semibold text-xl mb-6">When Bridges Are Loaded Into Your REALAiiD Wallet</h3>
                 <ul class="space-y-6 text-slate-300">
@@ -172,7 +230,6 @@
                     <div class="mt-6 text-[10px] font-mono text-amber-400 uppercase tracking-widest">$AII ENABLED • LIVE BIOMETRIC PULSE</div>
                 </div>
             </div>
-            <!-- Extra 3D Glow -->
             <div class="absolute -z-10 w-[420px] h-[420px] bg-blue-500/20 blur-[120px] rounded-full -top-12 -right-12"></div>
         </div>
     </main>
@@ -253,6 +310,7 @@
     </footer>
 
     <script>
+        // Toggle Desktop Dropdowns
         function toggleDropdown(el) {
             document.querySelectorAll('.group').forEach(group => {
                 if (group !== el) group.classList.remove('active');
@@ -260,12 +318,14 @@
             el.classList.toggle('active');
         }
 
+        // Close dropdowns when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.group')) {
                 document.querySelectorAll('.group').forEach(group => group.classList.remove('active'));
             }
         });
 
+        // Hamburger Menu
         const hamburgerBtn = document.getElementById('hamburger-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -276,6 +336,7 @@
             });
         }
 
+        // Mobile Submenu Toggle
         function toggleMobileSubmenu(el) {
             const submenu = el.querySelector('.mobile-submenu');
             const arrow = el.querySelector('span:last-child');
