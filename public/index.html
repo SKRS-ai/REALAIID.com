@@ -151,20 +151,22 @@ document.addEventListener('click', (e) => {
 </script>
 
 <!-- NAVIGATION -->
-<!-- Main Menu -->
-<div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+<nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+    <div class="max-w-[90rem] mx-auto px-6 py-2">
+        <div class="flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex-shrink-0 w-48">
+                <img src="RealAiIDlogo.png" 
+                     alt="REALAiiD" 
+                     class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+            </div>
 
-    <!-- 1. Home Dropdown -->
-    <div class="relative group" onclick="toggleDropdown(this)">
-        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
-            Home <span class="text-[10px]">▼</span>
-        </button>
-        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
-            <a href="/" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Home</a>
-            <a href="/WhatisREALAiiD.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">What is REALAiiD</a>
-            <a href="/about.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">About Us</a>
-        </div>
-    </div>        <a href="/WhatisREALAiiD.html" class="text-white hover:text-cyan-400 py-3 border-b border-slate-800">What is REALAiiD</a>
+            <!-- Main Menu -->
+            <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
+                
+        <a href="/WhatisREALAiiD.html" class="text-white hover:text-cyan-400 py-3 border-b border-slate-800">What is REALAiiD</a>
 
                 <!-- Marketplace Dropdown-->
                <div class="relative group" onclick="toggleDropdown(this)">
@@ -291,7 +293,7 @@ document.addEventListener('click', (e) => {
                 <a href="/public-safety-market.html" class="block hover:text-cyan-400 py-2">Public Safety</a>
                 <a href="/wallet-integration.html" class="block hover:text-cyan-400 py-2">Wallet Integration</a>
                  <a href="/REALAi-Plate.html" class="block hover:text-cyan-400 py-2 font-bold text-cyan-400">
-            AutoAnchor™ & REALAi Plate™</a>
+            AutoAnchor™ & REALAi Plate™
             </div>
         </div>
 
