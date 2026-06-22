@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us • REALAiiD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .hero-about { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
+        .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- NAVIGATION - Master Fixed -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-[90rem] mx-auto px-6 py-2">
+            <div class="flex items-center justify-between">
+                <div class="flex-shrink-0 w-48">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+                </div>
+
+                <!-- Main Menu with Home Dropdown -->
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Home <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Home</a>
+                            <a href="/WhatisREALAiiD.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">What is REALAiiD</a>
+                            <a href="/about.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">About Us</a>
+                        </div>
+                    </div>
+
+                    <!-- Marketplace, Technology, Solutions, For Grantors dropdowns (same as previous masters) -->
+                    <!-- ... (insert the full dropdown blocks from previous responses) ... -->
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition">Initialize Handshake</a>
+                </div>
+
+                <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">☰</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (consistent with previous) -->
+        <!-- ... insert full mobile menu from previous responses ... -->
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-about py-32 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">About REALAiiD</h1>
+            <p class="text-2xl text-slate-300">We exist to give every person true ownership and protection of their identity in the digital age.</p>
+        </div>
+    </section>
+
+    <!-- OUR STORY -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="prose prose-invert max-w-none text-lg leading-relaxed">
+                <p class="text-xl">REALAiiD was founded by Nehemiah Brown with one clear purpose: to help people take back control of their identity in a world that is becoming increasingly digital.</p>
+                
+                <p>As artificial intelligence grows more powerful, the risk of identity theft, deepfakes, and digital impersonation has never been greater. Traditional IDs, passwords, and plastic cards are no longer enough. We believe every person deserves a secure, private, and sovereign digital identity that belongs to them — not to corporations or governments.</p>
+
+                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Mission</h2>
+                <p>We are building the Bureau of Digital Identity — a trusted system that allows individuals to prove who they are without giving up their privacy. Our products turn your physical self into a protected digital presence. We do not sell your data. We do not share your biometric information. Your identity is yours alone, and we exist to protect it.</p>
+
+                <h2 class="text-3xl font-semibold mt-16 mb-8">Why This Matters</h2>
+                <p>Everything in life is moving online — banking, travel, healthcare, work, and even social connections. Without strong personal identity protection, individuals become vulnerable. REALAiiD gives you the tools to step confidently into this new digital world with full ownership and control.</p>
+
+                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Products</h2>
+                <p>Every REALAiiD product is designed with one goal in mind: to protect and empower your identity.</p>
+                <ul class="list-disc pl-6 space-y-4 mt-6">
+                    <li><strong>Digital Human Identity</strong> – Secure your personal information and likeness.</li>
+                    <li><strong>REALAi Plate™</strong> – Modern vehicle identity that protects your privacy on the road.</li>
+                    <li><strong>Wallet Integration</strong> – Make payments using your biology instead of passwords.</li>
+                    <li><strong>Public Safety Credentials</strong> – Give trusted professionals verifiable authority.</li>
+                    <li><strong>$AII Compute Economy</strong> – Earn real value from your verified presence and activity.</li>
+                </ul>
+
+                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Promise</h2>
+                <p>Your biometric data is never sold. It is never shared with third parties for advertising or profit. It exists only to verify that you are you — when and where you choose. We are building this company to serve people, not exploit them.</p>
+
+                <p class="mt-12 text-xl">REALAiiD is more than technology. It is a movement to bring dignity, security, and ownership back to the individual in the digital age.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-slate-950">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-5xl font-bold mb-6">Take Ownership of Your Digital Life</h2>
+            <p class="text-xl text-slate-400 mb-10">Join thousands who have already secured their identity with REALAiiD.</p>
+            <a href="/signin1.html" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-12 py-6 rounded-3xl text-xl">
+                Initialize Your Handshake
+            </a>
+        </div>
+    </section>
+
+    <!-- RICH FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-10">
+                    <span class="text-2xl font-bold tracking-tighter text-cyan-400">REALAiiD</span>
+                </div>
+                <p class="text-slate-400">Bureau of Digital Identity<br>Node PHL-01 • Philadelphia</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6 text-cyan-400">Solutions</h4>
+                <div class="space-y-3">
+                    <a href="/Maritime&HarborLink.html" class="block hover:text-cyan-400">Maritime</a>
+                    <a href="/EducationSchoolSecure.html" class="block hover:text-cyan-400">Education</a>
+                    <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400">Travel</a>
+                    <a href="/Governance&Civic.html" class="block hover:text-cyan-400">Governance</a>
+                    <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400">Robotics</a>
+                    <a href="/public-safety.html" class="block hover:text-cyan-400">Public Safety</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Platform</h4>
+                <div class="space-y-3">
+                    <a href="/marketplace1.html" class="block hover:text-cyan-400">Marketplace</a>
+                    <a href="/economy$AII.html" class="block hover:text-cyan-400">$AII Economy</a>
+                    <a href="/technology.html" class="block hover:text-cyan-400">Technology</a>
+                    <a href="/wallet-integration.html" class="block hover:text-cyan-400">Wallet Integration</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Company</h4>
+                <div class="space-y-3">
+                    <a href="/about.html" class="block hover:text-cyan-400">About Us</a>
+                    <a href="/WhatisREALAiiD.html" class="block hover:text-cyan-400">What is REALAiiD</a>
+                    <a href="/for-grantors.html" class="block hover:text-cyan-400">For Grantors</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-6">Resources</h4>
+                <div class="space-y-3">
+                    <a href="/resources1.html" class="block hover:text-cyan-400">Resources</a>
+                    <a href="/compliance-hub1.html" class="block hover:text-cyan-400">Compliance</a>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-500 mt-16 border-t border-slate-800 pt-8">
+            © 2026 Solomon Kin LLC • Bureau of Digital Identity • Node PHL-01 • All Rights Reserved<br>
+            UEI: <strong>H8YDYLEK6283</strong> • SAM.gov Registered
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(el) {
+            document.querySelectorAll('.group').forEach(group => {
+                if (group !== el) group.classList.remove('active');
+            });
+            el.classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.group').forEach(group => group.classList.remove('active'));
+            }
+        });
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
+
+        function toggleMobileSubmenu(el) {
+            const submenu = el.querySelector('.mobile-submenu');
+            const arrow = el.querySelector('span:last-child');
+            if (submenu) {
+                submenu.classList.toggle('hidden');
+                if (arrow) arrow.style.transform = submenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(90deg)';
+            }
+        }
+    </script>
+
+</body>
+</html>
