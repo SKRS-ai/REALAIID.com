@@ -266,9 +266,20 @@ document.addEventListener('click', (e) => {
 <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
     <div class="flex flex-col gap-6 text-lg font-medium text-white">
 
-        <a href="/" class="hover:text-cyan-400 py-3 border-b border-slate-800 text-white">Home</a>
+        <!-- Home with Submenu -->
+        <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+            <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                <span>Home</span>
+                <span class="text-xl transition-transform">›</span>
+            </div>
+            <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                <a href="/" class="block hover:text-cyan-400 py-2">Home</a>
+                <a href="/WhatisREALAiiD.html" class="block hover:text-cyan-400 py-2">What is REALAiiD</a>
+                <a href="/about.html" class="block hover:text-cyan-400 py-2">About Us</a>
+            </div>
+        </div>
 
-        <!-- MARKETPLACE SUBMENU -->
+        <!-- Marketplace Submenu -->
         <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
             <div class="flex justify-between items-center py-3 border-b border-slate-800">
                 <span>Marketplace</span>
@@ -280,29 +291,26 @@ document.addEventListener('click', (e) => {
                 <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400 py-2">$AII Compute Economy</a>
                 <a href="/Energy&Infrastructure.html" class="block hover:text-cyan-400 py-2">Energy & Infrastructure</a>
                 <a href="/public-safety-market.html" class="block hover:text-cyan-400 py-2">Public Safety</a>
-        
-        <!-- Divider to highlight the new additions -->
-        <div class="border-t border-slate-800 my-1"></div>
+                <a href="/wallet-integration.html" class="block hover:text-cyan-400 py-2">Wallet Integration</a>
+            </div>
+        </div>
 
-        <a href="/wallet-integration.html" class="block hover:text-cyan-400 py-2">Wallet Integration (Apple & Google)</a>
-        <a href="/REALAi-Plate.html" class="class="block hover:text-cyan-400 py-2">AutoAnchor™ & REALAi Plate™
-        </a>
-    </div>
-</div> 
-              <!-- Technology-->
-                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+        <!-- Technology Submenu -->
+        <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
             <div class="flex justify-between items-center py-3 border-b border-slate-800">
                 <span>Technology</span>
                 <span class="text-xl transition-transform">›</span>
             </div>
             <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
-                <a href="/pillar-human.html" class="block hover:text-cyan-400 py-2">Human Identity</a>
-                <a href="/pillar-robotics.html" class="block hover:text-cyan-400 py-2">Robotics</a>
-                <a href="/pillar-economy.html" class="block hover:text-cyan-400 py-2">Economy</a>
-                <a href="/pillar-energy.html" class="block hover:text-cyan-400 py-2">Energy & Infrastructure</a>
-        <a href="/technology.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Technology</a>
+                <a href="/pillar-human.html" class="block hover:text-cyan-400 py-2">Human Pillar</a>
+                <a href="/pillar-robotics.html" class="block hover:text-cyan-400 py-2">Robotics Pillar</a>
+                <a href="/pillar-economy.html" class="block hover:text-cyan-400 py-2">Economy Pillar</a>
+                <a href="/pillar-energy.html" class="block hover:text-cyan-400 py-2">Energy Pillar</a>
+                <a href="/technology.html" class="block hover:text-cyan-400 py-2">Full Technology Overview</a>
+            </div>
+        </div>
 
-        <!-- SOLUTIONS SUBMENU -->
+        <!-- Solutions Submenu -->
         <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
             <div class="flex justify-between items-center py-3 border-b border-slate-800">
                 <span>Solutions</span>
@@ -314,13 +322,25 @@ document.addEventListener('click', (e) => {
                 <a href="/Travel&Embarkation.html" class="block hover:text-cyan-400 py-2">Travel & Embarkation</a>
                 <a href="/Governance&Civic.html" class="block hover:text-cyan-400 py-2">Governance & Civic</a>
                 <a href="/Robotics&Autonomous.html" class="block hover:text-cyan-400 py-2">Robotics & Autonomous</a>
+                <a href="/public-safety.html" class="block hover:text-cyan-400 py-2">Public Safety</a>
             </div>
         </div>
 
+        <!-- For Grantors Submenu -->
+        <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+            <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                <span>For Grantors</span>
+                <span class="text-xl transition-transform">›</span>
+            </div>
+            <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                <a href="/for-grantors.html" class="block hover:text-cyan-400 py-2">For Grantors Overview</a>
+                <a href="/compliance-hub1.html" class="block hover:text-cyan-400 py-2">Compliance Hub</a>
+                <a href="/resources1.html" class="block hover:text-cyan-400 py-2">Resources & Documentation</a>
+            </div>
+        </div>
+
+        <!-- Direct Links -->
         <a href="/economy$AII.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">$AII Economy</a>
-        <a href="/for-grantors.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">For Grantors</a>
-        <a href="/compliance-hub1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Compliance</a>
-        <a href="/resources1.html" class="hover:text-cyan-400 py-3 border-b border-slate-800">Resources</a>
 
         <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
             Initialize Handshake
