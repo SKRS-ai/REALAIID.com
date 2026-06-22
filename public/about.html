@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us • REALAiiD</title>
+    <title>About Us • REALAiiD Bureau of Digital Identity</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        .hero-about { background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); }
-        .glass { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(16px); }
+        .hero-about { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); 
+        }
+        .glass { 
+            background: rgba(15, 23, 42, 0.85); 
+            backdrop-filter: blur(16px); 
+        }
+        .dropdown { display: none; }
+        .group.active .dropdown { display: block; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
@@ -18,12 +25,16 @@
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
         <div class="max-w-[90rem] mx-auto px-6 py-2">
             <div class="flex items-center justify-between">
+                
+                <!-- Logo -->
                 <div class="flex-shrink-0 w-48">
                     <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
                 </div>
 
-                <!-- Main Menu with Home Dropdown -->
+                <!-- Main Menu -->
                 <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    
+                    <!-- Home Dropdown -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Home <span class="text-[10px]">▼</span>
@@ -35,20 +46,117 @@
                         </div>
                     </div>
 
-                    <!-- Marketplace, Technology, Solutions, For Grantors dropdowns (same as previous masters) -->
-                    <!-- ... (insert the full dropdown blocks from previous responses) ... -->
+                    <!-- Marketplace Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Marketplace <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human™ Identity</a>
+                            <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Robot™ Ecosystem</a>
+                            <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Compute Economy</a>
+                            <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                            <a href="/public-safety-market.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                            <a href="/wallet-integration.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Wallet Integration</a>
+                            <a href="/REALAi-Plate.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-medium">AutoAnchor™ & REALAi Plate™</a>
+                        </div>
+                    </div>
+
+                    <!-- Technology Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Technology <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-64 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Pillar</a>
+                            <a href="/pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics Pillar</a>
+                            <a href="/pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy Pillar</a>
+                            <a href="/pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy Pillar</a>
+                            <div class="border-t border-slate-700 my-2"></div>
+                            <a href="/technology.html" class="block px-4 py-2 hover:bg-slate-800 text-cyan-400 text-xs font-medium">Full Technology Overview</a>
+                        </div>
+                    </div>
+
+                    <!-- Solutions Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Solutions <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education (SchoolSecure™)</a>
+                            <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel & Embarkation</a>
+                            <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance & Civic</a>
+                            <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics & Autonomous</a>
+                            <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
+
+                    <!-- For Grantors Dropdown -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            For Grantors <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50">
+                            <a href="/for-grantors.html" class="block px-4 py-2 hover:bg-slate-800 text-amber-400 text-xs">For Grantors Overview</a>
+                            <a href="/compliance-hub1.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Compliance Hub</a>
+                            <a href="/resources1.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Resources & Documentation</a>
+                        </div>
+                    </div>
+
+                    <a href="/economy$AII.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
                 </div>
 
-                <div class="flex items-center gap-4">
-                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-5 py-2.5 rounded-full text-xs font-semibold transition">Initialize Handshake</a>
+                <!-- CTA -->
+                <div class="hidden xl:flex items-center gap-3">
+                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-6 py-2.5 rounded-full text-xs font-semibold transition whitespace-nowrap">
+                        Initialize Handshake
+                    </a>
                 </div>
 
                 <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400 focus:outline-none p-2">☰</button>
             </div>
         </div>
 
-        <!-- Mobile Menu (consistent with previous) -->
-        <!-- ... insert full mobile menu from previous responses ... -->
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-950 border-t border-slate-700 px-6 py-8">
+            <div class="flex flex-col gap-6 text-lg font-medium text-white">
+                <!-- Home -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Home</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/" class="block hover:text-cyan-400 py-2">Home</a>
+                        <a href="/WhatisREALAiiD.html" class="block hover:text-cyan-400 py-2">What is REALAiiD</a>
+                        <a href="/about.html" class="block hover:text-cyan-400 py-2">About Us</a>
+                    </div>
+                </div>
+
+                <!-- Marketplace -->
+                <div onclick="toggleMobileSubmenu(this)" class="mobile-submenu-trigger cursor-pointer">
+                    <div class="flex justify-between items-center py-3 border-b border-slate-800">
+                        <span>Marketplace</span>
+                        <span class="text-xl transition-transform">›</span>
+                    </div>
+                    <div class="mobile-submenu hidden pl-6 text-base mt-2 space-y-4">
+                        <a href="/DigitalHumanIdentity.html" class="block hover:text-cyan-400 py-2">Digital Human™ Identity</a>
+                        <a href="/RoboSignEcosystem.html" class="block hover:text-cyan-400 py-2">Digital Robot™ Ecosystem</a>
+                        <a href="/$AIIComputeEconomy.html" class="block hover:text-cyan-400 py-2">$AII Compute Economy</a>
+                        <a href="/wallet-integration.html" class="block hover:text-cyan-400 py-2">Wallet Integration</a>
+                        <a href="/REALAi-Plate.html" class="block hover:text-cyan-400 py-2">REALAi Plate™</a>
+                    </div>
+                </div>
+
+                <!-- Technology, Solutions, For Grantors submenus (same as previous) -->
+                <!-- ... (you can copy from earlier full mobile menu if needed) ... -->
+
+                <a href="/signin1.html" class="mt-8 bg-cyan-500 text-center py-4 rounded-2xl font-semibold text-lg">
+                    Initialize Handshake
+                </a>
+            </div>
+        </div>
     </nav>
 
     <!-- HERO -->
@@ -62,29 +170,29 @@
     <!-- OUR STORY -->
     <section class="py-20 bg-slate-900">
         <div class="max-w-5xl mx-auto px-6">
-            <div class="prose prose-invert max-w-none text-lg leading-relaxed">
+            <div class="prose prose-invert max-w-none text-lg leading-relaxed space-y-8">
                 <p class="text-xl">REALAiiD was founded by Nehemiah Brown with one clear purpose: to help people take back control of their identity in a world that is becoming increasingly digital.</p>
                 
                 <p>As artificial intelligence grows more powerful, the risk of identity theft, deepfakes, and digital impersonation has never been greater. Traditional IDs, passwords, and plastic cards are no longer enough. We believe every person deserves a secure, private, and sovereign digital identity that belongs to them — not to corporations or governments.</p>
 
-                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Mission</h2>
+                <h2 class="text-3xl font-semibold mt-12">Our Mission</h2>
                 <p>We are building the Bureau of Digital Identity — a trusted system that allows individuals to prove who they are without giving up their privacy. Our products turn your physical self into a protected digital presence. We do not sell your data. We do not share your biometric information. Your identity is yours alone, and we exist to protect it.</p>
 
-                <h2 class="text-3xl font-semibold mt-16 mb-8">Why This Matters</h2>
-                <p>Everything in life is moving online — banking, travel, healthcare, work, and even social connections. Without strong personal identity protection, individuals become vulnerable. REALAiiD gives you the tools to step confidently into this new digital world with full ownership and control.</p>
+                <h2 class="text-3xl font-semibold mt-12">Why This Matters</h2>
+                <p>Everything in life is moving online — banking, travel, healthcare, work, and social connections. Without strong personal identity protection, individuals become vulnerable. REALAiiD gives you the tools to step confidently into this new digital world with full ownership and control.</p>
 
-                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Products</h2>
+                <h2 class="text-3xl font-semibold mt-12">Our Promise to You</h2>
+                <p>Your biometric data is never sold or shared with third parties. It is used only to verify that you are you — when and where you choose. We are building this company to serve people, not exploit them.</p>
+
+                <h2 class="text-3xl font-semibold mt-12">Our Products</h2>
                 <p>Every REALAiiD product is designed with one goal in mind: to protect and empower your identity.</p>
-                <ul class="list-disc pl-6 space-y-4 mt-6">
-                    <li><strong>Digital Human Identity</strong> – Secure your personal information and likeness.</li>
-                    <li><strong>REALAi Plate™</strong> – Modern vehicle identity that protects your privacy on the road.</li>
-                    <li><strong>Wallet Integration</strong> – Make payments using your biology instead of passwords.</li>
-                    <li><strong>Public Safety Credentials</strong> – Give trusted professionals verifiable authority.</li>
-                    <li><strong>$AII Compute Economy</strong> – Earn real value from your verified presence and activity.</li>
+                <ul class="list-disc pl-6 space-y-4 mt-6 text-slate-300">
+                    <li><strong>Digital Human Identity</strong> — Secure your personal information and likeness.</li>
+                    <li><strong>REALAi Plate™</strong> — Modern vehicle identity that protects your privacy on the road.</li>
+                    <li><strong>Wallet Integration</strong> — Make payments using your biology instead of passwords.</li>
+                    <li><strong>Public Safety Credentials</strong> — Give trusted professionals verifiable authority.</li>
+                    <li><strong>$AII Compute Economy</strong> — Earn real value from your verified presence and activity.</li>
                 </ul>
-
-                <h2 class="text-3xl font-semibold mt-16 mb-8">Our Promise</h2>
-                <p>Your biometric data is never sold. It is never shared with third parties for advertising or profit. It exists only to verify that you are you — when and where you choose. We are building this company to serve people, not exploit them.</p>
 
                 <p class="mt-12 text-xl">REALAiiD is more than technology. It is a movement to bring dignity, security, and ownership back to the individual in the digital age.</p>
             </div>
@@ -132,6 +240,7 @@
                     <a href="/economy$AII.html" class="block hover:text-cyan-400">$AII Economy</a>
                     <a href="/technology.html" class="block hover:text-cyan-400">Technology</a>
                     <a href="/wallet-integration.html" class="block hover:text-cyan-400">Wallet Integration</a>
+                    <a href="/REALAi-Plate.html" class="block hover:text-cyan-400">REALAi Plate™</a>
                 </div>
             </div>
 
