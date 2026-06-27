@@ -12,26 +12,30 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); 
         }
         .glow-card { 
-            box-shadow: 0 0 60px -15px rgb(34 211 238 / 0.4); 
+            box-shadow: 0 0 80px -20px rgb(34 211 238 / 0.6); 
+        }
+        .float-3d { 
+            animation: float 8s ease-in-out infinite; 
+        }
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px) rotate(0deg); } 
+            50% { transform: translateY(-25px) rotate(2deg); } 
         }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sans">
 
-    <!-- MASTER NAVIGATION (Same as sentinel-reader.html) -->
+    <!-- MASTER NAVIGATION -->
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
         <div class="max-w-[90rem] mx-auto px-6 py-2">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
                 <div class="flex-shrink-0 w-48">
                     <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
                     <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
                     
-                    <!-- Marketplace Dropdown -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Marketplace <span class="text-[10px]">▼</span>
@@ -44,7 +48,6 @@
                         </div>
                     </div>
 
-                    <!-- Technology Dropdown -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Technology <span class="text-[10px]">▼</span>
@@ -57,13 +60,12 @@
                         </div>
                     </div>
 
-                    <!-- Solutions Dropdown -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Solutions <span class="text-[10px]">▼</span>
                         </button>
                         <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
-                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime</a>
                             <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education</a>
                             <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel</a>
                             <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance</a>
@@ -77,28 +79,34 @@
                     <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
                 </div>
 
-                <!-- CTA -->
                 <div class="hidden xl:flex items-center gap-4">
                     <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 rounded-full text-sm font-semibold transition">
                         Initialize Handshake
                     </a>
                 </div>
 
-                <!-- Hamburger -->
                 <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400">☰</button>
             </div>
         </div>
     </nav>
 
     <!-- HERO -->
-    <section class="hero-handshake py-24 relative overflow-hidden">
+    <section class="hero-handshake py-28 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-6 py-2 rounded-full border border-cyan-500/30 mb-8">
+            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-8 py-3 rounded-full border border-cyan-500/30 mb-10">
                 <span class="text-cyan-400 text-xl font-mono tracking-widest">CITIZEN PROTECTION</span>
             </div>
             <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">Secure Handshake</h1>
             <p class="text-3xl text-cyan-400 mb-8">Privacy First Verification</p>
             <p class="max-w-3xl mx-auto text-lg text-slate-300">Prove what matters — without exposing everything. REALAiiD gives you control during every encounter.</p>
+        </div>
+    </section>
+
+    <!-- INTERACTION VISUAL -->
+    <section class="py-16 bg-slate-900">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <img src="secure-handshake.png" alt="REALAiiD Secure Handshake" class="mx-auto rounded-3xl glow-card float-3d shadow-2xl w-full max-w-4xl">
+            <p class="text-sm text-slate-400 mt-6">Secure Handshake in Action — Privacy Protected Verification</p>
         </div>
     </section>
 
@@ -159,7 +167,6 @@
         <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16">Benefits for Both Sides</h2>
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- Citizens -->
                 <div class="bg-slate-800 p-10 rounded-3xl">
                     <h3 class="text-2xl font-semibold mb-8 text-cyan-400">For Citizens</h3>
                     <ul class="space-y-6 text-slate-300">
@@ -170,7 +177,6 @@
                         <li>Peace of mind during routine encounters</li>
                     </ul>
                 </div>
-                <!-- Officers -->
                 <div class="bg-slate-800 p-10 rounded-3xl">
                     <h3 class="text-2xl font-semibold mb-8 text-emerald-400">For Law Enforcement</h3>
                     <ul class="space-y-6 text-slate-300">
@@ -185,15 +191,32 @@
         </div>
     </section>
 
-    <!-- REAL-WORLD SCENARIO -->
-    <section class="py-20">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-12">Real-World Traffic Stop</h2>
-            <div class="bg-slate-800 rounded-3xl p-12">
-                <p class="text-xl text-slate-300 italic">
-                    “Officer, here is my REALAiiD credential.”<br><br>
-                    A quick secure handshake occurs. Within seconds the officer sees only what is needed: valid license, no warrants, proof of insurance. No full address. No unnecessary personal details. Everyone goes home safer.
-                </p>
+    <!-- BRIDGE CAPABILITIES -->
+    <section class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">When Bridges Are Loaded</h2>
+            <p class="text-center text-slate-400 max-w-2xl mx-auto mb-16">
+                With bridges loaded into their REALAiiD wallet, citizens gain powerful sovereign capabilities while maintaining maximum privacy.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6 text-cyan-400">Citizen Capabilities</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li>• Prove valid driving privileges without revealing full personal data</li>
+                        <li>• Confirm residency or jurisdictional standing</li>
+                        <li>• Real-time warrant status check with privacy protection</li>
+                        <li>• Immutable personal audit trail for accountability</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6 text-emerald-400">Law Enforcement Benefits</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li>• Instant, trustworthy verification</li>
+                        <li>• Reduced risk from counterfeit IDs</li>
+                        <li>• Forensic audit trail for every interaction</li>
+                        <li>• Minimal disclosure protects officer safety and citizen privacy</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -214,7 +237,7 @@
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
             <div>
                 <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-20 mb-6">
-                <p class="text-slate-400">Bureau of Digital Identity</p>
+                <p class="text-slate-400">Bureau of Digital Identity • Node PHL-01</p>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Platform</h4>
@@ -226,6 +249,9 @@
                 <h4 class="font-semibold mb-4">Solutions</h4>
                 <a href="/Maritime&HarborLink.html" class="block py-1 text-slate-400 hover:text-white">Maritime</a>
                 <a href="/EducationSchoolSecure.html" class="block py-1 text-slate-400 hover:text-white">Education</a>
+                <a href="/Travel&Embarkation.html" class="block py-1 text-slate-400 hover:text-white">Travel</a>
+                <a href="/Governance&Civic.html" class="block py-1 text-slate-400 hover:text-white">Governance</a>
+                <a href="/Robotics&Autonomous.html" class="block py-1 text-slate-400 hover:text-white">Robotics</a>
                 <a href="/public-safety.html" class="block py-1 text-slate-400 hover:text-white">Public Safety</a>
                 <a href="/sentinel-reader.html" class="block py-1 text-slate-400 hover:text-white">Sentinel Reader</a>
             </div>
@@ -234,6 +260,7 @@
                 <a href="/for-grantors.html" class="block py-1 text-slate-400 hover:text-white">For Grantors</a>
                 <a href="/compliance-hub1.html" class="block py-1 text-slate-400 hover:text-white">Compliance</a>
                 <a href="/secure-handshake.html" class="block py-1 text-slate-400 hover:text-white">Secure Handshake</a>
+                <a href="/sentinel-reader.html" class="block py-1 text-slate-400 hover:text-white">Sentinel Reader</a>
             </div>
             <div>
                 <h4 class="font-semibold mb-4">Bureau</h4>
