@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REALAiiD Sentinel Reader — Secure Verification for Law Enforcement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        .hero-sentinel { 
+            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); 
+        }
+        .glow-card { 
+            box-shadow: 0 0 60px -15px rgb(34 211 238 / 0.5); 
+        }
+        .float-3d { 
+            animation: float 7s ease-in-out infinite; 
+        }
+        @keyframes float { 
+            0%, 100% { transform: translateY(0px) rotate(0deg); } 
+            50% { transform: translateY(-25px) rotate(2deg); } 
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- MASTER NAVIGATION -->
+    <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-[90rem] mx-auto px-6 py-2">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex-shrink-0 w-48">
+                    <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
+                    
+                    <!-- Marketplace -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Marketplace <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+                            <a href="/DigitalHumanIdentity.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Digital Human Identity</a>
+                            <a href="/RoboSignEcosystem.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">RoboSign™</a>
+                            <a href="/$AIIComputeEconomy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">$AII Economy</a>
+                            <a href="/Energy&Infrastructure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                        </div>
+                    </div>
+
+                    <!-- Technology -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Technology <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+                            <a href="/pillar-human.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Human Identity</a>
+                            <a href="/pillar-robotics.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics</a>
+                            <a href="/pillar-economy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Economy</a>
+                            <a href="/pillar-energy.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Energy & Infrastructure</a>
+                        </div>
+                    </div>
+
+                    <!-- Solutions -->
+                    <div class="relative group" onclick="toggleDropdown(this)">
+                        <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
+                            Solutions <span class="text-[10px]">▼</span>
+                        </button>
+                        <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education</a>
+                            <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel</a>
+                            <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance</a>
+                            <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics</a>
+                            <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                        </div>
+                    </div>
+
+                    <a href="/economy$AII.html" class="text-white hover:text-cyan-400 transition whitespace-nowrap">$AII Economy</a>
+                    <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden xl:flex items-center gap-4">
+                    <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 rounded-full text-sm font-semibold transition">
+                        Initialize Handshake
+                    </a>
+                </div>
+
+                <!-- Hamburger -->
+                <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-sentinel py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-6 py-2 rounded-full border border-cyan-500/30 mb-8">
+                <span class="text-cyan-400 text-xl font-mono tracking-widest">LAW ENFORCEMENT</span>
+            </div>
+            <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">REALAiiD Sentinel Reader</h1>
+            <p class="text-2xl text-cyan-400 mb-8">Secure. Private. Verifiable.</p>
+            <p class="max-w-2xl mx-auto text-lg text-slate-300">The next-generation verification tool that protects both officers and citizens through minimal disclosure and biometric truth.</p>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16">How the Sentinel Reader Works</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center">
+                    <div class="text-5xl mb-6">📱</div>
+                    <h3 class="font-semibold text-xl mb-3">1. Present Credential</h3>
+                    <p class="text-slate-400">Citizen presents REALAiiD digital wallet or physical card.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-6">🔄</div>
+                    <h3 class="font-semibold text-xl mb-3">2. Secure Handshake</h3>
+                    <p class="text-slate-400">Short-range NFC/Bluetooth initiates Bio-Sign™ verification.</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-5xl mb-6">✅</div>
+                    <h3 class="font-semibold text-xl mb-3">3. Minimal Proofs</h3>
+                    <p class="text-slate-400">Only required information is cryptographically proven.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SPECS -->
+    <section class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">Technical Specifications</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="font-semibold text-2xl mb-6 text-cyan-400">Core Features</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex gap-3"><span class="text-emerald-400">•</span> Bio-Sign™ Live Biometric Verification</li>
+                        <li class="flex gap-3"><span class="text-emerald-400">•</span> Zero-Knowledge Cryptographic Proofs</li>
+                        <
