@@ -9,17 +9,17 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         .hero-sentinel { 
-            background: linear-gradient(135deg, #0f172a 0%, #1e2937 100%); 
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); 
         }
         .glow-card { 
-            box-shadow: 0 0 60px -15px rgb(34 211 238 / 0.5); 
+            box-shadow: 0 0 80px -20px rgb(34 211 238 / 0.6); 
         }
         .float-3d { 
-            animation: float 7s ease-in-out infinite; 
+            animation: float 8s ease-in-out infinite; 
         }
         @keyframes float { 
             0%, 100% { transform: translateY(0px) rotate(0deg); } 
-            50% { transform: translateY(-25px) rotate(2deg); } 
+            50% { transform: translateY(-30px) rotate(3deg); } 
         }
     </style>
 </head>
@@ -29,16 +29,13 @@
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-700">
         <div class="max-w-[90rem] mx-auto px-6 py-2">
             <div class="flex items-center justify-between">
-                <!-- Logo -->
                 <div class="flex-shrink-0 w-48">
                     <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-30 w-auto object-contain transition-all duration-300 hover:scale-105">
                 </div>
 
-                <!-- Desktop Menu -->
                 <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
                     <a href="/" class="text-white hover:text-cyan-400 transition whitespace-nowrap">Home</a>
                     
-                    <!-- Marketplace -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Marketplace <span class="text-[10px]">▼</span>
@@ -51,7 +48,6 @@
                         </div>
                     </div>
 
-                    <!-- Technology -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Technology <span class="text-[10px]">▼</span>
@@ -64,18 +60,18 @@
                         </div>
                     </div>
 
-                    <!-- Solutions -->
                     <div class="relative group" onclick="toggleDropdown(this)">
                         <button class="flex items-center gap-1 text-white hover:text-cyan-400 transition whitespace-nowrap">
                             Solutions <span class="text-[10px]">▼</span>
                         </button>
                         <div class="dropdown absolute left-0 mt-2 w-56 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl py-2 z-50 hidden">
-                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime & HarborLink</a>
+                            <a href="/Maritime&HarborLink.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Maritime</a>
                             <a href="/EducationSchoolSecure.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Education</a>
                             <a href="/Travel&Embarkation.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Travel</a>
                             <a href="/Governance&Civic.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Governance</a>
                             <a href="/Robotics&Autonomous.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Robotics</a>
                             <a href="/public-safety.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Public Safety</a>
+                            <a href="/sentinel-reader.html" class="block px-4 py-2 hover:bg-slate-800 text-white text-xs">Sentinel Reader</a>
                         </div>
                     </div>
 
@@ -83,63 +79,186 @@
                     <a href="/for-grantors.html" class="text-amber-400 font-semibold hover:text-amber-300 transition whitespace-nowrap">For Grantors</a>
                 </div>
 
-                <!-- CTA -->
                 <div class="hidden xl:flex items-center gap-4">
                     <a href="/signin1.html" class="bg-cyan-500 hover:bg-cyan-400 px-6 py-3 rounded-full text-sm font-semibold transition">
                         Initialize Handshake
                     </a>
                 </div>
 
-                <!-- Hamburger -->
                 <button id="hamburger-btn" class="lg:hidden text-3xl text-cyan-400">☰</button>
             </div>
         </div>
     </nav>
 
     <!-- HERO -->
-    <section class="hero-sentinel py-24 relative overflow-hidden">
+    <section class="hero-sentinel py-28 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-6 py-2 rounded-full border border-cyan-500/30 mb-8">
-                <span class="text-cyan-400 text-xl font-mono tracking-widest">LAW ENFORCEMENT</span>
+            <div class="inline-flex items-center gap-3 bg-slate-900/70 backdrop-blur-md px-8 py-3 rounded-full border border-cyan-500/30 mb-10">
+                <span class="text-cyan-400 text-xl font-mono tracking-widest">LAW ENFORCEMENT DIVISION</span>
             </div>
             <h1 class="text-6xl md:text-7xl font-bold tracking-tighter mb-6">REALAiiD Sentinel Reader</h1>
-            <p class="text-2xl text-cyan-400 mb-8">Secure. Private. Verifiable.</p>
-            <p class="max-w-2xl mx-auto text-lg text-slate-300">The next-generation verification tool that protects both officers and citizens through minimal disclosure and biometric truth.</p>
+            <p class="text-3xl text-cyan-400 mb-8">Secure • Private • Verifiable</p>
+            <p class="max-w-3xl mx-auto text-lg text-slate-300">The next-generation verification tool that protects both officers and citizens through minimal disclosure and biometric truth.</p>
         </div>
     </section>
 
     <!-- HOW IT WORKS -->
-    <section class="py-20 bg-slate-900">
-        <div class="max-w-5xl mx-auto px-6">
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16">How the Sentinel Reader Works</h2>
-            <div class="grid md:grid-cols-3 gap-10">
+            <div class="grid md:grid-cols-3 gap-12">
                 <div class="text-center">
-                    <div class="text-5xl mb-6">📱</div>
-                    <h3 class="font-semibold text-xl mb-3">1. Present Credential</h3>
-                    <p class="text-slate-400">Citizen presents REALAiiD digital wallet or physical card.</p>
+                    <div class="text-6xl mb-6">📱</div>
+                    <h3 class="font-semibold text-2xl mb-4">1. Present Credential</h3>
+                    <p class="text-slate-400">Citizen presents their REALAiiD digital wallet or physical card.</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-5xl mb-6">🔄</div>
-                    <h3 class="font-semibold text-xl mb-3">2. Secure Handshake</h3>
-                    <p class="text-slate-400">Short-range NFC/Bluetooth initiates Bio-Sign™ verification.</p>
+                    <div class="text-6xl mb-6">🔄</div>
+                    <h3 class="font-semibold text-2xl mb-4">2. Secure Handshake</h3>
+                    <p class="text-slate-400">Short-range NFC/Bluetooth initiates Bio-Sign™ live verification.</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-5xl mb-6">✅</div>
-                    <h3 class="font-semibold text-xl mb-3">3. Minimal Proofs</h3>
-                    <p class="text-slate-400">Only required information is cryptographically proven.</p>
+                    <div class="text-6xl mb-6">✅</div>
+                    <h3 class="font-semibold text-2xl mb-4">3. Minimal Proofs</h3>
+                    <p class="text-slate-400">Only contextually required information is cryptographically proven.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TECHNICAL SPECS -->
-    <section class="py-20">
-        <div class="max-w-5xl mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-12">Technical Specifications</h2>
-            <div class="grid md:grid-cols-2 gap-10">
+    <!-- BRIDGE CAPABILITIES -->
+    <section class="py-24">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-12">When Bridges Are Loaded</h2>
+            <p class="text-center text-slate-400 max-w-2xl mx-auto mb-16">
+                With bridges loaded into their REALAiiD wallet, citizens gain powerful, sovereign capabilities while law enforcement receives only the verified information they need.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-slate-800 p-8 rounded-3xl">
-                    <h3 class="font-semibold text-2xl mb-6 text-cyan-400">Core Features</h3>
+                    <h3 class="font-semibold text-xl mb-6 text-cyan-400">Citizen Capabilities</h3>
                     <ul class="space-y-4 text-slate-300">
-                        <li class="flex gap-3"><span class="text-emerald-400">•</span> Bio-Sign™ Live Biometric Verification</li>
-                        <li class="flex gap-3"><span class="text-emerald-400">•</span> Zero-Knowledge Cryptographic Proofs</li>
-                        <
+                        <li>• Prove valid driving privileges without revealing full personal data</li>
+                        <li>• Confirm residency or jurisdictional standing</li>
+                        <li>• Real-time warrant status check with privacy protection</li>
+                        <li>• Immutable personal audit trail for accountability</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-800 p-8 rounded-3xl">
+                    <h3 class="font-semibold text-xl mb-6 text-emerald-400">Law Enforcement Benefits</h3>
+                    <ul class="space-y-4 text-slate-300">
+                        <li>• Instant, trustworthy verification</li>
+                        <li>• Reduced risk from counterfeit IDs</li>
+                        <li>• Forensic audit trail for every interaction</li>
+                        <li>• Minimal disclosure protects officer safety and citizen privacy</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL SPECS & BENEFITS -->
+    <section class="py-24 bg-slate-900">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
+            <div>
+                <h2 class="text-3xl font-bold mb-8">Technical Specifications</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="text-4xl">🔐</div>
+                        <div>
+                            <h4 class="font-semibold">Bio-Sign™ Verification</h4>
+                            <p class="text-slate-400">Live marrow-resonance biometric confirmation</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-4xl">📡</div>
+                        <div>
+                            <h4 class="font-semibold">Secure Protocols</h4>
+                            <p class="text-slate-400">NFC / Bluetooth + Zero-Knowledge Proofs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold mb-8">Benefits for Law Enforcement</h2>
+                <ul class="space-y-6 text-slate-300">
+                    <li class="flex gap-4"><span class="text-emerald-400">•</span> Faster verification (2–3 seconds)</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">•</span> Reduced exposure to fake IDs</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">•</span> Immutable audit trail for protection</li>
+                    <li class="flex gap-4"><span class="text-emerald-400">•</span> Improved officer and community safety</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-24 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-5xl font-bold mb-6">Deploy Sentinel Reader</h2>
+            <p class="text-xl text-slate-400 mb-10">Modernize verification. Protect officers. Empower citizens.</p>
+            <a href="/contact.html" class="inline-block bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-12 py-6 rounded-3xl text-xl">
+                Request Agency Briefing
+            </a>
+        </div>
+    </section>
+
+    <!-- PROFESSIONAL FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 text-sm">
+            <div>
+                <img src="RealAiIDlogo.png" alt="REALAiiD" class="h-20 mb-6">
+                <p class="text-slate-400">Bureau of Digital Identity • Node PHL-01</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Platform</h4>
+                <a href="/marketplace1.html" class="block py-1 text-slate-400 hover:text-white">Marketplace</a>
+                <a href="/technology.html" class="block py-1 text-slate-400 hover:text-white">Technology</a>
+                <a href="/economy$AII.html" class="block py-1 text-slate-400 hover:text-white">$AII Economy</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Solutions</h4>
+                <a href="/Maritime&HarborLink.html" class="block py-1 text-slate-400 hover:text-white">Maritime</a>
+                <a href="/EducationSchoolSecure.html" class="block py-1 text-slate-400 hover:text-white">Education</a>
+                <a href="/Travel&Embarkation.html" class="block py-1 text-slate-400 hover:text-white">Travel</a>
+                <a href="/public-safety.html" class="block py-1 text-slate-400 hover:text-white">Public Safety</a>
+                <a href="/sentinel-reader.html" class="block py-1 text-slate-400 hover:text-white">Sentinel Reader</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Company</h4>
+                <a href="/for-grantors.html" class="block py-1 text-slate-400 hover:text-white">For Grantors</a>
+                <a href="/compliance-hub1.html" class="block py-1 text-slate-400 hover:text-white">Compliance</a>
+                <a href="/secure-handshake.html" class="block py-1 text-slate-400 hover:text-white">Secure Handshake</a>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Bureau</h4>
+                <a href="/signin1.html" class="block py-1 text-slate-400 hover:text-white">Initialize Handshake</a>
+            </div>
+        </div>
+        <div class="text-center text-xs text-slate-500 mt-16">
+            © 2026 Solomon Kin LLC • REALAiiD Bureau • Node PHL-01 • UEI: H8YDYLEK6283 • SAM.gov Registered
+        </div>
+    </footer>
+
+    <script>
+        function toggleDropdown(el) {
+            document.querySelectorAll('.group').forEach(group => {
+                if (group !== el) group.classList.remove('active');
+            });
+            el.classList.toggle('active');
+        }
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.group')) {
+                document.querySelectorAll('.group').forEach(group => group.classList.remove('active'));
+            }
+        });
+
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerBtn.textContent = mobileMenu.classList.contains('hidden') ? '☰' : '✕';
+            });
+        }
+    </script>
+</body>
+</html>
