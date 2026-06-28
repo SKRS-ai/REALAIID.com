@@ -16,7 +16,11 @@ require('dotenv').config({ path: 'core/.env' });
 // ========================
 // ORCHESTRATOR IMPORT (Only once)
 // ========================
-const orchestrator = require('./orchestrator');
+// In server.js
+const orchestrator = require('./orchestrator/index'); // Matches your new structure
+
+// Usage:
+// await orchestrator.processRequest(body);
 
 const app = express();
 
