@@ -1,10 +1,10 @@
-// /orchestrator/config/openai.js
+// orchestrator/config/openai.js
 const { OpenAI } = require('openai');
 require('dotenv').config();
 
 if (!process.env.OPENAI_API_KEY) {
     console.error("❌ CRITICAL ERROR: OPENAI_API_KEY is missing in .env file!");
-    console.error("Please add your OpenAI key to .env and restart.");
+    console.error("Add it to .env and restart the server.");
     process.exit(1);
 }
 
