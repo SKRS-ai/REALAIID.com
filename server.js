@@ -114,6 +114,48 @@ setInterval(() => {
     console.log('[HEARTBEAT] Mesh Active...');
 }, 60000);
 
+// ========================
+// ORCHESTRATOR INTEGRATION
+// ========================
+
+const orchestrator = require('./orchestrator');
+
+// Mount Orchestrator API endpoint
+app.post('/api/orchestrate', async (req, res) => {
+    try {
+        const { input, context, bioSignProof, agentType = "verification" } = req.body;
+
+        if (!bioSignProof) {
+            return res.status(401).json({ error: "Bio-Sign™ proof is required" });
+        }
+
+        let result;
+
+        switch (agentType) {
+            case "sentinel":
+                result = await require('./orchestrator/agents/sentinel-agent').verify(context, bioSignProof);
+                break;
+            case "aii-economy":
+                result = await require('./orchestrator/agents/aii-economy-agent').process(context, bioSignProof);
+                break;
+            case "robotics":
+                result = await require('./orchestrator/agents/robotics-agent').process(context, bioSignProof);
+                break;
+            case "verification":
+            default:
+                result = await require('./orchestrator/agents/verification-agent').verify(context, bioSignProof);
+                break;
+        }
+
+        res.json(result);
+    } catch (error) {
+        console.error("Orchestrator Error:", error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+console.log("✅ REALAiiD Orchestrator mounted at /api/orchestrate");
+
 // --- FINAL SERVER START ---
 app.listen(PORT, '0.0.0.0', () => {
     logger.info(`[PHL-01] MAINFRAME V25.2 ONLINE // AUTONOMOUS MESH ACTIVE // ORCHESTRATOR READY`);
