@@ -12,6 +12,7 @@ const verificationAgent = require('./agents/verification-agent');
 const sentinelAgent = require('./agents/sentinel-agent');
 const aiiEconomyAgent = require('./agents/aii-economy-agent');
 const roboticsAgent = require('./agents/robotics-agent');
+const movieAgent = require('./agents/movie-agent'); // Added Movie Agent
 const contextBuilder = require('./utils/context-builder');
 const privacyEnforcer = require('./middleware/privacy-enforcer');
 
@@ -47,6 +48,10 @@ class PHL01Orchestrator {
 
             case "robotics":
                 result = await roboticsAgent.process(safeContext, bioSignProof);
+                break;
+
+            case "movie": // Added movie case
+                result = await movieAgent.process(safeContext, bioSignProof);
                 break;
 
             case "verification":
