@@ -1,10 +1,13 @@
-// /orchestrator/index.js
 /**
  * PHL-01 INTELLIGENT ORCHESTRATOR
  * Main entry point for all agent coordination and bridge execution
  */
 
-const { openai, models } = require('./config/openai');
+const path = require('path');
+
+// Updated to use path.join for absolute resolution regardless of execution context
+const { openai, models } = require(path.join(__dirname, 'config', 'openai'));
+
 const verificationAgent = require('./agents/verification-agent');
 const sentinelAgent = require('./agents/sentinel-agent');
 const aiiEconomyAgent = require('./agents/aii-economy-agent');
@@ -15,6 +18,7 @@ const privacyEnforcer = require('./middleware/privacy-enforcer');
 class PHL01Orchestrator {
     constructor() {
         console.log("🚀 PHL-01 Orchestrator initialized");
+        console.log("🛠 Using OpenAI Model:", models.balanced);
     }
 
     /**
