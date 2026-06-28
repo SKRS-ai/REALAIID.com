@@ -1,35 +1,64 @@
-const openai = require('./config/openai');
-const bridgeTools = require('./tools/bridge-tools');
+// /orchestrator/index.js
+/**
+ * PHL-01 INTELLIGENT ORCHESTRATOR
+ * Main entry point for all agent coordination and bridge execution
+ */
+
+const { openai, models } = require('./config/openai');
+const verificationAgent = require('./agents/verification-agent');
+const sentinelAgent = require('./agents/sentinel-agent');
+const aiiEconomyAgent = require('./agents/aii-economy-agent');
+const roboticsAgent = require('./agents/robotics-agent');
+const contextBuilder = require('./utils/context-builder');
 const privacyEnforcer = require('./middleware/privacy-enforcer');
 
 class PHL01Orchestrator {
     constructor() {
-        this.assistants = {};
+        console.log("🚀 PHL-01 Orchestrator initialized");
     }
 
-    async processRequest(userInput, context, bioSignProof) {
-        // 1. Verify Bio-Sign
-        if (!bioSignProof || !await privacyEnforcer.verifyBioSign(bioSignProof)) {
-            throw new Error("Bio-Sign verification failed");
+    /**
+     * Main entry point for all orchestrated requests
+     */
+    async processRequest(reqBody) {
+        const { input, context = {}, bioSignProof, agentType = "verification" } = reqBody;
+
+        if (!bioSignProof) {
+            throw new Error("Bio-Sign™ proof is required for all orchestrated requests.");
         }
 
-        // 2. Create or get assistant
-        let assistant = this.assistants[context.sessionId];
-        if (!assistant) {
-            assistant = await openai.beta.assistants.create({
-                name: "REALAiiD Orchestrator",
-                instructions: "You are a sovereign identity orchestrator. Use tools to call bridges. Always enforce minimal disclosure.",
-                tools: bridgeTools.getAllTools(),
-                model: "gpt-4o"
-            });
-            this.assistants[context.sessionId] = assistant;
+        // Build safe context
+        const safeContext = await contextBuilder.build(context, bioSignProof, agentType);
+
+        let result;
+
+        switch (agentType.toLowerCase()) {
+            case "sentinel":
+                result = await sentinelAgent.verify(safeContext, bioSignProof);
+                break;
+
+            case "aii-economy":
+                result = await aiiEconomyAgent.process(safeContext, bioSignProof);
+                break;
+
+            case "robotics":
+                result = await roboticsAgent.process(safeContext, bioSignProof);
+                break;
+
+            case "verification":
+            default:
+                result = await verificationAgent.verify(safeContext, bioSignProof);
+                break;
         }
 
-        // 3. Run thread with context
-        const thread = await openai.beta.threads.create();
-        // Add message + run assistant...
-        // (Full implementation in next steps)
+        return {
+            success: true,
+            agentType,
+            timestamp: new Date().toISOString(),
+            result
+        };
     }
 }
 
+// Export singleton instance
 module.exports = new PHL01Orchestrator();
