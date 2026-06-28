@@ -10,8 +10,11 @@ const path = require('path');
 const helmet = require('helmet');
 const winston = require('winston');
 const fs = require('fs');
-const mongoose = require('mongoose'); // Added Mongoose
-require('dotenv').config({ path: 'core/.env' }); // Explicit path to your .env
+const mongoose = require('mongoose');
+require('dotenv').config({ path: 'core/.env' });
+
+// NEW: Orchestrator Import
+const orchestrator = require('./orchestrator');
 
 const app = express();
 
@@ -73,7 +76,24 @@ if (fs.existsSync(bridgesPath)) {
 }
 
 // =========================================================================
-// 2. TELEMETRY & STATIC
+// 2. INTELLIGENT ORCHESTRATOR (NEW)
+// =========================================================================
+app.post('/api/orchestrate', async (req, res) => {
+    try {
+        const result = await orchestrator.processRequest(
+            req.body.input,
+            req.body.context,
+            req.body.bioSignProof
+        );
+        res.json(result);
+    } catch (error) {
+        console.error("[ORCHESTRATOR ERROR]", error);
+        res.status(403).json({ error: error.message });
+    }
+});
+
+// =========================================================================
+// 3. TELEMETRY & STATIC
 // =========================================================================
 app.get('/api/v1/telemetry/live-mesh', (req, res) => {
     res.json({
@@ -92,10 +112,10 @@ app.get(/^(?!\/api).*/, (req, res) => {
 // --- HEARTBEAT ---
 setInterval(() => {
     console.log('[HEARTBEAT] Mesh Active...');
-}, 60000); // Reduced to every 60 seconds to clean up terminal
+}, 60000);
 
 // --- FINAL SERVER START ---
 app.listen(PORT, '0.0.0.0', () => {
-    logger.info(`[PHL-01] MAINFRAME V25.2 ONLINE // AUTONOMOUS MESH ACTIVE // B-41 READY`);
+    logger.info(`[PHL-01] MAINFRAME V25.2 ONLINE // AUTONOMOUS MESH ACTIVE // ORCHESTRATOR READY`);
     console.log(`[SYSTEM] Server is running and listening on port ${PORT}`);
 });
