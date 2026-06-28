@@ -13,7 +13,9 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 require('dotenv').config({ path: 'core/.env' });
 
-// NEW: Orchestrator Import
+// ========================
+// ORCHESTRATOR IMPORT (Only once)
+// ========================
 const orchestrator = require('./orchestrator');
 
 const app = express();
@@ -76,51 +78,8 @@ if (fs.existsSync(bridgesPath)) {
 }
 
 // =========================================================================
-// 2. INTELLIGENT ORCHESTRATOR (NEW)
+// 2. INTELLIGENT ORCHESTRATOR
 // =========================================================================
-app.post('/api/orchestrate', async (req, res) => {
-    try {
-        const result = await orchestrator.processRequest(
-            req.body.input,
-            req.body.context,
-            req.body.bioSignProof
-        );
-        res.json(result);
-    } catch (error) {
-        console.error("[ORCHESTRATOR ERROR]", error);
-        res.status(403).json({ error: error.message });
-    }
-});
-
-// =========================================================================
-// 3. TELEMETRY & STATIC
-// =========================================================================
-app.get('/api/v1/telemetry/live-mesh', (req, res) => {
-    res.json({
-        nodesActive: 41,
-        meshStatus: "PHL-01_STABLE",
-        timestamp: new Date().toISOString()
-    });
-});
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get(/^(?!\/api).*/, (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// --- HEARTBEAT ---
-setInterval(() => {
-    console.log('[HEARTBEAT] Mesh Active...');
-}, 60000);
-
-// ========================
-// ORCHESTRATOR INTEGRATION
-// ========================
-
-const orchestrator = require('./orchestrator');
-
-// Mount Orchestrator API endpoint
 app.post('/api/orchestrate', async (req, res) => {
     try {
         const { input, context, bioSignProof, agentType = "verification" } = req.body;
@@ -131,7 +90,7 @@ app.post('/api/orchestrate', async (req, res) => {
 
         let result;
 
-        switch (agentType) {
+        switch (agentType.toLowerCase()) {
             case "sentinel":
                 result = await require('./orchestrator/agents/sentinel-agent').verify(context, bioSignProof);
                 break;
@@ -155,6 +114,28 @@ app.post('/api/orchestrate', async (req, res) => {
 });
 
 console.log("✅ REALAiiD Orchestrator mounted at /api/orchestrate");
+
+// =========================================================================
+// 3. TELEMETRY & STATIC FILES
+// =========================================================================
+app.get('/api/v1/telemetry/live-mesh', (req, res) => {
+    res.json({
+        nodesActive: 41,
+        meshStatus: "PHL-01_STABLE",
+        timestamp: new Date().toISOString()
+    });
+});
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// --- HEARTBEAT ---
+setInterval(() => {
+    console.log('[HEARTBEAT] Mesh Active...');
+}, 60000);
 
 // --- FINAL SERVER START ---
 app.listen(PORT, '0.0.0.0', () => {
