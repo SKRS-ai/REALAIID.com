@@ -3,7 +3,11 @@
  * ROLE: Unified Sovereign Gateway // Autonomous Bridge Grid Ingestion
  * STATUS: PRODUCTION READY // INFRASTRUCTURE MESH ACTIVE
  */
+const orchestrator = require('./orchestrator/index'); // The instance
+const orchestratorRouter = require('./orchestrator/index').router; // The router
 
+// Mount the entire orchestrator router
+app.use('/api', orchestratorRouter);
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
