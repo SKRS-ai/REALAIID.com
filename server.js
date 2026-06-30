@@ -14,19 +14,26 @@ const mongoose = require('mongoose');
 require('dotenv').config({ path: 'core/.env' });
 
 // ========================
-// ORCHESTRATOR IMPORT (Only once)
+// INITIALIZE EXPRESS FIRST
 // ========================
-// In server.js
-const orchestrator = require('./orchestrator/index'); // The instance
-const orchestratorRouter = require('./orchestrator/index').router; // The router
-
-// Mount the entire orchestrator router
-app.use('/api', orchestratorRouter);
-
-// Usage:
-// await orchestrator.processRequest(body);
-
 const app = express();
+
+// ========================
+// MIDDLEWARE CONFIGURATION
+// ========================
+app.use(cors());
+app.use(helmet({ contentSecurityPolicy: false }));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// ========================
+// ORCHESTRATOR IMPORT & MOUNT
+// ========================
+const orchestrator = require('./orchestrator/index'); 
+const orchestratorRouter = require('./orchestrator/index').router;
+
+// Now 'app' exists, so this mount will succeed
+app.use('/api', orchestratorRouter);
 
 // --- CRITICAL ERROR HANDLING ---
 process.on('uncaughtException', (err) => {
@@ -52,12 +59,6 @@ const logger = winston.createLogger({
     format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
     transports: [new winston.transports.Console()]
 });
-
-// --- MIDDLEWARE ---
-app.use(cors());
-app.use(helmet({ contentSecurityPolicy: false }));
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // --- DIAGNOSTIC TRACE ---
 app.use((req, res, next) => {
@@ -86,34 +87,14 @@ if (fs.existsSync(bridgesPath)) {
 }
 
 // =========================================================================
-// 2. INTELLIGENT ORCHESTRATOR
+// 2. INTELLIGENT ORCHESTRATOR (Legacy Endpoint)
 // =========================================================================
 app.post('/api/orchestrate', async (req, res) => {
     try {
         const { input, context, bioSignProof, agentType = "verification" } = req.body;
-
-        if (!bioSignProof) {
-            return res.status(401).json({ error: "Bio-Sign™ proof is required" });
-        }
-
-        let result;
-
-        switch (agentType.toLowerCase()) {
-            case "sentinel":
-                result = await require('./orchestrator/agents/sentinel-agent').verify(context, bioSignProof);
-                break;
-            case "aii-economy":
-                result = await require('./orchestrator/agents/aii-economy-agent').process(context, bioSignProof);
-                break;
-            case "robotics":
-                result = await require('./orchestrator/agents/robotics-agent').process(context, bioSignProof);
-                break;
-            case "verification":
-            default:
-                result = await require('./orchestrator/agents/verification-agent').verify(context, bioSignProof);
-                break;
-        }
-
+        if (!bioSignProof) return res.status(401).json({ error: "Bio-Sign™ proof is required" });
+        
+        const result = await orchestrator.processRequest(req.body);
         res.json(result);
     } catch (error) {
         console.error("Orchestrator Error:", error);
@@ -127,23 +108,16 @@ console.log("✅ REALAiiD Orchestrator mounted at /api/orchestrate");
 // 3. TELEMETRY & STATIC FILES
 // =========================================================================
 app.get('/api/v1/telemetry/live-mesh', (req, res) => {
-    res.json({
-        nodesActive: 41,
-        meshStatus: "PHL-01_STABLE",
-        timestamp: new Date().toISOString()
-    });
+    res.json({ nodesActive: 41, meshStatus: "PHL-01_STABLE", timestamp: new Date().toISOString() });
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.get(/^(?!\/api).*/, (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // --- HEARTBEAT ---
-setInterval(() => {
-    console.log('[HEARTBEAT] Mesh Active...');
-}, 60000);
+setInterval(() => { console.log('[HEARTBEAT] Mesh Active...'); }, 60000);
 
 // --- FINAL SERVER START ---
 app.listen(PORT, '0.0.0.0', () => {
